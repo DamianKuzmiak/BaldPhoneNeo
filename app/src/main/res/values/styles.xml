@@ -185,7 +185,7 @@
     <style name="BaldActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">?attr/bald_background</item>
     </style>
-
+    
     <style name="HomeButtonTile">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -218,5 +218,21 @@
         <item name="android:layout_marginTop">36dp</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
+    
+    <style name="DialerButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@drawable/dialer_button_bg</item>
+        <item name="android:backgroundTint">#DDDDDD</item>
+        <item name="android:textColor">?bald_text_on_key</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+    </style>    
 
 </resources>
