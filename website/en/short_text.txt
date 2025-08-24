@@ -1,1 +1,0 @@
-Replace android's interface with an accessible, simple and friendly one, suited for elderly
