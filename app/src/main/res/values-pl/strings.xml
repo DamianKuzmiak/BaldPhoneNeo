@@ -34,7 +34,7 @@
     <string name="add_to_home">Dodaj do ekranu głównego</string>
     <string name="add_to_sos">Dodaj do SOS</string>
     <string name="address">Adres</string>
-    <string name="advanced_options">Opcje zaawansowane</string>
+    <string name="advanced_options">Ustawienia zaawansowane</string>
     <string name="afternoon">Popołudnie</string>
     <string name="airplane_mode">Tryb samolotowy</string>
     <string name="alarm_name">Nazwa alarmu</string>
@@ -366,4 +366,13 @@
     <string name="choose_sim_subtext">Wybierz kartę SIM do rozmowy</string>
     <string name="show_options">Wyświetl opcje</string>
     <string name="website">Strona internetowa</string>
+
+    <!-- Battery toasts, optimized for TTS -->
+    <string name="battery_unavailable_tts">Status baterii niedostępny.</string>
+    <string name="battery_full_tts">Bateria pełna.</string>
+    <string name="battery_charging_with_time_tts">Ładowanie, %1$d%%. %2$s do pełnego naładowania.</string>
+    <string name="battery_charging_tts">Ładowanie, %1$d%%.</string>
+    <string name="battery_time_h_m_tts">%1$d godzin %2$d minut</string>
+    <string name="battery_time_m_tts">%1$d minut</string>
+    <string name="battery_remaining_tts">Pozostało %1$d%% baterii.</string>
 </resources>

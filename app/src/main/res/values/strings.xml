@@ -430,4 +430,12 @@
     <bool name="is_right_to_left">false</bool>
     <string name="contact_not_created">Contact not created</string>
 
+    <!-- Battery toasts, optimized for TTS -->
+    <string name="battery_unavailable_tts">Battery status currently unavailable.</string>
+    <string name="battery_full_tts">Battery is full</string>
+    <string name="battery_charging_with_time_tts">%1$d%%, charging. %2$s until full.</string>
+    <string name="battery_charging_tts">%1$d%%, charging.</string>
+    <string name="battery_time_h_m_tts">%1$d hours and %2$d minutes</string>
+    <string name="battery_time_m_tts">%1$d minutes</string>
+    <string name="battery_remaining_tts">%1$d%% battery remaining.</string>
 </resources>

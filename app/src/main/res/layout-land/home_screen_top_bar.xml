@@ -25,7 +25,7 @@
         android:layout_height="0dp"
         android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
-        android:src="@drawable/battery_unknown_on_background"
+        android:src="@drawable/battery_unknown"
         app:layout_constraintBottom_toTopOf="@+id/flash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

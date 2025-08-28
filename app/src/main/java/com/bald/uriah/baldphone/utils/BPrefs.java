@@ -71,7 +71,7 @@ public final class BPrefs {
     public static final boolean EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE = true;
 
     public static final String LOW_BATTERY_ALERT_KEY = "LOW_BATTERY_ALERT_KEY";
-    public static final boolean LOW_BATTERY_ALERT_DEFAULT_VALUE = true;
+    public static final boolean LOW_BATTERY_ALERT_DEFAULT_VALUE = false;
 
     public static final String DIALER_SOUNDS_KEY = "DIALER_SOUNDS_KEY";
     public static final boolean DIALER_SOUNDS_DEFAULT_VALUE = true;

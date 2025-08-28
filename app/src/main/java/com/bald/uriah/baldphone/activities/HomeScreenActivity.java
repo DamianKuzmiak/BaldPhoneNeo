@@ -32,7 +32,6 @@ import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.AsyncTask;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -66,7 +65,6 @@ import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.DropDownRecyclerViewAdapter;
-import com.bald.uriah.baldphone.utils.PageTransformers;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.utils.UpdatingUtil;
 import com.bald.uriah.baldphone.views.BaldImageButton;
@@ -79,6 +77,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.baldphone.neo.battery.BatteryStateManager;
 import github.nisrulz.lantern.Lantern;
 
 import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTION_REGISTER_ACTIVITY;
@@ -96,7 +95,6 @@ public class HomeScreenActivity extends BaldActivity {
             SOUND_DRAWABLES = {R.drawable.mute_on_background, R.drawable.vibration_on_background, R.drawable.sound_on_background},
             SOUND_TEXTS = {R.string.mute, R.string.vibrate, R.string.sound};
 
-    private static final IntentFilter BATTERY_FILTER = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
     private static final int SPEECH_REQUEST_CODE = 7;
 
     private static int onStartCounter = 0;
@@ -115,24 +113,7 @@ public class HomeScreenActivity extends BaldActivity {
     private ViewPagerHolder viewPagerHolder;
     private BatteryView batteryView;
     private boolean lowBatteryAlert;
-    /**
-     * Listens to changes in battery {@value Intent#ACTION_BATTERY_CHANGED}
-     */
-    private final BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (batteryView != null) {
-                final int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-                final int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-                final int batteryPct = Math.round(level / (float) scale * 100);
-                final int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-                final boolean charged = chargePlug == BatteryManager.BATTERY_PLUGGED_AC || chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS || chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-                batteryView.setLevel(batteryPct, charged);
-                if (lowBatteryAlert)
-                    getWindow().setStatusBarColor((batteryPct < D.LOW_BATTERY_LEVEL && !charged) ? ContextCompat.getColor(context, R.color.battery_low) : D.DEFAULT_STATUS_BAR_COLOR);
-            }
-        }
-    };
+
     private int notificationCount = 0;
     @ColorInt
     private int decorationColorOnBackground;
@@ -141,6 +122,7 @@ public class HomeScreenActivity extends BaldActivity {
     private BaldHomeWatcher baldHomeWatcher;
     private boolean flashInited;
     private final Handler handler = new Handler();
+
     /**
      * "Shakes" the notifications icon when it has more than {@value NotificationListenerService#NOTIFICATIONS_ALOT}
      */
@@ -259,25 +241,48 @@ public class HomeScreenActivity extends BaldActivity {
                 return 3;
             }
         }, soundButton));
-        batteryView.setOnClickListener((v) -> BaldToast.from(this)
-                .setText(batteryView.percentage + "%")
-                .setBig(true)
-                .setType(BaldToast.TYPE_INFORMATIVE)
-                .show());
+
+        BatteryStateManager batteryStateManager = BatteryStateManager.get(this);
+        Log.d(TAG, "Battery state manager: " + batteryStateManager);
+        batteryStateManager.live().observe(this, batteryState -> {
+            if (batteryState == null) return;
+            batteryView.updateBatteryState(batteryState);
+            if (lowBatteryAlert) {
+                if (batteryState.percentage <= D.LOW_BATTERY_LEVEL && !batteryState.isCharging) {
+                    // Not sure if setting status bar color is the best way to do this, to be consider.
+                    getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.battery_low));
+                } else {
+                    getWindow().setStatusBarColor(D.DEFAULT_STATUS_BAR_COLOR);
+                }
+            }
+        });
+        batteryView.setOnClickListener((v) -> onBatteryIndicatorClicked());
+
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
         viewPagerHandler();
         baldHomeWatcher = new BaldHomeWatcher(this, this::updateViewPager);
         recognizerManager.setHomeScreen(this);
+    }
 
+    private void onBatteryIndicatorClicked() {
+        String batteryInfo = batteryView.getAccessibilityText();
+        BaldToast.from(this)
+                .setText(batteryInfo)
+                .setBig(true)
+                .setType(BaldToast.TYPE_INFORMATIVE)
+                .show();
     }
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart");
         super.onStart();
         onStartCounter++;
         if (finishedUpdatingApps)
             updateViewPager();
         baldHomeWatcher.startWatch();
+
+        BatteryStateManager.get(this).startObserving();
 
         if (false) { // TODO replace with system env
             final int percent = (int) (Math.random() * 100) + 1;//1 - 100
@@ -306,10 +311,10 @@ public class HomeScreenActivity extends BaldActivity {
         }
     }
 
-    /* the security exception will happen only after api 23 so Lint please shush*/
-    @SuppressLint("InlinedApi")
     protected void onResume() { // remember to change in Page1EditorActivity.java too!
         super.onResume();
+        Log.v(TAG, "onResume");
+
         if (baldPrefsUtils.hasChanged(this)) {
             viewPagerHolder.getViewPager().removeAllViews();//android auto saves fragments, not good for us in this case
             this.recreate();
@@ -346,8 +351,6 @@ public class HomeScreenActivity extends BaldActivity {
                 sendBroadcast(
                         new Intent(ACTION_REGISTER_ACTIVITY)
                                 .putExtra(KEY_EXTRA_ACTIVITY, NOTIFICATIONS_HOME_SCREEN)), 200 * D.MILLISECOND);
-
-        registerReceiver(batteryReceiver, BATTERY_FILTER);
     }
 
     @Override
@@ -355,6 +358,7 @@ public class HomeScreenActivity extends BaldActivity {
         //read https://stackoverflow.com/questions/6165070/receiver-not-registered-exception-error
         //android platform may unregister the receiver without asking anyone, and this is the best solution.
         //first occurred in LG k10 api level 23
+        Log.d(TAG, "onPause");
         try {
             LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReceiver);
         } catch (IllegalArgumentException ignore) {
@@ -363,17 +367,18 @@ public class HomeScreenActivity extends BaldActivity {
             LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(ACTION_REGISTER_ACTIVITY).putExtra(KEY_EXTRA_ACTIVITY, ACTIVITY_NONE));
         } catch (IllegalArgumentException ignore) {
         }
-        try {
-            unregisterReceiver(batteryReceiver);
-        } catch (IllegalArgumentException ignore) {
-        }
+
         handler.removeCallbacks(shakeIt);
         super.onPause();
     }
 
     @Override
     protected void onStop() {
+        Log.d(TAG, "onStop");
         baldHomeWatcher.stopWatch();
+
+        BatteryStateManager.get(this).stopObserving();
+
         super.onStop();
     }
 
@@ -388,7 +393,11 @@ public class HomeScreenActivity extends BaldActivity {
      */
     private void viewPagerHandler() {
         baldPagerAdapter = new BaldPagerAdapter(this);
-        viewPagerHolder.setPageTransformer(false, PageTransformers.pageTransformers[sharedPreferences.getInt(BPrefs.PAGE_TRANSFORMERS_KEY, BPrefs.PAGE_TRANSFORMERS_DEFAULT_VALUE)]);
+//        viewPagerHolder.setPageTransformer(
+//                false,
+//                PageTransformers.pageTransformers[sharedPreferences.getInt(
+//                        BPrefs.PAGE_TRANSFORMERS_KEY,
+//                        BPrefs.PAGE_TRANSFORMERS_DEFAULT_VALUE)]);
         viewPagerHolder.setViewPagerAdapter(baldPagerAdapter);
         viewPagerHolder.setCurrentItem(baldPagerAdapter.startingPage);
     }
@@ -451,10 +460,12 @@ public class HomeScreenActivity extends BaldActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if (vibrator != null)
             vibrator.vibrate(D.vibetime);
         updateViewPager();
     }
+
 
     static class UpdateApps extends AsyncTask<Context, Void, Void> {
         final WeakReference<HomeScreenActivity> homeScreenWeakReference;
