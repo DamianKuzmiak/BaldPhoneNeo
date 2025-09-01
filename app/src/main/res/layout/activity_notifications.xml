@@ -66,8 +66,8 @@
             android:background="@drawable/style_for_buttons_transparent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp">
+            android:paddingStart="0dp"
+            android:paddingEnd="5dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_height="match_parent"
                 android:gravity="start|center_vertical"
                 android:paddingStart="5dp"
-                android:paddingEnd="0dp"
+                android:paddingEnd="5dp"
                 android:text="@string/clear_all_notifications" />
         </com.bald.uriah.baldphone.views.BaldLinearLayoutButton>
     </FrameLayout>

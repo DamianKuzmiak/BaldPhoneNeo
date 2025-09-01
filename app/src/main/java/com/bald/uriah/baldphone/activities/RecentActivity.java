@@ -17,6 +17,7 @@
 package com.bald.uriah.baldphone.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,7 +27,10 @@ import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.CallsRecyclerViewAdapter;
 import com.bald.uriah.baldphone.databases.calls.CallLogsHelper;
 
+import app.baldphone.neo.notifications.NotificationListenerService;
+
 public class RecentActivity extends BaldActivity {
+    private static final String TAG = "RecentActivity";
     public RecyclerView recyclerView;
 
     @Override
@@ -44,6 +48,17 @@ public class RecentActivity extends BaldActivity {
         final CallsRecyclerViewAdapter callsRecyclerViewAdapter = new CallsRecyclerViewAdapter(CallLogsHelper.getAllCalls(getContentResolver()), this);
         CallLogsHelper.markAllAsRead(getContentResolver());
         recyclerView.setAdapter(callsRecyclerViewAdapter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sendClearMissedCallsBroadcast();
+    }
+
+    private void sendClearMissedCallsBroadcast() {
+        Log.i(TAG, "Clearing missed call notifications.");
+        NotificationListenerService.clearMissedCalls();
     }
 
     @Override

@@ -19,7 +19,6 @@ package com.bald.uriah.baldphone.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +26,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Point;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -37,7 +35,6 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -50,13 +47,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import app.baldphone.neo.battery.BatteryStateManager;
 
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
-import com.bald.uriah.baldphone.services.NotificationListenerService;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
@@ -70,26 +67,20 @@ import com.bald.uriah.baldphone.utils.UpdatingUtil;
 import com.bald.uriah.baldphone.views.BaldImageButton;
 import com.bald.uriah.baldphone.views.BatteryView;
 import com.bald.uriah.baldphone.views.ViewPagerHolder;
-import com.bald.uriah.baldphone.views.home.HomePage1;
 import com.bald.uriah.baldphone.views.home.NotesView;
+
+import app.baldphone.neo.notifications.NotificationRepository;
+import github.nisrulz.lantern.Lantern;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.baldphone.neo.battery.BatteryStateManager;
-import github.nisrulz.lantern.Lantern;
-
-import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTION_REGISTER_ACTIVITY;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTIVITY_NONE;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.KEY_EXTRA_ACTIVITY;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_ALOT;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_HOME_SCREEN;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_NONE;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_SOME;
-
 public class HomeScreenActivity extends BaldActivity {
     private static final String TAG = HomeScreenActivity.class.getSimpleName();
+
+    public static final int NOTIFICATIONS_SOME = 1;
+    public static final int NOTIFICATIONS_ALOT = 5;
 
     private static final int[]
             SOUND_DRAWABLES = {R.drawable.mute_on_background, R.drawable.vibration_on_background, R.drawable.sound_on_background},
@@ -106,7 +97,6 @@ public class HomeScreenActivity extends BaldActivity {
     public boolean finishedUpdatingApps, launchAppsActivity;
     public BaldPagerAdapter baldPagerAdapter;
 
-    private Point screenSize;
     private Lantern lantern;
     private SharedPreferences sharedPreferences;
     private BaldPrefsUtils baldPrefsUtils;
@@ -123,47 +113,41 @@ public class HomeScreenActivity extends BaldActivity {
     private boolean flashInited;
     private final Handler handler = new Handler();
 
+    private final NotificationRepository repo = NotificationRepository.getInstance();
+
     /**
-     * "Shakes" the notifications icon when it has more than {@value NotificationListenerService#NOTIFICATIONS_ALOT}
+     * "Shakes" the notifications icon when it has more than {@value NOTIFICATIONS_ALOT}
      */
     private final Runnable shakeIt = new Runnable() {
         @Override
         public void run() {
             final Drawable d = notificationsButton.getDrawable();
-            if (d instanceof AnimatedVectorDrawable) {
-                final AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) d;
+            if (d instanceof AnimatedVectorDrawable animatedVectorDrawable) {
                 animatedVectorDrawable.start();
                 final int minusSeconds = Math.min((int) (Math.max((notificationCount - NOTIFICATIONS_ALOT) * 0.5f, 0)), 7);
-                handler.postDelayed(this, (10 - minusSeconds) * D.SECOND);
+                handler.postDelayed(this, (long) (10 - minusSeconds) * D.SECOND);
             }
         }
     };
-    /**
-     * Listens to broadcasts from {@link NotificationListenerService}
-     * This listener only gets the number of notifications and updates {@link HomeScreenActivity#notificationsButton}
-     * The red dot is being updated via {@link HomePage1#notificationReceiver}
-     */
-    public final BroadcastReceiver notificationReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            notificationCount = intent.getIntExtra("amount", -1);
-            if (notificationCount >= NOTIFICATIONS_ALOT) {
-                final Drawable drawable = getDrawable(R.drawable.notification_alot_on_background);
-                final float opacity = Math.min(((notificationCount - NOTIFICATIONS_ALOT) / 10.0f), 1.0f);
-                drawable.setTint(S.blendColors(decorationColorOnBackground, getResources().getColor(R.color.battery_low), 1 - opacity));
-                notificationsButton.setImageDrawable(drawable);
-            } else if (notificationCount >= NOTIFICATIONS_SOME) {
-                notificationsButton.setImageResource(R.drawable.notification_some_on_background);
-            } else if (notificationCount >= NOTIFICATIONS_NONE) {
-                notificationsButton.setImageResource(R.drawable.notification_none_on_background);
-            } else {
-                notificationsButton.setImageResource(R.drawable.error_on_background);
-            }
 
-            handler.removeCallbacks(shakeIt);
-            handler.postDelayed(shakeIt, 5 * D.SECOND);
+    private void handleNotificationCount(int count) {
+        notificationCount = count;
+        if (count >= NOTIFICATIONS_ALOT) {
+            final Drawable drawable = getDrawable(R.drawable.notification_alot_on_background);
+            final float opacity = Math.min(((count - NOTIFICATIONS_ALOT) / 10.0f), 1.0f);
+            drawable.setTint(S.blendColors(decorationColorOnBackground, getResources().getColor(R.color.battery_low), 1 - opacity));
+            notificationsButton.setImageDrawable(drawable);
+        } else if (count >= NOTIFICATIONS_SOME) {
+            notificationsButton.setImageResource(R.drawable.notification_some_on_background);
+        } else if (count >= 0) {
+            notificationsButton.setImageResource(R.drawable.notification_none_on_background);
+        } else {
+            notificationsButton.setImageResource(R.drawable.error_on_background);
         }
-    };
+
+        handler.removeCallbacks(shakeIt);
+        handler.postDelayed(shakeIt, 5 * D.SECOND);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -177,18 +161,10 @@ public class HomeScreenActivity extends BaldActivity {
             finish();
             return;
         }
-        try {
-            startService(new Intent(this, NotificationListenerService.class));
-        } catch (Exception e) {
-            Log.e(TAG, "Could not start Notification Listener Service!", e);
-        }
 
         new UpdateApps(this).execute(this.getApplicationContext());
         lowBatteryAlert = sharedPreferences.getBoolean(BPrefs.LOW_BATTERY_ALERT_KEY, BPrefs.LOW_BATTERY_ALERT_DEFAULT_VALUE);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        final Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-        screenSize = new Point();
-        display.getSize(screenSize);
 
         final TypedValue typedValue = new TypedValue();
         final Resources.Theme theme = getTheme();
@@ -212,7 +188,7 @@ public class HomeScreenActivity extends BaldActivity {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             lantern.init(this.getApplicationContext());
-            flashInited = true;  // TODO: swtich back to lantern:2.0.0
+            flashInited = true;  // TODO: switch back to lantern:2.0.0
         }
 
         notificationsButton.setOnClickListener((v) -> {
@@ -344,42 +320,27 @@ public class HomeScreenActivity extends BaldActivity {
             flashButton.setVisibility(View.GONE);
         }
 
-        LocalBroadcastManager.getInstance(this).
-                registerReceiver(notificationReceiver,
-                        new IntentFilter(NotificationListenerService.HOME_SCREEN_ACTIVITY_BROADCAST));
-        handler.postDelayed(() -> LocalBroadcastManager.getInstance(this).
-                sendBroadcast(
-                        new Intent(ACTION_REGISTER_ACTIVITY)
-                                .putExtra(KEY_EXTRA_ACTIVITY, NOTIFICATIONS_HOME_SCREEN)), 200 * D.MILLISECOND);
+        // Notifications handling
+        repo.getCount().observe(this, count -> {
+            Log.d(TAG, "Notification count: " + count);
+            handleNotificationCount(count);
+        });
     }
 
     @Override
     protected void onPause() {
-        //read https://stackoverflow.com/questions/6165070/receiver-not-registered-exception-error
-        //android platform may unregister the receiver without asking anyone, and this is the best solution.
-        //first occurred in LG k10 api level 23
-        Log.d(TAG, "onPause");
-        try {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReceiver);
-        } catch (IllegalArgumentException ignore) {
-        }
-        try {
-            LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(ACTION_REGISTER_ACTIVITY).putExtra(KEY_EXTRA_ACTIVITY, ACTIVITY_NONE));
-        } catch (IllegalArgumentException ignore) {
-        }
-
-        handler.removeCallbacks(shakeIt);
         super.onPause();
+        Log.d(TAG, "onPause");
+        handler.removeCallbacks(shakeIt);
     }
 
     @Override
     protected void onStop() {
+        super.onStop();
         Log.d(TAG, "onStop");
         baldHomeWatcher.stopWatch();
 
         BatteryStateManager.get(this).stopObserving();
-
-        super.onStop();
     }
 
     @Override

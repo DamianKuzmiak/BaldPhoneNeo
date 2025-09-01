@@ -36,11 +36,11 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.notifications.NotificationListenerService;
+
 import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.services.NotificationListenerService;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldPictureTextButton;
@@ -90,19 +90,7 @@ public class NotificationRecyclerViewAdapter extends ModularRecyclerView.Modular
 
     @Override
     public int getItemCount() {
-        return bundles.length;
-    }
-
-    public void clearAll() {
-        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
-        for (int i = 0; i < bundles.length; i++) {
-            localBroadcastManager.sendBroadcast(
-                    new Intent(NotificationListenerService.ACTION_CLEAR)
-                            .putExtra(NotificationListenerService.KEY_EXTRA_KEY, bundles[i].getString(NotificationListenerService.KEY_EXTRA_KEY))
-
-            );
-        }
-
+        return bundles == null ? 0 : bundles.length;
     }
 
     public void changeNotifications(Bundle[] bundles) {
@@ -221,12 +209,7 @@ public class NotificationRecyclerViewAdapter extends ModularRecyclerView.Modular
             if (clearable) {
                 clear.setVisibility(View.VISIBLE);
                 clear.setOnClickListener((v) -> {
-                    LocalBroadcastManager.getInstance(context)
-                            .sendBroadcast(
-                                    new Intent(NotificationListenerService.ACTION_CLEAR)
-                                            .putExtra(NotificationListenerService.KEY_EXTRA_KEY, item.getString(NotificationListenerService.KEY_EXTRA_KEY))
-
-                            );
+                    NotificationListenerService.cancel(item.getString("key"));
                 });
             } else {
                 clear.setVisibility(View.GONE);
