@@ -90,6 +90,7 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_17
         sourceCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true  // java.util.stream for API below 24
     }
 
     kotlinOptions {
@@ -120,6 +121,8 @@ dependencies {
     implementation 'com.github.nisrulz:lantern:1.1.2'  // Version 2.0.0 was unavailable from JitPack
 
     implementation 'com.android.volley:volley:1.2.1'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 
     // Only for tests
     androidTestImplementation 'androidx.test:rules:1.2.0'

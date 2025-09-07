@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2025 Damian Kuzmiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +28,12 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.DialerActivity;
-import com.bald.uriah.baldphone.activities.Page1EditorActivity;
 import com.bald.uriah.baldphone.activities.RecentActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
@@ -42,127 +44,198 @@ import com.bald.uriah.baldphone.activities.pills.PillsActivity;
 import com.bald.uriah.baldphone.utils.S;
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-/**
- * static class of useful methods when using the Apps Database
- */
+/** Static class of useful methods when using the Apps Database */
 public class AppsDatabaseHelper {
     private static final String TAG = AppsDatabaseHelper.class.getSimpleName();
 
-    public static final String baldComponentNameBeginning = BuildConfig.APPLICATION_ID + "/";
-    public static Map<String, Integer> baldComponentNames = new HashMap<>(10);
+    public static final String PREDEFINED_APP_PREFIX = BuildConfig.APPLICATION_ID + "/";
 
-    static {
-        if (!BuildConfig.FLAVOR.equals("gPlay"))
-            baldComponentNames.put(baldComponentNameBeginning + RecentActivity.class.getName(), R.drawable.history_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + ContactsActivity.class.getName(), R.drawable.human_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + DialerActivity.class.getName(), R.drawable.phone_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + PhotosActivity.class.getName(), R.drawable.photo_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + VideosActivity.class.getName(), R.drawable.movie_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + PillsActivity.class.getName(), R.drawable.pill);
-        baldComponentNames.put(baldComponentNameBeginning + AppsActivity.class.getName(), R.drawable.apps_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + AlarmsActivity.class.getName(), R.drawable.clock_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + Page1EditorActivity.class.getName(), R.drawable.edit_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + SOSActivity.class.getName(), R.drawable.emergency);
-    }
+    private record PredefinedAppInfo(int iconResId, int labelResId) {}
 
-    private static List<String> getInstalledAppsFlattenComponentNames(Context context) {
-        final PackageManager pm = context.getPackageManager();
-        final Intent intent = new Intent(Intent.ACTION_MAIN, null).addCategory(Intent.CATEGORY_LAUNCHER);
-        final List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
-        final List<String> componentNames = new ArrayList<>(resolveInfos.size() + baldComponentNames.size());
+    private static final Map<String, PredefinedAppInfo> PREDEFINED_APP_ICONS_MAP =
+            Map.ofEntries(
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + RecentActivity.class.getName(),
+                            new PredefinedAppInfo(
+                                    R.drawable.history_on_background, R.string.recent)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + ContactsActivity.class.getName(),
+                            new PredefinedAppInfo(
+                                    R.drawable.human_on_background, R.string.contacts)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + DialerActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.phone_on_background, R.string.dialer)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + PhotosActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.photo_on_background, R.string.photos)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + VideosActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.movie_on_background, R.string.videos)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + PillsActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.pill, R.string.pills)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + AppsActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.apps_on_background, R.string.apps)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + AlarmsActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.clock_on_background, R.string.alarms)),
+                    Map.entry(
+                            PREDEFINED_APP_PREFIX + SOSActivity.class.getName(),
+                            new PredefinedAppInfo(R.drawable.emergency, R.string.sos))
+                    // Map.entry(PREDEFINED_APP_PREFIX + Page1EditorActivity.class.getName(), ...
+                    );
 
-        ActivityInfo activityInfo;
-        ComponentName componentName;
+    /**
+     * Updates the Apps Database. This method is designed to be robust and should not throw
+     * exceptions. It synchronizes the database with the currently discoverable applications.
+     */
+    public static void updateDB(@NonNull Context context) {
+        long startUpdateDb = System.currentTimeMillis();
 
-        for (int i = 0; i < resolveInfos.size(); i++) {
-            activityInfo = resolveInfos.get(i).activityInfo;
-            componentName = new ComponentName(activityInfo.applicationInfo.packageName, activityInfo.name);
-            if (componentName.getPackageName().equals(BuildConfig.APPLICATION_ID))
-                continue;
-            componentNames.add(componentName.flattenToString());
+        final AppsDatabase appsDatabase = AppsDatabase.getInstance(context);
+        final AppsDatabaseDao dao = appsDatabase.appsDatabaseDao();
+        final PackageManager packageManager = context.getPackageManager();
+
+        // 1. Get all discoverable apps (external + predefined)
+        Set<String> discoverableAppNames = getDiscoverableAppNames(context);
+
+        Log.d(TAG, "Apps DB 2#: " + (System.currentTimeMillis() - startUpdateDb) + "ms");
+        // 2. Current DB apps, 12 ms
+        List<App> appsInDb = dao.getAll();
+        Map<String, App> appsInDbMap =
+                appsInDb.stream()
+                        .collect(Collectors.toMap(App::getFlattenComponentName, app -> app));
+
+        Log.d(TAG, "Apps DB 3#: " + (System.currentTimeMillis() - startUpdateDb) + "ms");
+        // 3. Apps to add
+        List<App> appsToAdd =
+                discoverableAppNames.stream()
+                        .filter(name -> !appsInDbMap.containsKey(name))
+                        .map(name -> buildAppFromComponent(name, packageManager, context))
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toList());
+
+        if (!appsToAdd.isEmpty()) {
+            dao.insertAll(appsToAdd.toArray(new App[0]));
+            Log.i(TAG, "Added apps: " + appsToAdd.size());
         }
-        componentNames.addAll(baldComponentNames.keySet());
-        return componentNames;
+
+        Log.d(TAG, "Apps DB 4#: " + (System.currentTimeMillis() - startUpdateDb) + "ms");
+        // 4. Apps to delete
+        int[] idsToDelete =
+                appsInDb.stream()
+                        .filter(
+                                app ->
+                                        !discoverableAppNames.contains(
+                                                app.getFlattenComponentName()))
+                        .mapToInt(App::getId)
+                        .toArray();
+
+        if (idsToDelete.length > 0) {
+            dao.deleteByIds(idsToDelete);
+            Log.i(TAG, "Deleted apps: " + idsToDelete.length);
+        }
+
+        if (appsToAdd.isEmpty() && idsToDelete.length == 0) {
+            Log.i(TAG, "Apps DB is already up-to-date.");
+        }
+
+        Log.d(TAG, "Apps DB updated in " + (System.currentTimeMillis() - startUpdateDb) + "ms");
     }
 
     /**
-     * Updates Apps Database - should never throw any exception
+     * Loads the icon of an app into an ImageView. If an error occurs, a default icon is displayed.
      */
-    public static void updateDB(Context context) {
-
-        final AppsDatabase appsDatabase = AppsDatabase.getInstance(context);
-        final int dbAmountBefore = appsDatabase.appsDatabaseDao().getNumberOfRows();
-        final List<String> addList = new ArrayList<>();
-        final List<String> realApps = getInstalledAppsFlattenComponentNames(context);
-
-        int realAppsInDbCount = 0;
-
-        for (String componentName : realApps) {
-            if (appsDatabase.appsDatabaseDao().findByFlattenComponentName(componentName) == null) {
-                addList.add(componentName);
-            } else {
-                ++realAppsInDbCount;
-            }
-        }
-
-        if (addList.size() > 0) {
-            final PackageManager packageManager = context.getPackageManager();
-            final App[] appsToAdd = new App[addList.size()];
-            int counter = 0;
-            for (String componentName : addList) {
-                try {
-                    final App app = new App();
-                    appsToAdd[counter++] = app;
-                    app.setFlattenComponentName(componentName);
-                    final ActivityInfo activityInfo =
-                            packageManager.getActivityInfo(ComponentName.unflattenFromString(componentName), PackageManager.MATCH_DEFAULT_ONLY);
-                    app.setLabel(String.valueOf(activityInfo.loadLabel(packageManager)));
-                    final Drawable drawable = activityInfo.loadIcon(packageManager);
-                    if (drawable instanceof BitmapDrawable)
-                        app.setIcon(S.bitmapToByteArray(((BitmapDrawable) drawable).getBitmap()));
-                    else
-                        app.setIcon(S.bitmapToByteArray(S.getBitmapFromDrawable(drawable)));
-
-                } catch (PackageManager.NameNotFoundException e) {
-                    Log.e(TAG, "updateDB: cannot happen! new app is not found", e);
-//                    ACRA.getErrorReporter().handleSilentException(new RuntimeException("cannot happen! new app is not found", e));
-                }
-
-            }
-            appsDatabase.appsDatabaseDao().insertAll(appsToAdd);
-        }
-
-        if (dbAmountBefore > realAppsInDbCount) {
-            final int howMuchToGo = dbAmountBefore - realAppsInDbCount;
-            final int[] idsToDelete = new int[howMuchToGo];
-
-            int idsToDeleteCounter = 0;
-            boolean shouldDelete;
-
-            for (App app : appsDatabase.appsDatabaseDao().getAll()) {
-                shouldDelete = true;
-                for (String componentName : realApps)
-                    if (app.getFlattenComponentName().equals(componentName)) {
-                        shouldDelete = false;
-                        break;
-                    }
-                if (shouldDelete)
-                    idsToDelete[idsToDeleteCounter++] = app.getId();
-
-            }
-            appsDatabase.appsDatabaseDao().deleteByIds(idsToDelete);
+    public static void loadPic(App app, ImageView imageView) {
+        if (app.getFlattenComponentName().startsWith(PREDEFINED_APP_PREFIX))
+            setPredefinedAppIcon(app, imageView);
+        else if (app.getIcon() != null && app.getIcon().length > 0) {
+            Glide.with(imageView)
+                    .load(S.byteArrayToBitmap(app.getIcon()))
+                    .error(R.drawable.ic_default_app_icon)
+                    .into(imageView);
+        } else {
+            imageView.setImageResource(R.drawable.ic_default_app_icon);
         }
     }
 
-    public static void loadPic(App app, ImageView imageView) {
-        if (app.getFlattenComponentName().startsWith(baldComponentNameBeginning))
-            imageView.setImageResource(AppsDatabaseHelper.baldComponentNames.get(app.getFlattenComponentName()));
-        else
-            Glide.with(imageView).load(S.byteArrayToBitmap(app.getIcon())).into(imageView);
+    private static Set<String> getDiscoverableAppNames(@NonNull Context context) {
+        PackageManager pm = context.getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_MAIN, null).addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
+        Set<String> componentNames =
+                new HashSet<>(resolveInfos.size() + PREDEFINED_APP_ICONS_MAP.size());
+
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            ActivityInfo activityInfo = resolveInfo.activityInfo;
+            if (!activityInfo.packageName.equals(BuildConfig.APPLICATION_ID)) {
+                ComponentName componentName =
+                        new ComponentName(activityInfo.packageName, activityInfo.name);
+                componentNames.add(componentName.flattenToString());
+            }
+        }
+
+        componentNames.addAll(PREDEFINED_APP_ICONS_MAP.keySet());
+        return componentNames;
+    }
+
+    private static App buildAppFromComponent(
+            String componentName, PackageManager pm, Context context) {
+        App newApp = new App();
+        newApp.setFlattenComponentName(componentName);
+
+        if (PREDEFINED_APP_ICONS_MAP.containsKey(componentName)) {
+            PredefinedAppInfo info = PREDEFINED_APP_ICONS_MAP.get(componentName);
+            if (info != null) {
+                newApp.setLabel(context.getString(info.labelResId));
+                newApp.setIcon(null); // handled by loadPic()
+            }
+            return newApp;
+        }
+
+        try {
+            ComponentName component = ComponentName.unflattenFromString(componentName);
+            if (component == null) {
+                Log.e(TAG, "Invalid component: " + componentName);
+                return null;
+            }
+
+            ActivityInfo info = pm.getActivityInfo(component, PackageManager.MATCH_DEFAULT_ONLY);
+            newApp.setLabel(String.valueOf(info.loadLabel(pm)));
+
+            Drawable drawable = info.loadIcon(pm);
+            byte[] iconData =
+                    (drawable instanceof BitmapDrawable)
+                            ? S.bitmapToByteArray(((BitmapDrawable) drawable).getBitmap())
+                            : S.bitmapToByteArray(S.getBitmapFromDrawable(drawable));
+            newApp.setIcon(iconData);
+
+            return newApp;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w(TAG, "App not found: " + componentName, e);
+        } catch (Exception e) {
+            Log.e(TAG, "Error adding app: " + componentName, e);
+        }
+        return null;
+    }
+
+    /** Sets the icon for the predefined app. */
+    private static void setPredefinedAppIcon(@NonNull App app, @NonNull ImageView imageView) {
+        PredefinedAppInfo info = PREDEFINED_APP_ICONS_MAP.get(app.getFlattenComponentName());
+        if (info != null) {
+            imageView.setImageResource(info.iconResId);
+        } else {
+            Log.e(TAG, "Drawable resource not found for app: " + app.getLabel());
+            imageView.setImageResource(R.drawable.ic_default_app_icon);
+        }
     }
 }
