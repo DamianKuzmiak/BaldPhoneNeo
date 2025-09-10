@@ -33,7 +33,7 @@ public class D {
             MINUTE = 60 * SECOND,
             HOUR = 60 * MINUTE,
             DAY = 24 * HOUR;
-    public static final int vibetime = 100;
+    public static final int vibetime = 50;
     public static final String BALD_PREFS = BPrefs.KEY;//default device settings
     @ColorInt
     public static final int DEFAULT_STATUS_BAR_COLOR = Color.BLACK;

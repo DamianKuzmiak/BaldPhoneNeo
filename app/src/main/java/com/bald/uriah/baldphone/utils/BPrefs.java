@@ -46,20 +46,25 @@ public final class BPrefs {
     public static final String CUSTOM_APPS_KEY = "CUSTOM_APPS_KEY";
     public static final String CUSTOM_ALARMS_KEY = "CUSTOM_ALARMS_KEY";
 
-    public static final String LONG_PRESSES_KEY = "LONG_PRESSES_KEY";
-    public static final boolean LONG_PRESSES_DEFAULT_VALUE = true;
-
     public static final String TEST_KEY = "TEST_KEY";
     public static final boolean TEST_DEFAULT_VALUE = false;
 
+    // BaldButton
+    public static final String LONG_PRESSES_KEY = "LONG_PRESSES_KEY";
+    public static final boolean LONG_PRESSES_DEFAULT_VALUE = true;
     public static final String LONG_PRESSES_SHORTER_KEY = "LONG_PRESSES_SHORTER_KEY";
     public static final boolean LONG_PRESSES_SHORTER_DEFAULT_VALUE = true;
+    public static final String SHORT_PRESS_DURATION_MS_KEY = "short_press_duration_ms";
+    public static final int SHORT_PRESS_DURATION_MS_DEFAULT_VALUE = 300;
+    public static final String LONG_PRESS_DURATION_MS_KEY = "long_press_duration_ms";
+    public static final int LONG_PRESS_DURATION_MS_DEFAULT_VALUE = 1000;
+    public static final String SHOW_PRESS_LONGER_HINT_KEY = "show_press_longer_hint";
+    public static final boolean SHOW_PRESS_LONGER_HINT_DEFAULT_VALUE = true;
+    public static final String VIBRATION_FEEDBACK_KEY = "VIBRATION_FEEDBACK_KEY";
+    public static final boolean VIBRATION_FEEDBACK_DEFAULT_VALUE = true;
 
     public static final String STATUS_BAR_KEY = "STATUS_BAR_KEY";
     public static final int STATUS_BAR_DEFAULT_VALUE = 0;
-
-    public static final String VIBRATION_FEEDBACK_KEY = "VIBRATION_FEEDBACK_KEY";
-    public static final boolean VIBRATION_FEEDBACK_DEFAULT_VALUE = true;
 
     public static final String THEME_KEY = "THEME_KEY";
     public static final int THEME_DEFAULT_VALUE = Themes.ADAPTIVE;

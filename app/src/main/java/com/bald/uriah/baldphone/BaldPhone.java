@@ -21,6 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import app.baldphone.neo.helpers.VibratorHelper;
+
 import com.bald.uriah.baldphone.activities.UpdatesActivity;
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;
@@ -50,6 +52,7 @@ public class BaldPhone extends Application {
             Log.e(TAG, e.getMessage());
             e.printStackTrace();
         }
+        VibratorHelper.init(this);
         S.sendVersionInfo(this);
     }
 

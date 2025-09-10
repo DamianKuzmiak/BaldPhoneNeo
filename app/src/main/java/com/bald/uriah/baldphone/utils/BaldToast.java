@@ -18,6 +18,7 @@ package com.bald.uriah.baldphone.utils;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -75,6 +76,10 @@ public class BaldToast {
     private Toast toast;
     private boolean built;
 
+    private Handler customDurationHandler;
+    private Runnable cancelRunnable;
+
+
     private BaldToast(@NonNull Context context) {
         this.context = new ContextThemeWrapper(context.getApplicationContext(), R.style.bald_light);
     }
@@ -129,8 +134,28 @@ public class BaldToast {
             build();
         toast.show();
         if (duration == LENGTH_SEC) {
-            new Handler()
-                    .postDelayed(() -> toast.cancel(), D.SECOND);
+            if (customDurationHandler == null) {
+                customDurationHandler = new Handler(Looper.getMainLooper());
+            }
+            if (cancelRunnable == null) {
+                cancelRunnable = () -> {
+                    if (toast != null) {
+                        toast.cancel();
+                    }
+                };
+            }
+            // Remove any existing callbacks to prevent multiple cancellations or holding onto old toast instances
+            customDurationHandler.removeCallbacks(cancelRunnable);
+            customDurationHandler.postDelayed(cancelRunnable, D.SECOND);
+        }
+    }
+
+    public void cancel() {
+        if (customDurationHandler != null && cancelRunnable != null) {
+            customDurationHandler.removeCallbacks(cancelRunnable);
+        }
+        if (toast != null) {
+            toast.cancel();
         }
     }
 
