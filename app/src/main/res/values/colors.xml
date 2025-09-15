@@ -34,11 +34,11 @@
 
     <color name="battery_low">#d50000</color>
 
-    <color name="outgoing">#80388ba3</color>
-    <color name="received">#802e7d32</color>
-    <color name="missed">#80C62828</color>
-    <color name="other">#809e9e9e</color>
+    <color name="outgoing">#B05F93A2</color>
+    <color name="received">#B06FAD73</color>
+    <color name="missed">#B0CA6666</color>
 
+    <color name="other">#809e9e9e</color>
     <color name="color_1">#5064ef5b</color>
     <color name="color_2">#501de8b5</color>
     <color name="color_4">#50bcaaa4</color>

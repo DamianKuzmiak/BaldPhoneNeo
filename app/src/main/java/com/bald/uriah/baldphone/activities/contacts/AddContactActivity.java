@@ -148,7 +148,7 @@ public class AddContactActivity extends BaldActivity {
             startActivity(new Intent(this, ContactsActivity.class));
             startActivity(
                     new Intent(this, SingleContactActivity.class)
-                            .putExtra(SingleContactActivity.CONTACT_ID, String.valueOf(currentContact.getId()))
+                            .putExtra(SingleContactActivity.CONTACT_LOOKUP_KEY, currentContact.getLookupKey())
                             .putExtra(SingleContactActivity.PIC_URI_EXTRA, newPhoto)
             );
         }

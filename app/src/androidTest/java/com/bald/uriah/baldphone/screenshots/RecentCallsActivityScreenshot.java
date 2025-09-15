@@ -23,7 +23,6 @@ import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.activities.RecentActivity;
 
 import org.joda.time.DateTime;
 import org.junit.runner.RunWith;
@@ -38,16 +37,18 @@ import static com.bald.uriah.baldphone.screenshots.FakeCallsRecyclerViewAdapter.
 import static com.bald.uriah.baldphone.screenshots.FakeCallsRecyclerViewAdapter.MISSED_TYPE;
 import static com.bald.uriah.baldphone.screenshots.FakeCallsRecyclerViewAdapter.OUTGOING_TYPE;
 
+import app.baldphone.neo.calls.recent.RecentCallsActivity;
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class RecentCallsActivityScreenshot extends BaseScreenshotTakerTest<RecentActivity> {
+public class RecentCallsActivityScreenshot extends BaseScreenshotTakerTest<RecentCallsActivity> {
 
     public void test() {
         mActivityTestRule.launchActivity(new Intent());
         getInstrumentation().waitForIdleSync();
         new Handler(mActivityTestRule.getActivity().getMainLooper())
                 .post(() -> {
-                    final RecentActivity dis = mActivityTestRule.getActivity();
+                    final RecentCallsActivity dis = mActivityTestRule.getActivity();
                     final String[] names = dis.getResources().getStringArray(R.array.names_for_screenshots);
                     final String[] numbers = dis.getResources().getStringArray(R.array.phone_numbers_for_tests);
                     final List<FakeCall> fakeCallList = new ArrayList<>();
@@ -76,7 +77,8 @@ public class RecentCallsActivityScreenshot extends BaseScreenshotTakerTest<Recen
                                 )
                         );
                     Collections.sort(fakeCallList, (o1, o2) -> Long.compare(o2.dateTime, o1.dateTime));
-                    dis.recyclerView.setAdapter(new FakeCallsRecyclerViewAdapter(fakeCallList, dis));
+                    // TODO: switch to RecentCallsActivity
+                    //                    dis.recyclerView.setAdapter(new FakeCallsRecyclerViewAdapter(fakeCallList, dis));
                 });
         getInstrumentation().waitForIdleSync();
 
@@ -88,7 +90,7 @@ public class RecentCallsActivityScreenshot extends BaseScreenshotTakerTest<Recen
     }
 
     @Override
-    protected Class<RecentActivity> activity() {
-        return RecentActivity.class;
+    protected Class<RecentCallsActivity> activity() {
+        return RecentCallsActivity.class;
     }
 }

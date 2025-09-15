@@ -201,7 +201,7 @@
     <string name="read_call_log_subtext">This permission is required in order to view the call history.</string>
     <string name="read_contacts">Read contacts</string>
     <string name="received">Received</string>
-    <string name="recent">Recent</string>
+    <string name="recent">Recents</string>
     <string name="regular_level">Regular level</string>
 
     <string name="remove_from_favorite">Remove from Favorite</string>

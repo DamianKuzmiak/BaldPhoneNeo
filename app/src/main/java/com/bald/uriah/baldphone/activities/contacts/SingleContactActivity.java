@@ -64,12 +64,10 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 /**
- * Simple Activity for interacting with a {@link Contact}.
- * {@link #CONTACT_ID} or {@link #CONTACT_LOOKUP_KEY} must be added
+ * Simple Activity for interacting with a {@link Contact}. {@link #CONTACT_LOOKUP_KEY} must be added
  */
 public class SingleContactActivity extends BaldActivity {
     private static final String TAG = SingleContactActivity.class.getSimpleName();
-    public static final String CONTACT_ID = "CONTACT_ID";
     public static final String CONTACT_LOOKUP_KEY = "CONTACT_KEY";
     public static final String PIC_URI_EXTRA = "PIC_URI_EXTRA";
     /**
@@ -77,7 +75,6 @@ public class SingleContactActivity extends BaldActivity {
      */
     public static final int REQUEST_CHECK_CHANGE = 97;
     public static boolean newPictureAdded = false;
-    private boolean viaId = false;
     private String contactKeyExtra;
     private BaldTitleBar baldTitleBar;
     private ImageView contact_image;
@@ -96,29 +93,25 @@ public class SingleContactActivity extends BaldActivity {
         contentResolver = getContentResolver();
         layoutInflater = getLayoutInflater();
         final Intent callingIntent = getIntent();
-        viaId = callingIntent.hasExtra(CONTACT_ID);
-        contactKeyExtra =
-                viaId ?
-                        callingIntent.getStringExtra(CONTACT_ID)
-                        :
-                        callingIntent.getStringExtra(CONTACT_LOOKUP_KEY)
-        ;
-        callingIntent.removeExtra(PIC_URI_EXTRA);
 
+        if (callingIntent.hasExtra(CONTACT_LOOKUP_KEY)) {
+            contactKeyExtra = callingIntent.getStringExtra(CONTACT_LOOKUP_KEY);
+        } else {
+            finish();
+        }
+
+        callingIntent.removeExtra(PIC_URI_EXTRA);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         final int childCount = ll.getChildCount();
         if (childCount > 2)
             ll.removeViews(2, ll.getChildCount() - 2);
 
         try {
-            contact = viaId ?
-                    Contact.fromId(contactKeyExtra, contentResolver) :
-                    Contact.fromLookupKey(contactKeyExtra, contentResolver);
+            contact = Contact.fromLookupKey(contactKeyExtra, contentResolver);
         } catch (Contact.ContactNotFoundException e) {
             finish();
             return;
@@ -148,10 +141,7 @@ public class SingleContactActivity extends BaldActivity {
                                      ContactsContract.Contacts.CONTENT_URI,
                                      new String[]{
                                              ContactsContract.Contacts.PHOTO_URI},
-                                     (viaId ?
-                                             ContactsContract.Contacts._ID :
-                                             ContactsContract.Contacts.LOOKUP_KEY)
-                                             + " = ?",
+                                             ContactsContract.Contacts.LOOKUP_KEY + " = ?",
                                      new String[]{contactKeyExtra},
                                      null)) {
                     if (cursor.moveToFirst())

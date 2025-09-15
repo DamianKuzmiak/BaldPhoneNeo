@@ -34,7 +34,6 @@ import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.DialerActivity;
-import com.bald.uriah.baldphone.activities.RecentActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
 import com.bald.uriah.baldphone.activities.contacts.ContactsActivity;
@@ -51,6 +50,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import app.baldphone.neo.calls.recent.RecentCallsActivity;
+
 /** Static class of useful methods when using the Apps Database */
 public class AppsDatabaseHelper {
     private static final String TAG = AppsDatabaseHelper.class.getSimpleName();
@@ -62,7 +63,7 @@ public class AppsDatabaseHelper {
     private static final Map<String, PredefinedAppInfo> PREDEFINED_APP_ICONS_MAP =
             Map.ofEntries(
                     Map.entry(
-                            PREDEFINED_APP_PREFIX + RecentActivity.class.getName(),
+                            PREDEFINED_APP_PREFIX + RecentCallsActivity.class.getName(),
                             new PredefinedAppInfo(
                                     R.drawable.history_on_background, R.string.recent)),
                     Map.entry(

@@ -127,11 +127,13 @@
         <activity
             android:name=".activities.PermissionActivity"
             android:exported="false"
-            android:label="Permissions" />
+            android:label="Permissions" >
+        </activity>
         <activity
-            android:name=".activities.RecentActivity"
+            android:name="app.baldphone.neo.calls.recent.RecentCallsActivity"
             android:exported="false"
-            android:label="@string/recent" />
+            android:label="@string/recent" >
+        </activity>
         <activity
             android:name=".activities.media.PhotosActivity"
             android:exported="false"
