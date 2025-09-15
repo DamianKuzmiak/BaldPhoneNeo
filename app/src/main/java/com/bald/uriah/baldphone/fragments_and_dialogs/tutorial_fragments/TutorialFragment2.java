@@ -93,6 +93,7 @@ public class TutorialFragment2 extends TutorialFragment {
 
         AccessibilityLevel level = AccessibilityLevel.values()[longPressesFlag];
         Prefs.setAccessibilityLevel(level);
+        Prefs.setVibrationFeedbackEnabled(level != AccessibilityLevel.BASIC);
 
         Activity activity = getActivity();
         if (activity != null) {

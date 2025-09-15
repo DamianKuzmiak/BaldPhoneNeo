@@ -130,6 +130,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="app.baldphone.neo.wizard.SetupActivity"
+            android:exported="true" />
+        <activity
             android:name="app.baldphone.neo.activities.DialerActivity"
             android:exported="false"
             android:label="@string/dialer" />
@@ -162,7 +165,7 @@
             android:label="@string/video" />
         <activity
             android:name=".activities.TutorialActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/video_tutorials"
             android:screenOrientation="portrait" />
         <activity
@@ -184,7 +187,7 @@
         <activity
             android:name=".activities.FakeLauncherActivity"
             android:enabled="false"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

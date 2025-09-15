@@ -58,7 +58,9 @@ import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
 import app.baldphone.neo.extensions.ThemeExtensions;
 import app.baldphone.neo.permissions.PermissionManager;
+import app.baldphone.neo.utils.HomeAppRoleManager;
 import app.baldphone.neo.views.TitleBarView;
+import app.baldphone.neo.wizard.SetupActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity;
@@ -99,6 +101,7 @@ public class SettingsActivity extends BaldActivity {
     private RecyclerView recyclerView;
     private BaldPrefsUtils baldPrefsUtils;
     private TitleBarView titleBarView;
+    private HomeAppRoleManager homeAppRoleManager;
 
     {
         categorySparseArray = new SparseArray<>();
@@ -113,6 +116,7 @@ public class SettingsActivity extends BaldActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_settings);
+        homeAppRoleManager = new HomeAppRoleManager(this);
         sharedPreferences = getSharedPreferences(D.BALD_PREFS, MODE_PRIVATE);
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
         editor = sharedPreferences.edit();
@@ -168,6 +172,14 @@ public class SettingsActivity extends BaldActivity {
     }
 
     private void populateSettingsList() {
+        if (!Prefs.isSetupComplete()) {
+            mainCategory.add(
+                    new RunnableSettingsItem(
+                            R.string.onb_action_start_setup,
+                            v -> startActivity(new Intent(this, SetupActivity.class)),
+                            R.drawable.ic_checklist));
+        }
+
         mainCategory.add(
                 new RunnableSettingsItem(
                         R.string.neo_settings,
@@ -181,8 +193,8 @@ public class SettingsActivity extends BaldActivity {
 
         mainCategory.add(
                 new RunnableSettingsItem(R.string.set_home_screen,
-                        v -> FakeLauncherActivity.resetPreferredLauncherAndOpenChooser(this)
-                        , R.drawable.home_on_button)
+                        v -> homeAppRoleManager.requestDefaultLauncher(),
+                        R.drawable.home_on_button)
         );
 
         mainCategory.add(new RunnableSettingsItem(R.string.advanced_options, v -> startActivity(new Intent(Settings.ACTION_SETTINGS)), R.drawable.settings_on_button));

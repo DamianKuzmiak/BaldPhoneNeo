@@ -14,6 +14,13 @@ object PrefKeys {
     // Theme
     const val THEME_KEY = "theme"
 
+    // Setup Process
+    const val KEY_SETUP_COMPLETED = "setup.is_completed" // Default: false
+    const val KEY_SETUP_SKIPPED = "setup.is_skipped" // Default: false
+    const val KEY_PENDING_DEFAULT_LAUNCHER = "setup.temp.pending_launcher_change" // Default: false
+    const val KEY_LAST_SETUP_FRAGMENT = "setup.last_setup_fragment"
+    const val DEFAULT_LAST_SETUP_FRAGMENT = 0
+
     const val KEY_ACCESSIBILITY_LEVEL = "accessibility_level"
 
     // Legacy BPrefs keys

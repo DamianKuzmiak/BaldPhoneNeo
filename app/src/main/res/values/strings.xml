@@ -15,7 +15,37 @@
   -->
 
 <resources>
+    <!-- Welcome -->
+    <string name="onb_welcome_title">Welcome!</string>
+    <string name="onb_welcome_subtitle">Let’s get everything ready in a few simple steps.</string>
+    <string name="onb_action_skip_all">Skip for now</string>
+    <string name="onb_action_start_setup">Start Setup</string>
+
+    <!-- AccessibilityLevel -->
+    <string name="onb_accessibility_title">Choose accessibility level</string>
+    <string name="onb_accessibility_desc">This affects only how this app handles gestures and taps</string>
+    <string name="onb_level_basic"><b>Basic</b>: Standard gestures and normal tap timing</string>
+    <string name="onb_level_enhanced"><b>Enhanced</b>: Gestures stay enabled, with a longer press required to tap</string>
+    <string name="onb_level_full"><b>Full</b>: Gestures disabled, navigation arrows shown, longest press needed to tap</string>
+    <string name="onb_haptic_feedback_title">Haptic Feedback</string>
+    <string name="onb_test_action">Test Tapping</string>
+    <string name="onb_action_continue">Continue</string>
+
+    <!-- Final View -->
+    <string name="onb_final_title">Final Setup</string>
+    <string name="onb_final_summary">You\'re almost done. Just a few final setup steps:</string>
+    <string name="onb_finish_button">Finish</string>
+
+    <string name="onb_permissions_title">Permissions</string>
+    <string name="onb_permissions_button">Open permissions setup</string>
+    <string name="onb_permissions_desc">Granting permissions enables features like dialer, screen off, messages, and notifications.</string>
     <string name="onb_permissions_done">✓ All permissions granted</string>
+
+    <string name="onb_home_title">Home Screen</string>
+    <string name="onb_home_summary">Set <b>%s</b> as the main home screen for the best experience.</string>
+    <string name="onb_home_button">Open home screen setup</string>
+    <string name="onb_home_already_set">✓ Already set as Home Screen</string>
+
     <string name="about">About</string>
     <string name="accessibility_level">Accessibility Level</string>
     <string name="accessibility_settings">Accessibility</string>

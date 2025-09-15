@@ -81,7 +81,6 @@ object Prefs {
                 putInt(PrefKeys.KEY_ACCESSIBILITY_LEVEL, level.value)
                 // Still used by BPrefs and legacy code
                 val isNotBasic = level != AccessibilityLevel.BASIC
-                putBoolean(PrefKeys.KEY_VIBRATION_FEEDBACK, isNotBasic)
                 putBoolean(PrefKeys.KEY_LONG_PRESSES, isNotBasic)
                 putBoolean(PrefKeys.KEY_LONG_PRESSES_SHORTER, level == AccessibilityLevel.ENHANCED)
                 putBoolean(PrefKeys.KEY_TOUCH_NOT_HARD, level == AccessibilityLevel.BASIC)
@@ -91,10 +90,10 @@ object Prefs {
     /**
      * Controls whether the app provides haptic feedback on back button press.
      */
-    @get:JvmStatic
+    @JvmStatic
     var isVibrationFeedbackEnabled: Boolean by booleanPref(
         PrefKeys.KEY_VIBRATION_FEEDBACK,
-        BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE,
+        BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE
     )
 
     /**
@@ -144,6 +143,39 @@ object Prefs {
     @JvmStatic
     var shouldConfirmCalls: Boolean by booleanPref(PrefKeys.KEY_CALL_CONFIRMATION, false)
 
+    // Setup and Onboarding related preferences.
+
+    /**
+     * A flag indicating whether the app is currently waiting for the user to make a choice
+     * in the system's "select default launcher" dialog.
+     */
+    @JvmStatic
+    var isPendingDefaultLauncherChoice: Boolean by booleanPref(
+        PrefKeys.KEY_PENDING_DEFAULT_LAUNCHER,
+        false,
+    )
+
+    /**
+     * Indicates whether the initial setup process has been successfully completed by the user.
+     */
+    @get:JvmStatic
+    var isSetupComplete: Boolean by booleanPref(PrefKeys.KEY_SETUP_COMPLETED, false)
+
+    /**
+     * Indicates whether the user has chosen to skip the setup process.
+     */
+    @JvmStatic
+    var isSetupSkipped: Boolean by booleanPref(PrefKeys.KEY_SETUP_SKIPPED, false)
+
+    /**
+     * Stores the ID of the last fragment displayed during the setup wizard process.
+     * This allows the app to restore the user's progress if they exit and re-enter the setup.
+     */
+    var lastSetupFragment: Int by intPref(
+        PrefKeys.KEY_LAST_SETUP_FRAGMENT,
+        PrefKeys.DEFAULT_LAST_SETUP_FRAGMENT,
+    )
+
     // Helper functions for the delegate
     private fun booleanPref(
         key: String,
@@ -154,6 +186,14 @@ object Prefs {
         SharedPreferences::getBoolean,
         SharedPreferences.Editor::putBoolean,
     )
+
+    private fun intPref(key: String, default: Int) =
+        PreferenceDelegate(
+            key,
+            default,
+            SharedPreferences::getInt,
+            SharedPreferences.Editor::putInt
+        )
 
     private fun <T> enumPref(
         key: String,

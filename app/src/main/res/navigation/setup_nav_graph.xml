@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setup_nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="app.baldphone.neo.wizard.WelcomeFragment"
+        android:label="WelcomeFragment">
+        <action
+            android:id="@+id/action_welcomeFragment_to_accessibilityLevelFragment"
+            app:destination="@id/accessibilityLevelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accessibilityLevelFragment"
+        android:name="app.baldphone.neo.wizard.AccessibilitySetupFragment"
+        android:label="AccessibilityLevelFragment">
+        <action
+            android:id="@+id/action_accessibilityLevelFragment_to_permissionsIntroFragment"
+            app:destination="@id/permissionsIntroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionsIntroFragment"
+        android:name="app.baldphone.neo.wizard.PermissionsIntroFragment"
+        android:label="PermissionsIntroFragment" />
+</navigation>

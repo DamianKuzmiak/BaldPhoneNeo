@@ -54,6 +54,7 @@ import app.baldphone.neo.permissions.model.PermissionResult;
 import app.baldphone.neo.permissions.model.RuntimePermission;
 import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 import app.baldphone.neo.utils.HomeAppUtils;
+import app.baldphone.neo.wizard.SetupActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
@@ -154,12 +155,29 @@ public class HomeScreenActivity extends BaldActivity {
         final LaunchSource launchSource = detectLaunchSource(getIntent());
         Log.d(TAG, "launchSource: " + launchSource);
 
-        sharedPreferences = BPrefs.get(this);
-        if (!sharedPreferences.getBoolean(BPrefs.AFTER_TUTORIAL_KEY, false) && !testing) {
-            startActivity(new Intent(this, TutorialActivity.class));
-            finish();
-            return;
+        if (Prefs.isPendingDefaultLauncherChoice()) {
+            Log.v(TAG, "Starting setup with pending default launcher choice");
+            Prefs.setPendingDefaultLauncherChoice(false);
+            if (HomeAppUtils.isDefaultLauncher(this)) {
+                startActivity(new Intent(this, SetupActivity.class));
+                finish();
+                return;
+            }
         }
+
+        if (!Prefs.isSetupComplete() && !Prefs.isSetupSkipped()) {
+            if (launchSource == LaunchSource.HOME) {
+                // Setup is incomplete but the Home button was pressed, so skip setup.
+                Prefs.setSetupSkipped(true);
+            } else {
+                Log.d(TAG, "Starting setup");
+                startActivity(new Intent(this, SetupActivity.class));
+                finish();
+                return;
+            }
+        }
+
+        sharedPreferences = BPrefs.get(this);
 
         new UpdateApps(this).execute(this.getApplicationContext());
 

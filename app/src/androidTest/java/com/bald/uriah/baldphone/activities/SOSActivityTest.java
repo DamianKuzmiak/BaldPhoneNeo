@@ -68,7 +68,7 @@ public class SOSActivityTest extends BaseActivityTest {
     @Test
     public void sOSActivityTest() {
         mActivityTestRule.launchActivity(new Intent());
-        ViewInteraction baldImageButton2 = onView(allOf(withId(R.id.sos), childAtPosition(allOf(withId(R.id.top_bar), childAtPosition(withId(R.id.container), 0)), 0), isDisplayed()));
+        ViewInteraction baldImageButton2 = onView(allOf(withId(R.id.tv_sos), childAtPosition(allOf(withId(R.id.top_bar), childAtPosition(withId(R.id.container), 0)), 0), isDisplayed()));
         sleep();
         baldImageButton2.perform(longClick());
         ViewInteraction baldLinearLayoutButton = onView(allOf(withId(R.id.ec1), childAtPosition(childAtPosition(withId(android.R.id.content), 0), 2), isDisplayed()));
