@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.baldphone.neo.R
 import app.baldphone.neo.core.assisttouch.enableAssistTouch
 import app.baldphone.neo.databinding.AppListItemBinding
-import app.baldphone.neo.databinding.AppsHeaderBinding
+import app.baldphone.neo.databinding.ItemListHeaderBinding
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.launcher.apps.AppIconBinder
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
@@ -57,7 +57,7 @@ class AppsListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return if (viewType == TYPE_HEADER) {
-            HeaderViewHolder(AppsHeaderBinding.inflate(inflater, parent, false))
+            HeaderViewHolder(ItemListHeaderBinding.inflate(inflater, parent, false))
         } else {
             AppViewHolder(AppListItemBinding.inflate(inflater, parent, false))
         }
@@ -78,7 +78,7 @@ class AppsListAdapter(
         }
     }
 
-    class HeaderViewHolder(private val binding: AppsHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
+    class HeaderViewHolder(private val binding: ItemListHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(header: AppListItem.Header) {
             binding.tvLetter.text = header.letter
         }

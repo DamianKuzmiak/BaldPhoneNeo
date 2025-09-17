@@ -18,7 +18,7 @@ import app.baldphone.neo.R
 import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.databinding.ContactItemAddBinding
 import app.baldphone.neo.databinding.ContactItemBinding
-import app.baldphone.neo.databinding.ContactItemHeaderBinding
+import app.baldphone.neo.databinding.ItemListHeaderBinding
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.SimpleContact
@@ -33,7 +33,7 @@ class ContactAdapter(
     override fun getItemViewType(position: Int): Int =
         when (getItem(position)) {
             is ContactItemType.AddContact -> R.layout.contact_item_add
-            is ContactItemType.Header -> R.layout.contact_item_header
+            is ContactItemType.Header -> R.layout.item_list_header
             is ContactItemType.ContactItem -> R.layout.contact_item
         }
 
@@ -48,8 +48,8 @@ class ContactAdapter(
                 AddContactViewHolder(binding, onAddContactClick)
             }
 
-            R.layout.contact_item_header -> {
-                val binding = ContactItemHeaderBinding.inflate(inflater, parent, false)
+            R.layout.item_list_header -> {
+                val binding = ItemListHeaderBinding.inflate(inflater, parent, false)
                 HeaderViewHolder(binding)
             }
 
@@ -88,10 +88,10 @@ class ContactAdapter(
     }
 
     class HeaderViewHolder(
-        private val binding: ContactItemHeaderBinding
+        private val binding: ItemListHeaderBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(header: ContactItemType.Header) {
-            binding.letter.text = header.letter
+            binding.tvLetter.text = header.letter
         }
     }
 
