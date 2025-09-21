@@ -16,6 +16,8 @@
 
 package com.bald.uriah.baldphone.databases.contacts;
 
+import android.provider.ContactsContract;
+
 import androidx.annotation.Nullable;
 
 import com.bald.uriah.baldphone.R;
@@ -29,7 +31,16 @@ import com.bumptech.glide.request.RequestOptions;
 /**
  * Mini contact, contains lookupkey,photo,name and id.
  */
-public class MiniContact implements HomeScreenPinHelper.HomeScreenPinnable, Constants.BaseContactsConstants {
+public class MiniContact implements HomeScreenPinHelper.HomeScreenPinnable {
+
+    public static final String[] PROJECTION =
+            new String[] {
+                ContactsContract.Contacts.LOOKUP_KEY,
+                ContactsContract.Contacts.DISPLAY_NAME,
+                ContactsContract.Contacts.PHOTO_URI,
+                ContactsContract.Contacts._ID,
+                ContactsContract.Contacts.STARRED,
+            };
 
     public final String lookupKey, photo;
     @Nullable

@@ -43,10 +43,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.contacts.Contact;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity;
 import com.bald.uriah.baldphone.adapters.ContactRecyclerViewAdapter;
-import com.bald.uriah.baldphone.databases.contacts.Contact;
 import com.bald.uriah.baldphone.databases.contacts.MiniContact;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
@@ -142,7 +143,7 @@ public class DialerActivity extends BaldActivity {
 
     public static void call(final MiniContact miniContact, final Context context) {
         try {
-            call(Contact.fromLookupKey(miniContact.lookupKey, context.getContentResolver()).getPhoneList().get(0).second, context, false);
+            call(Contact.fromLookupKey(miniContact.lookupKey, context.getContentResolver()).getPhones().get(0).value(), context, false);
         } catch (Exception e) {
             BaldToast.error(context);
         }

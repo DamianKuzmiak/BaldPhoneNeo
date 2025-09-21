@@ -40,11 +40,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.contacts.ContactInfoActivity;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.activities.contacts.ShareActivity;
-import com.bald.uriah.baldphone.activities.contacts.SingleContactActivity;
 import com.bald.uriah.baldphone.fragments_and_dialogs.LetterChooserDialog;
 import com.bald.uriah.baldphone.utils.RandomColorMaker;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
@@ -267,9 +268,9 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
                 throw new IllegalStateException("lookupKey cannot be null!");
             switch (mode) {
                 case MODE_DEFAULT:
-                    final Intent intent = new Intent(activity, SingleContactActivity.class)
-                            .putExtra(SingleContactActivity.CONTACT_LOOKUP_KEY, lookupKey);
-                    activity.startActivityForResult(intent, SingleContactActivity.REQUEST_CHECK_CHANGE);
+                    final Intent intent = new Intent(activity, ContactInfoActivity.class)
+                            .putExtra(ContactInfoActivity.CONTACT_LOOKUP_KEY, lookupKey);
+                    activity.startActivityForResult(intent, ContactInfoActivity.REQUEST_CHECK_CHANGE);
                     break;
                 case MODE_SOS:
                     SOSActivity.PinHelper.pinContact(v.getContext(), lookupKey);

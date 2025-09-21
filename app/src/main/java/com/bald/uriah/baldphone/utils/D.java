@@ -25,8 +25,7 @@ import androidx.annotation.ColorInt;
 import com.bald.uriah.baldphone.R;
 
 public class D {
-    public static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
-    public static final String WHATSAPP_LAUNCH_ACTIVITY = "com.whatsapp.Main";
+
     public static final int
             MILLISECOND = 1,
             SECOND = 1000 * MILLISECOND,

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?bald_background"
+    android:orientation="vertical">
+
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleBarBackgroundColor="@color/color_1"
+        app:titleBarTitle="@string/contact_details" />
+
+    <com.bald.uriah.baldphone.views.ScrollingHelper
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- do not delete id-->
+        <com.bald.uriah.baldphone.views.ModularScrollView
+            android:id="@+id/single_contact_scroll_view"
+            style="@style/ScrollStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="1dp"
+                    android:contentDescription="@string/photo"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    tool:src="@drawable/face_in_recent_calls"
+                    tool:visibility="visible" />
+
+                <!-- Name -->
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="18dp"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="?attr/bald_text_on_button"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    tool:drawableEnd="@drawable/star_gold"
+                    tool:text="Contact Name" />
+
+                <LinearLayout
+                    android:id="@+id/ll_contact_info_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+        </com.bald.uriah.baldphone.views.ModularScrollView>
+    </com.bald.uriah.baldphone.views.ScrollingHelper>
+</LinearLayout>

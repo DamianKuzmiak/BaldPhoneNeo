@@ -23,8 +23,9 @@ import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 
+import app.baldphone.neo.contacts.ContactInfoActivity;
+
 import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.activities.contacts.SingleContactActivity;
 import com.bald.uriah.baldphone.utils.S;
 
 public class HomeScreenAppView {
@@ -51,7 +52,7 @@ public class HomeScreenAppView {
     }
 
     public void setIntent(final String contactLookupKey) {
-        child.setOnClickListener(v -> v.getContext().startActivity(new Intent(v.getContext(), SingleContactActivity.class).putExtra(SingleContactActivity.CONTACT_LOOKUP_KEY, contactLookupKey)));
+        child.setOnClickListener(v -> v.getContext().startActivity(new Intent(v.getContext(), ContactInfoActivity.class).putExtra(ContactInfoActivity.CONTACT_LOOKUP_KEY, contactLookupKey)));
     }
 
     public void setVisibility(int visibility) {

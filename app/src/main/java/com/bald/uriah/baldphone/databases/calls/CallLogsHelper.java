@@ -23,9 +23,10 @@ import android.net.Uri;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
 
+import app.baldphone.neo.contacts.Contact;
+
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.adapters.CallsRecyclerViewAdapter;
-import com.bald.uriah.baldphone.databases.contacts.Contact;
 
 import java.util.ArrayList;
 import java.util.List;

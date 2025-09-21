@@ -31,12 +31,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import app.baldphone.neo.contacts.Contact;
+import app.baldphone.neo.utils.WhatsappUtils;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.ContactRecyclerViewAdapter;
 import com.bald.uriah.baldphone.adapters.IntentAdapter;
-import com.bald.uriah.baldphone.databases.contacts.Contact;
 import com.bald.uriah.baldphone.utils.BaldToast;
-import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldSwitch;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
@@ -145,17 +146,14 @@ public class ShareActivity extends BaseContactsActivity {
     }
 
     public void whatsappShare(String lookupKey) {
-        final Contact contact;
-        try {
-            contact = Contact.fromLookupKey(lookupKey, contentResolver);
-        } catch (Contact.ContactNotFoundException e) {
-            Log.e(TAG, S.str(e.getMessage()));
-            e.printStackTrace();
+        Contact contact = Contact.fromLookupKey(lookupKey, contentResolver);
+        if (contact == null) {
             BaldToast.error(this);
             finish();
             return;
         }
-        shareIntent.setPackage(D.WHATSAPP_PACKAGE_NAME);
+
+        shareIntent.setPackage(WhatsappUtils.WHATSAPP_PACKAGE_NAME);
         String smsNumber = PhoneNumberUtils.stripSeparators(contact.getWhatsappNumbers().get(0)).replace("+", "").replace(" ", "");
         shareIntent.putExtra("jid", smsNumber + "@s.whatsapp.net"); //phone number without "+" prefix
         startActivity(shareIntent);

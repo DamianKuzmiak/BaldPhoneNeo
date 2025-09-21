@@ -38,11 +38,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.contacts.ContactInfoActivity;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.activities.DialerActivity;
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity;
-import com.bald.uriah.baldphone.activities.contacts.SingleContactActivity;
 import com.bald.uriah.baldphone.databases.calls.Call;
 import com.bald.uriah.baldphone.databases.contacts.MiniContact;
 import com.bald.uriah.baldphone.utils.BDB;
@@ -266,8 +267,8 @@ public class CallsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter
             final MiniContact miniContact = call.getMiniContact(activity);
             if (miniContact != null) {
                 activity.startActivity(
-                        new Intent(activity, SingleContactActivity.class)
-                                .putExtra(SingleContactActivity.CONTACT_LOOKUP_KEY, miniContact.lookupKey)
+                        new Intent(activity, ContactInfoActivity.class)
+                                .putExtra(ContactInfoActivity.CONTACT_LOOKUP_KEY, miniContact.lookupKey)
                 );
             } else {
                 if (!call.isPrivate())

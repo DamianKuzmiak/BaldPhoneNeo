@@ -11,6 +11,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
+import androidx.annotation.WorkerThread;
 
 public final class ContactsUtils {
     private static final String TAG = "ContactsUtils";
@@ -69,6 +70,47 @@ public final class ContactsUtils {
         return null;
     }
 
+    /**
+     * Resolve latest lookup key for a contact given an old lookup key.
+     *
+     * @param contentResolver content resolver to query
+     * @param oldLookupKey the previous lookup key (may be stale)
+     * @return the fresh lookup key (String) or null if not found / deleted
+     */
+    @RequiresPermission("android.Manifest.permission.READ_CONTACTS")
+    @WorkerThread
+    @Nullable
+    public static String resolveLatestLookupKey(
+            @NonNull ContentResolver contentResolver, @NonNull String oldLookupKey) {
+        try {
+            Uri lookupUri =
+                    Uri.withAppendedPath(
+                            ContactsContract.Contacts.CONTENT_LOOKUP_URI, oldLookupKey);
+
+            // The lookupContact method can handle cases where the contact is deleted.
+            Uri contactUri = ContactsContract.Contacts.lookupContact(contentResolver, lookupUri);
+            if (contactUri == null) {
+                Log.i(TAG, "Contact not found for lookup key: " + oldLookupKey);
+                return null;
+            }
+
+            String freshLookupKey = queryLookupKey(contentResolver, contactUri);
+            if (TextUtils.isEmpty(freshLookupKey)) {
+                Log.w(TAG, "Fresh lookup key was empty for contact URI: " + contactUri);
+                return null;
+            }
+
+            return freshLookupKey;
+
+        } catch (SecurityException se) {
+            Log.e(TAG, "Missing READ_CONTACTS permission.", se);
+            return null;
+        } catch (Exception e) {
+            Log.e(TAG, "An unexpected error occurred while resolving lookup key.", e);
+            return null;
+        }
+    }
+
     @Nullable
     private static String queryLookupKey(
             @NonNull ContentResolver resolver, @Nullable Uri contactUri) {
@@ -92,5 +134,20 @@ public final class ContactsUtils {
             Log.e(TAG, "Error querying for lookup key with URI: " + contactUri, e);
         }
         return null;
+    }
+
+    @WorkerThread
+    public static int getRawContactId(int contactId, @NonNull ContentResolver resolver) {
+        try (final Cursor c =
+                resolver.query(
+                        ContactsContract.RawContacts.CONTENT_URI,
+                        new String[] {ContactsContract.RawContacts._ID},
+                        ContactsContract.RawContacts.CONTACT_ID + " = ?",
+                        new String[] {String.valueOf(contactId)},
+                        null)) {
+            if (c != null && c.moveToNext())
+                return c.getInt(c.getColumnIndexOrThrow(ContactsContract.RawContacts._ID));
+        }
+        return -1;
     }
 }

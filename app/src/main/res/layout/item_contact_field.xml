@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="?attr/bald_button"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardMaxElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:minHeight="50dp"
+        android:paddingHorizontal="5dp">
+
+        <!-- Text section -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="4dp"
+            android:gravity="start|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fieldLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:paddingBottom="3dp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="?attr/bald_button_clicked"
+                android:textSize="13sp"
+                tools:text="Mobile" />
+
+            <TextView
+                android:id="@+id/fieldValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/bald_text_on_button"
+                android:textSize="18sp"
+                tools:text="+12 700 800 900"
+                tools:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Two reusable buttons (default gone) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.bald.uriah.baldphone.views.BaldImageButton
+                android:id="@+id/btnActionSecondary"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/message"
+                android:visibility="gone"
+                tools:src="@drawable/message_on_button"
+                tools:visibility="visible" />
+
+            <com.bald.uriah.baldphone.views.BaldImageButton
+                android:id="@+id/btnActionPrimary"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/call"
+                android:visibility="gone"
+                tools:src="@drawable/phone_on_button"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

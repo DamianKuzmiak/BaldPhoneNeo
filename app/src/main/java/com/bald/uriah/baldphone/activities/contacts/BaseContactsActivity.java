@@ -37,6 +37,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.contacts.ContactInfoActivity;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.adapters.ContactRecyclerViewAdapter;
@@ -245,7 +247,7 @@ abstract class BaseContactsActivity extends BaldActivity {
                             .get(0);
             et_filter_input.setText(spokenText);
             et_filter_input.setSelection(et_filter_input.getText().length());
-        } else if (requestCode == SingleContactActivity.REQUEST_CHECK_CHANGE && resultCode == RESULT_OK) {
+        } else if (requestCode == ContactInfoActivity.REQUEST_CHECK_CHANGE && resultCode == RESULT_OK) {
             applyFilter();
         } else
             super.onActivityResult(requestCode, resultCode, data);

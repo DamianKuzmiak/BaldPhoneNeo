@@ -24,12 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import app.baldphone.neo.calls.UnknownCallHandler;
+import app.baldphone.neo.contacts.ContactInfoActivity;
 import app.baldphone.neo.notifications.NotificationListenerService;
 import app.baldphone.neo.contacts.ContactsUtils;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
-import com.bald.uriah.baldphone.activities.contacts.SingleContactActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,9 +125,9 @@ public class RecentCallsActivity extends BaldActivity {
                         item.name());
         if (contactLookupKey != null) {
             final Intent intent =
-                    new Intent(this, SingleContactActivity.class)
-                            .putExtra(SingleContactActivity.CONTACT_LOOKUP_KEY, contactLookupKey);
-            this.startActivityForResult(intent, SingleContactActivity.REQUEST_CHECK_CHANGE);
+                    new Intent(this, ContactInfoActivity.class)
+                            .putExtra(ContactInfoActivity.CONTACT_LOOKUP_KEY, contactLookupKey);
+            this.startActivityForResult(intent, ContactInfoActivity.REQUEST_CHECK_CHANGE);
         } else {
             UnknownCallHandler.processCallAction(item, this);
         }
