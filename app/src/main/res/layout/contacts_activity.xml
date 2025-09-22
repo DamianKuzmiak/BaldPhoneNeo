@@ -20,15 +20,15 @@
     android:layout_height="match_parent"
     android:background="?bald_background">
 
-    <com.bald.uriah.baldphone.views.BaldTitleBar
-        android:id="@+id/bald_title_bar"
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/title_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/color_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/contacts" />
+        app:titleBarBackgroundColor="@color/color_1"
+        app:titleBarTitle="@string/contacts" />
 
     <include
         android:id="@+id/include"
@@ -52,7 +52,7 @@
         android:paddingEnd="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bald_title_bar" />
+        app:layout_constraintTop_toBottomOf="@id/title_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

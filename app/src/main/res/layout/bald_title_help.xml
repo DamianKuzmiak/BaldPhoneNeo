@@ -22,4 +22,5 @@
     android:layout_weight="1"
     android:alpha="0.75"
     android:background="@drawable/style_for_buttons_transparent"
-    app:srcCompat="@drawable/help_on_background" />
+    app:srcCompat="@drawable/help_on_background"
+    android:visibility="invisible"/>

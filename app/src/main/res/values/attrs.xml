@@ -95,4 +95,9 @@
         <attr name="is_vertical" format="boolean" />
         <attr name="text_size" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="TitleBarView">
+        <attr name="titleBarTitle" format="string" />
+        <attr name="titleBarBackgroundColor" format="color|reference" />
+    </declare-styleable>
 </resources>
