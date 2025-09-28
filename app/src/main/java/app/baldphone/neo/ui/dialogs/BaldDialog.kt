@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Button
 
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -18,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 
 import com.bald.uriah.baldphone.databinding.DialogBaldBinding
-import com.bald.uriah.baldphone.views.BaldButton
 
 /**
  * A custom BDialog replacement with a Builder API like MaterialAlertDialog and custom background color support.
@@ -36,10 +36,10 @@ class BaldDialog private constructor(
         setContentView(binding.root)
 
         window?.apply {
-            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-            setDimAmount(0.6f)
+            setDimAmount(DIALOG_DIM_AMOUNT)
         }
 
         setupContent()
@@ -47,8 +47,6 @@ class BaldDialog private constructor(
         setupBackground()
         setupListeners()
     }
-
-    fun getInputText(): String = binding.editText.text.toString()
 
     private fun setupContent() =
         with(binding) {
@@ -95,7 +93,7 @@ class BaldDialog private constructor(
         }
 
     private fun configureButton(
-        button: BaldButton,
+        button: Button,
         text: CharSequence?,
         listener: ((BaldDialog) -> Unit)?
     ): Boolean {
@@ -130,6 +128,7 @@ class BaldDialog private constructor(
         }
     }
 
+    @Suppress("TooManyFunctions")
     class Builder(
         private val context: Context
     ) {
@@ -226,6 +225,10 @@ class BaldDialog private constructor(
         fun create(): BaldDialog = BaldDialog(context, this)
 
         fun show(): BaldDialog = create().apply { show() }
+    }
+
+    companion object {
+        private const val DIALOG_DIM_AMOUNT = 0.6f
     }
 }
 

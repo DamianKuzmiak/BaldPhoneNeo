@@ -153,8 +153,10 @@ public class BDialog extends Dialog {
         attachXml();
         tv_title.setText(title);
         tv_subtext.setText(subText);
-        if (!containFlag(FLAG_NOT_CANCELABLE)) {
-            bt_cancel = (BaldImageButton) LayoutInflater.from(context).inflate(R.layout.bald_dialog_box_close_button, container, false);
+
+        if (containFlag(FLAG_NOT_CANCELABLE)) {
+            setCancelable(false);
+        } else {
             View.OnClickListener cancelClickListener = v -> {
                 if (negative == null)
                     cancel();
@@ -163,11 +165,12 @@ public class BDialog extends Dialog {
                 }
             };
             bt_cancel.setOnClickListener(cancelClickListener);
+            bt_cancel.setVisibility(View.VISIBLE);
+
             if (containFlag(FLAG_CANCEL))
                 bt_negative.setOnClickListener(cancelClickListener);
-            container.addView(bt_cancel);
-        } else
-            setCancelable(false);
+        }
+
         if (containFlag(FLAG_POSITIVE)) {
             if (containFlag(FLAG_INPUT)) {
                 editText = ll.findViewById(R.id.edit_text);
@@ -216,7 +219,7 @@ public class BDialog extends Dialog {
                 baldMultipleSelection.addSelection(option);
             baldMultipleSelection.setSelection(startingIndexChooser.chooseStartingIndex());
             final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80f, context.getResources().getDisplayMetrics()));
-            ll.addView(baldMultipleSelection, 2, layoutParams);
+            ll.addView(baldMultipleSelection, 3, layoutParams);
             if (containFlag(FLAG_POSITIVE))
                 bt_positive.setOnClickListener(v -> {
                     if (positive == null)
