@@ -11,6 +11,7 @@ import android.view.Window
 import android.view.WindowManager
 
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -53,6 +54,9 @@ class BaldDialog private constructor(
         with(binding) {
             builder.icon?.let {
                 dialogIcon.setImageDrawable(it)
+                builder.iconTint?.let { color ->
+                    dialogIcon.setColorFilter(color)
+                } ?: dialogIcon.clearColorFilter()
                 dialogIcon.visibility = View.VISIBLE
             }
 
@@ -150,6 +154,9 @@ class BaldDialog private constructor(
         @ColorInt
         internal var backgroundColor: Int? = null
 
+        @ColorInt
+        internal var iconTint: Int? = null
+
         fun setIcon(
             @DrawableRes resId: Int
         ) = apply { this.icon = ContextCompat.getDrawable(context, resId) }
@@ -208,9 +215,9 @@ class BaldDialog private constructor(
 
         fun setCancelable(cancelable: Boolean) = apply { this.cancelable = cancelable }
 
-        fun setBackgroundColor(
-            @ColorInt color: Int
-        ) = apply { this.backgroundColor = color }
+        fun setIconTintRes(
+            @ColorRes resId: Int
+        ) = apply { this.iconTint = ContextCompat.getColor(context, resId) }
 
         fun setOnDismissListener(listener: (BaldDialog) -> Unit) = apply { this.onDismissListener = listener }
 

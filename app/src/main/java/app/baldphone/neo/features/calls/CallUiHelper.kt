@@ -4,10 +4,14 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.telephony.SubscriptionInfo
 import android.telephony.SubscriptionManager
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.StyleSpan
 
 import androidx.core.content.ContextCompat
 
@@ -17,6 +21,8 @@ import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.data.CallIntentFactory
 import app.baldphone.neo.ui.dialogs.BaldDialog
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
+import app.baldphone.neo.utils.PhoneNumberUtils
+import app.baldphone.neo.utils.getDeviceRegion
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.utils.BDB
@@ -51,9 +57,48 @@ object CallUiHelper {
     fun call(
         context: Context,
         number: CharSequence,
+        name: CharSequence? = null,
         directly: Boolean = false,
+        skipPrompt: Boolean = false
     ) {
-        performCallFlow(context, number, directly)
+        if (!skipPrompt && Prefs.shouldConfirmCalls) {
+            showCallConfirmationDialog(context, number, name, directly)
+        } else {
+            performCallFlow(context, number, directly)
+        }
+    }
+
+    private fun showCallConfirmationDialog(
+        context: Context,
+        number: CharSequence,
+        name: CharSequence?,
+        directly: Boolean
+    ) {
+        val region = context.getDeviceRegion()
+        val formattedNumber = PhoneNumberUtils.formatForDisplay(number as String, region)
+        val message =
+            if (name != null) {
+                SpannableStringBuilder().apply {
+                    val start = length
+                    append(name)
+                    setSpan(StyleSpan(Typeface.BOLD), start, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    append("\n")
+                    append(formattedNumber)
+                }
+            } else {
+                formattedNumber
+            }
+
+        BaldDialog
+            .Builder(context)
+            .setIcon(R.drawable.phone_on_button)
+            .setIconTintRes(R.color.green)
+            .setTitle(R.string.call_dialog_title)
+            .setMessage(message)
+            .setPositiveButton(R.string.call_dialog_confirm) {
+                performCallFlow(context, number, directly)
+            }.setNegativeButton(R.string.no)
+            .show()
     }
 
     private fun performCallFlow(context: Context, number: CharSequence, directly: Boolean) {

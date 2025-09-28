@@ -66,10 +66,22 @@
     <string name="brightness">Jasność</string>
     <string name="brightness_subtext">Zmień jasność</string>
     <string name="cache_cleared_successfully">Pamięć podręczna została wyczyszczona</string>
+
     <string name="call">Zadzwoń</string>
     <string name="calling">Dzwonienie…</string>
     <string name="call_log">Rejestr połączeń:</string>
     <string name="call_subtext">To uprawnienie jest wymagane, aby dzwonić do kontaktów.</string>
+    <string name="call_dialog_title">Zadzwonić?</string>
+    <string name="call_dialog_confirm">Tak, zadzwoń</string>
+    <string name="call_settings_title">Zachowanie połączeń</string>
+    <string name="call_settings_message">Wybierz, co ma się dziać po naciśnięciu przycisku Zadzwoń.</string>
+    <string name="call_settings_option_confirm">Pytaj o potwierdzenie</string>
+    <string name="call_settings_option_direct">Dzwoń od razu</string>
+    <string name="settings_section_calls">Połączenia</string>
+    <string name="setting_confirm_before_calling">Potwierdzaj połączenia</string>
+    <string name="setting_confirm_before_calling_desc_on">Przed połączeniem pojawi się prośba o potwierdzenie</string>
+    <string name="setting_confirm_before_calling_desc_off">Telefon dzwoni od razu</string>
+
     <string name="camera">Aparat</string>
     <string name="camera_subtext">To uprawnienie jest wymagane, aby włączyć latarkę.</string>
     <string name="cancel">Anuluj</string>

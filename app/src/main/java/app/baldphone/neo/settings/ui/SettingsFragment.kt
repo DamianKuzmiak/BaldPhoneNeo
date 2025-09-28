@@ -3,6 +3,7 @@ package app.baldphone.neo.settings.ui
 import android.os.Bundle
 import android.view.View
 
+import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,7 +17,10 @@ import app.baldphone.neo.settings.SettingsAdapter
 import com.bald.uriah.baldphone.R
 
 class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
-    private val items: List<Item> = listOf()
+    private val items =
+        listOf(
+            Item(SettingId.Calls, R.string.settings_section_calls, R.drawable.phone_on_button)
+        )
 
     override fun onViewCreated(
         view: View,
@@ -38,9 +42,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
     }
 
     private fun handleSettingClick(id: SettingId) {
+        @IdRes
         val actionId =
             when (id) {
-                else -> {}
+                is SettingId.Calls -> R.id.action_to_calls
             }
         findNavController().navigate(actionId)
     }

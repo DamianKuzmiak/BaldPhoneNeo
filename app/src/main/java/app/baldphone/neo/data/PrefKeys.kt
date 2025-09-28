@@ -23,6 +23,7 @@ object PrefKeys {
     const val KEY_LONG_PRESSES = BPrefs.LONG_PRESSES_KEY
 
     // Dialer
+    const val KEY_CALL_CONFIRMATION = "CALL_CONFIRMATION_KEY"
     const val KEY_DIALER_SOUNDS = "DIALER_SOUNDS_KEY"
     const val DEFAULT_DIALER_SOUNDS = true
 

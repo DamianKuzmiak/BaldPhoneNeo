@@ -58,6 +58,8 @@
         <item name="bald_text_on_button_positive">@color/bald_text_on_button_positive</item>
         <item name="bald_button_bg_color">?attr/bald_button</item>
         <item name="bald_category_apps">@color/color_4</item>
+
+         <item name="materialSwitchStyle">@style/Widget.App.MaterialSwitch</item>
     </style>
 
     <style name="AppTheme.Starting" parent="AppTheme">
@@ -72,6 +74,17 @@
 
     <style name="AppButtonShape" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="Widget.App.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.MaterialSwitch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.MaterialSwitch" parent="">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSurfaceVariant">@color/gray</item>
+<!--        <item name="colorOutline">@android:color/white</item>-->
     </style>
 
     <style name="BackgroundText">

@@ -197,7 +197,7 @@ class RecentCallsActivity : BaseActivity() {
 
     private fun performCall(number: String, name: String?) {
         PermissionManager.checkOrRequest(this, RuntimePermission.CallPhone) {
-            onGranted { CallUiHelper.call(this@RecentCallsActivity, number) }
+            onGranted { CallUiHelper.call(this@RecentCallsActivity, number, name) }
             onDenied { showErrorSnackbar("Permission missing") }
         }
     }

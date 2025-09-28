@@ -7,6 +7,14 @@
         android:id="@+id/settingsFragment"
         android:name="app.baldphone.neo.settings.ui.SettingsFragment"
         android:label="@string/settings">
+        <action
+            android:id="@+id/action_to_calls"
+            app:destination="@id/callsSettingsFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/callsSettingsFragment"
+        android:name="app.baldphone.neo.settings.ui.CallsSettingsFragment"
+        android:label="@string/settings_section_calls">
+    </fragment>
 </navigation>

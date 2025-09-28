@@ -183,7 +183,10 @@ class ContactDetailsActivity : BaseActivity() {
     private fun handleFieldAction(action: FieldActionUiModel) {
         when (action.type) {
             FieldActionType.CALL -> {
-                CallUiHelper.call(this, action.data)
+                val name =
+                    viewModel.uiState.value.contact
+                        ?.name
+                CallUiHelper.call(this, action.data, name = name)
             }
 
             FieldActionType.SMS -> {

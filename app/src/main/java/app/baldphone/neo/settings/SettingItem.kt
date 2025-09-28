@@ -2,7 +2,9 @@ package app.baldphone.neo.settings
 
 import androidx.annotation.StringRes
 
-sealed class SettingId
+sealed class SettingId {
+    object Calls : SettingId()
+}
 
 data class Item(
     val id: SettingId,

@@ -138,6 +138,12 @@ object Prefs {
         PrefKeys.DEFAULT_DUAL_SIM_MODE,
     )
 
+    /**
+     * Whether a confirmation dialog should be shown before making a call.
+     */
+    @JvmStatic
+    var shouldConfirmCalls: Boolean by booleanPref(PrefKeys.KEY_CALL_CONFIRMATION, false)
+
     // Helper functions for the delegate
     private fun booleanPref(
         key: String,

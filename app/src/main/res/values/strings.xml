@@ -67,11 +67,22 @@
     <string name="brightness">Brightness</string>
     <string name="brightness_subtext">Change brightness</string>
     <string name="cache_cleared_successfully">Cache Cleared Successfully!</string>
+
     <string name="call">Call</string>
     <string name="calling">Calling...</string>
-
     <string name="call_log">Call Log:</string>
     <string name="call_subtext">This permission is required in order to call contacts.</string>
+    <string name="call_dialog_title">Make a call?</string>
+    <string name="call_dialog_confirm">Call now</string>
+    <string name="call_settings_title">Call Confirmation</string>
+    <string name="call_settings_message">Choose what happens when you press the Call button.</string>
+    <string name="call_settings_option_confirm">Ask for confirmation</string>
+    <string name="call_settings_option_direct">Call instantly</string>
+    <string name="settings_section_calls">Calls</string>
+    <string name="setting_confirm_before_calling">Confirm before calling</string>
+    <string name="setting_confirm_before_calling_desc_on">You will be asked to confirm before the call starts</string>
+    <string name="setting_confirm_before_calling_desc_off">Calls are placed immediately without asking</string>
+
     <string name="camera">Camera</string>
     <string name="camera_subtext">This permission is required to use the flashlight.</string>
     <string name="cancel">Cancel</string>
