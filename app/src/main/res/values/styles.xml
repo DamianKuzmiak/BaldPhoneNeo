@@ -16,20 +16,18 @@
 
 <resources>
 
-    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowActionBar">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">?bald_background</item>
         <item name="bald_button_gold">@color/gold</item>
         <item name="bald_text_on_gold">@color/on_gold</item>
         <item name="android:actionBarStyle">@style/BaldActionBar</item>
-        <item name="colorAccent">#fff</item>
     </style>
 
-    <style name="bald_light" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+    <style name="bald_light" parent="AppTheme">
         <item name="bald_key_margin">@dimen/bald_key_margin</item>
         <item name="bald_background">@color/bald_background_light</item>
         <item name="bald_background_transparent">@color/bald_background_transparent_light</item>
@@ -61,7 +59,7 @@
     </style>
 
     <!--Another Theme to add in the future, right now it looks bad.-->
-    <style name="bald_skin" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+    <style name="bald_skin" parent="AppTheme">
         <item name="bald_key_margin">@dimen/bald_key_margin</item>
         <item name="bald_background">@color/bald_background_skin</item>
         <item name="bald_background_transparent">@color/bald_background_transparent_skin</item>
@@ -86,7 +84,7 @@
         <item name="bald_text_on_key">@color/bald_text_on_key_skin</item>
     </style>
 
-    <style name="bald_dark" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+    <style name="bald_dark" parent="AppTheme">
         <item name="bald_key_margin">@dimen/bald_key_margin</item>
         <item name="bald_background">@color/bald_background_dark</item>
         <item name="bald_background_transparent">@color/bald_background_transparent_dark</item>
@@ -208,6 +206,8 @@
         <item name="android:background">@drawable/bg_tile_purple_gradient</item>
     </style>
 
+<!--    <style name="DialerButton" parent="Widget.MaterialComponents.Button">-->
+
     <style name="BaldSectionTitle">
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">?attr/bald_text_on_background</item>
@@ -227,7 +227,7 @@
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:background">@drawable/dialer_button_bg</item>
-        <item name="android:backgroundTint">#DDDDDD</item>
+        <item name="backgroundTint">#DDDDDD</item>
         <item name="android:textColor">?bald_text_on_key</item>
         <item name="android:textSize">32sp</item>
         <item name="android:gravity">center</item>
