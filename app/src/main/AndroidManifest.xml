@@ -228,6 +228,8 @@
             android:name=".activities.Page1EditorActivity"
             android:exported="false"
             android:label="@string/edit_home_screen" />
+        <activity
+            android:name="app.baldphone.neo.battery.BatteryDiagActivity" />
 
         <service
             android:name=".keyboard.BaldInputMethodService"

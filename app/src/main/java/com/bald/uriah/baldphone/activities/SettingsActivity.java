@@ -54,6 +54,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.activities.AboutActivity;
 import app.baldphone.neo.activities.FeedbackActivity;
+import app.baldphone.neo.battery.BatteryDiagActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity;
@@ -108,8 +109,8 @@ public class SettingsActivity extends BaldActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!checkPermissions(this, requiredPermissions()))
-            return;
+//        if (!checkPermissions(this, requiredPermissions()))
+//            return;
         setContentView(R.layout.activity_settings);
         sharedPreferences = getSharedPreferences(D.BALD_PREFS, MODE_PRIVATE);
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
@@ -175,6 +176,12 @@ public class SettingsActivity extends BaldActivity {
                 new RunnableSettingsItem(R.string.set_home_screen,
                         v -> FakeLauncherActivity.resetPreferredLauncherAndOpenChooser(this)
                         , R.drawable.home_on_button)
+        );
+
+        mainCategory.add(
+                new RunnableSettingsItem(R.string.low_battery_alert,
+                        v -> startActivity(new Intent(this, BatteryDiagActivity.class))
+                        , R.drawable.battery_empty)
         );
 
         mainCategory.add(new RunnableSettingsItem(R.string.advanced_options, v -> startActivity(new Intent(Settings.ACTION_SETTINGS)), R.drawable.settings_on_button));
