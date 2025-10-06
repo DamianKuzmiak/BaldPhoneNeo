@@ -31,7 +31,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.bald.uriah.baldphone.R;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class AccessibilityUtils {
     private static final String TAG = AccessibilityUtils.class.getSimpleName();
@@ -80,7 +79,7 @@ public class AccessibilityUtils {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.dialog_accessibility_permission, null);
 
-        AlertDialog dialog = new MaterialAlertDialogBuilder(context).setView(dialogView).create();
+        AlertDialog dialog = new AlertDialog.Builder(context).setView(dialogView).create();
 
         Button btnEnable = dialogView.findViewById(R.id.btnEnable);
         Button btnNotNow = dialogView.findViewById(R.id.btnNotNow);
