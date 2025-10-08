@@ -20,21 +20,18 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
-import androidx.annotation.IntRange;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.content.ContextCompat;
 
 import com.bald.uriah.baldphone.R;
@@ -43,65 +40,65 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public class BaldToast {
+
     public static final int LENGTH_SEC = -1;
+
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_ERROR = 1;
     public static final int TYPE_INFORMATIVE = 2;
-    @LayoutRes
-    private final static int layout = R.layout.toast_layout;
-    @DrawableRes
-    private static final int TYPE_DEFAULT_BACKGROUND_COLOR_RES_ID =
-            R.drawable.toast_default_background;
-    @ColorRes
-    private static final int TYPE_DEFAULT_FOREGROUND_COLOR_RES_ID =
-            R.color.toast_foreground_default;
-    @DrawableRes
-    private static final int TYPE_ERROR_BACKGROUND_COLOR_RES_ID =
-            R.drawable.toast_error_background;
-    @ColorRes
-    private static final int TYPE_ERROR_FOREGROUND_COLOR_RES_ID =
-            R.color.toast_foreground_error;
-    @DrawableRes
-    private static final int TYPE_INFORMATIVE_BACKGROUND_COLOR_RES_ID =
-            R.drawable.toast_informative_background;
-    @ColorRes
-    private static final int TYPE_INFORMATIVE_FOREGROUND_COLOR_RES_ID =
-            R.color.toast_foreground_informative;
+
+    public static final int POSITION_CENTER = Gravity.CENTER;
+    public static final int POSITION_BOTTOM = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+
+    private static Toast currentToast;
+
     private final Context context;
-    @ToastType
     private int type = TYPE_DEFAULT;
     private CharSequence text;
     private boolean big = false;
-    private int duration = Toast.LENGTH_LONG;
+    private @ToastDuration int duration = Toast.LENGTH_LONG;
+    private @ToastPosition int position = POSITION_CENTER;
+
     private Toast toast;
     private boolean built;
-
-    private Handler customDurationHandler;
+    private Handler handler;
     private Runnable cancelRunnable;
-
 
     private BaldToast(@NonNull Context context) {
         this.context = new ContextThemeWrapper(context.getApplicationContext(), R.style.bald_light);
     }
 
+    // Factory methods
     public static BaldToast from(@NonNull Context context) {
         return new BaldToast(context);
     }
 
-    public static void error(Context context) {
-        BaldToast.from(context).setText(R.string.an_error_has_occurred).setType(TYPE_ERROR).show();
+    public static void error(@NonNull Context context) {
+        from(context).setText(R.string.an_error_has_occurred).setType(TYPE_ERROR).show();
     }
 
-    public static void simple(Context context, CharSequence text) {
-        BaldToast.from(context).setText(text).setType(TYPE_DEFAULT).show();
+    public static void simple(@NonNull Context context, CharSequence text) {
+        from(context).setText(text).setType(TYPE_DEFAULT).show();
     }
 
-    public static void simple(Context context, @StringRes int resId) {
-        BaldToast.from(context).setText(context.getText(resId)).setType(TYPE_DEFAULT).show();
+    public static void simple(@NonNull Context context, @StringRes int resId) {
+        from(context).setText(context.getText(resId)).setType(TYPE_DEFAULT).show();
     }
 
-    public static void longer(Context context) {
-        BaldToast.from(context).setText(R.string.press_longer).setType(TYPE_DEFAULT).setLength(-1).show();
+    public static void longer(@NonNull Context context) {
+        from(context)
+                .setText(R.string.press_longer)
+                .setType(TYPE_DEFAULT)
+                .setLength(LENGTH_SEC)
+                .show();
+    }
+
+    public static void simpleBottom(@NonNull Context context, CharSequence text) {
+        from(context).setText(text).setType(TYPE_DEFAULT).setPosition(POSITION_BOTTOM).show();
+    }
+
+    public static void simpleBottom(@NonNull Context context, @StringRes int resId) {
+        from(context).setText(resId).setType(TYPE_DEFAULT).setPosition(POSITION_BOTTOM).show();
     }
 
     public BaldToast setType(@ToastType int type) {
@@ -119,7 +116,7 @@ public class BaldToast {
         return this;
     }
 
-    public BaldToast setLength(@IntRange(from = -1, to = 1) int duration) {
+    public BaldToast setLength(@ToastDuration int duration) {
         this.duration = duration;
         return this;
     }
@@ -129,76 +126,86 @@ public class BaldToast {
         return this;
     }
 
+    public BaldToast setPosition(@ToastPosition int gravity) {
+        this.position = gravity;
+        return this;
+    }
+
     public void show() {
-        if (!built)
-            build();
+        cancelActiveToast(); // cancel old toast first
+
+        if (!built) build();
         toast.show();
+
+        currentToast = toast; // track this as the active toast
+
         if (duration == LENGTH_SEC) {
-            if (customDurationHandler == null) {
-                customDurationHandler = new Handler(Looper.getMainLooper());
-            }
-            if (cancelRunnable == null) {
-                cancelRunnable = () -> {
-                    if (toast != null) {
-                        toast.cancel();
-                    }
-                };
-            }
-            // Remove any existing callbacks to prevent multiple cancellations or holding onto old toast instances
-            customDurationHandler.removeCallbacks(cancelRunnable);
-            customDurationHandler.postDelayed(cancelRunnable, D.SECOND);
+            if (handler == null) handler = new Handler(Looper.getMainLooper());
+            if (cancelRunnable == null) cancelRunnable = () -> toast.cancel();
+
+            handler.removeCallbacks(cancelRunnable);
+            handler.postDelayed(cancelRunnable, 1000); // 1 second
         }
     }
 
     public void cancel() {
-        if (customDurationHandler != null && cancelRunnable != null) {
-            customDurationHandler.removeCallbacks(cancelRunnable);
-        }
-        if (toast != null) {
-            toast.cancel();
+        if (handler != null && cancelRunnable != null) handler.removeCallbacks(cancelRunnable);
+        if (toast != null) toast.cancel();
+    }
+
+    private void cancelActiveToast() {
+        if (currentToast != null) {
+            currentToast.cancel();
+            currentToast = null;
         }
     }
 
     public BaldToast build() {
-        //not sure why but removing this line crashes app! so don't
-        final View toastView = LayoutInflater.from(context).inflate(layout, null);
-        final TextView textView = (TextView) toastView;
-        if (big)
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textView.getTextSize() * 2);
+        View toastView = LayoutInflater.from(context).inflate(R.layout.toast_layout, null);
+        TextView textView = (TextView) toastView;
 
-        final @DrawableRes int toastViewBackground;
-        final @ColorInt int textViewColor;
+        if (big) textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
+
+        // Determine resources based on type
+        @DrawableRes int backgroundRes;
+        @ColorRes int colorRes;
         switch (type) {
-            case TYPE_DEFAULT:
-                toastViewBackground = TYPE_DEFAULT_BACKGROUND_COLOR_RES_ID;
-                textViewColor = context.getResources().getColor(TYPE_DEFAULT_FOREGROUND_COLOR_RES_ID);
-                break;
             case TYPE_ERROR:
-                toastViewBackground = TYPE_ERROR_BACKGROUND_COLOR_RES_ID;
-                textViewColor = context.getResources().getColor(TYPE_ERROR_FOREGROUND_COLOR_RES_ID);
+                backgroundRes = R.drawable.toast_error_background;
+                colorRes = R.color.toast_foreground_error;
                 break;
             case TYPE_INFORMATIVE:
-                toastViewBackground = TYPE_INFORMATIVE_BACKGROUND_COLOR_RES_ID;
-                textViewColor = context.getResources().getColor(TYPE_INFORMATIVE_FOREGROUND_COLOR_RES_ID);
+                backgroundRes = R.drawable.toast_informative_background;
+                colorRes = R.color.toast_foreground_informative;
                 break;
-            default:
-                throw new IllegalArgumentException("type not supported!");
+            default: // TYPE_DEFAULT
+                backgroundRes = R.drawable.toast_default_background;
+                colorRes = R.color.toast_foreground_default;
+                break;
         }
 
-        textView.setTextColor(textViewColor);
-        toastView.setBackground(ContextCompat.getDrawable(context, toastViewBackground));
-
+        textView.setBackgroundResource(backgroundRes);
+        textView.setTextColor(ContextCompat.getColor(context, colorRes));
         textView.setText(text);
+
         toast = new Toast(context);
-        toast.setDuration(duration == LENGTH_SEC ? Toast.LENGTH_SHORT : duration);
-        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(toastView);
+        toast.setDuration(duration == LENGTH_SEC ? Toast.LENGTH_SHORT : duration);
+        toast.setGravity(position, 0, position == POSITION_BOTTOM ? 120 : 0);
         built = true;
+
         return this;
     }
 
     @IntDef({TYPE_DEFAULT, TYPE_ERROR, TYPE_INFORMATIVE})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface ToastType {
-    }
+    public @interface ToastType {}
+
+    @IntDef({Toast.LENGTH_SHORT, Toast.LENGTH_LONG, BaldToast.LENGTH_SEC})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ToastDuration {}
+
+    @IntDef({Gravity.CENTER, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ToastPosition {}
 }

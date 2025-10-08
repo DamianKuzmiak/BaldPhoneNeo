@@ -25,6 +25,7 @@
 
     <color name="gold">#ffcf40</color>
     <color name="on_gold">#000000</color>
+
     <color name="toast_background_default">#c0ca33</color>
     <color name="toast_background_error">#b71c1c</color>
     <color name="toast_background_informative">#388ba3</color>
