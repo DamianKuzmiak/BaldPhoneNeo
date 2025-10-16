@@ -75,4 +75,20 @@ public class DateTimeFormatter {
                         DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
         return relativeTime.toString();
     }
+
+    /**
+     * Checks if two timestamps (in milliseconds since epoch) fall on the same calendar day.
+     *
+     * @param millis1 The first timestamp in milliseconds since epoch.
+     * @param millis2 The second timestamp in milliseconds since epoch.
+     * @return {@code true} if both timestamps are on the same day, {@code false} otherwise.
+     */
+    public static boolean isSameDay(long millis1, long millis2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTimeInMillis(millis1);
+        cal2.setTimeInMillis(millis2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+                && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+    }
 }

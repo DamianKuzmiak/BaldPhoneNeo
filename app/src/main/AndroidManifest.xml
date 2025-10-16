@@ -90,7 +90,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="app.baldphone.neo.contacts.ContactInfoActivity"
-            android:label="Contact details"/>
+            android:label="Contact details" />
         <activity
             android:name=".activities.media.SingleVideoActivity"
             android:exported="false"

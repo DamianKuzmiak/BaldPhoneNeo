@@ -6,7 +6,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -26,7 +25,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.contacts.Contact.TaggedData;
@@ -46,7 +44,6 @@ import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.activities.DialerActivity;
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity;
-import com.bald.uriah.baldphone.adapters.CallsRecyclerViewAdapter;
 import com.bald.uriah.baldphone.databases.calls.Call;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
@@ -220,12 +217,7 @@ public class ContactInfoActivity extends BaldActivity {
         RecyclerView recyclerView = view.findViewById(R.id.child);
         BaldPictureTextButton show = view.findViewById(R.id.bt_show);
 
-        DividerItemDecoration divider =
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        Drawable d = getDrawable(R.drawable.ll_divider);
-        if (d != null) divider.setDrawable(d);
-        recyclerView.addItemDecoration(divider);
-        recyclerView.setAdapter(new CallsRecyclerViewAdapter(new ArrayList<>(calls), this));
+        recyclerView.setAdapter(new CallLogAdapter(new ArrayList<>(calls)));
 
         show.setOnClickListener(
                 v -> {
@@ -331,9 +323,10 @@ public class ContactInfoActivity extends BaldActivity {
         }
 
         Contact contact = viewModel != null ? viewModel.contactInfoLiveData().getValue() : null;
-        String message = (contact != null)
-            ? getString(R.string.dialog_call_message_full, contact.getName(), number)
-            : getString(R.string.dialog_call_message_number_only, number);
+        String message =
+                (contact != null)
+                        ? getString(R.string.dialog_call_message_full, contact.getName(), number)
+                        : getString(R.string.dialog_call_message_number_only, number);
 
         BDB.from(this)
                 .setTitle(R.string.dialog_call_title)

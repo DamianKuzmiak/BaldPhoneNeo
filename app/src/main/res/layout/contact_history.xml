@@ -18,22 +18,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
     android:background="@drawable/list_shape"
     android:orientation="vertical">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="#3E3E3E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         style="@style/BackgroundText.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:minHeight="40dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:text="@string/call_log"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <com.bald.uriah.baldphone.views.BaldPictureTextButton
         android:id="@+id/bt_show"
@@ -43,14 +53,16 @@
         android:background="@drawable/style_for_buttons"
         app:_src="@drawable/drop_down_on_button"
         app:_text="@string/show"
+        app:_size="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"></com.bald.uriah.baldphone.views.BaldPictureTextButton>
+        app:layout_constraintTop_toTopOf="@+id/textView">
+    </com.bald.uriah.baldphone.views.BaldPictureTextButton>
 
     <com.bald.uriah.baldphone.views.ScrollingHelper
         android:id="@+id/scrolling_helper"
         android:layout_width="0dp"
-        android:layout_height="360dp"
+        android:layout_height="480dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
