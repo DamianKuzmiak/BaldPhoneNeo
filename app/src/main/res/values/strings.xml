@@ -60,11 +60,22 @@
     <string name="brightness">Brightness</string>
     <string name="brightness_subtext">Change brightness</string>
     <string name="cache_cleared_successfully">Cache Cleared Successfully!</string>
+
     <string name="call">Call</string>
     <string name="calling">Calling...</string>
-
     <string name="call_log">Call Log:</string>
     <string name="call_subtext">This permission is required in order to call contacts.</string>
+    <string name="dialog_call_title">Confirm Call</string>
+    <string name="dialog_call_message_full">Would you like to call %1$s (%2$s)?</string>
+    <string name="dialog_call_message_number_only">Would you like to call %1$s?</string>
+    <string name="dialog_call_positive">Call</string>
+    <string name="dialog_call_negative">Cancel</string>
+
+    <string name="settings_call_behavior_title">Call Behavior</string>
+    <string name="settings_call_behavior_message">Choose how you want to make calls:</string>
+    <string name="settings_call_behavior_option_confirm">Ask before calling</string>
+    <string name="settings_call_behavior_option_direct">Call immediately</string>
+
     <string name="camera">Camera</string>
     <string name="camera_subtext">This permission is required to use the flashlight.</string>
     <string name="cancel">Cancel</string>

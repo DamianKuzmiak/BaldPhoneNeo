@@ -124,13 +124,13 @@ public class BDB {
         return this;
     }
 
-    public BDB setNegativeCustomText(@Nullable CharSequence negativeCustomText) {
-        this.negativeCustomText = negativeCustomText;
+    public BDB setNegativeCustomText(@StringRes int negativeCustomText) {
+        this.negativeCustomText = context.getText(negativeCustomText);
         return addFlag(BDialog.FLAG_CUSTOM_NEGATIVE);
     }
 
-    public BDB setPositiveCustomText(@Nullable CharSequence positiveCustomText) {
-        this.positiveCustomText = positiveCustomText;
+    public BDB setPositiveCustomText(@StringRes int positiveCustomText) {
+        this.positiveCustomText = context.getText(positiveCustomText);
         return addFlag(BDialog.FLAG_CUSTOM_POSITIVE);
     }
 

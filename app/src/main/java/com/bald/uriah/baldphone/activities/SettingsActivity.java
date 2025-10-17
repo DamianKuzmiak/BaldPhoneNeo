@@ -295,6 +295,20 @@ public class SettingsActivity extends BaldActivity {
                         .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.DIALER_SOUNDS_KEY, BPrefs.DIALER_SOUNDS_DEFAULT_VALUE) ? 0 : 1),
                 R.drawable.phone_on_button
         ));
+        personalizationCategory.add(new BDBSettingsItem(R.string.settings_call_behavior_title,
+                BDB.from(this)
+                        .addFlag(BDialog.FLAG_OK | BDialog.FLAG_CANCEL)
+                        .setTitle(R.string.settings_call_behavior_title)
+                        .setSubText(R.string.settings_call_behavior_message)
+                        .setOptions(R.string.settings_call_behavior_option_confirm, R.string.settings_call_behavior_option_direct)
+                        .setPositiveButtonListener(params -> {
+                            editor.putBoolean(BPrefs.CALL_CONFIRMATION_KEY, (Integer) params[0] == 0).apply();
+                            this.recreate();
+                            return true;
+                        })
+                        .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.CALL_CONFIRMATION_KEY, BPrefs.CALL_CONFIRMATION_DEFAULT_VALUE) ? 0 : 1),
+                R.drawable.phone_on_button
+        ));
         personalizationCategory.add(new BDBSettingsItem(R.string.dual_sim,
                 BDB.from(this)
                         .addFlag(BDialog.FLAG_OK | BDialog.FLAG_CANCEL)

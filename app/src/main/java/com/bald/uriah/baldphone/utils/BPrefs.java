@@ -84,6 +84,8 @@ public final class BPrefs {
     public static final String DUAL_SIM_KEY = "DUAL_SIM_KEY";
     public static final boolean DUAL_SIM_DEFAULT_VALUE = false; // True means show options
 
+    public static final String CALL_CONFIRMATION_KEY = "CALL_CONFIRMATION_KEY";
+    public static final boolean CALL_CONFIRMATION_DEFAULT_VALUE = false;
 
     public static final String NOTE_KEY = "NOTE_KEY";
 

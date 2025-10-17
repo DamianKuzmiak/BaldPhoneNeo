@@ -15,6 +15,7 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,28 +34,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/dialog_box_title"
-                style="@style/BackgroundText.Auto"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="60dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp" />
+                style="@style/BackgroundText.Large"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:paddingHorizontal="5dp"
+                android:singleLine="true"
+                tools:text="Dialog Title That is Very Long" />
 
-            <View
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:background="?bald_stroke_color" />
+            <com.bald.uriah.baldphone.views.BaldImageButton
+                android:id="@+id/iv_close"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@android:string/cancel"
+                android:padding="2dp"
+                android:src="@drawable/close_on_background"
+                android:visibility="gone"
+                tools:visibility="visible" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="?bald_stroke_color" />
 
         <ScrollView
             style="@style/ScrollStyle"
@@ -69,30 +80,31 @@
 
                 <TextView
                     android:id="@+id/dialog_box_text"
-                    style="@style/BackgroundText.Medium"
+                    style="@style/BackgroundText.Medium.Plus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:lineSpacingMultiplier="1.2"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    tools:text="Message" />
 
                 <EditText
                     android:id="@+id/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginHorizontal="5dp"
                     android:imeOptions="actionNext"
                     android:textColor="?bald_text_on_background"
                     android:textColorHint="?bald_hint_on_background"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:text="Edit Text"
+                    tools:visibility="visible" />
 
                 <FrameLayout
                     android:id="@+id/frame_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp" />
             </LinearLayout>
         </ScrollView>
@@ -112,8 +124,8 @@
             style="@style/ButtonsText.Medium"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:background="@drawable/style_for_buttons"
             android:text="@string/yes" />
@@ -123,8 +135,8 @@
             style="@style/ButtonsText.Medium"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@drawable/style_for_buttons"
             android:text="@string/no" />
