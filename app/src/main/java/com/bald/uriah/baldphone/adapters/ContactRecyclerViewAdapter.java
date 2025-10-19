@@ -19,8 +19,6 @@ package com.bald.uriah.baldphone.adapters;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.SparseIntArray;
@@ -36,6 +34,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +46,6 @@ import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.activities.contacts.ShareActivity;
 import com.bald.uriah.baldphone.fragments_and_dialogs.LetterChooserDialog;
-import com.bald.uriah.baldphone.utils.RandomColorMaker;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
 import com.bumptech.glide.Glide;
 
@@ -63,13 +61,11 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
     public static final int MODE_SHARE = 2;
     private final BaldActivity activity;
     private final LayoutInflater layoutInflater;
-    private final Drawable letterContactBackground;
     private final SparseIntArray letterToPosition;
     private final RecyclerView recyclerView;
     private final int mode;
     @ColorInt
     private final int textColorOnGold, textColorOnButton;
-    private RandomColorMaker randomColorMaker;
     private Cursor cursor;
 
     public ContactRecyclerViewAdapter(BaldActivity activity, Cursor cursor, RecyclerView recyclerView, @IntRange(from = MODE_DEFAULT, to = MODE_SHARE) int mode) {
@@ -81,8 +77,6 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
         final TypedValue typedValue = new TypedValue();
         final Resources.Theme theme = activity.getTheme();
         theme.resolveAttribute(R.attr.bald_background, typedValue, true);
-        this.letterContactBackground = new ColorDrawable(typedValue.data);
-        this.randomColorMaker = new RandomColorMaker(typedValue.data);
         letterToPosition = new SparseIntArray();
         theme.resolveAttribute(R.attr.bald_text_on_gold, typedValue, true);
         textColorOnGold = typedValue.data;
@@ -130,9 +124,7 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = layoutInflater.inflate(R.layout.contact_row_item, parent, false);
-        final ViewHolder viewHolder = new ViewHolder(view);
-        view.setTag(viewHolder);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -143,7 +135,10 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
         holder.lookupKey = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY));
         final String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.DISPLAY_NAME));
         final String letter = name.substring(0, 1).toUpperCase();
-        holder.setFavorite(cursor.getInt(cursor.getColumnIndex(ContactsContract.Data.STARRED)) == 1);
+
+        int columnIndex1 = cursor.getColumnIndex(ContactsContract.Data.STARRED);
+        holder.setFavorite(cursor.getInt(columnIndex1) == 1);
+
         holder.tv_contact_name.setText(name);
 
         if (position == 0) {
@@ -161,13 +156,13 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
             }
             cursor.moveToPosition(position);
         }
-        if (cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI)) != null) {
-            holder.iv_contact_pic.setImageURI(Uri.parse(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI))));
-            holder.tv_image_letter.setVisibility(View.GONE);
-        } else {
-            drawText(holder, letter, holder.lookupKey.hashCode());
-        }
 
+        int columnIndex = cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI);
+        if (cursor.getString(columnIndex) != null) {
+            holder.iv_contact_pic.setImageURI(Uri.parse(cursor.getString(columnIndex)));
+        } else {
+            Glide.with(holder.iv_contact_pic).load(R.drawable.face).into(holder.iv_contact_pic);
+        }
     }
 
     @Override
@@ -175,23 +170,12 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
         return cursor.getCount();
     }
 
-    private void drawText(ViewHolder viewHolder, String chr, int hash) {
-        viewHolder.tv_image_letter.setVisibility(View.VISIBLE);
-        viewHolder.tv_image_letter.setText(chr);
-        Glide.with(viewHolder.iv_contact_pic).load(
-                activity.colorful ?
-                        new ColorDrawable(randomColorMaker.generateColor(hash)) :
-                        letterContactBackground
-        ).into(viewHolder.iv_contact_pic);
-    }
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        static final int expandedSize = 150;
-        static final int notExpandedSize = 100;
 
         final View line;
         final LinearLayout container, ll_contact_only;
-        final TextView tv_contact_name, tv_letter, tv_image_letter;
+        final TextView tv_contact_name;
+        final TextView tv_letter;
         final ImageView iv_contact_pic;
 
         String lookupKey;
@@ -207,7 +191,6 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
             this.tv_letter = container.findViewById(R.id.letter);
             this.ll_contact_only.setOnClickListener(this);
             this.line = container.findViewById(R.id.line);
-            this.tv_image_letter = container.findViewById(R.id.image_letter);
 
             this.tv_letter.setOnClickListener((v) -> {
                 final LetterChooserDialog letterChooserDialog =
@@ -219,7 +202,6 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
                         );
                 letterChooserDialog.show();
                 activity.autoDismiss(letterChooserDialog);
-
             });
 
         }
@@ -227,28 +209,18 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
         public void setLetter(final @Nullable String character) {
             if (character == null && expanded) {
                 RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) this.container.getLayoutParams();
-                layoutParams.height =
-                        (int) TypedValue.applyDimension(
-                                TypedValue.COMPLEX_UNIT_DIP,
-                                notExpandedSize,
-                                activity.getResources().getDisplayMetrics());
                 this.container.setLayoutParams(layoutParams);
                 this.line.setVisibility(View.GONE);
                 this.tv_letter.setVisibility(View.GONE);
                 expanded = false;
             } else if (character != null && expanded) {
-                this.tv_letter.setText(character);
+                this.tv_letter.setText(character.toUpperCase());
             } else if (character != null) {
                 final RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) this.container.getLayoutParams();
-                layoutParams.height =
-                        (int) TypedValue.applyDimension(
-                                TypedValue.COMPLEX_UNIT_DIP,
-                                expandedSize,
-                                activity.getResources().getDisplayMetrics());
                 this.container.setLayoutParams(layoutParams);
                 this.line.setVisibility(View.VISIBLE);
                 this.tv_letter.setVisibility(View.VISIBLE);
-                this.tv_letter.setText(character);
+                this.tv_letter.setText(character.toUpperCase());
                 expanded = true;
             }
         }
@@ -257,9 +229,11 @@ public class ContactRecyclerViewAdapter extends ModularRecyclerView.ModularAdapt
             if (f == favorite)
                 return;
             favorite = f;
+//            tv_contact_name.setCompoundDrawablesRelativeWithIntrinsicBounds(
+//                    0, 0, favorite ? R.drawable.star_gold : 0, 0
+//            );
             ll_contact_only.setBackgroundResource(favorite ? R.drawable.style_for_buttons_rectangle_gold : R.drawable.style_for_buttons_rectangle);
             tv_contact_name.setTextColor(favorite ? textColorOnGold : textColorOnButton);
-
         }
 
         @Override
