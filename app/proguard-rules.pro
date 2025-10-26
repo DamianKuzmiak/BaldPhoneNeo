@@ -19,38 +19,18 @@
 # If you keep the line contactUri information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-#-dontwarn bald.**
--dontwarn org.joda.convert.**
--dontwarn org.joda.time.**
+
+# Joda-Time
 -keep class org.joda.time.** { *; }
 -keep interface org.joda.time.** { *;}
-
-
-
-
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Rendescript
 -keepclasseswithmembernames class * {
    native <methods>;
 }
-
 -keep class android.support.v8.renderscript.** { *; }
 
-
-
-
-
-
-
-
-
-
+# Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
@@ -61,15 +41,7 @@
 # Uncomment for DexGuard only
 #-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
-
-
-
-
-
-
-
 # Crashlytics
 -keep class com.crashlytics.** { *; }
--dontwarn com.crashlytics.**
 -keepattributes SourceFile,LineNumberTable,*Annotation*
 -keep class com.crashlytics.android.**

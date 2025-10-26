@@ -366,8 +366,7 @@
     <string name="grant_all_permissions">Grant All Permissions</string>
 
     <string name="label_lock_screen_short">Lock Screen</string>
-    <string name="accessibility_service_label">BaldPhone</string>
-    <string name="accessibility_service_description">Enables BaldPhone\'s quick screen lock feature. This allows you to lock your screen instantly with a single tap from within the app.</string>
+    <string name="accessibility_service_description">Enables BaldPhone Neo\'s quick screen lock feature. This allows you to lock your screen instantly with a single tap from within the app.</string>
     <string name="accessibility_permission_dialog_message">To lock screen with one tap, we need Accessibility permission. It’s safe and only used for this feature.</string>
     <string name="info_lock_screen_min_sdk">Lock screen requires Android 9 or newer.</string>
     <string name="dialog_button_not_now">Not now</string>

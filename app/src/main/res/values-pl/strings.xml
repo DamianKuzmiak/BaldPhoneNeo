@@ -350,8 +350,7 @@
     <string name="grant_all_permissions">Przyznaj wszystkie dozwolenia</string>
 
     <string name="label_lock_screen_short">Zablokuj</string>
-    <string name="accessibility_service_label">BaldPhone</string>
-    <string name="accessibility_service_description">Umożliwia szybkie zablokowanie ekranu jednym dotknięciem w BaldPhone. Nie zbiera ani nie śledzi danych.</string>
+    <string name="accessibility_service_description">Umożliwia szybkie zablokowanie ekranu jednym dotknięciem w BaldPhone Neo. Nie zbiera ani nie śledzi danych.</string>
     <string name="accessibility_permission_dialog_message">Aby zablokować ekran jednym dotknięciem, potrzebujemy uprawnienia Dostępności. Jest to bezpieczne i używane wyłącznie do tej funkcji.</string>
     <string name="info_lock_screen_min_sdk">Funkcja blokady ekranu jest dostępna w systemie Android 9 i jego nowszych wersjach.</string>
     <string name="dialog_button_not_now">Nie teraz</string>
