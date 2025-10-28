@@ -41,7 +41,7 @@
     <string name="add_to_sos">Dodaj do SOS</string>
     <string name="add_as_an_emergency_contact">Dodać %s jako kontakt alarmowy SOS?</string>
     <string name="address">Adres</string>
-    <string name="advanced_options">Opcje zaawansowane</string>
+    <string name="advanced_options">Ustawienia zaawansowane</string>
     <string name="afternoon">Popołudnie</string>
     <string name="airplane_mode">Tryb samolotowy</string>
     <string name="alarm_name">Nazwa alarmu</string>
@@ -136,7 +136,15 @@
     <string name="example_of_different_text_sizes">Przykład różnych rozmiarów czcionki.\nTen tekst powinien być czytelny i nie powinien się zawijać.</string>
     <string name="favorites">Ulubione</string>
     <string name="feedback">Wyślij opinię</string>
+    <string name="feedback_advanced">Więcej opcji</string>
     <string name="feedback_cannot_be_empty">Opinia nie może być pusta</string>
+    <string name="feedback_choose_email_app">Wybierz aplikację e-mail</string>
+    <string name="feedback_email_subject">Opinia dla %s</string>
+    <string name="feedback_hint">Wpisz swoją opinię tutaj…</string>
+    <string name="feedback_no_email_app_found">Brak aplikacji do wysyłania e-maili.</string>
+    <string name="feedback_send">Wyślij e-mailem</string>
+    <string name="feedback_subtitle">Pomóż ulepszyć tę aplikację, dzieląc się swoimi uwagami lub zgłaszając problemy.</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Wybierz poziom dostępności.</string>
     <string name="font_size">Rozmiar czcionki</string>
     <string name="friday">Piątek</string>
