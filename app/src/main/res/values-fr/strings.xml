@@ -115,9 +115,21 @@
     <string name="example_of_different_text_sizes">Exemple de différentes tailles de texte.\nElles doivent êtres lisibles et ne pas déborder.
     </string>
     <string name="external_storage_subtext">Cette permission est requise pour enregister vos images.</string>
-    <string name="feedback">Donnez votre avis</string>
-    <string name="feedback_cannot_be_empty">Le message ne peut pas être vide !</string>
-    <string name="feedback_sent_successfully">Message envoyé avec succès !</string>
+
+    <string name="feedback">Commentaires</string>
+    <string name="feedback_advanced">Plus d\'options</string>
+    <string name="feedback_cannot_be_empty">Le message ne peut pas être vide.</string>
+    <string name="feedback_choose_email_app">Sélectionnez une application de messagerie</string>
+    <string name="feedback_contact_email">Contacter par e-mail</string>
+    <string name="feedback_contact_website">Visitez notre site web</string>
+    <string name="feedback_email_subject">Commentaires pour %s</string>
+    <string name="feedback_hint">Tapez vos commentaires ici…</string>
+    <string name="feedback_no_email_app_found">Aucune application disponible pour envoyer un e-mail.</string>
+    <string name="feedback_report_bug">Signaler un bug sur GitHub</string>
+    <string name="feedback_send">Envoyer par e-mail</string>
+    <string name="feedback_subtitle">Aidez à améliorer cette application en partageant vos idées ou en signalant des problèmes.</string>
+    <string name="feedback_view_source">Voir le code source</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Veuillez sélectionner un niveau d\'accessibilité.
     </string>
     <string name="font_size">Texte</string>

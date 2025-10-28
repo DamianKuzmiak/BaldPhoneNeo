@@ -78,9 +78,21 @@
     <string name="edit">تعديل</string>
     <string name="enter_contact_or_phone_number">إدخل اسم جهة الإتصال</string>
     <string name="evening">مساء</string>
+
     <string name="feedback">إرسال تعليق</string>
+    <string name="feedback_advanced">المزيد من الخيارات</string>
     <string name="feedback_cannot_be_empty">التعليق لايمكن ان يكون فارغ!</string>
-    <string name="feedback_sent_successfully">تم إرسال التعليق بنجاح!</string>
+    <string name="feedback_choose_email_app">اختر تطبيق البريد الإلكتروني</string>
+    <string name="feedback_contact_email">الاتصال عبر البريد الإلكتروني</string>
+    <string name="feedback_contact_website">زيارة موقعنا</string>
+    <string name="feedback_email_subject">ملاحظات لـ %s</string>
+    <string name="feedback_hint">اكتب ملاحظاتك هنا…</string>
+    <string name="feedback_no_email_app_found">لا يوجد تطبيق متاح لإرسال البريد الإلكتروني.</string>
+    <string name="feedback_report_bug">الإبلاغ عن خطأ على GitHub</string>
+    <string name="feedback_send">إرسال عبر البريد الإلكتروني</string>
+    <string name="feedback_subtitle">ساعد في تحسين هذا التطبيق من خلال مشاركة أفكارك أو الإبلاغ عن المشاكل.</string>
+    <string name="feedback_view_source">عرض الكود المصدري</string>
+
     <string name="font_size">حجم الخط</string>
     <string name="friday">الجمعة</string>
     <string name="hello">مرحبا</string>

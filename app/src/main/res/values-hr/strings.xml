@@ -117,9 +117,21 @@
     <string name="example_of_different_text_sizes">Primjer različitih veličina teksta\nTrebao bi biti čitljiv i bez prelijevanja teksta.
     </string>
     <string name="external_storage_subtext">Ova Dozvola je potrebna za spremanje slika</string>
-    <string name="feedback">Pošalji Povratne Informacije</string>
-    <string name="feedback_cannot_be_empty">Povratne Informacije ne mogu biti prazne!</string>
-    <string name="feedback_sent_successfully">Povratna Informacija uspješno poslana!</string>
+
+    <string name="feedback">Povratne informacije</string>
+    <string name="feedback_advanced">Više opcija</string>
+    <string name="feedback_cannot_be_empty">Povratne Informacije ne mogu biti prazne.</string>
+    <string name="feedback_choose_email_app">Odaberite aplikaciju za e-poštu</string>
+    <string name="feedback_contact_email">Kontakt putem e-pošte</string>
+    <string name="feedback_contact_website">Posjetite našu web stranicu</string>
+    <string name="feedback_email_subject">Povratne informacije za %s</string>
+    <string name="feedback_hint">Upišite svoje povratne informacije ovdje…</string>
+    <string name="feedback_no_email_app_found">Nema dostupne aplikacije za slanje e-pošte.</string>
+    <string name="feedback_report_bug">Prijavite grešku na GitHubu</string>
+    <string name="feedback_send">Pošalji putem e-pošte</string>
+    <string name="feedback_subtitle">Pomozite poboljšati ovu aplikaciju dijeljenjem svojih misli ili prijavom problema.</string>
+    <string name="feedback_view_source">Prikaži izvorni kod</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Molim odaberite razinu pristupačnosti</string>
     <string name="font_size">Veličina teksta</string>
     <string name="friday">Petak</string>

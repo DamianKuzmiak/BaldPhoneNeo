@@ -114,9 +114,21 @@
     <string name="evening">Noite</string>
     <string name="example_of_different_text_sizes">Exemplos de tamanhos\nDeve ser legível e não passar do limite.</string>
     <string name="external_storage_subtext">Essa permissão é necessária para acessar arquivos como fotos.</string>
+
     <string name="feedback">Enviar Comentário</string>
-    <string name="feedback_cannot_be_empty">Comentário não pode estar vazio!</string>
-    <string name="feedback_sent_successfully">Comentário enviado com sucesso!</string>
+    <string name="feedback_advanced">Mais opções</string>
+    <string name="feedback_cannot_be_empty">Comentário não pode estar vazio.</string>
+    <string name="feedback_choose_email_app">Selecione um aplicativo de e-mail</string>
+    <string name="feedback_contact_email">Contato por e-mail</string>
+    <string name="feedback_contact_website">Visite nosso site</string>
+    <string name="feedback_email_subject">Feedback para %s</string>
+    <string name="feedback_hint">Digite seu feedback aqui…</string>
+    <string name="feedback_no_email_app_found">Nenhum aplicativo disponível para enviar e-mail.</string>
+    <string name="feedback_report_bug">Reportar um bug no GitHub</string>
+    <string name="feedback_send">Enviar por e-mail</string>
+    <string name="feedback_subtitle">Ajude a melhorar este aplicativo compartilhando suas ideias ou relatando problemas.</string>
+    <string name="feedback_view_source">Ver código-fonte</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Escolha o nível de acessibilidade
     </string>
     <string name="font_size">Tamanho da fonte</string>

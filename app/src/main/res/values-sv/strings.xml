@@ -114,9 +114,21 @@
     <string name="example_of_different_text_sizes">Exempel på olika teckenstorlekar\n Tecknen bör vara läsbara och inte försvinna ur \nsynligt fält:
     </string>
     <string name="external_storage_subtext">Den här rättigheten krävs för att spara bilder med BaldPhone.</string>
+
     <string name="feedback">Skicka återkoppling</string>
-    <string name="feedback_cannot_be_empty">Återkoppling kan inte vara tom!</string>
-    <string name="feedback_sent_successfully">Återkoppling skickades!</string>
+    <string name="feedback_advanced">Fler alternativ</string>
+    <string name="feedback_cannot_be_empty">Återkoppling kan inte vara tom.</string>
+    <string name="feedback_choose_email_app">Välj en e-postapp</string>
+    <string name="feedback_contact_email">Kontakta via e-post</string>
+    <string name="feedback_contact_website">Besök vår webbplats</string>
+    <string name="feedback_email_subject">Feedback för %s</string>
+    <string name="feedback_hint">Skriv din feedback här…</string>
+    <string name="feedback_no_email_app_found">Ingen app tillgänglig för att skicka e-post.</string>
+    <string name="feedback_report_bug">Rapportera ett fel på GitHub</string>
+    <string name="feedback_send">Skicka via e-post</string>
+    <string name="feedback_subtitle">Hjälp till att förbättra appen genom att dela dina tankar eller rapportera problem.</string>
+    <string name="feedback_view_source">Visa källkod</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Ange behov av\nanpassning
     </string>
     <string name="font_size">Teckenstorlek</string>

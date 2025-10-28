@@ -122,9 +122,21 @@
         בזמן לא לצאת מהתחום שלהן.
     </string>
     <string name="external_storage_subtext">אנא אפשר לBaldPhone לגשת לתמונות ולסרטים ולקבצי עדכון</string>
+
     <string name="feedback">משוב</string>
+    <string name="feedback_advanced">אפשרויות נוספות</string>
     <string name="feedback_cannot_be_empty">המשוב אינו יכול להיות ריק!</string>
-    <string name="feedback_sent_successfully">המשוב נשלח בהצלחה!</string>
+    <string name="feedback_choose_email_app">בחר אפליקציית דוא"ל</string>
+    <string name="feedback_contact_email">צור קשר באמצעות דוא"ל</string>
+    <string name="feedback_contact_website">בקר באתר שלנו</string>
+    <string name="feedback_email_subject">משוב עבור %s</string>
+    <string name="feedback_hint">הקלד את המשוב שלך כאן…</string>
+    <string name="feedback_no_email_app_found">אין אפליקציה זמינה לשליחת דוא"ל.</string>
+    <string name="feedback_report_bug">דווח על באג ב-GitHub</string>
+    <string name="feedback_send">שלח באמצעות דוא"ל</string>
+    <string name="feedback_subtitle">עזור לשפר את האפליקציה על ידי שיתוף מחשבותיך או דיווח על בעיות.</string>
+    <string name="feedback_view_source">צפה בקוד המקור</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">יש לבחור רמת נגישות</string>
     <string name="font_size">גודל גופן</string>
     <string name="friday">שישי</string>
@@ -405,7 +417,6 @@
     <string name="website">אתר</string>
     <string name="appear_on_top">גישה להצגה מעל</string>
     <string name="appear_on_top_subtext">יש לאפשר גישה זו בגרסאות חדשות של אנדרואיד, על מנת להציג שעון מעורר ותזכורות</string>
-    <string name="mail_application_not_found">לא נמצאה תוכנת מייל!</string>
     <string name="get_involved">השתתף בפיתוח BaldPhone</string>
 
 

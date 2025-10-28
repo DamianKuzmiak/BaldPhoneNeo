@@ -115,10 +115,22 @@
     <string name="evening">Sera</string>
     <string name="example_of_different_text_sizes">Esempio di testo in varie dimensioni. Scegli una impostazione per cui sia leggibile, ma non esagerato.</string>
     <string name="external_storage_subtext">Autorizzazione necessaria per salvare le immagini.</string>
+
     <string name="feedback">Invia feedback</string>
-    <string name="feedback_cannot_be_empty">Il feedback non può essere vuoto!</string>
-    <string name="feedback_sent_successfully">Feedback inviato con successo!</string>
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Scegli il livello di accessibilità:</string>
+    <string name="feedback_advanced">Altre opzioni</string>
+    <string name="feedback_cannot_be_empty">Il feedback non può essere vuoto.</string>
+        <string name="feedback_choose_email_app">Seleziona un\'app email</string>
+    <string name="feedback_contact_email">Contatta via email</string>
+    <string name="feedback_contact_website">Visita il nostro sito web</string>
+    <string name="feedback_email_subject">Feedback per %s</string>
+    <string name="feedback_hint">Scrivi qui il tuo feedback…</string>
+    <string name="feedback_no_email_app_found">Nessuna app disponibile per inviare email.</string>
+    <string name="feedback_report_bug">Segnala un bug su GitHub</string>
+    <string name="feedback_send">Invia via email</string>
+    <string name="feedback_subtitle">Aiuta a migliorare questa app condividendo le tue opinioni o segnalando problemi.</string>
+    <string name="feedback_view_source">Visualizza il codice sorgente</string>
+
     <string name="font_size">Dimensioni carattere</string>
     <string name="friday">Venerdì</string>
     <string name="have_hard_time_using_the_phone_s_keyboard_use_baldphone_s_big_keyboard_instead">È difficile utilizzare la tastiera del telefono? Usa la tastiera GRANDE di BaldPhone!</string>

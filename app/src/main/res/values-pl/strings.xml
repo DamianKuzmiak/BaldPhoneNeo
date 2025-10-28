@@ -109,9 +109,21 @@
     <string name="evening">Wieczór</string>
     <string name="example_of_different_text_sizes">Przykład różnych rozmiarów czcionki.\nTen tekst powinien być czytelny i nie powinien się zawijać.</string>
     <string name="external_storage_subtext">To uprawnienie jest wymagane do zapisywania zdjęć.</string>
+
     <string name="feedback">Wyślij opinię</string>
+    <string name="feedback_advanced">Więcej opcji</string>
     <string name="feedback_cannot_be_empty">Opinia nie może być pusta</string>
-    <string name="feedback_sent_successfully">Opinia została wysłana</string>
+    <string name="feedback_choose_email_app">Wybierz aplikację e-mail</string>
+    <string name="feedback_contact_email">Kontakt przez e-mail</string>
+    <string name="feedback_contact_website">Odwiedź naszą stronę</string>
+    <string name="feedback_email_subject">Opinia dla %s</string>
+    <string name="feedback_hint">Wpisz swoją opinię tutaj…</string>
+    <string name="feedback_no_email_app_found">Brak aplikacji do wysyłania e-maili.</string>
+    <string name="feedback_report_bug">Zgłoś błąd na GitHubie</string>
+    <string name="feedback_send">Wyślij e-mailem</string>
+    <string name="feedback_subtitle">Pomóż ulepszyć tę aplikację, dzieląc się swoimi uwagami lub zgłaszając problemy.</string>
+    <string name="feedback_view_source">Zobacz kod źródłowy</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Wybierz poziom dostępności.</string>
     <string name="font_size">Rozmiar czcionki</string>
     <string name="friday">Piątek</string>

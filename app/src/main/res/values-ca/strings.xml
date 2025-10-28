@@ -121,9 +121,21 @@ com augmentar la grandària de font o canviar la lluentor.
 	Ha de ser llegible i no sortir-se.
 </string>
     <string name="external_storage_subtext">Aquest permís és necessari per a guardar Fotos.</string>
-    <string name="feedback">Enviar Comentaris</string>
+
+    <string name="feedback">Comentaris</string>
+    <string name="feedback_advanced">Més opcions</string>
     <string name="feedback_cannot_be_empty">Els comentaris no poden estar buits!</string>
-    <string name="feedback_sent_successfully">Comentaris enviats satisfactòriament!</string>
+    <string name="feedback_choose_email_app">Seleccioneu una aplicació de correu</string>
+    <string name="feedback_contact_email">Contactar per correu electrònic</string>
+    <string name="feedback_contact_website">Visiteu el nostre lloc web</string>
+    <string name="feedback_email_subject">Comentaris per a %s</string>
+    <string name="feedback_hint">Escriviu els vostres comentaris aquí…</string>
+    <string name="feedback_no_email_app_found">No hi ha cap aplicació disponible per enviar correu.</string>
+    <string name="feedback_report_bug">Informeu d\'un error a GitHub</string>
+    <string name="feedback_send">Enviar per correu electrònic</string>
+    <string name="feedback_subtitle">Ajudeu a millorar aquesta aplicació compartint les vostres opinions o informant de problemes.</string>
+    <string name="feedback_view_source">Veure el codi font</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Si us plau, seleccioni el nivell d\'accessibilitat
 </string>
     <string name="font_size">Font</string>

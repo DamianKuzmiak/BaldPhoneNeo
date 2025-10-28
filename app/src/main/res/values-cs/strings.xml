@@ -119,9 +119,21 @@
     čitelný a nepřetékat
     </string>
     <string name="external_storage_subtext">Toto oprávnění je nutné k ukládání obrázků.</string>
-    <string name="feedback">Poslat zpětnou vazbu</string>
+
+    <string name="feedback">Zpětná vazba</string>
+    <string name="feedback_advanced">Další možnosti</string>
     <string name="feedback_cannot_be_empty">Zpětná vazba nemůže být prázdná!</string>
-    <string name="feedback_sent_successfully">Zpětná vazba poslána úspěšně!</string>
+    <string name="feedback_choose_email_app">Vyberte e-mailovou aplikaci</string>
+    <string name="feedback_contact_email">Kontaktovat e-mailem</string>
+    <string name="feedback_contact_website">Navštivte naše webové stránky</string>
+    <string name="feedback_email_subject">Zpětná vazba pro %s</string>
+    <string name="feedback_hint">Zde napište svou zpětnou vazbu…</string>
+    <string name="feedback_no_email_app_found">Žádná aplikace pro odeslání e-mailu není k dispozici.</string>
+    <string name="feedback_report_bug">Nahlásit chybu na GitHubu</string>
+    <string name="feedback_send">Odeslat e-mailem</string>
+    <string name="feedback_subtitle">Pomozte zlepšit tuto aplikaci sdílením svých názorů nebo hlášením problémů.</string>
+    <string name="feedback_view_source">Zobrazit zdrojový kód</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Vyberte úroveň přístupnosti
     </string>
     <string name="font_size">Písmo</string>

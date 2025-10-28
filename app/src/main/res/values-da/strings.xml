@@ -111,9 +111,21 @@
     <string name="evening">Aften</string>
     <string name="example_of_different_text_sizes">Eksempel på forskellige tekststørrelser.\nSkal være læslige og ikke forsvinde ud over skærmen.</string>
     <string name="external_storage_subtext">Denne rettighed er nødvendig for at kunne gemme billeder.</string>
+
     <string name="feedback">Send feedback</string>
+    <string name="feedback_advanced">Flere muligheder</string>
     <string name="feedback_cannot_be_empty">Du skal skrive noget feedback!</string>
-    <string name="feedback_sent_successfully">Feedback blev sendt!</string>
+    <string name="feedback_choose_email_app">Vælg en e-mail-app</string>
+    <string name="feedback_contact_email">Kontakt via e-mail</string>
+    <string name="feedback_contact_website">Besøg vores hjemmeside</string>
+    <string name="feedback_email_subject">Feedback til %s</string>
+    <string name="feedback_hint">Skriv din feedback her…</string>
+    <string name="feedback_no_email_app_found">Ingen app tilgængelig til at sende e-mail.</string>
+    <string name="feedback_report_bug">Rapportér en fejl på GitHub</string>
+    <string name="feedback_send">Send via e-mail</string>
+    <string name="feedback_subtitle">Hjælp med at forbedre denne app ved at dele dine tanker eller rapportere problemer.</string>
+    <string name="feedback_view_source">Se kildekode</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Vælg tilgængelighedsniveau</string>
     <string name="font_size">Skriftstørrelse</string>
     <string name="friday">Fredag</string>

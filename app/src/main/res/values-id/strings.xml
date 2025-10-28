@@ -116,9 +116,21 @@
     <string name="example_of_different_text_sizes">Contoh ukuran teks yang berbeda\nSemestinya bisa dibaca dan tidak tumpang-tindih..
     </string>
     <string name="external_storage_subtext">Izin ini diperlukan untuk menyimpan gambar.</string>
-    <string name="feedback">Kirim Umpan Balik</string>
-    <string name="feedback_cannot_be_empty">Umpan balik tidak boleh kosong!</string>
-    <string name="feedback_sent_successfully">Umpan balik berhasil dikirim!</string>
+
+    <string name="feedback">Masukan</string>
+    <string name="feedback_advanced">Lebih banyak opsi</string>
+    <string name="feedback_cannot_be_empty">Umpan balik tidak boleh kosong.</string>
+    <string name="feedback_choose_email_app">Pilih aplikasi email</string>
+    <string name="feedback_contact_email">Hubungi melalui Email</string>
+    <string name="feedback_contact_website">Kunjungi situs web kami</string>
+    <string name="feedback_email_subject">Masukan untuk %s</string>
+    <string name="feedback_hint">Ketik masukan Anda di sini…</string>
+    <string name="feedback_no_email_app_found">Tidak ada aplikasi untuk mengirim email.</string>
+    <string name="feedback_report_bug">Laporkan bug di GitHub</string>
+    <string name="feedback_send">Kirim melalui Email</string>
+    <string name="feedback_subtitle">Bantu tingkatkan aplikasi ini dengan berbagi pemikiran atau melaporkan masalah.</string>
+    <string name="feedback_view_source">Lihat kode sumber</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Silakan  pilih tingkat aksesibilitas
     </string>
     <string name="font_size">Ukuran Huruf</string>

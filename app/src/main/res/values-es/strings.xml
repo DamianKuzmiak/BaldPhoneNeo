@@ -116,9 +116,21 @@
         Las letras deben ser legibles y no salirse.
     </string>
     <string name="external_storage_subtext">Este permiso es necesario para guardar Fotos.</string>
-    <string name="feedback">Enviar comentarios y opiniones</string>
+
+    <string name="feedback">Comentarios</string>
+    <string name="feedback_advanced">Más opciones</string>
     <string name="feedback_cannot_be_empty">Para enviar comentarios primero hay que escribir algo.</string>
-    <string name="feedback_sent_successfully">El comentario se ha enviado correctamente.</string>
+    <string name="feedback_choose_email_app">Seleccione una aplicación de correo</string>
+    <string name="feedback_contact_email">Contactar por correo electrónico</string>
+    <string name="feedback_contact_website">Visite nuestro sitio web</string>
+    <string name="feedback_email_subject">Comentarios para %s</string>
+    <string name="feedback_hint">Escriba sus comentarios aquí…</string>
+    <string name="feedback_no_email_app_found">No hay aplicación disponible para enviar correo.</string>
+    <string name="feedback_report_bug">Informar de un error en GitHub</string>
+    <string name="feedback_send">Enviar por correo electrónico</string>
+    <string name="feedback_subtitle">Ayude a mejorar esta aplicación compartiendo sus ideas o informando problemas.</string>
+    <string name="feedback_view_source">Ver código fuente</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Elige un nivel de accesibilidad</string>
     <string name="font_size">Tamaño del texto</string>
     <string name="friday">viernes</string>

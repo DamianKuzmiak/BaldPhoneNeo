@@ -112,9 +112,21 @@ dit bericht blijft verschijnen dan kan het uitgeschakeld worden in de toegankeli
     <string name="evening">Avond</string>
     <string name="example_of_different_text_sizes">Voorbeeld van verschillende tekstgroottes\nMoet leesbaar zijn en niet overlopen.</string>
     <string name="external_storage_subtext">Deze bevoegdheid is vereist om afbeeldingen op te slaan.</string>
-    <string name="feedback">Feedback verzenden</string>
-    <string name="feedback_cannot_be_empty">Feedback mag niet leeg zijn!</string>
-    <string name="feedback_sent_successfully">Feedback succesvol verzonden!</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="feedback_advanced">Meer opties</string>
+    <string name="feedback_cannot_be_empty">Voer uw feedback in voordat u verzendt.</string>
+    <string name="feedback_choose_email_app">Selecteer een e-mailapp</string>
+    <string name="feedback_contact_email">Contact via e-mail</string>
+    <string name="feedback_contact_website">Bezoek onze website</string>
+    <string name="feedback_email_subject">Feedback voor %s</string>
+    <string name="feedback_hint">Typ uw feedback hier…</string>
+    <string name="feedback_no_email_app_found">Geen app beschikbaar om e-mail te verzenden.</string>
+    <string name="feedback_report_bug">Meld een bug op GitHub</string>
+    <string name="feedback_send">Verzenden via e-mail</string>
+    <string name="feedback_subtitle">Help deze app te verbeteren door uw ideeën te delen of problemen te melden.</string>
+    <string name="feedback_view_source">Broncode bekijken</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Selecteer het toegankelijkheidsniveau</string>
     <string name="font_size">Lettertypegrootte</string>
     <string name="friday">Vrijdag</string>

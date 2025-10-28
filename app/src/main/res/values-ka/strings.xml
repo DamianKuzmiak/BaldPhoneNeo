@@ -115,9 +115,21 @@
     <string name="example_of_different_text_sizes">განსხვავებული ტექსტების ზომების მაგალითები\nუნდა იყოს წაკითხვადი და არა დიდი.
     </string>
     <string name="external_storage_subtext">ეს ნებართვა საჭიროა სურათების შესანახად.</string>
-    <string name="feedback">უკუკავშირის გაგზავნა</string>
-    <string name="feedback_cannot_be_empty">უკუკავშირი არ შეიძლება იყოს ცარიელი!</string>
-    <string name="feedback_sent_successfully">უკუკავშირი წარმატებით გაიგზავნა!</string>
+
+    <string name="feedback">უკუკავშირი</string>
+    <string name="feedback_advanced">მეტი პარამეტრები</string>
+    <string name="feedback_cannot_be_empty">გთხოვთ, შეიყვანეთ უკუკავშირი გაგზავნამდე.</string>
+    <string name="feedback_choose_email_app">აირჩიეთ ელფოსტის აპი</string>
+    <string name="feedback_contact_email">კონტაქტი ელფოსტით</string>
+    <string name="feedback_contact_website">ეწვიეთ ჩვენს ვებსაიტს</string>
+    <string name="feedback_email_subject">%s-ისთვის უკუკავშირი</string>
+    <string name="feedback_hint">შეიყვანეთ თქვენი უკუკავშირი აქ…</string>
+    <string name="feedback_no_email_app_found">ელფოსტის გასაგზავნად აპი არ არის ხელმისაწვდომი.</string>
+    <string name="feedback_report_bug">შეცდომის შეტყობინება GitHub-ზე</string>
+    <string name="feedback_send">გაგზავნა ელფოსტით</string>
+    <string name="feedback_subtitle">დაგვეხმარეთ აპის გაუმჯობესებაში თქვენი აზრების გაზიარებით ან პრობლემების შეტყობინებით.</string>
+    <string name="feedback_view_source">იხილეთ წყაროს კოდი</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">გთხოვთ აირჩიოთ წვდომის დონე
     </string>
     <string name="font_size">შრიფტის ზომა</string>

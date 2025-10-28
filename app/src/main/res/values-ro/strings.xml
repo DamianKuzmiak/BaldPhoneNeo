@@ -116,9 +116,21 @@
     <string name="example_of_different_text_sizes">Exemple de diferite dimensiuni ale textului\nAr trebui sa fie lizibil și să nu treacă peste margini
     </string>
     <string name="external_storage_subtext">Această permisiune este necesară pentru a salva poze</string>
+
     <string name="feedback">Trimite feedback </string>
-    <string name="feedback_cannot_be_empty">Feedback-ul nu poate fii gol!</string>
-    <string name="feedback_sent_successfully">Feedback trimis cu succes</string>
+    <string name="feedback_advanced">Mai multe opțiuni</string>
+    <string name="feedback_cannot_be_empty">Introduceți feedback-ul înainte de a trimite.</string>
+    <string name="feedback_choose_email_app">Selectați o aplicație de e-mail</string>
+    <string name="feedback_contact_email">Contact prin e-mail</string>
+    <string name="feedback_contact_website">Vizitați site-ul nostru</string>
+    <string name="feedback_email_subject">Feedback pentru %s</string>
+    <string name="feedback_hint">Scrieți feedback-ul aici…</string>
+    <string name="feedback_no_email_app_found">Nu există aplicație disponibilă pentru trimiterea e-mailului.</string>
+    <string name="feedback_report_bug">Raportați o eroare pe GitHub</string>
+    <string name="feedback_send">Trimite prin e-mail</string>
+    <string name="feedback_subtitle">Ajutați la îmbunătățirea aplicației împărtășind ideile dvs. sau raportând probleme.</string>
+    <string name="feedback_view_source">Vizualizați codul sursă</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Vă rugam selectați nivelul de accesibilitate
     </string>
     <string name="font_size">Dimensiune text</string>

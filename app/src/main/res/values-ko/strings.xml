@@ -111,9 +111,21 @@
     <string name="evening">저녁</string>
     <string name="example_of_different_text_sizes">다른 텍스트 크기의 예는 읽을 수 있고 오버플로되지 않아야합니다.</string>
     <string name="external_storage_subtext">사진을 저장하기 위해서 허가가 필요합니다.</string>
-    <string name="feedback">피드백 보내기</string>
-    <string name="feedback_cannot_be_empty">피드백은 비워둘 수 없습니다!</string>
-    <string name="feedback_sent_successfully">피드백이 성공적으로 전송되었습니다!</string>
+
+    <string name="feedback">피드백</string>
+    <string name="feedback_advanced">추가 옵션</string>
+    <string name="feedback_cannot_be_empty">보내기 전에 피드백을 입력하세요.</string>
+    <string name="feedback_choose_email_app">이메일 앱 선택</string>
+    <string name="feedback_contact_email">이메일로 연락하기</string>
+    <string name="feedback_contact_website">웹사이트 방문</string>
+    <string name="feedback_email_subject">%s에 대한 피드백</string>
+    <string name="feedback_hint">여기에 피드백을 입력하세요…</string>
+    <string name="feedback_no_email_app_found">이메일을 보낼 앱이 없습니다.</string>
+    <string name="feedback_report_bug">GitHub에서 버그 신고</string>
+    <string name="feedback_send">이메일로 보내기</string>
+    <string name="feedback_subtitle">생각을 공유하거나 문제를 보고하여 앱 개선에 도움을 주세요.</string>
+    <string name="feedback_view_source">소스 코드 보기</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">접근 정도를 설정하십시오</string>
     <string name="font_size">글자 크기</string>
     <string name="friday">금요일</string>

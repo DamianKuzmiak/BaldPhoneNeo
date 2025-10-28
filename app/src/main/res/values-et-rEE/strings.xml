@@ -118,9 +118,21 @@
         aga mitte üle voolama.
     </string>
     <string name="external_storage_subtext">Piltide salvestamiseks on vaja juurdepääsuluba.</string>
-    <string name="feedback">Saada tagasiside</string>
+
+    <string name="feedback">Tagasiside</string>
+    <string name="feedback_advanced">Rohkem valikuid</string>
     <string name="feedback_cannot_be_empty">Tagasiside kast ei tohi olla tühi.</string>
-    <string name="feedback_sent_successfully">Tagasiside saadetud.</string>
+    <string name="feedback_choose_email_app">Valige e-posti rakendus</string>
+    <string name="feedback_contact_email">Võta ühendust e-posti teel</string>
+    <string name="feedback_contact_website">Külasta meie veebisaiti</string>
+    <string name="feedback_email_subject">Tagasiside %s kohta</string>
+    <string name="feedback_hint">Kirjutage oma tagasiside siia…</string>
+    <string name="feedback_no_email_app_found">E-posti saatmiseks pole rakendust saadaval.</string>
+    <string name="feedback_report_bug">Teata veast GitHubis</string>
+    <string name="feedback_send">Saada e-posti teel</string>
+    <string name="feedback_subtitle">Aita parandada seda rakendust, jagades oma mõtteid või teatades probleemidest.</string>
+    <string name="feedback_view_source">Vaata lähtekoodi</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Palun vali hõlbustusfunktsioonide tase
     </string>
     <string name="font_size">Šrifti suurus</string>

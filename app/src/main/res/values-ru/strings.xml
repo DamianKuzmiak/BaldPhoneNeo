@@ -115,9 +115,21 @@
     <string name="example_of_different_text_sizes">Пример текста разных размеров\nДолжен быть читаемым и не слишком большим.
     </string>
     <string name="external_storage_subtext">Это разрешение требуется для сохранения изображений.</string>
+
     <string name="feedback">Отправить Отзыв</string>
-    <string name="feedback_cannot_be_empty">Отзыв не может быть пустым!</string>
-    <string name="feedback_sent_successfully">Отзыв успешно отправлен!</string>
+    <string name="feedback_advanced">Дополнительные параметры</string>
+    <string name="feedback_cannot_be_empty">Введите отзыв перед отправкой.</string>
+    <string name="feedback_choose_email_app">Выберите приложение для электронной почты</string>
+    <string name="feedback_contact_email">Связаться по электронной почте</string>
+    <string name="feedback_contact_website">Посетите наш сайт</string>
+    <string name="feedback_email_subject">Отзыв для %s</string>
+    <string name="feedback_hint">Введите отзыв здесь…</string>
+    <string name="feedback_no_email_app_found">Нет приложения для отправки электронной почты.</string>
+    <string name="feedback_report_bug">Сообщить об ошибке на GitHub</string>
+    <string name="feedback_send">Отправить по электронной почте</string>
+    <string name="feedback_subtitle">Помогите улучшить приложение, делясь своими мыслями или сообщая о проблемах.</string>
+    <string name="feedback_view_source">Просмотреть исходный код</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Пожалуйста выберите уровень доступности
     </string>
     <string name="font_size">Шрифт</string>

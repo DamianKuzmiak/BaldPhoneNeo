@@ -111,9 +111,21 @@
     <string name="evening">Veče</string>
     <string name="example_of_different_text_sizes">Primer tazličitih veličina teksta\nTrebao bi da bude čitljiv.</string>
     <string name="external_storage_subtext">Ova dozvola je potrebna kako bi ste mogli da sačuvate slike.</string>
-    <string name="feedback">Pošalji povratne informacije</string>
-    <string name="feedback_cannot_be_empty">Povratne informacije ne mogu da ostanu prazne!</string>
-    <string name="feedback_sent_successfully">Povratne informacije su uspešno poslate!</string>
+
+    <string name="feedback">Повратне информације</string>
+    <string name="feedback_advanced">Више опција</string>
+    <string name="feedback_cannot_be_empty">Унесите повратне информације пре слања.</string>
+    <string name="feedback_choose_email_app">Изаберите апликацију за е-пошту</string>
+    <string name="feedback_contact_email">Контакт путем е-поште</string>
+    <string name="feedback_contact_website">Посетите наш веб сајт</string>
+    <string name="feedback_email_subject">Повратне информације за %s</string>
+    <string name="feedback_hint">Унесите повратне информације овде…</string>
+    <string name="feedback_no_email_app_found">Нема доступне апликације за слање е-поште.</string>
+    <string name="feedback_report_bug">Пријавите грешку на GitHub-у</string>
+    <string name="feedback_send">Пошаљи путем е-поште</string>
+    <string name="feedback_subtitle">Помозите да побољшамо апликацију дељењем ваших мисли или пријавом проблема.</string>
+    <string name="feedback_view_source">Погледај изворни код</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Molimo vas da odaberete nivo pristupačnosti</string>
     <string name="font_size">Veličina fonta</string>
     <string name="friday">Petak</string>

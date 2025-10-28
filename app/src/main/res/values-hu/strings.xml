@@ -111,9 +111,21 @@
     <string name="evening">Este</string>
     <string name="example_of_different_text_sizes">Példa különböző méretű szövegre.\nOlvashatónak kell lennie és nem lóghat ki.</string>
     <string name="external_storage_subtext">A képek mentéséhez szükség van erre az engedélyre.</string>
-    <string name="feedback">Visszajelzés küldése.</string>
-    <string name="feedback_cannot_be_empty">A visszajelzés nem lehet üres!</string>
-    <string name="feedback_sent_successfully">Visszajelzés elküldve!</string>
+
+    <string name="feedback">Visszajelzés</string>
+    <string name="feedback_advanced">További lehetőségek</string>
+    <string name="feedback_cannot_be_empty">A visszajelzés nem lehet üres.</string>
+    <string name="feedback_choose_email_app">Válasszon e-mail alkalmazást</string>
+    <string name="feedback_contact_email">Kapcsolat e-mailben</string>
+    <string name="feedback_contact_website">Látogassa meg weboldalunkat</string>
+    <string name="feedback_email_subject">Visszajelzés a(z) %s alkalmazáshoz</string>
+    <string name="feedback_hint">Írja ide a visszajelzését…</string>
+    <string name="feedback_no_email_app_found">Nincs elérhető alkalmazás e-mail küldéséhez.</string>
+    <string name="feedback_report_bug">Hiba jelentése a GitHubon</string>
+    <string name="feedback_send">Küldés e-mailben</string>
+    <string name="feedback_subtitle">Segítsen javítani az alkalmazást gondolatai megosztásával vagy problémák jelentésével.</string>
+    <string name="feedback_view_source">Forráskód megtekintése</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Válaszd ki a akadálymentesítési szintet</string>
     <string name="font_size">Betűméret</string>
     <string name="friday">Péntek</string>

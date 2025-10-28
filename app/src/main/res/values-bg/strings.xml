@@ -119,9 +119,21 @@
         препълване.
     </string>
     <string name="external_storage_subtext">Разрешението е необходимо, за да се запазват снимките.</string>
-    <string name="feedback">Изпращане на обратна връзка</string>
+
+    <string name="feedback">Обратна връзка</string>
+    <string name="feedback_advanced">Повече опции</string>
     <string name="feedback_cannot_be_empty">Полето за обратна връзка не може да бъде празно!</string>
-    <string name="feedback_sent_successfully">Обратната връзка е изпратена успешно!</string>
+    <string name="feedback_choose_email_app">Изберете имейл приложение</string>
+    <string name="feedback_contact_email">Свържете се по имейл</string>
+    <string name="feedback_contact_website">Посетете нашия сайт</string>
+    <string name="feedback_email_subject">Обратна връзка за %s</string>
+    <string name="feedback_hint">Въведете вашата обратна връзка тук…</string>
+    <string name="feedback_no_email_app_found">Няма налично приложение за изпращане на имейл.</string>
+    <string name="feedback_report_bug">Докладвайте бъг в GitHub</string>
+    <string name="feedback_send">Изпрати по имейл</string>
+    <string name="feedback_subtitle">Помогнете да подобрим приложението, като споделите вашите мисли или докладвате проблеми.</string>
+    <string name="feedback_view_source">Вижте изходния код</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Моля, изберете нивото на достъпност
     </string>
     <string name="font_size">Рзмер на текста</string>

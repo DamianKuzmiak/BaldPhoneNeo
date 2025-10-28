@@ -115,9 +115,21 @@
     <string name="example_of_different_text_sizes">Beispiel verschiedener Schriftgrößen.\nDer Text sollte lesbar aber nicht zu groß sein.
     </string>
     <string name="external_storage_subtext">Diese Erlaubnis wird benötigt, um Bilder speichern zu können.</string>
+
     <string name="feedback">Rückmeldung geben</string>
+    <string name="feedback_advanced">Weitere Optionen</string>
     <string name="feedback_cannot_be_empty">Die Rückmeldung darf nicht leer sein!</string>
-    <string name="feedback_sent_successfully">Die Rückmeldung wurde erfolgreich versendet!</string>
+    <string name="feedback_choose_email_app">Wählen Sie eine E-Mail-App</string>
+    <string name="feedback_contact_email">Kontakt per E-Mail</string>
+    <string name="feedback_contact_website">Besuchen Sie unsere Website</string>
+    <string name="feedback_email_subject">Feedback für %s</string>
+    <string name="feedback_hint">Geben Sie hier Ihr Feedback ein…</string>
+    <string name="feedback_no_email_app_found">Keine App verfügbar, um E-Mails zu senden.</string>
+    <string name="feedback_report_bug">Fehler auf GitHub melden</string>
+    <string name="feedback_send">Per E-Mail senden</string>
+    <string name="feedback_subtitle">Helfen Sie, diese App zu verbessern, indem Sie Ihre Gedanken teilen oder Probleme melden.</string>
+    <string name="feedback_view_source">Quellcode anzeigen</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Bitte wähle zuerst die Barrierefreiheit der Knöpfe.
     </string>
     <string name="font_size">Schriftgröße</string>

@@ -111,9 +111,21 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="enter_contact_or_phone_number">Sartu kontaktuaren izena:</string>
     <string name="evening">Arratsalde</string>
     <string name="external_storage_subtext">Baimen hau derrigorrezkoa da argazkiak gordetzeko.</string>
-    <string name="feedback">Berrelikadura bidali</string>
+
+    <string name="feedback">Iruzkinak</string>
+    <string name="feedback_advanced">Aukera gehiago</string>
     <string name="feedback_cannot_be_empty">Berrelikadura ezin da hutsik egon!</string>
-    <string name="feedback_sent_successfully">Berrelikadura arrakastaz bidali da!</string>
+    <string name="feedback_choose_email_app">Hautatu posta aplikazioa</string>
+    <string name="feedback_contact_email">Kontaktatu posta bidez</string>
+    <string name="feedback_contact_website">Bisitatu gure webgunea</string>
+    <string name="feedback_email_subject">%s(r)entzako iruzkinak</string>
+    <string name="feedback_hint">Idatzi zure iruzkinak hemen…</string>
+    <string name="feedback_no_email_app_found">Ez dago aplikaziorik posta bidaltzeko.</string>
+    <string name="feedback_report_bug">Salatu akatsa GitHuben</string>
+    <string name="feedback_send">Bidali posta bidez</string>
+    <string name="feedback_subtitle">Lagundu aplikazioa hobetzen zure iritziak partekatuz edo arazoak salatuz.</string>
+    <string name="feedback_view_source">Ikusi iturburu kodea</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Erabilerraztasun maila aukeratu</string>
     <string name="font_size">Letra-tipoaren neurria</string>
     <string name="friday">Ostirala</string>

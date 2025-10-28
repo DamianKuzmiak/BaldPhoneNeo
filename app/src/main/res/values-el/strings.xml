@@ -119,9 +119,21 @@
         διαβάζετε.
     </string>
     <string name="external_storage_subtext">Αυτή η άδεια απαιτείται για να αποθηκεύετε φωτογραφίες.</string>
+
     <string name="feedback">Αποστολή σχολίων</string>
+    <string name="feedback_advanced">Περισσότερες επιλογές</string>
     <string name="feedback_cannot_be_empty">Παρακαλώ γράψετε τα σχόλια σας!</string>
-    <string name="feedback_sent_successfully">Τα σχόλια σας στάλθηκαν!</string>
+    <string name="feedback_choose_email_app">Επιλέξτε εφαρμογή email</string>
+    <string name="feedback_contact_email">Επικοινωνία μέσω email</string>
+    <string name="feedback_contact_website">Επισκεφθείτε τον ιστότοπό μας</string>
+    <string name="feedback_email_subject">Σχόλια για %s</string>
+    <string name="feedback_hint">Πληκτρολογήστε τα σχόλιά σας εδώ…</string>
+    <string name="feedback_no_email_app_found">Δεν υπάρχει διαθέσιμη εφαρμογή για αποστολή email.</string>
+    <string name="feedback_report_bug">Αναφορά σφάλματος στο GitHub</string>
+    <string name="feedback_send">Αποστολή μέσω email</string>
+    <string name="feedback_subtitle">Βοηθήστε να βελτιώσουμε αυτήν την εφαρμογή μοιράζοντας τις σκέψεις σας ή αναφέροντας προβλήματα.</string>
+    <string name="feedback_view_source">Προβολή πηγαίου κώδικα</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Παρακαλώ επιλέξτε το επίπεδο προσβασιμότητας
     </string>
     <string name="font_size">Μέγεθος γραμματοσειράς</string>

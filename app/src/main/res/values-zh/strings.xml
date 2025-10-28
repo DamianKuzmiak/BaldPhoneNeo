@@ -115,9 +115,21 @@
     <string name="example_of_different_text_sizes">不同字體示範\n應該看得見，又不出界。
     </string>
     <string name="external_storage_subtext">需要以下權限才可儲存照片。</string>
+
     <string name="feedback">傳送回饋</string>
-    <string name="feedback_cannot_be_empty">不能傳送空白回饋!</string>
-    <string name="feedback_sent_successfully">成功傳送回饋!</string>
+    <string name="feedback_advanced">更多选项</string>
+    <string name="feedback_cannot_be_empty">不能傳送空白回饋</string>
+    <string name="feedback_choose_email_app">选择电子邮件应用</string>
+    <string name="feedback_contact_email">通过电子邮件联系</string>
+    <string name="feedback_contact_website">访问我们的网站</string>
+    <string name="feedback_email_subject">针对 %s 的反馈</string>
+    <string name="feedback_hint">在此输入您的反馈…</string>
+    <string name="feedback_no_email_app_found">没有可用于发送电子邮件的应用。</string>
+    <string name="feedback_report_bug">在 GitHub 上报告错误</string>
+    <string name="feedback_send">通过电子邮件发送</string>
+    <string name="feedback_subtitle">通过分享您的想法或报告问题，帮助改进此应用。</string>
+    <string name="feedback_view_source">查看源代码</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">請選擇輔助功能程度
     </string>
     <string name="font_size">字型</string>

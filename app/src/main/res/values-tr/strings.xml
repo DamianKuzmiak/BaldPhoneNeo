@@ -115,9 +115,21 @@
     <string name="example_of_different_text_sizes">Değişik metin büyüklükleri\n Sözlerin kesintisiz okunabilecek olması lazım.
     </string>
     <string name="external_storage_subtext">Bu gerekçe resim ve dosya kaydede bilmeniz için gerekli.</string>
-    <string name="feedback">Geribildirim gönder</string>
-    <string name="feedback_cannot_be_empty">Geribildirim boş olamaz!</string>
-    <string name="feedback_sent_successfully">Geribildirim gönderildi!</string>
+
+    <string name="feedback">Geri bildirim</string>
+    <string name="feedback_advanced">Daha fazla seçenek</string>
+    <string name="feedback_cannot_be_empty">Göndermeden önce geri bildiriminizi girin.</string>
+    <string name="feedback_choose_email_app">Bir e-posta uygulaması seçin</string>
+    <string name="feedback_contact_email">E-posta ile iletişim</string>
+    <string name="feedback_contact_website">Web sitemizi ziyaret edin</string>
+    <string name="feedback_email_subject">%s için geri bildirim</string>
+    <string name="feedback_hint">Geri bildiriminizi buraya yazın…</string>
+    <string name="feedback_no_email_app_found">E-posta göndermek için uygun uygulama yok.</string>
+    <string name="feedback_report_bug">GitHub\'da hata bildir</string>
+    <string name="feedback_send">E-posta ile gönder</string>
+    <string name="feedback_subtitle">Düşüncelerinizi paylaşarak veya sorunları bildirerek bu uygulamayı geliştirmemize yardımcı olun.</string>
+    <string name="feedback_view_source">Kaynak kodu görüntüle</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Lütfen erişilebilirlik için ayar seçiniz.
     </string>
     <string name="font_size">Metin büyüklüğü</string>

@@ -118,9 +118,21 @@
     <string name="example_of_different_text_sizes">विभिन्न पाठ आकारों का उदाहरण\nपढ़ने योग्य होना चाहिए न कि
         अतिप्रवाह।</string>
     <string name="external_storage_subtext">चित्रों को सहेजने के लिए यह अनुमति आवश्यक है.</string>
+
     <string name="feedback">प्रतिक्रिया भेजें</string>
-    <string name="feedback_cannot_be_empty">फ़ीडबैक खाली नहीं हो सकता!</string>
-    <string name="feedback_sent_successfully">फ़ीडबैक सफलतापूर्वक भेजा गया!</string>
+    <string name="feedback_advanced">अधिक विकल्प</string>
+    <string name="feedback_cannot_be_empty">फ़ीडबैक खाली नहीं हो सकता</string>
+    <string name="feedback_choose_email_app">ईमेल ऐप चुनें</string>
+    <string name="feedback_contact_email">ईमेल द्वारा संपर्क करें</string>
+    <string name="feedback_contact_website">हमारी वेबसाइट पर जाएं</string>
+    <string name="feedback_email_subject">%s के लिए प्रतिक्रिया</string>
+    <string name="feedback_hint">अपनी प्रतिक्रिया यहाँ लिखें…</string>
+    <string name="feedback_no_email_app_found">ईमेल भेजने के लिए कोई ऐप उपलब्ध नहीं है।</string>
+    <string name="feedback_report_bug">GitHub पर बग रिपोर्ट करें</string>
+    <string name="feedback_send">ईमेल द्वारा भेजें</string>
+    <string name="feedback_subtitle">अपने विचार साझा करके या समस्याओं की रिपोर्ट करके इस ऐप को बेहतर बनाने में मदद करें।</string>
+    <string name="feedback_view_source">स्रोत कोड देखें</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">कृपया पहुंच के स्तर का चयन करें
     </string>
     <string name="font_size">फ़ॉन्ट आकार</string>

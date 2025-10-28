@@ -118,9 +118,21 @@ ja muuttaa kirkkautta.</string>
         ylivuotoa.
     </string>
     <string name="external_storage_subtext">Tämä oikeus tarvitaan kuvien tallentamiseksi</string>
-    <string name="feedback">Lähetä palautetta</string>
-    <string name="feedback_cannot_be_empty">Palaute ei voi olla tyhjä!</string>
-    <string name="feedback_sent_successfully">Palaute lähetetty onnistuneesti!</string>
+
+    <string name="feedback">Palaute</string>
+    <string name="feedback_advanced">Lisää vaihtoehtoja</string>
+    <string name="feedback_cannot_be_empty">Palaute ei voi olla tyhjä.</string>
+    <string name="feedback_choose_email_app">Valitse sähköpostisovellus</string>
+    <string name="feedback_contact_email">Ota yhteyttä sähköpostitse</string>
+    <string name="feedback_contact_website">Vieraile verkkosivullamme</string>
+    <string name="feedback_email_subject">Palaute kohteelle %s</string>
+    <string name="feedback_hint">Kirjoita palautteesi tähän…</string>
+    <string name="feedback_no_email_app_found">Ei sovellusta sähköpostin lähettämiseen.</string>
+    <string name="feedback_report_bug">Ilmoita virheestä GitHubissa</string>
+    <string name="feedback_send">Lähetä sähköpostitse</string>
+    <string name="feedback_subtitle">Auta parantamaan tätä sovellusta jakamalla ajatuksesi tai ilmoittamalla ongelmista.</string>
+    <string name="feedback_view_source">Näytä lähdekoodi</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Valitse esteettömyystaso</string>
     <string name="font_size">Kirjasinkoko</string>
     <string name="friday">Perjantai</string>
