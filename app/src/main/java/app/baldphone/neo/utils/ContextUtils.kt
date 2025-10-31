@@ -4,12 +4,17 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.Uri
 import android.os.Build
 
 import androidx.annotation.StringRes
+import androidx.core.content.FileProvider
 import androidx.core.content.getSystemService
 import androidx.core.text.HtmlCompat
 
+import java.io.File
+
+import app.baldphone.neo.Constants.FILE_PROVIDER_AUTHORITY
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 
 import com.bald.uriah.baldphone.R
@@ -44,6 +49,23 @@ fun Context.getTextFromClipboard(): CharSequence? =
         }?.primaryClip
         ?.getItemAt(0)
         ?.text
+
+/**
+ * Converts a [File] object to a [Uri] in a way that is compatible with different Android versions.
+ *
+ * @param file The [File] to convert.
+ * @return A [Uri] representing the file, suitable for the device's Android version.
+ */
+fun Context.getUriForFile(file: File): Uri =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        FileProvider.getUriForFile(
+            this,
+            FILE_PROVIDER_AUTHORITY,
+            file
+        )
+    } else {
+        Uri.fromFile(file)
+    }
 
 /**
  * Returns a [CharSequence] formatted as HTML from a string resource.

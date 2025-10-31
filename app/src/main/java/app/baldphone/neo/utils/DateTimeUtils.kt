@@ -3,9 +3,11 @@ package app.baldphone.neo.utils
 import android.content.Context
 import android.text.format.DateUtils
 
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.ZoneId
 import java.util.Date
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 import com.bald.uriah.baldphone.R
@@ -136,6 +138,17 @@ fun Long.isSameDayAs(otherMillis: Long, zoneId: ZoneId = ZoneId.systemDefault())
     val date2 = Instant.ofEpochMilli(otherMillis).atZone(zoneId).toLocalDate()
 
     return date1 == date2
+}
+
+/**
+ * Formats the timestamp into a precise date-time string (e.g., "2026-03-27 10:44:46.123").
+ *
+ * @param includeMillis Whether to include milliseconds in the output.
+ */
+@JvmOverloads
+fun Long.toFullDateTimeString(includeMillis: Boolean = false): String {
+    val pattern = if (includeMillis) "yyyy-MM-dd HH:mm:ss.SSS" else "yyyy-MM-dd HH:mm:ss"
+    return SimpleDateFormat(pattern, Locale.US).format(Date(this))
 }
 
 /**

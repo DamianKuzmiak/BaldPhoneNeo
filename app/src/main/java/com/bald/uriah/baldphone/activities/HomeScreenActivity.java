@@ -46,6 +46,8 @@ import androidx.core.splashscreen.SplashScreen;
 import app.baldphone.neo.battery.BatteryRepository;
 import app.baldphone.neo.battery.ui.BatteryIconView;
 import app.baldphone.neo.extensions.ViewExtensions;
+import app.baldphone.neo.crashes.CrashHandler;
+import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.extensions.SurfaceWorkaroundKt;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
@@ -275,6 +277,23 @@ public class HomeScreenActivity extends BaldActivity {
 
         setupPermissionBanner();
 
+        // Handle crash restart
+        if (getIntent().getBooleanExtra(CrashHandler.CRASH_RESTART, false)) {
+            getIntent().removeExtra(CrashHandler.CRASH_RESTART);
+            handler.postDelayed(() -> {
+                if (!isFinishing()) {
+                    try {
+                        new android.app.AlertDialog.Builder(this)
+                            .setTitle(R.string.crash_dialog_title)
+                            .setMessage(R.string.crash_dialog_message)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .show();
+                    } catch (WindowManager.BadTokenException e) {
+                        Log.e(TAG, "Failed to show crash dialog", e);
+                    }
+                }
+            }, 2000);
+        }
     }
 
     private void handleFlashlightEvent(FlashlightState event) {

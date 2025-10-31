@@ -147,7 +147,7 @@
     <string name="search_contact">Search contact by name</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="pasted_from_clipboard">Pasted from clipboard</string>
-    <string name="crash">Something went wrong.\nRestarting in a few seconds…</string>
+
     <string name="current_time">Current Time</string>
     <string name="custom">Custom</string>
     <string name="dark">Dark</string>
@@ -443,6 +443,9 @@
     <string name="about_app_license">App License</string>
     <string name="about_privacy_policy">Privacy Policy</string>
 
+    <!-- Support & Contact -->
+    <string name="support_crash_report">Send Crash Report</string>
+
     <!--For Tests:-->
     <string name="medication_1">Eltroxin 100</string>
     <string name="medication_2">Eltroxin 150</string>
@@ -498,6 +501,9 @@
     <string name="t9_key_7">pqrs</string>
     <string name="t9_key_8">tuv</string>
     <string name="t9_key_9">wxyz</string>
+    <!-- Crash Dialog -->
+    <string name="crash_dialog_title">App Crash</string>
+    <string name="crash_dialog_message">BaldPhone Neo recovered from an error.\n\nPlease send the report to help us fix it.</string>
 
     <!-- Content descriptions -->
     <string name="battery_charging">%1$d%%. Charging.</string>

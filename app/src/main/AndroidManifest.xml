@@ -280,9 +280,13 @@
             android:exported="false"
             android:label="Credits" />
         <activity
-            android:name=".activities.CrashActivity"
+            android:name="app.baldphone.neo.crashes.CrashViewerActivity"
             android:exported="false"
             android:label="@string/crash_reports" />
+        <activity
+            android:name="app.baldphone.neo.crashes.CrashLoopActivity"
+            android:exported="false"
+            android:label="@string/crash_dialog_title" />
         <activity
             android:name=".activities.KeyboardChangerActivity"
             android:exported="false"
@@ -293,7 +297,7 @@
             android:label="@string/change_pills_time" />
         <activity
             android:name=".activities.TechnicalInfoActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/technical_information" />
         <activity
             android:name="app.baldphone.neo.activities.FeedbackActivity"

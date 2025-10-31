@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?bald_background"
@@ -61,11 +62,41 @@
                 android:checked="false"
                 android:text="@string/feedback_include_info" />
 
-            <com.bald.uriah.baldphone.views.BaldButton
+            <Button
                 android:id="@+id/feedback_send_button"
                 style="@style/Bald.Button.FullWidth"
                 android:text="@string/feedback_send" />
 
+            <TextView
+                android:id="@+id/feedback_advanced_toggle"
+                style="@style/BackgroundText.Medium.Plus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="8dp"
+                android:gravity="start|center_vertical"
+                android:paddingVertical="6dp"
+                android:text="@string/feedback_advanced"
+                android:textAlignment="viewStart"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/drop_down_on_button" />
+
+            <LinearLayout
+                android:id="@+id/feedback_advanced_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/button_crash_report"
+                    style="@style/Bald.Button.FullWidth"
+                    android:text="@string/support_crash_report" />
+
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

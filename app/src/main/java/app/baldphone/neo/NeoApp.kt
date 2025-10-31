@@ -2,7 +2,6 @@ package app.baldphone.neo
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -27,6 +26,7 @@ import coil3.util.DebugLogger
 import net.danlew.android.joda.JodaTimeAndroid
 
 import app.baldphone.neo.core.system.HapticManager
+import app.baldphone.neo.crashes.CrashHandler
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
@@ -39,18 +39,11 @@ import com.bald.uriah.baldphone.BuildConfig
 import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler
-import com.bald.uriah.baldphone.utils.BaldUncaughtExceptionHandler
 
 class NeoApp : Application(), SingletonImageLoader.Factory {
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-        Thread.setDefaultUncaughtExceptionHandler(
-            BaldUncaughtExceptionHandler(this, Thread.getDefaultUncaughtExceptionHandler())
-        )
-    }
-
     override fun onCreate() {
         super.onCreate()
+        CrashHandler.init(this)
         Log.i(TAG, "Application started")
 
         Prefs.init(this)

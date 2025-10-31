@@ -32,4 +32,7 @@
     <files-path
         name="files"
         path="." />
+    <files-path
+        name="crash"
+        path="crashreports/" />
 </paths>

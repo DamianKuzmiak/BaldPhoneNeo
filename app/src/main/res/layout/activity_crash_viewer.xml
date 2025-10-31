@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?bald_background"
+    android:orientation="vertical">
+
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleBarBackgroundColor="@color/color_5"
+        app:titleBarTitle="@string/crash_reports" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/share_all_btn"
+            style="@style/Bald.Button"
+            android:text="Share All" />
+
+        <Button
+            android:id="@+id/delete_all_btn"
+            style="@style/Bald.Button"
+            android:text="Delete All" />
+
+    </LinearLayout>
+</LinearLayout>

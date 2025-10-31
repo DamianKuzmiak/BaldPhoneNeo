@@ -353,22 +353,6 @@ public class SettingsActivity extends BaldActivity {
             }, R.drawable.nfc_on_button));
         connectionCategory.add(new RunnableSettingsItem(R.string.location, v -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)), R.drawable.location_on_button));
 
-        // TODO: [Crash Reporting] Restore crash reporting setting.
-        // Temporarily disabled pending implementation of a new logging/error reporting system.
-//        mainCategory.add(
-//                new BDBSettingsItem(R.string.crash_reports,
-//                        BDB.from(this)
-//                                .addFlag(BDialog.FLAG_OK | BDialog.FLAG_CANCEL).setTitle(R.string.crash_reports)
-//                                .setSubText(R.string.crash_reports_subtext)
-//                                .setOptions(R.string.on, R.string.off)
-//                                .setPositiveButtonListener(params -> {
-//                                    editor.putBoolean(BPrefs.CRASH_REPORTS_KEY, params[0].equals(0)).apply();
-//                                    this.recreate();
-//                                    return true;
-//                                })
-//                                .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.CRASH_REPORTS_KEY, BPrefs.CRASH_REPORTS_DEFAULT_VALUE) ? 0 : 1),
-//                        R.drawable.upload_on_button));
-
         mainCategory.add(
                 new RunnableSettingsItem(R.string.feedback,
                         v -> startActivity(new Intent(this, FeedbackActivity.class)),
