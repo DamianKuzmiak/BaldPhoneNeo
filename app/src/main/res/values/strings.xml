@@ -103,7 +103,7 @@
     <string name="contacts">Contacts</string>
     <string name="contacts_read_subtext">This permission is required in order to read contacts.</string>
     <string name="contacts_subtext">This permission is required in order to add new contacts.</string>
-    <string name="crash">Oops!\nBaldPhone ran into a problem and will now restart.</string>
+    <string name="crash">Something went wrong.\nRestarting in a few seconds…</string>
     <string name="current_time">Current Time</string>
     <string name="custom">Custom</string>
     <string name="dark">Dark</string>

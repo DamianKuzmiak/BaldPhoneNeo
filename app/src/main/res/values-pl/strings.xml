@@ -102,7 +102,7 @@
     <string name="contacts">Kontakty</string>
     <string name="contacts_read_subtext">To uprawnienie jest wymagane, aby odczytać kontakty.</string>
     <string name="contacts_subtext">To uprawnienie jest wymagane, aby dodać nowe kontakty.</string>
-    <string name="crash">O nie!\nBaldPhone napotkał problem i zostanie uruchomiony ponownie.</string>
+    <string name="crash">Coś poszło nie tak.\nPonowne uruchomienie za kilka sekund…</string>
     <string name="current_time">Aktualny czas</string>
     <string name="custom">Niestandardowy</string>
     <string name="dark">Ciemny</string>

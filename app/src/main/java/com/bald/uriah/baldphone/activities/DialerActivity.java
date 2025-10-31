@@ -232,7 +232,14 @@ public class DialerActivity extends BaldActivity {
         b_star.setOnClickListener(new DialerClickListener('*', ToneGenerator.TONE_DTMF_S));
         b_hash.setOnClickListener(new DialerClickListener('#', ToneGenerator.TONE_DTMF_P));
 
-        b_call.setOnClickListener(v -> call(number, this, false));
+        b_call.setOnClickListener(
+                v -> {
+                    if ("*#00000#*".equals(number.toString())) {
+                        throw new RuntimeException("Test crash");
+                    } else {
+                        call(number, this, false);
+                    }
+                });
         b_backspace.setOnClickListener(v -> {
             number.setLength(number.length() > 1 ? number.length() - 1 : 0);
             tv_number.setText(number);

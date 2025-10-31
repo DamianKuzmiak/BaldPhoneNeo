@@ -30,6 +30,8 @@
     </style>
 
     <style name="bald_light" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+        <item name="android:textColorPrimary">@color/bald_text_on_background_light</item>
+        <item name="colorAccent">@color/blue</item>
         <item name="bald_key_margin">@dimen/bald_key_margin</item>
         <item name="bald_background">@color/bald_background_light</item>
         <item name="bald_background_transparent">@color/bald_background_transparent_light</item>
@@ -87,6 +89,8 @@
     </style>
 
     <style name="bald_dark" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+        <item name="android:textColorPrimary">@color/bald_edit_text_bg_light</item>
+        <item name="colorAccent">@color/blue</item>
         <item name="bald_key_margin">@dimen/bald_key_margin</item>
         <item name="bald_background">@color/bald_background_dark</item>
         <item name="bald_background_transparent">@color/bald_background_transparent_dark</item>

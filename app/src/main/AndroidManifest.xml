@@ -202,9 +202,14 @@
             android:exported="false"
             android:label="Credits" />
         <activity
-            android:name=".activities.CrashActivity"
+            android:name="app.baldphone.neo.crashes.CrashViewerActivity"
             android:exported="false"
             android:label="@string/crash_reports" />
+        <activity
+            android:name="app.baldphone.neo.crashes.CrashActivity"
+            android:exported="false"
+            android:process=":crash_handler"
+            android:persistent="false" />
         <activity
             android:name=".activities.KeyboardChangerActivity"
             android:exported="false"
@@ -305,7 +310,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.fileprovider;app.baldphone.neo.crashfileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

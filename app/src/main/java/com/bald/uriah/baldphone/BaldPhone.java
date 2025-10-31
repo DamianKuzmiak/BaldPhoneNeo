@@ -16,56 +16,67 @@
 
 package com.bald.uriah.baldphone;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.os.Process;
+import android.util.Log;
+
+import app.baldphone.neo.crashes.CrashHandler;
 import app.baldphone.neo.helpers.VibratorHelper;
 
-import com.bald.uriah.baldphone.activities.UpdatesActivity;
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;
-import com.bald.uriah.baldphone.utils.BaldUncaughtExceptionHandler;
 import com.bald.uriah.baldphone.utils.S;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import java.util.List;
+
 public class BaldPhone extends Application {
     private static final String TAG = BaldPhone.class.getSimpleName();
-    // Application class should not have any fields, http://www.developerphil.com/dont-store-data-in-the-application-object/
 
     @Override
     public void onCreate() {
-        S.logImportant("BaldPhone was started!");
         super.onCreate();
+        if (!isMainProcess()) {
+            return;
+        }
+        Log.i(TAG, "BaldPhone was started");
+
+        CrashHandler.init(this);
         JodaTimeAndroid.init(this);
         AlarmScheduler.reStartAlarms(this);
         ReminderScheduler.reStartReminders(this);
-        if (BuildConfig.FLAVOR.equals("baldUpdates")) {
-            UpdatesActivity.removeUpdatesInfo(this);
-        }
-
+        //        if (BuildConfig.FLAVOR.equals("baldUpdates")) {
+        //            UpdatesActivity.removeUpdatesInfo(this);
+        //        }
         VibratorHelper.init(this);
         S.sendVersionInfo(this);
     }
 
-    @Override
-    protected void attachBaseContext(final Context base) {
-        super.attachBaseContext(base);
+    private boolean isMainProcess() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            return getPackageName().equals(Application.getProcessName());
+        }
 
-        // TODO: [Error Reporting] Re-evaluate and implement a new error reporting solution.
-        // The previous ACRA implementation was commented out for future replacement.
-        // Investigation options, server endpoint, and configuration.
-//        final CoreConfigurationBuilder builder =
-//                new CoreConfigurationBuilder(this)
-//                        .setBuildConfigClass(BuildConfig.class)
-//                        .setReportFormat(StringFormat.JSON);
-//        builder.getPluginConfigurationBuilder(HttpSenderConfigurationBuilder.class)
-//                .setUri(getString(R.string.tt_url))
-//                .setHttpMethod(HttpSender.Method.POST)
-//                .setEnabled(false);
-//        ACRA.init(this, builder);
-
-        Thread.setDefaultUncaughtExceptionHandler(
-                new BaldUncaughtExceptionHandler(this, Thread.getDefaultUncaughtExceptionHandler())
-        );
+        ActivityManager activityManager =
+                (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        if (activityManager == null) {
+            return true;
+        }
+        List<ActivityManager.RunningAppProcessInfo> processInfos =
+                activityManager.getRunningAppProcesses();
+        if (processInfos == null) {
+            return true;
+        }
+        final String mainProcessName = getPackageName();
+        final int myPid = Process.myPid();
+        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
+            if (info.pid == myPid) {
+                return mainProcessName.equals(info.processName);
+            }
+        }
+        return false;
     }
 }

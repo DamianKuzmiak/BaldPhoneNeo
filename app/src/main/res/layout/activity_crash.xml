@@ -14,38 +14,30 @@
   ~ limitations under the License.
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?bald_background">
+    android:background="?bald_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="app.baldphone.neo.crashes.CrashActivity">
 
     <ImageView
-        android:id="@+id/iv_error"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:src="@drawable/replay_on_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        android:id="@+id/icon_restart"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/tv_text"
-        style="@style/BackgroundText.Huge"
-        android:layout_width="0dp"
+        android:id="@+id/text_message"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:paddingHorizontal="10dp"
         android:text="@string/crash"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_error"
-        app:layout_constraintVertical_bias="0.2" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAlignment="center"
+        android:textColor="?attr/bald_text_on_button"
+        android:textSize="22sp" />
+</LinearLayout>

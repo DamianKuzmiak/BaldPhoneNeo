@@ -55,6 +55,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import app.baldphone.neo.activities.AboutActivity;
 import app.baldphone.neo.activities.FeedbackActivity;
 import app.baldphone.neo.battery.BatteryDiagActivity;
+import app.baldphone.neo.crashes.CrashViewerActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity;
@@ -400,6 +401,12 @@ public class SettingsActivity extends BaldActivity {
                             R.drawable.grant_all_permissions_on_button)
             );
 
+        mainCategory.add(
+                new RunnableSettingsItem(R.string.crash_reports,
+                        v -> startActivity(new Intent(this, CrashViewerActivity.class)),
+                        R.drawable.upload_on_button)
+
+        );
         // TODO: [Crash Reporting] Restore crash reporting setting.
         // Temporarily disabled pending implementation of a new logging/error reporting system.
 //        mainCategory.add(
