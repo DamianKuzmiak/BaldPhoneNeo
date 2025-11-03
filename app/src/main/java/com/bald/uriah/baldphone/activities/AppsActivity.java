@@ -41,6 +41,7 @@ import com.bald.uriah.baldphone.utils.S;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.bald.uriah.baldphone.adapters.AppsRecyclerViewAdapter.TYPE_HEADER;
 import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.PREDEFINED_APP_PREFIX;
@@ -69,9 +70,30 @@ public class AppsActivity extends com.bald.uriah.baldphone.activities.BaldActivi
 
         appsDatabase = AppsDatabase.getInstance(AppsActivity.this);
         final List<App> appList = appsDatabase.appsDatabaseDao().getAllOrderedByABC();
-        recyclerView = findViewById(R.id.rc_apps);
         chooseKey = getIntent().getStringExtra(CHOOSE_MODE);
-        appsRecyclerViewAdapter = new AppsRecyclerViewAdapter(appList, this, chooseKey != null ? this::appChosen : this::showDropDown, recyclerView);
+
+        final List<App> adapterList;
+        if (chooseKey != null) {
+            adapterList = appList;
+        } else {
+            adapterList =
+                    appList.stream()
+                            .filter(
+                                    app ->
+                                            !app.getFlattenComponentName()
+                                                    .equals(
+                                                            PREDEFINED_APP_PREFIX
+                                                                    + AppsActivity.class.getName()))
+                            .collect(Collectors.toList());
+        }
+
+        recyclerView = findViewById(R.id.rc_apps);
+        appsRecyclerViewAdapter =
+                new AppsRecyclerViewAdapter(
+                        adapterList,
+                        this,
+                        chooseKey != null ? this::appChosen : this::showDropDown,
+                        recyclerView);
 
         final WindowManager windowManager = getWindowManager();
         final Point point = new Point();
