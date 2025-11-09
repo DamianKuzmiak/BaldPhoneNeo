@@ -1,21 +1,18 @@
-*.iml
-.gradle/
-local.properties
+# IDE files
 .idea/
-.DS_Store # macOS
-/build/
-/captures/
-.externalNativeBuild/
-/screenshots/
+*.iml
+local.properties
 
-# Specific to this project - keep if needed
-# a.lnk
-# app/release/app-release.apk
-# app/release/output.json
-# app/src/androidTest/java/com/bald/uriah/baldphone/ExampleInstrumentedTest.java
-# app/src/test/java/com/bald/uriah/baldphone/ExampleUnitTest.java
-# monkey.bat
-# run.bat
-# app/baldUpdates/release/app-baldUpdates-release.apk
-# app/baldUpdates/release/app-release.apk
-# app/baldUpdates/release/output.json
+# macOS
+.DS_Store
+
+# Gradle
+.gradle/
+/build/
+
+# Kotlin
+.kotlin/
+
+# Generated files and artifacts
+/captures/
+/screenshots/
