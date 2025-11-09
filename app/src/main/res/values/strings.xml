@@ -111,9 +111,23 @@
     <string name="evening">Evening</string>
     <string name="example_of_different_text_sizes">"Example of different text sizes.\nShould be readable and not overflow."</string>
     <string name="external_storage_subtext">This permission is required in order to save pictures.</string>
-    <string name="feedback">Send Feedback</string>
-    <string name="feedback_cannot_be_empty">Feedback cannot be empty!</string>
-    <string name="feedback_sent_successfully">>Feedback sent successfully. Thank you!</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="feedback_title">Feedback &amp; Support</string>
+    <string name="feedback_other">Other</string>
+    <string name="feedback_advanced">Advanced</string>
+    <string name="feedback_cannot_be_empty">Please enter your feedback before sending.</string>
+    <string name="feedback_choose_email_app">Select an email app</string>
+    <string name="feedback_contact_email">Contact via Email</string>
+    <string name="feedback_email_subject">Feedback for %s</string>
+    <string name="feedback_hint">Write your message here…</string>
+    <string name="feedback_no_email_app_found">No app available to send email.</string>
+    <string name="feedback_report_bug">Report a bug on GitHub</string>
+    <string name="feedback_send">Send Email</string>
+    <string name="feedback_share_app">Share BaldPhone Neo</string>
+    <string name="feedback_subtitle">Share feedback or report a problem to help improve BaldPhone Neo.</string>
+    <string name="feedback_view_source">View source code</string>
+
     <string name="first_please_select_how_you_want_to_interact_with_buttons">Please choose your preferred accessibility level.</string>
     <string name="font_size">Font Size</string>
     <string name="friday">Friday</string>
@@ -329,7 +343,6 @@
     <string name="low_battery_alert">Low battery alert</string>
     <string name="low_battery_alert_subtext">Choose if you want the status bar to be red on the home screen when battery is under 20%\nNotice It won\'t be shown if the system status bar is hidden.</string>
 
-    <string name="also_available_at">Also available at\nbaldphone.contact@gmail.com\nFeedback must be in English/Hebrew!</string>
     <string name="grant_all_permissions">Grant All Permissions</string>
 
     <string name="label_lock_screen_short">Lock Screen</string>
@@ -360,6 +373,10 @@
     <string name="about_privacy_policy">Privacy Policy</string>
     <string name="about_other">Other</string>
     <string name="about_share_app">Share BaldPhone Neo</string>
+
+    <!-- Support & Contact -->
+    <string name="support_crash_report">Send Crash Report</string>
+    <string name="support_technical_info">Technical Info &amp; Diagnostics</string>
 
     <!--For Tests:-->
     <string name="medication_1">Eltroxin 100</string>
@@ -399,7 +416,6 @@
     <string name="appear_on_top">Appear on top</string>
     <string name="appear_on_top_subtext">This permission is required to show alarms and reminders when the screen is off.</string>
 
-    <string name="mail_application_not_found">Mail application not found!</string>
     <string name="get_involved">Get Involved</string>
 
     <string-array name="names_for_screenshots">

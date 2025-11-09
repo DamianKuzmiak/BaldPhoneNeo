@@ -24,7 +24,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
-import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
 import android.os.Bundle;
@@ -54,6 +53,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.activities.AboutActivity;
+import app.baldphone.neo.activities.FeedbackActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity;
@@ -64,7 +64,6 @@ import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
-import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldTitleBar;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
 
@@ -373,25 +372,6 @@ public class SettingsActivity extends BaldActivity {
             }, R.drawable.nfc_on_button));
         connectionCategory.add(new RunnableSettingsItem(R.string.location, v -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)), R.drawable.location_on_button));
 
-        mainCategory.add(
-                new RunnableSettingsItem(R.string.get_involved,
-                        v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/UriahShaulMandel/BaldPhone/blob/master/CONTRIBUTING.md"))),
-                        R.drawable.contribute_on_button)
-        );
-        mainCategory.add(
-                new RunnableSettingsItem(R.string.technical_information,
-                        v -> startActivity(new Intent(this, TechnicalInfoActivity.class)),
-                        R.drawable.tech_info_on_button)
-        );
-        mainCategory.add(
-                new RunnableSettingsItem(R.string.share_baldphone, v -> S.shareBaldPhone(this), R.drawable.share_on_background)
-        );
-
-        mainCategory.add(
-                new RunnableSettingsItem(R.string.feedback,
-                        v -> startActivity(new Intent(this, FeedbackActivity.class)),
-                        R.drawable.feedback_on_button)
-        );
         if (!checkPermissions(this, -1))
             mainCategory.add(
                     new RunnableSettingsItem(R.string.grant_all_permissions,
@@ -424,6 +404,11 @@ public class SettingsActivity extends BaldActivity {
 //                            R.drawable.updates_on_button)
 //            );
 
+        mainCategory.add(
+                new RunnableSettingsItem(R.string.feedback_title,
+                        v -> startActivity(new Intent(this, FeedbackActivity.class)),
+                        R.drawable.feedback_on_button)
+        );
         mainCategory.add(
                 new RunnableSettingsItem(R.string.about,
                         v -> startActivity(new Intent(this, AboutActivity.class)),

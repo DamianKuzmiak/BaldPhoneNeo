@@ -39,7 +39,7 @@
     <attr name="bald_text_on_background" format="reference|color" />
     <attr name="bald_text_on_button" format="reference|color" />
     <attr name="bald_text_on_key" format="reference|color" />
-
+    <attr name="bald_edit_text_bg" format="reference|color" />
 
     <declare-styleable name="BaldPictureTextButton">
         <attr name="_src" format="reference" />

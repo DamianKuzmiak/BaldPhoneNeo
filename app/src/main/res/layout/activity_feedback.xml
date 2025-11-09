@@ -1,81 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright 2019 Uriah Shaul Mandel
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?bald_background">
+    android:layout_height="wrap_content"
+    android:background="?bald_background"
+    android:orientation="vertical">
 
-    <com.bald.uriah.baldphone.views.BaldTitleBar
-        android:id="@+id/bald_title_bar"
-        android:layout_width="0dp"
+    <app.baldphone.neo.views.TitleBarView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/feedback" />
+        app:titleBarBackgroundColor="@color/color_3"
+        app:titleBarTitle="@string/feedback_title" />
 
-    <TextView
-        android:id="@+id/tv"
-        style="@style/BackgroundText.Medium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/also_available_at"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bald_title_bar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-    <com.bald.uriah.baldphone.views.BaldEditText
-        android:id="@+id/et_feedback"
-        style="@style/EditText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv" />
-
-    <com.bald.uriah.baldphone.views.BaldLinearLayoutButton
-        android:id="@+id/bt_send"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="@drawable/style_for_buttons_transparent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:dividerPadding="8dp"
+            android:orientation="vertical">
 
-            android:src="@drawable/share_on_background" />
+            <TextView
+                android:id="@+id/feedback_subtitle"
+                style="@style/BackgroundText.Medium.Plus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:lineSpacingExtra="4dp"
+                android:paddingVertical="12dp"
+                android:text="@string/feedback_subtitle"
+                android:textAlignment="viewStart" />
 
-        <TextView
-            style="@style/BackgroundText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/send" />
+            <EditText
+                android:id="@+id/feedback_input"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="?attr/bald_edit_text_bg"
+                android:gravity="top|start"
+                android:hint="@string/feedback_hint"
+                android:inputType="textMultiLine"
+                android:maxLength="1000"
+                android:padding="12dp"
+                android:scrollbars="vertical"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/bald_text_on_background"
+                android:textColorHint="#657985"
+                android:textSize="18sp" />
 
-    </com.bald.uriah.baldphone.views.BaldLinearLayoutButton>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/feedback_send_button"
+                style="@style/BackgroundText.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_button"
+                android:text="@string/feedback_send" />
+
+            <TextView
+                android:id="@+id/feedback_advanced_toggle"
+                style="@style/BackgroundText.Medium.Plus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="8dp"
+                android:gravity="start|center_vertical"
+                android:paddingVertical="6dp"
+                android:text="@string/feedback_advanced"
+                android:textAlignment="viewStart"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/drop_down_on_button" />
+
+            <LinearLayout
+                android:id="@+id/feedback_advanced_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/button_crash_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/support_crash_report" />
+
+                <Button
+                    android:id="@+id/button_technical_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/support_technical_info" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

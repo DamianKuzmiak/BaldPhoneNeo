@@ -217,9 +217,9 @@
             android:exported="false"
             android:label="@string/technical_information" />
         <activity
-            android:name=".activities.FeedbackActivity"
+            android:name="app.baldphone.neo.activities.FeedbackActivity"
             android:exported="false"
-            android:label="@string/feedback" />
+            android:label="@string/feedback_title" />
         <activity
             android:name=".activities.UpdatesActivity"
             android:exported="false"

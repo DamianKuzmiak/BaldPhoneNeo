@@ -15,11 +15,17 @@
   -->
 <resources>
     <string name="api_level" translatable="false">Api Level:</string>
+    <string name="app_contact_email" translatable="false">neo.baldphone@gmail.com</string>
     <string name="app_display_name" translatable="false">BaldPhone Neo</string>
     <string name="authorities" translatable="false">com.bald.uriah.baldphone.fileprovider</string>
 
+    <string name="feedback_android_version" translatable="false">Android: %s</string>
+    <string name="feedback_app_version" translatable="false">Version: %s</string>
+    <string name="feedback_device" translatable="false">Device: %s</string>
+
     <string name="url_app_license" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/LICENSE</string>
     <string name="url_changelog" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/releases</string>
+    <string name="url_github_issues" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/issues</string>
     <string name="url_github_repo" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo</string>
     <string name="url_origin_project" translatable="false">https://sites.google.com/view/baldphone</string>
     <string name="url_privacy_policy" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/PRIVACY"</string>

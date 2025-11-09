@@ -55,6 +55,7 @@
         <item name="bald_text_on_background">@color/bald_text_on_background_light</item>
         <item name="bald_text_on_button">@color/bald_text_on_button_light</item>
         <item name="bald_text_on_key">@color/bald_text_on_key_light</item>
+        <item name="bald_edit_text_bg">@color/bald_edit_text_bg_light</item>
 
         <item name="colorControlHighlight">@color/ripple_light</item>
     </style>
@@ -111,6 +112,7 @@
         <item name="bald_text_on_background">@color/bald_text_on_background_dark</item>
         <item name="bald_text_on_button">@color/bald_text_on_button_dark</item>
         <item name="bald_text_on_key">@color/bald_text_on_key_dark</item>
+        <item name="bald_edit_text_bg">@color/bald_edit_text_bg_dark</item>
 
         <item name="colorControlHighlight">@color/ripple_dark</item>
     </style>
