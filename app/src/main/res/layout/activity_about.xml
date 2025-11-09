@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?bald_background"
+    android:orientation="vertical">
+
+    <app.baldphone.neo.views.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleBarBackgroundColor="@color/color_3"
+        app:titleBarTitle="@string/about" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:contentDescription="@string/app_display_name"
+                android:importantForAccessibility="no"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/about_app_name"
+                style="@style/BackgroundText.Huge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/app_display_name"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/about_version_top"
+                style="@style/BackgroundText.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15sp"
+                tools:text="Version 15.0.0-debug" />
+
+            <TextView
+                android:id="@+id/about_description_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="42dp"
+                android:paddingTop="8dp"
+                android:text="@string/about_tag_line"
+                android:textColor="?attr/bald_stroke_color"
+                android:textSize="15sp" />
+
+            <!-- Overview -->
+            <TextView
+                style="@style/BaldSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_overview_section" />
+
+            <include
+                android:id="@+id/item_changelog"
+                layout="@layout/about_item" />
+
+            <include
+                android:id="@+id/item_github"
+                layout="@layout/about_item" />
+
+            <!-- Credits -->
+            <TextView
+                style="@style/BaldSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_credits_title" />
+
+            <include
+                android:id="@+id/item_thanks"
+                layout="@layout/about_item" />
+
+            <include
+                android:id="@+id/item_contributors"
+                layout="@layout/about_item" />
+
+            <!-- Legal -->
+            <TextView
+                style="@style/BaldSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_legal_title" />
+
+            <include
+                android:id="@+id/item_app_license"
+                layout="@layout/about_item" />
+
+            <include
+                android:id="@+id/item_licenses"
+                layout="@layout/about_item" />
+
+            <include
+                android:id="@+id/item_privacy"
+                layout="@layout/about_item" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

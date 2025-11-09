@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">Tentang</string>
-    <string name="about_subtext">Hai!\nNama saya Uriah Shaul Mandel, pengembang piranti lunak ini.\n
-        Saya menghabiskan sebagian besar masa \"dewasa\" saya untuk membuat BaldPhone, dan merilisnya secara gratis agar Anda semua bisa menggunakannya.\nAnda bisa menghubungi saya melalui email:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Tingkat Aksesibilitas</string>
     <string name="accessibility_settings">Aksesibilitas</string>
     <string name="accidental_touches">Pencegah Sentuhan Tidak Disengaja</string>
@@ -359,7 +356,6 @@
     <string name="low_battery_alert">Peringatan Baterai Rendah</string>
     <string name="low_battery_alert_subtext">Pilih jika Anda ingin bilah status menjadi merah di layar beranda ketika baterai di bawah 20%\nPerhatikan ia tidak akan ditampilkan jika bilah status disembunyikan.</string>
 
-    <string name="also_available_at">Juga tersedia di\nbaldphone.contact@gmail.com\nUmpan balik harus dalam bahasa Inggris atau Ibrani!</string>
     <string name="grant_all_permissions">Berikan semua perizinan</string>
 
 

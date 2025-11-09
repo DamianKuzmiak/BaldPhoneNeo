@@ -15,10 +15,15 @@
   -->
 <resources>
     <string name="api_level" translatable="false">Api Level:</string>
-
     <string name="app_display_name" translatable="false">BaldPhone Neo</string>
-
     <string name="authorities" translatable="false">com.bald.uriah.baldphone.fileprovider</string>
+
+    <string name="url_app_license" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/LICENSE</string>
+    <string name="url_changelog" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/releases</string>
+    <string name="url_github_repo" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo</string>
+    <string name="url_origin_project" translatable="false">https://sites.google.com/view/baldphone</string>
+    <string name="url_privacy_policy" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/PRIVACY"</string>
+    <string name="url_third_party_licenses" translatable="false">https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/THIRD_PARTY_LICENSES</string>
 
     <string name="empty" translatable="false" />
 
@@ -64,8 +69,6 @@
         <item>Earboxer</item>
     </string-array>
 
-    <string name="open_source_licenses" translatable="false">Open Source Licenses</string>
-
     <string-array name="tasks">
         <item>Being the Inspiration of BaldPhone</item>
         <item>Help and support throughout the entire process</item>
@@ -107,8 +110,6 @@
         <item>Tester</item>
         <item>GitHub contributor</item>
     </string-array>
-
-    <string name="tt_url" translatable="false">"https://collector.tracepot.com/9fc2295e"</string>
 
     <string-array name="phone_numbers_for_tests">
         <item>783–412–4475</item>

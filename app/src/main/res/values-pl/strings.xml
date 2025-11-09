@@ -17,10 +17,6 @@
 
 <resources>
     <string name="about">O programie</string>
-    <string name="about_subtext">Cześć!\nMam na imię Uriah Shaul Mandel, jestem developerem tej platformy.\n
-        Spędziłem większość swojego "dorosłego" życia, tworząc tę platformę, i wypuściłem ją za darmo dla każdego do użytku.
-        \nMożesz spokojnie do mnie napisać na ten adres email: \nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Poziom dostępności</string>
     <string name="accessibility_settings">Dostępność</string>
     <string name="accidental_touches">Zapobiegaj przypadkowym dotknięciom</string>
@@ -309,7 +305,6 @@
     <string name="dialer_sounds_subtext">Wybierz, czy chcesz włączyć dźwięki wybierania numeru</string>
     <string name="low_battery_alert">Ostrzeżenie o niskim poziomie baterii</string>
     <string name="low_battery_alert_subtext">Czy chcesz, aby pasek stanu zmieniał kolor na czerwony, gdy poziom naładowania baterii spadnie poniżej 15%?\nPamiętaj, że to ustawienie zależy od tego, czy pasek stanu jest włączony.</string>
-    <string name="also_available_at">Dostępny również pod adresem\nneo.baldphone@gmail.com</string>
     <string name="grant_all_permissions">Przyznaj wszystkie uprawnienia</string>
     <string name="label_lock_screen_short">Zablokuj ekran</string>
     <string name="accessibility_service_description">Umożliwia szybkie zablokowanie ekranu jednym dotknięciem w BaldPhone Neo. Nie zbiera ani nie śledzi żadnych danych.</string>

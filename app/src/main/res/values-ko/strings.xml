@@ -16,7 +16,6 @@
 
 <resources>
     <string name="about">About</string>
-    <string name="about_subtext">안녕하세요! 저는 이 플랫폼의 개발자 Uriah Shaul Mandel입니다. 저는 성인 이후의 시간을 이 플랫폼을 만드는데 투자하였으며 이 플랫폼을 모든 사람들이 사용할 수 있도록 무료로 배포하였습니다. 귀하는 제 이메일로 연락하실 수 있습니다. : baldphone.contact@gmail.com</string>
     <string name="accessibility_level">접근 가능한 수준</string>
     <string name="accessibility_settings">접근 가능</string>
     <string name="accidental_touches">오작동 방지 필터</string>
@@ -328,7 +327,6 @@
     <string name="low_battery_alert">배터리 부족 경고</string>
     <string name="low_battery_alert_subtext">배터리가 20% 미만일 때 홈 화면에서 상태 표시 줄을 빨간색으로 표시하려면 선택하십시오. 알림 시스템 상태 표시 줄이 숨겨져 있으면 표시되지 않습니다.</string>
 
-    <string name="also_available_at">또한 baldphone.contact@gmail.com 이 주소로 English/Hebrew 언어를 사용하여 피드백이 가능합니다!</string>
     <string name="grant_all_permissions">모든 허가 승인</string>
 
 

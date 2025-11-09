@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">About</string>
-    <string name="about_subtext">Hi!\nMy name is Uriah Shaul Mandel, and I\'m the developer of this platform.\n
-        I\'ve spent most of my \"adult\" life making this platform, and I\'ve released it for free, for all to
-        use.\nYou are more than welcome to contact me by email:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Accessibility Level</string>
     <string name="accessibility_settings">Accessibility</string>
     <string name="accidental_touches">Accidental Touch Guard</string>
@@ -343,6 +339,27 @@
     <string name="dialog_button_not_now">Not now</string>
     <string name="dialog_button_enable">Enable in settings</string>
     <string name="permission_needed_title">Permission Needed</string>
+
+    <!-- Overview -->
+    <string name="about_overview_section">Overview</string>
+    <string name="about_tag_line">A simple launcher that combines calling, messaging, and everyday features into one easy-to-use experience.</string>
+    <string name="about_version_title">Version %s</string>
+    <string name="about_changelog">What\'s new</string>
+    <string name="about_github">Source Code</string>
+
+    <!-- Credits -->
+    <string name="about_credits_title">Credits &amp; Thanks</string>
+    <string name="about_thanks_title">Thanks to Uriah Shaul Mandel</string>
+    <string name="about_thanks_text">For laying the foundations on which this app was built.</string>
+    <string name="about_contributors">Contributors &amp; Translators</string>
+
+    <!-- Legal & Privacy -->
+    <string name="about_legal_title">Licenses &amp; Privacy</string>
+    <string name="about_licenses">Open Source Licenses</string>
+    <string name="about_app_license">App License – Apache 2.0</string>
+    <string name="about_privacy_policy">Privacy Policy</string>
+    <string name="about_other">Other</string>
+    <string name="about_share_app">Share BaldPhone Neo</string>
 
     <!--For Tests:-->
     <string name="medication_1">Eltroxin 100</string>

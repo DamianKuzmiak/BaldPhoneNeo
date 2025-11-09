@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">Относно</string>
-    <string name="about_subtext">Здрвейте!\nКазвам се Uriah Shaul Mandel и съм разработчикът на тази платформа.\n
-        Посветих голяма част от зрелия си живот на създаването на тази платформа и я предоставих за безплатно ползване на
-        всички.\nЧувствайте се добре дошли да се свържете с мен на електонната ми поща:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Ниво на достъпност</string>
     <string name="accessibility_settings">Достъпност</string>
     <string name="accidental_touches">Защита срещу случаен допир</string>
@@ -362,7 +358,6 @@
     <string name="low_battery_alert">Предупреждение за изтощена батерия</string>
     <string name="low_battery_alert_subtext">Изберете дали лентата на състоянието да бъде червена на началния екран, когато батерията е под  20%\nЗабележете, че това няма да се вижда, ако лентата на състоянието е скрита.</string>
 
-    <string name="also_available_at">Също достъпно на\nbaldphone.contact@gmail.com\nОбратната връзка трябва да бъде на английски/иврит!</string>
     <string name="grant_all_permissions">Даване на всички разрешения</string>
 
 

@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">Over</string>
-    <string name="about_subtext">Hallo! \n Mijn naam is Uriah Shaul Mandel en ik ben de ontwikkelaar van dit platform.\n 
-Ik heb het grootste deel van mijn \"volwassen\" leven besteed aan het maken van dit platform, en ik heb het gratis vrijgegeven zodat iedereen
-het kan gebruiken.\n U bent meer dan welkom om contact met mij op te nemen via e-mail:  \n baldphone.contact@gmail.com</string>
     <string name="accessibility_level">Toegankelijkheidsniveau</string>
     <string name="accessibility_settings">Toegankelijkheid</string>
     <string name="accidental_touches">Onbedoelde aanrakingsbeveiliging</string>
@@ -338,7 +335,6 @@ als u in het buitenland bent, kost u dit mogelijk geld.\ nWilt u doorgaan met he
     <string name="low_battery_alert">Waarschuwing lage batterij</string>
     <string name="low_battery_alert_subtext">Kies dit als u wilt dat de statusbalk rood wordt op het startscherm wanneer de batterij onder de 20% is\nLet op: Wanneer de statusbalk verborgen is wordt dit niet weergegeven.</string>
 
-    <string name="also_available_at">Ook bereikbaar op \nbaldphone.contact@gmail.com\nFeedback moet echter wel in het Engels / Hebreeuws zijn!</string>
     <string name="grant_all_permissions">Verleen alle bevoegdheden</string>
 
 

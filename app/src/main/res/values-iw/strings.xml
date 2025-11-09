@@ -16,13 +16,6 @@
 
 <resources>
     <string name="about">אודות</string>
-    <string name="about_subtext">הפרוייקט נולד מפגישה עם חבר שחלה בפרקינסון. עזרתי לו עם בעיה כלשהי בטלפון, והבחנתי עד
-        כמה הוא מתקשה לבצע פעולות, שעד אז חשבתי שהן פשוטות ומובנות מאליהן.\nהייתי בן 15, תלמיד במגמת מחשבים בכפר הירוק,
-        והחלטתי שזו תהיה המשימה שלי לחופשת הקיץ. BaldPhone הוא תוצר של מעל אלף שעות פיתוח. אני מקווה שבעזרתו מאות, ואולי
-        אלפי האנשים שזקוקים לו, יצליחו להינות משימוש נוח במכשיר שמותאם להם.\nפיתוח הממשק נעשה תוך כדי קבלת משוב צמוד.
-        ניסיתי לענות על מגוון רחב של בעיות וצרכים. אם זאת, כדי להמשיך לשפר וסייע אשמח לקבל משוב, תגובות
-        והערות.\nהBaldPhone הוא חינמי ופתוח לכל. מקווה שתהנו.\nשלכם,\nאוריה שאול מנדל\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">רמת נגישות</string>
     <string name="accessibility_settings">נגישות</string>
     <string name="accidental_touches">חוסם הלחיצות המקריות</string>
@@ -372,7 +365,6 @@
     <string name="low_battery_alert">חיווי סוללה נמוכה</string>
     <string name="low_battery_alert_subtext">בחר האם במסך הבית, כאשר הבטרייה מתחת לעשרים אחוזים, שורת המצב תיראה אדומה\nחשוב לציין שלא ניתן יהיה לראות את השינוי אם שורת המצב מוסתרת.</string>
 
-    <string name="also_available_at">ניתן ליצור קשר גם ב\nbaldphone.contact@gmail.com</string>
     <string name="grant_all_permissions">אפשר את כל ההרשאות</string>
 
 

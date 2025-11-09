@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">O aplikaciji</string>
-    <string name="about_subtext">Hi!\nMy name is Uriah Shaul Mandel, and I\'m the developer of this platform.\n
-        I\'ve spent most of my \"adult\" life making this platform, and I\'ve released it for free, for all to
-        use.\nYou are more than welcome to contact me by email:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Razina pristupačnosti</string>
     <string name="accessibility_settings">Pristupačnost</string>
     <string name="accidental_touches">Zaštita od slučajnog dodira</string>
@@ -345,7 +341,6 @@
     <string name="low_battery_alert">Upozorenje baterije pri kraju</string>
     <string name="low_battery_alert_subtext">Odaberite ukoliko želite da Statusna Traka pocrveni kada je stanje baterije ispod 20%\nUpozorenje neće biti prikazano ukoliko je Statusna Traka sakrivena.</string>
 
-    <string name="also_available_at">Dostupan na\nbaldphone.contact@gmail.com\nPovratna Informacija mora biti na Engleskom!</string>
     <string name="grant_all_permissions">Dopusti Sve Dozvole</string>
 
 

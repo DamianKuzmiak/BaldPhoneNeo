@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">À propos</string>
-    <string name="about_subtext">Bonjour\nJe m\'appelle Uriah Shaul Mandel et je suis le développeur de cette plateforme.\nJe vis à
-        Tel Aviv.\nBeaucoup de temps et d\'efforts ont été nécessaires pour créer cette plateforme et pour qu\'elle soit gratuite à utiliser pour tout le monde.\nVous pouvez me contacter avec plaisir par e-mail :\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Niveau d\'accessibilité</string>
     <string name="accessibility_settings">Accessibilité</string>
     <string name="accidental_touches">Blocage appuis accidentels</string>
@@ -347,7 +344,6 @@
     <string name="low_battery_alert">Alerte de batterie faible</string>
     <string name="low_battery_alert_subtext">Choisissez si vous voulez que la barre d\'état de l\'écran d\'acceuil devienne rouge quand la batterie a une charge inférieure à 20%\nNottez que cela ne sera pas visible si la barre d\'état est cachée.</string>
 
-    <string name="also_available_at">Également disponible en contactant\nbaldphone.contact@gmail.com\nLes retours doivent être en anglais/hébreux !</string>
     <string name="grant_all_permissions">Accorder toutes les autorisations</string>
 
 

@@ -16,7 +16,6 @@
 
 <resources>
     <string name="about">O platformi</string>
-    <string name="about_subtext">Zdravo!\nMoje ime je Uriah Shaul Mandel, i ja sam programer ove platforme.\n Proveo sam većinu mog \"zrelog\" životnog doba praveći ovu platformu, i izbacio sam je besplatno na korišćenje svima.\nViše nego dobrodošli ste da me kontaktirate na emailu:\nbaldphone.contact@gmail.com</string>
     <string name="accessibility_level">Nivo pristupačnosti</string>
     <string name="accessibility_settings">Pristupačnost</string>
     <string name="accidental_touches">Zaštita od slučajnog dodira</string>
@@ -330,7 +329,6 @@
     <string name="low_battery_alert">Upozorenje o pražnjenju baterije</string>
     <string name="low_battery_alert_subtext">Da li želite da statusna traka bude crvena na početnom ekranu kada vam je baterija manja od 20%\nNapomena - Statusna traka neće biti vidljiva ukoliko je sistemska statusna traka sakrivena.</string>
 
-    <string name="also_available_at">Takodje dostupno na \nbaldphone.contact@gmail.com\nPovratne informacije moraju biti na Engleskom ili Hebrejskom!</string>
     <string name="grant_all_permissions">Odobri sve dozvole</string>
 
 

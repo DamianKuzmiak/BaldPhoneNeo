@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">Despre</string>
-    <string name="about_subtext">Hi!\nMy name is Uriah Shaul Mandel, and I\'m the developer of this platform.\n
-        I\'ve spent most of my \"adult\" life making this platform, and I\'ve released it for free, for all to
-        use.\nYou are more than welcome to contact me by email:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Nivel accesibilitate</string>
     <string name="accessibility_settings">Accesibilitate</string>
     <string name="accidental_touches">Protecție atingere aleatorie</string>
@@ -351,7 +347,6 @@
     <string name="low_battery_alert">Alertă nivel scăzut baterie</string>
     <string name="low_battery_alert_subtext">Alegeți dacă doriți ca bara de status sa apară roșie atunci când bateria scade sub 20%.</string>
 
-    <string name="also_available_at">Also available at\nbaldphone.contact@gmail.com\nFeedback must be in English/Hebrew!</string>
     <string name="grant_all_permissions">Acordați toate permisiunile</string>
 
 

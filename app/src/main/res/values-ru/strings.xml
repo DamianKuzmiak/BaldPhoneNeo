@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">О программе</string>
-    <string name="about_subtext">Привет!\nМеня зовут Uriah Shaul Mandel и я являюсь разработчиком этой платформы.\n
-        Я провел большую часть своей «взрослой» жизни создавая эту платформу и я выпустил ее бесплатной, для всех.\nВы можете связаться со мной по электронной почте:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Уровень доступа</string>
     <string name="accessibility_settings">Специальные возможности</string>
     <string name="accidental_touches">Защита от случайных нажатий</string>
@@ -347,7 +344,6 @@
     <string name="low_battery_alert">Предупреждение о низком заряде батареи</string>
     <string name="low_battery_alert_subtext">Выберите, хотите ли вы, чтобы строка состояния была красной на главном экране, когда уровень заряда батареи ниже 20%\nПримечание: не будет отображаться, если строка состояния системы скрыта.</string>
 
-    <string name="also_available_at">Также доступно по адресу\nbaldphone.contact@gmail.com\nОбратная связь должна быть на английском/иврите!</string>
     <string name="grant_all_permissions">Предоставить Все Разрешения</string>
 
 

@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">Tietoja</string>
-    <string name="about_subtext">Hei!\nNimeni on Uriah Shaul Mandel, ja olen tämän alustan kehittäjä.\n
-        Olen käyttänyt valtaosan \"aikuisikääni\" alustan tekemiseen ja julkaisen sen ilmeiseksi, kaikkien
-        käyttöön.\nVoit mielihyvin ottaa minuun yhteyttä sähköpostilla:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Esteettömyys-taso</string>
     <string name="accessibility_settings">Esteettömyys</string>
     <string name="accidental_touches">Tahattoman kosketuksen suoja</string>
@@ -360,7 +356,6 @@ ja muuttaa kirkkautta.</string>
     <string name="low_battery_alert">Akku vähissä hälytys</string>
     <string name="low_battery_alert_subtext">Valitse, haluatko tilarivin olevan punainen aloitusnäytössä, kun akun varaus on alle 20%\nHuomaa, Sitä ei näytetä, jos järjestelmän tilarivi on piilotettu.</string>
 
-    <string name="also_available_at">Myös saatavilla\nbaldphone.contact@gmail.com\nPalaute oltava englanniksi / hepreaksi!</string>
     <string name="grant_all_permissions">Myönnä kaikki käyttöoikeudet</string>
 
 

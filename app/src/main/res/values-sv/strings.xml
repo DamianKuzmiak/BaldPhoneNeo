@@ -16,8 +16,6 @@
 
 <resources>
     <string name="about">Information</string>
-    <string name="about_subtext">Hej!\nJag heter Uriah Shaul Mandel och det är jag som utvecklar den här appen.\nJag har spenderat merparten av mitt "vuxna" liv på arbetet med appen och har låtit den vara fri att använda kostnadsfritt.\nDu får gärna kontakta mig via epost:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Tillgängligetsbehov</string>
     <string name="accessibility_settings">Tillgänglighet</string>
     <string name="accidental_touches">Skydd mot oavsiktligt pekande</string>
@@ -353,8 +351,6 @@
     <string name="low_battery_alert_subtext">Välj om du vill att statuslisten ska visas röd när batterinivån är lägre än 20%\n Observera att statuslisten måste vara synlig för att det ska märkas.
     </string>
 
-    <string name="also_available_at">Återkoppling måste skrivas på engelska eller hebreiska!\n\nDu kan även skicka ett epost till\nbaldphone.contact@gmail.com
-    </string>
     <string name="grant_all_permissions">Tillåt alla rättigheter</string>
 
 

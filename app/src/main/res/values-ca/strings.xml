@@ -16,11 +16,6 @@
 
 <resources>
     <string name="about">Sobre</string>
-    <string name="about_subtext">Hola!\nEl meu nom és Uriah Shaul Mandel i sóc el desenvolupador d\'aquesta plataforma.\n
-	He passat la major part de la meva vida "adulta" fent aquesta plataforma, i l\'he llançat gratis, perquè tots la usin.\n
-	Són benvinguts a contactar-me per correu electrònic:\n
-	baldphone.contact@gmail.com
-</string>
     <string name="accessibility_level">Nivell d\'Accessibilitat</string>
     <string name="accessibility_settings">Accessibilitat</string>
     <string name="accidental_touches">Protecció de toc accidental</string>
@@ -381,7 +376,6 @@ Premi OK per a descarregar-la.
 No es veuran canvis si la barra d\'estat està oculta.
 </string>
 
-    <string name="also_available_at">També disponible a\nbaldphone.contact@gmail.com\nFeedback must be in English/Hebrew!</string>
     <string name="grant_all_permissions">Donar tots els Permisos</string>
 
 

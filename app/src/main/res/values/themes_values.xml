@@ -35,7 +35,7 @@
     <color name="bald_hint_on_background_light">@color/bald_hint_on_button_light</color>
     <color name="bald_keyboard_key_background_light">@color/bald_button_light</color>
     <color name="bald_keyboard_key_pressed_background_light">@color/bald_button_clicked_light</color>
-    <color name="bald_selected_on_background_light">#212121</color>
+    <color name="bald_selected_on_background_light">#4D575F</color>
     <color name="bald_text_on_selected_light">#fff</color>
     <color name="bald_stroke_color_light">#84000000</color>
     <dimen name="bald_stroke_size_light">1dp</dimen>

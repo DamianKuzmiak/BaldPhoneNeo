@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">O aplikaciji</string>
-    <string name="about_subtext">Zdravo!\nMoje ime je Uriah Shaul Mandel in sem razvijalec te platforme.
-		\nVečino svojega odraslega življenja sem preživel z ustvarjanjem te platforme in sem jo izdal brezplačno za vse.
-        \nSte več kot dobrodošli, da me v angleškem jeziku kontaktirate na e-pošto:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Stopnja dostopnosti</string>
     <string name="accessibility_settings">Nastavitve dostopnosti</string>
     <string name="accidental_touches">Zaščita pred neželenim dotikom</string>
@@ -355,7 +351,6 @@
     <string name="low_battery_alert_subtext">Izberi, ali želiš, da se opravilno vrstica na domačem zaslonu obarva rdeče,
 		ko je zmogljivost baterije pod 20%.\nV vednost: to ne bo vidno, če je opravilna vrstica skrita.</string>
 
-    <string name="also_available_at">Tudi na voljo na \nbaldphone.contact@gmail.com\nPovratne informacije morajo biti v angleščini!</string>
     <string name="grant_all_permissions">Potrdi vsa dovoljenja</string>
 
 

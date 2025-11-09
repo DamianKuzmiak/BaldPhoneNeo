@@ -53,7 +53,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bald.uriah.baldphone.BuildConfig;
+import app.baldphone.neo.activities.AboutActivity;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity;
 import com.bald.uriah.baldphone.activities.pills.PillTimeSetterActivity;
@@ -64,15 +65,11 @@ import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
-import com.bald.uriah.baldphone.utils.UpdatingUtil;
 import com.bald.uriah.baldphone.views.BaldTitleBar;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.Intent.ACTION_VIEW;
 
 /**
  * Settings Activity,
@@ -376,29 +373,6 @@ public class SettingsActivity extends BaldActivity {
             }, R.drawable.nfc_on_button));
         connectionCategory.add(new RunnableSettingsItem(R.string.location, v -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)), R.drawable.location_on_button));
 
-        final LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        LayoutInflater.from(this).inflate(R.layout.credits_button, linearLayout, true);
-        LayoutInflater.from(this).inflate(R.layout.open_source_licenses_button, linearLayout, true);
-        LayoutInflater.from(this).inflate(R.layout.website_button, linearLayout, true);
-        linearLayout.findViewById(R.id.credits_button).setOnClickListener(v -> startActivity(new Intent(this, CreditsActivity.class)));
-        linearLayout.findViewById(R.id.open_source_licenses_button).setOnClickListener(v -> startActivity(new Intent(ACTION_VIEW, Uri.parse("https://sites.google.com/view/baldphone-open-source-licenses/home"))));
-        linearLayout.findViewById(R.id.website_button).setOnClickListener(v -> startActivity(new Intent(ACTION_VIEW, Uri.parse("https://baldphone.com/"))));
-        final ImageView pic = new ImageView(this);
-        linearLayout.addView(pic);
-        Glide.with(pic).load(R.drawable.me).into(pic);
-
-        mainCategory.add(
-                new BDBSettingsItem(R.string.about,
-                        BDB.from(this)
-                                .addFlag(BDialog.FLAG_OK)
-                                .setTitle(R.string.about)
-                                .setSubText(R.string.about_subtext)
-                                .setPositiveButtonListener(params -> true)
-                                .setExtraView(linearLayout)
-
-                        , R.drawable.info_on_button)
-        );
         mainCategory.add(
                 new RunnableSettingsItem(R.string.get_involved,
                         v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/UriahShaulMandel/BaldPhone/blob/master/CONTRIBUTING.md"))),
@@ -449,6 +423,12 @@ public class SettingsActivity extends BaldActivity {
 //                            v -> UpdatingUtil.checkForUpdates(this, true),
 //                            R.drawable.updates_on_button)
 //            );
+
+        mainCategory.add(
+                new RunnableSettingsItem(R.string.about,
+                        v -> startActivity(new Intent(this, AboutActivity.class)),
+                        R.drawable.ic_info_outline)
+        );
     }
 
     /**

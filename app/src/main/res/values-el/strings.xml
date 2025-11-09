@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">Σχετικά</string>
-    <string name="about_subtext">Γειά σας!\nΤο όνομα μου είναι Uriah Shaul Mandel, και είμαι ο προγραμματιστής αυτής της πλατφόρμας\n
-        Έχω αφιερώσει τον περισσότερο χρόνο από την \"ενήλικη\" ζωή μου αναπτύσσοντας αυτή την πλατφόρμα. Την έδωσα σε κυκλοφορία δωρεάν, για να 
-        μπορούν να την χρησιμοποιήσουν όλοι.\nΜπορείτε να επικοινωνήσετε μαζί μου στο email:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Επίπεδο Προσβασιμότητας</string>
     <string name="accessibility_settings">Προσβασιμότητα</string>
     <string name="accidental_touches">Ασπίδα Λάθος Πατημάτων</string>
@@ -363,8 +359,6 @@
     <string name="low_battery_alert">Ειδοποίηση χαμηλής μπαταρίας</string>
     <string name="low_battery_alert_subtext">Επιλέξτε αν θέλετε η γραμμή κατάστασης να είναι κόκκινη στην αρχική οθόνη όταν η μπαταρία είναι κάτω του 20%\nΣημείωση: Δεν θα φαίνεται αν η γραμμή κατάστασης είναι κρυμμένη.</string>
 
-    <string name="also_available_at">Επίσης μπορείτε να αποστείλετε τα σχόλια σας στο\nbaldphone.contact@gmail.com\nΤα σχόλια πρέπει να είναι γραμμένα στα
-      Αγγλικά ή στα Εβραϊκά!</string>
     <string name="grant_all_permissions">Παραχώρηση όλων των αδειών</string>
 
 

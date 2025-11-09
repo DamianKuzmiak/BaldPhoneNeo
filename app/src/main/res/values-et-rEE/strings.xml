@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">Teave</string>
-    <string name="about_subtext">Tere.\nMinu nimi on Uriah Shaul Mandel, ma olen selle rakenduse looja.\n
-         Olen seda rakendust arendanud terve oma täiskasvanu ea. Programm on kõigile kasutamiseks tasuta.\nKui soovite võite minuga, inglise keeles, ühendust võtta: nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Hõlbustuse tase</string>
     <string name="accessibility_settings">Hõlbustusfunktsioonid</string>
     <string name="accidental_touches">Juhusliku puudutuse kaitse</string>
@@ -357,7 +354,6 @@
     <string name="low_battery_alert">Madala akutaseme teavitus</string>
     <string name="low_battery_alert_subtext">Valige, kui soovite, et avakuva tegumiriba oleks punane, kui aku mahutavus on alla 20%\nTähelepanek Seda ei näidata, kui süsteemi tegumiriba on peidus.</string>
 
-    <string name="also_available_at">Tagasiside saab saata ka\nbaldphone.contact@gmail.com\nTekst peab olema inglise või heebrea keeles.</string>
     <string name="grant_all_permissions">Anna kõik vajalikud juurdepääsuload</string>
 
 

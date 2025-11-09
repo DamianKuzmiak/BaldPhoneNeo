@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">关于</string>
-    <string name="about_subtext">你好!\n我的名字是乌利亚·绍尔·曼德尔，我是这个平台的开发者。\n
-             我花了我“成年”生活的大部分时间来创建这个平台，并且我已经免费发布了它，所有人
-             都可使用。\n欢迎您通过电子邮件:\nbaldphone.contact@gmail.com与我联系</string>
     <string name="accessibility_level">輔助功能程度</string>
     <string name="accessibility_settings">輔助功能設定</string>
     <string name="accidental_touches">防誤觸功能</string>
@@ -348,7 +345,6 @@
     <string name="low_battery_alert">低電量警告</string>
     <string name="low_battery_alert_subtext">你可以選擇電量低於 20% 時，讓狀態列轉紅\n注意，如果狀態列不顯示時，紅色效果也不會顯示。</string>
 
-    <string name="also_available_at">也可聯絡\nbaldphone.contact@gmail.com\n反饋需以英文或希伯來文寫成。</string>
     <string name="grant_all_permissions">允許所有權限</string>
 
 

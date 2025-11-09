@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">बारे में</string>
-    <string name="about_subtext">नमस्ते!\nमेरा नाम उरिय्याह शॉल मंडेल है, और मैं इस मंच का विकासकर्ता हूँ।\n
-        मैंने अपना अधिकांश \"वयस्क\" जीवन इस प्लेटफॉर्म को बनाने में बिताया है, और मैंने इसे सभी के लिए मुफ्त में जारी किया है।
-        उपयोग करें।\nआपका स्वागत है मुझसे ईमेल द्वारा संपर्क करने के लिए:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">अभिगम्यता स्तर</string>
     <string name="accessibility_settings">सरल उपयोग</string>
     <string name="accidental_touches">एक्सीडेंटल टच गार्ड</string>
@@ -361,7 +357,6 @@
     <string name="low_battery_alert">कम बैटरी अलर्ट</string>
     <string name="low_battery_alert_subtext">चुनें कि क्या आप चाहते हैं कि होम स्क्रीन पर स्टेटस बार लाल हो, जब बैटरी 20% से कम हो\nध्यान दें कि सिस्टम स्टेटस बार छुपा हुआ है तो यह नहीं दिखाया जाएगा।</string>
 
-    <string name="also_available_at">\nbaldphone.contact@gmail.com पर भी उपलब्ध है\nप्रतिक्रिया अंग्रेजी/हिब्रू में होनी चाहिए!</string>
     <string name="grant_all_permissions">सभी अनुमतियां प्रदान करें</string>
 
 

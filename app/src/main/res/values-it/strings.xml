@@ -16,7 +16,6 @@
 
 <resources>
     <string name="about">Informazioni</string>
-    <string name="about_subtext">Ciao! Il mio nome è Uriah Shaul Mandel e sono lo sviluppatore di questa app.\nHo speso una gran parte della mia vita \"adulta\" per realizzare questo software e l\'ho rilasciato come Open Source affinché tutti lo possano utilizzare liberamente.\nSe vuoi contattarmi via email, sei il benvenuto:\nbaldphone.contact@gmail.com</string>
     <string name="accessibility_level">Livello di accessibilità</string>
     <string name="accessibility_settings">Accessibilità</string>
     <string name="accidental_touches">Protezione contro i tocchi accidentali</string>
@@ -346,7 +345,6 @@
     <string name="low_battery_alert">Avviso batteria scarica</string>
     <string name="low_battery_alert_subtext">Scegli se vuoi che la barra di stato nella schermata Home diventi rossa quando la carica della batteria è inferiore al 20%.\nNon è visibile se la barra di stato è nascosta.</string>
 
-    <string name="also_available_at">Puoi anche scrivere a\nbaldphone.contact@gmail.com\nPer cortesia, invia feedback solo in inglese o in ebraico.</string>
     <string name="grant_all_permissions">Autorizzazioni richieste</string>
 
 

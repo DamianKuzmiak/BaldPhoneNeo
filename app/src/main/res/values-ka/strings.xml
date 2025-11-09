@@ -16,9 +16,6 @@
 
 <resources>
     <string name="about">აპლიკაციის შესახებ</string>
-    <string name="about_subtext">სალამი!\nმე მქვია ურია შეულ მენდელი და მე ვარ ამ პლატფორმის BaldPhone(მელოტი ტელეფონის) დეველოპერი.\n
-        მე მთელი ჩემი (ზრდასრული) ცხოვრება ამ პლატფორმას ვაკეთებდი და გადავწყვიტე გამეზიარებინა ყველასთვის,სრულიად უფასოდ.\nმოხარული ვიქნები თუ დამიკავშირდებით :\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">წვდომის დონე</string>
     <string name="accessibility_settings">სპეციალური შესაძლებლობები</string>
     <string name="accidental_touches">შემთხვევითი შეხების გუშაგი</string>
@@ -342,7 +339,6 @@
     <string name="low_battery_alert">გაფრთხილება ტელეფონის ელემენტის დაბალი დონის შესახებ</string>
     <string name="low_battery_alert_subtext">აირჩიეთ თუ გსურთ რომ სტატუსბარი იყოს წითელი, როდესაც თქვენი ტელეფონის ელემენტის მუხტი ნაკლებია 20%\nშენიშვნა: არ იქნება ნაჩვენები თუ სტატუს ბარი დამალულია.</string>
 
-    <string name="also_available_at">აგრეთვე ხელმისაწვდომია ამ მისამართზე\nbaldphone.contact@gmail.com\nუკუკავშირი უნდა იყოს ივრითზე ან ინგლისურად!</string>
     <string name="grant_all_permissions">ყველა ნებართვის მინიჭება</string>
 
 

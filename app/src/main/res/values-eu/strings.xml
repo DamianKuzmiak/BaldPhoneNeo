@@ -16,7 +16,6 @@
 
 <resources>
     <string name="about">Honi buruz</string>
-    <string name="about_subtext">Kaixo!\nNire izena Uriah Shaul Mandel da, eta plataforma honen sustatzailea naiz.\n Nire bizitza \"helduaren\" zatirik handiena plataforma hau egiten eman dut, eta dohainik argitaratu dut, edonorrek erabili dezan.\nOngi etorria zara nirekin posta elektronikoz harremanetan jartzeko:\nbaldphone.contact@gmail.com</string>
     <string name="accessibility_level">Erabilerraztasun maila</string>
     <string name="accessibility_settings">Erabilerraztasuna</string>
     <string name="accidental_touches">Ustekabeko utzitzen aurkako babesa</string>

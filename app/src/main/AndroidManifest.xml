@@ -193,6 +193,10 @@
             android:label="@string/share"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="app.baldphone.neo.activities.AboutActivity"
+            android:exported="false"
+            android:label="@string/about" />
+        <activity
             android:name=".activities.CreditsActivity"
             android:exported="false"
             android:label="Credits" />

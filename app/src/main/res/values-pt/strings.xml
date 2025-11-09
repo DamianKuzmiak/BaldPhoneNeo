@@ -16,10 +16,6 @@
 
 <resources>
     <string name="about">Sobre</string>
-    <string name="about_subtext">Olá!\nO meu nome é Uriah Shaul Mandel, e fui eu que programei esta aplicação.\n
-        Passei a maior parte da minha vida \"adulta\" a criar esta aplicação, e agora disponibilizei-a gratuitamente, para qualquer pessoa
-        utilizar.\nNão hesite em contactar me por email:\nbaldphone.contact@gmail.com
-    </string>
     <string name="accessibility_level">Nível de Acessibilidade</string>
     <string name="accessibility_settings">Acessibilidade</string>
     <string name="accidental_touches">Protecção de Toques Acidenteis</string>
@@ -340,7 +336,6 @@
     <string name="low_battery_alert_subtext">
         Escolha se quer a barra de notificações em vermelho quando a bateria está abaixo de 20%\nNão será mostrado se a barra de notificações estiver escondida.</string>
 
-    <string name="also_available_at">Also available at\nbaldphone.contact@gmail.com\nFeedback must be in English/Hebrew!</string>
     <string name="grant_all_permissions">Grant All Permissions</string>
 
 

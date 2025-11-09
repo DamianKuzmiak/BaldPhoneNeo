@@ -16,11 +16,6 @@
 
 <resources>
     <string name="about">Acerca de</string>
-    <string name="about_subtext">
-        ¡Hola, buenos días!\n
-        Me llamo Uriah Shaul Mandel y soy el desarrollador de esta plataforma. He pasado la mayor parte de mi vida «adulta» desarrollando esta plataforma, y la he lanzado gratis para beneficio de todos. Si tienes alguna duda o sugerencia he aquí mi correo electrónico:\n
-        baldphone.contact@gmail.com (si me escribes, mejor en inglés)
-    </string>
     <string name="accessibility_level">Nivel de accesibilidad</string>
     <string name="accessibility_settings">Accesibilidad</string>
     <string name="accidental_touches">Protección de toque accidental</string>
@@ -357,7 +352,6 @@
     <string name="low_battery_alert_subtext">Elige si quieres que la barra de estado se ponga roja en la pantalla de inicio cuando la batería baje del 20%. Ten en cuenta que esta opción no sirve de nada si la barra de estado está oculta.
     </string>
 
-    <string name="also_available_at">También estoy disponible a través de\nbaldphone.contact@gmail.com\nLos comentarios deben de escribirse en inglés o hebreo para que yo los entienda.</string>
     <string name="grant_all_permissions">Conceder todos los permisos</string>
 
 
