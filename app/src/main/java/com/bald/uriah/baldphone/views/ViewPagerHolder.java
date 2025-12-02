@@ -76,7 +76,7 @@ public class ViewPagerHolder extends LinearLayout {
         this.context = context;
         final SharedPreferences sharedPreferences =
                 context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        noArrows = sharedPreferences.getBoolean(BPrefs.TOUCH_NOT_HARD_KEY, false);
+        noArrows = sharedPreferences.getBoolean(BPrefs.TOUCH_NOT_HARD_KEY, BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE);
 
         try (final TypedArray typedArray =
                 context.obtainStyledAttributes(attributeSet, R.styleable.ViewPagerHolder)) {
