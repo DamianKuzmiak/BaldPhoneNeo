@@ -35,6 +35,6 @@ object PrefKeys {
     const val KEY_COMBINE_DUPLICATE_CALLS = "combine_duplicate_calls"
 
     // System / UI
-    const val KEY_STATUS_BAR = BPrefs.STATUS_BAR_KEY
+    const val KEY_STATUS_BAR = "status_bar_mode"
     const val KEY_USE_ACCIDENTAL_GUARD = "USE_ACCIDENTAL_GUARD_KEY"
 }

@@ -158,7 +158,7 @@ public class ScrollingHelper extends ConstraintLayout {
 
         //if touch is hard
         this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        gone = sharedPreferences.getBoolean(BPrefs.TOUCH_NOT_HARD_KEY, false);
+        gone = sharedPreferences.getBoolean(BPrefs.TOUCH_NOT_HARD_KEY, BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE);
 
         SCROLL_CONST = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, SCROLL_CONST_IN_DP, getResources().getDisplayMetrics());
         //add the helper

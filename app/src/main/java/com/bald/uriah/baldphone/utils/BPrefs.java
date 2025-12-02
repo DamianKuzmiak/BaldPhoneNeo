@@ -25,7 +25,7 @@ import com.bald.uriah.baldphone.databases.reminders.Reminder;
 public final class BPrefs {
     public static final String KEY = "baldPrefs";
     public static final String TOUCH_NOT_HARD_KEY = "TOUCH_NOT_HARD_KEY";
-    public static final boolean TOUCH_NOT_HARD_DEFAULT_VALUE = false;
+    public static final boolean TOUCH_NOT_HARD_DEFAULT_VALUE = true;
 
     public static final String RIGHT_HANDED_KEY = "RIGHT_HANDED_KEY";
     public static final boolean RIGHT_HANDED_DEFAULT_VALUE = true;
@@ -44,19 +44,16 @@ public final class BPrefs {
     public static final String CUSTOM_ALARMS_KEY = "CUSTOM_ALARMS_KEY";
 
     public static final String LONG_PRESSES_KEY = "LONG_PRESSES_KEY";
-    public static final boolean LONG_PRESSES_DEFAULT_VALUE = true;
+    public static final boolean LONG_PRESSES_DEFAULT_VALUE = false;
 
     public static final String TEST_KEY = "TEST_KEY";
     public static final boolean TEST_DEFAULT_VALUE = false;
 
     public static final String LONG_PRESSES_SHORTER_KEY = "LONG_PRESSES_SHORTER_KEY";
-    public static final boolean LONG_PRESSES_SHORTER_DEFAULT_VALUE = true;
-
-    public static final String STATUS_BAR_KEY = "STATUS_BAR_KEY";
-    public static final int STATUS_BAR_DEFAULT_VALUE = 0;
+    public static final boolean LONG_PRESSES_SHORTER_DEFAULT_VALUE = false;
 
     public static final String VIBRATION_FEEDBACK_KEY = "VIBRATION_FEEDBACK_KEY";
-    public static final boolean VIBRATION_FEEDBACK_DEFAULT_VALUE = true;
+    public static final boolean VIBRATION_FEEDBACK_DEFAULT_VALUE = false;
 
     public static final String NOTE_VISIBLE_KEY = "NOTE_VISIBLE_KEY";
     public static final boolean NOTE_VISIBLE_DEFAULT_VALUE = true;
@@ -74,9 +71,6 @@ public final class BPrefs {
     public static final String NOTE_KEY = "NOTE_KEY";
 
     public static final String AFTER_TUTORIAL_KEY = "AFTER_TUTORIAL_KEY";
-
-    public static final String CRASH_REPORTS_KEY = "CRASH_REPORTS_KEY";
-    public static final boolean CRASH_REPORTS_DEFAULT_VALUE = true;
 
     public static final String APPS_ONE_GRID_KEY = "APPS_ONE_GRID_KEY";
     public static final boolean APPS_ONE_GRID_DEFAULT_VALUE = false;
