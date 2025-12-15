@@ -45,7 +45,6 @@
         <item name="bald_button_clicked">@color/bald_button_clicked</item>
         <item name="bald_button_corners_radius">@dimen/bald_button_corners_radius</item>
         <item name="bald_button_disabled">@color/bald_button_disabled</item>
-        <item name="bald_button_gold">@color/gold</item>
         <item name="bald_button_pill_corners_radius">@dimen/bald_button_pill_corners_radius</item>
         <item name="bald_decoration_on_background">@color/bald_decoration_on_background</item>
         <item name="bald_decoration_on_button">@color/bald_decoration_on_button</item>

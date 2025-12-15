@@ -19,7 +19,6 @@
     <attr name="bald_key_margin" format="reference|dimension" />
     <attr name="bald_background_transparent" format="reference|color" />
     <attr name="bald_button" format="reference|color" />
-    <attr name="bald_button_gold" format="reference|color" />
     <attr name="bald_text_on_gold" format="reference|color" />
     <attr name="bald_button_clicked" format="reference|color" />
     <attr name="bald_button_corners_radius" format="reference|dimension" />

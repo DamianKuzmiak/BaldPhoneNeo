@@ -14,7 +14,7 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:textColor="?attr/bald_text_on_button"
+        android:textColor="@color/bald_text_on_button"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@id/tv_letters"
         app:layout_constraintEnd_toEndOf="parent"
