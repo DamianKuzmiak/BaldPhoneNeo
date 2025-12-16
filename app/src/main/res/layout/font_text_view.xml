@@ -15,7 +15,6 @@
   -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tiny"
     style="@style/BackgroundText.Tiny"
     android:layout_width="0dp"
     android:layout_height="match_parent"

@@ -15,7 +15,6 @@
   -->
 
 <resources>
-    <item name="view_pager" type="id" />
     <item name="id_dummy" type="id" />
     <item name="container" type="id" />
     <item name="container2" type="id" />

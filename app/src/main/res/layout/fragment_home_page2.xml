@@ -53,7 +53,6 @@
                 app:srcCompat="@drawable/settings_on_button" />
 
             <TextView
-                android:id="@+id/tv_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -151,7 +150,6 @@
                 app:srcCompat="@drawable/pill" />
 
             <TextView
-                android:id="@+id/tv_new_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -182,7 +180,6 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_new_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="64dp"
@@ -193,7 +190,6 @@
                 app:srcCompat="@drawable/apps_on_background" />
 
             <TextView
-                android:id="@+id/tv_new_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -215,7 +211,6 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/iv_new_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxWidth="64dp"
@@ -226,7 +221,6 @@
                 android:src="@drawable/photo_on_button" />
 
             <TextView
-                android:id="@+id/tv_help"
                 style="@style/ButtonsText.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -248,7 +242,6 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_new_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="64dp"
@@ -259,7 +252,6 @@
                 app:srcCompat="@drawable/movie_on_background" />
 
             <TextView
-                android:id="@+id/tv_new_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -281,7 +273,6 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_new_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
@@ -290,7 +281,6 @@
                 app:srcCompat="@drawable/clock_on_background" />
 
             <TextView
-                android:id="@+id/tv_new_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

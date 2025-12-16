@@ -26,14 +26,12 @@
     <color name="bald_button_clicked">#3C455C</color>
     <color name="bald_button_disabled">#d6d6d6</color>
     <color name="bald_decoration_on_background">@color/bald_text_on_background</color>
-    <color name="bald_decoration_on_button">@color/bald_text_on_button</color>
     <color name="bald_decoration_on_key">@color/bald_text_on_key</color>
     <color name="bald_hint_on_button">#585858</color>
     <color name="bald_hint_on_background">@color/bald_hint_on_button</color>
     <color name="bald_keyboard_key_background">@color/bald_button</color>
     <color name="bald_keyboard_key_pressed_background">@color/bald_button_clicked</color>
     <color name="bald_selected_on_background">#4D575F</color>
-    <color name="bald_text_on_selected">#fff</color>
     <color name="bald_stroke_color">#84000000</color>
     <color name="bald_text_on_background">#000</color>
     <color name="bald_text_on_button">#000</color>
@@ -67,9 +65,8 @@
     <color name="other">#809e9e9e</color>
 
     <color name="color_1">#5064ef5b</color>
-    <color name="color_2">#501de8b5</color>
-    <color name="color_4">#50bcaaa4</color>
     <color name="color_3">#5080cbc4</color>
+    <color name="color_4">#50bcaaa4</color>
 
     <!-- Ripple Colors -->
     <color name="ripple">#000000</color>
