@@ -15,7 +15,6 @@
   -->
 
 <com.bald.uriah.baldphone.views.BaldButton xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bald_switch_yes"
     style="@style/ButtonsText.Tiny"
     android:layout_width="0dp"
     android:layout_height="match_parent"

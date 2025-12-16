@@ -22,7 +22,6 @@
     android:layoutDirection="ltr">
 
     <Space
-        android:id="@+id/spc"
         android:layout_width="0dp"
         android:layout_height="350dp"
         tools:ignore="MissingConstraints" />
@@ -411,7 +410,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_shift"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -579,7 +577,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_backspace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -638,7 +635,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -667,7 +663,6 @@
         app:layout_constraintTop_toTopOf="@id/numbers">
 
         <ImageView
-            android:id="@+id/iv_speech_to_text"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
@@ -680,7 +675,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_speech_to_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -735,7 +729,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_done"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
