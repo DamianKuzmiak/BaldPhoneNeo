@@ -348,8 +348,6 @@
     <string name="apps_sort_method_subtext">Alegeți dacă vreți ca aplicațiile sa fie sortate in grupe sau alfabetic.</string>
     <string name="groups">Grupe</string>
     <string name="one_grid">Alfabetic</string>
-    <string name="colorful">Colorat</string>
-    <string name="colorful_subtext">Doriți să faceți aplicația mai colorată?</string>
     <string name="edit_home_screen">Editați Ecranul Acasă</string>
     <string-array name="names_for_screenshots">
         <item>The Godfather</item>

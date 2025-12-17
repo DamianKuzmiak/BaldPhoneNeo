@@ -374,8 +374,6 @@
     <string name="apps_sort_method_subtext">Wybierz, czy chcesz sortować aplikacje w jednej siatce, czy podzielić je na grupy według liter</string>
     <string name="groups">Grupy</string>
     <string name="one_grid">Jedna siatka</string>
-    <string name="colorful">Kolorowy</string>
-    <string name="colorful_subtext">Czy chcesz, żeby BaldPhone był bardziej kolorowy?</string>
     <string name="edit_home_screen">Edytuj ekran główny</string>
     <string-array name="names_for_screenshots">
         <item>The Godfather</item>

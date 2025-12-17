@@ -331,8 +331,6 @@
     <string name="apps_sort_method_subtext">앱을 하나의 격자로 정렬할지 또는 문자를 통해 다른 그룹으로 나눌 지 선택하세요</string>
     <string name="groups">그룹</string>
     <string name="one_grid">하나의 그리드</string>
-    <string name="colorful">Colorful</string>
-    <string name="colorful_subtext">Do you want to make BaldPhone more colorful?</string>
     <string name="edit_home_screen">Edit Home Screen</string>
     <bool name="is_right_to_left">false</bool>
 

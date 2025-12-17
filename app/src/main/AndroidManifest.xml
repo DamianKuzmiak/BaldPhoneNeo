@@ -273,13 +273,6 @@
         </service>
 
         <receiver
-            android:name=".broadcast_receivers.LocalChangedReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.LOCALE_CHANGED" />
-            </intent-filter>
-        </receiver>
-        <receiver
             android:name=".broadcast_receivers.AlarmReceiver"
             android:exported="false"
             android:process=":remote" />

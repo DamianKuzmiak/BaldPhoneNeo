@@ -342,8 +342,6 @@
     <string name="apps_sort_method_subtext">Odaberite želite sortirati aplikacije u jednu rešetku ili da su sortirane u grupama bazirano na prvom slovu imena aplikacije</string>
     <string name="groups">Grupe</string>
     <string name="one_grid">Rešetka</string>
-    <string name="colorful">U više boja</string>
-    <string name="colorful_subtext">Želite li učiniti da BaldPhone bude u više boja?</string>
     <string name="edit_home_screen">Uredi Početni Zaslon</string>
     <string name="dual_sim">Dual Sim</string>
     <string name="dual_sim_subtext">Odaberite kako će se upravljati Dual SIM\nBilješka: ukoliko odaberete Prikaži Postavke, morati ćete dopustiti jednu dozvolu</string>

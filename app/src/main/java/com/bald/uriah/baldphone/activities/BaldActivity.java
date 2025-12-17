@@ -57,7 +57,6 @@ import static com.bald.uriah.baldphone.activities.PermissionActivity.EXTRA_INTEN
  */
 @Deprecated()
 public abstract class BaldActivity extends AppCompatActivity {
-    private static final String TAG = BaldActivity.class.getSimpleName();
     protected static final int
             PERMISSION_NONE = 0,
             PERMISSION_READ_PHONE_STATE = 0b100000000000,
@@ -74,7 +73,6 @@ public abstract class BaldActivity extends AppCompatActivity {
             PERMISSION_SYSTEM_ALERT_WINDOW = 0b1000000000000;
 
     public boolean testing = false;
-    public boolean colorful;
     protected Vibrator vibrator;
     private List<WeakReference<Dialog>> dialogsToClose = new ArrayList<>(1);
     private List<WeakReference<PopupWindow>> popupWindowsToClose = new ArrayList<>(1);
@@ -178,7 +176,6 @@ public abstract class BaldActivity extends AppCompatActivity {
 
         vibrator = Prefs.isVibrationFeedbackEnabled()
                 ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
-        colorful = sharedPreferences.getBoolean(BPrefs.COLORFUL_KEY, BPrefs.COLORFUL_DEFAULT_VALUE);
     }
 
     @Override

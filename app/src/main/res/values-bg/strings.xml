@@ -356,8 +356,6 @@
     <string name="apps_sort_method_subtext">Изберете дали желаете да подредите приложенията в общ списък или да ги разделите в групи по букви</string>
     <string name="groups">Групи</string>
     <string name="one_grid">Общ списък</string>
-    <string name="colorful">Цветен</string>
-    <string name="colorful_subtext">Желаете ли да направите BaldPhone по-цветен?</string>
     <string name="edit_home_screen">Редактиране на Начален екран</string>
     <string name="dual_sim">Две SIM карти</string>
     <string name="dual_sim_subtext">Изберете как искате да управлявате двете SIM карти\nЗабележка: Ако изберете Показване на опции, ще трябва да позволите и друго разрешение</string>

@@ -338,8 +338,6 @@
     <string name="apps_sort_method_subtext">Escolha se deseja classificar os aplicativos em uma grade ou dividi-los em grupos diferentes por meio de letras</string>
     <string name="groups">Grupos</string>
     <string name="one_grid">Uma grade</string>
-    <string name="colorful">Colorido</string>
-    <string name="colorful_subtext">Deseja tornar o BaldPhone mais colorido?</string>
     <string name="edit_home_screen">Editar Página Inicial</string>
     <string name="dual_sim">Dual SIM</string>
     <string name="dual_sim_subtext">Escolha como deseja gerenciar o dual sim\nNota: Se você escolher Mostrar Opções, precisará permitir outra permissão</string>

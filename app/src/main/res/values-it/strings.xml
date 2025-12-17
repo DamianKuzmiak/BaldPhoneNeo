@@ -373,8 +373,6 @@
     <string name="apps_sort_method_subtext">Scegli se vuoi vedere le app ordinate in una griglia o se le vuoi raggruppate per lettera.</string>
     <string name="groups">Per lettera</string>
     <string name="one_grid">Griglia</string>
-    <string name="colorful">Colorful</string>
-    <string name="colorful_subtext">Vuoi avere un BaldPhone più colorato?</string>
     <string name="edit_home_screen">Modifica schermata Home</string>
     <string name="dual_sim">Dual sim</string>
     <string name="dual_sim_subtext">Scegli come vuoi gestire due sim\nNota: Se scegli Mostra Opzioni, dovrai accettare un\'altra autorizzazione</string>

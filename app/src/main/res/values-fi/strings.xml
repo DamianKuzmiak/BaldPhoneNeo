@@ -354,8 +354,6 @@ ja muuttaa kirkkautta.</string>
     <string name="apps_sort_method_subtext">Valitse, haluatko lajitella sovellukset yhteen ruudukkoon vai jakaa ne eri ryhmiin kirjaimilla</string>
     <string name="groups">Ryhmät</string>
     <string name="one_grid">Yksi ruudukko</string>
-    <string name="colorful">Värikäs</string>
-    <string name="colorful_subtext">Haluatko tehdä BaldPhonen värikkäämmäksi?</string>
     <string name="edit_home_screen">Muokkaa aloitusnäyttöä</string>
     <string name="dual_sim">Kaksois-SIM</string>
     <string name="dual_sim_subtext">Valitse, kuinka haluat hallita kaksois-SIM:ä\nHuomaa: Jos valitset Näytä vaihtoehdot, sinun on annettava uusi käyttöoikeus</string>

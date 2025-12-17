@@ -355,8 +355,6 @@
     <string name="apps_sort_method_subtext">चुनें कि क्या आप ऐप्स को एक ग्रिड में सॉर्ट करना चाहते हैं या उन्हें अक्षरों के माध्यम से अलग-अलग समूहों में विभाजित करना चाहते हैं</string>
     <string name="groups">समूहों</string>
     <string name="one_grid">एक ग्रिड</string>
-    <string name="colorful">रंगीन</string>
-    <string name="colorful_subtext">क्या आप बाल्डफोन को और रंगीन बनाना चाहते हैं?</string>
     <string name="edit_home_screen">होम स्क्रीन संपादित करें</string>
     <string name="dual_sim">दोहरी सिम</string>
     <string name="dual_sim_subtext">चुनें कि आप दोहरी सिम कैसे प्रबंधित करना चाहते हैं\nनोट: यदि आप विकल्प दिखाएँ चुनते हैं, तो आपको एक और अनुमति की अनुमति देनी होगी</string>

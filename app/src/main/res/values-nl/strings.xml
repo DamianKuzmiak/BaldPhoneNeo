@@ -337,8 +337,6 @@ geen schade veroorzaken. Druk op OK om de bevoegdheden te geven of druk op nee o
     <string name="apps_sort_method_subtext">Kies of je de apps in één raster wilt sorteren of ze wilt groeperen aan de hand van letters.</string>
     <string name="groups">Groepen</string>
     <string name="one_grid">Eén raster</string>
-    <string name="colorful">Kleurrijk</string>
-    <string name="colorful_subtext">Wilt u BaldPhone kleurrijker maken?</string>
     <string name="edit_home_screen">Startscherm aanpassen</string>
     <string name="dual_sim">Dual Sim</string>
     <string name="dual_sim_subtext">Kies hoe je dual sim wilt beheren\nAls je Toon Opties kiest, moet je ook nog een andere bevoegdheid geven</string>

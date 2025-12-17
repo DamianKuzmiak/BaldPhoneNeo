@@ -333,8 +333,6 @@
     <string name="apps_sort_method_subtext">Izaberite da li želite da aplikacije sortirate u jednoj matrici ili da ih sortirate u grupe po početnom slovu</string>
     <string name="groups">Grupe</string>
     <string name="one_grid">Jedna matrica</string>
-    <string name="colorful">Raznobojno</string>
-    <string name="colorful_subtext">Želite li da BaldPhone bude raznobojniji?</string>
     <string name="edit_home_screen">Uredi početni ekran</string>
     <string name="dual_sim">Dual SIM</string>
     <string name="dual_sim_subtext">Izaberite kako želite da upravljate dual SIM-om\nNapomena: Ikoliko izaberete \"Prikaži opcije\", moraćete da omogučite još jednu dozvolu.</string>

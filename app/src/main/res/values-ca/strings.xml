@@ -368,8 +368,6 @@ No es veuran canvis si la barra d\'estat està oculta.
     <string name="apps_sort_method_subtext">Trieu si voleu ordenar les apps en una columna o dividits en grups mitjançant lletres</string>
     <string name="groups">Grups</string>
     <string name="one_grid">Una Columna</string>
-    <string name="colorful">Colorful</string>
-    <string name="colorful_subtext">Voleu que BaldPhone habiliti Colorful?</string>
     <string name="edit_home_screen">Edita Pàgina Inici</string>
     <string name="dual_sim">SIM Dual</string>
     <string name="dual_sim_subtext">Trieu com voleu gestionar la doble SIM\*nNota: Si trieu Mostrar Opcions, haureu d\'acceptar un altre permís</string>

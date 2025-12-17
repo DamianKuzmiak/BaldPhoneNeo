@@ -336,8 +336,6 @@ https://baldphone.com</string>
     <string name="apps_sort_method_subtext">Alkalmazások rendezése négyzetrácsba, vagy betű szerint csoportba.</string>
     <string name="groups">Csoportok</string>
     <string name="one_grid">Egy Rács</string>
-    <string name="colorful">Színes</string>
-    <string name="colorful_subtext">Akarod színesebbé tenni a BaldPhone-t?</string>
     <string name="edit_home_screen">Kezdőképernyő szerkesztése</string>
     <string name="dual_sim">Két SIM</string>
     <string name="dual_sim_subtext">Válaszd ki hogyan akarod a két SIM kártyát kezelni.</string>

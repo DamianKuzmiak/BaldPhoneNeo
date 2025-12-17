@@ -350,8 +350,6 @@
     <string name="apps_sort_method_subtext">Izberite, ali želite aplikacije razvrstiti v mrežo, ali v skupine, ločene po začetnicah imen.</string>
     <string name="groups">Skupine</string>
     <string name="one_grid">Mreža</string>
-    <string name="colorful">Barvito</string>
-    <string name="colorful_subtext">Ali želite, da je BaldPhone bolj barvit?</string>
     <string name="edit_home_screen">Uredi elemente na domačem zaslonu</string>
     <string name="dual_sim">Dve SIM kartici</string>
     <string name="dual_sim_subtext">Izberite, kako želite upravljati dve sim kartici\nOpomba: Če izberete Prikaži Možnosti, boste morali odobriti še eno dovoljenje </string>

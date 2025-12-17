@@ -354,8 +354,6 @@
     <string name="apps_sort_method_subtext">Valige, kas soovite, et rakendused on ühel joonel või jagatud erinevatesse gruppidesse tähestiku alusel</string>
     <string name="groups">Grupid</string>
     <string name="one_grid">Ühes reas</string>
-    <string name="colorful">Värviline</string>
-    <string name="colorful_subtext">Kas soovite BaldPhone\'ile värvi lisada?</string>
     <string name="edit_home_screen">Redigeeri avakuva</string>
     <string name="dual_sim">Kaks SIM-kaarti</string>
     <string name="dual_sim_subtext">Valige, kuidas soovite hallata kahte SIM-kaarti\nMärkus: valides menüüst Kuva valikud, peate andma veel ühe juurdepääsuloa</string>

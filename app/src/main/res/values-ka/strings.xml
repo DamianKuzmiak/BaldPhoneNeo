@@ -340,8 +340,6 @@
     <string name="apps_sort_method_subtext">გსურთ დაახარისხოთ აპლიკაციები ერთ ბადეში თუ დაყოფთ სხვადასხვა ჯგუფებში ასოების მიხედვით </string>
     <string name="groups">ჯგუფები</string>
     <string name="one_grid">ერთი ბადე</string>
-    <string name="colorful">ფერადი</string>
-    <string name="colorful_subtext">გსურთ გახადოთ BaldPhone მეტად ფერადი?</string>
     <string name="edit_home_screen">მთავარი ეკრანის რედაქტირება</string>
     <string name="dual_sim">ორმაგი სიმ ბარათი</string>
     <string name="dual_sim_subtext">აირჩიეთ როგორ გსურთ ორმაგი სიმ ბარათის განკარგვა.\nშენიშვნა: თუ თქბვენ აირჩევთ პარამეტრების ჩვენებას, თქვენ დაგჭირდებათ კიდევ ერთი ნებართვის მიცემა.</string>
