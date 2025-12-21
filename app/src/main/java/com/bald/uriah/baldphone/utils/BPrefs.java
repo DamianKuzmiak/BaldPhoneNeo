@@ -78,9 +78,6 @@ public final class BPrefs {
 
     public static final String AFTER_TUTORIAL_KEY = "AFTER_TUTORIAL_KEY";
 
-    public static final String PAGE_TRANSFORMERS_KEY = "pageTransformersKey";
-    public static final int PAGE_TRANSFORMERS_DEFAULT_VALUE = 0;
-
     public static final String CRASH_REPORTS_KEY = "CRASH_REPORTS_KEY";
     public static final boolean CRASH_REPORTS_DEFAULT_VALUE = true;
 

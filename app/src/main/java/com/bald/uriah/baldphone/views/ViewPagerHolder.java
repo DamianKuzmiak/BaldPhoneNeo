@@ -202,11 +202,6 @@ public class ViewPagerHolder extends LinearLayout {
         viewPager.setCurrentItem(item);
     }
 
-    public void setPageTransformer(
-            boolean reverseDrawingOrder, @Nullable ViewPager.PageTransformer transformer) {
-        viewPager.setPageTransformer(reverseDrawingOrder, transformer);
-    }
-
     public void onDataChanged() {
         pageChangeHandler(pageIndex);
     }

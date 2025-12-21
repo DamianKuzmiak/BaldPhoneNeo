@@ -124,12 +124,6 @@ public class SOSActivity extends BaldActivity {
     }
 
     @Override
-    public void finish() {
-        super.finish();
-//        overridePendingTransition(R.anim.nothing, R.anim.slide_out_up);
-    }
-
-    @Override
     protected int requiredPermissions() {
         return PERMISSION_CALL_PHONE | PERMISSION_READ_CONTACTS;
     }

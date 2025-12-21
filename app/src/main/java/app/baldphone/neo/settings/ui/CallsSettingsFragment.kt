@@ -10,7 +10,7 @@ import app.baldphone.neo.views.SettingsSwitchButton
 
 import com.bald.uriah.baldphone.R
 
-class CallsSettingsFragment : Fragment(R.layout.fragment_calls_settings) {
+class CallsSettingsFragment : BaseSettingsFragment(R.layout.fragment_calls_settings) {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?

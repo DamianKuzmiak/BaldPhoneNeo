@@ -62,7 +62,6 @@ import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.DropDownRecyclerViewAdapter;
-import com.bald.uriah.baldphone.utils.PageTransformers;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldImageButton;
 import com.bald.uriah.baldphone.views.BatteryView;
@@ -306,7 +305,6 @@ public class HomeScreenActivity extends BaldActivity {
      */
     private void viewPagerHandler() {
         baldPagerAdapter = new BaldPagerAdapter(this);
-        viewPagerHolder.setPageTransformer(false, PageTransformers.pageTransformers[sharedPreferences.getInt(BPrefs.PAGE_TRANSFORMERS_KEY, BPrefs.PAGE_TRANSFORMERS_DEFAULT_VALUE)]);
         viewPagerHolder.setViewPagerAdapter(baldPagerAdapter);
         viewPagerHolder.setCurrentItem(baldPagerAdapter.startingPage);
     }
