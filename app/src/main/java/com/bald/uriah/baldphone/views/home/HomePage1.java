@@ -16,7 +16,7 @@
 
 package com.bald.uriah.baldphone.views.home;
 
-import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.baldComponentNameBeginning;
+import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.PREDEFINED_APP_PREFIX;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -298,7 +298,7 @@ public class HomePage1 extends HomeView {
                         AppsDatabase.getInstance(activity)
                                 .appsDatabaseDao()
                                 .findByFlattenComponentName(
-                                        baldComponentNameBeginning + AppsActivity.class.getName());
+                                        PREDEFINED_APP_PREFIX + AppsActivity.class.getName());
                 if (appsActivityApp != null) {
                     bt.setText(R.string.apps);
                     AppsDatabaseHelper.loadPic(appsActivityApp, bt.imageView);
@@ -359,7 +359,7 @@ public class HomePage1 extends HomeView {
                         AppsDatabase.getInstance(homeScreen)
                                 .appsDatabaseDao()
                                 .findByFlattenComponentName(
-                                        baldComponentNameBeginning + AppsActivity.class.getName());
+                                        PREDEFINED_APP_PREFIX + AppsActivity.class.getName());
                 bt.setText(R.string.apps);
                 AppsDatabaseHelper.loadPic(app, bt.imageView);
             }

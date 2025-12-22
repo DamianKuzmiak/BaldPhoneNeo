@@ -130,7 +130,7 @@ public class S {
             return false;
         }
         List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        return list.size() > 0;
+        return !list.isEmpty();
     }
 
     public static String numberToAlarmString(int hours, int minutes) {
@@ -140,7 +140,9 @@ public class S {
     // convert from bitmap to byte array
     public static byte[] bitmapToByteArray(@NonNull Bitmap bitmap) {
         final ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+
+        // Using quality of 100 is more common for PNG quality,
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
 
@@ -151,7 +153,20 @@ public class S {
 
     @NonNull
     public static Bitmap getBitmapFromDrawable(@NonNull Drawable drawable) {
-        final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+
+        if (width <= 0 || height <= 0) {
+            // Fallback logic for invalid dimensions
+            Log.e(
+                    TAG,
+                    "Drawable has invalid intrinsic dimensions. Drawable type: "
+                            + drawable.getClass().getName()
+                            + ". Using 1x1 fallback.");
+            return Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        }
+
+        final Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bmp);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);

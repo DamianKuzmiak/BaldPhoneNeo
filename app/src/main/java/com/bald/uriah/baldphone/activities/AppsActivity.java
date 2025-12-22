@@ -44,7 +44,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.bald.uriah.baldphone.adapters.AppsRecyclerViewAdapter.TYPE_HEADER;
-import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.baldComponentNameBeginning;
+import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.PREDEFINED_APP_PREFIX;
 
 public class AppsActivity extends com.bald.uriah.baldphone.activities.BaldActivity {
     private static final String TAG = AppsActivity.class.getSimpleName();
@@ -82,7 +82,7 @@ public class AppsActivity extends com.bald.uriah.baldphone.activities.BaldActivi
                                     app ->
                                             !app.getFlattenComponentName()
                                                     .equals(
-                                                            baldComponentNameBeginning
+                                                            PREDEFINED_APP_PREFIX
                                                                     + AppsActivity.class.getName()))
                             .collect(Collectors.toList());
         }
@@ -211,7 +211,7 @@ public class AppsActivity extends com.bald.uriah.baldphone.activities.BaldActivi
 
             @Override
             public int size() {
-                return app.getFlattenComponentName().startsWith(baldComponentNameBeginning) ? 2 : 3;
+                return app.getFlattenComponentName().startsWith(PREDEFINED_APP_PREFIX) ? 2 : 3;
             }
 
             @Override
