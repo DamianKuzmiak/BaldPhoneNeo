@@ -31,6 +31,8 @@ import app.baldphone.neo.extensions.apply
 import app.baldphone.neo.extensions.applyEdgeToEdgeInsets
 import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
+import app.baldphone.neo.launcher.apps.data.AppsRepository
+import app.baldphone.neo.launcher.apps.sync.LauncherAppsReceiver
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
 import com.bald.uriah.baldphone.BuildConfig
@@ -65,6 +67,10 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
         }
 
         TouchGuardManager.init(this)
+
+        // Apps handling
+        LauncherAppsReceiver.init(this)
+        AppsRepository.init(this)
 
         registerActivityLifecycleCallbacks(globalActivityLifecycleListener)
     }

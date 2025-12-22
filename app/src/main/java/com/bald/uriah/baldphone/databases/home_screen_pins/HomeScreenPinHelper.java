@@ -22,7 +22,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 
-import com.bald.uriah.baldphone.databases.apps.AppsDatabase;
 import com.bald.uriah.baldphone.databases.contacts.MiniContact;
 import com.bald.uriah.baldphone.views.HomeScreenAppView;
 
@@ -31,6 +30,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import app.baldphone.neo.launcher.apps.data.AppsRepository;
 
 public class HomeScreenPinHelper {
     public static final String SHARED_PREFS_KEY = PinnedContactPreferences.KEY;
@@ -109,8 +110,7 @@ public class HomeScreenPinHelper {
     public static List<HomeScreenPinnable> getAll(Context context) {
         final List<HomeScreenPinnable> ret =
                 new ArrayList<>(
-                        AppsDatabase.getInstance(context)
-                                .appsDatabaseDao().getAllPinned()
+                        AppsRepository.getAllPinnedFromCache()
                 );
         final List<MiniContact> contactList = getAllPinnedContacts(context);
         if (contactList != null)

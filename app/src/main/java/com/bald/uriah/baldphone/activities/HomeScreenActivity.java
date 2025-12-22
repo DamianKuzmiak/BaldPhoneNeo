@@ -19,16 +19,13 @@ package com.bald.uriah.baldphone.activities;
 import static app.baldphone.neo.utils.IntentUtilsKt.startActivitySafe;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +34,7 @@ import androidx.core.splashscreen.SplashScreen;
 import app.baldphone.neo.extensions.SurfaceWorkaroundKt;
 import app.baldphone.neo.extensions.ViewExtensions;
 import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
+import app.baldphone.neo.launcher.apps.data.AppsRepository;
 import app.baldphone.neo.launcher.ui.BatteryIconView;
 import app.baldphone.neo.launcher.ui.FlashlightButton;
 import app.baldphone.neo.launcher.ui.NotificationsButton;
@@ -47,7 +45,6 @@ import app.baldphone.neo.utils.HomeAppUtils;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
-import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
@@ -55,8 +52,6 @@ import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.ViewPagerHolder;
 import com.bald.uriah.baldphone.views.home.NotesView;
-
-import java.lang.ref.WeakReference;
 
 public class HomeScreenActivity extends BaldActivity {
     private static final String TAG = HomeScreenActivity.class.getSimpleName();
@@ -66,7 +61,6 @@ public class HomeScreenActivity extends BaldActivity {
     @NonNull
     public final NotesView.RecognizerManager recognizerManager = new NotesView.RecognizerManager();
 
-    public boolean finishedUpdatingApps, launchAppsActivity;
     public BaldPagerAdapter baldPagerAdapter;
 
     private SharedPreferences sharedPreferences;
@@ -99,8 +93,6 @@ public class HomeScreenActivity extends BaldActivity {
             return;
         }
 
-        new UpdateApps(this).execute(this.getApplicationContext());
-
         setContentView(R.layout.home_screen);
         viewPagerHolder = findViewById(R.id.view_pager_holder);
 
@@ -113,6 +105,12 @@ public class HomeScreenActivity extends BaldActivity {
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
         viewPagerHandler();
         recognizerManager.setHomeScreen(this);
+
+        AppsRepository.getPinnedAppsLiveData().observe(this, pinnedApps -> {
+            if (!isFinishing() && !isDestroyed()) {
+                updateViewPager(false, false);
+            }
+        });
     }
 
     private void setupTopBarButtons() {
@@ -153,8 +151,6 @@ public class HomeScreenActivity extends BaldActivity {
     protected void onStart() {
         super.onStart();
         Log.v(TAG, "onStart");
-        if (finishedUpdatingApps)
-            updateViewPager(false, false);
     }
 
     @Override
@@ -298,40 +294,5 @@ public class HomeScreenActivity extends BaldActivity {
         }
 
         return LaunchSource.UNKNOWN;
-    }
-
-    static class UpdateApps extends AsyncTask<Context, Void, Void> {
-        final WeakReference<HomeScreenActivity> homeScreenWeakReference;
-
-        UpdateApps(HomeScreenActivity homeScreen) {
-            super();
-            homeScreenWeakReference = new WeakReference<>(homeScreen);
-        }
-
-        @Override
-        protected Void doInBackground(Context... contexts) {
-            try {
-                AppsDatabaseHelper.updateDB(contexts[0]);
-            } catch (Exception e) {
-                BaldToast.from(contexts[0].getApplicationContext()).setType(BaldToast.TYPE_ERROR).setLength(Toast.LENGTH_LONG).setText(e.getMessage());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            HomeScreenActivity homeScreen = homeScreenWeakReference.get();
-            if (homeScreen != null && !homeScreen.isFinishing() && !homeScreen.isDestroyed()) {
-                homeScreen.updateViewPager(false, false);
-                homeScreen.finishedUpdatingApps = true;
-
-                if (homeScreen.launchAppsActivity) {
-                    homeScreen.launchAppsActivity = false;
-                    Intent intent = new Intent(homeScreen, AppsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    homeScreen.startActivity(intent);
-                }
-            }
-        }
     }
 }

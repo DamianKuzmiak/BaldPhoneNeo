@@ -47,8 +47,8 @@ public class HomeScreenAppView {
         tv_name.setText(charSequence);
     }
 
-    public void setIntent(final ComponentName componentName) {
-        child.setOnClickListener(v -> S.startComponentName(v.getContext(), componentName));
+    public void setIntent(final ComponentName componentName, final long userId) {
+        child.setOnClickListener(v -> S.startComponentName(v.getContext(), componentName, userId));
     }
 
     public void setIntent(final String contactLookupKey) {

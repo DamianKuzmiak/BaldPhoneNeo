@@ -20,13 +20,6 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -40,7 +33,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -49,13 +41,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.utils.IntentUtilsKt;
+import app.baldphone.neo.launcher.apps.data.db.AppEntry;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 
 import org.joda.time.DateTime;
 
-import java.io.ByteArrayOutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,7 +59,6 @@ import java.util.Locale;
  * S - Static. Static methods which are used everywhere in the platform.
  */
 public class S {
-    private static final String TAG = S.class.getSimpleName();
     public static final String BALD_IMPORTANT_MESSAGE = "Bald Important Message";
     private static final float DIM_AMOUNT = 0.5f;
     private static final String EMPTY = "";
@@ -123,39 +114,8 @@ public class S {
         throw new RuntimeException(baldDay + " is not defined in a specific baldday int");
     }
 
-    public static boolean isPackageInstalled(@NonNull Context context, @NonNull String packageName) {
-        final PackageManager packageManager = context.getPackageManager();
-        final Intent intent = packageManager.getLaunchIntentForPackage(packageName);
-        if (intent == null) {
-            return false;
-        }
-        List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        return list.size() > 0;
-    }
-
     public static String numberToAlarmString(int hours, int minutes) {
         return String.format("%s:%s", hours < 10 ? "0" + hours : hours, minutes < 10 ? "0" + minutes : minutes);
-    }
-
-    // convert from bitmap to byte array
-    public static byte[] bitmapToByteArray(@NonNull Bitmap bitmap) {
-        final ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
-        return stream.toByteArray();
-    }
-
-    // convert from byte array to bitmap
-    public static Bitmap byteArrayToBitmap(@NonNull byte[] image) {
-        return BitmapFactory.decodeByteArray(image, 0, image.length);
-    }
-
-    @NonNull
-    public static Bitmap getBitmapFromDrawable(@NonNull Drawable drawable) {
-        final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        final Canvas canvas = new Canvas(bmp);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bmp;
     }
 
     public static String stringTimeFromLong(@NonNull Context context, long timeStamp, boolean withHoursAndMinutes) {
@@ -181,28 +141,6 @@ public class S {
         }
     }
 
-    public static int[] intArrFromString(@NonNull String string) {
-        final String[] splitted = string
-                .substring(1, string.length() - 1)
-                .split(",");
-        final int[] ret = new int[splitted.length];
-        for (int i = 0; i < splitted.length; i++) {
-            ret[i] = Integer.parseInt(splitted[i]);
-        }
-        return ret;
-
-    }
-
-    public static int[] typedArrayToResArray(@NonNull Resources resources, @ArrayRes int resId) {
-        final TypedArray ar = resources.obtainTypedArray(resId);
-        final int len = ar.length();
-        int[] resIds = new int[len];
-        for (int i = 0; i < len; i++)
-            resIds[i] = ar.getResourceId(i, 0);
-        ar.recycle();
-        return resIds;
-    }
-
     /**
      * @param o an object to find its string value
      * @return the object's {@link Object#toString()}; Empty string if the object is null
@@ -210,15 +148,6 @@ public class S {
     @NonNull
     public static String str(@Nullable Object o) {
         return o == null ? EMPTY : o.toString();
-    }
-
-    //iterates via old fashioned for and not via foreach, because on most android devices its faster.
-    public static boolean intArrayContains(@NonNull final int[] array, final int value) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == value)
-                return true;
-        }
-        return false;
     }
 
     public static void showAreYouSureYouWantToDelete(@NonNull final String what, @NonNull final BaldActivity baldActivity, @NonNull final Runnable deleteRunnable) {
@@ -237,7 +166,15 @@ public class S {
     }
 
     public static void startComponentName(final Context context, final ComponentName componentName) {
-        context.startActivity(Intent.makeRestartActivityTask(componentName));
+        IntentUtilsKt.startComponentName(context, componentName, 0L);
+    }
+
+    public static void startComponentName(final Context context, final ComponentName componentName, final long userId) {
+        IntentUtilsKt.startComponentName(context, componentName, userId);
+    }
+
+    public static void startComponentName(final Context context, final AppEntry appEntry) {
+        IntentUtilsKt.startComponentName(context, appEntry);
     }
 
     public static void applyDim(@NonNull ViewGroup parent) {
