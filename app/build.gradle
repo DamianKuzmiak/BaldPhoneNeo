@@ -36,8 +36,8 @@ android {
     defaultConfig {
         applicationId = "app.baldphone.neo"
         minSdk = 21
-        //noinspection ExpiredTargetSdkVersion
-        targetSdk = 28
+        //noinspection OldTargetApi
+        targetSdk = 34
         versionCode = 106
         versionName = "15.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
