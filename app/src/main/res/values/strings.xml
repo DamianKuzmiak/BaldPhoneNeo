@@ -467,4 +467,13 @@
     <string name="t9_key_7">pqrs</string>
     <string name="t9_key_8">tuv</string>
     <string name="t9_key_9">wxyz</string>
+
+    <!-- Content descriptions -->
+    <string name="battery_charging">%1$d%%. Charging.</string>
+    <string name="battery_charging_with_time">%1$d%%. Charging. %2$s until full.</string>
+    <string name="battery_full">Battery full.</string>
+    <string name="battery_remaining">Battery. %1$d%%.</string>
+    <string name="battery_time_h_m_tts">%1$d hours and %2$d minutes</string>
+    <string name="battery_time_m_tts">%1$d minutes</string>
+    <string name="battery_unavailable">Battery. Status unknown.</string>
 </resources>

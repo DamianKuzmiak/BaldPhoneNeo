@@ -22,16 +22,16 @@
     android:paddingHorizontal="@dimen/home_screen_padding"
     android:elevation="8dp">
 
-    <com.bald.uriah.baldphone.views.BatteryView
+    <app.baldphone.neo.battery.ui.BatteryIconView
         android:id="@+id/battery"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
         android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
-        android:src="@drawable/battery_unknown_on_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/flash"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

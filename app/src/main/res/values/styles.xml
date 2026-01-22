@@ -61,6 +61,7 @@
         <item name="bald_category_apps">@color/color_4</item>
 
          <item name="materialSwitchStyle">@style/Widget.App.MaterialSwitch</item>
+         <item name="batteryIconViewStyle">@style/Widget.BaldPhone.BatteryIconView</item>
     </style>
 
     <style name="AppTheme.Starting" parent="AppTheme">
@@ -95,6 +96,13 @@
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="colorSurfaceVariant">@color/gray</item>
 <!--        <item name="colorOutline">@android:color/white</item>-->
+    </style>
+
+    <style name="Widget.BaldPhone.BatteryIconView" parent="">
+        <item name="batteryNormalColor">?bald_decoration_on_background</item>
+        <item name="batteryLowColor">#D50000</item>
+        <item name="batteryFullColor">#2E7D32</item>
+        <item name="batteryChargingColor">?android:textColorPrimary</item>
     </style>
 
     <style name="BackgroundText">

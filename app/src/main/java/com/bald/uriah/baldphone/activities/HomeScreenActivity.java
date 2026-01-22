@@ -44,6 +44,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
 import app.baldphone.neo.battery.BatteryRepository;
+import app.baldphone.neo.battery.ui.BatteryIconView;
+import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
 import app.baldphone.neo.flashlight.FlashLightController;
@@ -51,6 +53,7 @@ import app.baldphone.neo.flashlight.FlashlightState;
 import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.permissions.PermissionResult;
 import app.baldphone.neo.permissions.RuntimePermission;
+import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 import app.baldphone.neo.utils.HomeAppUtils;
 
 import com.bald.uriah.baldphone.R;
@@ -63,7 +66,6 @@ import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.DropDownRecyclerViewAdapter;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldImageButton;
-import com.bald.uriah.baldphone.views.BatteryView;
 import com.bald.uriah.baldphone.views.ViewPagerHolder;
 import com.bald.uriah.baldphone.views.home.NotesView;
 
@@ -89,7 +91,7 @@ public class HomeScreenActivity extends BaldActivity {
     private SharedPreferences sharedPreferences;
     private BaldPrefsUtils baldPrefsUtils;
     private ViewPagerHolder viewPagerHolder;
-    private BatteryView batteryView;
+    private BatteryIconView batteryIconView;
     private boolean lowBatteryAlert;
 
     @Nullable
@@ -174,7 +176,7 @@ public class HomeScreenActivity extends BaldActivity {
         viewPagerHolder = findViewById(R.id.view_pager_holder);
         final ViewGroup top_bar = findViewById(R.id.top_bar);
         soundButton = top_bar.findViewById(R.id.sound);
-        batteryView = top_bar.findViewById(R.id.battery);
+        batteryIconView = top_bar.findViewById(R.id.battery);
         notificationsButton = top_bar.findViewById(R.id.notifications);
         flashButton = top_bar.findViewById(R.id.flash);
 
@@ -216,8 +218,8 @@ public class HomeScreenActivity extends BaldActivity {
 
         BatteryRepository batteryRepository = BatteryRepository.get(this);
         batteryRepository.getBatteryLiveData().observe(this, batteryState -> {
+            batteryIconView.setBatteryState(batteryState);
             final Integer percentage = batteryState.getPercentage();
-            batteryView.setLevel(percentage != null ? percentage : 0, batteryState.isCharging());
             if (lowBatteryAlert) {
                 final boolean isLow = percentage != null
                         && percentage <= D.LOW_BATTERY_LEVEL
@@ -227,11 +229,11 @@ public class HomeScreenActivity extends BaldActivity {
                         D.DEFAULT_STATUS_BAR_COLOR);
             }
         });
-        batteryView.setOnClickListener((v) -> BaldToast.from(this)
-                .setText(batteryView.percentage + "%")
-                .setBig(true)
-                .setType(BaldToast.TYPE_INFORMATIVE)
-                .show());
+        batteryIconView.setOnClickListener((v) -> {
+            String batteryInfo = batteryIconView.getDetailedContentDescription();
+            BaldSnackbar.INSTANCE.show(this, batteryInfo, BaldSnackbar.TYPE_INFO, BaldSnackbar.LENGTH_LONG);
+        });
+
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
         viewPagerHandler();
         recognizerManager.setHomeScreen(this);

@@ -401,4 +401,13 @@
     <string name="choose_sim_subtext">Wybierz kartę SIM do rozmowy</string>
     <string name="show_options">Wyświetl opcje</string>
     <string name="website">Strona internetowa</string>
+
+    <!-- Content descriptions -->
+    <string name="battery_charging">%1$d%%. Ładowanie.</string>
+    <string name="battery_charging_with_time">%1$d%%. Ładowanie. %2$s do pełnego naładowania.</string>
+    <string name="battery_full">Bateria pełna.</string>
+    <string name="battery_remaining">Bateria. %1$d%%.</string>
+    <string name="battery_time_h_m_tts">%1$d godzin i %2$d minut</string>
+    <string name="battery_time_m_tts">%1$d minut</string>
+    <string name="battery_unavailable">Bateria. Status nieznany.</string>
 </resources>

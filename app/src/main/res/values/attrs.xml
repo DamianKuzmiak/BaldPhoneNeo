@@ -44,6 +44,7 @@
     <attr name="bald_text_on_button_positive" format="reference|color" />
     <attr name="bald_button_bg_color" format="reference|color" />
     <attr name="bald_category_apps" format="reference|color" />
+    <attr name="batteryIconViewStyle" format="reference" />
 
     <declare-styleable name="BaldPictureTextButton">
         <attr name="_src" format="reference" />
@@ -110,5 +111,12 @@
         <attr name="switchDescription" format="string" />
         <attr name="switchDescriptionOn" format="string" />
         <attr name="switchDescriptionOff" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="BatteryIconView">
+        <attr name="batteryNormalColor" format="color|reference" />
+        <attr name="batteryLowColor" format="color|reference" />
+        <attr name="batteryFullColor" format="color|reference" />
+        <attr name="batteryChargingColor" format="color|reference" />
     </declare-styleable>
 </resources>
