@@ -50,8 +50,6 @@ public final class BPrefs {
     public static final boolean TEST_DEFAULT_VALUE = false;
 
     public static final String LONG_PRESSES_SHORTER_KEY = "LONG_PRESSES_SHORTER_KEY";
-    public static final boolean LONG_PRESSES_SHORTER_DEFAULT_VALUE = false;
-
     public static final String VIBRATION_FEEDBACK_KEY = "VIBRATION_FEEDBACK_KEY";
     public static final boolean VIBRATION_FEEDBACK_DEFAULT_VALUE = false;
 

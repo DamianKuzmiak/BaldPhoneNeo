@@ -17,11 +17,8 @@ object PrefKeys {
 
     const val KEY_ACCESSIBILITY_LEVEL = "accessibility_level"
 
-    // Legacy BPrefs keys
-    const val KEY_TOUCH_NOT_HARD = BPrefs.TOUCH_NOT_HARD_KEY
-    const val KEY_LONG_PRESSES_SHORTER = BPrefs.LONG_PRESSES_SHORTER_KEY
+    // Haptic feedback
     const val KEY_VIBRATION_FEEDBACK = BPrefs.VIBRATION_FEEDBACK_KEY
-    const val KEY_LONG_PRESSES = BPrefs.LONG_PRESSES_KEY
 
     // Dialer
     const val KEY_CALL_CONFIRMATION = "CALL_CONFIRMATION_KEY"
@@ -38,4 +35,9 @@ object PrefKeys {
     // System / UI
     const val KEY_STATUS_BAR = "status_bar_mode"
     const val KEY_USE_ACCIDENTAL_GUARD = "USE_ACCIDENTAL_GUARD_KEY"
+
+    // AssistTouch press timing
+    const val SHORT_PRESS_DURATION_MS_KEY: String = "short_press_duration_ms"
+    const val LONG_PRESS_DURATION_MS_KEY: String = "long_press_duration_ms"
+    const val SHOW_PRESS_LONGER_HINT_KEY: String = "show_press_longer_hint"
 }

@@ -69,14 +69,11 @@ object Prefs {
             // Fallback to legacy boolean flags
             return when {
                 prefs.getBoolean(
-                    PrefKeys.KEY_TOUCH_NOT_HARD,
+                    BPrefs.TOUCH_NOT_HARD_KEY,
                     !BPrefs.LONG_PRESSES_DEFAULT_VALUE
                 ) -> AccessibilityLevel.BASIC
 
-                prefs.getBoolean(
-                    PrefKeys.KEY_LONG_PRESSES_SHORTER,
-                    BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE
-                ) -> AccessibilityLevel.ENHANCED
+                prefs.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, false) -> AccessibilityLevel.ENHANCED
 
                 else -> AccessibilityLevel.FULL
             }
@@ -86,10 +83,9 @@ object Prefs {
                 putInt(PrefKeys.KEY_ACCESSIBILITY_LEVEL, level.value)
                 // Still used by BPrefs and legacy code
                 val isNotBasic = level != AccessibilityLevel.BASIC
-                putBoolean(PrefKeys.KEY_VIBRATION_FEEDBACK, isNotBasic)
-                putBoolean(PrefKeys.KEY_LONG_PRESSES, isNotBasic)
-                putBoolean(PrefKeys.KEY_LONG_PRESSES_SHORTER, level == AccessibilityLevel.ENHANCED)
-                putBoolean(PrefKeys.KEY_TOUCH_NOT_HARD, level == AccessibilityLevel.BASIC)
+                putBoolean(BPrefs.LONG_PRESSES_KEY, isNotBasic)
+                putBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, level == AccessibilityLevel.ENHANCED)
+                putBoolean(BPrefs.TOUCH_NOT_HARD_KEY, level == AccessibilityLevel.BASIC)
             }
         }
 
@@ -101,6 +97,24 @@ object Prefs {
         PrefKeys.KEY_VIBRATION_FEEDBACK,
         BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE,
     )
+
+    /**
+     * Timeout for short press (longer press) duration in milliseconds.
+     */
+    @JvmStatic
+    var shortPressTimeoutMs: Int by intPref(PrefKeys.SHORT_PRESS_DURATION_MS_KEY, 300)
+
+    /**
+     * Timeout for long press duration in milliseconds.
+     */
+    @JvmStatic
+    var longPressTimeoutMs: Int by intPref(PrefKeys.LONG_PRESS_DURATION_MS_KEY, 1000)
+
+    /**
+     * Controls whether a hint is shown when a press is released too quickly.
+     */
+    @JvmStatic
+    var showPressLongerHint: Boolean by booleanPref(PrefKeys.SHOW_PRESS_LONGER_HINT_KEY, true)
 
     /**
      * Protects against accidental touches by using the proximity sensor.
@@ -159,6 +173,9 @@ object Prefs {
         SharedPreferences::getBoolean,
         SharedPreferences.Editor::putBoolean,
     )
+
+    private fun intPref(key: String, default: Int) =
+        PreferenceDelegate(key, default, SharedPreferences::getInt, SharedPreferences.Editor::putInt)
 
     private fun stringPref(key: String, default: String?) =
         PreferenceDelegate(key, default, SharedPreferences::getString, SharedPreferences.Editor::putString)
