@@ -20,6 +20,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
     private val items =
         listOf(
             Item(SettingId.Calls, R.string.settings_section_calls, R.drawable.phone_on_button),
+            Item(SettingId.Battery, R.string.battery_settings, R.drawable.low_battery_alert_on_button),
             Item(SettingId.System, R.string.settings_system, R.drawable.settings_on_button),
             Item(SettingId.Help, R.string.about, R.drawable.ic_info)
         )
@@ -48,6 +49,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
         val actionId =
             when (id) {
                 is SettingId.Calls -> R.id.action_settings_to_calls
+                is SettingId.Battery -> R.id.action_settings_to_battery
                 is SettingId.System -> R.id.action_settings_to_system
                 is SettingId.Help -> R.id.action_settings_to_suppport
             }

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat.getInsetsController
 import androidx.core.view.WindowInsetsCompat.Type.statusBars
 import androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.work.Configuration
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +27,8 @@ import coil3.memory.MemoryCache
 import coil3.util.DebugLogger
 import net.danlew.android.joda.JodaTimeAndroid
 
+import app.baldphone.neo.battery.alert.BatteryMonitor
+import app.baldphone.neo.core.NotificationChannels
 import app.baldphone.neo.core.system.HapticManager
 import app.baldphone.neo.crashes.CrashHandler
 import app.baldphone.neo.data.Prefs
@@ -33,6 +37,7 @@ import app.baldphone.neo.extensions.apply
 import app.baldphone.neo.extensions.applyEdgeToEdgeInsets
 import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
+import app.baldphone.neo.helpers.AppForegroundState
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
 import com.bald.uriah.baldphone.BuildConfig
@@ -40,7 +45,7 @@ import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler
 
-class NeoApp : Application(), SingletonImageLoader.Factory {
+class NeoApp : Application(), Configuration.Provider, SingletonImageLoader.Factory {
     override fun onCreate() {
         super.onCreate()
         CrashHandler.init(this)
@@ -61,6 +66,10 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
 
         HapticManager.init(this)
         TouchGuardManager.init(this)
+
+        NotificationChannels.init(this)
+        BatteryMonitor.initOnAppStart(this) // WorkManager
+        ProcessLifecycleOwner.get().lifecycle.addObserver(AppForegroundState)
 
         registerActivityLifecycleCallbacks(globalActivityLifecycleListener)
     }
@@ -108,6 +117,12 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 
             override fun onActivityDestroyed(activity: Activity) {}
+        }
+
+    override val workManagerConfiguration: Configuration
+        get() {
+            Log.d(TAG, "workManagerConfiguration called")
+            return Configuration.Builder().setMinimumLoggingLevel(Log.INFO).build()
         }
 
     private fun setupStatusBar(activity: AppCompatActivity) {

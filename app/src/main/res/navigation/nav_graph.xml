@@ -11,6 +11,9 @@
             android:id="@+id/action_settings_to_calls"
             app:destination="@id/callsSettingsFragment" />
         <action
+            android:id="@+id/action_settings_to_battery"
+            app:destination="@id/batterySettingsFragment" />
+        <action
             android:id="@+id/action_settings_to_system"
             app:destination="@id/systemSettingsFragment" />
         <action
@@ -22,6 +25,13 @@
         android:id="@+id/callsSettingsFragment"
         android:name="app.baldphone.neo.settings.ui.CallsSettingsFragment"
         android:label="@string/settings_section_calls">
+    </fragment>
+
+    <fragment
+        android:id="@+id/batterySettingsFragment"
+        android:name="app.baldphone.neo.settings.ui.BatterySettingsFragment"
+        android:label="@string/battery_settings">
+        <deepLink app:uri="myapp://settings/battery" />
     </fragment>
 
     <!-- SYSTEM -->

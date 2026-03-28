@@ -376,7 +376,9 @@
 
     <string name="dialer_sounds">Dialer Sounds</string>
     <string name="dialer_sounds_subtext">Choose if you want to have Dialer Sounds.</string>
-    <string name="low_battery_alert">Low battery alert</string>
+    <string name="low_battery_alert">Warn about low battery level</string>
+    <string name="low_battery_alert_subtext">Choose if you want the status bar to be red on the home screen when battery is under 20%\nNotice It won\'t be shown if the system status bar is hidden.</string>
+    <string name="battery_alert_threshold">Alert threshold: %d%%</string>
 
     <!-- Permissions General UI -->
     <string name="grant_all_permissions">Grant All Permissions</string>
@@ -501,9 +503,18 @@
     <string name="t9_key_7">pqrs</string>
     <string name="t9_key_8">tuv</string>
     <string name="t9_key_9">wxyz</string>
+
+    <string name="battery_settings">Battery</string>"
+
     <!-- Crash Dialog -->
     <string name="crash_dialog_title">App Crash</string>
     <string name="crash_dialog_message">BaldPhone Neo recovered from an error.\n\nPlease send the report to help us fix it.</string>
+
+    <string name="battery_alert_channel_name">Low Battery Reminder</string>
+    <string name="battery_alert_channel_description">Repeating alerts for low battery</string>
+    <string name="battery_alert_notification_title">Low Battery</string>
+    <string name="battery_alert_notification_text">Please charge your phone</string>
+    <string name="battery_alert_stop">Stop</string>
 
     <!-- Content descriptions -->
     <string name="battery_charging">%1$d%%. Charging.</string>

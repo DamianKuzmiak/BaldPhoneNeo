@@ -28,7 +28,7 @@ class DefaultPermissionMandatoryPolicy : PermissionMandatoryPolicy {
             }
 
             is RuntimePermission.PostNotifications -> {
-                false
+                Prefs.isBatteryAlertEnabled
             }
 
             is SpecialPermission.Overlay -> {

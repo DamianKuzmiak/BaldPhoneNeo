@@ -47,4 +47,8 @@ object PrefKeys {
     // Haptic feedback
     const val KEY_VIBRATION_FEEDBACK = BPrefs.VIBRATION_FEEDBACK_KEY
     const val KEY_VIBRATION_DURATION = "vibration_duration"
+
+    // Battery Monitor
+    const val KEY_BATTERY_ALERT_ENABLED = "BATTERY_ALERT_ENABLED_KEY"
+    const val KEY_BATTERY_ALERT_THRESHOLD = "BATTERY_ALERT_THRESHOLD"
 }

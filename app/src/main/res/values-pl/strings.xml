@@ -412,6 +412,8 @@
     <string name="show_options">Wyświetl opcje</string>
     <string name="website">Strona internetowa</string>
 
+    <string name="battery_alert_notification_text">Podłącz ładowarkę, aby telefon się nie wyłączył</string>
+
     <!-- Content descriptions -->
     <string name="battery_charging">%1$d%%. Ładowanie.</string>
     <string name="battery_charging_with_time">%1$d%%. Ładowanie. %2$s do pełnego naładowania.</string>

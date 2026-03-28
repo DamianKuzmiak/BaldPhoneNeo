@@ -22,8 +22,8 @@ import androidx.lifecycle.LifecycleOwner
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.databinding.ItemActionMenuBinding
 import com.bald.uriah.baldphone.databinding.ItemActionMenuDividerBinding
-import com.bald.uriah.baldphone.databinding.ItemActionMenuSubtleDividerBinding
 import com.bald.uriah.baldphone.databinding.ViewActionMenuBinding
+import com.bald.uriah.baldphone.databinding.ViewDividerBinding
 
 /**
  * A custom popup window used to display a list of menu actions: options, toggles, and separators.
@@ -75,7 +75,7 @@ class ActionMenu(
         items.forEachIndexed { index, item ->
             if (index > 0) {
                 if (item !is ActionMenuItem.Separator && items[index - 1] !is ActionMenuItem.Separator) {
-                    ItemActionMenuSubtleDividerBinding.inflate(inflater, binding.container, true)
+                    ViewDividerBinding.inflate(inflater, binding.container, true)
                 }
             }
 

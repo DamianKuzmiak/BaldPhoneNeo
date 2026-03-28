@@ -149,6 +149,18 @@ object Prefs {
     @JvmStatic
     var shouldConfirmCalls: Boolean by booleanPref(PrefKeys.KEY_CALL_CONFIRMATION, false)
 
+    // Battery and System related preferences.
+
+    /**
+     * User-defined threshold for low battery alerts.
+     */
+    var batteryAlertThreshold: Int by intPref(PrefKeys.KEY_BATTERY_ALERT_THRESHOLD, 20)
+
+    /**
+     * Controls whether the app provides alerts regarding the device's low battery.
+     */
+    var isBatteryAlertEnabled: Boolean by booleanPref(PrefKeys.KEY_BATTERY_ALERT_ENABLED, true)
+
     // Setup and Onboarding related preferences.
 
     /**

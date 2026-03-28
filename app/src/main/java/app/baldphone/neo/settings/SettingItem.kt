@@ -3,6 +3,8 @@ package app.baldphone.neo.settings
 import androidx.annotation.StringRes
 
 sealed class SettingId {
+    object Battery : SettingId()
+
     object Calls : SettingId()
 
     object Help : SettingId()
