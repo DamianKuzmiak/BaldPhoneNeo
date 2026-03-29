@@ -276,6 +276,10 @@
             android:label="@string/share"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="app.baldphone.neo.activities.LogActivity"
+            android:exported="false"
+            android:label="Logs Viewer" />
+        <activity
             android:name=".activities.CreditsActivity"
             android:exported="false"
             android:label="Credits" />

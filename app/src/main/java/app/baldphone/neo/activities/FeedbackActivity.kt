@@ -30,6 +30,9 @@ class FeedbackActivity : BaseActivity() {
             buttonCrashReport.setOnClickListener {
                 startActivity(Intent(root.context, CrashViewerActivity::class.java))
             }
+            buttonViewLogs.setOnClickListener {
+                startActivity(Intent(root.context, LogActivity::class.java))
+            }
         }
     }
 

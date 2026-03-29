@@ -94,6 +94,10 @@
                     style="@style/Bald.Button.FullWidth"
                     android:text="@string/support_crash_report" />
 
+                <Button
+                    android:id="@+id/button_view_logs"
+                    style="@style/Bald.Button.FullWidth"
+                    android:text="View Logs" />
 
             </LinearLayout>
         </LinearLayout>
