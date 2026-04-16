@@ -20,25 +20,21 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Point;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.AsyncTask;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -54,14 +50,13 @@ import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import app.baldphone.neo.battery.BatteryRepository;
 import app.baldphone.neo.utils.HomeAppUtils;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
 import com.bald.uriah.baldphone.services.NotificationListenerService;
-import com.bald.uriah.baldphone.utils.BDB;
-import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldHomeWatcher;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
@@ -77,8 +72,6 @@ import com.bald.uriah.baldphone.views.home.HomePage1;
 import com.bald.uriah.baldphone.views.home.NotesView;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 import github.nisrulz.lantern.Lantern;
 
@@ -97,10 +90,8 @@ public class HomeScreenActivity extends BaldActivity {
             SOUND_DRAWABLES = {R.drawable.mute_on_background, R.drawable.vibration_on_background, R.drawable.sound_on_background},
             SOUND_TEXTS = {R.string.mute, R.string.vibrate, R.string.sound};
 
-    private static final IntentFilter BATTERY_FILTER = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
     private static final int SPEECH_REQUEST_CODE = 7;
 
-    private static int onStartCounter = 0;
     private static boolean flashState;
 
     @NonNull
@@ -109,31 +100,12 @@ public class HomeScreenActivity extends BaldActivity {
     public boolean finishedUpdatingApps, launchAppsActivity;
     public BaldPagerAdapter baldPagerAdapter;
 
-    private Point screenSize;
     private Lantern lantern;
     private SharedPreferences sharedPreferences;
     private BaldPrefsUtils baldPrefsUtils;
     private ViewPagerHolder viewPagerHolder;
     private BatteryView batteryView;
     private boolean lowBatteryAlert;
-    /**
-     * Listens to changes in battery {@value Intent#ACTION_BATTERY_CHANGED}
-     */
-    private final BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (batteryView != null) {
-                final int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-                final int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-                final int batteryPct = Math.round(level / (float) scale * 100);
-                final int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-                final boolean charged = chargePlug == BatteryManager.BATTERY_PLUGGED_AC || chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS || chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-                batteryView.setLevel(batteryPct, charged);
-                if (lowBatteryAlert)
-                    getWindow().setStatusBarColor((batteryPct < D.LOW_BATTERY_LEVEL && !charged) ? ContextCompat.getColor(context, R.color.battery_low) : D.DEFAULT_STATUS_BAR_COLOR);
-            }
-        }
-    };
     private int notificationCount = 0;
     @ColorInt
     private int decorationColorOnBackground;
@@ -207,9 +179,6 @@ public class HomeScreenActivity extends BaldActivity {
         new UpdateApps(this).execute(this.getApplicationContext());
         lowBatteryAlert = sharedPreferences.getBoolean(BPrefs.LOW_BATTERY_ALERT_KEY, BPrefs.LOW_BATTERY_ALERT_DEFAULT_VALUE);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        final Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-        screenSize = new Point();
-        display.getSize(screenSize);
 
         final TypedValue typedValue = new TypedValue();
         final Resources.Theme theme = getTheme();
@@ -262,6 +231,20 @@ public class HomeScreenActivity extends BaldActivity {
                 return 3;
             }
         }, soundButton));
+
+        BatteryRepository batteryRepository = BatteryRepository.get(this);
+        batteryRepository.getBatteryLiveData().observe(this, batteryState -> {
+            final Integer percentage = batteryState.getPercentage();
+            batteryView.setLevel(percentage != null ? percentage : 0, batteryState.isCharging());
+            if (lowBatteryAlert) {
+                final boolean isLow = percentage != null
+                        && percentage <= D.LOW_BATTERY_LEVEL
+                        && !batteryState.isCharging();
+                getWindow().setStatusBarColor(isLow ?
+                        ContextCompat.getColor(this, R.color.battery_low) :
+                        D.DEFAULT_STATUS_BAR_COLOR);
+            }
+        });
         batteryView.setOnClickListener((v) -> BaldToast.from(this)
                 .setText(batteryView.percentage + "%")
                 .setBig(true)
@@ -277,34 +260,13 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        onStartCounter++;
+        Log.v(TAG, "onStart");
         if (finishedUpdatingApps)
             updateViewPager();
         baldHomeWatcher.startWatch();
-
-        if (false) { // TODO replace with system env
-            final int percent = (int) (Math.random() * 100) + 1;//1 - 100
-            if (percent < (100 + (onStartCounter - 20) * 5))
-                if (percent % 3 == 1 && !isActivityDefault()) { // one in 3 chance
-                    onStartCounter = 0;
-                    BDB.from(this)
-                            .setTitle(R.string.set_home_screen)
-                            .setSubText(R.string.set_home_screen_subtext)
-                            .addFlag(BDialog.FLAG_OK | BDialog.FLAG_NO)
-                            .setPositiveButtonListener(params -> {
-                                FakeLauncherActivity.resetPreferredLauncherAndOpenChooser(this);
-                                return true;
-                            })
-                            .show();
-                } else if (percent > 99 && Math.random() < 0.1) {
-                    onStartCounter = 0;
-                    S.shareBaldPhone(this);
-                }
-        }
     }
 
-    /* the security exception will happen only after api 23 so Lint please shush*/
-    @SuppressLint("InlinedApi")
+    @Override
     protected void onResume() { // remember to change in Page1EditorActivity.java too!
         super.onResume();
         if (baldPrefsUtils.hasChanged(this)) {
@@ -343,8 +305,6 @@ public class HomeScreenActivity extends BaldActivity {
                 sendBroadcast(
                         new Intent(ACTION_REGISTER_ACTIVITY)
                                 .putExtra(KEY_EXTRA_ACTIVITY, NOTIFICATIONS_HOME_SCREEN)), 200 * D.MILLISECOND);
-
-        registerReceiver(batteryReceiver, BATTERY_FILTER);
     }
 
     @Override
@@ -360,16 +320,13 @@ public class HomeScreenActivity extends BaldActivity {
             LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(ACTION_REGISTER_ACTIVITY).putExtra(KEY_EXTRA_ACTIVITY, ACTIVITY_NONE));
         } catch (IllegalArgumentException ignore) {
         }
-        try {
-            unregisterReceiver(batteryReceiver);
-        } catch (IllegalArgumentException ignore) {
-        }
         handler.removeCallbacks(shakeIt);
         super.onPause();
     }
 
     @Override
     protected void onStop() {
+        Log.d(TAG, "onStop");
         baldHomeWatcher.stopWatch();
         super.onStop();
     }
@@ -409,16 +366,6 @@ public class HomeScreenActivity extends BaldActivity {
             e.printStackTrace();
             BaldToast.error(this);
         }
-    }
-
-    private boolean isActivityDefault() {
-        final List<IntentFilter> filters = new ArrayList<>();
-        final ComponentName myComponentName = getComponentName();
-        final String myPackageName = myComponentName.getPackageName();
-        final List<ComponentName> activities = new ArrayList<>();
-        final PackageManager packageManager = getPackageManager();
-        packageManager.getPreferredActivities(filters, activities, myPackageName);
-        return (activities.contains(myComponentName));
     }
 
     public void displaySpeechRecognizer() {
@@ -490,11 +437,5 @@ public class HomeScreenActivity extends BaldActivity {
                     homeScreen.startActivity(new Intent(homeScreen, AppsActivity.class));
             }
         }
-
-    }
-
-    @Override
-    protected int requiredPermissions() {
-        return PERMISSION_NONE;
     }
 }
