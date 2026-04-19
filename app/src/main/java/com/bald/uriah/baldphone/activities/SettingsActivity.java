@@ -29,7 +29,6 @@ import android.nfc.NfcManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseArray;
@@ -55,7 +54,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.activities.AboutActivity;
 import app.baldphone.neo.activities.FeedbackActivity;
-import app.baldphone.neo.helpers.ThemeHelper;
+import app.baldphone.neo.data.Prefs;
+import app.baldphone.neo.data.StatusBarMode;
+import app.baldphone.neo.data.Theme;
+import app.baldphone.neo.extensions.ThemeExtensions;
 import app.baldphone.neo.views.TitleBarView;
 
 import com.bald.uriah.baldphone.R;
@@ -92,7 +94,6 @@ public class SettingsActivity extends BaldActivity {
     private Category currentCategory = mainCategory;
 
     private Ringtone ringtone;
-    private Vibrator vibrator;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private RecyclerView recyclerView;
@@ -116,7 +117,7 @@ public class SettingsActivity extends BaldActivity {
         sharedPreferences = getSharedPreferences(D.BALD_PREFS, MODE_PRIVATE);
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
         editor = sharedPreferences.edit();
-        vibrator = (sharedPreferences.getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE)) ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
+
 
         titleBarView = findViewById(R.id.title_bar);
         titleBarView.setOnExitClickListener((v) -> onBackPressed());
@@ -210,11 +211,11 @@ public class SettingsActivity extends BaldActivity {
                         .setSubText(R.string.accidental_touches_settings_subtext)
                         .setOptions(R.string.on, R.string.off)
                         .setPositiveButtonListener(params -> {
-                            editor.putBoolean(BPrefs.USE_ACCIDENTAL_GUARD_KEY, params[0].equals(0)).apply();
+                            Prefs.setUseAccidentalGuard(params[0].equals(0));
                             this.recreate();
                             return true;
                         })
-                        .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.USE_ACCIDENTAL_GUARD_KEY, BPrefs.USE_ACCIDENTAL_GUARD_DEFAULT_VALUE) ? 0 : 1), R.drawable.blocked_on_button));
+                        .setOptionsStartingIndex(() -> Prefs.getUseAccidentalGuard() ? 0 : 1), R.drawable.blocked_on_button));
         accessibilityCategory.add(
                 new BDBSettingsItem(R.string.strong_hand,
                         BDB.from(this)
@@ -243,11 +244,11 @@ public class SettingsActivity extends BaldActivity {
                         .setSubText(R.string.status_bar_settings_subtext)
                         .setOptions(R.string.nowhere, R.string.only_home_screen, R.string.everywhere)
                         .setPositiveButtonListener(params -> {
-                            editor.putInt(BPrefs.STATUS_BAR_KEY, (Integer) params[0]).apply();
+                            Prefs.setStatusBarMode(StatusBarMode.Companion.fromValue((Integer) params[0]));
                             this.recreate();
                             return true;
                         })
-                        .setOptionsStartingIndex(() -> sharedPreferences.getInt(BPrefs.STATUS_BAR_KEY, BPrefs.STATUS_BAR_DEFAULT_VALUE)),
+                        .setOptionsStartingIndex(() -> Prefs.getStatusBarMode().getValue()),
                 R.drawable.status_bar_on_button
         ));
 
@@ -399,23 +400,23 @@ public class SettingsActivity extends BaldActivity {
     }
 
     private void showThemeDialog() {
-        final List<ThemeHelper.Theme> themeOptions = new ArrayList<>();
+        final List<Theme> themeOptions = new ArrayList<>();
         final List<String> themeNames = new ArrayList<>();
 
-        themeOptions.add(ThemeHelper.Theme.LIGHT);
+        themeOptions.add(Theme.LIGHT);
         themeNames.add(getString(R.string.light));
 
         // Add System theme for Android Q+ only
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            themeOptions.add(ThemeHelper.Theme.SYSTEM);
+            themeOptions.add(Theme.SYSTEM);
             themeNames.add(getString(R.string.theme_system_default));
         }
 
-        themeOptions.add(ThemeHelper.Theme.DARK);
+        themeOptions.add(Theme.DARK);
         themeNames.add(getString(R.string.dark));
 
         final int startingIndex;
-        ThemeHelper.Theme currentTheme = ThemeHelper.INSTANCE.getSavedTheme();
+        Theme currentTheme = Prefs.getTheme();
         int foundIndex = themeOptions.indexOf(currentTheme);
         if (foundIndex != -1) {
             startingIndex = foundIndex;
@@ -430,8 +431,9 @@ public class SettingsActivity extends BaldActivity {
                 .setOptions(themeNames.toArray(new String[0]))
                 .setPositiveButtonListener(params -> {
                     int selectedOption = (Integer) params[0];
-                    ThemeHelper.Theme selectedTheme = themeOptions.get(selectedOption);
-                    ThemeHelper.INSTANCE.setTheme(selectedTheme);
+                    Theme selectedTheme = themeOptions.get(selectedOption);
+                    Prefs.setTheme(selectedTheme);
+                    ThemeExtensions.apply(selectedTheme);
                     recreate();
                     return true;
                 })

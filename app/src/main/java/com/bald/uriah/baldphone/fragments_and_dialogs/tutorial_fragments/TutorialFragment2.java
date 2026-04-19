@@ -32,6 +32,9 @@ import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 
+import app.baldphone.neo.data.AccessibilityLevel;
+import app.baldphone.neo.data.Prefs;
+
 public class TutorialFragment2 extends TutorialFragment {
     private Vibrator vibrator;
     private TextView[] presses = new TextView[3];
@@ -45,7 +48,7 @@ public class TutorialFragment2 extends TutorialFragment {
     @Override
     protected void actualSetup() {
         sharedPreferences = BPrefs.get(getContext());
-        longPressesFlag = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE) ? sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE) ? 1 : 2 : 0;
+        longPressesFlag = Prefs.getAccessibilityLevel().ordinal();
         applyDuoToFlag();
 
         vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
@@ -87,12 +90,10 @@ public class TutorialFragment2 extends TutorialFragment {
     private void clickedEffect(TextView v) {
         longPressesFlag = (int) v.getTag();
         applyDuoToFlag();
-        sharedPreferences.edit()
-                .putBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, longPressesFlag > 0)
-                .putBoolean(BPrefs.LONG_PRESSES_KEY, longPressesFlag > 0)
-                .putBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, longPressesFlag == 1)
-                .putBoolean(BPrefs.TOUCH_NOT_HARD_KEY, longPressesFlag == 0)
-                .apply();
+
+        AccessibilityLevel level = AccessibilityLevel.values()[longPressesFlag];
+        Prefs.setAccessibilityLevel(level);
+
         Activity activity = getActivity();
         if (activity != null) {
             activity.recreate();

@@ -185,11 +185,6 @@ public class HomeScreenActivity extends BaldActivity {
         theme.resolveAttribute(R.attr.bald_decoration_on_background, typedValue, true);
         decorationColorOnBackground = typedValue.data;
 
-        if ((sharedPreferences.getInt(BPrefs.STATUS_BAR_KEY, BPrefs.STATUS_BAR_DEFAULT_VALUE) == 1)) {
-            getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-
         setContentView(R.layout.home_screen);
         viewPagerHolder = findViewById(R.id.view_pager_holder);
         final ViewGroup top_bar = findViewById(R.id.top_bar);

@@ -14,10 +14,12 @@
   ~ limitations under the License.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">never</item>
         <item name="android:windowContentTransitions">false</item>
         <item name="android:windowBackground">@color/bald_background</item>
+        <item name="android:statusBarColor">@android:color/black</item>
 
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/onPrimary</item>

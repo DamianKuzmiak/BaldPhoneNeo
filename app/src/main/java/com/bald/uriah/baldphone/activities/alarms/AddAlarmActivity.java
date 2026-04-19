@@ -32,7 +32,6 @@ import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.databases.alarms.Alarm;
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler;
 import com.bald.uriah.baldphone.databases.alarms.AlarmsDatabase;
-import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.views.BaldButton;
 import com.bald.uriah.baldphone.views.BaldNumberChooser;
@@ -47,7 +46,6 @@ public class AddAlarmActivity extends com.bald.uriah.baldphone.activities.BaldAc
     private static final String TAG = AddAlarmActivity.class.getSimpleName();
     static final String ALARM_KEY_AS_EXTRA_KEY = "alarm";
     private int alarmKeyToEdit = -1;
-    private Vibrator vibrator;
     private BaldButton bt_alarm_submit;
     private EditText alarm_edit_name;
     private BaldNumberChooser chooser_hours, chooser_minutes;
@@ -58,9 +56,6 @@ public class AddAlarmActivity extends com.bald.uriah.baldphone.activities.BaldAc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_alarm_activity);
-        vibrator = BPrefs.get(this)
-                .getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE) ?
-                (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
         attachXml();
         genOnClickListeners();
 

@@ -33,7 +33,8 @@ import androidx.annotation.Keep;
 import androidx.annotation.LayoutRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import app.baldphone.neo.helpers.ThemeHelper;
+import app.baldphone.neo.data.Prefs;
+import app.baldphone.neo.data.Theme;
 
 import com.bald.uriah.baldphone.R;
 
@@ -73,10 +74,10 @@ public abstract class BaldKeyboard extends FrameLayout {
         this.backspaceRunnable = backspaceRunnable;
         final ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(context, R.style.AppTheme);
         Configuration config = new Configuration(context.getResources().getConfiguration());
-        ThemeHelper.Theme savedTheme = ThemeHelper.INSTANCE.getSavedTheme();
-        if (savedTheme == ThemeHelper.Theme.DARK) {
+        Theme savedTheme = Prefs.getTheme();
+        if (savedTheme == Theme.DARK) {
             config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | Configuration.UI_MODE_NIGHT_YES;
-        } else if (savedTheme == ThemeHelper.Theme.LIGHT) {
+        } else if (savedTheme == Theme.LIGHT) {
             config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | Configuration.UI_MODE_NIGHT_NO;
         }
         // If SYSTEM, it will just use whatever the current system config is

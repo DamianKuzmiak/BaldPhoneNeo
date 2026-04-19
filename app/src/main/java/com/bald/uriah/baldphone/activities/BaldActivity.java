@@ -16,6 +16,7 @@
 
 package com.bald.uriah.baldphone.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,15 +30,12 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
@@ -48,6 +46,9 @@ import com.bald.uriah.baldphone.utils.S;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import app.baldphone.neo.data.Prefs;
+import app.baldphone.neo.extensions.ActivityExtensions;
 
 import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.CAMERA;
@@ -63,6 +64,7 @@ import static com.bald.uriah.baldphone.activities.PermissionActivity.EXTRA_INTEN
 /**
  * the parent of all of the activitys in this app.
  */
+@Deprecated()
 public abstract class BaldActivity extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = BaldActivity.class.getSimpleName();
     protected static final int
@@ -97,7 +99,7 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
     /**
      * @return true if all permissions are granted.
      */
-    public static boolean checkPermissions(BaldActivity activity, final int requiredPermissions) {
+    public static boolean checkPermissions(Activity activity, final int requiredPermissions) {
         if (requiredPermissions == PERMISSION_NONE)
             return true;
         if ((requiredPermissions & PERMISSION_DEFAULT_PHONE_HANDLER) != 0) {
@@ -159,24 +161,25 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
     /**
      * not removing yet, perhaps the issue with google will be solved
      */
-    static boolean defaultDialerGranted(BaldActivity activity) {
+    static boolean defaultDialerGranted(Activity activity) {
         return true;
     }
 
-    static boolean writeSettingsGranted(BaldActivity activity) {
+    static boolean writeSettingsGranted(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return Settings.System.canWrite(activity);
         }
         return true;
     }
 
-    static boolean notificationListenerGranted(BaldActivity activity) {
+    static boolean notificationListenerGranted(Activity activity) {
         final String listeners = Settings.Secure.getString(activity.getContentResolver(), "enabled_notification_listeners");
         return listeners != null && listeners.contains(activity.getApplicationContext().getPackageName());
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        applyStatusBarSettings();
         super.onCreate(savedInstanceState);
         final SharedPreferences sharedPreferences = BPrefs.get(this);
         testing = sharedPreferences.getBoolean(BPrefs.TEST_KEY, BPrefs.TEST_DEFAULT_VALUE);
@@ -191,24 +194,10 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
         }
 
         handler = new Handler();
-        vibrator = sharedPreferences
-                .getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE)
+        vibrator = Prefs.isVibrationFeedbackEnabled()
                 ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
         colorful = sharedPreferences.getBoolean(BPrefs.COLORFUL_KEY, BPrefs.COLORFUL_DEFAULT_VALUE);
-        final int statusBar = sharedPreferences.getInt(BPrefs.STATUS_BAR_KEY, BPrefs.STATUS_BAR_DEFAULT_VALUE);
-        if (statusBar != 2) {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-        if (statusBar != 0) {
-            final Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(D.DEFAULT_STATUS_BAR_COLOR);
-        }
-
-        if (useAccidentalGuard = sharedPreferences.getBoolean(BPrefs.USE_ACCIDENTAL_GUARD_KEY, BPrefs.USE_ACCIDENTAL_GUARD_DEFAULT_VALUE)) {
+        if (useAccidentalGuard = Prefs.getUseAccidentalGuard()) {
             sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
             if (sensorManager != null) {
                 proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -307,5 +296,9 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
 
     protected int requiredPermissions() {
         return PERMISSION_NONE;
+    }
+
+    private void applyStatusBarSettings() {
+        ActivityExtensions.applyStatusBarSettings(this);
     }
 }

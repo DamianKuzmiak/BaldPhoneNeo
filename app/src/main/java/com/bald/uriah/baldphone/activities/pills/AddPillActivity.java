@@ -35,7 +35,6 @@ import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.databases.reminders.Reminder;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;
 import com.bald.uriah.baldphone.databases.reminders.RemindersDatabase;
-import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.views.BaldButton;
@@ -56,7 +55,6 @@ public class AddPillActivity extends BaldActivity {
             R.color.green,
     };
     private int reminderIdToEdit = -1;
-    private Vibrator vibrator;
     private BaldButton bt_submit;
     private BaldTitleBar baldTitleBar;
     private EditText reminder_edit_name;
@@ -71,7 +69,6 @@ public class AddPillActivity extends BaldActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_pill_activity);
-        vibrator = getSharedPreferences(BPrefs.KEY, MODE_PRIVATE).getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE) ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
         attachXml();
         genOnClickListeners();
 

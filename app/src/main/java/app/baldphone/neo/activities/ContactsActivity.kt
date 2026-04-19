@@ -5,7 +5,6 @@ import android.os.Bundle
 
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -26,13 +25,12 @@ import app.baldphone.neo.utils.baldAlertDialog
 import app.baldphone.neo.viewmodels.ContactsViewModel
 
 import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.activities.BaldActivity
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 import com.bald.uriah.baldphone.databinding.ActivityContactsBinding
 
 import kotlinx.coroutines.launch
 
-class ContactsActivity : BaldActivity() {
+class ContactsActivity : BaseActivity() {
 
     companion object {
         /** Pass as a boolean extra to open the activity in contact-picker mode. */
@@ -135,7 +133,6 @@ class ContactsActivity : BaldActivity() {
 
     /** Hides the bottom action buttons when the keyboard is visible to save screen space. */
     private fun setupKeyboardInsets() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

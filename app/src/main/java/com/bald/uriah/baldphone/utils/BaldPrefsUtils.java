@@ -19,6 +19,8 @@ package com.bald.uriah.baldphone.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import app.baldphone.neo.data.Prefs;
+
 import java.util.Objects;
 
 import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_ALARMS_KEY;
@@ -43,12 +45,8 @@ import static com.bald.uriah.baldphone.utils.BPrefs.NOTE_VISIBLE_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.NOTE_VISIBLE_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.PAGE_TRANSFORMERS_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.PAGE_TRANSFORMERS_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.STATUS_BAR_DEFAULT_VALUE;
-import static com.bald.uriah.baldphone.utils.BPrefs.STATUS_BAR_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.TOUCH_NOT_HARD_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE;
-import static com.bald.uriah.baldphone.utils.BPrefs.VIBRATION_FEEDBACK_KEY;
 
 public class BaldPrefsUtils {
     private final boolean vibrationFeedback, touchNoHard, longPresses, notes, lowBatteryAlert, sos;
@@ -92,8 +90,7 @@ public class BaldPrefsUtils {
     public static BaldPrefsUtils newInstance(Context context) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(BPrefs.KEY, Context.MODE_PRIVATE);
         return new BaldPrefsUtils(
-                sharedPreferences
-                        .getBoolean(VIBRATION_FEEDBACK_KEY, VIBRATION_FEEDBACK_DEFAULT_VALUE),
+                Prefs.isVibrationFeedbackEnabled(),
                 sharedPreferences
                         .getBoolean(TOUCH_NOT_HARD_KEY, TOUCH_NOT_HARD_DEFAULT_VALUE),
                 sharedPreferences
@@ -102,8 +99,7 @@ public class BaldPrefsUtils {
                         .getInt(PAGE_TRANSFORMERS_KEY, PAGE_TRANSFORMERS_DEFAULT_VALUE),
                 sharedPreferences
                         .getBoolean(NOTE_VISIBLE_KEY, NOTE_VISIBLE_DEFAULT_VALUE),
-                sharedPreferences
-                        .getInt(STATUS_BAR_KEY, STATUS_BAR_DEFAULT_VALUE),
+                Prefs.getStatusBarMode().getValue(),
                 sharedPreferences.getBoolean(LOW_BATTERY_ALERT_KEY, LOW_BATTERY_ALERT_DEFAULT_VALUE),
                 sharedPreferences.getBoolean(EMERGENCY_BUTTON_VISIBLE_KEY, EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE),
                 sharedPreferences.getString(CUSTOM_APP_KEY, null),
