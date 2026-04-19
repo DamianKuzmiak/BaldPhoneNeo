@@ -27,8 +27,8 @@ import coil3.request.crossfade
 import coil3.request.error
 import coil3.request.fallback
 
-import app.baldphone.neo.calls.CallManager
 import app.baldphone.neo.contacts.Contact
+import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showSuccessSnackbar
 import app.baldphone.neo.utils.messaging.SignalHandler
@@ -162,7 +162,7 @@ class ContactDetailsActivity : BaldActivity() {
 
     private fun handleFieldAction(action: FieldActionUiModel) {
         when (action.type) {
-            FieldActionType.CALL -> CallManager.call(this, action.data, false)
+            FieldActionType.CALL -> CallUiHelper.call(this, action.data)
             FieldActionType.SMS -> S.sendMessage(action.data, this)
             FieldActionType.WHATSAPP -> {
                 runCatching { WhatsAppHandler.startVoiceCall(this, action.data) }

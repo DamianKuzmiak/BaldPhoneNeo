@@ -80,6 +80,11 @@ public class AddContactActivity extends BaldActivity {
     private BaldImageButton iv_image, iv_delete;
     private View save;
 
+    public static void start(@NonNull Context context, @Nullable String number) {
+        final Intent intent = new Intent(context, AddContactActivity.class);
+        intent.putExtra(CONTACT_NUMBER, number);
+        context.startActivity(intent);
+    }
     private static void addFullSizePhoto(long rawContactId, byte[] fullSizedPhotoData, final ContentResolver cr) throws IOException {
         final Uri baseUri = ContentUris.withAppendedId(ContactsContract.RawContacts.CONTENT_URI, rawContactId);
         final Uri displayPhotoUri = Uri.withAppendedPath(baseUri, ContactsContract.RawContacts.DisplayPhoto.CONTENT_DIRECTORY);

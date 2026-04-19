@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bald.uriah.baldphone.views.BaldConstraintLayoutButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_call_log_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="1dp"
+    android:layout_marginVertical="1dp"
+    android:background="@drawable/bg_ripple_row"
+    android:foreground="?android:selectableItemBackground"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="8dp">
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/face" />
+
+    <TextView
+        android:id="@+id/contact_name"
+        style="@style/BackgroundText.Medium.Plus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profile_pic"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Contact Name" />
+
+    <ImageView
+        android:id="@+id/iv_call_type"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profile_pic"
+        app:layout_constraintTop_toBottomOf="@id/contact_name"
+        app:layout_constraintVertical_bias="1.0"
+        tools:src="@drawable/call_made_on_button" />
+
+    <TextView
+        android:id="@+id/tv_call_type"
+        style="@style/ButtonsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="?bald_decoration_on_button"
+        app:layout_constraintBottom_toBottomOf="@id/iv_call_type"
+        app:layout_constraintStart_toEndOf="@id/iv_call_type"
+        app:layout_constraintTop_toTopOf="@id/iv_call_type"
+        tools:text="Call Type" />
+
+    <TextView
+        android:id="@+id/tv_call_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="?bald_decoration_on_button"
+        android:textSize="13sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/tv_call_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_call_type"
+        app:layout_constraintTop_toTopOf="@id/tv_call_type"
+        tools:text="21:37" />
+
+</com.bald.uriah.baldphone.views.BaldConstraintLayoutButton>

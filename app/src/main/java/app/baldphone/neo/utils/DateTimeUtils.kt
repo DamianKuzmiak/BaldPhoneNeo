@@ -5,6 +5,8 @@ import android.text.format.DateUtils
 
 import java.time.Instant
 import java.time.ZoneId
+import java.util.Date
+import java.util.concurrent.TimeUnit
 
 import com.bald.uriah.baldphone.R
 
@@ -71,3 +73,73 @@ fun Long.formatDayAwareTimestamp(context: Context): String {
         }
     }
 }
+
+/**
+ * Formats a timestamp for list-based layouts like Call Logs or Messaging feeds.
+ *
+ * Examples:
+ * - Under 1 minute: "Now"
+ * - 1 to 60 minutes: "5 minutes ago"
+ * - 1 to 6 hours: "2 hours ago"
+ * - Over 6 hours: "14:20"
+ */
+fun Long.formatRecentTimestamp(context: Context): String {
+    val now = System.currentTimeMillis()
+    val relative =
+        when (val diff = now - this) {
+            in 0 until DateUtils.MINUTE_IN_MILLIS -> {
+                context.getString(R.string.now)
+            }
+
+            in DateUtils.MINUTE_IN_MILLIS until DateUtils.HOUR_IN_MILLIS -> {
+                val minutes = (diff / DateUtils.MINUTE_IN_MILLIS).toInt()
+                context.resources.getQuantityString(
+                    R.plurals.relative_minutes_ago,
+                    minutes,
+                    minutes,
+                )
+            }
+
+            in DateUtils.HOUR_IN_MILLIS until TimeUnit.HOURS.toMillis(6) -> {
+                val hours = (diff / DateUtils.HOUR_IN_MILLIS).toInt()
+                context.resources.getQuantityString(R.plurals.relative_hours_ago, hours, hours)
+            }
+
+            else -> {
+                null
+            }
+        }
+
+    return relative ?: android.text.format.DateFormat
+        .getTimeFormat(context)
+        .format(Date(this))
+}
+
+/**
+ * Checks if two timestamps fall on the same calendar day.
+ */
+fun Long.isSameDayAs(otherMillis: Long, zoneId: ZoneId = ZoneId.systemDefault()): Boolean {
+    val date1 = Instant.ofEpochMilli(this).atZone(zoneId).toLocalDate()
+    val date2 = Instant.ofEpochMilli(otherMillis).atZone(zoneId).toLocalDate()
+
+    return date1 == date2
+}
+
+/**
+ * Formats a given timestamp into a relative date string
+ * (e.g., "Today", "Yesterday", "October 21 2026").
+ */
+fun Long.toRelativeDateString(): String = toRelativeDateString(System.currentTimeMillis())
+
+/**
+ * Overload that accepts a pre-cached [now] timestamp.
+ * Avoids repeated System.currentTimeMillis() calls when used in a batch.
+ */
+fun Long.toRelativeDateString(now: Long): String =
+    DateUtils
+        .getRelativeTimeSpanString(
+            this,
+            now,
+            DateUtils.DAY_IN_MILLIS,
+            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR,
+        ).toString()

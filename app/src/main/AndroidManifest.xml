@@ -141,9 +141,9 @@
             android:exported="false"
             android:label="Permissions" />
         <activity
-            android:name=".activities.RecentActivity"
+            android:name="app.baldphone.neo.features.calls.ui.RecentCallsActivity"
             android:exported="false"
-            android:label="@string/recent" />
+            android:label="@string/recent_calls" />
         <activity
             android:name=".activities.media.PhotosActivity"
             android:exported="false"

@@ -37,7 +37,8 @@ import com.bald.uriah.baldphone.databases.contacts.MiniContact;
 import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper;
 
 import app.baldphone.neo.activities.ContactsActivity;
-import app.baldphone.neo.calls.CallManager;
+import app.baldphone.neo.contacts.data.ContactsDataSource;
+import app.baldphone.neo.features.calls.CallUiHelper;
 import app.baldphone.neo.utils.PhoneNumberUtils;
 
 import com.bald.uriah.baldphone.utils.BaldToast;
@@ -64,16 +65,13 @@ public class SOSActivity extends BaldActivity {
 
         ((TextView) baldLinearLayoutButton.getChildAt(1)).setText(miniContact.name);
         baldLinearLayoutButton.setOnClickListener(v -> {
-                String phoneNumber = PhoneNumberUtils.INSTANCE.resolvePhoneNumber(
-                    miniContact.lookupKey, v.getContext().getContentResolver()
-                );
-                if (phoneNumber != null) {
-                    CallManager.INSTANCE.callDirectly(v.getContext(), phoneNumber);
-                } else {
-                    BaldToast.error(v.getContext(), "Could not find a phone number for this contact");
-                }
-        }
-        );
+            String phoneNumber = new ContactsDataSource(v.getContext()).resolvePhoneNumberBlocking(miniContact.lookupKey);
+            if (phoneNumber != null) {
+                CallUiHelper.INSTANCE.callDirectly(v.getContext(), phoneNumber);
+            } else {
+                BaldToast.error(v.getContext(), "Could not find a phone number for this contact");
+            }
+        });
     }    private final ActivityResultLauncher<Intent> pickContactLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -123,7 +121,7 @@ public class SOSActivity extends BaldActivity {
 
     private void callEmergencyNumber() {
         String emergencyNumber = PhoneNumberUtils.INSTANCE.getPrimaryEmergencyNumber(this);
-        CallManager.INSTANCE.callDirectly(this, emergencyNumber);
+        CallUiHelper.INSTANCE.callDirectly(this, emergencyNumber);
     }
 
     @Override

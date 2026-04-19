@@ -7,7 +7,7 @@
 
     <!-- Circle background -->
     <path
-        android:fillColor="#CCCCCC"
+        android:fillColor="#80CCCCCC"
         android:pathData="M24,24m-24,0a24,24 0,1 1,48 0a24,24 0,1 1,-48 0" />
 
     <!-- Person icon -->

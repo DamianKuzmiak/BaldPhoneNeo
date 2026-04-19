@@ -7,11 +7,11 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 
-import app.baldphone.neo.calls.CallsRepository
 import app.baldphone.neo.contacts.Contact
 import app.baldphone.neo.contacts.ContactActionsUseCase
 import app.baldphone.neo.contacts.data.ContactRepositoryImpl
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.features.calls.data.CallsRepository
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.getDeviceRegion
 import app.baldphone.neo.utils.messaging.WhatsAppHandler

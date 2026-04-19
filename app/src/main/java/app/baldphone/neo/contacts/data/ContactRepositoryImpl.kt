@@ -7,11 +7,9 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.ContactsContract
-import android.telephony.PhoneNumberUtils
 import android.util.Log
 
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 
 import app.baldphone.neo.contacts.Address
 import app.baldphone.neo.contacts.Contact
@@ -204,46 +202,6 @@ class ContactRepositoryImpl private constructor(private val context: Context) : 
                 null
             }
         }
-
-    /**
-     * Resolves a contact lookup key from a cached URI, phone number, or display name.
-     */
-    override suspend fun resolveLookupKey(
-        cachedLookupUri: String?, number: String?, name: String?,
-    ): String? = withContext(Dispatchers.IO) {
-        // 1. Cached URI
-        if (!cachedLookupUri.isNullOrEmpty()) {
-            runCatching {
-                val cached = cachedLookupUri.toUri()
-                val freshUri = ContactsContract.Contacts.lookupContact(resolver, cached)
-                queryLookupKey(freshUri)
-            }.getOrNull()?.let { return@withContext it }
-        }
-
-        // 2. Phone number
-        if (!number.isNullOrEmpty()) {
-            val normalized = PhoneNumberUtils.normalizeNumber(number)
-            if (!normalized.isNullOrEmpty()) {
-                val filterUri = Uri.withAppendedPath(
-                    ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
-                    Uri.encode(normalized),
-                )
-                queryLookupKey(filterUri)?.let { return@withContext it }
-            }
-        }
-
-        // 3. Display name
-        if (!name.isNullOrEmpty()) {
-            val filterUri = Uri.withAppendedPath(
-                ContactsContract.Contacts.CONTENT_FILTER_URI,
-                Uri.encode(name),
-            )
-            queryLookupKey(filterUri)?.let { return@withContext it }
-        }
-
-        Log.w(TAG, "No lookup key found for the given details.")
-        null
-    }
 
     private fun queryLookupKey(contactUri: Uri?): String? {
         contactUri ?: return null

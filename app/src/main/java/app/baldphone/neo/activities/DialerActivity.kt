@@ -15,25 +15,23 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 
-import app.baldphone.neo.calls.CallManager
+import kotlinx.coroutines.launch
+
 import app.baldphone.neo.contacts.ui.ContactAdapter
 import app.baldphone.neo.contacts.ui.details.ContactDetailsActivity
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.RuntimePermission
 import app.baldphone.neo.utils.getTextFromClipboard
 import app.baldphone.neo.viewmodels.DialerViewModel
 
 import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.activities.BaldActivity
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 import com.bald.uriah.baldphone.databinding.DialerBinding
 import com.bald.uriah.baldphone.databinding.DialpadButtonBinding
 
-import kotlinx.coroutines.launch
-
-class DialerActivity : BaldActivity() {
-
+class DialerActivity : BaseActivity() {
     companion object {
         private const val TAG = "DialerActivity"
         private const val TONE_LENGTH_MS = 300
@@ -170,7 +168,7 @@ class DialerActivity : BaldActivity() {
         }
 
         bCall.setOnClickListener {
-            CallManager.call(this@DialerActivity, viewModel.rawNumber.value, directly = false)
+            CallUiHelper.call(this@DialerActivity, viewModel.rawNumber.value, directly = false)
         }
 
         tvNumber.setOnLongClickListener {

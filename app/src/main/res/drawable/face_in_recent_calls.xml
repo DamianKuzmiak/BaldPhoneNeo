@@ -21,7 +21,7 @@
     android:viewportHeight="24.0">
     <path
         android:fillColor="?bald_background"
-        android:pathData="M0,0v24h24v-24z" />
+        android:pathData="M12,12m-12,0a12,12 0,1,1 24,0a12,12 0,1,1 -24,0" />
     <group
         android:pivotX="12"
         android:pivotY="12"

@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,8 +39,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
-import app.baldphone.neo.calls.CallManager;
 import app.baldphone.neo.contacts.ui.details.ContactDetailsActivity;
+import app.baldphone.neo.features.calls.CallUiHelper;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
@@ -280,7 +281,7 @@ public class CallsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter
                                 final int option = (int) params[0];
                                 switch (option) {
                                     case 0:
-                                        CallManager.INSTANCE.call(activity, call.phoneNumber, false);
+                                        CallUiHelper.INSTANCE.call(activity, call.phoneNumber);
                                         return true;
                                     case 1:
                                         activity.startActivity(new Intent(activity, AddContactActivity.class).putExtra(AddContactActivity.CONTACT_NUMBER, call.phoneNumber));

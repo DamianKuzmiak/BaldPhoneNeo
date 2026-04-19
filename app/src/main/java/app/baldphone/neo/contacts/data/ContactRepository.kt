@@ -60,11 +60,4 @@ interface ContactRepository {
      * Resolves a fresh lookup key for a contact given its previous (possibly stale) lookup key.
      */
     suspend fun resolveLatestLookupKey(oldLookupKey: String): String?
-
-    /**
-     * Resolves a contact lookup key from a cached URI, phone number, or display name.
-     */
-    suspend fun resolveLookupKey(
-        cachedLookupUri: String?, number: String?, name: String?,
-    ): String?
 }

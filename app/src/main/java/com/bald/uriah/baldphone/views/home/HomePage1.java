@@ -46,6 +46,7 @@ import androidx.lifecycle.ViewTreeLifecycleOwner;
 
 import app.baldphone.neo.activities.ContactsActivity;
 import app.baldphone.neo.activities.DialerActivity;
+import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.services.DeviceLock;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
@@ -54,7 +55,6 @@ import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.Page1EditorActivity;
-import com.bald.uriah.baldphone.activities.RecentActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.databases.apps.App;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabase;
@@ -162,7 +162,7 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_RECENTS_KEY,
                 bt_recent,
-                v -> homeScreen.startActivity(new Intent(homeScreen, RecentActivity.class)));
+                v -> homeScreen.startActivity(new Intent(homeScreen, RecentCallsActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_DIALER_KEY,
                 bt_dialer,

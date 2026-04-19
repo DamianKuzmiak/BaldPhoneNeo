@@ -29,12 +29,12 @@ import android.widget.ImageView;
 
 import app.baldphone.neo.activities.ContactsActivity;
 import app.baldphone.neo.activities.DialerActivity;
+import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.Page1EditorActivity;
-import com.bald.uriah.baldphone.activities.RecentActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
 import com.bald.uriah.baldphone.activities.media.PhotosActivity;
@@ -58,7 +58,7 @@ public class AppsDatabaseHelper {
     public static Map<String, Integer> baldComponentNames = new HashMap<>(10);
 
     static {
-        baldComponentNames.put(baldComponentNameBeginning + RecentActivity.class.getName(), R.drawable.history_on_background);
+        baldComponentNames.put(baldComponentNameBeginning + RecentCallsActivity.class.getName(), R.drawable.history_on_background);
         baldComponentNames.put(baldComponentNameBeginning + ContactsActivity.class.getName(), R.drawable.human_on_background);
         baldComponentNames.put(baldComponentNameBeginning + DialerActivity.class.getName(), R.drawable.phone_on_background);
         baldComponentNames.put(baldComponentNameBeginning + PhotosActivity.class.getName(), R.drawable.photo_on_background);

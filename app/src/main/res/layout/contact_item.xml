@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contact_row_root"
-    android:background="@drawable/bg_contact_row"
+    android:background="@drawable/bg_ripple_row"
     android:layout_width="match_parent"
     android:layout_height="60dp">
 
