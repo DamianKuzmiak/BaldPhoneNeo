@@ -169,6 +169,12 @@ public class SettingsActivity extends BaldActivity {
     }
 
     private void populateSettingsList() {
+        mainCategory.add(
+                new RunnableSettingsItem(
+                        R.string.neo_settings,
+                        v -> startActivity(new Intent(this, app.baldphone.neo.settings.ui.SettingsActivity.class)),
+                        R.drawable.settings_on_button));
+
         mainCategory.add(connectionCategory);
         mainCategory.add(accessibilityCategory);
         mainCategory.add(displayCategory);

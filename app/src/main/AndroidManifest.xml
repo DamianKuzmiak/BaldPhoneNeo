@@ -122,6 +122,10 @@
             android:exported="false"
             android:label="@string/settings" />
         <activity
+            android:name="app.baldphone.neo.settings.ui.SettingsActivity"
+            android:exported="false"
+            android:label="@string/neo_settings" />
+        <activity
             android:name="app.baldphone.neo.features.notifications.ui.NotificationsActivity"
             android:exported="false"
             android:label="@string/notifications" />

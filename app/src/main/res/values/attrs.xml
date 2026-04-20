@@ -104,4 +104,11 @@
         <attr name="titleBarTitle" format="string" />
         <attr name="titleBarBackgroundColor" format="color|reference" />
     </declare-styleable>
+
+    <declare-styleable name="SettingsSwitchButton">
+        <attr name="switchTitle" format="string" />
+        <attr name="switchDescription" format="string" />
+        <attr name="switchDescriptionOn" format="string" />
+        <attr name="switchDescriptionOff" format="string" />
+    </declare-styleable>
 </resources>

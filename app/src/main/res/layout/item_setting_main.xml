@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/bg_ripple_row"
+    android:clickable="true"
+    android:focusable="true"
+    android:importantForAccessibility="yes"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:padding="12dp"
+        tools:src="@drawable/check_on_button" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/ButtonsText.Large"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        tools:text="Menu Item" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:padding="5dp"
+        android:src="@drawable/ic_chevron_right" />
+
+</LinearLayout>
