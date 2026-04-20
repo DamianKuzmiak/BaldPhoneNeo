@@ -20,7 +20,6 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -63,7 +62,6 @@ import app.baldphone.neo.wizard.SetupActivity;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
-import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
@@ -92,7 +90,6 @@ public class HomeScreenActivity extends BaldActivity {
     public boolean finishedUpdatingApps, launchAppsActivity;
     public BaldPagerAdapter baldPagerAdapter;
 
-    private SharedPreferences sharedPreferences;
     private BaldPrefsUtils baldPrefsUtils;
     private ViewPagerHolder viewPagerHolder;
     private BatteryIconView batteryIconView;
@@ -200,10 +197,7 @@ public class HomeScreenActivity extends BaldActivity {
             }
         }
 
-        sharedPreferences = BPrefs.get(this);
-
         new UpdateApps(this).execute(this.getApplicationContext());
-
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         final TypedValue typedValue = new TypedValue();

@@ -674,9 +674,4 @@ public class SettingsActivity extends BaldActivity {
             newCategory(this);
         }
     }
-
-    @Override
-    protected int requiredPermissions() {
-        return PERMISSION_WRITE_SETTINGS;
-    }
 }

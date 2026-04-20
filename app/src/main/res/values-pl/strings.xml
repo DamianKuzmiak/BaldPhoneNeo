@@ -323,7 +323,8 @@
     <string name="go">Idź</string>
     <string name="dialer_sounds">Dźwięki wybierania numeru</string>
     <string name="dialer_sounds_subtext">Wybierz, czy chcesz włączyć dźwięki wybierania numeru</string>
-    <string name="low_battery_alert">Ostrzeżenie o niskim poziomie baterii</string>
+    <string name="low_battery_alert">Ostrzegaj o niskim poziomie baterii</string>
+    <string name="low_battery_alert_subtext">Czy chcesz, aby pasek stanu zmieniał kolor na czerwony, gdy poziom naładowania baterii spadnie poniżej 15%?\nPamiętaj, że to ustawienie zależy od tego, czy pasek stanu jest włączony.</string>
 
     <!-- Permissions General UI -->
     <string name="grant_all_permissions">Przyznaj wszystkie uprawnienia</string>
@@ -411,6 +412,8 @@
     <string name="choose_sim_subtext">Wybierz kartę SIM do rozmowy</string>
     <string name="show_options">Wyświetl opcje</string>
     <string name="website">Strona internetowa</string>
+
+    <string name="battery_settings">Bateria</string>"
 
     <string name="battery_alert_notification_text">Podłącz ładowarkę, aby telefon się nie wyłączył</string>
 

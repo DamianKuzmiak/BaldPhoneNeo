@@ -6,9 +6,11 @@ import android.content.Intent
 
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.NavDeepLinkBuilder
 
 import app.baldphone.neo.core.NotificationChannels
 import app.baldphone.neo.receivers.StopBatteryAlertReceiver
+import app.baldphone.neo.settings.ui.SettingsActivity
 import app.baldphone.neo.utils.AppLog
 
 import com.bald.uriah.baldphone.R
@@ -51,6 +53,13 @@ object BatteryAlertNotificationManager {
                 PendingIntent.FLAG_IMMUTABLE,
             )
 
+        val contentPendingIntent =
+            NavDeepLinkBuilder(appContext)
+                .setComponentName(SettingsActivity::class.java)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.batterySettingsFragment)
+                .createPendingIntent()
+
         return NotificationCompat
             .Builder(appContext, NotificationChannels.BATTERY_ALERT_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_battery_low)
@@ -61,6 +70,7 @@ object BatteryAlertNotificationManager {
             .setSound(NotificationChannels.getSoundUri(appContext)) // for API < 26
             .setOngoing(true)
             .setOnlyAlertOnce(false)
+            .setContentIntent(contentPendingIntent)
             .addAction(
                 R.drawable.call_received_on_button,
                 appContext.getString(R.string.battery_alert_stop),
