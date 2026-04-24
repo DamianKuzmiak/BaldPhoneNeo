@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:titleBarBackgroundColor="@color/color_1"
+        app:titleBarBackgroundColor="?attr/bald_category_contacts"
         app:titleBarTitle="@string/dialer" />
 
     <FrameLayout

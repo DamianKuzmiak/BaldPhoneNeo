@@ -9,7 +9,7 @@
     <app.baldphone.neo.views.TitleBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleBarBackgroundColor="@color/color_3"
+        app:titleBarBackgroundColor="?bald_category_settings"
         app:titleBarTitle="@string/feedback" />
 
     <ScrollView
@@ -39,7 +39,7 @@
                 android:layout_height="200dp"
                 android:layout_marginBottom="8dp"
                 android:autofillHints="none"
-                android:background="?attr/bald_edit_text_bg"
+                android:background="?attr/colorSurface"
                 android:gravity="top|start"
                 android:hint="@string/feedback_hint"
                 android:inputType="textMultiLine"
@@ -47,7 +47,7 @@
                 android:padding="8dp"
                 android:scrollbars="vertical"
                 android:textAlignment="viewStart"
-                android:textColor="?attr/bald_text_on_background"
+                android:textColor="?attr/colorOnSurface"
                 android:textColorHint="#657985"
                 android:textSize="18sp" />
 
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:buttonTint="@color/blue"
+                android:buttonTint="?bald_color_blue"
                 android:checked="false"
                 android:text="@string/feedback_include_info" />
 

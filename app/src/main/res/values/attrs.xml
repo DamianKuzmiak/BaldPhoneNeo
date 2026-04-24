@@ -42,8 +42,21 @@
     <attr name="bald_button_positive" format="reference|color" />
     <attr name="bald_text_on_button_positive" format="reference|color" />
     <attr name="bald_button_bg_color" format="reference|color" />
+    <attr name="bald_category_contacts" format="reference|color" />
     <attr name="bald_category_settings" format="reference|color" />
     <attr name="bald_category_apps" format="reference|color" />
+    <attr name="bald_category_crashes" format="reference|color" />
+    <attr name="bald_color_red" format="reference|color" />
+    <attr name="bald_color_green" format="reference|color" />
+    <attr name="bald_color_blue" format="reference|color" />
+    <attr name="bald_color_yellow" format="reference|color" />
+    <attr name="bald_color_gray" format="reference|color" />
+    <attr name="bald_color_gold" format="reference|color" />
+    <attr name="bald_color_battery_low" format="reference|color" />
+    <attr name="bald_color_toast_default" format="reference|color" />
+    <attr name="bald_color_toast_error" format="reference|color" />
+    <attr name="bald_color_toast_informative" format="reference|color" />
+
     <attr name="batteryIconViewStyle" format="reference" />
 
     <declare-styleable name="BaldPictureTextButton">

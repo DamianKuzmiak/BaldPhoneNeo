@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleBarBackgroundColor="@color/color_3"
+        app:titleBarBackgroundColor="?bald_category_settings"
         app:titleBarTitle="@string/notifications" />
 
     <com.bald.uriah.baldphone.views.ScrollingHelper

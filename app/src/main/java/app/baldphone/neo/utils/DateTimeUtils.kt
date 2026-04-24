@@ -14,6 +14,10 @@ import com.bald.uriah.baldphone.R
 
 // Utility functions for formatting date and time.
 
+private const val RECENT_THRESHOLD_HOURS = 6L
+private val RECENT_THRESHOLD_MILLIS = TimeUnit.HOURS.toMillis(RECENT_THRESHOLD_HOURS)
+private const val YESTERDAY_DIFF = 1L
+
 /**
  * Formats a duration in seconds into an elapsed time string (e.g., "05:23").
  */
@@ -48,11 +52,7 @@ fun Long.formatDayAwareTimestamp(context: Context): String {
 
                 diffMs < DateUtils.HOUR_IN_MILLIS -> {
                     val minutes = (diffMs / DateUtils.MINUTE_IN_MILLIS).toInt()
-                    context.resources.getQuantityString(
-                        R.plurals.relative_minutes_ago,
-                        minutes,
-                        minutes
-                    )
+                    context.resources.getQuantityString(R.plurals.relative_minutes_ago, minutes, minutes)
                 }
 
                 else -> {
@@ -62,12 +62,8 @@ fun Long.formatDayAwareTimestamp(context: Context): String {
         }
 
         // Yesterday
-        today.minusDays(1) -> {
-            context.getString(
-                R.string.text_pair_combined,
-                context.getString(R.string.yesterday),
-                formattedTime
-            )
+        today.minusDays(YESTERDAY_DIFF) -> {
+            context.getString(R.string.text_pair_combined, context.getString(R.string.yesterday), formattedTime)
         }
 
         // Older
@@ -100,14 +96,10 @@ fun Long.formatRecentTimestamp(context: Context): String {
 
             in DateUtils.MINUTE_IN_MILLIS until DateUtils.HOUR_IN_MILLIS -> {
                 val minutes = (diff / DateUtils.MINUTE_IN_MILLIS).toInt()
-                context.resources.getQuantityString(
-                    R.plurals.relative_minutes_ago,
-                    minutes,
-                    minutes,
-                )
+                context.resources.getQuantityString(R.plurals.relative_minutes_ago, minutes, minutes)
             }
 
-            in DateUtils.HOUR_IN_MILLIS until TimeUnit.HOURS.toMillis(6) -> {
+            in DateUtils.HOUR_IN_MILLIS until RECENT_THRESHOLD_MILLIS -> {
                 val hours = (diff / DateUtils.HOUR_IN_MILLIS).toInt()
                 context.resources.getQuantityString(R.plurals.relative_hours_ago, hours, hours)
             }
@@ -167,5 +159,5 @@ fun Long.toRelativeDateString(now: Long): String =
             this,
             now,
             DateUtils.DAY_IN_MILLIS,
-            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR,
+            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
         ).toString()

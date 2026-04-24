@@ -33,41 +33,66 @@
         <!-- Colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/onPrimary</item>
-        <item name="android:textColorPrimary">@color/bald_text_on_background</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+
+        <!-- M3 Semantic Tokens -->
+        <item name="colorTertiary">@color/bald_button_positive</item>
+        <item name="colorOnTertiary">@color/bald_text_on_button_positive</item>
+
+        <item name="colorSurface">@color/bald_background</item>
+        <item name="colorOnSurface">@color/bald_text_on_background</item>
+
+        <item name="colorSecondaryContainer">@color/bald_button</item>
+        <item name="colorOnSecondaryContainer">@color/bald_text_on_button</item>
+
+        <item name="colorOnSurfaceVariant">@color/bald_hint_on_background</item>
+        <item name="colorOutline">@color/bald_stroke_color</item>
         <item name="colorAccent">@color/blue</item>
         <item name="colorControlHighlight">@color/ripple</item>
 
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
 
-        <item name="bald_background">@color/bald_background</item>
+        <item name="bald_background">?attr/colorSurface</item>
         <item name="bald_background_transparent">@color/bald_background_transparent</item>
-        <item name="bald_button">@color/bald_button</item>
+        <item name="bald_button">?attr/colorSecondaryContainer</item>
         <item name="bald_button_clicked">@color/bald_button_clicked</item>
         <item name="bald_button_corners_radius">@dimen/bald_button_corners_radius</item>
         <item name="bald_button_disabled">@color/bald_button_disabled</item>
         <item name="bald_button_pill_corners_radius">@dimen/bald_button_pill_corners_radius</item>
         <item name="bald_decoration_on_background">@color/bald_decoration_on_background</item>
-        <item name="bald_decoration_on_button">@color/bald_decoration_on_button</item>
+        <item name="bald_decoration_on_button">?attr/colorOnSecondaryContainer</item>
         <item name="bald_decoration_on_key">@color/bald_decoration_on_key</item>
         <item name="bald_edit_text_bg">@color/bald_edit_text_bg</item>
-        <item name="bald_hint_on_background">@color/bald_hint_on_background</item>
+        <item name="bald_hint_on_background">?attr/colorOnSurfaceVariant</item>
         <item name="bald_hint_on_button">@color/bald_hint_on_button</item>
         <item name="bald_key_margin">@dimen/bald_key_margin</item>
         <item name="bald_keyboard_key_background">@color/bald_keyboard_key_background</item>
         <item name="bald_keyboard_key_pressed_bg">@color/bald_keyboard_key_pressed_background</item>
         <item name="bald_selected_on_background">@color/bald_selected_on_background</item>
-        <item name="bald_stroke_color">@color/bald_stroke_color</item>
+        <item name="bald_stroke_color">?attr/colorOutline</item>
         <item name="bald_stroke_size">@dimen/bald_stroke_size</item>
-        <item name="bald_text_on_background">@color/bald_text_on_background</item>
-        <item name="bald_text_on_button">@color/bald_text_on_button</item>
+        <item name="bald_text_on_background">?attr/colorOnSurface</item>
+        <item name="bald_text_on_button">?attr/colorOnSecondaryContainer</item>
         <item name="bald_text_on_gold">@color/on_gold</item>
         <item name="bald_text_on_key">@color/bald_text_on_key</item>
-        <item name="bald_text_on_selected">@color/bald_text_on_selected</item>
+        <item name="bald_text_on_selected">?attr/colorOnTertiary</item>
         <item name="bald_button_positive">@color/bald_button_positive</item>
         <item name="bald_text_on_button_positive">@color/bald_text_on_button_positive</item>
-        <item name="bald_button_bg_color">?attr/bald_button</item>
+        <item name="bald_button_bg_color">?attr/colorSecondaryContainer</item>
+        <item name="bald_category_contacts">@color/color_1</item>
         <item name="bald_category_settings">@color/color_3</item>
         <item name="bald_category_apps">@color/color_4</item>
+        <item name="bald_category_crashes">@color/color_5</item>
+        <item name="bald_color_red">?attr/colorError</item>
+        <item name="bald_color_green">@color/green</item>
+        <item name="bald_color_blue">?attr/colorTertiary</item>
+        <item name="bald_color_yellow">@color/yellow</item>
+        <item name="bald_color_gray">?attr/colorOnSurfaceVariant</item>
+        <item name="bald_color_gold">@color/gold</item>
+        <item name="bald_color_battery_low">@color/battery_low</item>
+        <item name="bald_color_toast_default">@color/toast_background_default</item>
+        <item name="bald_color_toast_error">@color/toast_background_error</item>
+        <item name="bald_color_toast_informative">@color/toast_background_informative</item>
 
         <item name="materialSwitchStyle">@style/Widget.App.MaterialSwitch</item>
         <item name="batteryIconViewStyle">@style/Widget.BaldPhone.BatteryIconView</item>
@@ -120,7 +145,7 @@
 
     <style name="BackgroundText">
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:textColor">?attr/bald_text_on_background</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="BackgroundText.Tiny">
@@ -150,12 +175,12 @@
     </style>
 
     <style name="EditText" parent="BackgroundText.Large">
-        <item name="android:textColorHint">?attr/bald_hint_on_background</item>
+        <item name="android:textColorHint">?attr/colorOnSurfaceVariant</item>
     </style>
 
     <style name="ButtonsText">
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:textColor">?attr/bald_text_on_button</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -203,11 +228,11 @@
 
     <style name="Bald.Button.Positive" parent="Bald.Button">
         <item name="android:theme">@style/Theme.Bald.Button.Positive</item>
-        <item name="android:textColor">?attr/bald_text_on_button_positive</item>
     </style>
 
     <style name="Theme.Bald.Button.Positive" parent="AppTheme">
-        <item name="bald_button_bg_color">?attr/bald_button_positive</item>
+        <item name="colorSecondaryContainer">?attr/colorTertiary</item>
+        <item name="colorOnSecondaryContainer">?attr/colorOnTertiary</item>
     </style>
 
     <style name="Bald.Button.FullWidth" parent="Bald.Button">
@@ -243,7 +268,7 @@
         <item name="android:layout_marginBottom">@dimen/about_section_margin_bottom</item>
         <item name="android:padding">@dimen/about_section_padding</item>
         <item name="android:textAlignment">viewStart</item>
-        <item name="android:textColor">?attr/bald_text_on_background</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textSize">@dimen/about_section_text_size</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.08</item>
@@ -257,7 +282,7 @@
         <item name="android:padding">@dimen/link_row_padding</item>
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textAlignment">viewStart</item>
-        <item name="android:textColor">?attr/bald_text_on_button</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
         <item name="android:textSize">@dimen/link_row_text_size</item>
         <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
         <item name="android:insetTop">0dp</item>

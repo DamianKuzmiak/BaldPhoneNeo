@@ -16,5 +16,5 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="?attr/bald_button" />
+    <solid android:color="?attr/colorSecondaryContainer" />
 </shape>

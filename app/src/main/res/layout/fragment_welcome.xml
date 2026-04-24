@@ -55,7 +55,7 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="@string/onb_action_skip_all"
-        android:textColor="?attr/bald_stroke_color"
+        android:textColor="?attr/colorOutline"
         app:layout_constraintBottom_toTopOf="@+id/btnContinue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

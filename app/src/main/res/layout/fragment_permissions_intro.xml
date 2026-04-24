@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/onb_permissions_done"
-                    android:textColor="@color/green"
+                    android:textColor="?attr/bald_color_green"
                     android:textSize="15sp"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/onb_home_already_set"
-                    android:textColor="@color/green"
+                    android:textColor="?attr/bald_color_green"
                     android:textSize="15sp"
                     android:visibility="gone"
                     tools:visibility="visible" />

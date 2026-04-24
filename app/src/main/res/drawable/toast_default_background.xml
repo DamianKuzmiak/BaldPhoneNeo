@@ -16,6 +16,6 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@color/toast_background_default" />
+    <solid android:color="?attr/bald_color_toast_default" />
     <corners android:radius="300dp" />
 </shape>

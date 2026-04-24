@@ -18,10 +18,10 @@
     android:shape="rectangle">
     <corners android:radius="?attr/bald_button_corners_radius" />
 
-    <solid android:color="?attr/bald_button" />
+    <solid android:color="?attr/colorSecondaryContainer" />
 
 
     <stroke
         android:width="?attr/bald_stroke_size"
-        android:color="?attr/bald_stroke_color" />
+        android:color="?attr/colorOutline" />
 </shape>

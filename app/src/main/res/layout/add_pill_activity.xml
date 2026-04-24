@@ -24,7 +24,7 @@
         android:id="@+id/bald_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/color_4"
+        android:backgroundTint="?attr/bald_category_apps"
         app:title="@string/add_pill" />
 
     <LinearLayout
@@ -195,7 +195,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_selected"
                 android:src="@drawable/pill"
-                android:tint="@color/blue" />
+                android:tint="?attr/bald_color_blue" />
 
             <com.bald.uriah.baldphone.views.BaldImageButton
                 android:id="@+id/red"
@@ -204,7 +204,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/style_for_buttons_transparent"
                 android:src="@drawable/pill"
-                android:tint="@color/red" />
+                android:tint="?attr/bald_color_red" />
 
             <com.bald.uriah.baldphone.views.BaldImageButton
                 android:id="@+id/gray"
@@ -213,7 +213,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/style_for_buttons_transparent"
                 android:src="@drawable/pill"
-                android:tint="@color/gray" />
+                android:tint="?attr/bald_color_gray" />
 
             <com.bald.uriah.baldphone.views.BaldImageButton
                 android:id="@+id/yellow"
@@ -222,7 +222,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/style_for_buttons_transparent"
                 android:src="@drawable/pill"
-                android:tint="@color/yellow" />
+                android:tint="?attr/bald_color_yellow" />
 
             <com.bald.uriah.baldphone.views.BaldImageButton
                 android:id="@+id/green"
@@ -231,7 +231,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/style_for_buttons_transparent"
                 android:src="@drawable/pill"
-                android:tint="@color/green" />
+                android:tint="?attr/bald_color_green" />
 
             <com.bald.uriah.baldphone.views.BaldImageButton
                 android:id="@+id/custom"

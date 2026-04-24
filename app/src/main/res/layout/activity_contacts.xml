@@ -12,7 +12,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleBarBackgroundColor="@color/color_1"
+        app:titleBarBackgroundColor="?bald_category_contacts"
         app:titleBarTitle="@string/contacts" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -112,7 +112,7 @@
             app:icon="@drawable/star_on_button"
             app:iconGravity="textStart"
             app:iconSize="28dp"
-            app:iconTint="@color/gold" />
+            app:iconTint="?bald_color_gold" />
     </LinearLayout>
 
     <ProgressBar

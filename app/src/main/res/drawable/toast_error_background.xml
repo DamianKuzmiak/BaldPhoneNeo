@@ -17,5 +17,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners android:radius="300dp" />
-    <solid android:color="@color/toast_background_error" />
+    <solid android:color="?attr/bald_color_toast_error" />
 </shape>

@@ -16,6 +16,6 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="?attr/bald_keyboard_key_background" />
+    <solid android:color="?attr/colorSurfaceVariant" />
     <corners android:radius="@dimen/key_radius" />
 </shape>
