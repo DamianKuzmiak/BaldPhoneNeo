@@ -3,6 +3,6 @@
     android:color="?android:attr/colorControlHighlight">
 
     <item android:id="@android:id/background">
-        <color android:color="@color/bald_button" />
+        <color android:color="?attr/colorSecondaryContainer" />
     </item>
 </ripple>

@@ -25,7 +25,7 @@
         android:id="@+id/bald_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/color_4"
+        android:backgroundTint="?bald_category_apps"
         app:title="@string/add_alarm" />
 
     <LinearLayout

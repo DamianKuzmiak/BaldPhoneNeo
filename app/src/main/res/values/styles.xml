@@ -82,6 +82,17 @@
         <item name="bald_category_contacts">@color/color_1</item>
         <item name="bald_category_settings">@color/color_3</item>
         <item name="bald_category_apps">@color/color_4</item>
+        <item name="bald_category_crashes">@color/color_5</item>
+        <item name="bald_color_red">?attr/colorError</item>
+        <item name="bald_color_green">@color/green</item>
+        <item name="bald_color_blue">?attr/colorTertiary</item>
+        <item name="bald_color_yellow">@color/yellow</item>
+        <item name="bald_color_gray">?attr/colorOnSurfaceVariant</item>
+        <item name="bald_color_gold">@color/gold</item>
+        <item name="bald_color_battery_low">@color/battery_low</item>
+        <item name="bald_color_toast_default">@color/toast_background_default</item>
+        <item name="bald_color_toast_error">@color/toast_background_error</item>
+        <item name="bald_color_toast_informative">@color/toast_background_informative</item>
 
         <item name="materialSwitchStyle">@style/Widget.App.MaterialSwitch</item>
         <item name="batteryIconViewStyle">@style/Widget.BaldPhone.BatteryIconView</item>
@@ -134,7 +145,7 @@
 
     <style name="BackgroundText">
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:textColor">?attr/bald_text_on_background</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="BackgroundText.Tiny">
@@ -164,12 +175,12 @@
     </style>
 
     <style name="EditText" parent="BackgroundText.Large">
-        <item name="android:textColorHint">?attr/bald_hint_on_background</item>
+        <item name="android:textColorHint">?attr/colorOnSurfaceVariant</item>
     </style>
 
     <style name="ButtonsText">
         <item name="android:textSize">@dimen/small</item>
-        <item name="android:textColor">?attr/bald_text_on_button</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -257,7 +268,7 @@
         <item name="android:layout_marginBottom">@dimen/about_section_margin_bottom</item>
         <item name="android:padding">@dimen/about_section_padding</item>
         <item name="android:textAlignment">viewStart</item>
-        <item name="android:textColor">?attr/bald_text_on_background</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textSize">@dimen/about_section_text_size</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.08</item>
@@ -271,7 +282,7 @@
         <item name="android:padding">@dimen/link_row_padding</item>
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textAlignment">viewStart</item>
-        <item name="android:textColor">?attr/bald_text_on_button</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
         <item name="android:textSize">@dimen/link_row_text_size</item>
         <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
         <item name="android:insetTop">0dp</item>

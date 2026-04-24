@@ -3,7 +3,7 @@
     android:shape="rectangle">
     <stroke
         android:width="1dp"
-        android:color="?attr/bald_stroke_color" />
-    <solid android:color="?bald_button" />
+        android:color="?attr/colorOutline" />
+    <solid android:color="?attr/bald_button" />
     <corners android:radius="14dp" />
 </shape>
