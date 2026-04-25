@@ -17,7 +17,6 @@
 
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
 }
 
@@ -28,22 +27,22 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.bald.uriah.baldphone"
-    compileSdk 34
+    namespace = "com.bald.uriah.baldphone"
+    compileSdk = 35
     defaultConfig {
-        applicationId "app.baldphone.neo"
-        minSdk 21
+        applicationId = "app.baldphone.neo"
+        minSdk = 21
         //noinspection ExpiredTargetSdkVersion
-        targetSdk 28
-        versionCode 106
-        versionName "15.0.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        targetSdk = 28
+        versionCode = 106
+        versionName = "15.0.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [fullApp: "true", recentCalls: "true"]
     }
 
     buildFeatures {
-        buildConfig true
-        viewBinding true
+        buildConfig = true
+        viewBinding = true
     }
 
     signingConfigs {
@@ -59,10 +58,11 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig = signingConfigs.release
             debuggable false
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             debuggable true
@@ -75,15 +75,11 @@ android {
         targetCompatibility JavaVersion.VERSION_17
         sourceCompatibility JavaVersion.VERSION_17
 
-        coreLibraryDesugaringEnabled true // java.util.stream for API below 24, java.time for API below 26
+        coreLibraryDesugaringEnabled = true // java.util.stream for API below 24, java.time for API below 26
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
-    lintOptions {
-        abortOnError false
+    lint {
+        abortOnError = false
     }
 }
 
@@ -91,8 +87,8 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.9.3'
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'androidx.core:core-ktx:1.14.0-alpha01'  // Newer versions require compileSdk 35+
-    implementation 'androidx.core:core-splashscreen:1.2.0-alpha01'  // Newer versions requires compileSdk 35+
+    implementation 'androidx.core:core-ktx:1.16.0' // Newer versions require compileSdk 36+
+    implementation 'androidx.core:core-splashscreen:1.2.0'
     implementation "androidx.fragment:fragment-ktx:1.8.9"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'  // [Long Term] Migrate away from it.
     implementation 'androidx.room:room-ktx:2.7.2'  // Newer versions require minSdk 23+
