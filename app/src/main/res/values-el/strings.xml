@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Αυτή η \"ασπίδα\" μπλοκάρει τα κατά λάθος πατήματα όταν το τηλέφωνο είναι
         καλυμμένο.\nΑν έχετε κάποιο πρόβλημα μπορείτε να την απενεργοποιήσετε.
     </string>
-    <string name="accidental_touches_subtext">Εντοπίστηκε κατά λάθος πάτημα \nπατήστε Ναι για να συνεχίσετε\nαν
-        αυτό το μήνυμα συνεχίζει να εμφανίζεται μπορείτε να το κλείσετε από τις ρυθμίσεις προσβασιμότητας.
-    </string>
+    <string name="accidental_touches_subtext">Αν αυτό το μήνυμα εμφανίζεται συχνά, μπορείτε να απενεργοποιήσετε αυτή τη λειτουργία στις ρυθμίσεις προσβασιμότητας.</string>
+    <string name="pocket_mode_guard_title">Προστασία από κατά λάθος άγγιγμα.</string>
+    <string name="pocket_mode_guard_subtitle">Η οθόνη κλειδώθηκε προσωρινά.</string>
+    <string name="pocket_mode_guard_instruction">Αφαιρέστε το χέρι σας από το πάνω μέρος του τηλεφώνου για να ξεκλειδώσετε την οθόνη.</string>
     <string name="acknowledgments">Ευχαριστίες</string>
     <string name="adaptive">Προσαρμογή</string>
     <string name="add_alarm">Νέα Αφύπνιση</string>

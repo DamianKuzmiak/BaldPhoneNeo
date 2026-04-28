@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">जब फोन होता है तो गार्ड आपके फोन को टच इनपुट से ब्लॉक कर देता है
         कवर\nयदि आपको इससे कोई समस्या है तो आप इसे बंद कर सकते हैं
     </string>
-    <string name="accidental_touches_subtext">आकस्मिक स्पर्श का पता चला था\nफ़ोन का उपयोग जारी रखने के लिए ठीक दबाएं\nif
-        यह संदेश दिखाई देता रहता है आप इसे एक्सेसिबिलिटी सेटिंग्स में अक्षम कर सकते हैं
-    </string>
+    <string name="accidental_touches_subtext">यदि यह संदेश बार-बार दिखाई देता है, तो आप इस सुविधा को सुलभता सेटिंग्स में बंद कर सकते हैं।</string>
+    <string name="pocket_mode_guard_title">आकस्मिक स्पर्श से सुरक्षा।</string>
+    <string name="pocket_mode_guard_subtitle">स्क्रीन अस्थायी रूप से लॉक हो गई है।</string>
+    <string name="pocket_mode_guard_instruction">स्क्रीन अनलॉक करने के लिए फ़ोन के ऊपरी हिस्से से अपना हाथ हटाएं।</string>
     <string name="acknowledgments">स्वीकृतियाँ</string>
     <string name="adaptive">अनुकूली</string>
     <string name="add_alarm">अलार्म जोड़ें</string>

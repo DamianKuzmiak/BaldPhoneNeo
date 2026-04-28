@@ -22,8 +22,10 @@
     <string name="accidental_touches_settings_subtext">Această protecție blochează atingerile atunci când telefonul este acoperit\n
       Poate fi dezactivată dacă întâmpinați dificultăți.
     </string>
-    <string name="accidental_touches_subtext">O atingere accidentală a fost detectată\nApăsați OK pentru a continua\nDacă acest mesaj apare în continuare îl puteți dezactiva în setările de accesibilitate.
-    </string>
+    <string name="accidental_touches_subtext">Dacă acest mesaj apare des, puteți dezactiva această funcție în setările de accesibilitate.</string>
+    <string name="pocket_mode_guard_title">Protecție împotriva atingerilor accidentale.</string>
+    <string name="pocket_mode_guard_subtitle">Ecranul este blocat temporar.</string>
+    <string name="pocket_mode_guard_instruction">Îndepărtați mâna de pe partea de sus a telefonului pentru a debloca ecranul.</string>
     <string name="acknowledgments">Recunoașteri</string>
     <string name="adaptive">Adaptiv</string>
     <string name="add_alarm">Adaugă alarmă</string>

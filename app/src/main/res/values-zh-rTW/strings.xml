@@ -21,8 +21,10 @@
     <string name="accidental_touches">防誤觸功能</string>
     <string name="accidental_touches_settings_subtext">此功能可以在你電話蓋上時阻止任何輸入\n如果正常使用時有問題的話，可以把這個功能關上
     </string>
-    <string name="accidental_touches_subtext">防誤觸功能已啟動\n按確定以繼續使用電話\n如果常常看到這個訊息，你可以到輔助功能設定關掉它
-    </string>
+    <string name="accidental_touches_subtext">如果此訊息經常出現，您可以在輔助功能設定中關閉此功能。</string>
+    <string name="pocket_mode_guard_title">防誤觸保護。</string>
+    <string name="pocket_mode_guard_subtitle">螢幕已暫時鎖定。</string>
+    <string name="pocket_mode_guard_instruction">將手從電話頂部移開以解鎖螢幕。</string>
     <string name="acknowledgments">鳴謝</string>
     <string name="adaptive">自動轉換</string>
     <string name="add_alarm">新增鬧鐘</string>

@@ -22,8 +22,10 @@
     <string name="accidental_touches_settings_subtext">Kui telefon on kaetud, siis kaitse funktsioon blokeerib ekraani puudutused.\n
         Kui see funktsioon valmistab probleeme, siis võite selle välja lülitada
     </string>
-    <string name="accidental_touches_subtext">Programm tuvastas juhusliku ekraani puudutuse,\ntelefoni kasutamiseks vajutage OK.\n
-        Kui see teade ilmub korduvalt, saate selle keelata hõlbustusfunktsioonide seadetes</string>
+    <string name="accidental_touches_subtext">Kui see teade ilmub sageli, saate selle funktsiooni keelata hõlbustusfunktsioonide seadetes.</string>
+    <string name="pocket_mode_guard_title">Juhusliku puudutuse kaitse.</string>
+    <string name="pocket_mode_guard_subtitle">Ekraan on ajutiselt lukustatud.</string>
+    <string name="pocket_mode_guard_instruction">Eemaldage käsi telefoni ülaosast ekraani avamiseks.</string>
     <string name="acknowledgments">Tänusõnad</string>
     <string name="adaptive">Kohanduv</string>
     <string name="add_alarm">Lisa äratus</string>

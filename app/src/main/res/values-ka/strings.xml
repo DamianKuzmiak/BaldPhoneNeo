@@ -21,8 +21,10 @@
     <string name="accidental_touches">შემთხვევითი შეხების გუშაგი</string>
     <string name="accidental_touches_settings_subtext">შემთხვევითი შეხების გუშაგი ახდენს ბლოკირებას,როდესაც ტელეფონი დაფარულია.\nთუ თქვენ მასთან პრობლემა შეგექმნათ შეგიძლიათ გათიშოთ.
     </string>
-    <string name="accidental_touches_subtext">აღმოჩენილია შემთხვევითი შეხება.\დააჭირეთ დიახ-ს ტელეფონის გამოყენების გასაგრძელებლად.\nთუ ეს შეტყობინება გამოდის ხშირად, თქვენ შეგიძლიათ გათიშოთ სპეციალური შესაძლებლობებიდან(accessibility settings).
-    </string>
+    <string name="accidental_touches_subtext">თუ ეს შეტყობინება ხშირად გამოჩნდება, შეგიძლიათ ეს ფუნქცია გამორთოთ სპეციალური შესაძლებლობების პარამეტრებში.</string>
+    <string name="pocket_mode_guard_title">დაცვა შემთხვევითი შეხებისგან.</string>
+    <string name="pocket_mode_guard_subtitle">ეკრანი დროებით დაბლოკილია.</string>
+    <string name="pocket_mode_guard_instruction">ეკრანის გასახსნელად მოაშორეთ ხელი ტელეფონის ზედა ნაწილს.</string>
     <string name="acknowledgments">მადლიერებები</string>
     <string name="adaptive">ადაპტიური</string>
     <string name="add_alarm">მაღვიძარას დამატება</string>

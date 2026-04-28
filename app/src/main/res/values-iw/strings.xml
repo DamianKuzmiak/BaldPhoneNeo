@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">חוסם הלחיצות המקריות חוסם מגע בטלפון כאשר המסך מכוסה\nאם אתה חווה
         בעיות עם חוסם זה ניתן לבטל אותו
     </string>
-    <string name="accidental_touches_subtext">לחיצה מקרית זוהתה\nלחץ על אישור על מנת להמשיך להשתמש בטלפון\nאם הודעה זו
-        חוזרת על עצמה יותר מדי ניתן לבטל את החסימה בהגדרות הנגישות
-    </string>
+    <string name="accidental_touches_subtext">אם הודעה זו מופיעה לעיתים קרובות, ניתן לכבות תכונה זו בהגדרות הנגישות.</string>
+    <string name="pocket_mode_guard_title">הגנה מפני נגיעות מקריות.</string>
+    <string name="pocket_mode_guard_subtitle">המסך נעול זמנית.</string>
+    <string name="pocket_mode_guard_instruction">הרם את היד מהחלק העליון של הטלפון כדי לפתוח את המסך.</string>
     <string name="acknowledgments">תודות</string>
     <string name="adaptive">משתנה</string>
     <string name="add_alarm">הוסף שעון מעורר</string>

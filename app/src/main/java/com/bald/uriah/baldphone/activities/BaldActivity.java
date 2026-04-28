@@ -20,25 +20,16 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.PopupWindow;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.utils.BDB;
-import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
@@ -65,7 +56,7 @@ import static com.bald.uriah.baldphone.activities.PermissionActivity.EXTRA_INTEN
  * the parent of all of the activitys in this app.
  */
 @Deprecated()
-public abstract class BaldActivity extends AppCompatActivity implements SensorEventListener {
+public abstract class BaldActivity extends AppCompatActivity {
     private static final String TAG = BaldActivity.class.getSimpleName();
     protected static final int
             PERMISSION_NONE = 0,
@@ -87,14 +78,6 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
     protected Vibrator vibrator;
     private List<WeakReference<Dialog>> dialogsToClose = new ArrayList<>(1);
     private List<WeakReference<PopupWindow>> popupWindowsToClose = new ArrayList<>(1);
-    private SensorManager sensorManager;
-    private Sensor proximitySensor;
-    private boolean near;
-    private int touches;
-    private int accidentalMinTouches = 3, accidentalTime = 3 * D.SECOND;
-    private boolean useAccidentalGuard = true;
-    private Handler handler;
-    private Runnable touchesDecreaser = () -> touches = (touches -= 1) < 0 ? 0 : touches;
 
     /**
      * @return true if all permissions are granted.
@@ -193,27 +176,9 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
             return;
         }
 
-        handler = new Handler();
         vibrator = Prefs.isVibrationFeedbackEnabled()
                 ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
         colorful = sharedPreferences.getBoolean(BPrefs.COLORFUL_KEY, BPrefs.COLORFUL_DEFAULT_VALUE);
-        if (useAccidentalGuard = Prefs.getUseAccidentalGuard()) {
-            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-            if (sensorManager != null) {
-                proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-            } else {
-                useAccidentalGuard = false;
-            }
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (useAccidentalGuard)
-            sensorManager.registerListener(this, proximitySensor,
-                    SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -230,8 +195,6 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
                 window.dismiss();
         }
 
-        if (useAccidentalGuard)
-            sensorManager.unregisterListener(this);
         super.onPause();
     }
 
@@ -252,46 +215,6 @@ public abstract class BaldActivity extends AppCompatActivity implements SensorEv
         if (popupWindowsToClose.size() > 10)
             popupWindowsToClose = S.cleanWeakList(popupWindowsToClose);
         popupWindowsToClose.add(new WeakReference<>(popupWindow));
-    }
-
-    @Override
-    public void onUserInteraction() {
-        if (useAccidentalGuard) {
-            if (near) {
-                Log.e(TAG, "onUserInteraction: ");
-                if (touches >= 0) {
-                    touches += 1;
-                    accidentalTouchChecker();
-                    handler.postDelayed(touchesDecreaser, accidentalTime);
-                }
-            } else touches = 0;
-        }
-    }
-
-    private void accidentalTouchChecker() {
-        if (touches > accidentalMinTouches) {
-            touches = -1;
-            handler.removeCallbacks(touchesDecreaser);
-            BDB.from(this)
-                    .setTitle(R.string.accidental_touches)
-                    .setSubText(R.string.accidental_touches_subtext)
-                    .addFlag(BDialog.FLAG_NOT_CANCELABLE | BDialog.FLAG_OK)
-                    .setPositiveButtonListener(params -> {
-                        touches = 0;
-                        accidentalMinTouches += 2;
-                        accidentalTime /= 2;
-                        return true;
-                    })
-                    .show();
-
-        }
-    }
-
-    public void onSensorChanged(SensorEvent event) {
-        near = event.values[0] == 0;
-    }
-
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
     protected int requiredPermissions() {

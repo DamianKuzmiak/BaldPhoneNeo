@@ -21,8 +21,10 @@
     <string name="accidental_touches">Skydd mot oavsiktligt pekande</string>
     <string name="accidental_touches_settings_subtext">Skyddet förhindrar pekningar när telefonen är övertäckt. Den går att\nstänga av om den orsakar problem.
     </string>
-    <string name="accidental_touches_subtext">Pekning upptäcktes\nTryck på OK för att fortsätta använda telefonen.\n om detta meddelande upprepas kan du stänga av funktionen i inställningarna tillgänglighet
-    </string>
+    <string name="accidental_touches_subtext">Om detta meddelande visas ofta kan du stänga av denna funktion i tillgänglighetsinställningarna.</string>
+    <string name="pocket_mode_guard_title">Skydd mot oavsiktlig beröring.</string>
+    <string name="pocket_mode_guard_subtitle">Skärmen är tillfälligt låst.</string>
+    <string name="pocket_mode_guard_instruction">Ta bort handen från telefonens ovansida för att låsa upp skärmen.</string>
     <string name="acknowledgments">Utvecklarens tack</string>
     <string name="adaptive">Adaptiv</string>
     <string name="add_alarm">Lägg till Alarm</string>

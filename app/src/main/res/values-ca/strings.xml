@@ -22,10 +22,10 @@
     <string name="accidental_touches_settings_subtext">El protector bloqueja el seu telèfon d\'entrada tàctil quan el
 	telèfon està cobert\nSi té problemes amb ell, pot desactivar-lo
 </string>
-    <string name="accidental_touches_subtext">Toc accidental detectat\n
-	Premi OK per a continuar usant el telèfon\n
-	Si aquest missatge continua apareixent pot desactivar-lo en les opcions d\'accessibilitat
-</string>
+    <string name="accidental_touches_subtext">Si aquest missatge apareix sovint, podeu desactivar aquesta funció a les opcions d\'accessibilitat.</string>
+    <string name="pocket_mode_guard_title">Protecció contra tocs accidentals.</string>
+    <string name="pocket_mode_guard_subtitle">La pantalla s\'ha bloquejat temporalment.</string>
+    <string name="pocket_mode_guard_instruction">Descobriu la part superior del telèfon per desbloquejar la pantalla.</string>
     <string name="acknowledgments">Agraïments</string>
     <string name="adaptive">Adaptatiu</string>
     <string name="add_alarm">Afegir Alarma</string>

@@ -21,8 +21,10 @@
     <string name="accidental_touches">Protección de toque accidental</string>
     <string name="accidental_touches_settings_subtext">El protector bloquea la pantalla táctil al cubrir el teléfono. Si te causa problemas puedes desactivarlo, no pasa nada.
     </string>
-    <string name="accidental_touches_subtext">Parece que hemos detectado un toque accidental. No pasa nada, pulsa «aceptar» para continuar usando el teléfono. Si este mensaje sigue apareciendo puedes desactivarlo en las opciones de accesibilidad.
-    </string>
+    <string name="accidental_touches_subtext">Si este mensaje aparece con frecuencia, puedes desactivar esta función en las opciones de accesibilidad.</string>
+    <string name="pocket_mode_guard_title">Protección contra toques accidentales.</string>
+    <string name="pocket_mode_guard_subtitle">La pantalla se ha bloqueado temporalmente.</string>
+    <string name="pocket_mode_guard_instruction">Retira la mano de la parte superior del teléfono para desbloquear la pantalla.</string>
     <string name="acknowledgments">Agradecimientos</string>
     <string name="adaptive">Adaptable</string>
     <string name="add_alarm">Añadir alarma</string>

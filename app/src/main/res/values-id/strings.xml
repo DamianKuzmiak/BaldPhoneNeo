@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Pencegah menjaga telepon Anda dari sentuhan tidak disengaja ketika telepon ditutup.
         \nJika Anda keberatan dengan hal ini, Anda dapat menonaktifkannya.
     </string>
-    <string name="accidental_touches_subtext">Sentuhan tidak disengaja terdeteksi\ntekan OK untuk terus menggunakan telepon\nJika
-        pesan ini terus muncul Anda dapat menonaktifkannya di pengaturan aksesibilitas
-    </string>
+    <string name="accidental_touches_subtext">Jika pesan ini sering muncul, Anda dapat menonaktifkan fitur ini di pengaturan aksesibilitas.</string>
+    <string name="pocket_mode_guard_title">Perlindungan dari sentuhan tidak disengaja.</string>
+    <string name="pocket_mode_guard_subtitle">Layar terkunci sementara.</string>
+    <string name="pocket_mode_guard_instruction">Angkat tangan Anda dari bagian atas telepon untuk membuka kunci layar.</string>
     <string name="acknowledgments">Ucapan Terima Kasih</string>
     <string name="adaptive">Adaptif</string>
     <string name="add_alarm">Tambah Alarm</string>

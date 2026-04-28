@@ -17,6 +17,11 @@
 <resources>
     <string name="about"> Game da</string>
     <string name="accessibility_settings">Samun dama</string>
+    <string name="accidental_touches">Kariya daga taɓawa ba da gangan ba</string>
+    <string name="accidental_touches_subtext">Idan wannan saƙo yana fitowa akai-akai, za ku iya kashe wannan aikin a cikin saitunan samun dama.</string>
+    <string name="pocket_mode_guard_title">Kariya daga taɓawa ba da gangan ba.</string>
+    <string name="pocket_mode_guard_subtitle">An kulle allon na ɗan lokaci.</string>
+    <string name="pocket_mode_guard_instruction">Cire hannunka daga saman wayar don buɗe allon.</string>
     <string name="acknowledgments">Amincewa</string>
     <string name="add_alarm">Kara Kararrawa</string>
     <string name="add_emergency_contact">Kara</string>

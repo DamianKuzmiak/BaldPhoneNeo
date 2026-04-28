@@ -20,7 +20,10 @@
     <string name="accessibility_settings">Tilgængelighedsindstillinger</string>
     <string name="accidental_touches">Beskyttelse mod utilsigtede berøringer</string>
     <string name="accidental_touches_settings_subtext">Denne indstilling sørger for, at din telefon ikke registrerer utilsigtede berøringer, når telefonen f.eks. er i lommen eller under et lukket cover.\nHvis du har problemer med, at ikke alle berøringer registreres, så slå denne beskyttelse fra.</string>
-    <string name="accidental_touches_subtext">En utilsigtet berøring blev registreret.\nTryk OK for at fortsætte med at bruge telefonen.\nHvis denne advarsel kommer op hele tiden, kan du slå "Beskyttelse mod utilsigtede berøringer" fra under "Tilgængelighedsindstillinger".</string>
+    <string name="accidental_touches_subtext">Hvis denne besked vises ofte, kan du slå funktionen fra under tilgængelighedsindstillinger.</string>
+    <string name="pocket_mode_guard_title">Beskyttelse mod utilsigtede berøringer.</string>
+    <string name="pocket_mode_guard_subtitle">Skærmen er midlertidigt låst.</string>
+    <string name="pocket_mode_guard_instruction">Fjern hånden fra toppen af telefonen for at låse skærmen op.</string>
     <string name="acknowledgments">Tak til</string>
     <string name="adaptive">Adaptiv</string>
     <string name="add_alarm">Tilføj alarm</string>

@@ -20,7 +20,10 @@
     <string name="accessibility_settings">Pristupačnost</string>
     <string name="accidental_touches">Zaštita od slučajnog dodira</string>
     <string name="accidental_touches_settings_subtext">Ova opcija štiti vaš telefon od slučajnog dodira kada je telefon prekriven\nUkoliko imate probleme sa njom, možete da je isključite</string>
-    <string name="accidental_touches_subtext">Detektovan je slučajan dodir\npritisnite OK da biste nastavili sa korišćenjem telefona\nukoliko vam ova poruka smeta, možete je isključiti u podešavanjima pristupačnosti.</string>
+    <string name="accidental_touches_subtext">Ako se ova poruka često pojavljuje, možete isključiti ovu funkciju u podešavanjima pristupačnosti.</string>
+    <string name="pocket_mode_guard_title">Zaštita od slučajnog dodira.</string>
+    <string name="pocket_mode_guard_subtitle">Ekran je privremeno zaključan.</string>
+    <string name="pocket_mode_guard_instruction">Uklonite ruku sa gornjeg dela telefona da biste otključali ekran.</string>
     <string name="acknowledgments">Zahvalnice</string>
     <string name="adaptive">Prilagodljiv</string>
     <string name="add_alarm">Kreiraj alarm</string>

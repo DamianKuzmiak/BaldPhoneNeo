@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Ova zaštita štiti od nenamjernog dodira ekrana kad je zaslon prekriven
     \nukoliko imate problema, možete isključiti ovu opciju.
     </string>
-    <string name="accidental_touches_subtext">Otkriven slučajni dodir\nodaberite OK za nastavak korištenja uređaja\nukoliko
-    se ova poruka nastavlja prikazivati možete ju isključiti u postavkama pristupačnosti.
-    </string>
+    <string name="accidental_touches_subtext">Ako se ova poruka pojavljuje često, možete isključiti ovu značajku u postavkama pristupačnosti.</string>
+    <string name="pocket_mode_guard_title">Zaštita od slučajnog dodira.</string>
+    <string name="pocket_mode_guard_subtitle">Zaslon je privremeno zaključan.</string>
+    <string name="pocket_mode_guard_instruction">Uklonite ruku s gornjeg dijela telefona da biste otključali zaslon.</string>
     <string name="acknowledgments">Zahvalnice</string>
     <string name="adaptive">Prilagodljivo</string>
     <string name="add_alarm">Dodaj Alarm</string>

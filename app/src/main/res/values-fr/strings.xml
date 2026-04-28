@@ -21,8 +21,10 @@
     <string name="accidental_touches">Blocage appuis accidentels</string>
     <string name="accidental_touches_settings_subtext">Activer une protection pour bloquer les appuis accidentels quand le téléphone est couvert par un étui.\nDésactivez si vous recontrez des problèmes.
     </string>
-    <string name="accidental_touches_subtext">Un appui accidentel a été détecté.\nAppuyez sur OK pour continuer à utiliser le téléphone.\nSi ce message apparaît à nouveau, vous pouvez désactiver la fonctionnalité dans les paramètres d\'accessibilité.
-    </string>
+    <string name="accidental_touches_subtext">Si ce message apparaît souvent, vous pouvez désactiver cette fonction dans les paramètres d\'accessibilité.</string>
+    <string name="pocket_mode_guard_title">Protection contre les appuis accidentels.</string>
+    <string name="pocket_mode_guard_subtitle">L\'écran a été temporairement verrouillé.</string>
+    <string name="pocket_mode_guard_instruction">Retirez votre main du haut du téléphone pour déverrouiller l\'écran.</string>
     <string name="acknowledgments">Remerciements</string>
     <string name="adaptive">Adaptatif</string>
     <string name="add_alarm">Ajouter une alarme</string>

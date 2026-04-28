@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Ochrana blokuje telefon před dotykovým vstupem, pokud je telefon
         zakrytý\nPokud máte problémy můžete vypnout
     </string>
-    <string name="accidental_touches_subtext">Nechtěný dotyk byl detekován\nStiskněte OK pro pokračování v používání telefonu\n
-        Zobrazuje-li se tato zpráva neustále, můžete ji vypnout v nastavení přístupnosti
-    </string>
+    <string name="accidental_touches_subtext">Pokud se tato zpráva zobrazuje často, můžete tuto funkci vypnout v nastavení přístupnosti.</string>
+    <string name="pocket_mode_guard_title">Ochrana proti nechtěnému dotyku.</string>
+    <string name="pocket_mode_guard_subtitle">Obrazovka byla dočasně uzamčena.</string>
+    <string name="pocket_mode_guard_instruction">Odkryjte horní část telefonu pro odemknutí obrazovky.</string>
     <string name="acknowledgments">Poděkování</string>
     <string name="adaptive">Adaptivní</string>
     <string name="add_alarm">Přidat budík</string>

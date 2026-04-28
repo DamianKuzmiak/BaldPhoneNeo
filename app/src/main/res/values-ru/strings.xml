@@ -21,8 +21,10 @@
     <string name="accidental_touches">Защита от случайных нажатий</string>
     <string name="accidental_touches_settings_subtext">Защита блокирует ваш телефон от случайных нажатий когда телефон накрыт, если у вас возникли проблемы с ним, вы можете его выключить.
     </string>
-    <string name="accidental_touches_subtext">Обнаруженно случайное нажатие\nнажмите OK чтобы продолжить пользоваться телефоном, если это сообщение продолжает появляться, вы можете его отключить в специальных возможностях.
-    </string>
+    <string name="accidental_touches_subtext">Если это сообщение появляется часто, вы можете отключить эту функцию в настройках специальных возможностей.</string>
+    <string name="pocket_mode_guard_title">Защита от случайных нажатий.</string>
+    <string name="pocket_mode_guard_subtitle">Экран временно заблокирован.</string>
+    <string name="pocket_mode_guard_instruction">Уберите руку с верхней части телефона, чтобы разблокировать экран.</string>
     <string name="acknowledgments">Благодарность</string>
     <string name="adaptive">Адаптивный</string>
     <string name="add_alarm">Добавить Будильник</string>

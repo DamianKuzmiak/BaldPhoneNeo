@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Zaščita prepreči telefonu vnos preko dotika, ko je telefon pokrit.
         \nČe imate s tem težave, lahko zaščito izklopite.
     </string>
-    <string name="accidental_touches_subtext">Nenamerni dotik je bil zaznan\nPritisni Ok da nadaljuješ z uporabo telefona\nČe
-        se to sporočilo pojavlja znova, ga lahko izključite v nastavitvah dostopnosti.
-    </string>
+    <string name="accidental_touches_subtext">Če se to sporočilo pogosto pojavlja, lahko to funkcijo izklopite v nastavitvah dostopnosti.</string>
+    <string name="pocket_mode_guard_title">Zaščita pred nenamernim dotikom.</string>
+    <string name="pocket_mode_guard_subtitle">Zaslon je začasno zaklenjen.</string>
+    <string name="pocket_mode_guard_instruction">Umaknite roko z zgornjega dela telefona, da odklenete zaslon.</string>
     <string name="acknowledgments">Priznanja</string>
     <string name="adaptive">Prilagodljiva</string>
     <string name="add_alarm">Dodaj budilko</string>

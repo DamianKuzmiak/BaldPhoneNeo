@@ -20,8 +20,10 @@
     <string name="accessibility_settings">Toegankelijkheid</string>
     <string name="accidental_touches">Onbedoelde aanrakingsbeveiliging</string>
     <string name="accidental_touches_settings_subtext">De beveiliging blokkeert je telefoon tegen onbedoelde acties wanneer de telefoon bedekt is. Indien het problemen veroorzaakt kan het uitgeschakeld worden.</string>
-    <string name="accidental_touches_subtext">Onbedoelde invoer was gedetecteerd \nDruk op OK om de telefoon te blijven gebruiken \nals
-dit bericht blijft verschijnen dan kan het uitgeschakeld worden in de toegankelijkheidsinstellingen</string>
+    <string name="accidental_touches_subtext">Als dit bericht vaak verschijnt, kunt u deze functie uitschakelen in de toegankelijkheidsinstellingen.</string>
+    <string name="pocket_mode_guard_title">Bescherming tegen onbedoelde aanraking.</string>
+    <string name="pocket_mode_guard_subtitle">Het scherm is tijdelijk vergrendeld.</string>
+    <string name="pocket_mode_guard_instruction">Verwijder uw hand van de bovenkant van de telefoon om het scherm te ontgrendelen.</string>
     <string name="acknowledgments">Erkenningen</string>
     <string name="adaptive">Adaptief</string>
     <string name="add_alarm">Alarm toevoegen</string>

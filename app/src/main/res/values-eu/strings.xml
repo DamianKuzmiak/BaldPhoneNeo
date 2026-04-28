@@ -20,7 +20,10 @@
     <string name="accessibility_settings">Erabilerraztasuna</string>
     <string name="accidental_touches">Ustekabeko utzitzen aurkako babesa</string>
     <string name="accidental_touches_settings_subtext">Babesleak telefonoaren ukipen-sarrera oztopatzen du telefonoa estalita dagoenean.\nHarekin arazorik baduzu, itzali egin dezakezu.</string>
-    <string name="accidental_touches_subtext">Nahi gabe ukitu dela nabaritu da.\nAdos sakatu telefonoa erabiltzen jarraitzeko.\nMezu hau etengabe agertzen bazaizu, erabilerraztasun ezarpenetan uka dezakezu.</string>
+    <string name="accidental_touches_subtext">Mezu hau maiz agertzen bada, eginbide hau erabilerraztasun ezarpenetan desaktiba dezakezu.</string>
+    <string name="pocket_mode_guard_title">Ustekabeko ukitzeen aurkako babesa.</string>
+    <string name="pocket_mode_guard_subtitle">Pantaila aldi baterako blokeatu da.</string>
+    <string name="pocket_mode_guard_instruction">Kendu eskua telefonoaren goialdetik pantaila desblokeatzeko.</string>
     <string name="acknowledgments">Eskerrak</string>
     <string name="adaptive">Moldagarria</string>
     <string name="add_alarm">Alarma gehitu</string>

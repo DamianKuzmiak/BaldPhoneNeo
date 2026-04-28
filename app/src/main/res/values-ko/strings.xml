@@ -20,7 +20,10 @@
     <string name="accessibility_settings">접근 가능</string>
     <string name="accidental_touches">오작동 방지 필터</string>
     <string name="accidental_touches_settings_subtext">보호대는 전화기에 문제가있는 경우 전화기를 덮을 때 터치 입력을 차단합니다.</string>
-    <string name="accidental_touches_subtext">오작동 터치가 감지되었습니다.이 메시지가 계속 나타나면 확인을 눌러 전화를 계속 사용하십시오. 접근성 설정에서 비활성화 할 수 있습니다.</string>
+    <string name="accidental_touches_subtext">이 메시지가 자주 나타나면 접근성 설정에서 이 기능을 끌 수 있습니다.</string>
+    <string name="pocket_mode_guard_title">우발적 터치 방지.</string>
+    <string name="pocket_mode_guard_subtitle">화면이 일시적으로 잠겨 있습니다.</string>
+    <string name="pocket_mode_guard_instruction">화면 잠금을 해제하려면 전화기 상단에서 손을 떼세요.</string>
     <string name="acknowledgments">승인</string>
     <string name="adaptive">적용 가능</string>
     <string name="add_alarm">알람 추가</string>

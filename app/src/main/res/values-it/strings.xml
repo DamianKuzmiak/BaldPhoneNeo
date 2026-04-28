@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">La protezione dai tocchi accidentali evita che ci siano tocchi indesiderati quando il telefono è
         coperto.\nSe riscontri qualche problema puoi disattivarlo.
     </string>
-    <string name="accidental_touches_subtext">È stato rilevato un tocco accidentale.\nPremi OK per continuare ad usare il telefono.\nSe
-        questo messaggio continua a comparire puoi disattivarlo dalle impostazioni di accessibilità.
-    </string>
+    <string name="accidental_touches_subtext">Se questo messaggio compare spesso, puoi disattivare questa funzione nelle impostazioni di accessibilità.</string>
+    <string name="pocket_mode_guard_title">Protezione dai tocchi accidentali.</string>
+    <string name="pocket_mode_guard_subtitle">Lo schermo è temporaneamente bloccato.</string>
+    <string name="pocket_mode_guard_instruction">Rimuovi la mano dalla parte superiore del telefono per sbloccare lo schermo.</string>
     <string name="acknowledgments">Ringraziamenti</string>
     <string name="adaptive">Adattivo</string>
     <string name="add_alarm">Aggiungi sveglia</string>

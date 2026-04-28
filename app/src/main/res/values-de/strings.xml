@@ -21,8 +21,10 @@
     <string name="accidental_touches">Schutz vor versehentlichem Berühren</string>
     <string name="accidental_touches_settings_subtext">Der Schutz verhindert, dass dein Handy auf Berührungen reagiert, wenn es zugedeckt ist.\nWenn der Schutz Probleme bereitet, kannst du ihn ausschalten.
     </string>
-    <string name="accidental_touches_subtext">Eine Berührung wurde als unbeabsichtigt erkannt\ndrücke OK, um dein Handy weiter zu benutzen\nwenn diese Nachricht weiterhin angezeigt wird kannst du sie in den Einstellungen zur Barrierefreiheit ausschalten
-    </string>
+    <string name="accidental_touches_subtext">Wenn diese Nachricht häufig erscheint, können Sie diese Funktion in den Einstellungen zur Barrierefreiheit ausschalten.</string>
+    <string name="pocket_mode_guard_title">Schutz vor versehentlicher Berührung.</string>
+    <string name="pocket_mode_guard_subtitle">Der Bildschirm wurde vorübergehend gesperrt.</string>
+    <string name="pocket_mode_guard_instruction">Entfernen Sie Ihre Hand vom oberen Teil des Telefons, um den Bildschirm zu entsperren.</string>
     <string name="acknowledgments">Danksagungen</string>
     <string name="adaptive">Angepasst</string>
     <string name="add_alarm">Wecker hinzufügen</string>

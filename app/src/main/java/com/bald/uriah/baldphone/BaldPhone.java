@@ -21,6 +21,7 @@ import android.content.Context;
 
 import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.extensions.ThemeExtensions;
+import app.baldphone.neo.features.touchguard.TouchGuardManager;
 
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;
@@ -43,6 +44,8 @@ public class BaldPhone extends Application {
         AlarmScheduler.reStartAlarms(this);
         ReminderScheduler.reStartReminders(this);
         ThemeExtensions.apply(Prefs.getTheme());
+
+        TouchGuardManager.Companion.init(this);
     }
 
     @Override

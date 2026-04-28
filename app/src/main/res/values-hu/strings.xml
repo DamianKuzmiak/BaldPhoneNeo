@@ -20,7 +20,10 @@
     <string name="accessibility_settings">Akadálymentes kezelés</string>
     <string name="accidental_touches">Véletlen érintés elleni védelem</string>
     <string name="accidental_touches_settings_subtext">Blokkolja a véletlen érintéseket olyan esetekben, ha a telefon le van takarva. Hasznos, ha zsebben tartva a telefon bekapcsol.</string>
-    <string name="accidental_touches_subtext">Véletlen érintés érzékelve.\nNyomd meg az OK gombot a folytatáshoz.\nHa ez az üzenet többször megjelenik, a beállításokban kikapcsolható a véletlen érintés elleni védelem.</string>
+    <string name="accidental_touches_subtext">Ha ez az üzenet gyakran megjelenik, kikapcsolhatja ezt a funkciót az akadálymentesítési beállításokban.</string>
+    <string name="pocket_mode_guard_title">Védelem a véletlen érintés ellen.</string>
+    <string name="pocket_mode_guard_subtitle">A képernyő ideiglenesen zárolva van.</string>
+    <string name="pocket_mode_guard_instruction">Vegye el a kezét a telefon tetejéről a képernyő feloldásához.</string>
     <string name="acknowledgments">Köszönetnyilvánítás</string>
     <string name="adaptive">Adaptív</string>
     <string name="add_alarm">Ébresztő hozzáadása</string>

@@ -20,7 +20,10 @@
     <string name="accessibility_settings">Accessibility</string>
     <string name="accidental_touches">Accidental Touch Guard</string>
     <string name="accidental_touches_settings_subtext">This guard prevents touches when the phone is covered. If you experience issues, you can turn it off.</string>
-    <string name="accidental_touches_subtext">Accidental touch detected.\nPress OK to continue using the phone.\nIf this message keeps appearing, you can disable the feature in Accessibility settings.</string>
+    <string name="accidental_touches_subtext">If this message appears often, you can turn off this feature in Accessibility settings.</string>
+    <string name="pocket_mode_guard_title">Accidental touch protection.</string>
+    <string name="pocket_mode_guard_subtitle">The screen has been temporarily locked.</string>
+    <string name="pocket_mode_guard_instruction">Uncover the top of the phone to unlock the screen.</string>
     <string name="acknowledgments">Acknowledgments</string>
     <string name="action_close">Close</string>
     <string name="action_dismiss">Dismiss</string>

@@ -21,8 +21,10 @@
     <string name="accidental_touches">Istenmeden Dokunma Ayarı</string>
     <string name="accidental_touches_settings_subtext">But ayar telefonunuz örtülü olduğu zaman, dokunuşlari algılamıyor. Sorun yaşıyorsanız, bu ayarı kapatın.
     </string>
-    <string name="accidental_touches_subtext">Istenmeden Dokunma algılandı. Telefonu kullanmak için tamama basınız. Bu mesaj devamıyla gelirse, \"erişilebilirlik ayarları\" altında kapatabilirsiniz.
-    </string>
+    <string name="accidental_touches_subtext">Bu mesaj sık sık görünüyorsa, bu özelliği erişilebilirlik ayarlarından kapatabilirsiniz.</string>
+    <string name="pocket_mode_guard_title">Yanlışlıkla dokunmaya karşı koruma.</string>
+    <string name="pocket_mode_guard_subtitle">Ekran geçici olarak kilitlendi.</string>
+    <string name="pocket_mode_guard_instruction">Ekranın kilidini açmak için elinizi telefonun üst kısmından kaldırın.</string>
     <string name="acknowledgments">Uyarılar</string>
     <string name="adaptive">Adaptiv</string>
     <string name="add_alarm">Alarm ekle</string>

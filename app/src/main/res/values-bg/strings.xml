@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Защитата предпазва телефонът ви от реакция на случаен допир, когато
         екранът е покрит\nпри проблем можете да я изключите
     </string>
-    <string name="accidental_touches_subtext">Беше отбелязан случаен допир\nнатиснете OK за да продължите да ползвате телефона\nако
-         съобщението продължава да се появява, можете да го изключите в настройките за достъпност
-    </string>
+    <string name="accidental_touches_subtext">Ако това съобщение се появява често, можете да изключите тази функция в настройките за достъпност.</string>
+    <string name="pocket_mode_guard_title">Защита от случайно докосване.</string>
+    <string name="pocket_mode_guard_subtitle">Екранът е временно заключен.</string>
+    <string name="pocket_mode_guard_instruction">Отстранете ръката от горната част на телефона, за да отключите екрана.</string>
     <string name="acknowledgments">Благодарности</string>
     <string name="adaptive">Адаптивен</string>
     <string name="add_alarm">Добавяне на Аларма</string>

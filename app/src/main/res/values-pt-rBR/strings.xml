@@ -21,9 +21,10 @@
     <string name="accidental_touches">Proteção contra Toques Acidentais</string>
     <string name="accidental_touches_settings_subtext">Essa proteção impede toques acidentais quando o telefone estiver em seu bolso.\nCaso essa funcionalidade esteja causando problemas, você pode desligá-la aqui.
     </string>
-    <string name="accidental_touches_subtext">Toque acidental detectado.\nToque em OK para continuar a usar o telefone\ncaso
-     essa mensagem continue a aparecer, você pode desligá-la nas configurações de acessibilidade.
-    </string>
+    <string name="accidental_touches_subtext">Se esta mensagem aparecer com frequência, você pode desativar esta função nas configurações de acessibilidade.</string>
+    <string name="pocket_mode_guard_title">Proteção contra toques acidentais.</string>
+    <string name="pocket_mode_guard_subtitle">A tela está temporariamente bloqueada.</string>
+    <string name="pocket_mode_guard_instruction">Remova a mão da parte superior do telefone para desbloquear a tela.</string>
     <string name="acknowledgments">Agradecimentos</string>
     <string name="adaptive">Adaptável</string>
     <string name="add_alarm">Adicionar Alarme</string>

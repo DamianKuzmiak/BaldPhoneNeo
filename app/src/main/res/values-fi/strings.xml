@@ -22,9 +22,10 @@
     <string name="accidental_touches_settings_subtext">Suojaus estää puhelimen kosketuskäytön, kun puhelin on
         peitettynä\nJos sen kanssa on ongelmia, voit kytkeä sen pois
     </string>
-    <string name="accidental_touches_subtext">Tahaton kosketus havaittiin\nPaina OK jatkaaksesi puhelimen käyttöä\nJos
-        ilmoitus tulee toistuvasti, voit poistaa sen käytöstä esteettömyysasetuksista
-    </string>
+    <string name="accidental_touches_subtext">Jos tämä viesti tulee usein näkyviin, voit poistaa tämän toiminnon käytöstä esteettömyysasetuksista.</string>
+    <string name="pocket_mode_guard_title">Tahattoman kosketuksen suojaus.</string>
+    <string name="pocket_mode_guard_subtitle">Näyttö on tilapäisesti lukittu.</string>
+    <string name="pocket_mode_guard_instruction">Poista kätesi puhelimen yläosasta avataksesi näytön lukituksen.</string>
     <string name="acknowledgments">Kiitollisuudenosoitukset</string>
     <string name="adaptive">Mukautuva</string>
     <string name="add_alarm">Lisää hälytys</string>

@@ -91,6 +91,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.16.0' // Newer versions require compileSdk 36+
     implementation 'androidx.core:core-splashscreen:1.2.0'
     implementation "androidx.fragment:fragment-ktx:1.8.9"
+    implementation 'androidx.lifecycle:lifecycle-process:2.9.4'  // Newer versions require minSdk 23+
     implementation 'androidx.room:room-ktx:2.7.2'  // Newer versions require minSdk 23+
     ksp 'androidx.room:room-compiler:2.7.2'
 

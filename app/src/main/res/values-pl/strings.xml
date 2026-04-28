@@ -21,7 +21,10 @@
     <string name="accessibility_settings">Dostępność</string>
     <string name="accidental_touches">Zapobiegaj przypadkowym dotknięciom</string>
     <string name="accidental_touches_settings_subtext">Ta funkcja blokuje ekran dotykowy, gdy telefon jest zakryty.\nJeśli sprawia to problemy, możesz ją wyłączyć.</string>
-    <string name="accidental_touches_subtext">Wykryto przypadkowe dotknięcie.\nNaciśnij OK, aby odblokować ekran.\nJeśli ten komunikat pojawia się często, możesz wyłączyć tę funkcję w ustawieniach dostępności.</string>
+    <string name="accidental_touches_subtext">Jeśli ten komunikat pojawia się często, możesz wyłączyć tę funkcję w ustawieniach dostępności.</string>
+    <string name="pocket_mode_guard_title">Ochrona przed przypadkowym dotykiem.</string>
+    <string name="pocket_mode_guard_subtitle">Ekran został tymczasowo zablokowany.</string>
+    <string name="pocket_mode_guard_instruction">Odsłoń czujnik u góry telefonu, aby go odblokować.</string>
     <string name="acknowledgments">Podziękowania</string>
     <string name="action_close">Zamknij</string>
     <string name="action_dismiss">Wyczyść</string>

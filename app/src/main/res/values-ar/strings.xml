@@ -17,6 +17,10 @@
 <resources>
     <string name="about">مقدمة</string>
     <string name="accidental_touches">حماية من اللمس غير المقصود</string>
+    <string name="accidental_touches_subtext">إذا ظهرت هذه الرسالة كثيرًا، يمكنك إيقاف هذه الميزة في إعدادات إمكانية الوصول.</string>
+    <string name="pocket_mode_guard_title">حماية من اللمس غير المقصود.</string>
+    <string name="pocket_mode_guard_subtitle">الشاشة مقفلة مؤقتًا.</string>
+    <string name="pocket_mode_guard_instruction">ارفع يدك عن الجزء العلوي من الهاتف لفتح الشاشة.</string>
     <string name="adaptive">تلقائي</string>
     <string name="add_alarm">إضافة منبه</string>
     <string name="add_alarm_quickly">إضافة مؤقت</string>
