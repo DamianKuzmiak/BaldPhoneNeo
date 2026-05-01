@@ -22,6 +22,8 @@
     <string name="accidental_touches_settings_subtext">This guard prevents touches when the phone is covered. If you experience issues, you can turn it off.</string>
     <string name="accidental_touches_subtext">Accidental touch detected.\nPress OK to continue using the phone.\nIf this message keeps appearing, you can disable the feature in Accessibility settings.</string>
     <string name="acknowledgments">Acknowledgments</string>
+    <string name="action_dismiss">Dismiss</string>
+    <string name="action_view">View</string>
     <string name="adaptive">Adaptive</string>
     <string name="add_alarm">Add Alarm</string>
     <string name="add_alarm_quickly">Add Timer</string>
@@ -265,6 +267,16 @@
     <string name="to___hours_and___minutes_from_now">to %d hours and %d minutes from now</string>
     <string name="to___minuets_from_now">to %d minutes from now</string>
     <string name="today">Today</string>
+    <string name="now">Now</string>
+    <string name="time_format_now">%1$s, Now</string>
+    <plurals name="relative_minutes_ago">
+        <item quantity="one">1 minute ago</item>
+        <item quantity="other">%d minutes ago</item>
+    </plurals>
+    <plurals name="relative_hours_ago">
+        <item quantity="one">1 hour ago</item>
+        <item quantity="other">%d hours ago</item>
+    </plurals>
     <string name="took">Took!</string>
     <string name="tuesday">Tuesday</string>
     <string name="uninstall">Uninstall</string>
@@ -346,6 +358,9 @@
     <string name="dialog_message_permission_overlay">The app needs permission to appear over other apps in order to show important information.</string>
     <string name="dialog_title_permission_notification">Notification access</string>
     <string name="dialog_message_permission_notification">Enable notification access so the app can read and display important alerts.</string>
+
+    <!-- Notification Service -->
+    <string name="notification_service_label">Easy Notifications</string>
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Lock Screen</string>

@@ -17,17 +17,12 @@
 package com.bald.uriah.baldphone.views.home;
 
 import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.baldComponentNameBeginning;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTION_REGISTER_ACTIVITY;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.KEY_EXTRA_ACTIVITY;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_HOME_SCREEN;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -46,10 +41,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewTreeLifecycleOwner;
 
 import app.baldphone.neo.activities.ContactsActivity;
 import app.baldphone.neo.activities.DialerActivity;
+import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.services.DeviceLock;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
@@ -62,8 +59,6 @@ import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.databases.apps.App;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabase;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
-import com.bald.uriah.baldphone.databases.calls.CallLogsHelper;
-import com.bald.uriah.baldphone.services.NotificationListenerService;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
@@ -71,14 +66,12 @@ import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.FirstPageAppIcon;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class HomePage1 extends HomeView {
     public static final String TAG = HomePage1.class.getSimpleName();
+    private final NotificationRepository repo = NotificationRepository.INSTANCE;
     private Map<App, FirstPageAppIcon> viewsToApps;
     private FirstPageAppIcon bt_assistant,
             bt_camera,
@@ -102,79 +95,6 @@ public class HomePage1 extends HomeView {
     public HomePage1(@NonNull Context context, AttributeSet attributeSet) {
         this(context);
     }
-
-    /**
-     * Listens to broadcasts from {@link NotificationListenerService} This listener only checks if
-     * there are new messages\whatsapps, and updates {@link HomePage1#bt_messages} and {@link
-     * HomePage1#bt_whatsapp} according to it The notification icon is being updated via {@link
-     * HomeScreenActivity#notificationReceiver}
-     */
-    public final BroadcastReceiver notificationReceiver =
-            new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if (intent == null) {
-                        return;
-                    }
-
-                    ArrayList<String> packagesList = intent.getStringArrayListExtra("packages");
-                    final Set<String> packagesSet =
-                            packagesList != null
-                                    ? new HashSet<>(packagesList)
-                                    : Collections.emptySet();
-
-                    if (bt_whatsapp != null && !viewsToApps.containsValue(bt_whatsapp)) {
-                        bt_whatsapp.setBadgeVisibility(packagesSet.contains(WhatsAppHandler.WHATSAPP_PACKAGE_NAME));
-                    }
-
-                    if (bt_recent != null && !viewsToApps.containsValue(bt_recent)) {
-                        Context viewContext = getContext(); // Use the view's context if available
-                        if (viewContext != null && viewContext.getContentResolver() != null) {
-                            bt_recent.setBadgeVisibility(
-                                    !CallLogsHelper.isAllReadSafe(
-                                            viewContext.getContentResolver()));
-                        } else if (context.getContentResolver()
-                                != null) { // Fallback to receiver's context
-                            bt_recent.setBadgeVisibility(
-                                    !CallLogsHelper.isAllReadSafe(context.getContentResolver()));
-                        } else {
-                            bt_recent.setBadgeVisibility(
-                                    false); // Fallback: hide badge if context is unavailable
-                        }
-                    }
-
-                    if (bt_messages != null && !viewsToApps.containsValue(bt_messages)) {
-                        String defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(context);
-                        if (defaultSmsPackage != null) {
-                            bt_messages.setBadgeVisibility(packagesSet.contains(defaultSmsPackage));
-                        } else {
-                            bt_messages.setBadgeVisibility(false); // No default SMS app, hide badge
-                        }
-                    }
-
-                    for (Map.Entry<App, FirstPageAppIcon> app : viewsToApps.entrySet()) {
-                        if (app == null) continue;
-
-                        FirstPageAppIcon icon = app.getValue();
-                        if (icon != null) {
-                            String flatComponentName = app.getKey().getFlattenComponentName();
-                            if (flatComponentName != null) {
-                                ComponentName cn =
-                                        ComponentName.unflattenFromString(flatComponentName);
-                                if (cn != null) {
-                                    icon.setBadgeVisibility(
-                                            packagesSet.contains(cn.getPackageName()));
-                                } else {
-                                    icon.setBadgeVisibility(
-                                            false); // Invalid component or no package name
-                                }
-                            } else {
-                                icon.setBadgeVisibility(false); // No component name in app data
-                            }
-                        }
-                    }
-                }
-            };
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container) {
@@ -202,21 +122,18 @@ public class HomePage1 extends HomeView {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        LocalBroadcastManager.getInstance(activity)
-                .registerReceiver(
-                        notificationReceiver,
-                        new IntentFilter(
-                                NotificationListenerService.HOME_SCREEN_ACTIVITY_BROADCAST));
-        LocalBroadcastManager.getInstance(activity)
-                .sendBroadcast(
-                        new Intent(ACTION_REGISTER_ACTIVITY)
-                                .putExtra(KEY_EXTRA_ACTIVITY, NOTIFICATIONS_HOME_SCREEN));
-    }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        LocalBroadcastManager.getInstance(activity).unregisterReceiver(notificationReceiver);
+        LifecycleOwner owner = ViewTreeLifecycleOwner.get(this);
+        if (owner != null) {
+            repo.getPackages().observe(owner, this::refreshBadges);
+            repo.getMissedCalls(activity).observe(owner, missedCalls -> {
+                if (bt_recent != null && !viewsToApps.containsValue(bt_recent)) {
+                    bt_recent.setBadgeVisibility(!missedCalls.isEmpty());
+                }
+            });
+        } else {
+            Log.e(TAG, "LifecycleOwner is null. Cannot observe LiveData.");
+        }
     }
 
     private Intent getCameraIntent() {
@@ -315,7 +232,12 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_CAMERA_KEY,
                 bt_camera,
-                v -> homeScreen.startActivity(getCameraIntent()));
+                v -> {
+                    Intent intent = getCameraIntent();
+                    if (intent != null) {
+                        homeScreen.startActivity(intent);
+                    }
+                });
         setupButton(
                 BPrefs.CUSTOM_VIDEOS_KEY,
                 bt_lock_screen,
@@ -506,6 +428,46 @@ public class HomePage1 extends HomeView {
             homeScreen.startActivity(intent);
         } catch (ActivityNotFoundException e) {
             BaldToast.error(homeScreen, "Failed to open accessibility settings.");
+        }
+    }
+
+    private void refreshBadges(Set<String> packagesSet) {
+        Context viewContext = getContext(); // Use the view's context if available
+
+        if (bt_whatsapp != null && !viewsToApps.containsValue(bt_whatsapp)) {
+            bt_whatsapp.setBadgeVisibility(packagesSet.contains(WhatsAppHandler.WHATSAPP_PACKAGE_NAME));
+        }
+
+
+        if (bt_messages != null && !viewsToApps.containsValue(bt_messages)) {
+            String defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(viewContext);
+            if (defaultSmsPackage != null) {
+                bt_messages.setBadgeVisibility(packagesSet.contains(defaultSmsPackage));
+            } else {
+                bt_messages.setBadgeVisibility(false); // No default SMS app, hide badge
+            }
+        }
+
+        for (Map.Entry<App, FirstPageAppIcon> app : viewsToApps.entrySet()) {
+            if (app == null) continue;
+
+            FirstPageAppIcon icon = app.getValue();
+            if (icon != null) {
+                String flatComponentName = app.getKey().getFlattenComponentName();
+                if (flatComponentName != null) {
+                    ComponentName cn =
+                            ComponentName.unflattenFromString(flatComponentName);
+                    if (cn != null) {
+                        icon.setBadgeVisibility(
+                                packagesSet.contains(cn.getPackageName()));
+                    } else {
+                        icon.setBadgeVisibility(
+                                false); // Invalid component or no package name
+                    }
+                } else {
+                    icon.setBadgeVisibility(false); // No component name in app data
+                }
+            }
         }
     }
 }

@@ -23,6 +23,8 @@
     <string name="accidental_touches_settings_subtext">Ta funkcja blokuje ekran dotykowy, gdy telefon jest zakryty.\nJeśli sprawia to problemy, możesz ją wyłączyć.</string>
     <string name="accidental_touches_subtext">Wykryto przypadkowe dotknięcie.\nNaciśnij OK, aby odblokować ekran.\nJeśli ten komunikat pojawia się często, możesz wyłączyć tę funkcję w ustawieniach dostępności.</string>
     <string name="acknowledgments">Podziękowania</string>
+    <string name="action_dismiss">Wyczyść</string>
+    <string name="action_view">Zobacz</string>
     <string name="adaptive">Adaptacyjny</string>
     <string name="add_alarm">Dodaj alarm</string>
     <string name="add_alarm_quickly">Dodaj minutnik</string>
@@ -237,6 +239,20 @@
     <string name="to___hours_and___minutes_from_now">za %1$d godzin i %2$d minut</string>
     <string name="to___minuets_from_now">za %d minut</string>
     <string name="today">Dzisiaj</string>
+    <string name="now">Teraz</string>
+    <string name="time_format_now">%1$s, Teraz</string>
+    <plurals name="relative_minutes_ago">
+        <item quantity="one">1 minuta temu</item>
+        <item quantity="few">%d minuty temu</item>
+        <item quantity="many">%d minut temu</item>
+        <item quantity="other">%d minut temu</item>
+    </plurals>
+    <plurals name="relative_hours_ago">
+        <item quantity="one">1 godzina temu</item>
+        <item quantity="few">%d godziny temu</item>
+        <item quantity="many">%d godzin temu</item>
+        <item quantity="other">%d godzin temu</item>
+    </plurals>
     <string name="took">Wzięto</string>
     <string name="tuesday">Wtorek</string>
     <string name="uninstall">Odinstaluj</string>
@@ -312,6 +328,9 @@
     <string name="dialog_message_permission_overlay">Aplikacja potrzebuje zgody na wyświetlanie się nad innymi aplikacjami, aby pokazywać ważne informacje.</string>
     <string name="dialog_title_permission_notification">Dostęp do powiadomień</string>
     <string name="dialog_message_permission_notification">Włącz dostęp do powiadomień, aby aplikacja mogła odczytywać i wyświetlać ważne komunikaty.</string>
+
+    <!-- Notification Service -->
+    <string name="notification_service_label">Łatwe powiadomienia</string>
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Zablokuj ekran</string>

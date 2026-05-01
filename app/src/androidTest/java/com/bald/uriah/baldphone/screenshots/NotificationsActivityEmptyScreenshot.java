@@ -21,7 +21,8 @@ import android.content.Intent;
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.bald.uriah.baldphone.activities.NotificationsActivity;
+import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
+
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
 
 import org.junit.runner.RunWith;

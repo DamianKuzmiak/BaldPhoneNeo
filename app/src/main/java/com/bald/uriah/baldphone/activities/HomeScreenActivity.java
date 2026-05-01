@@ -18,10 +18,8 @@ package com.bald.uriah.baldphone.activities;
 
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -41,11 +39,13 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import app.baldphone.neo.battery.BatteryRepository;
+import app.baldphone.neo.features.notifications.data.NotificationRepository;
+import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
 import app.baldphone.neo.flashlight.FlashLightController;
 import app.baldphone.neo.flashlight.FlashlightState;
 import app.baldphone.neo.permissions.PermissionManager;
@@ -56,7 +56,6 @@ import app.baldphone.neo.utils.HomeAppUtils;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
-import com.bald.uriah.baldphone.services.NotificationListenerService;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldHomeWatcher;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
@@ -68,22 +67,14 @@ import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldImageButton;
 import com.bald.uriah.baldphone.views.BatteryView;
 import com.bald.uriah.baldphone.views.ViewPagerHolder;
-import com.bald.uriah.baldphone.views.home.HomePage1;
 import com.bald.uriah.baldphone.views.home.NotesView;
 
 import java.lang.ref.WeakReference;
 
-
-import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTION_REGISTER_ACTIVITY;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTIVITY_NONE;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.KEY_EXTRA_ACTIVITY;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_ALOT;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_HOME_SCREEN;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_NONE;
-import static com.bald.uriah.baldphone.services.NotificationListenerService.NOTIFICATIONS_SOME;
-
 public class HomeScreenActivity extends BaldActivity {
     private static final String TAG = HomeScreenActivity.class.getSimpleName();
+
+    public static final int NOTIFICATIONS_ALOT = 5;
 
     private static final int[]
             SOUND_DRAWABLES = {R.drawable.mute_on_background, R.drawable.vibration_on_background, R.drawable.sound_on_background},
@@ -113,47 +104,43 @@ public class HomeScreenActivity extends BaldActivity {
     private AudioManager audioManager;
     private BaldHomeWatcher baldHomeWatcher;
     private final Handler handler = new Handler();
+
+    private NotificationRepository repo;
+
     /**
-     * "Shakes" the notifications icon when it has more than {@value NotificationListenerService#NOTIFICATIONS_ALOT}
+     * "Shakes" the notifications icon when it has more than {@value NOTIFICATIONS_ALOT}
      */
     private final Runnable shakeIt = new Runnable() {
         @Override
         public void run() {
             final Drawable d = notificationsButton.getDrawable();
-            if (d instanceof AnimatedVectorDrawable) {
-                final AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) d;
+            if (d instanceof AnimatedVectorDrawable animatedVectorDrawable) {
                 animatedVectorDrawable.start();
                 final int minusSeconds = Math.min((int) (Math.max((notificationCount - NOTIFICATIONS_ALOT) * 0.5f, 0)), 7);
-                handler.postDelayed(this, (10 - minusSeconds) * D.SECOND);
+                handler.postDelayed(this, (long) (10 - minusSeconds) * D.SECOND);
             }
         }
     };
-    /**
-     * Listens to broadcasts from {@link NotificationListenerService}
-     * This listener only gets the number of notifications and updates {@link HomeScreenActivity#notificationsButton}
-     * The red dot is being updated via {@link HomePage1#notificationReceiver}
-     */
-    public final BroadcastReceiver notificationReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            notificationCount = intent.getIntExtra("amount", -1);
-            if (notificationCount >= NOTIFICATIONS_ALOT) {
-                final Drawable drawable = getDrawable(R.drawable.notification_alot_on_background);
-                final float opacity = Math.min(((notificationCount - NOTIFICATIONS_ALOT) / 10.0f), 1.0f);
-                drawable.setTint(S.blendColors(decorationColorOnBackground, getResources().getColor(R.color.battery_low), 1 - opacity));
-                notificationsButton.setImageDrawable(drawable);
-            } else if (notificationCount >= NOTIFICATIONS_SOME) {
-                notificationsButton.setImageResource(R.drawable.notification_some_on_background);
-            } else if (notificationCount >= NOTIFICATIONS_NONE) {
-                notificationsButton.setImageResource(R.drawable.notification_none_on_background);
-            } else {
-                notificationsButton.setImageResource(R.drawable.error_on_background);
-            }
 
-            handler.removeCallbacks(shakeIt);
-            handler.postDelayed(shakeIt, 5 * D.SECOND);
+    private void handleNotificationCount(int count) {
+        Log.d(TAG, "Notification count: " + count);
+        notificationCount = count;
+        if (count >= NOTIFICATIONS_ALOT) {
+            final Drawable drawable = AppCompatResources.getDrawable(this, R.drawable.notification_alot_on_background);
+            final float opacity = Math.min(((count - NOTIFICATIONS_ALOT) / 10.0f), 1.0f);
+            drawable.setTint(S.blendColors(decorationColorOnBackground, getResources().getColor(R.color.battery_low), 1 - opacity));
+            notificationsButton.setImageDrawable(drawable);
+        } else if (count >= 1) {
+            notificationsButton.setImageResource(R.drawable.notification_some_on_background);
+        } else if (count == 0) {
+            notificationsButton.setImageResource(R.drawable.notification_none_on_background);
+        } else {
+            notificationsButton.setImageResource(R.drawable.error_on_background);
         }
-    };
+
+        handler.removeCallbacks(shakeIt);
+        handler.postDelayed(shakeIt, 5 * D.SECOND);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -168,11 +155,6 @@ public class HomeScreenActivity extends BaldActivity {
             startActivity(new Intent(this, TutorialActivity.class));
             finish();
             return;
-        }
-        try {
-            startService(new Intent(this, NotificationListenerService.class));
-        } catch (Exception e) {
-            Log.e(TAG, "Could not start Notification Listener Service!", e);
         }
 
         new UpdateApps(this).execute(this.getApplicationContext());
@@ -251,6 +233,8 @@ public class HomeScreenActivity extends BaldActivity {
         baldHomeWatcher = new BaldHomeWatcher(this, this::updateViewPager);
         recognizerManager.setHomeScreen(this);
 
+        repo = NotificationRepository.INSTANCE;
+        repo.getCount().observe(this, this::handleNotificationCount);
     }
 
     private void handleFlashlightEvent(FlashlightState event) {
@@ -288,35 +272,18 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     protected void onResume() { // remember to change in Page1EditorActivity.java too!
         super.onResume();
+        Log.v(TAG, "onResume");
+
         if (baldPrefsUtils.hasChanged(this)) {
             viewPagerHolder.getViewPager().removeAllViews();//android auto saves fragments, not good for us in this case
             this.recreate();
         }
 
         soundButton.setImageResource(SOUND_DRAWABLES[audioManager.getRingerMode()]);
-
-        LocalBroadcastManager.getInstance(this).
-                registerReceiver(notificationReceiver,
-                        new IntentFilter(NotificationListenerService.HOME_SCREEN_ACTIVITY_BROADCAST));
-        handler.postDelayed(() -> LocalBroadcastManager.getInstance(this).
-                sendBroadcast(
-                        new Intent(ACTION_REGISTER_ACTIVITY)
-                                .putExtra(KEY_EXTRA_ACTIVITY, NOTIFICATIONS_HOME_SCREEN)), 200 * D.MILLISECOND);
     }
 
     @Override
     protected void onPause() {
-        //read https://stackoverflow.com/questions/6165070/receiver-not-registered-exception-error
-        //android platform may unregister the receiver without asking anyone, and this is the best solution.
-        //first occurred in LG k10 api level 23
-        try {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReceiver);
-        } catch (IllegalArgumentException ignore) {
-        }
-        try {
-            LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(ACTION_REGISTER_ACTIVITY).putExtra(KEY_EXTRA_ACTIVITY, ACTIVITY_NONE));
-        } catch (IllegalArgumentException ignore) {
-        }
         handler.removeCallbacks(shakeIt);
         super.onPause();
     }

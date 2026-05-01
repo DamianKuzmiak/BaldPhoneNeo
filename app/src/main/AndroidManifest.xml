@@ -122,7 +122,7 @@
             android:exported="false"
             android:label="@string/settings" />
         <activity
-            android:name=".activities.NotificationsActivity"
+            android:name="app.baldphone.neo.features.notifications.ui.NotificationsActivity"
             android:exported="false"
             android:label="@string/notifications" />
         <activity
@@ -250,8 +250,9 @@
                 android:resource="@xml/method" />
         </service>
         <service
-            android:name=".services.NotificationListenerService"
-            android:exported="false"
+            android:name="app.baldphone.neo.services.NotificationReceiverService"
+            android:exported="true"
+            android:label="@string/notification_service_label"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />

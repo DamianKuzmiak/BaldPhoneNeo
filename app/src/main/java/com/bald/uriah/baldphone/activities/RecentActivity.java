@@ -26,6 +26,8 @@ import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.CallsRecyclerViewAdapter;
 import com.bald.uriah.baldphone.databases.calls.CallLogsHelper;
 
+import app.baldphone.neo.features.notifications.data.NotificationRepository;
+
 public class RecentActivity extends BaldActivity {
     public RecyclerView recyclerView;
 
@@ -44,6 +46,12 @@ public class RecentActivity extends BaldActivity {
         final CallsRecyclerViewAdapter callsRecyclerViewAdapter = new CallsRecyclerViewAdapter(CallLogsHelper.getAllCalls(getContentResolver()), this);
         CallLogsHelper.markAllAsRead(getContentResolver());
         recyclerView.setAdapter(callsRecyclerViewAdapter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        NotificationRepository.INSTANCE.clearMissedCalls();
     }
 
     @Override

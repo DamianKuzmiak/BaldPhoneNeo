@@ -20,7 +20,9 @@
 
     <string name="empty" translatable="false" />
 
-    <string name="contact_phone_format" translatable="false">%1$s %2$s</string>
+    <string name="text_with_count" translatable="false">%1$s (%2$d)</string>
+    <string name="text_pair_combined" translatable="false">%1$s, %2$s</string>
+
     <string name="icon_mobile" translatable="false">📞</string>
     <string name="icon_home" translatable="false">🏠</string>
     <string name="icon_work" translatable="false">💼</string>

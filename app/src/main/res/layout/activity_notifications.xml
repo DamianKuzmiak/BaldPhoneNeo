@@ -16,25 +16,25 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?bald_background">
+    android:layout_height="match_parent">
 
-    <com.bald.uriah.baldphone.views.BaldTitleBar
+    <app.baldphone.neo.views.TitleBarView
         android:id="@+id/bald_title_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/notifications" />
+        app:titleBarBackgroundColor="@color/color_3"
+        app:titleBarTitle="@string/notifications" />
 
     <com.bald.uriah.baldphone.views.ScrollingHelper
-        android:id="@+id/scroller"
+        android:id="@+id/scrolling_helper"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:empty_text="@string/no_new_notifications"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/clear_all_notifications_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bald_title_bar">
@@ -45,16 +45,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="60dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_notification" />
     </com.bald.uriah.baldphone.views.ScrollingHelper>
 
+    <TextView
+        android:id="@+id/no_notifications_text"
+        style="@style/BackgroundText.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_new_notifications"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/clear_all_notifications_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bald_title_bar"
+        tools:visibility="visible" />
+
     <FrameLayout
+        android:id="@+id/clear_all_notifications_container"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="?bald_background_transparent"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -66,12 +78,13 @@
             android:background="@drawable/style_for_buttons_transparent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="50dp"
-            android:paddingEnd="50dp">
+            android:paddingStart="0dp"
+            android:paddingEnd="5dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@null"
                 android:src="@drawable/delete_on_background" />
 
             <TextView
@@ -80,10 +93,9 @@
                 android:layout_height="match_parent"
                 android:gravity="start|center_vertical"
                 android:paddingStart="5dp"
-                android:paddingEnd="0dp"
+                android:paddingEnd="5dp"
                 android:text="@string/clear_all_notifications" />
         </com.bald.uriah.baldphone.views.BaldLinearLayoutButton>
     </FrameLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

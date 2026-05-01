@@ -18,15 +18,12 @@ package com.bald.uriah.baldphone;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 
 import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.extensions.ThemeExtensions;
 
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;
-import com.bald.uriah.baldphone.services.NotificationListenerService;
 import com.bald.uriah.baldphone.utils.BaldUncaughtExceptionHandler;
 import com.bald.uriah.baldphone.utils.S;
 
@@ -46,13 +43,6 @@ public class BaldPhone extends Application {
         AlarmScheduler.reStartAlarms(this);
         ReminderScheduler.reStartReminders(this);
         ThemeExtensions.apply(Prefs.getTheme());
-
-        try {
-            startService(new Intent(this, NotificationListenerService.class));
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     @Override
