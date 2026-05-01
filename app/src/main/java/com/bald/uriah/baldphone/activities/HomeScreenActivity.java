@@ -16,7 +16,6 @@
 
 package com.bald.uriah.baldphone.activities;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -24,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -37,20 +35,22 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import app.baldphone.neo.battery.BatteryRepository;
+import app.baldphone.neo.flashlight.FlashLightController;
+import app.baldphone.neo.flashlight.FlashlightState;
+import app.baldphone.neo.permissions.PermissionManager;
+import app.baldphone.neo.permissions.PermissionResult;
+import app.baldphone.neo.permissions.RuntimePermission;
 import app.baldphone.neo.utils.HomeAppUtils;
 
 import com.bald.uriah.baldphone.R;
@@ -73,7 +73,6 @@ import com.bald.uriah.baldphone.views.home.NotesView;
 
 import java.lang.ref.WeakReference;
 
-import github.nisrulz.lantern.Lantern;
 
 import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTION_REGISTER_ACTIVITY;
 import static com.bald.uriah.baldphone.services.NotificationListenerService.ACTIVITY_NONE;
@@ -92,27 +91,27 @@ public class HomeScreenActivity extends BaldActivity {
 
     private static final int SPEECH_REQUEST_CODE = 7;
 
-    private static boolean flashState;
-
     @NonNull
     public final NotesView.RecognizerManager recognizerManager = new NotesView.RecognizerManager();
 
     public boolean finishedUpdatingApps, launchAppsActivity;
     public BaldPagerAdapter baldPagerAdapter;
 
-    private Lantern lantern;
     private SharedPreferences sharedPreferences;
     private BaldPrefsUtils baldPrefsUtils;
     private ViewPagerHolder viewPagerHolder;
     private BatteryView batteryView;
     private boolean lowBatteryAlert;
+
+    @Nullable
+    private FlashLightController flashlight = null;
+
     private int notificationCount = 0;
     @ColorInt
     private int decorationColorOnBackground;
     private BaldImageButton notificationsButton, soundButton, flashButton;
     private AudioManager audioManager;
     private BaldHomeWatcher baldHomeWatcher;
-    private boolean flashInited;
     private final Handler handler = new Handler();
     /**
      * "Shakes" the notifications icon when it has more than {@value NotificationListenerService#NOTIFICATIONS_ALOT}
@@ -193,11 +192,13 @@ public class HomeScreenActivity extends BaldActivity {
         notificationsButton = top_bar.findViewById(R.id.notifications);
         flashButton = top_bar.findViewById(R.id.flash);
 
-        lantern = Lantern.getInstance();
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            lantern.init(this.getApplicationContext());
-            flashInited = true;  // TODO: swtich back to lantern:2.0.0
+        if (!FlashLightController.Companion.isFlashHardwarePresent(this)) {
+            Log.i(TAG, "No flash hardware on this device");
+            flashButton.setVisibility(View.GONE);
+        } else {
+            flashlight = FlashLightController.Companion.getInstance(this);
+            flashButton.setOnClickListener(v -> onFlashlightButtonPressed());
+            flashlight.getStateLiveData().observe(this, this::handleFlashlightEvent);
         }
 
         notificationsButton.setOnClickListener((v) -> {
@@ -252,6 +253,29 @@ public class HomeScreenActivity extends BaldActivity {
 
     }
 
+    private void handleFlashlightEvent(FlashlightState event) {
+        if (event instanceof FlashlightState.OnOff) {
+            boolean isOn = ((FlashlightState.OnOff) event).isOn();
+            Log.d(TAG, "Flashlight icon state changed: " + isOn);
+            flashButton.setImageResource(
+                    isOn
+                            ? R.drawable.flashlight_on_background
+                            : R.drawable.flashlight_off_on_background);
+        } else if (event instanceof FlashlightState.Error) {
+            BaldToast.error(this, "Flashlight not available");
+        }
+    }
+
+    private void onFlashlightButtonPressed() {
+        if (flashlight == null) return;
+
+        PermissionManager.checkOrRequest(this, RuntimePermission.Camera.INSTANCE, result -> {
+            if (result == PermissionResult.Granted.INSTANCE) {
+                flashlight.toggle();
+            }
+        });
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -270,28 +294,6 @@ public class HomeScreenActivity extends BaldActivity {
         }
 
         soundButton.setImageResource(SOUND_DRAWABLES[audioManager.getRingerMode()]);
-        flashButton.setImageResource(flashState ?
-                R.drawable.flashlight_on_background :
-                R.drawable.flashlight_off_on_background);
-        if (flashInited) {
-            flashButton.setOnClickListener((v) -> {
-                flashState = !flashState;
-                lantern.turnOnFlashlight(this);
-                if (!flashState) // looks weird (it is) but necessary. otherwise it wont turn off after device rotation...
-                    lantern.turnOffFlashlight(this);
-                flashButton.setImageResource(flashState ?
-                        R.drawable.flashlight_on_background :
-                        R.drawable.flashlight_off_on_background);
-            });
-        } else if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            flashButton.setOnClickListener(v -> startActivity(new Intent(this, PermissionActivity.class)
-                    .putExtra(PermissionActivity.EXTRA_REQUIRED_PERMISSIONS, PERMISSION_CAMERA)
-            ));
-
-        } else if (!testing) { // For travis screenshots to show the flashlight
-            flashButton.setOnClickListener(D.EMPTY_CLICK_LISTENER);
-            flashButton.setVisibility(View.GONE);
-        }
 
         LocalBroadcastManager.getInstance(this).
                 registerReceiver(notificationReceiver,
