@@ -68,6 +68,9 @@
             android:name=".activities.HomeScreenActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+            android:resumeWhilePausing="true"
             android:theme="@style/AppTheme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

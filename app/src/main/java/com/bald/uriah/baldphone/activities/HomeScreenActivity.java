@@ -57,7 +57,6 @@ import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
 import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
 import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.BaldHomeWatcher;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
@@ -101,10 +100,14 @@ public class HomeScreenActivity extends BaldActivity {
     private int decorationColorOnBackground;
     private BaldImageButton notificationsButton, soundButton, flashButton;
     private AudioManager audioManager;
-    private BaldHomeWatcher baldHomeWatcher;
+
     private final Handler handler = new Handler();
 
     private NotificationRepository repo;
+
+    public enum LaunchSource {
+        HOME, LAUNCHER, UNKNOWN
+    }
 
     /**
      * "Shakes" the notifications icon when it has more than {@value NOTIFICATIONS_ALOT}
@@ -148,8 +151,10 @@ public class HomeScreenActivity extends BaldActivity {
 
         Log.d(TAG, "onCreate");
 
-        sharedPreferences = BPrefs.get(this);
+        final LaunchSource launchSource = detectLaunchSource(getIntent());
+        Log.d(TAG, "launchSource: " + launchSource);
 
+        sharedPreferences = BPrefs.get(this);
         if (!sharedPreferences.getBoolean(BPrefs.AFTER_TUTORIAL_KEY, false) && !testing) {
             startActivity(new Intent(this, TutorialActivity.class));
             finish();
@@ -229,7 +234,6 @@ public class HomeScreenActivity extends BaldActivity {
                 .show());
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
         viewPagerHandler();
-        baldHomeWatcher = new BaldHomeWatcher(this, this::updateViewPager);
         recognizerManager.setHomeScreen(this);
 
         repo = NotificationRepository.INSTANCE;
@@ -264,8 +268,7 @@ public class HomeScreenActivity extends BaldActivity {
         super.onStart();
         Log.v(TAG, "onStart");
         if (finishedUpdatingApps)
-            updateViewPager();
-        baldHomeWatcher.startWatch();
+            updateViewPager(false, false);
     }
 
     @Override
@@ -283,6 +286,7 @@ public class HomeScreenActivity extends BaldActivity {
 
     @Override
     protected void onPause() {
+        Log.d(TAG, "onPause");
         handler.removeCallbacks(shakeIt);
         super.onPause();
     }
@@ -290,7 +294,7 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     protected void onStop() {
         Log.d(TAG, "onStop");
-        baldHomeWatcher.stopWatch();
+        handler.removeCallbacksAndMessages(null);
         super.onStop();
     }
 
@@ -313,9 +317,10 @@ public class HomeScreenActivity extends BaldActivity {
      * Updates {@link HomeScreenActivity#baldPagerAdapter} apps
      * Sets the page to {@link BaldPagerAdapter#startingPage}
      */
-    private void updateViewPager() {
+    private void updateViewPager(boolean animate, boolean resetToHome) {
         baldPagerAdapter.obtainAppList();
-        viewPagerHolder.setCurrentItem(baldPagerAdapter.startingPage);
+        if (resetToHome)
+            viewPagerHolder.getViewPager().setCurrentItem(baldPagerAdapter.startingPage, animate);
         viewPagerHolder.onDataChanged();
     }
 
@@ -371,6 +376,39 @@ public class HomeScreenActivity extends BaldActivity {
         }
     }
 
+    @Override
+    protected void onNewIntent(@NonNull Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent); // update the activity's intent
+        final LaunchSource launchSource = detectLaunchSource(intent);
+        Log.d(TAG, "onNewIntent: launchSource=" + launchSource);
+        if (launchSource == LaunchSource.HOME) {
+            updateViewPager(true, true);
+        }
+    }
+
+    /**
+     * Detects how the app was launched based on the provided intent.
+     */
+    @NonNull
+    private LaunchSource detectLaunchSource(@Nullable Intent intent) {
+        if (intent == null) {
+            return LaunchSource.UNKNOWN;
+        }
+
+        // A Home button press
+        if (intent.hasCategory(Intent.CATEGORY_HOME)) {
+            return LaunchSource.HOME;
+        }
+
+        // Launching by an app icon
+        if (Intent.ACTION_MAIN.equals(intent.getAction())) {
+            return LaunchSource.LAUNCHER;
+        }
+
+        return LaunchSource.UNKNOWN;
+    }
+
     static class UpdateApps extends AsyncTask<Context, Void, Void> {
         final WeakReference<HomeScreenActivity> homeScreenWeakReference;
 
@@ -392,11 +430,16 @@ public class HomeScreenActivity extends BaldActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             HomeScreenActivity homeScreen = homeScreenWeakReference.get();
-            if (homeScreen != null) {
-                homeScreen.updateViewPager();
+            if (homeScreen != null && !homeScreen.isFinishing() && !homeScreen.isDestroyed()) {
+                homeScreen.updateViewPager(false, false);
                 homeScreen.finishedUpdatingApps = true;
-                if (homeScreen.launchAppsActivity)
-                    homeScreen.startActivity(new Intent(homeScreen, AppsActivity.class));
+
+                if (homeScreen.launchAppsActivity) {
+                    homeScreen.launchAppsActivity = false;
+                    Intent intent = new Intent(homeScreen, AppsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    homeScreen.startActivity(intent);
+                }
             }
         }
     }
