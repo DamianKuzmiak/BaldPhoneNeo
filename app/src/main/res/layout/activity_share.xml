@@ -16,42 +16,31 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?bald_background">
 
-    <com.bald.uriah.baldphone.views.BaldTitleBar
-        android:id="@+id/bald_title_bar"
-        android:layout_width="match_parent"
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/title_bar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/share" />
-
-
-    <include
-        android:id="@+id/whatsapp_container"
-        layout="@layout/contacts_search"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/bald_switch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bald_title_bar" />
+        app:titleBarBackgroundColor="?bald_category_apps"
+        app:titleBarTitle="@string/share_via_app" />
 
     <com.bald.uriah.baldphone.views.ScrollingHelper
         android:id="@+id/differently_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/bald_switch"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bald_title_bar">
+        app:layout_constraintTop_toBottomOf="@id/title_bar">
 
         <com.bald.uriah.baldphone.views.ModularRecyclerView
             android:id="@+id/recycler_view"
@@ -61,21 +50,15 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </com.bald.uriah.baldphone.views.ScrollingHelper>
 
-    <com.bald.uriah.baldphone.views.BaldSwitch
-        android:id="@+id/bald_switch"
-        style="@style/ButtonsText.Auto"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/style_for_buttons"
-        android:padding="10dp"
-        android:text="@string/share_differently"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:no="@string/share_via_whatsapp"
-        app:yes="@string/share_differently" />
-
+        app:layout_constraintTop_toBottomOf="@id/title_bar"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

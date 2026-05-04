@@ -223,8 +223,7 @@
     <string name="share_bald_phone_subtext">Znasz kogoś, kto również chciałby używać BaldPhone? Udostępnij!</string>
     <string name="share_baldphone">Udostępnij BaldPhone</string>
     <string name="share_contact">Udostępnij kontakt</string>
-    <string name="share_differently">Udostępnij przez inną aplikację</string>
-    <string name="share_via_whatsapp">Udostępnij przez WhatsApp</string>
+    <string name="share_via_app">Udostępnij przez aplikację</string>
     <string name="shift">Shift</string>
     <string name="show">Pokaż</string>
     <string name="small">Mały</string>

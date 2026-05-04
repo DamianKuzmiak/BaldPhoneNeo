@@ -6,10 +6,12 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 
 import androidx.core.net.toUri
 
+import app.baldphone.neo.features.share.ShareActivity
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 
 import com.bald.uriah.baldphone.R
@@ -30,6 +32,37 @@ fun Context.openMap(address: String) {
 fun Context.openUrl(url: String) {
     val intent = Intent(Intent.ACTION_VIEW, url.toUri())
     startActivityWithNewTask(intent)
+}
+
+/**
+ * Starts the [ShareActivity] with the provided [intent].
+ *
+ * @param intent The [Intent] to be shared.
+ */
+fun Context.share(intent: Intent) {
+    startActivity(
+        Intent(this, ShareActivity::class.java).putExtra(ShareActivity.EXTRA_SHARE_INTENT, intent)
+    )
+}
+
+/**
+ * Shares a contact as a vCard.
+ */
+fun Context.shareContact(lookupKey: String?, name: String? = null) {
+    if (lookupKey.isNullOrEmpty()) {
+        Log.w(TAG, "Cannot share contact: lookupKey is null/empty")
+        return
+    }
+    val vcardUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, lookupKey)
+    val shareIntent =
+        Intent(Intent.ACTION_SEND)
+            .setType(ContactsContract.Contacts.CONTENT_VCARD_TYPE)
+            .putExtra(Intent.EXTRA_STREAM, vcardUri)
+
+    if (!name.isNullOrEmpty()) {
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, name)
+    }
+    share(shareIntent)
 }
 
 /**

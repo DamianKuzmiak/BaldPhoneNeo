@@ -249,8 +249,7 @@
     <string name="share_bald_phone_subtext">Know someone who could benefit from BaldPhone?\nShare it with them!</string>
     <string name="share_baldphone">Share BaldPhone</string>
     <string name="share_contact">Share Contact</string>
-    <string name="share_differently">Share Via Other App</string>
-    <string name="share_via_whatsapp">Share Via Whatsapp</string>
+    <string name="share_via_app">Share via app</string>
     <string name="shift">shift</string>
     <string name="show">Show</string>
     <string name="small">Small</string>

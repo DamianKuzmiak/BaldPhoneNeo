@@ -43,6 +43,7 @@
     <attr name="bald_button_positive" format="reference|color" />
     <attr name="bald_text_on_button_positive" format="reference|color" />
     <attr name="bald_button_bg_color" format="reference|color" />
+    <attr name="bald_category_apps" format="reference|color" />
 
     <declare-styleable name="BaldPictureTextButton">
         <attr name="_src" format="reference" />

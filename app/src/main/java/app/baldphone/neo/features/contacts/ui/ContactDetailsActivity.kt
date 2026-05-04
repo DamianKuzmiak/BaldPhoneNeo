@@ -3,9 +3,7 @@ package app.baldphone.neo.features.contacts.ui
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
-import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -39,14 +37,13 @@ import app.baldphone.neo.utils.messaging.WhatsAppHandler
 import app.baldphone.neo.utils.openMap
 import app.baldphone.neo.utils.sendEmail
 import app.baldphone.neo.utils.sendMessage
-import app.baldphone.neo.utils.startActivityWithNewTask
+import app.baldphone.neo.utils.shareContact
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 import com.bald.uriah.baldphone.databinding.ActivityContactDetailsBinding
 import com.bald.uriah.baldphone.databinding.ContactCallItemBinding
 import com.bald.uriah.baldphone.databinding.ItemContactFieldBinding
-import com.bald.uriah.baldphone.utils.S
 import com.bald.uriah.baldphone.views.BaldImageButton
 
 /** Activity for viewing and interacting with a single contact. */
@@ -317,7 +314,10 @@ class ContactDetailsActivity : BaseActivity() {
             option(
                 iconRes = R.drawable.share_on_background,
                 labelRes = R.string.share,
-                onClick = { shareContact() }
+                onClick = {
+                    val contact = viewModel.uiState.value.contact
+                    shareContact(contact?.lookupKey, contact?.name)
+                }
             )
 
             option(
@@ -332,17 +332,6 @@ class ContactDetailsActivity : BaseActivity() {
                 onClick = { showDeleteConfirmationDialog() }
             )
         }
-    }
-
-    private fun shareContact() {
-        val contact = viewModel.uiState.value.contact ?: return
-        val vcardUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, contact.lookupKey)
-        val shareIntent =
-            Intent(Intent.ACTION_SEND)
-                .setType(ContactsContract.Contacts.CONTENT_VCARD_TYPE)
-                .putExtra(Intent.EXTRA_STREAM, vcardUri)
-                .putExtra(Intent.EXTRA_SUBJECT, contact.name)
-        S.share(this, shareIntent)
     }
 
     private fun editContactDetails() {

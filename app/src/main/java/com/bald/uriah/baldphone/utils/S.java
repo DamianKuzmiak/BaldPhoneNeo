@@ -51,9 +51,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.utils.IntentUtilsKt;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
-import com.bald.uriah.baldphone.activities.contacts.ShareActivity;
 import com.bald.uriah.baldphone.content_providers.BaldFileProvider;
 
 import org.joda.time.DateTime;
@@ -80,17 +81,13 @@ public class S {
         Log.e(BALD_IMPORTANT_MESSAGE, String.valueOf(charSequence));
     }
 
-    public static void share(@NonNull final Context context, @NonNull final Intent intent) {
-        context.startActivity(new Intent(context, ShareActivity.class).putExtra(ShareActivity.EXTRA_SHARABLE_URI, intent));
-    }
-
     public static void shareBaldPhone(@NonNull final BaldActivity baldActivity) {
         BDB.from(baldActivity)
                 .setTitle(R.string.share_baldphone)
                 .setSubText(R.string.share_bald_phone_subtext)
                 .addFlag(BDialog.FLAG_YES | BDialog.FLAG_NO)
                 .setPositiveButtonListener(params -> {
-                    S.share(baldActivity, new Intent(Intent.ACTION_SEND)
+                    IntentUtilsKt.share(baldActivity, new Intent(Intent.ACTION_SEND)
                             .setType("text/plain")
                             .putExtra(Intent.EXTRA_TEXT, baldActivity.getString(R.string.share_actual_text)));
                     return true;

@@ -160,6 +160,7 @@ public class AppsDatabaseHelper {
     }
 
     public static void loadPic(App app, ImageView imageView) {
+        if (app == null) return;
         if (app.getFlattenComponentName().startsWith(baldComponentNameBeginning))
             imageView.setImageResource(AppsDatabaseHelper.baldComponentNames.get(app.getFlattenComponentName()));
         else

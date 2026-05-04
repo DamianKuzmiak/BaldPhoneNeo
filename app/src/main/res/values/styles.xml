@@ -57,6 +57,7 @@
         <item name="bald_button_positive">@color/bald_button_positive</item>
         <item name="bald_text_on_button_positive">@color/bald_text_on_button_positive</item>
         <item name="bald_button_bg_color">?attr/bald_button</item>
+        <item name="bald_category_apps">@color/color_4</item>
     </style>
 
     <style name="AppTheme.Starting" parent="AppTheme">

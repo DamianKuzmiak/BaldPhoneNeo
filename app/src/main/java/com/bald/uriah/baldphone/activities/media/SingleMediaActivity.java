@@ -34,6 +34,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.Pools;
 
+import app.baldphone.neo.utils.IntentUtilsKt;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.adapters.BaldViewAdapter;
@@ -98,7 +100,7 @@ public abstract class SingleMediaActivity extends BaldActivity {
         delete.setOnClickListener((v) ->
                 mediaPagerAdapter.delete(viewPagerHolder.getPageIndex()));
         share.setOnClickListener((v) ->
-                S.share(this, mediaPagerAdapter.share(viewPagerHolder.getPageIndex())));
+                IntentUtilsKt.share(this, mediaPagerAdapter.share(viewPagerHolder.getPageIndex())));
         more.setOnClickListener((more) -> {
             more.setVisibility(View.GONE);
             optionsBar.setVisibility(View.VISIBLE);

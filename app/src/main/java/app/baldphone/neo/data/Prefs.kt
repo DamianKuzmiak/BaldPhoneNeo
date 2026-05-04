@@ -63,11 +63,14 @@ object Prefs {
             }
             // Fallback to legacy boolean flags
             return when {
-                prefs.getBoolean(PrefKeys.KEY_TOUCH_NOT_HARD, true) -> AccessibilityLevel.BASIC
+                prefs.getBoolean(
+                    PrefKeys.KEY_TOUCH_NOT_HARD,
+                    !BPrefs.LONG_PRESSES_DEFAULT_VALUE
+                ) -> AccessibilityLevel.BASIC
 
                 prefs.getBoolean(
                     PrefKeys.KEY_LONG_PRESSES_SHORTER,
-                    false,
+                    BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE
                 ) -> AccessibilityLevel.ENHANCED
 
                 else -> AccessibilityLevel.FULL
