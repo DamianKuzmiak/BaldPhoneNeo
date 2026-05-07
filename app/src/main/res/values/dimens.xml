@@ -54,4 +54,10 @@
     <dimen name="bald_button_corners_radius">12dp</dimen>
     <dimen name="bald_button_pill_corners_radius">500dp</dimen>
     <dimen name="bald_stroke_size">1dp</dimen>
+
+    <dimen name="snackbar_corner_radius">20dp</dimen>
+    <dimen name="snackbar_text_size">20sp</dimen>
+    <dimen name="snackbar_margin">12dp</dimen>
+    <dimen name="snackbar_icon_padding">12dp</dimen>
+    <dimen name="snackbar_icon_size">32dp</dimen>
 </resources>

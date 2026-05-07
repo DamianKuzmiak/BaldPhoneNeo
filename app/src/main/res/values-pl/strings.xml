@@ -85,9 +85,15 @@
     <string name="clock">Zegar</string>
     <string name="coming_soon">Wkrótce!</string>
     <string name="connection_settings">Sieci bezprzewodowe</string>
+
     <string name="contact_must_has_name">Kontakt musi mieć nazwę</string>
-    <string name="contact_not_created">Nie udało się utworzyć kontaktu</string>
     <string name="contact_details">Kontakt</string>
+    <string name="contact_not_created">Nie udało się utworzyć kontaktu</string>
+    <string name="contact_added_to_home">Kontakt dodany do ekranu głównego</string>
+    <string name="contact_removed_from_home">Kontakt usunięty z ekranu głównego</string>
+    <string name="contact_added_to_favorites">Kontakt dodany do ulubionych</string>
+    <string name="contact_removed_from_favorites">Kontakt usunięty z ulubionych</string>
+
     <string name="contacts">Kontakty</string>
     <string name="search_contact">Szukaj kontaktów po nazwie</string>
     <string name="contacts_read_subtext">To uprawnienie jest wymagane, aby odczytać kontakty.</string>

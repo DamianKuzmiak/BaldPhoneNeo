@@ -72,4 +72,10 @@
 
     <!-- Ripple Colors -->
     <color name="ripple">#000000</color>
+
+    <!-- Snackbar colors -->
+    <color name="toast_error">#FF6B6B</color>
+    <color name="toast_info">#4FC3F7</color>
+    <color name="toast_success">#81C784</color>
+    <color name="toast_warning">#FFD54F</color>
 </resources>

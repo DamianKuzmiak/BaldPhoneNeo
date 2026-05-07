@@ -21,7 +21,7 @@ import app.baldphone.neo.contacts.ui.ContactAdapter
 import app.baldphone.neo.contacts.ui.details.ContactDetailsActivity
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.RuntimePermission
-import app.baldphone.neo.utils.baldAlertDialog
+import app.baldphone.neo.ui.dialogs.baldDialog
 import app.baldphone.neo.viewmodels.ContactsViewModel
 
 import com.bald.uriah.baldphone.R
@@ -155,7 +155,7 @@ class ContactsActivity : BaseActivity() {
      * Cancelling dismisses the dialog and keeps the list open.
      */
     private fun showPickerConfirmation(contact: SimpleContact) {
-        baldAlertDialog {
+        baldDialog {
             setTitle(contact.name)
             setMessage(getString(R.string.add_as_an_emergency_contact, contact.name))
             setPositiveButton(android.R.string.ok) { _ ->

@@ -27,4 +27,10 @@
     <color name="bald_text_on_button_positive">#FFFFFF</color>
 
     <color name="ripple">#ffffff</color>
+
+    <!-- Snackbar colors -->
+    <color name="toast_error">#690005</color>
+    <color name="toast_info">#004D61</color>
+    <color name="toast_success">#1B5E20</color>
+    <color name="toast_warning">#AF6000</color>
 </resources>

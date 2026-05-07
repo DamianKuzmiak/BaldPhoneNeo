@@ -7,15 +7,14 @@ import android.os.Bundle
 import androidx.core.net.toUri
 
 import app.baldphone.neo.Constants
+import app.baldphone.neo.ui.dialogs.showErrorSnackbar
+import app.baldphone.neo.ui.dialogs.showWarningSnackbar
 import app.baldphone.neo.utils.getDeviceInfoFull
 
 import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.activities.BaldActivity
 import com.bald.uriah.baldphone.databinding.ActivityFeedbackBinding
-import com.bald.uriah.baldphone.utils.BaldToast
 
-class FeedbackActivity : BaldActivity() {
-
+class FeedbackActivity : BaseActivity() {
     private lateinit var binding: ActivityFeedbackBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +30,7 @@ class FeedbackActivity : BaldActivity() {
     private fun sendFeedback() {
         val message = binding.feedbackInput.text.toString().trim()
         if (message.isEmpty()) {
-            BaldToast.from(this).setType(BaldToast.TYPE_INFORMATIVE)
-                .setText(R.string.feedback_cannot_be_empty).show()
+            showWarningSnackbar(R.string.feedback_cannot_be_empty)
             return
         }
         val body = buildString {
@@ -64,11 +62,7 @@ class FeedbackActivity : BaldActivity() {
             val finalIntent = Intent.createChooser(intent, chooserTitle)
             startActivity(finalIntent)
         } catch (_: ActivityNotFoundException) {
-            BaldToast.error(this, R.string.feedback_no_email_app_found)
+            showErrorSnackbar(R.string.feedback_no_email_app_found)
         }
-    }
-
-    override fun requiredPermissions(): Int {
-        return PERMISSION_NONE
     }
 }

@@ -15,7 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 
-import app.baldphone.neo.utils.AppDialog
+import app.baldphone.neo.ui.dialogs.BaldDialog
 
 import com.bald.uriah.baldphone.R
 
@@ -29,7 +29,7 @@ class PermissionFragment : Fragment() {
 
     private val viewModel: PermissionViewModel by viewModels()
 
-    private var dialog: AppDialog? = null
+    private var dialog: BaldDialog? = null
 
     private val runtimeLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
@@ -245,7 +245,7 @@ class PermissionFragment : Fragment() {
         if (!isAdded) return
 
         closeDialog()
-        dialog = AppDialog.Builder(requireContext())
+        dialog = BaldDialog.Builder(requireContext())
             .setTitle(permission.titleRes)
             .setMessage(messageRes)
             .setPositiveButton(R.string.allow) { onPositive() }

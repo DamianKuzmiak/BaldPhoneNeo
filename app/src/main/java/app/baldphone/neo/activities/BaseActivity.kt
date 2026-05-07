@@ -16,7 +16,7 @@ import java.util.ArrayDeque
 
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.extensions.applyStatusBarSettings
-import app.baldphone.neo.utils.baldAlertDialog
+import app.baldphone.neo.ui.dialogs.baldDialog
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.utils.D
@@ -123,7 +123,7 @@ abstract class BaseActivity :
 
     private fun showAccidentalTouchDialog() {
         isAccidentalDialogShowing = true
-        baldAlertDialog {
+        baldDialog {
             setTitle(R.string.accidental_touches)
             setMessage(R.string.accidental_touches_subtext)
             setCancelable(false)

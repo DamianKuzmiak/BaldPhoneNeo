@@ -19,7 +19,6 @@ package com.bald.uriah.baldphone.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
-import app.baldphone.neo.utils.ContextUtilsKt;
+import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 
 import com.bald.uriah.baldphone.R;
 
@@ -86,23 +85,16 @@ public class BaldToast {
     }
 
     public static void error(Context context) {
-        error(context, R.string.an_error_has_occurred);
+        CharSequence defaultMessage = context.getText(R.string.an_error_has_occurred);
+        BaldSnackbar.INSTANCE.show(context, defaultMessage, BaldSnackbar.TYPE_ERROR, BaldSnackbar.LENGTH_LONG);
     }
 
     public static void error(@NonNull Context context, CharSequence text) {
-        BaldToast.from(context).setText(text).setType(TYPE_ERROR).show();
+        BaldSnackbar.INSTANCE.show(context, text, BaldSnackbar.TYPE_ERROR, BaldSnackbar.LENGTH_LONG);
     }
 
-    public static void error(@NonNull Context context, @StringRes int resId) {
-        BaldToast.from(context).setText(resId).setType(TYPE_ERROR).show();
-    }
-
-    public static void simple(Context context, CharSequence text) {
-        BaldToast.from(context).setText(text).setType(TYPE_DEFAULT).show();
-    }
-
-    public static void simple(Context context, @StringRes int resId) {
-        BaldToast.from(context).setText(context.getText(resId)).setType(TYPE_DEFAULT).show();
+    public static void simple(@NonNull Context context, @StringRes int resId) {
+        BaldSnackbar.INSTANCE.show(context, context.getText(resId), BaldSnackbar.TYPE_INFO, BaldSnackbar.LENGTH_LONG);
     }
 
     public static void longer(Context context) {

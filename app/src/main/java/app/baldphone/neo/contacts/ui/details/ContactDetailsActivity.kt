@@ -20,17 +20,21 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 
-import app.baldphone.neo.calls.CallManager
-import app.baldphone.neo.contacts.Contact
-import app.baldphone.neo.utils.messaging.SignalHandler
-import app.baldphone.neo.utils.messaging.WhatsAppHandler
-import app.baldphone.neo.views.menu.ActionMenu
-import app.baldphone.neo.views.menu.ActionMenuItem
+import kotlinx.coroutines.launch
 
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.error
 import coil3.request.fallback
+
+import app.baldphone.neo.calls.CallManager
+import app.baldphone.neo.contacts.Contact
+import app.baldphone.neo.ui.dialogs.showErrorSnackbar
+import app.baldphone.neo.ui.dialogs.showSuccessSnackbar
+import app.baldphone.neo.utils.messaging.SignalHandler
+import app.baldphone.neo.utils.messaging.WhatsAppHandler
+import app.baldphone.neo.views.menu.ActionMenu
+import app.baldphone.neo.views.menu.ActionMenuItem
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.BaldActivity
@@ -42,10 +46,8 @@ import com.bald.uriah.baldphone.databinding.ContactHistoryBinding
 import com.bald.uriah.baldphone.databinding.ItemContactFieldBinding
 import com.bald.uriah.baldphone.utils.BDB
 import com.bald.uriah.baldphone.utils.BDialog
-import com.bald.uriah.baldphone.utils.BaldToast
 import com.bald.uriah.baldphone.utils.S
 import com.bald.uriah.baldphone.views.BaldImageButton
-import kotlinx.coroutines.launch
 
 /** Activity for viewing and interacting with a single contact. */
 class ContactDetailsActivity : BaldActivity() {
@@ -59,7 +61,7 @@ class ContactDetailsActivity : BaldActivity() {
         val lookupKey = intent.getStringExtra(CONTACT_LOOKUP_KEY)
         if (lookupKey.isNullOrEmpty()) {
             Log.e(TAG, "Missing contactLookupKey from intent: $intent")
-            BaldToast.error(this, R.string.an_error_has_occurred)
+            showErrorSnackbar(R.string.an_error_has_occurred)
             finish()
             return
         }
@@ -289,14 +291,36 @@ class ContactDetailsActivity : BaldActivity() {
 
     private fun onMenuAction(item: ActionMenuItem) {
         when (item.id) {
-            ACTION_EDIT -> editContactDetails()
-            ACTION_SHARE -> shareContact()
-            ACTION_DELETE -> showDeleteConfirmationDialog()
-            ACTION_FAVORITE -> viewModel.toggleFavorite()
+            ACTION_EDIT -> {
+                editContactDetails()
+            }
+
+            ACTION_SHARE -> {
+                shareContact()
+            }
+
+            ACTION_DELETE -> {
+                showDeleteConfirmationDialog()
+            }
+
+            ACTION_FAVORITE -> {
+                viewModel.toggleFavorite()
+                val toggle = item as? ActionMenuItem.Toggle
+                val resId =
+                    if (toggle?.checked == true) {
+                        R.string.contact_added_to_favorites
+                    } else {
+                        R.string.contact_removed_from_favorites
+                    }
+                showSuccessSnackbar(resId)
+            }
+
             ACTION_HOME -> {
                 viewModel.toggleHomeScreenPin()
                 val toggle = item as? ActionMenuItem.Toggle
-                BaldToast.simple(applicationContext, "Home updated: ${toggle?.checked}")
+                val resId =
+                    if (toggle?.checked == true) R.string.contact_added_to_home else R.string.contact_removed_from_home
+                showSuccessSnackbar(resId)
             }
         }
     }
@@ -344,7 +368,7 @@ class ContactDetailsActivity : BaldActivity() {
     }
 
     private fun showErrorToast(message: CharSequence) {
-        BaldToast.from(this).setType(BaldToast.TYPE_ERROR).setText(message).show()
+        showErrorSnackbar(message)
     }
 
     override fun requiredPermissions() = PERMISSION_NONE

@@ -4,21 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 
 import app.baldphone.neo.Constants
+import app.baldphone.neo.ui.dialogs.showInfoSnackbar
 import app.baldphone.neo.utils.copyToClipboard
 import app.baldphone.neo.utils.getDeviceInfoFull
 import app.baldphone.neo.utils.openUrl
 
 import com.bald.uriah.baldphone.BuildConfig
 import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.activities.BaldActivity
 import com.bald.uriah.baldphone.activities.CreditsActivity
 import com.bald.uriah.baldphone.databinding.ActivityAboutBinding
 import com.bald.uriah.baldphone.utils.BDB
 import com.bald.uriah.baldphone.utils.BDialog
-import com.bald.uriah.baldphone.utils.BaldToast
 
-class AboutActivity : BaldActivity() {
-
+class AboutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityAboutBinding.inflate(layoutInflater)
@@ -41,7 +39,7 @@ class AboutActivity : BaldActivity() {
     }
 
     private fun showSoonPopup() {
-        BaldToast.simple(this, R.string.coming_soon)
+        showInfoSnackbar(R.string.coming_soon)
     }
 
     private fun showTechnicalInfoDialog() {
@@ -53,9 +51,5 @@ class AboutActivity : BaldActivity() {
                 copyToClipboard("Device Info", deviceInfo)
                 false
             }.show()
-    }
-
-    override fun requiredPermissions(): Int {
-        return PERMISSION_NONE
     }
 }
