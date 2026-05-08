@@ -6,15 +6,35 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="app.baldphone.neo.settings.ui.SettingsFragment"
-        android:label="@string/settings">
+        android:label="@string/neo_settings">
         <action
-            android:id="@+id/action_to_calls"
+            android:id="@+id/action_settings_to_calls"
             app:destination="@id/callsSettingsFragment" />
+        <action
+            android:id="@+id/action_settings_to_system"
+            app:destination="@id/systemSettingsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/callsSettingsFragment"
         android:name="app.baldphone.neo.settings.ui.CallsSettingsFragment"
         android:label="@string/settings_section_calls">
+    </fragment>
+
+    <!-- SYSTEM -->
+    <fragment
+        android:id="@+id/systemSettingsFragment"
+        android:name="app.baldphone.neo.settings.system.SystemSettingsFragment"
+        android:label="@string/settings_system">
+        <action
+            android:id="@+id/action_system_to_permissions"
+            app:destination="@id/permissionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="app.baldphone.neo.settings.system.PermissionsFragment"
+        android:label="@string/permissions_part">
+        <deepLink app:uri="myapp://settings/system/permissions" />
     </fragment>
 </navigation>

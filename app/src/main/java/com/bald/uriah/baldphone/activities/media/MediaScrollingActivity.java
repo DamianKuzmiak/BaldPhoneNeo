@@ -58,8 +58,7 @@ public abstract class MediaScrollingActivity extends BaldActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!checkPermissions(this, requiredPermissions()))
-            return;
+
         setContentView(R.layout.activity_media_scrolling);
 
         final Intent callingIntent = getIntent();

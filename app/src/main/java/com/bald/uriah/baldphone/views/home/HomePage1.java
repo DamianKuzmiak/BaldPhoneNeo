@@ -48,7 +48,10 @@ import app.baldphone.neo.activities.DialerActivity;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
+import app.baldphone.neo.permissions.PermissionManager;
+import app.baldphone.neo.permissions.model.SpecialPermission;
 import app.baldphone.neo.services.DeviceLock;
+import app.baldphone.neo.ui.dialogs.BaldDialog;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
 import com.bald.uriah.baldphone.R;
@@ -389,36 +392,24 @@ public class HomePage1 extends HomeView {
                 case FAILURE:
                     // System reports failure despite the service being technically enabled.
                     // Prompt user to re-enable to fix the internal state.
-                    showAccessibilityDialog(
-                            R.string.accessibility_permission_check_title,
-                            R.string.accessibility_permission_check_message
-                    );
+                    new BaldDialog.Builder(homeScreen)
+                        .setTitle(R.string.accessibility_permission_check_title)
+                        .setMessage(R.string.accessibility_permission_check_message)
+                        .setPositiveButton(R.string.dialog_button_enable, dialog -> {
+                            openAccessibilitySettings();
+                            return kotlin.Unit.INSTANCE;
+                        })
+                        .setNegativeButton(R.string.dialog_button_not_now, null)
+                        .show();
                     break;
                 case ACCESS_DENIED:
                     // Permission missing.
-                    showAccessibilityDialog(
-                            R.string.accessibility_permission_dialog_title,
-                            R.string.accessibility_permission_dialog_message
+                    PermissionManager.checkOrRequest(
+                        homeScreen, SpecialPermission.Accessibility.INSTANCE, result1 -> {}
                     );
                     break;
             }
         });
-    }
-
-    /**
-     * Helper to show the accessibility permission dialog with dynamic text.
-     */
-    private void showAccessibilityDialog(int titleRes, int subTextRes) {
-        BDB.from(homeScreen)
-                .setTitle(titleRes)
-                .setSubText(subTextRes)
-                .setPositiveCustomText(R.string.dialog_button_enable)
-                .setNegativeCustomText(R.string.dialog_button_not_now)
-                .setPositiveButtonListener(params -> {
-                    openAccessibilitySettings();
-                    return true;
-                })
-                .show();
     }
 
     private void openAccessibilitySettings() {

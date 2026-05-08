@@ -19,7 +19,8 @@ import com.bald.uriah.baldphone.R
 class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
     private val items =
         listOf(
-            Item(SettingId.Calls, R.string.settings_section_calls, R.drawable.phone_on_button)
+            Item(SettingId.Calls, R.string.settings_section_calls, R.drawable.phone_on_button),
+            Item(SettingId.System, R.string.settings_system, R.drawable.settings_on_button)
         )
 
     override fun onViewCreated(
@@ -45,7 +46,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
         @IdRes
         val actionId =
             when (id) {
-                is SettingId.Calls -> R.id.action_to_calls
+                is SettingId.Calls -> R.id.action_settings_to_calls
+                is SettingId.System -> R.id.action_settings_to_system
             }
         findNavController().navigate(actionId)
     }

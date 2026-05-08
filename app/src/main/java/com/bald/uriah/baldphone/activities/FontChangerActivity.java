@@ -34,6 +34,8 @@ import com.bald.uriah.baldphone.R;
 
 import static com.bald.uriah.baldphone.activities.SettingsActivity.FONT_SIZES;
 
+import app.baldphone.neo.permissions.PermissionManager;
+
 public class FontChangerActivity extends BaldActivity {
     private static final String TAG = FontChangerActivity.class.getSimpleName();
     private static final int[] STRING_RES = new int[]{R.string.tiny, R.string.small, R.string.medium, R.string.large, R.string.huge};
@@ -44,6 +46,13 @@ public class FontChangerActivity extends BaldActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_font);
+
+        PermissionManager.checkOrRequest(this, PermissionManager.WRITE_SETTINGS, result -> {
+            if (result != PermissionManager.GRANTED) {
+                finish();
+            }
+        });
+
         final SeekBar fontSeekBar = findViewById(R.id.font_seek_bar);
         example = findViewById(R.id.example);
         showExamples(this);
@@ -93,10 +102,5 @@ public class FontChangerActivity extends BaldActivity {
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, newContext.getResources().getDimension(SIZES_RES[i]));
             example.addView(textView);
         }
-    }
-
-    @Override
-    protected int requiredPermissions() {
-        return PERMISSION_WRITE_SETTINGS;
     }
 }

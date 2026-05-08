@@ -60,7 +60,6 @@
     <string name="at_least_one_day_must_be_selected">Należy wybrać co najmniej jeden dzień</string>
     <string name="auto_brightness">Jasność\nAutomatyczna</string>
     <string name="backspace">Cofnij</string>
-    <string name="baldphone_bla_allow_permission">Wymagane są następujące uprawnienia:</string>
     <string name="blocked">Zablokowane</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Jasność</string>
@@ -70,7 +69,6 @@
     <string name="call">Zadzwoń</string>
     <string name="calling">Dzwonienie…</string>
     <string name="call_log">Rejestr połączeń:</string>
-    <string name="call_subtext">To uprawnienie jest wymagane, aby dzwonić do kontaktów.</string>
     <string name="call_dialog_title">Zadzwonić?</string>
     <string name="call_dialog_confirm">Tak, zadzwoń</string>
     <string name="call_settings_title">Zachowanie połączeń</string>
@@ -83,10 +81,8 @@
     <string name="setting_confirm_before_calling_desc_off">Telefon dzwoni od razu</string>
 
     <string name="camera">Aparat</string>
-    <string name="camera_subtext">To uprawnienie jest wymagane, aby włączyć latarkę.</string>
     <string name="cancel">Anuluj</string>
     <string name="change_pills_time">Zmień godzinę przypomnienia</string>
-    <string name="change_system_settings_subtext">Zezwól BaldPhone na zmianę ustawień systemowych, takich jak rozmiar czcionki i jasność ekranu.</string>
     <string name="choose_friday">Pt</string>
     <string name="choose_monday">Pn</string>
     <string name="choose_saturday">So</string>
@@ -115,8 +111,6 @@
 
     <string name="contacts">Kontakty</string>
     <string name="search_contact">Szukaj kontaktów po nazwie</string>
-    <string name="contacts_read_subtext">To uprawnienie jest wymagane, aby odczytać kontakty.</string>
-    <string name="contacts_subtext">To uprawnienie jest wymagane, aby dodać nowe kontakty.</string>
     <string name="crash">Coś poszło nie tak.\nPonowne uruchomienie za kilka sekund…</string>
     <string name="current_time">Aktualny czas</string>
     <string name="custom">Niestandardowy</string>
@@ -136,13 +130,10 @@
     <string name="down">W dół</string>
     <string name="edit">Edytuj</string>
     <string name="email">E-mail:</string>
-    <string name="enable_notification_access">Włącz dostęp do powiadomień</string>
-    <string name="enable_notification_access_subtext">Proszę zezwolić na dostęp do powiadomień.</string>
     <string name="enter">Enter</string>
     <string name="enter_contact_or_phone_number">Wpisz nazwę kontaktu:</string>
     <string name="evening">Wieczór</string>
     <string name="example_of_different_text_sizes">Przykład różnych rozmiarów czcionki.\nTen tekst powinien być czytelny i nie powinien się zawijać.</string>
-    <string name="external_storage_subtext">To uprawnienie jest wymagane do zapisywania zdjęć.</string>
     <string name="favorites">Ulubione</string>
     <string name="feedback">Wyślij opinię</string>
     <string name="feedback_cannot_be_empty">Opinia nie może być pusta</string>
@@ -208,8 +199,6 @@
     <string name="pills">Leki</string>
     <string name="press_longer">Przytrzymaj dłużej</string>
     <string name="timer">Minutnik</string>
-    <string name="read_call_log">Odczyt rejestru połączeń</string>
-    <string name="read_call_log_subtext">To uprawnienie jest wymagane, aby wyświetlić rejestr połączeń.</string>
     <string name="read_contacts">Odczyt kontaktów</string>
     <string name="received">Odebrane</string>
     <string name="recent">Ostatnie</string>
@@ -230,6 +219,8 @@
     <string name="set_keyboard">Ustaw klawiaturę</string>
     <string name="setting_does_not_exist">Ustawienie nie istnieje</string>
     <string name="settings">Ustawienia</string>
+    <string name="neo_settings">Ustawienia Neo</string>
+    <string name="settings_system">Inne opcje</string>
     <string name="settings_permission">Uprawnienia</string>
     <string name="share">Udostępnij</string>
     <string name="share_actual_text">Cześć, używam aplikacji BaldPhone, która sprawia, że interfejs telefonu jest duży, prosty i przyjazny.\nZainteresowany/a?\nTa aplikacja jest darmowa!\nKliknij poniższy link, aby dowiedzieć się więcej:\nhttps://baldphone.com</string>
@@ -288,8 +279,6 @@
     <string name="wifi">Wi-Fi</string>
     <string name="will_repeat_only_once">Powtórzy się tylko raz!</string>
     <string name="write">Napisz</string>
-    <string name="write_contacts">Zapisz kontakty</string>
-    <string name="write_external_storage">Zapis do pamięci zewnętrznej</string>
     <string name="yes">Tak</string>
     <string name="yesterday">Wczoraj</string>
     <string name="nothing">Nic</string>
@@ -298,7 +287,6 @@
     <string name="no_pills">Brak przypomnień\nDodaj nowe przypomnienie</string>
     <string name="clear_all_notifications">Wyczyść wszystkie powiadomienia</string>
     <string name="clear_cache_subtext">Czy na pewno chcesz wyczyścić pamięć podręczną? Skróty aplikacji zostaną usunięte.</string>
-    <string name="permissions_calm">Witaj, BaldPhone potrzebuje następujących uprawnień do działania.\nNiektóre z nich mogą wydawać się zbędne, ale są konieczne, aby BaldPhone mógł zastąpić interfejs telefonu.\nŻadne dane nie są wysyłane. Naciśnij OK, aby przyznać uprawnienia, lub Anuluj, aby wyjść.</string>
     <string name="what_s_new">Co nowego</string>
     <string name="what_do_you_want_to_do_with___">Co chcesz zrobić z %s?</string>
     <string name="crash_reports">Raporty o awariach</string>
@@ -372,8 +360,6 @@
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Zablokuj ekran</string>
-    <string name="accessibility_permission_dialog_title">Wymagane uprawnienie</string>
-    <string name="accessibility_permission_dialog_message">Aby zablokować ekran jednym dotknięciem, BaldPhone Neo potrzebuje uprawnienia Ułatwień Dostępu.\nTo bezpieczne i używane tylko do tej funkcji.</string>
     <string name="accessibility_permission_check_title">Sprawdzenie uprawnienia</string>
     <string name="accessibility_permission_check_message">Potrzebny jest reset Ułatwień Dostępu: wyłącz BaldPhone Neo, a potem włącz go ponownie.</string>
     <string name="dialog_button_not_now">Nie teraz</string>

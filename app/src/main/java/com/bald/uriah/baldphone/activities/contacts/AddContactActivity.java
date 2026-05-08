@@ -98,8 +98,7 @@ public class AddContactActivity extends BaldActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!checkPermissions(this, requiredPermissions()))
-            return;
+
         setContentView(R.layout.add__edit_conatct_activity);
         attachXml();
 

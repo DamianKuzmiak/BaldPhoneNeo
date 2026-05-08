@@ -78,8 +78,7 @@ public class TechnicalInfoActivity extends BaldActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!checkPermissions(this, requiredPermissions()))
-            return;
+
         setContentView(R.layout.activity_tech_info);
         ((TextView) findViewById(R.id.tv_info)).setText(getTechnicalInfo());
         findViewById(R.id.bt_clear_cache).setOnClickListener(v -> {

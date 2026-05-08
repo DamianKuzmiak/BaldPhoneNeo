@@ -15,6 +15,7 @@
   -->
 
 <resources>
+    <string name="onb_permissions_done">✓ All permissions granted</string>
     <string name="about">About</string>
     <string name="accessibility_level">Accessibility Level</string>
     <string name="accessibility_settings">Accessibility</string>
@@ -61,7 +62,6 @@
     <string name="at_least_one_day_must_be_selected">At least one day must be selected!</string>
     <string name="auto_brightness">Auto\nBrightness</string>
     <string name="backspace">backspace</string>
-    <string name="baldphone_bla_allow_permission">Please allow the following permissions:</string>
     <string name="blocked">Blocked</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Brightness</string>
@@ -71,7 +71,6 @@
     <string name="call">Call</string>
     <string name="calling">Calling...</string>
     <string name="call_log">Call Log:</string>
-    <string name="call_subtext">This permission is required in order to call contacts.</string>
     <string name="call_dialog_title">Make a call?</string>
     <string name="call_dialog_confirm">Call now</string>
     <string name="call_settings_title">Call Confirmation</string>
@@ -84,7 +83,6 @@
     <string name="setting_confirm_before_calling_desc_off">Calls are placed immediately without asking</string>
 
     <string name="camera">Camera</string>
-    <string name="camera_subtext">This permission is required to use the flashlight.</string>
     <string name="cancel">Cancel</string>
     <string name="change_pills_time">Change Pills Time</string>
     <string name="change_system_settings_subtext">Please allow BaldPhone to change settings, such as font size and screen brightness.</string>
@@ -117,8 +115,6 @@
 
     <string name="contacts">Contacts</string>
     <string name="search_contact">Search contact by name</string>
-    <string name="contacts_read_subtext">This permission is required in order to read contacts.</string>
-    <string name="contacts_subtext">This permission is required in order to add new contacts.</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="pasted_from_clipboard">Pasted from clipboard</string>
     <string name="crash">Something went wrong.\nRestarting in a few seconds…</string>
@@ -140,13 +136,10 @@
     <string name="down">Down</string>
     <string name="edit">Edit</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Enable Notification Access</string>
-    <string name="enable_notification_access_subtext">Please give BaldPhone access to notifications.</string>
     <string name="enter">Enter</string>
     <string name="enter_contact_or_phone_number">Enter contact name:</string>
     <string name="evening">Evening</string>
     <string name="example_of_different_text_sizes">"Example of different text sizes.\nShould be readable and not overflow."</string>
-    <string name="external_storage_subtext">This permission is required in order to save pictures.</string>
     <string name="favorites">Favorites</string>
 
     <string name="feedback">Feedback &amp; Support</string>
@@ -230,8 +223,6 @@
     <string name="pills">Pills</string>
     <string name="press_longer">Press Longer!</string>
     <string name="timer">Timer</string>
-    <string name="read_call_log">Read Call History</string>
-    <string name="read_call_log_subtext">This permission is required in order to view the call history.</string>
     <string name="read_contacts">Read contacts</string>
     <string name="received">Received</string>
     <string name="recent">Recent</string>
@@ -255,6 +246,7 @@
     <string name="setting_does_not_exist">The Setting Does Not Exist</string>
     <string name="settings">Settings</string>
     <string name="neo_settings">Neo Settings</string>
+    <string name="settings_system">More options</string>
     <string name="settings_permission">Settings Permission</string>
     <string name="share">Share</string>
     <string name="share_actual_text">Hi! I’m using an app called “BaldPhone” that replaces the phone’s interface with a simple, easy-to-use design.\nIt’s free — check it out:\nhttps://baldphone.com
@@ -313,8 +305,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">will repeat only once!</string>
     <string name="write">Write</string>
-    <string name="write_contacts">Write Contacts</string>
-    <string name="write_external_storage">Write external storage</string>
     <string name="yes">Yes</string>
     <string name="yesterday">Yesterday</string>
     <string name="nothing">Nothing</string>
@@ -322,7 +312,6 @@
     <string name="no_alarms">No Alarms\nCreate one by clicking\n\"Add Alarm\"\nOr\n\"Add Timer\"</string>
     <string name="no_pills">No Pills\nCreate one by clicking\n\"Add Pill\"</string>
     <string name="clear_all_notifications">Clear All Notifications</string>
-    <string name="permissions_calm">Hi! BaldPhone needs the following permissions to work properly.\nThey may sound scary, but they’re only used to replace your phone’s interface.\nNo personal data is collected. Press OK to continue or No to exit BaldPhone.</string>
     <string name="what_s_new">What\'s new</string>
     <string name="what_do_you_want_to_do_with___">What do you want to do with %s?</string>
     <string name="crash_reports">Crash Reports</string>
@@ -402,8 +391,6 @@
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Lock Screen</string>
-    <string name="accessibility_permission_dialog_title">Accessibility Permission Required"</string>
-    <string name="accessibility_permission_dialog_message">To enable one-tap screen lock, BaldPhone Neo needs Accessibility permission.\nIt’s safe and used only for this feature.</string>
     <string name="accessibility_permission_check_title">Accessibility Permission Check</string>
     <string name="accessibility_permission_check_message">Please restart the permission: turn the BaldPhone Neo service OFF, and then back ON.</string>
     <string name="dialog_button_not_now">Not now</string>
@@ -454,8 +441,6 @@
     <string name="dual_sim_subtext">Choose how you want to handle dual SIM calls.\nNote: Selecting “Show Options” requires additional permission.</string>
     <string name="use_default">Use Default</string>
     <string name="show_options">Show Options</string>
-    <string name="read_phone_state">Read Phone State</string>
-    <string name="read_phone_state_subtext">This permission is required in order to call from the second sim</string>
     <string name="choose_sim">Choose Sim</string>
     <string name="choose_sim_subtext">Choose the sim you want to make the call from</string>
     <string name="website">Website</string>

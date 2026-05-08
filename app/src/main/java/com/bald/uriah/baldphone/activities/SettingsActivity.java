@@ -58,6 +58,7 @@ import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
 import app.baldphone.neo.extensions.ThemeExtensions;
+import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.views.TitleBarView;
 
 import com.bald.uriah.baldphone.R;
@@ -111,8 +112,7 @@ public class SettingsActivity extends BaldActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!checkPermissions(this, requiredPermissions()))
-            return;
+
         setContentView(R.layout.activity_settings);
         sharedPreferences = getSharedPreferences(D.BALD_PREFS, MODE_PRIVATE);
         baldPrefsUtils = BaldPrefsUtils.newInstance(this);
@@ -356,13 +356,6 @@ public class SettingsActivity extends BaldActivity {
             }, R.drawable.nfc_on_button));
         connectionCategory.add(new RunnableSettingsItem(R.string.location, v -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)), R.drawable.location_on_button));
 
-        if (!checkPermissions(this, -1))
-            mainCategory.add(
-                    new RunnableSettingsItem(R.string.grant_all_permissions,
-                            v -> startActivity(new Intent(this, PermissionActivity.class)),
-                            R.drawable.grant_all_permissions_on_button)
-            );
-
         // TODO: [Crash Reporting] Restore crash reporting setting.
         // Temporarily disabled pending implementation of a new logging/error reporting system.
 //        mainCategory.add(
@@ -553,13 +546,22 @@ public class SettingsActivity extends BaldActivity {
             brightness[0] = 50;
         });
 
-        final SettingsItem brightnessSettingsItem = new BDBSettingsItem(R.string.brightness,
-                BDB.from(this)
-                        .addFlag(BDialog.FLAG_OK)
-                        .setTitle(R.string.brightness)
-                        .setSubText(R.string.brightness_subtext)
-                        .setPositiveButtonListener(params -> true)
-                        .setExtraView(brightnessSeekBarHolder), R.drawable.brightness_on_button
+        final SettingsItem brightnessSettingsItem = new RunnableSettingsItem(
+            R.string.brightness,
+            v -> {
+                PermissionManager.checkOrRequest(this, PermissionManager.WRITE_SETTINGS, result -> {
+                    if (result == PermissionManager.GRANTED) {
+                        BDB.from(this)
+                            .addFlag(BDialog.FLAG_OK)
+                            .setTitle(R.string.brightness)
+                            .setSubText(R.string.brightness_subtext)
+                            .setPositiveButtonListener(params -> true)
+                            .setExtraView(brightnessSeekBarHolder)
+                            .show();
+                    }
+                });
+            },
+            R.drawable.brightness_on_button
         );
         displayCategory.add(brightnessSettingsItem);
     }

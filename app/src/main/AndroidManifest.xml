@@ -144,10 +144,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.PermissionActivity"
-            android:exported="false"
-            android:label="Permissions" />
-        <activity
             android:name="app.baldphone.neo.features.calls.ui.RecentCallsActivity"
             android:exported="false"
             android:label="@string/recent_calls" />

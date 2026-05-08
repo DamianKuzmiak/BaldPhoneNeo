@@ -1,4 +1,4 @@
-package app.baldphone.neo.settings.ui
+package app.baldphone.neo.settings
 
 import android.os.Bundle
 

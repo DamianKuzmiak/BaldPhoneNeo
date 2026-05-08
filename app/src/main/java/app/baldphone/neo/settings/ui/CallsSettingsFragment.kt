@@ -3,9 +3,8 @@ package app.baldphone.neo.settings.ui
 import android.os.Bundle
 import android.view.View
 
-import androidx.fragment.app.Fragment
-
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.settings.BaseSettingsFragment
 import app.baldphone.neo.views.SettingsSwitchButton
 
 import com.bald.uriah.baldphone.R
