@@ -19,6 +19,7 @@ object PrefKeys {
 
     // Haptic feedback
     const val KEY_VIBRATION_FEEDBACK = BPrefs.VIBRATION_FEEDBACK_KEY
+    const val KEY_VIBRATION_DURATION = "vibration_duration"
 
     // Dialer
     const val KEY_CALL_CONFIRMATION = "CALL_CONFIRMATION_KEY"

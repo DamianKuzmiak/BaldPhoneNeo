@@ -27,6 +27,7 @@ import coil3.util.Logger
 import net.danlew.android.joda.JodaTimeAndroid
 
 import app.baldphone.neo.core.assisttouch.AssistTouchInjector
+import app.baldphone.neo.core.system.HapticManager
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
@@ -70,6 +71,7 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
             ReminderScheduler.reStartReminders(this@NeoApp)
         }
 
+        HapticManager.init(this)
         TouchGuardManager.init(this)
 
         // Apps handling

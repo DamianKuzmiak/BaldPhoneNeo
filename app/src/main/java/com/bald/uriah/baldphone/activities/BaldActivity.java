@@ -19,21 +19,17 @@ package com.bald.uriah.baldphone.activities;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.widget.PopupWindow;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-
-import app.baldphone.neo.data.Prefs;
 
 /**
  * the parent of all of the activitys in this app.
@@ -52,7 +48,7 @@ public abstract class BaldActivity extends AppCompatActivity {
         PERMISSION_SYSTEM_ALERT_WINDOW = 0b1000000000000;
 
     public boolean testing = false;
-    protected Vibrator vibrator;
+
     private List<WeakReference<Dialog>> dialogsToClose = new ArrayList<>(1);
     private List<WeakReference<PopupWindow>> popupWindowsToClose = new ArrayList<>(1);
 
@@ -61,9 +57,6 @@ public abstract class BaldActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final SharedPreferences sharedPreferences = BPrefs.get(this);
         testing = sharedPreferences.getBoolean(BPrefs.TEST_KEY, BPrefs.TEST_DEFAULT_VALUE);
-
-        vibrator = Prefs.isVibrationFeedbackEnabled()
-                ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
     }
 
     @Override
@@ -81,13 +74,6 @@ public abstract class BaldActivity extends AppCompatActivity {
         }
 
         super.onPause();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (vibrator != null)
-            vibrator.vibrate(D.vibetime);
-        super.onBackPressed();
     }
 
     public void autoDismiss(Dialog dialog) {

@@ -101,6 +101,11 @@ object Prefs {
     )
 
     /**
+     * Duration of the vibration feedback in milliseconds.
+     */
+    var vibrationDuration: Int by intPref(PrefKeys.KEY_VIBRATION_DURATION, 50)
+
+    /**
      * Timeout for short press (longer press) duration in milliseconds.
      */
     @JvmStatic

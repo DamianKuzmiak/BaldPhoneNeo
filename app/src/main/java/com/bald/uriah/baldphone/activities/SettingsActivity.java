@@ -378,8 +378,6 @@ public class SettingsActivity extends BaldActivity {
     private boolean goBack() {
         if (currentCategory == mainCategory)
             return false;
-        if (vibrator != null)
-            vibrator.vibrate(D.vibetime);
 
         newCategory(mainCategory);
         return true;

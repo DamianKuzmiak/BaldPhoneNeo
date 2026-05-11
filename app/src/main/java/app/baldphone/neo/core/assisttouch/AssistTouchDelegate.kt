@@ -12,7 +12,7 @@ import android.view.ViewConfiguration
 /**
  * Attach to any View to implement AssistTouch:
  * - < minTapMs          -> "too short" (global callback via manager)
- * - [minTapMs, longMs]  -> normal click (performClick())
+ * - [minTapMs, longMs]  -> normal click (feedbackTap())
  * - >= longMs           -> long press (fires while finger is down via performLongClick())
  *
  * Automatically cleans up when view is detached for memory safety.
