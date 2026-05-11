@@ -49,7 +49,6 @@ import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BaldToast;
-import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
 import com.bald.uriah.baldphone.views.BaldImageButton;
 import com.bald.uriah.baldphone.views.BaldTitleBar;
@@ -431,8 +430,6 @@ public class AddContactActivity extends BaldActivity {
         if (safeToExit())
             super.onBackPressed();
         else {
-            if (vibrator != null)
-                vibrator.vibrate(D.vibetime);
             showExitMessage();
         }
     }

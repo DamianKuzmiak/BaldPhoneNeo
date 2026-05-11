@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.ViewGroup
 
 import androidx.activity.ComponentActivity
+import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat.getInsetsController
@@ -25,6 +26,7 @@ import coil3.memory.MemoryCache
 import coil3.util.DebugLogger
 import net.danlew.android.joda.JodaTimeAndroid
 
+import app.baldphone.neo.core.system.HapticManager
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
@@ -64,6 +66,7 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
             ReminderScheduler.reStartReminders(this@NeoApp)
         }
 
+        HapticManager.init(this)
         TouchGuardManager.init(this)
 
         registerActivityLifecycleCallbacks(globalActivityLifecycleListener)
@@ -83,6 +86,21 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
 
                 if (activity is AppCompatActivity) {
                     setupStatusBar(activity)
+                }
+
+                if (activity is ComponentActivity) {
+                    activity.window.decorView.post {
+                        if (activity.isDestroyed || activity.isFinishing) return@post
+
+                        activity.onBackPressedDispatcher.addCallback(activity) {
+                            if (Prefs.isVibrationFeedbackEnabled) {
+                                HapticManager.vibrate()
+                            }
+                            isEnabled = false
+                            activity.onBackPressedDispatcher.onBackPressed()
+                            isEnabled = true
+                        }
+                    }
                 }
             }
 

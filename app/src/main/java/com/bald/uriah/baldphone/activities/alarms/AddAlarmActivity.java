@@ -19,7 +19,6 @@ package com.bald.uriah.baldphone.activities.alarms;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.text.TextUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -37,6 +36,8 @@ import com.bald.uriah.baldphone.views.BaldButton;
 import com.bald.uriah.baldphone.views.BaldNumberChooser;
 
 import org.joda.time.DateTime;
+
+import app.baldphone.neo.core.system.HapticManager;
 
 /**
  * Activity for creating\editing {@link Alarm}.
@@ -142,7 +143,7 @@ public class AddAlarmActivity extends com.bald.uriah.baldphone.activities.BaldAc
     private void genOnClickListeners() {
         bt_alarm_submit.setOnClickListener((v) -> submit());
         only_once.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (vibrator != null) vibrator.vibrate(D.vibetime);
+            HapticManager.INSTANCE.vibrate();
             if (isChecked) {
                 for (CheckBox checkBox : daysCheckBoxes)
                     checkBox.setChecked(false);
@@ -157,7 +158,7 @@ public class AddAlarmActivity extends com.bald.uriah.baldphone.activities.BaldAc
         every_day.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (vibrator != null) vibrator.vibrate(D.vibetime);
+                HapticManager.INSTANCE.vibrate();
                 if (isChecked) {
                     for (CheckBox checkBox : daysCheckBoxes)
                         checkBox.setChecked(false);
@@ -175,8 +176,7 @@ public class AddAlarmActivity extends com.bald.uriah.baldphone.activities.BaldAc
 
         for (final CheckBox checkBox : daysCheckBoxes) {
             checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (vibrator != null)
-                    vibrator.vibrate(D.vibetime);
+                HapticManager.INSTANCE.vibrate();
                 if (isChecked) {
                     only_once.setChecked(false);
                     every_day.setChecked(false);

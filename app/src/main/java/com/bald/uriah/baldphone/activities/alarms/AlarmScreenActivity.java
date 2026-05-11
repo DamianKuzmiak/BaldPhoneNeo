@@ -43,6 +43,8 @@ import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
 
+import app.baldphone.neo.core.system.HapticManager;
+
 /**
  * Alarm screen, will be called from {@link com.bald.uriah.baldphone.broadcast_receivers.AlarmReceiver}
  */
@@ -103,15 +105,13 @@ public class AlarmScreenActivity extends TimedBaldActivity {
         else tv_name.setText(name);
 
         cancel.setOnClickListener(v -> {
-            if (vibrator != null)
-                vibrator.vibrate(D.vibetime);
+            HapticManager.INSTANCE.vibrate();
             if (alarm.getName().equals(getString(R.string.timer)))
                 AlarmsDatabase.getInstance(this).alarmsDatabaseDao().delete(alarm);
             finish();
         });
         cancel.setOnLongClickListener(v -> {
-            if (vibrator != null)
-                vibrator.vibrate(D.vibetime);
+            HapticManager.INSTANCE.vibrate();
             if (alarm.getName().equals(getString(R.string.timer)))
                 AlarmsDatabase.getInstance(this).alarmsDatabaseDao().delete(alarm);
             finish();
@@ -133,9 +133,7 @@ public class AlarmScreenActivity extends TimedBaldActivity {
             e.printStackTrace();
         }
 
-        Animations.makeBiggerAndSmaller(this, cancel, () -> {
-            if (vibrator != null) vibrator.vibrate(D.vibetime);
-        });
+        Animations.makeBiggerAndSmaller(this, cancel, HapticManager.INSTANCE::vibrate);
         scheduleNextAlarm();
     }
 
@@ -167,8 +165,7 @@ public class AlarmScreenActivity extends TimedBaldActivity {
     }
 
     private void snooze() {
-        if (vibrator != null)
-            vibrator.vibrate(D.vibetime);
+        HapticManager.INSTANCE.vibrate();
         AlarmScheduler.scheduleSnooze(alarm, this);
         finish();
     }

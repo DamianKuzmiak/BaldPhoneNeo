@@ -445,8 +445,6 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "onBackPressed");
-        if (vibrator != null)
-            vibrator.vibrate(D.vibetime);
 
         if (viewPagerHolder.getViewPager().getCurrentItem() != baldPagerAdapter.startingPage) {
             viewPagerHolder.setCurrentItem(baldPagerAdapter.startingPage);

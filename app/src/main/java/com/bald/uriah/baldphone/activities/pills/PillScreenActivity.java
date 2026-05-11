@@ -41,6 +41,8 @@ import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.utils.S;
 
+import app.baldphone.neo.core.system.HapticManager;
+
 public class PillScreenActivity extends TimedBaldActivity {
     private static final String TAG = PillScreenActivity.class.getSimpleName();
 
@@ -81,13 +83,11 @@ public class PillScreenActivity extends TimedBaldActivity {
         }
 
         took.setOnClickListener(v -> {
-            if (vibrator != null)
-                vibrator.vibrate(D.vibetime);
+            HapticManager.INSTANCE.vibrate();
             finish();
         });
         took.setOnLongClickListener(v -> {
-            if (vibrator != null)
-                vibrator.vibrate(D.vibetime);
+            HapticManager.INSTANCE.vibrate();
             finish();
             return true;
         });
@@ -141,8 +141,7 @@ public class PillScreenActivity extends TimedBaldActivity {
     }
 
     private void snooze() {
-        if (vibrator != null)
-            vibrator.vibrate(D.vibetime);
+        HapticManager.INSTANCE.vibrate();
         ReminderScheduler.scheduleSnooze(reminder, this);
         finish();
     }

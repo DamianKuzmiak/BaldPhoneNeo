@@ -97,6 +97,12 @@ object Prefs {
     )
 
     /**
+     * Duration of the vibration feedback in milliseconds.
+     */
+    @get:JvmStatic
+    var vibrationDuration: Int by intPref(PrefKeys.KEY_VIBRATION_DURATION, 50)
+
+    /**
      * Protects against accidental touches by using the proximity sensor.
      */
     @JvmStatic

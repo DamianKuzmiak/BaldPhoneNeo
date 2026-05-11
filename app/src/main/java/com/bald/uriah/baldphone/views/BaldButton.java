@@ -18,13 +18,12 @@ package com.bald.uriah.baldphone.views;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import app.baldphone.neo.data.Prefs;
+import app.baldphone.neo.core.system.HapticManager;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.utils.BPrefs;
@@ -39,8 +38,7 @@ import com.bald.uriah.baldphone.utils.D;
  */
 public class BaldButton extends androidx.appcompat.widget.AppCompatTextView implements View.OnLongClickListener, View.OnClickListener, BaldButtonInterface {
     private final SharedPreferences sharedPreferences;
-    private final boolean longPresses, vibrationFeedback, longPressesShorter;
-    private final Vibrator vibrator;
+    private final boolean longPresses, longPressesShorter;
     private final BaldToast longer;
     private OnClickListener onClickListener;
     private BaldButtonTouchListener baldButtonTouchListener;
@@ -50,8 +48,6 @@ public class BaldButton extends androidx.appcompat.widget.AppCompatTextView impl
         this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
         this.longPresses = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE);
         this.longPressesShorter = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE);
-        this.vibrationFeedback = Prefs.isVibrationFeedbackEnabled();
-        this.vibrator = this.vibrationFeedback ? (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE) : null;
         longer = longPresses ? BaldToast.from(context).setText(context.getText(R.string.press_longer)).setType(BaldToast.TYPE_DEFAULT).setLength(0).build() : null;
         if (longPresses)
             if (longPressesShorter) {
@@ -71,8 +67,6 @@ public class BaldButton extends androidx.appcompat.widget.AppCompatTextView impl
         this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
         this.longPresses = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE);
         this.longPressesShorter = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE);
-        this.vibrationFeedback = Prefs.isVibrationFeedbackEnabled();
-        this.vibrator = this.vibrationFeedback ? (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE) : null;
         longer = longPresses ? BaldToast.from(context).setText(context.getText(R.string.press_longer)).setType(BaldToast.TYPE_DEFAULT).setLength(0).build() : null;
         if (longPresses)
             if (longPressesShorter) {
@@ -92,8 +86,6 @@ public class BaldButton extends androidx.appcompat.widget.AppCompatTextView impl
         this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
         this.longPresses = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE);
         this.longPressesShorter = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE);
-        this.vibrationFeedback = Prefs.isVibrationFeedbackEnabled();
-        this.vibrator = this.vibrationFeedback ? (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE) : null;
         longer = longPresses ? BaldToast.from(context).setText(context.getText(R.string.press_longer)).setType(BaldToast.TYPE_DEFAULT).setLength(0).build() : null;
         if (longPresses)
             if (longPressesShorter) {
@@ -162,7 +154,6 @@ public class BaldButton extends androidx.appcompat.widget.AppCompatTextView impl
 
     @Override
     public void vibrate() {
-        if (vibrationFeedback)
-            vibrator.vibrate(D.vibetime);
+        HapticManager.INSTANCE.vibrate();
     }
 }

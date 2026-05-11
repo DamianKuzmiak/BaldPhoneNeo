@@ -26,7 +26,6 @@ object PrefKeys {
     // Legacy BPrefs keys
     const val KEY_TOUCH_NOT_HARD = BPrefs.TOUCH_NOT_HARD_KEY
     const val KEY_LONG_PRESSES_SHORTER = BPrefs.LONG_PRESSES_SHORTER_KEY
-    const val KEY_VIBRATION_FEEDBACK = BPrefs.VIBRATION_FEEDBACK_KEY
     const val KEY_LONG_PRESSES = BPrefs.LONG_PRESSES_KEY
 
     // Dialer
@@ -44,4 +43,8 @@ object PrefKeys {
     // System / UI
     const val KEY_STATUS_BAR = BPrefs.STATUS_BAR_KEY
     const val KEY_USE_ACCIDENTAL_GUARD = "USE_ACCIDENTAL_GUARD_KEY"
+
+    // Haptic feedback
+    const val KEY_VIBRATION_FEEDBACK = BPrefs.VIBRATION_FEEDBACK_KEY
+    const val KEY_VIBRATION_DURATION = "vibration_duration"
 }

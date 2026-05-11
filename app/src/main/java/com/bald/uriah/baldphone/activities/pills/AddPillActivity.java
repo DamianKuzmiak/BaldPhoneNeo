@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -42,6 +41,8 @@ import com.bald.uriah.baldphone.views.BaldMultipleSelection;
 import com.bald.uriah.baldphone.views.BaldTitleBar;
 
 import static com.bald.uriah.baldphone.utils.BaldToast.TYPE_ERROR;
+
+import app.baldphone.neo.core.system.HapticManager;
 
 public class AddPillActivity extends BaldActivity {
     private static final String TAG = AddPillActivity.class.getSimpleName();
@@ -186,7 +187,7 @@ public class AddPillActivity extends BaldActivity {
         bt_submit.setOnClickListener((v) -> submit2());
 
         every_day.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (vibrator != null) vibrator.vibrate(D.vibetime);
+            HapticManager.INSTANCE.vibrate();
             if (isChecked) {
                 for (CheckBox checkBox : daysCheckBoxes) {
                     checkBox.setChecked(false);
@@ -203,7 +204,7 @@ public class AddPillActivity extends BaldActivity {
 
         for (final CheckBox checkBox : daysCheckBoxes) {
             checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (vibrator != null) vibrator.vibrate(D.vibetime);
+                HapticManager.INSTANCE.vibrate();
                 if (isChecked)
                     every_day.setChecked(false);
                 else {
@@ -222,7 +223,7 @@ public class AddPillActivity extends BaldActivity {
                 }
             });
             checkBox.setOnLongClickListener(v -> {
-                if (vibrator != null) vibrator.vibrate(D.vibetime);
+                HapticManager.INSTANCE.vibrate();
                 checkBox.setChecked(!checkBox.isChecked());
                 return true;
             });
