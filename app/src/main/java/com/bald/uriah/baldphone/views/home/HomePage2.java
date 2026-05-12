@@ -18,6 +18,7 @@ package com.bald.uriah.baldphone.views.home;
 
 import static android.os.Build.VERSION_CODES;
 
+import static app.baldphone.neo.utils.IntentUtilsKt.startActivityWithNewTask;
 import static app.baldphone.neo.utils.IntentUtilsKt.startActivityWithNewTaskClear;
 
 import android.content.Intent;
@@ -113,7 +114,7 @@ public class HomePage2 extends HomeView {
 
         if (bt_pills != null) {
             bt_pills.setOnClickListener(
-                    v -> homeScreen.startActivity(new Intent(getContext(), PillsActivity.class)));
+                    v -> startActivityWithNewTaskClear(getContext(), new Intent(getContext(), PillsActivity.class)));
         }
 
         if (bt_apps != null) {
@@ -129,7 +130,7 @@ public class HomePage2 extends HomeView {
 
         if (bt_alarms != null) {
             bt_alarms.setOnClickListener(
-                    v -> homeScreen.startActivity(new Intent(homeScreen, AlarmsActivity.class)));
+                    v -> startActivityWithNewTaskClear(getContext(), new Intent(homeScreen, AlarmsActivity.class)));
         }
     }
 
@@ -184,9 +185,15 @@ public class HomePage2 extends HomeView {
             }
             tv.setText(resolveInfo.loadLabel(packageManager));
             bt.setOnClickListener(v1 ->
-                    homeScreen.startActivity(
-                            packageManager.getLaunchIntentForPackage(
-                                    resolveInfo.activityInfo.applicationInfo.packageName)));
+            {
+                Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(
+                    resolveInfo.activityInfo.applicationInfo.packageName);
+                if (launchIntentForPackage != null) {
+                    startActivityWithNewTask(getContext(), launchIntentForPackage);
+                } else {
+                    showErrorMessage(v1);
+                }
+            });
         } else {
             bt.setOnClickListener(this::showErrorMessage);
         }
@@ -204,13 +211,17 @@ public class HomePage2 extends HomeView {
         viewHolder.text.setText(resolveInfo.loadLabel(packageManager));
         viewHolder.itemView.setOnClickListener(
                 v1 -> {
-                    homeScreen.startActivity(
-                            packageManager
-                                    .getLaunchIntentForPackage(
-                                            resolveInfo
-                                                    .activityInfo
-                                                    .applicationInfo
-                                                    .packageName));
+                    Intent launchIntentForPackage = packageManager
+                        .getLaunchIntentForPackage(
+                            resolveInfo
+                                .activityInfo
+                                .applicationInfo
+                                .packageName);
+                    if (launchIntentForPackage != null) {
+                        startActivityWithNewTask(getContext(), launchIntentForPackage);
+                    } else {
+                        showErrorMessage(v1);
+                    }
                     popupWindow.dismiss();
                 });
     }

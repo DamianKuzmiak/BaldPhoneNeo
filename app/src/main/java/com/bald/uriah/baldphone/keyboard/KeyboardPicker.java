@@ -23,7 +23,6 @@ import android.widget.FrameLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import app.baldphone.neo.utils.ContextUtilsKt;
 
 import com.bald.uriah.baldphone.R;
 

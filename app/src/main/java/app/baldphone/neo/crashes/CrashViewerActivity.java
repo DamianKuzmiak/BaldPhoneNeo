@@ -1,7 +1,8 @@
 package app.baldphone.neo.crashes;
 
 
-import android.content.ActivityNotFoundException;
+import static app.baldphone.neo.utils.IntentUtilsKt.startActivitySafe;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -146,13 +147,8 @@ public final class CrashViewerActivity extends BaldActivity {
     }
 
     private void shareReports(@NonNull List<File> files) {
-        Intent intent =
-                CrashReporter.createEmailIntent(this, Constants.APP_CONTACT_EMAIL, files);
-        try {
-            startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            toast("No email app available.");
-        }
+        Intent intent = CrashReporter.createEmailIntent(this, Constants.APP_CONTACT_EMAIL, files);
+        startActivitySafe(this, intent);
     }
 
     private void toast(String msg) {

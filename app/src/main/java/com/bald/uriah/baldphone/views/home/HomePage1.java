@@ -52,6 +52,7 @@ import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.permissions.model.SpecialPermission;
 import app.baldphone.neo.services.DeviceLock;
 import app.baldphone.neo.ui.dialogs.BaldDialog;
+import app.baldphone.neo.utils.IntentUtilsKt;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
 import com.bald.uriah.baldphone.R;
@@ -165,15 +166,15 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_RECENTS_KEY,
                 bt_recent,
-                v -> homeScreen.startActivity(new Intent(homeScreen, RecentCallsActivity.class)));
+                v -> IntentUtilsKt.startActivityWithNewTaskClear(homeScreen, new Intent(homeScreen, RecentCallsActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_DIALER_KEY,
                 bt_dialer,
-                v -> homeScreen.startActivity(new Intent(homeScreen, DialerActivity.class)));
+                v -> IntentUtilsKt.startActivityWithNewTaskClear(homeScreen, new Intent(homeScreen, DialerActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_CONTACTS_KEY,
                 bt_contacts,
-                v -> homeScreen.startActivity(new Intent(homeScreen, ContactsActivity.class)));
+                v -> IntentUtilsKt.startActivityWithNewTaskClear(homeScreen, new Intent(homeScreen, ContactsActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_APP_KEY,
                 bt_whatsapp,

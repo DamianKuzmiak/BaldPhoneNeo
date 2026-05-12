@@ -137,11 +137,11 @@
         </activity>
         <activity
             android:name=".activities.HomeScreenActivity"
+            android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTask"
-            android:taskAffinity=""
-            android:excludeFromRecents="true"
             android:resumeWhilePausing="true"
+            android:taskAffinity=""
             android:theme="@style/AppTheme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -152,6 +152,7 @@
         </activity>
         <activity
             android:name="app.baldphone.neo.wizard.SetupActivity"
+            android:autoRemoveFromRecents="true"
             android:exported="true" />
         <activity
             android:name="app.baldphone.neo.activities.DialerActivity"
@@ -174,8 +175,8 @@
         <activity
             android:name="app.baldphone.neo.features.contacts.ui.ContactsActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize|stateUnchanged"
-            android:label="@string/contacts" />
+            android:label="@string/contacts"
+            android:windowSoftInputMode="adjustResize|stateUnchanged" />
         <activity
             android:name="app.baldphone.neo.features.contacts.ui.ContactDetailsActivity"
             android:exported="false"
@@ -195,10 +196,12 @@
             android:label="@string/sos" />
         <activity
             android:name=".activities.SettingsActivity"
+            android:autoRemoveFromRecents="true"
             android:exported="false"
             android:label="@string/settings" />
         <activity
             android:name="app.baldphone.neo.settings.ui.SettingsActivity"
+            android:autoRemoveFromRecents="true"
             android:exported="false"
             android:label="@string/neo_settings" />
         <activity

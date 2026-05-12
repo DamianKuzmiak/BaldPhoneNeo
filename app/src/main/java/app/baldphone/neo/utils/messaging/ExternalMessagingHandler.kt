@@ -6,6 +6,8 @@ import android.content.Intent
 
 import androidx.core.net.toUri
 
+import app.baldphone.neo.utils.startActivitySafe
+
 /**
  * Interface for external messaging handlers (e.g., WhatsApp, Signal).
  * For launching the external app and starting chats.
@@ -52,13 +54,11 @@ interface ExternalMessagingHandler {
             return
         }
 
-        val webIntent = Intent(
-            Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=$packageName".toUri()
-        )
+        val webIntent = Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=$packageName".toUri())
         if (webIntent.resolveActivity(pm) != null) {
             context.launchMessagingIntent(webIntent)
         } else {
-            throw IllegalStateException("Unable to open $appName in the Play Store or browser.")
+            error("Unable to open $appName in the Play Store or browser.")
         }
     }
 }
@@ -74,8 +74,8 @@ fun Context.launchMessagingIntent(intent: Intent) {
     }
 
     if (intent.resolveActivity(packageManager) == null) {
-        throw IllegalStateException("App not installed or intent cannot be resolved.")
+        error("App not installed or intent cannot be resolved.")
     }
 
-    startActivity(intent)
+    startActivitySafe(intent)
 }

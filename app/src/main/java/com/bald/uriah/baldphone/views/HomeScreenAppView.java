@@ -24,6 +24,7 @@ import android.widget.TextView;
 import androidx.annotation.StringRes;
 
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
+import app.baldphone.neo.utils.IntentUtilsKt;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.utils.S;
@@ -52,7 +53,12 @@ public class HomeScreenAppView {
     }
 
     public void setIntent(final String contactLookupKey) {
-        child.setOnClickListener(v -> v.getContext().startActivity(new Intent(v.getContext(), ContactDetailsActivity.class).putExtra(ContactDetailsActivity.CONTACT_LOOKUP_KEY, contactLookupKey)));
+        child.setOnClickListener(v -> {
+            Intent contactDetailsIntent =
+                new Intent(v.getContext(), ContactDetailsActivity.class)
+                    .putExtra(ContactDetailsActivity.CONTACT_LOOKUP_KEY, contactLookupKey);
+            IntentUtilsKt.startActivityWithNewTaskClear(v.getContext(), contactDetailsIntent);
+        });
     }
 
     public void setVisibility(int visibility) {
