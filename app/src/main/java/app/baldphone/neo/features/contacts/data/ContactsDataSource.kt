@@ -90,6 +90,7 @@ class ContactsDataSource(
                                                 ?: unknownName
                                         ).toNormalizedLowercase(),
                                     photoUri = cursor.getString(indices.photo),
+                                    photoThumbnailUri = cursor.getString(indices.photoThumbnail),
                                     isPrimary = cursor.getInt(indices.primary) == 1,
                                     isStarred = cursor.getInt(indices.starred) == 1,
                                     phoneType = cursor.getInt(indices.type),
@@ -336,6 +337,8 @@ class ContactsDataSource(
                 val nameIdx =
                     cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
                 val photoIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)
+                val photoThumbIdx =
+                    cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)
                 val starIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)
 
                 loadContactDetails(
@@ -345,6 +348,7 @@ class ContactsDataSource(
                         cursor.getString(nameIdx)
                             ?: context.getString(android.R.string.unknownName),
                     photoUri = cursor.getString(photoIdx),
+                    photoThumbnailUri = cursor.getString(photoThumbIdx),
                     starred = cursor.getInt(starIdx) == 1
                 )
             }
@@ -355,6 +359,7 @@ class ContactsDataSource(
         key: String,
         name: String,
         photoUri: String?,
+        photoThumbnailUri: String?,
         starred: Boolean
     ): Contact {
         val phones = mutableListOf<Phone>()
@@ -416,6 +421,7 @@ class ContactsDataSource(
             key,
             name,
             photoUri,
+            photoThumbnailUri,
             starred,
             note,
             phones,
@@ -441,6 +447,8 @@ class ContactsDataSource(
         val name = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
         val number = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)
         val photo = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
+        val photoThumbnail =
+            cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI)
         val primary =
             cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY)
         val starred = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.STARRED)
@@ -457,6 +465,7 @@ class ContactsDataSource(
                 ContactsContract.Contacts.LOOKUP_KEY,
                 ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
                 ContactsContract.Contacts.PHOTO_URI,
+                ContactsContract.Contacts.PHOTO_THUMBNAIL_URI,
                 ContactsContract.Contacts.STARRED
             )
 
@@ -467,6 +476,7 @@ class ContactsDataSource(
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Phone.NUMBER,
                 ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
+                ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI,
                 ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
                 ContactsContract.CommonDataKinds.Phone.STARRED,
                 ContactsContract.CommonDataKinds.Phone.TYPE,

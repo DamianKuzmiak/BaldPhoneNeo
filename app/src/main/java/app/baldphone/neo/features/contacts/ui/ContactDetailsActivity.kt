@@ -10,6 +10,7 @@ import android.widget.Toast
 
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.text.htmlEncode
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -38,6 +39,7 @@ import app.baldphone.neo.utils.openMap
 import app.baldphone.neo.utils.sendEmail
 import app.baldphone.neo.utils.sendMessage
 import app.baldphone.neo.utils.shareContact
+import app.baldphone.neo.utils.viewContactPhoto
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
@@ -156,7 +158,7 @@ class ContactDetailsActivity : BaseActivity() {
             }
         }
 
-        loadPhoto(contact.photoUri)
+        loadPhoto(contact.photoUri, contact.photoThumbnailUri)
     }
 
     private fun setupFieldButton(
@@ -269,15 +271,32 @@ class ContactDetailsActivity : BaseActivity() {
         }
     }
 
-    private fun loadPhoto(uri: String?) {
-        val hasPhoto = !uri.isNullOrEmpty()
-        binding.avatar.isVisible = hasPhoto
+    private fun loadPhoto(photoUri: String?, thumbnailUri: String?) {
+        if (photoUri.isNullOrEmpty()) {
+            binding.avatar.isVisible = false
+            return
+        }
+        binding.avatar.isVisible = true
+        binding.avatar.setOnClickListener {
+            viewContactPhoto(photoUri.toUri())
+        }
 
-        if (hasPhoto) {
-            binding.avatar.load(uri) {
+        if (!thumbnailUri.isNullOrEmpty()) {
+            binding.avatar.load(thumbnailUri) {
+                crossfade(false)
+                error(R.drawable.error_on_background)
+                listener(onSuccess = { _, result ->
+                    binding.avatar.load(photoUri) {
+                        crossfade(true)
+                        placeholderMemoryCacheKey(result.memoryCacheKey)
+                        error(R.drawable.error_on_background)
+                    }
+                })
+            }
+        } else {
+            binding.avatar.load(photoUri) {
                 crossfade(true)
                 error(R.drawable.error_on_background)
-//                placeholder(R.drawable.face_in_recent_calls) // show while loading
             }
         }
     }

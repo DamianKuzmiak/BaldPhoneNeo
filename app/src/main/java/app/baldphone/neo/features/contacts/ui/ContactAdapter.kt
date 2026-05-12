@@ -118,7 +118,7 @@ class ContactAdapter(
                 binding.contactNumber.visibility = View.GONE
             }
 
-            binding.profilePic.load(contact.photoUri) {
+            binding.profilePic.load(contact.photoThumbnailUri ?: contact.photoUri) {
                 crossfade(true)
                 fallback(R.drawable.face)
                 transformations(CircleCropTransformation())

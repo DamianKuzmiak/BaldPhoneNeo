@@ -1,6 +1,7 @@
 package app.baldphone.neo.utils
 
 import android.content.ActivityNotFoundException
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
@@ -79,6 +80,22 @@ fun Context.sendMessage(number: String) {
 fun Context.sendEmail(email: String) {
     val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null))
     startActivityWithNewTask(intent)
+}
+
+/**
+ * Opens a contact photo in a full-photo view via any registered system gallery app.
+ */
+fun Context.viewContactPhoto(photoUri: Uri) {
+    val viewIntent =
+        Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(photoUri, "image/*")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            clipData = ClipData.newRawUri("", photoUri)
+        }
+    startActivitySafe(
+        viewIntent,
+        flags = Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS // doubtful
+    )
 }
 
 /**
