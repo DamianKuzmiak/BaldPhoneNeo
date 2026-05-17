@@ -1,0 +1,16 @@
+[*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+tab_width = 4
+trim_trailing_whitespace = true
+ij_smart_tabs = false
+
+[{*.kt,*.kts}]
+ktlint_standard_class-signature = disabled
+ktlint_standard_function-signature = disabled
+ij_kotlin_imports_layout = android.**, |, androidx.**, |, kotlin.**, kotlinx.**, |, java.**, javax.**, |, *, |, app.baldphone.neo.**, |, com.bald.uriah.**
+ij_kotlin_allow_trailing_comma = false
+ij_kotlin_allow_trailing_comma_on_call_site = false

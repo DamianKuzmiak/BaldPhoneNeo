@@ -67,7 +67,7 @@ However, future publication on Google Play is not ruled out.
 
 ## Get Involved
 You can help make BaldPhone Neo better by:
-- Translating the app to new languages
+- [Translating](TRANSLATING.md) or improving existing languages
 - Testing and reporting issues
 - Sharing the app with accessibility communities
 - Suggesting UX improvements

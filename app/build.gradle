@@ -26,6 +26,10 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def getDate() {
+    return new Date().format('MMddHHmm')
+}
+
 android {
     namespace = "com.bald.uriah.baldphone"
     compileSdk = 35
@@ -67,7 +71,7 @@ android {
         debug {
             debuggable true
             minifyEnabled false
-            versionNameSuffix "-debug"
+            versionNameSuffix "-debug." + getDate()
         }
     }
 
