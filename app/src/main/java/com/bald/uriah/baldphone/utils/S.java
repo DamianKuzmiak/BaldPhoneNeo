@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -32,7 +31,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -46,7 +44,6 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.annotation.StyleRes;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,12 +52,10 @@ import app.baldphone.neo.utils.IntentUtilsKt;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
-import com.bald.uriah.baldphone.content_providers.BaldFileProvider;
 
 import org.joda.time.DateTime;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -239,13 +234,6 @@ public class S {
                 .addFlag(BDialog.FLAG_YES | BDialog.FLAG_CANCEL)
                 .setBaldActivityToAutoDismiss(baldActivity)
                 .show();
-    }
-
-    public static Uri fileToUriCompat(final File file, final Context context) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ?
-                BaldFileProvider.getUriForFile(context, context.getString(R.string.authorities), file)
-                :
-                Uri.fromFile(file);
     }
 
     public static void startComponentName(final Context context, final ComponentName componentName) {

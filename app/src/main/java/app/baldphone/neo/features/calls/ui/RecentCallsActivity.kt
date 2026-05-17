@@ -1,6 +1,7 @@
 package app.baldphone.neo.features.calls.ui
 
 import android.os.Bundle
+import android.view.View
 
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -22,6 +23,7 @@ import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.RuntimePermission
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showInfoSnackbar
+import app.baldphone.neo.ui.menu.showActionMenu
 import app.baldphone.neo.utils.sendMessage
 
 import com.bald.uriah.baldphone.R
@@ -62,6 +64,7 @@ class RecentCallsActivity : BaseActivity() {
         setContentView(binding.root)
 
         setupRecyclerView()
+        initViews()
 
         PermissionManager.checkOrRequest(this, RuntimePermission.ReadCallLog) {
             onGranted {
@@ -72,6 +75,22 @@ class RecentCallsActivity : BaseActivity() {
             }
             onDenied {
                 finish()
+            }
+        }
+    }
+
+    private fun initViews() {
+        binding.titleBar.setOnMoreClickListener(::showPopup)
+    }
+
+    private fun showPopup(anchor: View) {
+        showActionMenu(anchor) {
+            toggle(
+                iconRes = R.drawable.ic_dynamic_feed,
+                labelRes = R.string.combine_duplicated_calls,
+                checked = viewModel.isGroupingEnabled
+            ) {
+                viewModel.toggleGrouping()
             }
         }
     }

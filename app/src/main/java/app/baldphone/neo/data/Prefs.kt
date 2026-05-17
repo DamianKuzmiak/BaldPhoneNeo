@@ -126,6 +126,11 @@ object Prefs {
     )
 
     /**
+     * Controls whether identical consecutive calls are merged into a single entry in the log.
+     */
+    var isCombineDuplicateCallsEnabled: Boolean by booleanPref(PrefKeys.KEY_COMBINE_DUPLICATE_CALLS, true)
+
+    /**
      * If true, the dialog for choosing a SIM will be shown when calling.
      */
     var isDualSimActive: Boolean by booleanPref(

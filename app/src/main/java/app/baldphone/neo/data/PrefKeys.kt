@@ -31,6 +31,7 @@ object PrefKeys {
 
     // Contact Settings
     const val KEY_CALL_LOG_VISIBLE = "contact_call_log_visible"
+    const val KEY_COMBINE_DUPLICATE_CALLS = "combine_duplicate_calls"
 
     // System / UI
     const val KEY_STATUS_BAR = BPrefs.STATUS_BAR_KEY

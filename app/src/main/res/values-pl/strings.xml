@@ -89,6 +89,7 @@
     <string name="clear_data_subtext2">Czy na pewno?</string>
     <string name="clear_data_subtext3">Ta operacja usunie wszystkie dane!</string>
     <string name="clock">Zegar</string>
+    <string name="combine_duplicated_calls">Grupuj powtórzenia</string>
     <string name="coming_soon">Wkrótce!</string>
     <string name="connection_settings">Sieci bezprzewodowe</string>
 

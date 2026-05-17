@@ -93,7 +93,8 @@ class RecentCallsAdapter(
             val context = itemView.context
 
             // Text and Style
-            binding.contactName.text = item.displayName(context)
+            val displayText = item.displayName(context)
+            binding.contactName.text = if (item.groupCount > 1) "$displayText (${item.groupCount})" else displayText
             binding.tvCallTime.text = item.date.formatRecentTimestamp(context)
 
             val style = if (item.isNew) Typeface.BOLD else Typeface.NORMAL

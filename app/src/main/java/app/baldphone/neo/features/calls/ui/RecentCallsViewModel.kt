@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.ContactLookupResult
 import app.baldphone.neo.features.calls.RecentCallsPager
 import app.baldphone.neo.features.contacts.data.ContactsDataSource
@@ -23,13 +24,17 @@ import app.baldphone.neo.features.contacts.data.ContactsDataSource
  * Owns all pagination state, call-log loading, and content-observer lifecycle.
  */
 class RecentCallsViewModel(application: Application) : AndroidViewModel(application) {
-    private val pager = RecentCallsPager(application, viewModelScope)
-    private val dataSource by lazy { ContactsDataSource(application) }
-
-    val callEntries = pager.entries
+    private val pager: RecentCallsPager =
+        RecentCallsPager(application, viewModelScope, Prefs.isCombineDuplicateCallsEnabled)
+    private val dataSource by lazy { ContactsDataSource(getApplication()) }
 
     private val _uiEvents = MutableSharedFlow<RecentCallsEvent>()
     val uiEvents = _uiEvents.asSharedFlow()
+
+    val callEntries = pager.entries
+
+    val isGroupingEnabled: Boolean
+        get() = Prefs.isCombineDuplicateCallsEnabled
 
     private var lookupJob: Job? = null
 
@@ -48,8 +53,16 @@ class RecentCallsViewModel(application: Application) : AndroidViewModel(applicat
         pager.loadNextPage()
     }
 
+    /** Toggles call grouping on/off and triggers a full list refresh. */
+    fun toggleGrouping() {
+        val newValue = !isGroupingEnabled
+        Prefs.isCombineDuplicateCallsEnabled = newValue
+        pager.setGroupingEnabled(newValue)
+    }
+
     /**
      * Resolves the lookup key for a call entry and triggers navigation. Prevents multiple simultaneous clicks.
+     * Logic is reactive and decoupled from the Pager to optimize initialization.
      */
     fun onCallEntryClicked(number: String?, name: String?, lookupUri: String?) {
         if (lookupJob?.isActive == true) return

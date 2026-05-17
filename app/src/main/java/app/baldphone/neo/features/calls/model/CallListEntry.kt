@@ -30,6 +30,7 @@ sealed interface CallListEntry {
      * @property cachedLookupUri Cached lookup URI for the contact, or `null`.
      * @property isNew `true` if this is an unread missed call.
      * @property cachedFormattedNumber Cached formatted phone number, or `null`.
+     * @property groupCount Number of consecutive identical calls aggregated into this entry.
      */
     data class Item(
         val id: Long,
@@ -40,7 +41,8 @@ sealed interface CallListEntry {
         val cachedPhotoUri: String?,
         val cachedLookupUri: String?,
         val isNew: Boolean,
-        val cachedFormattedNumber: String?
+        val cachedFormattedNumber: String?,
+        val groupCount: Int = 1
     ) : CallListEntry {
         /**
          * Returns a user-visible display name for this call entry,
