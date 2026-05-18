@@ -128,6 +128,26 @@ class HomePage1 : HomeView {
         }
     }
 
+    override fun onWindowVisibilityChanged(visibility: Int) {
+        super.onWindowVisibilityChanged(visibility)
+        if (visibility == VISIBLE) {
+            updatePhoneNumber()
+        }
+    }
+
+    private fun updatePhoneNumber() {
+        binding.notificationArea.phoneNumber?.apply {
+            val number = Prefs.homePhoneNumber
+            if (!Prefs.isHomePhoneNumberEnabled || number.isNullOrEmpty()) {
+                visibility = GONE
+                return@apply
+            }
+
+            text = number
+            visibility = VISIBLE
+        }
+    }
+
     private fun setupOnClickListeners() {
         setupButton(HomeSlot.RECENTS, binding.btRecent) {
             homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, RecentCallsActivity::class.java))

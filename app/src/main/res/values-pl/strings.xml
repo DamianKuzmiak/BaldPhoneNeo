@@ -83,10 +83,15 @@
     <string name="call_settings_message">Wybierz, co ma się dziać po naciśnięciu przycisku Zadzwoń.</string>
     <string name="call_settings_option_confirm">Pytaj o potwierdzenie</string>
     <string name="call_settings_option_direct">Dzwoń od razu</string>
+
     <string name="settings_section_calls">Połączenia</string>
     <string name="setting_confirm_before_calling">Potwierdzaj połączenia</string>
     <string name="setting_confirm_before_calling_desc_on">Przed połączeniem pojawi się prośba o potwierdzenie</string>
     <string name="setting_confirm_before_calling_desc_off">Telefon dzwoni od razu</string>
+    <string name="settings_home_phone_number_title">Pokaż mój numer telefonu</string>
+    <string name="settings_home_phone_number_description_on">Widoczny na ekranie głównym</string>
+    <string name="settings_home_phone_number_description_off">Ukryty na ekranie głównym</string>
+    <string name="settings_home_phone_number_hint">Numer telefonu</string>
 
     <string name="camera">Aparat</string>
     <string name="cancel">Anuluj</string>

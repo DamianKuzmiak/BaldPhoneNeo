@@ -85,10 +85,15 @@
     <string name="call_settings_message">Scegli cosa deve accadere quando premi il pulsante Chiama.</string>
     <string name="call_settings_option_confirm">Chiedi conferma</string>
     <string name="call_settings_option_direct">Chiama subito</string>
+
     <string name="settings_section_calls">Chiamate</string>
     <string name="setting_confirm_before_calling">Conferma prima di chiamare</string>
     <string name="setting_confirm_before_calling_desc_on">Ti verrà chiesta conferma prima di avviare la chiamata</string>
     <string name="setting_confirm_before_calling_desc_off">Le chiamate vengono avviate subito, senza chiedere conferma</string>
+    <string name="settings_home_phone_number_title">Mostra il mio numero di telefono</string>
+    <string name="settings_home_phone_number_description_on">Visibile nella schermata principale</string>
+    <string name="settings_home_phone_number_description_off">Nascosto dalla schermata principale</string>
+    <string name="settings_home_phone_number_hint">Numero di telefono</string>
 
     <string name="camera">Fotocamera</string>
     <string name="cancel">Annulla</string>

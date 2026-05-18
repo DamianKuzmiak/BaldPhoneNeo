@@ -8,6 +8,9 @@
         android:name="app.baldphone.neo.settings.ui.SettingsFragment"
         android:label="@string/neo_settings">
         <action
+            android:id="@+id/action_settings_to_home"
+            app:destination="@id/homeSettingsFragment" />
+        <action
             android:id="@+id/action_settings_to_calls"
             app:destination="@id/callsSettingsFragment" />
         <action
@@ -18,6 +21,15 @@
             app:destination="@id/settingsAboutFragment" />
     </fragment>
 
+    <!-- HOME -->
+    <fragment
+        android:id="@+id/homeSettingsFragment"
+        android:name="app.baldphone.neo.settings.ui.HomeSettingsFragment"
+        android:label="@string/edit_home_screen">
+        <deepLink app:uri="myapp://settings/home" />
+    </fragment>
+
+    <!-- CALLS -->
     <fragment
         android:id="@+id/callsSettingsFragment"
         android:name="app.baldphone.neo.settings.ui.CallsSettingsFragment"

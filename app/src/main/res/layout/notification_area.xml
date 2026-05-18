@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:importantForAccessibility="no"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:importantForAccessibility="no">
+    android:padding="8dp">
 
     <TextClock
         android:id="@+id/clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="72sp"
+        android:autoSizeMinTextSize="40sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="sans-serif-condensed-light"
         android:format12Hour="h:mm a"
         android:format24Hour="HH:mm"
         android:textColor="?bald_text_on_background"
-        android:textSize="72sp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="40sp"
-        android:autoSizeMaxTextSize="72sp"
-        android:autoSizeStepGranularity="2sp" />
+        android:textSize="72sp" />
 
     <TextClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="1sp"
+        android:autoSizeTextType="uniform"
         android:format12Hour="EEEE, dd MMM"
         android:format24Hour="EEEE, dd MMM"
         android:textColor="?bald_text_on_button"
-        android:textSize="20sp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeMaxTextSize="20sp"
-        android:autoSizeStepGranularity="1sp" />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        style="@style/BackgroundText.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="?attr/colorSecondary"
+        tools:text="My phone number: +99 123 456 7890" />
 </LinearLayout>

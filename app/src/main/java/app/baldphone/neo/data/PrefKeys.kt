@@ -41,6 +41,10 @@ object PrefKeys {
     const val LONG_PRESS_DURATION_MS_KEY: String = "long_press_duration_ms"
     const val SHOW_PRESS_LONGER_HINT_KEY: String = "show_press_longer_hint"
 
+    // Phone number on Home Screen
+    const val KEY_HOME_PHONE_ENABLED = "pref_home_phone_enabled"
+    const val KEY_HOME_PHONE_NUMBER = "pref_home_phone_number"
+
     // Home Screen Slots (Custom Apps)
     const val KEY_HOME_SLOT_WHATSAPP = "CUSTOM_APP_KEY" // Legacy: CUSTOM_APP_KEY
     const val KEY_HOME_SLOT_RECENTS = "CUSTOM_RECENTS_KEY"

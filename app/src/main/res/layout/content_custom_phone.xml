@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/til_custom_phone_number"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/settings_home_phone_number_hint">
+
+    <!-- maxLength=25: 15 digits (E.164 max) plus room for '+' and formatting separators,
+        rough value, not tested enough -->
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_custom_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:maxLength="25"
+        android:minHeight="56dp"
+        android:textSize="16sp" />
+
+</com.google.android.material.textfield.TextInputLayout>

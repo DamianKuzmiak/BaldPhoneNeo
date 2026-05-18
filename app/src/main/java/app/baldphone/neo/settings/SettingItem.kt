@@ -7,6 +7,8 @@ sealed class SettingId {
 
     object Help : SettingId()
 
+    object Home : SettingId()
+
     object System : SettingId()
 }
 

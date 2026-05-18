@@ -103,4 +103,25 @@ object PhoneNumberUtils {
         }
         return formatted.ifEmpty { number }
     }
+
+    /**
+     * Formats a phone number based on its prefix, based on provided [region]:
+     * - INTERNATIONAL format if it starts with "+" or "00" (e.g., "+44 20 7946 0958").
+     * - NATIONAL format otherwise (e.g., "606 707 808", for "pl" region).
+     *
+     * Returns the raw input if parsing fails.
+     */
+    fun formatSmartly(rawInput: String, region: String): String {
+        try {
+            val parsed = phoneNumberUtil.parse(rawInput, region)
+            return if (rawInput.startsWith("+") || rawInput.startsWith("00")) {
+                phoneNumberUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
+            } else {
+                phoneNumberUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.NATIONAL)
+            }
+        } catch (e: NumberParseException) {
+            Log.w(TAG, "Failed to parse phone number '$rawInput': ${e.message}")
+            return rawInput
+        }
+    }
 }
