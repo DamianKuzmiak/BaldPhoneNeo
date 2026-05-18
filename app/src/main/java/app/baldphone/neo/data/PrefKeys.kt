@@ -51,4 +51,8 @@ object PrefKeys {
     // Battery Monitor
     const val KEY_BATTERY_ALERT_ENABLED = "BATTERY_ALERT_ENABLED_KEY"
     const val KEY_BATTERY_ALERT_THRESHOLD = "BATTERY_ALERT_THRESHOLD"
+
+    // Custom Phone Number
+    const val KEY_HOME_PHONE_ENABLED = "pref_home_phone_enabled"
+    const val KEY_HOME_PHONE_NUMBER = "pref_home_phone_number"
 }

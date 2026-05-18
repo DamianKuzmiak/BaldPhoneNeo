@@ -2,6 +2,7 @@ package app.baldphone.neo.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Base64
 import android.util.Log
 
 import androidx.core.content.edit
@@ -13,6 +14,8 @@ import com.bald.uriah.baldphone.utils.BPrefs
 
 object Prefs {
     private const val TAG = "Prefs"
+    private const val XOR_KEY = 0x5A
+
     private lateinit var prefs: SharedPreferences
 
     @JvmStatic
@@ -194,6 +197,16 @@ object Prefs {
         PrefKeys.DEFAULT_LAST_SETUP_FRAGMENT,
     )
 
+    /**
+     * Controls whether the user's phone number is displayed in the notification area on the home screen.
+     */
+    var isHomePhoneNumberEnabled: Boolean by booleanPref(PrefKeys.KEY_HOME_PHONE_ENABLED, true)
+
+    /**
+     * User phone number to display on the home page notification area.
+     */
+    var homePhoneNumber: String? by obfuscatedStringPref(PrefKeys.KEY_HOME_PHONE_NUMBER, null)
+
     // Helper functions for the delegate
     private fun booleanPref(
         key: String,
@@ -204,6 +217,37 @@ object Prefs {
         SharedPreferences::getBoolean,
         SharedPreferences.Editor::putBoolean,
     )
+
+    private fun obfuscatedStringPref(
+        key: String,
+        default: String?
+    ) = PreferenceDelegate(
+        key,
+        default,
+        getter = { p, k, d -> decrypt(p.getString(k, null)) ?: d },
+        setter = { e, k, v -> e.putString(k, encrypt(v)) }
+    )
+
+    private fun encrypt(value: String?): String? {
+        if (value == null) return null
+        val xored = value.map { (it.code xor XOR_KEY).toChar() }.joinToString("")
+        return Base64.encodeToString(xored.toByteArray(Charsets.UTF_8), Base64.NO_WRAP)
+    }
+
+    private fun decrypt(value: String?): String? {
+        if (value == null) return null
+        // Fallback migration: If the value looks like a plain text phone number, return as is
+        if (value.startsWith("+") || value.firstOrNull()?.isDigit() == true) {
+            return value
+        }
+        return try {
+            val decodedBytes = Base64.decode(value, Base64.NO_WRAP)
+            val decodedStr = String(decodedBytes, Charsets.UTF_8)
+            decodedStr.map { (it.code xor XOR_KEY).toChar() }.joinToString("")
+        } catch (_: Exception) {
+            value
+        }
+    }
 
     private fun intPref(key: String, default: Int) =
         PreferenceDelegate(

@@ -37,6 +37,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewTreeLifecycleOwner;
 
 import app.baldphone.neo.activities.DialerActivity;
+import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
@@ -86,6 +88,7 @@ public class HomePage1 extends HomeView {
             bt_messages,
             bt_recent,
             bt_whatsapp;
+    private TextView tv_phone_number;
     private SharedPreferences sharedPreferences;
 
     public HomePage1(@NonNull Context context) {
@@ -121,11 +124,31 @@ public class HomePage1 extends HomeView {
         bt_messages = rootView.findViewById(R.id.bt_messages);
         bt_recent = rootView.findViewById(R.id.bt_recent);
         bt_whatsapp = rootView.findViewById(R.id.bt_whatsapp);
+        tv_phone_number = rootView.findViewById(R.id.phone_number);
+        updatePhoneNumber();
+    }
+
+    private void updatePhoneNumber() {
+        if (tv_phone_number == null) return;
+
+        if (!Prefs.INSTANCE.isHomePhoneNumberEnabled()) {
+            tv_phone_number.setVisibility(View.GONE);
+            return;
+        }
+
+        String number = Prefs.INSTANCE.getHomePhoneNumber();
+        if (number != null && !number.isEmpty()) {
+            tv_phone_number.setText(number);
+        } else {
+            tv_phone_number.setText(R.string.custom_phone_number);
+        }
+        tv_phone_number.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        updatePhoneNumber();
 
         LifecycleOwner owner = ViewTreeLifecycleOwner.get(this);
         if (owner != null) {

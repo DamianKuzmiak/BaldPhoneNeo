@@ -510,6 +510,11 @@
     <string name="crash_dialog_title">App Crash</string>
     <string name="crash_dialog_message">BaldPhone Neo recovered from an error.\n\nPlease send the report to help us fix it.</string>
 
+    <!-- New Settings -->
+    <string name="custom_phone_number">Phone Number</string>
+    <string name="phone_number_on_home_text">Show my phone number</string>
+    <string name="phone_number_on_home_description">Twój numer telefonu będzie widoczny na głównym ekranie aplikacji.\nDzięki temu łatwo go sprawdzisz.</string>
+
     <string name="battery_alert_channel_name">Low Battery Reminder</string>
     <string name="battery_alert_channel_description">Repeating alerts for low battery</string>
     <string name="battery_alert_notification_title">Low Battery</string>

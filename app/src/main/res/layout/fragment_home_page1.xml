@@ -15,124 +15,136 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/home_screen_padding"
-    android:gravity="center_horizontal"
-    android:baselineAligned="false">
+    android:paddingHorizontal="@dimen/home_screen_padding">
 
     <!-- Notifications + Clock area (larger) -->
     <include
+        android:id="@+id/notification_area"
         layout="@layout/notification_area"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="2.2"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bt_contacts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_weight="1.9" />
 
-    <!-- Buttons area -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- First row of buttons -->
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_contacts"
+        style="@style/HomeButtonTile.AccentGreen"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:baselineAligned="false">
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="6dp"
+        app:__src="@drawable/human_on_background"
+        app:__text="@string/contacts"
+        app:layout_constraintTop_toBottomOf="@id/notification_area"
+        app:layout_constraintBottom_toTopOf="@id/bt_camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_recent"
+        app:layout_constraintVertical_weight="1.0" />
 
-        <!-- First row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_marginBottom="6dp">
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_recent"
+        style="@style/HomeButtonTile.AccentGreen"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        app:__src="@drawable/history_on_background"
+        app:__text="@string/recent"
+        app:layout_constraintTop_toTopOf="@id/bt_contacts"
+        app:layout_constraintBottom_toBottomOf="@id/bt_contacts"
+        app:layout_constraintStart_toEndOf="@id/bt_contacts"
+        app:layout_constraintEnd_toStartOf="@id/bt_dialer" />
 
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_contacts"
-                style="@style/HomeButtonTile.AccentGreen"
-                android:layout_marginEnd="8dp"
-                app:__src="@drawable/human_on_background"
-                app:__text="@string/contacts" />
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_dialer"
+        style="@style/HomeButtonTile.AccentGreen"
+        android:layout_height="0dp"
+        app:__src="@drawable/phone_on_background"
+        app:__text="@string/dialer"
+        app:layout_constraintTop_toTopOf="@id/bt_contacts"
+        app:layout_constraintBottom_toBottomOf="@id/bt_contacts"
+        app:layout_constraintStart_toEndOf="@id/bt_recent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_recent"
-                style="@style/HomeButtonTile.AccentGreen"
-                android:layout_marginEnd="8dp"
-                app:__src="@drawable/history_on_background"
-                app:__text="@string/recent" />
+    <!-- Second row of buttons -->
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_camera"
+        style="@style/HomeButtonTile.AccentBlue"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="6dp"
+        app:__src="@drawable/camera_on_background"
+        app:__text="@string/camera"
+        app:layout_constraintTop_toBottomOf="@id/bt_contacts"
+        app:layout_constraintBottom_toTopOf="@id/bt_emergency"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_whatsapp"
+        app:layout_constraintVertical_weight="1.0" />
 
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_dialer"
-                style="@style/HomeButtonTile.AccentGreen"
-                app:__src="@drawable/phone_on_background"
-                app:__text="@string/dialer" />
-        </LinearLayout>
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_whatsapp"
+        style="@style/HomeButtonTile.AccentBlue"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        app:__src="@drawable/whatsapp_on_background"
+        app:__text="@string/whatsapp"
+        app:layout_constraintTop_toTopOf="@id/bt_camera"
+        app:layout_constraintBottom_toBottomOf="@id/bt_camera"
+        app:layout_constraintStart_toEndOf="@id/bt_camera"
+        app:layout_constraintEnd_toStartOf="@id/bt_messages" />
 
-        <!-- Second row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_marginBottom="6dp">
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_messages"
+        style="@style/HomeButtonTile.AccentBlue"
+        android:layout_height="0dp"
+        app:__src="@drawable/message_on_background"
+        app:__text="@string/messages"
+        app:layout_constraintTop_toTopOf="@id/bt_camera"
+        app:layout_constraintBottom_toBottomOf="@id/bt_camera"
+        app:layout_constraintStart_toEndOf="@id/bt_whatsapp"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_camera"
-                style="@style/HomeButtonTile.AccentBlue"
-                android:layout_marginEnd="8dp"
-                app:__src="@drawable/camera_on_background"
-                app:__text="@string/camera" />
+    <!-- Third row of buttons -->
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_emergency"
+        style="@style/HomeButtonTile.AccentPurple"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        app:__src="@drawable/emergency"
+        app:__text="@string/sos"
+        app:layout_constraintTop_toBottomOf="@id/bt_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_assistant"
+        app:layout_constraintVertical_weight="1.0" />
 
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_whatsapp"
-                style="@style/HomeButtonTile.AccentBlue"
-                android:layout_marginEnd="8dp"
-                app:__src="@drawable/whatsapp_on_background"
-                app:__text="@string/whatsapp" />
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_assistant"
+        style="@style/HomeButtonTile.AccentPurple"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        app:__src="@drawable/voice_on_background"
+        app:__text="@string/assistant"
+        app:layout_constraintTop_toTopOf="@id/bt_emergency"
+        app:layout_constraintBottom_toBottomOf="@id/bt_emergency"
+        app:layout_constraintStart_toEndOf="@id/bt_emergency"
+        app:layout_constraintEnd_toStartOf="@id/bt_lock_screen" />
 
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_messages"
-                style="@style/HomeButtonTile.AccentBlue"
-                app:__src="@drawable/message_on_background"
-                app:__text="@string/messages" />
-        </LinearLayout>
+    <com.bald.uriah.baldphone.views.FirstPageAppIcon
+        android:id="@+id/bt_lock_screen"
+        style="@style/HomeButtonTile.AccentPurple"
+        android:layout_height="0dp"
+        app:__src="@drawable/icon_lock_outline"
+        app:__text="@string/label_lock_screen_short"
+        app:layout_constraintTop_toTopOf="@id/bt_emergency"
+        app:layout_constraintBottom_toBottomOf="@id/bt_emergency"
+        app:layout_constraintStart_toEndOf="@id/bt_assistant"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Third row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_emergency"
-                style="@style/HomeButtonTile.AccentPurple"
-                android:layout_marginEnd="8dp"
-                app:__src="@drawable/emergency"
-                app:__text="@string/sos" />
-
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_assistant"
-                style="@style/HomeButtonTile.AccentPurple"
-                android:layout_marginEnd="8dp"
-                app:__src="@drawable/voice_on_background"
-                app:__text="@string/assistant" />
-
-            <com.bald.uriah.baldphone.views.FirstPageAppIcon
-                android:id="@+id/bt_lock_screen"
-                style="@style/HomeButtonTile.AccentPurple"
-                app:__src="@drawable/icon_lock_outline"
-                app:__text="@string/label_lock_screen_short" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>
