@@ -22,7 +22,10 @@
     <string name="accidental_touches_settings_subtext">This guard prevents touches when the phone is covered. If you experience issues, you can turn it off.</string>
     <string name="accidental_touches_subtext">Accidental touch detected.\nPress OK to continue using the phone.\nIf this message keeps appearing, you can disable the feature in Accessibility settings.</string>
     <string name="acknowledgments">Acknowledgments</string>
+    <string name="action_close">Close</string>
     <string name="action_dismiss">Dismiss</string>
+    <string name="action_pin_to_home">On home screen</string>
+    <string name="action_toggle_favorite">In favorites</string>
     <string name="action_view">View</string>
     <string name="adaptive">Adaptive</string>
     <string name="add_alarm">Add Alarm</string>
@@ -31,8 +34,6 @@
     <string name="add_emergency_contact">Add</string>
     <string name="add_pill">Add Pill</string>
     <string name="add_shortcut">Add Shortcut</string>
-    <string name="add_to_favorite">Add to Favorite</string>
-    <string name="add_to_home">Add to Home</string>
     <string name="add_to_sos">Add to SOS</string>
     <string name="add_as_an_emergency_contact">Add %s as your SOS emergency contact?</string>
     <string name="address">Address</string>
@@ -222,8 +223,6 @@
     <string name="recent_calls">Recent Calls</string>
     <string name="regular_level">Regular level</string>
 
-    <string name="remove_from_favorite">Remove from Favorite</string>
-    <string name="remove_from_home">Remove from Home</string>
     <string name="remove_from_sos">Remove from SOS</string>
     <string name="remove_shortcut">Remove shortcut</string>
     <string name="removed_all_alarms">Removed all alarms!</string>

@@ -32,6 +32,7 @@ import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.ui.dialogs.BaldDialog
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showSuccessSnackbar
+import app.baldphone.neo.ui.menu.showActionMenu
 import app.baldphone.neo.utils.getHtmlString
 import app.baldphone.neo.utils.messaging.SignalHandler
 import app.baldphone.neo.utils.messaging.WhatsAppHandler
@@ -39,8 +40,6 @@ import app.baldphone.neo.utils.openMap
 import app.baldphone.neo.utils.sendEmail
 import app.baldphone.neo.utils.sendMessage
 import app.baldphone.neo.utils.startActivityWithNewTask
-import app.baldphone.neo.views.menu.ActionMenu
-import app.baldphone.neo.views.menu.ActionMenuItem
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
@@ -291,86 +290,47 @@ class ContactDetailsActivity : BaseActivity() {
         val isFavorite = viewModel.uiState.value.isFavorite
         val isPinned = viewModel.uiState.value.isPinned
 
-        val items =
-            listOf(
-                ActionMenuItem.Toggle(
-                    ACTION_FAVORITE,
-                    R.drawable.star_on_button,
-                    R.drawable.star_remove_on_button,
-                    R.string.remove_from_favorite,
-                    R.string.add_to_favorite,
-                    isFavorite,
-                    true
-                ),
-                ActionMenuItem.Toggle(
-                    ACTION_HOME,
-                    R.drawable.remove_on_button,
-                    R.drawable.add_on_button,
-                    R.string.remove_from_home,
-                    R.string.add_to_home,
-                    isPinned,
-                    true
-                ),
-                ActionMenuItem.Separator,
-                ActionMenuItem.Option(
-                    ACTION_SHARE,
-                    R.drawable.share_on_background,
-                    R.string.share,
-                    destructive = false,
-                    enabled = true
-                ),
-                ActionMenuItem.Option(
-                    ACTION_EDIT,
-                    R.drawable.edit_on_background,
-                    R.string.edit,
-                    destructive = false,
-                    enabled = true
-                ),
-                ActionMenuItem.Option(
-                    ACTION_DELETE,
-                    R.drawable.delete_on_background,
-                    R.string.delete,
-                    destructive = false,
-                    enabled = true
-                )
+        showActionMenu(anchor) {
+            toggle(
+                iconRes = R.drawable.star_on_button,
+                labelRes = R.string.action_toggle_favorite,
+                checked = isFavorite
+            ) { checked ->
+                viewModel.toggleFavorite()
+                val resId =
+                    if (checked) R.string.contact_added_to_favorites else R.string.contact_removed_from_favorites
+                showSuccessSnackbar(resId)
+            }
+
+            toggle(
+                iconRes = R.drawable.home_on_button,
+                labelRes = R.string.action_pin_to_home,
+                checked = isPinned
+            ) { checked ->
+                viewModel.toggleHomeScreenPin()
+                val resId = if (checked) R.string.contact_added_to_home else R.string.contact_removed_from_home
+                showSuccessSnackbar(resId)
+            }
+
+            separator()
+
+            option(
+                iconRes = R.drawable.share_on_background,
+                labelRes = R.string.share,
+                onClick = { shareContact() }
             )
 
-        ActionMenu(this, items) { onMenuAction(it) }.show(anchor)
-    }
+            option(
+                iconRes = R.drawable.edit_on_background,
+                labelRes = R.string.edit,
+                onClick = { editContactDetails() }
+            )
 
-    private fun onMenuAction(item: ActionMenuItem) {
-        when (item.id) {
-            ACTION_EDIT -> {
-                editContactDetails()
-            }
-
-            ACTION_SHARE -> {
-                shareContact()
-            }
-
-            ACTION_DELETE -> {
-                showDeleteConfirmationDialog()
-            }
-
-            ACTION_FAVORITE -> {
-                viewModel.toggleFavorite()
-                val toggle = item as? ActionMenuItem.Toggle
-                val resId =
-                    if (toggle?.checked == true) {
-                        R.string.contact_added_to_favorites
-                    } else {
-                        R.string.contact_removed_from_favorites
-                    }
-                showSuccessSnackbar(resId)
-            }
-
-            ACTION_HOME -> {
-                viewModel.toggleHomeScreenPin()
-                val toggle = item as? ActionMenuItem.Toggle
-                val resId =
-                    if (toggle?.checked == true) R.string.contact_added_to_home else R.string.contact_removed_from_home
-                showSuccessSnackbar(resId)
-            }
+            option(
+                iconRes = R.drawable.delete_on_background,
+                labelRes = R.string.delete,
+                onClick = { showDeleteConfirmationDialog() }
+            )
         }
     }
 
@@ -406,11 +366,6 @@ class ContactDetailsActivity : BaseActivity() {
     companion object {
         const val CONTACT_LOOKUP_KEY = "contactLookupKey"
         private const val TAG = "ContactDetailsActivity"
-        private const val ACTION_FAVORITE = 1
-        private const val ACTION_HOME = 2
-        private const val ACTION_SHARE = 3
-        private const val ACTION_EDIT = 4
-        private const val ACTION_DELETE = 5
 
         /**
          * Open the BaldPhone contact details activity for the given contact.

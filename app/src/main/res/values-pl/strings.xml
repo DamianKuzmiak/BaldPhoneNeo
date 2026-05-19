@@ -23,7 +23,10 @@
     <string name="accidental_touches_settings_subtext">Ta funkcja blokuje ekran dotykowy, gdy telefon jest zakryty.\nJeśli sprawia to problemy, możesz ją wyłączyć.</string>
     <string name="accidental_touches_subtext">Wykryto przypadkowe dotknięcie.\nNaciśnij OK, aby odblokować ekran.\nJeśli ten komunikat pojawia się często, możesz wyłączyć tę funkcję w ustawieniach dostępności.</string>
     <string name="acknowledgments">Podziękowania</string>
+    <string name="action_close">Zamknij</string>
     <string name="action_dismiss">Wyczyść</string>
+    <string name="action_pin_to_home">Na ekranie głównym</string>
+    <string name="action_toggle_favorite">W ulubionych</string>
     <string name="action_view">Zobacz</string>
     <string name="adaptive">Adaptacyjny</string>
     <string name="add_alarm">Dodaj alarm</string>
@@ -32,8 +35,6 @@
     <string name="add_emergency_contact">Dodaj</string>
     <string name="add_pill">Dodaj tabletkę</string>
     <string name="add_shortcut">Dodaj skrót</string>
-    <string name="add_to_favorite">Dodaj do ulubionych</string>
-    <string name="add_to_home">Dodaj do ekranu głównego</string>
     <string name="add_to_sos">Dodaj do SOS</string>
     <string name="add_as_an_emergency_contact">Dodać %s jako kontakt alarmowy SOS?</string>
     <string name="address">Adres</string>
@@ -198,8 +199,6 @@
     <string name="recent">Ostatnie</string>
     <string name="recent_calls">Ostatnie Połączenia</string>
     <string name="regular_level">Normalny</string>
-    <string name="remove_from_favorite">Usuń z ulubionych</string>
-    <string name="remove_from_home">Usuń z ekranu głównego</string>
     <string name="remove_from_sos">Usuń z SOS</string>
     <string name="remove_shortcut">Usuń skrót</string>
     <string name="removed_all_alarms">Wszystkie alarmy zostały usunięte!</string>
