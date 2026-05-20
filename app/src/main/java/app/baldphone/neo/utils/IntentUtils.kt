@@ -17,6 +17,14 @@ import com.bald.uriah.baldphone.R
 private const val TAG = "IntentUtils"
 
 /**
+ * Launches a map application to display the given [address].
+ */
+fun Context.openMap(address: String) {
+    val intent = Intent(Intent.ACTION_VIEW, "geo:0,0?q=${Uri.encode(address)}".toUri())
+    startActivityWithNewTask(intent)
+}
+
+/**
  * Opens a given URL in an appropriate application (usually a web browser).
  */
 fun Context.openUrl(url: String) {
@@ -29,6 +37,14 @@ fun Context.openUrl(url: String) {
  */
 fun Context.sendMessage(number: String) {
     val intent = Intent(Intent.ACTION_SENDTO, "smsto:${Uri.encode(number)}".toUri())
+    startActivityWithNewTask(intent)
+}
+
+/**
+ * Launches the default email client to email the given [email] address.
+ */
+fun Context.sendEmail(email: String) {
+    val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null))
     startActivityWithNewTask(intent)
 }
 

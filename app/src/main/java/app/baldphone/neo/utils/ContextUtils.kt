@@ -6,7 +6,9 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
 
+import androidx.annotation.StringRes
 import androidx.core.content.getSystemService
+import androidx.core.text.HtmlCompat
 
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 
@@ -42,3 +44,16 @@ fun Context.getTextFromClipboard(): CharSequence? =
         }?.primaryClip
         ?.getItemAt(0)
         ?.text
+
+/**
+ * Returns a [CharSequence] formatted as HTML from a string resource.
+ * Newlines in the resource are converted to `<br>` tags.
+ */
+fun Context.getHtmlString(
+    @StringRes resId: Int,
+    vararg formatArgs: Any?
+): CharSequence {
+    val rawString = getString(resId, *formatArgs)
+    val htmlWithBreaks = rawString.replace("\n", "<br>")
+    return HtmlCompat.fromHtml(htmlWithBreaks, HtmlCompat.FROM_HTML_MODE_LEGACY)
+}

@@ -113,6 +113,12 @@
     <string name="delete___">Delete %s?</string>
     <string name="delete_all_alarms">Delete all alarms</string>
     <string name="dialer">Dialer</string>
+
+    <string name="dialog_delete_contact_title">Delete this contact?</string>
+    <string name="dialog_delete_contact_message">%1$s will be removed from your contact list.</string>
+    <string name="dialog_delete_contact_confirm">Delete</string>
+    <string name="dialog_delete_contact_cancel">Cancel</string>
+
     <string name="display_settings">Display &amp; Appearance</string>
     <string name="done">Done</string>
     <string name="down">Down</string>

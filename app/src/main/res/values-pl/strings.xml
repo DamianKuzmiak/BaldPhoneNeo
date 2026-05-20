@@ -108,6 +108,12 @@
     <string name="delete___">Usunąć %s?</string>
     <string name="delete_all_alarms">Usuń wszystkie alarmy</string>
     <string name="dialer">Telefon</string>
+
+    <string name="dialog_delete_contact_title">Usunąć ten kontakt?</string>
+    <string name="dialog_delete_contact_message">Kontakt %1$s zostanie usunięty z Twojej listy.</string>
+    <string name="dialog_delete_contact_confirm">Usuń</string>
+    <string name="dialog_delete_contact_cancel">Anuluj</string>
+
     <string name="display_settings">Wyświetlacz</string>
     <string name="done">Gotowe</string>
     <string name="down">W dół</string>

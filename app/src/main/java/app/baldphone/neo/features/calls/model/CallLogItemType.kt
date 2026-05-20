@@ -23,6 +23,9 @@ enum class CallLogItemType(
     BLOCKED(R.drawable.blocked_on_button, R.string.blocked, R.color.other),
     UNKNOWN(R.drawable.error_on_background, R.string.empty, R.color.other);
 
+    val isVoiceCall: Boolean
+        get() = (this == INCOMING) || (this == OUTGOING) || (this == VOICEMAIL)
+
     companion object {
         /**
          * Converts a system call type constant from [Calls] to a [CallLogItemType].

@@ -13,8 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.contacts.Contact
-
-import com.bald.uriah.baldphone.databases.calls.Call
+import app.baldphone.neo.features.calls.model.Call
 
 class CallsRepository(private val context: Context) {
     private val resolver: ContentResolver = context.contentResolver
@@ -29,8 +28,7 @@ class CallsRepository(private val context: Context) {
             }
 
             val contactUri =
-                ContactsContract.Contacts.getLookupUri(contact.id, contact.lookupKey)
-                    ?: return@withContext emptyList()
+                ContactsContract.Contacts.getLookupUri(contact.id, contact.lookupKey) ?: return@withContext emptyList()
 
             val projection =
                 arrayOf(
@@ -50,8 +48,20 @@ class CallsRepository(private val context: Context) {
                     arrayOf(contactUri.toString()),
                     "${CallLog.Calls.DATE} DESC"
                 )?.use { cursor ->
+                    val numberIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.NUMBER)
+                    val durationIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.DURATION)
+                    val dateIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.DATE)
+                    val typeIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.TYPE)
+
                     while (cursor.moveToNext()) {
-                        calls.add(Call(cursor))
+                        calls.add(
+                            Call(
+                                phoneNumber = cursor.getString(numberIndex),
+                                duration = cursor.getInt(durationIndex),
+                                dateTime = cursor.getLong(dateIndex),
+                                callType = cursor.getInt(typeIndex)
+                            )
+                        )
                     }
                 }
             calls

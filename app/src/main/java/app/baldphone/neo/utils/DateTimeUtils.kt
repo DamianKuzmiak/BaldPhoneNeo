@@ -13,6 +13,11 @@ import com.bald.uriah.baldphone.R
 // Utility functions for formatting date and time.
 
 /**
+ * Formats a duration in seconds into an elapsed time string (e.g., "05:23").
+ */
+fun Long.formatAsElapsedDuration(): String = DateUtils.formatElapsedTime(this)
+
+/**
  * Formats a timestamp into a localized string that adapts to its proximity to now and midnight.
  *
  * Examples:
@@ -114,6 +119,14 @@ fun Long.formatRecentTimestamp(context: Context): String {
         .getTimeFormat(context)
         .format(Date(this))
 }
+
+/**
+ * Formats the timestamp as a simple locale-aware time string.
+ */
+fun Long.formatTime(context: Context): String =
+    android.text.format.DateFormat
+        .getTimeFormat(context)
+        .format(Date(this))
 
 /**
  * Checks if two timestamps fall on the same calendar day.
