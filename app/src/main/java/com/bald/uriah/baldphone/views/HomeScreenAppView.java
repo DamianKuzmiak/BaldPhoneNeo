@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 
-import app.baldphone.neo.contacts.ui.details.ContactDetailsActivity;
+import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.utils.S;

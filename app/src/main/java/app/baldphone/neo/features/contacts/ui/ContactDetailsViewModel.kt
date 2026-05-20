@@ -1,4 +1,4 @@
-package app.baldphone.neo.contacts.ui.details
+package app.baldphone.neo.features.contacts.ui
 
 import android.app.Application
 import androidx.annotation.ColorRes

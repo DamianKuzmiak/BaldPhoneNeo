@@ -101,7 +101,7 @@
             android:windowSoftInputMode="adjustResize|stateUnchanged"
             android:label="@string/contacts" />
         <activity
-            android:name="app.baldphone.neo.contacts.ui.details.ContactDetailsActivity"
+            android:name="app.baldphone.neo.features.contacts.ui.ContactDetailsActivity"
             android:exported="false"
             android:label="Contact details" />
         <activity

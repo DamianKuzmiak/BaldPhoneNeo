@@ -39,7 +39,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
-import app.baldphone.neo.contacts.ui.details.ContactDetailsActivity;
+import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
 import app.baldphone.neo.features.calls.CallUiHelper;
 
 import com.bald.uriah.baldphone.R;

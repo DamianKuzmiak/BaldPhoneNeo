@@ -1,4 +1,4 @@
-package app.baldphone.neo.contacts.ui.details
+package app.baldphone.neo.features.contacts.ui
 
 import android.content.ActivityNotFoundException
 import android.content.Context

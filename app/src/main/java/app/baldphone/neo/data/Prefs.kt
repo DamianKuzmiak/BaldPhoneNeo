@@ -115,7 +115,7 @@ object Prefs {
 
     /**
      * Controls whether call logs are expanded by default
-     * in the [app.baldphone.neo.contacts.ui.details.ContactDetailsActivity].
+     * in the [app.baldphone.neo.features.contacts.ui.ContactDetailsActivity].
      */
     var isCallLogVisible: Boolean by booleanPref(
         PrefKeys.KEY_CALL_LOG_VISIBLE,

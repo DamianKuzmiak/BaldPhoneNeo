@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.coroutines.launch
 
 import app.baldphone.neo.contacts.ui.ContactAdapter
-import app.baldphone.neo.contacts.ui.details.ContactDetailsActivity
+import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.permissions.PermissionManager
