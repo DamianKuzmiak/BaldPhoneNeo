@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.data.Prefs
-import app.baldphone.neo.features.calls.data.CallsRepository
+import app.baldphone.neo.features.calls.data.CallLogProvider
 import app.baldphone.neo.features.calls.model.Call
 import app.baldphone.neo.features.calls.model.CallLogItemType
 import app.baldphone.neo.features.contacts.Contact
@@ -43,7 +43,7 @@ class ContactDetailsViewModel(
     application: Application
 ) : AndroidViewModel(application) {
     private val contactRepository = ContactRepository.getInstance(application)
-    private val callsRepository = CallsRepository(application)
+    private val callLogProvider = CallLogProvider(application)
     private val pinManager = ContactPinManager(application)
 
     private val _uiState =
@@ -100,7 +100,7 @@ class ContactDetailsViewModel(
                 }
 
                 launch {
-                    val calls = callsRepository.getCallHistory(contact)
+                    val calls = callLogProvider.getCallHistory(contact.lookupUri)
                     val callUiModels =
                         withContext(Dispatchers.Default) {
                             mapCallsToUiModels(calls)

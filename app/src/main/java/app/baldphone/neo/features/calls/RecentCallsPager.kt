@@ -28,7 +28,7 @@ class RecentCallsPager(
     initialGroupingEnabled: Boolean = true
 ) {
     private val contentResolver = context.contentResolver
-    private val callLogProvider = CallLogProvider(contentResolver)
+    private val callLogProvider = CallLogProvider(context)
 
     private val _entries = MutableStateFlow<List<CallListEntry>?>(null)
     val entries = _entries.asStateFlow()

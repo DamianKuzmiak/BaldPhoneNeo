@@ -18,6 +18,9 @@ data class Contact(
     val whatsappNumbers: List<String>,
     val signalNumbers: List<String>
 ) {
+    val lookupUri: android.net.Uri
+        get() = ContactsContract.Contacts.getLookupUri(id, lookupKey)
+
     val mobilePhone: String?
         get() =
             phones

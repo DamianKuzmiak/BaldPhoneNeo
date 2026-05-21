@@ -1,16 +1,23 @@
 package app.baldphone.neo.features.calls.data
 
+import android.Manifest.permission.READ_CALL_LOG
 import android.content.ContentResolver
+import android.content.Context
+import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.net.Uri
 import android.os.Build
 import android.provider.BaseColumns
 import android.provider.CallLog
 import android.provider.ContactsContract
 import android.util.Log
 
+import androidx.core.content.ContextCompat.checkSelfPermission
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.features.calls.data.CallLogProvider.Companion.DEFAULT_PAGE_SIZE
+import app.baldphone.neo.features.calls.model.Call
 import app.baldphone.neo.features.calls.model.CallListEntry
 
 /**
@@ -19,7 +26,9 @@ import app.baldphone.neo.features.calls.model.CallListEntry
  * Each call to [loadPage] returns a [Page] containing up to [DEFAULT_PAGE_SIZE] items
  * plus a cursor key for fetching the next page.
  */
-class CallLogProvider(private val resolver: ContentResolver) {
+class CallLogProvider(private val context: Context) {
+    private val resolver: ContentResolver = context.contentResolver
+
     /**
      * Loads a single page of call log entries.
      *
@@ -135,6 +144,53 @@ class CallLogProvider(private val resolver: ContentResolver) {
             // If fewer than `limit` items fetched, the end of data was reached.
             val nextKey = if (items.size < limit) null else minDateSeen
             Page(items, nextKey)
+        }
+
+    /**
+     * Retrieves the call history for a specific contact URI.
+     */
+    suspend fun getCallHistory(contactUri: Uri?): List<Call> =
+        withContext(Dispatchers.IO) {
+            if (contactUri == null) return@withContext emptyList()
+            if (checkSelfPermission(context, READ_CALL_LOG) != PERMISSION_GRANTED) {
+                return@withContext emptyList()
+            }
+
+            val projection =
+                arrayOf(
+                    CallLog.Calls.NUMBER,
+                    CallLog.Calls.DURATION,
+                    CallLog.Calls.DATE,
+                    CallLog.Calls.TYPE,
+                    CallLog.Calls.CACHED_LOOKUP_URI
+                )
+
+            val calls = mutableListOf<Call>()
+            resolver
+                .query(
+                    CallLog.Calls.CONTENT_URI,
+                    projection,
+                    "${CallLog.Calls.CACHED_LOOKUP_URI} = ?",
+                    arrayOf(contactUri.toString()),
+                    "${CallLog.Calls.DATE} DESC"
+                )?.use { cursor ->
+                    val numberIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.NUMBER)
+                    val durationIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.DURATION)
+                    val dateIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.DATE)
+                    val typeIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.TYPE)
+
+                    while (cursor.moveToNext()) {
+                        calls.add(
+                            Call(
+                                phoneNumber = cursor.getString(numberIndex),
+                                duration = cursor.getInt(durationIndex),
+                                dateTime = cursor.getLong(dateIndex),
+                                callType = cursor.getInt(typeIndex)
+                            )
+                        )
+                    }
+                }
+            calls
         }
 
     /**
