@@ -12,8 +12,8 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-import app.baldphone.neo.contacts.Contact
 import app.baldphone.neo.features.calls.model.Call
+import app.baldphone.neo.features.contacts.Contact
 
 class CallsRepository(private val context: Context) {
     private val resolver: ContentResolver = context.contentResolver

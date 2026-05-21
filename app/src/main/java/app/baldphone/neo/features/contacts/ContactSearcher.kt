@@ -1,8 +1,6 @@
-package app.baldphone.neo.contacts
+package app.baldphone.neo.features.contacts
 
 import android.content.Context
-
-import com.bald.uriah.baldphone.R
 
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -13,6 +11,8 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
 import java.text.Normalizer
+
+import com.bald.uriah.baldphone.R
 
 /**
  * Logic for searching contacts, including T9 matching and alphabetical grouping.

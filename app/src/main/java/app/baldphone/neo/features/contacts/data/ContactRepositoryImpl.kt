@@ -1,4 +1,4 @@
-package app.baldphone.neo.contacts.data
+package app.baldphone.neo.features.contacts.data
 
 import android.Manifest
 import android.content.ContentResolver
@@ -11,11 +11,11 @@ import android.util.Log
 
 import androidx.core.content.ContextCompat
 
-import app.baldphone.neo.contacts.Address
-import app.baldphone.neo.contacts.Contact
-import app.baldphone.neo.contacts.Email
-import app.baldphone.neo.contacts.Phone
-import app.baldphone.neo.contacts.SimpleContact
+import app.baldphone.neo.features.contacts.Address
+import app.baldphone.neo.features.contacts.Contact
+import app.baldphone.neo.features.contacts.Email
+import app.baldphone.neo.features.contacts.Phone
+import app.baldphone.neo.features.contacts.SimpleContact
 import app.baldphone.neo.utils.messaging.SignalHandler
 import app.baldphone.neo.utils.messaging.WhatsAppHandler
 

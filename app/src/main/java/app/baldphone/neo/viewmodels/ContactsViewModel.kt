@@ -5,11 +5,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 
-import app.baldphone.neo.contacts.ContactItemType
-import app.baldphone.neo.contacts.ContactSearcher
-import app.baldphone.neo.contacts.SimpleContact
-import app.baldphone.neo.contacts.data.ContactRepositoryImpl
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +14,11 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+
+import app.baldphone.neo.features.contacts.ContactItemType
+import app.baldphone.neo.features.contacts.ContactSearcher
+import app.baldphone.neo.features.contacts.SimpleContact
+import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl
 
 /**
  * ViewModel for ContactsActivity.

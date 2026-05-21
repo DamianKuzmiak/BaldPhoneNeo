@@ -27,9 +27,9 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
-import app.baldphone.neo.activities.ContactsActivity;
 import app.baldphone.neo.activities.DialerActivity;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
+import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;

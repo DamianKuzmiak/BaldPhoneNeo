@@ -13,9 +13,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-import app.baldphone.neo.contacts.data.ContactsDataSource
 import app.baldphone.neo.features.calls.ContactLookupResult
 import app.baldphone.neo.features.calls.RecentCallsPager
+import app.baldphone.neo.features.contacts.data.ContactsDataSource
 
 /**
  * ViewModel for [RecentCallsActivity].

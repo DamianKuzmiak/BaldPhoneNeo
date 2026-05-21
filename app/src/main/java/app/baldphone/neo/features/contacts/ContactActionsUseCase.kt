@@ -1,13 +1,13 @@
-package app.baldphone.neo.contacts
+package app.baldphone.neo.features.contacts
 
 import android.content.Context
 
-import app.baldphone.neo.contacts.data.ContactRepository
-
-import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
+import app.baldphone.neo.features.contacts.data.ContactRepository
+
+import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper
 
 /**
  * Encapsulates actions that can be performed on a contact.

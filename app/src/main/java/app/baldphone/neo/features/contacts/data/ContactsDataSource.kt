@@ -1,4 +1,4 @@
-package app.baldphone.neo.contacts.data
+package app.baldphone.neo.features.contacts.data
 
 import android.Manifest
 import android.content.ContentResolver

@@ -44,9 +44,9 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewTreeLifecycleOwner;
 
-import app.baldphone.neo.activities.ContactsActivity;
 import app.baldphone.neo.activities.DialerActivity;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
+import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.services.DeviceLock;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;

@@ -1,4 +1,4 @@
-package app.baldphone.neo.contacts.ui
+package app.baldphone.neo.features.contacts.ui
 
 import android.provider.ContactsContract
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
-import app.baldphone.neo.contacts.ContactItemType
-import app.baldphone.neo.contacts.SimpleContact
-
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.fallback
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
+
+import app.baldphone.neo.features.contacts.ContactItemType
+import app.baldphone.neo.features.contacts.SimpleContact
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.adapters.ModularListAdapter

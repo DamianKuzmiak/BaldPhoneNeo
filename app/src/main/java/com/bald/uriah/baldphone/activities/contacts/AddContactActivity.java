@@ -38,10 +38,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
 
-import app.baldphone.neo.activities.ContactsActivity;
-import app.baldphone.neo.contacts.Contact;
-import app.baldphone.neo.contacts.data.ContactRepositoryImpl;
+import app.baldphone.neo.features.contacts.Contact;
+import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl;
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
+import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;

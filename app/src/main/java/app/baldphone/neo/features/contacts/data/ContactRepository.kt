@@ -1,9 +1,9 @@
-package app.baldphone.neo.contacts.data
-
-import app.baldphone.neo.contacts.Contact
-import app.baldphone.neo.contacts.SimpleContact
+package app.baldphone.neo.features.contacts.data
 
 import kotlinx.coroutines.flow.StateFlow
+
+import app.baldphone.neo.features.contacts.Contact
+import app.baldphone.neo.features.contacts.SimpleContact
 
 /**
  * Interface defining the operations for managing and retrieving contacts.

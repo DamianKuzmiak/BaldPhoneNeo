@@ -1,4 +1,4 @@
-package app.baldphone.neo.contacts
+package app.baldphone.neo.features.contacts
 
 import android.content.res.Resources
 import android.provider.ContactsContract

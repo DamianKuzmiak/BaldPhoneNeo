@@ -35,12 +35,6 @@ import androidx.annotation.Nullable;
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.databases.contacts.MiniContact;
 import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper;
-
-import app.baldphone.neo.activities.ContactsActivity;
-import app.baldphone.neo.contacts.data.ContactsDataSource;
-import app.baldphone.neo.features.calls.CallUiHelper;
-import app.baldphone.neo.utils.PhoneNumberUtils;
-
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.views.BaldLinearLayoutButton;
 
@@ -49,6 +43,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import app.baldphone.neo.features.calls.CallUiHelper;
+import app.baldphone.neo.features.contacts.data.ContactsDataSource;
+import app.baldphone.neo.features.contacts.ui.ContactsActivity;
+import app.baldphone.neo.utils.PhoneNumberUtils;
 
 import static com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper.SHARED_PREFS_KEY;
 

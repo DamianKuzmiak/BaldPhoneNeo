@@ -31,8 +31,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import app.baldphone.neo.contacts.Contact;
-import app.baldphone.neo.contacts.data.ContactRepositoryImpl;
+import app.baldphone.neo.features.contacts.Contact;
+import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
 import com.bald.uriah.baldphone.R;

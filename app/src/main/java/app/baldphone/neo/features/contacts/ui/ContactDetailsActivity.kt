@@ -27,8 +27,8 @@ import coil3.request.crossfade
 import coil3.request.error
 
 import app.baldphone.neo.activities.BaseActivity
-import app.baldphone.neo.contacts.Contact
 import app.baldphone.neo.features.calls.CallUiHelper
+import app.baldphone.neo.features.contacts.Contact
 import app.baldphone.neo.ui.dialogs.BaldDialog
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showSuccessSnackbar

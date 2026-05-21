@@ -21,13 +21,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-import app.baldphone.neo.contacts.Contact
-import app.baldphone.neo.contacts.data.ContactRepositoryImpl
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.data.CallsRepository
 import app.baldphone.neo.features.calls.model.Call
 import app.baldphone.neo.features.calls.model.CallLogItemType
+import app.baldphone.neo.features.contacts.Contact
 import app.baldphone.neo.features.contacts.ContactPinManager
+import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.formatAsElapsedDuration
 import app.baldphone.neo.utils.formatTime

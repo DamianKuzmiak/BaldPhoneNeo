@@ -1,6 +1,7 @@
-package app.baldphone.neo.activities
+package app.baldphone.neo.features.contacts.ui
 
 import android.content.Intent
+import android.graphics.drawable.ClipDrawable.VERTICAL
 import android.os.Bundle
 
 import androidx.activity.viewModels
@@ -14,11 +15,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 
-import app.baldphone.neo.contacts.SimpleContact
-import app.baldphone.neo.contacts.ui.ContactAdapter
-import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
+import kotlinx.coroutines.launch
+
+import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.features.contacts.SimpleContact
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog
@@ -27,8 +28,6 @@ import app.baldphone.neo.viewmodels.ContactsViewModel
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 import com.bald.uriah.baldphone.databinding.ActivityContactsBinding
-
-import kotlinx.coroutines.launch
 
 class ContactsActivity : BaseActivity() {
 
