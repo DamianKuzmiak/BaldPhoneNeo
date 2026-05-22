@@ -100,7 +100,8 @@ class ContactDetailsViewModel(
                 }
 
                 launch {
-                    val calls = callLogProvider.getCallHistory(contact.lookupUri)
+                    val phoneNumbers = contact.phones.map { it.value }
+                    val calls = callLogProvider.getCallHistory(contact.lookupUri, phoneNumbers)
                     val callUiModels =
                         withContext(Dispatchers.Default) {
                             mapCallsToUiModels(calls)

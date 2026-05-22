@@ -13,7 +13,10 @@ import android.util.Log
 
 import androidx.core.content.ContextCompat.checkSelfPermission
 
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.features.calls.data.CallLogProvider.Companion.DEFAULT_PAGE_SIZE
@@ -147,32 +150,79 @@ class CallLogProvider(private val context: Context) {
         }
 
     /**
-     * Retrieves the call history for a specific contact URI.
+     * Retrieves the call history for a specific contact.
+     *
+     * Queries both by lookupUri and phone numbers to better results, deduplicating and sorting the combined results.
      */
-    suspend fun getCallHistory(contactUri: Uri?): List<Call> =
+    suspend fun getCallHistory(
+        lookupUri: Uri?,
+        phoneNumbers: List<String> = emptyList()
+    ): List<Call> =
         withContext(Dispatchers.IO) {
-            if (contactUri == null) return@withContext emptyList()
+            val startTime = System.currentTimeMillis()
+            val validNumbers = phoneNumbers.filter { it.isNotBlank() }
+
+            if (lookupUri == null && validNumbers.isEmpty()) return@withContext emptyList()
             if (checkSelfPermission(context, READ_CALL_LOG) != PERMISSION_GRANTED) {
                 return@withContext emptyList()
             }
 
-            val projection =
-                arrayOf(
-                    CallLog.Calls.NUMBER,
-                    CallLog.Calls.DURATION,
-                    CallLog.Calls.DATE,
-                    CallLog.Calls.TYPE,
-                    CallLog.Calls.CACHED_LOOKUP_URI
-                )
+            val deferredResults = mutableListOf<Deferred<List<Call>>>()
 
-            val calls = mutableListOf<Call>()
+            if (lookupUri != null) {
+                deferredResults.add(
+                    async {
+                        queryCallLog(
+                            uri = CallLog.Calls.CONTENT_URI,
+                            selection = "${CallLog.Calls.CACHED_LOOKUP_URI} = ?",
+                            selectionArgs = arrayOf(lookupUri.toString())
+                        )
+                    }
+                )
+            }
+
+            // Query by phone numbers using CONTENT_FILTER_URI to handle different formatting
+            // better than a standard SQL "IN" clause.
+            for (phoneNumber in validNumbers) {
+                deferredResults.add(
+                    async {
+                        val filterUri = Uri.withAppendedPath(CallLog.Calls.CONTENT_FILTER_URI, Uri.encode(phoneNumber))
+                        queryCallLog(
+                            uri = filterUri,
+                            selection = null,
+                            selectionArgs = null
+                        )
+                    }
+                )
+            }
+
+            val combinedCalls =
+                deferredResults
+                    .awaitAll()
+                    .flatten()
+                    .distinctBy { it.dateTime }
+                    .sortedByDescending { it.dateTime }
+
+            val totalDuration = System.currentTimeMillis() - startTime
+            Log.d(TAG, "getCallHistory took ${totalDuration}ms, found ${combinedCalls.size} calls")
+
+            combinedCalls
+        }
+
+    private fun queryCallLog(
+        uri: Uri,
+        selection: String?,
+        selectionArgs: Array<String>?
+    ): List<Call> {
+        val calls = mutableListOf<Call>()
+        try {
             resolver
                 .query(
-                    CallLog.Calls.CONTENT_URI,
-                    projection,
-                    "${CallLog.Calls.CACHED_LOOKUP_URI} = ?",
-                    arrayOf(contactUri.toString()),
-                    "${CallLog.Calls.DATE} DESC"
+                    uri,
+                    HISTORY_PROJECTION,
+                    selection,
+                    selectionArgs,
+                    null
                 )?.use { cursor ->
                     val numberIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.NUMBER)
                     val durationIndex = cursor.getColumnIndexOrThrow(CallLog.Calls.DURATION)
@@ -190,8 +240,11 @@ class CallLogProvider(private val context: Context) {
                         )
                     }
                 }
-            calls
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to query call history for URI: $uri", e)
         }
+        return calls
+    }
 
     /**
      * A page of call log items with an optional cursor key for the next page.
@@ -223,6 +276,14 @@ class CallLogProvider(private val context: Context) {
                 add(CallLog.Calls.DATE)
                 add(CallLog.Calls.NEW)
             }.toTypedArray()
+
+        private val HISTORY_PROJECTION =
+            arrayOf(
+                CallLog.Calls.DATE,
+                CallLog.Calls.DURATION,
+                CallLog.Calls.NUMBER,
+                CallLog.Calls.TYPE
+            )
     }
 }
 
