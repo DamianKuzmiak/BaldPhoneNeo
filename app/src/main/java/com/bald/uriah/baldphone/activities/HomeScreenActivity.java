@@ -45,6 +45,7 @@ import androidx.core.splashscreen.SplashScreen;
 import app.baldphone.neo.battery.BatteryRepository;
 import app.baldphone.neo.battery.ui.BatteryIconView;
 import app.baldphone.neo.extensions.ViewExtensions;
+import app.baldphone.neo.extensions.SurfaceWorkaroundKt;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
 import app.baldphone.neo.flashlight.FlashLightController;
@@ -143,6 +144,9 @@ public class HomeScreenActivity extends BaldActivity {
         handler.removeCallbacks(shakeIt);
         handler.postDelayed(shakeIt, 5 * D.SECOND);
     }
+
+    private final Runnable surfaceCheckRunnable = () ->
+        SurfaceWorkaroundKt.ensureValidSurface(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -278,6 +282,14 @@ public class HomeScreenActivity extends BaldActivity {
         }
 
         soundButton.setImageResource(SOUND_DRAWABLES[audioManager.getRingerMode()]);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        getWindow().getDecorView().removeCallbacks(surfaceCheckRunnable);
+        getWindow().getDecorView().postDelayed(surfaceCheckRunnable, 500);
     }
 
     @Override
