@@ -11,6 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isVisible
 
+import app.baldphone.neo.extensions.applyTopBarInsets
+
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.databinding.ViewTitleBarBinding
 
@@ -52,6 +54,8 @@ class TitleBarView
                     setBackgroundColor(backgroundColor)
                 }
             }
+
+            applyTopBarInsets()
         }
 
         /**

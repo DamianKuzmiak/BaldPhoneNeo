@@ -6,6 +6,7 @@
 
     <color name="bald_background">#1A1F23</color> <!-- Eerie black -->
     <color name="bald_background_transparent">#E4000000</color>
+    <color name="home_screen_top_bar_background">#3E4756</color>
     <color name="bald_button">#0b212f</color>
     <color name="bald_button_clicked">#BAD6EF</color>  <!-- #44586a -->
     <color name="bald_button_disabled">#d6d6d6</color>

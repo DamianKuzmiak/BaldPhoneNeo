@@ -21,6 +21,7 @@
 
     <color name="bald_background">#EBEBEB</color> <!-- Anti-flash white -->
     <color name="bald_background_transparent">#E4DDE2E3</color>
+    <color name="home_screen_top_bar_background">#E1E1E1</color>
     <color name="bald_button">#D7DCD6</color> <!-- original #CC9AACB8, #97AEAF -->
     <color name="bald_button_clicked">#3C455C</color>
     <color name="bald_button_disabled">#d6d6d6</color>

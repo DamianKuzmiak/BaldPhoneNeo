@@ -15,13 +15,22 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">never</item>
+    <style name="BaseAppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Window -->
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="28">shortEdges</item>
+
+        <!-- System Bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+
+        <!-- Animations -->
         <item name="android:windowContentTransitions">false</item>
         <item name="android:windowAnimationStyle">@style/FadeAnimation</item>
-        <item name="android:windowBackground">@color/bald_background</item>
-        <item name="android:statusBarColor">@android:color/black</item>
 
+        <!-- Colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/onPrimary</item>
         <item name="android:textColorPrimary">@color/bald_text_on_background</item>
@@ -61,8 +70,12 @@
         <item name="bald_category_settings">@color/color_3</item>
         <item name="bald_category_apps">@color/color_4</item>
 
-         <item name="materialSwitchStyle">@style/Widget.App.MaterialSwitch</item>
-         <item name="batteryIconViewStyle">@style/Widget.BaldPhone.BatteryIconView</item>
+        <item name="materialSwitchStyle">@style/Widget.App.MaterialSwitch</item>
+        <item name="batteryIconViewStyle">@style/Widget.BaldPhone.BatteryIconView</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseAppTheme">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="AppTheme.Starting" parent="AppTheme">

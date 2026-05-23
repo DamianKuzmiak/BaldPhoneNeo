@@ -17,15 +17,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/topbar_bg"
+    android:layout_height="wrap_content"
+    android:background="@color/home_screen_top_bar_background"
     android:paddingHorizontal="@dimen/home_screen_padding"
     android:elevation="8dp">
 
     <app.baldphone.neo.battery.ui.BatteryIconView
         android:id="@+id/battery"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:clickable="true"
         android:focusable="true"
         android:background="@drawable/style_for_buttons_transparent"
@@ -38,7 +38,7 @@
     <com.bald.uriah.baldphone.views.BaldImageButton
         android:id="@+id/flash"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
         android:src="@drawable/flashlight_off_on_background"
@@ -51,7 +51,7 @@
     <com.bald.uriah.baldphone.views.BaldImageButton
         android:id="@+id/sound"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
         android:src="@drawable/sound_on_background"
@@ -63,7 +63,7 @@
     <com.bald.uriah.baldphone.views.BaldImageButton
         android:id="@+id/notifications"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
         android:src="@drawable/notification_none_on_background"

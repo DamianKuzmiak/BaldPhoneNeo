@@ -3,13 +3,16 @@
 package app.baldphone.neo.extensions
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 
 import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
+import androidx.core.view.updatePadding
 
 private val CLICKABLE_ROLE_DELEGATE =
     object : AccessibilityDelegateCompat() {
@@ -32,4 +35,32 @@ fun View.setClickableAccessibilityRole() {
     if (ViewCompat.getAccessibilityDelegate(this) != null) return
 
     ViewCompat.setAccessibilityDelegate(this, CLICKABLE_ROLE_DELEGATE)
+}
+
+/**
+ * Applies top window insets as padding to this view.
+ */
+fun View.applyTopBarInsets() {
+    val initialPaddingTop = paddingTop
+    ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+        val types = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+        view.updatePadding(top = initialPaddingTop + insets.getInsets(types).top)
+        insets
+    }
+    ViewCompat.requestApplyInsets(this)
+}
+
+/**
+ * Applies edge-to-edge window insets to this view group, handling side insets and bottom insets for tagged children.
+ */
+fun ViewGroup.applyEdgeToEdgeInsets() {
+    ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+        val typesMask = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+        val targetInsets = insets.getInsets(typesMask)
+
+        view.updatePadding(left = targetInsets.left, right = targetInsets.right, bottom = targetInsets.bottom)
+
+        insets.inset(targetInsets.left, 0, targetInsets.right, targetInsets.bottom)
+    }
+    ViewCompat.requestApplyInsets(this)
 }

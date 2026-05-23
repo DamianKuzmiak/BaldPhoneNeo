@@ -29,6 +29,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import app.baldphone.neo.extensions.ViewExtensions;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.D;
@@ -83,6 +85,7 @@ public class BaldTitleBar extends LinearLayout {
         tv_title.setText(title);
         updateView();
 
+        ViewExtensions.applyTopBarInsets(this);
     }
 
     public void setGold(boolean gold) {

@@ -20,5 +20,4 @@
     <item android:drawable="@android:color/transparent" android:state_enabled="false" />
     <item android:drawable="@drawable/btn_clicked_no_border" android:state_enabled="true" android:state_pressed="true" />
     <item android:drawable="@android:color/transparent" android:state_enabled="true" android:state_focused="true" />
-    <!-- Background color is defined in topbar_bg.xml -->
 </selector>

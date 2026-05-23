@@ -5,7 +5,10 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 
+import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat.getInsetsController
 import androidx.core.view.WindowInsetsCompat.Type.statusBars
@@ -25,6 +28,7 @@ import net.danlew.android.joda.JodaTimeAndroid
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
+import app.baldphone.neo.extensions.applyEdgeToEdgeInsets
 import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
@@ -35,7 +39,7 @@ import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler
 import com.bald.uriah.baldphone.utils.BaldUncaughtExceptionHandler
 
-class NeoApp : Application(), SingletonImageLoader.Factory  {
+class NeoApp : Application(), SingletonImageLoader.Factory {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         Thread.setDefaultUncaughtExceptionHandler(
@@ -68,6 +72,13 @@ class NeoApp : Application(), SingletonImageLoader.Factory  {
     private val globalActivityLifecycleListener =
         object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+                val rootView = activity.findViewById<ViewGroup>(android.R.id.content)
+
+                if (activity is ComponentActivity) {
+                    activity.enableEdgeToEdge()
+                    rootView?.applyEdgeToEdgeInsets()
+                }
+
                 if (activity is AppCompatActivity) {
                     setupStatusBar(activity)
                 }
@@ -88,6 +99,18 @@ class NeoApp : Application(), SingletonImageLoader.Factory  {
 
     private fun setupStatusBar(activity: AppCompatActivity) {
         val window = activity.window
+
+        // Note: Be aware of "android:enforceNavigationBarContrast" = true
+
+        /*
+                window.apply {
+                    navigationBarColor = Color.TRANSPARENT
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                        isNavigationBarContrastEnforced = false
+                    }
+                }
+         */
+
         val insetsController = getInsetsController(window, window.decorView)
 
         val statusBarMode = Prefs.statusBarMode
