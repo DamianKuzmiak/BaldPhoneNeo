@@ -109,9 +109,13 @@ class NotificationReceiverService : NotificationListenerService() {
     }
 
     internal fun cancelMissedCalls() {
-        activeNotifications
-            ?.filter { NotificationClassifier.isMissedCall(this, it) }
-            ?.forEach { dismissNotification(it.key) }
+        runCatching {
+            activeNotifications
+                ?.filter { NotificationClassifier.isMissedCall(this, it) }
+                ?.forEach { dismissNotification(it.key) }
+        }.onFailure { e ->
+            Log.w(TAG, "Failed to cancel missed calls: ${e.message}")
+        }
     }
 
     fun logNotificationDetails(sbn: StatusBarNotification) {

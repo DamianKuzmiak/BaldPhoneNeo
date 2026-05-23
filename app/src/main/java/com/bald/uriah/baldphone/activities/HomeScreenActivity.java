@@ -45,7 +45,7 @@ import androidx.core.splashscreen.SplashScreen;
 
 import app.baldphone.neo.battery.BatteryRepository;
 import app.baldphone.neo.battery.ui.BatteryIconView;
-import app.baldphone.neo.data.Prefs;
+import app.baldphone.neo.extensions.ViewExtensions;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
 import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
 import app.baldphone.neo.flashlight.FlashLightController;
@@ -174,7 +174,12 @@ public class HomeScreenActivity extends BaldActivity {
 
         setContentView(R.layout.home_screen);
         viewPagerHolder = findViewById(R.id.view_pager_holder);
+
         final ViewGroup top_bar = findViewById(R.id.top_bar);
+        if (getResources().getConfiguration().orientation != android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
+            ViewExtensions.applyTopBarInsets(top_bar);
+        }
+
         soundButton = top_bar.findViewById(R.id.sound);
         batteryIconView = top_bar.findViewById(R.id.battery);
         notificationsButton = top_bar.findViewById(R.id.notifications);
@@ -224,9 +229,9 @@ public class HomeScreenActivity extends BaldActivity {
                 final boolean isLow = percentage != null
                         && percentage <= D.LOW_BATTERY_LEVEL
                         && !batteryState.isCharging();
-                getWindow().setStatusBarColor(isLow ?
-                        ContextCompat.getColor(this, R.color.battery_low) :
-                        D.DEFAULT_STATUS_BAR_COLOR);
+//                getWindow().setStatusBarColor(isLow ?
+//                        ContextCompat.getColor(this, R.color.battery_low) :
+//                        D.DEFAULT_STATUS_BAR_COLOR);
             }
         });
         batteryIconView.setOnClickListener((v) -> {
