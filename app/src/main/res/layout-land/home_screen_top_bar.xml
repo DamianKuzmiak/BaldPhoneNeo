@@ -20,7 +20,7 @@
     android:layout_height="match_parent"
     android:background="@color/home_screen_top_bar_background">
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
+    <app.baldphone.neo.launcher.ui.NotificationsButton
         android:id="@+id/notifications"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
+    <app.baldphone.neo.launcher.ui.SoundButton
         android:id="@+id/sound"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifications" />
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
+    <app.baldphone.neo.launcher.ui.FlashlightButton
         android:id="@+id/flash"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sound" />
 
-    <app.baldphone.neo.battery.ui.BatteryIconView
+    <app.baldphone.neo.launcher.ui.BatteryIconView
         android:id="@+id/battery"
         android:layout_width="0dp"
         android:layout_height="0dp"

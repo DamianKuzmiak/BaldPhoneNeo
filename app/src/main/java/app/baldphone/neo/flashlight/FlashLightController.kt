@@ -5,13 +5,9 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,9 +23,6 @@ class FlashLightController private constructor(appContext: Context) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val _state = MutableStateFlow<FlashlightState>(FlashlightState.Idle)
     val state: StateFlow<FlashlightState> = _state.asStateFlow()
-
-    /** Reactive bridge for Java consumers. */
-    val stateLiveData: LiveData<FlashlightState> = state.asLiveData()
 
     private val driver: FlashlightDriver by lazy {
         Log.d(TAG, "Initializing driver.")
@@ -76,9 +69,14 @@ class FlashLightController private constructor(appContext: Context) {
         @Volatile
         private var instance: FlashLightController? = null
 
-        fun getInstance(context: Context): FlashLightController =
-            instance ?: synchronized(this) {
-                instance ?: FlashLightController(context.applicationContext).also { instance = it }
+        fun getInstance(context: Context): FlashLightController? =
+            if (!isFlashHardwarePresent(context)) {
+                Log.w(TAG, "No flash hardware on this device")
+                null
+            } else {
+                instance ?: synchronized(this) {
+                    instance ?: FlashLightController(context.applicationContext).also { instance = it }
+                }
             }
 
         /** Returns true if the device has flashlight hardware. */

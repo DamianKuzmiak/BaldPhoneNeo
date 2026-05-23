@@ -316,7 +316,7 @@
     <string name="go">Idź</string>
     <string name="dialer_sounds">Dźwięki wybierania numeru</string>
     <string name="dialer_sounds_subtext">Wybierz, czy chcesz włączyć dźwięki wybierania numeru</string>
-    <string name="low_battery_alert">Ostrzeżenie o niskim poziomie baterii</string>
+    <string name="low_battery_alert">Ostrzegaj o niskim poziomie baterii</string>
 
     <!-- Permissions General UI -->
     <string name="grant_all_permissions">Przyznaj wszystkie uprawnienia</string>
@@ -413,6 +413,18 @@
     <string name="battery_time_h_m_tts">%1$d godzin i %2$d minut</string>
     <string name="battery_time_m_tts">%1$d minut</string>
     <string name="battery_unavailable">Bateria. Status nieznany.</string>
+    <string name="flashlight_off">Latarka. Wyłączona.</string>
+    <string name="flashlight_on">Latarka. Włączona.</string>
+    <string name="notifications_accessibility_none">Powiadomienia. Brak.</string>
+    <string name="sound_mode_mute">Tryb dźwięku. Wyciszony.</string>
+    <string name="sound_mode_normal">Tryb dźwięku. Normalny.</string>
+    <string name="sound_mode_vibrate">Tryb dźwięku. Wibracje.</string>
+    <plurals name="notifications_accessibility_plural">
+        <item quantity="one">Powiadomienia. Jedno nowe.</item>
+        <item quantity="few">Powiadomienia. %d nowe.</item>
+        <item quantity="many">Powiadomienia. %d nowych.</item>
+        <item quantity="other">Powiadomienia. %d nowych.</item>
+    </plurals>
 
     <string name="content_desc_gallery_photo_thumbnail">Miniaturka zdjęcia</string>
     <string name="content_desc_gallery_video_thumbnail">Miniaturka wideo</string>

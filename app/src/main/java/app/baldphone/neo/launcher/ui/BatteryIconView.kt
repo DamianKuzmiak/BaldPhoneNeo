@@ -1,4 +1,4 @@
-package app.baldphone.neo.battery.ui
+package app.baldphone.neo.launcher.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,10 +9,16 @@ import android.graphics.RectF
 import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.view.View
+import android.view.accessibility.AccessibilityNodeInfo
+import android.widget.Button
 
 import androidx.annotation.UiThread
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.withStyledAttributes
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 
 import kotlin.properties.Delegates
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +30,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.battery.BatteryRepository
 import app.baldphone.neo.battery.BatteryState
 
 import com.bald.uriah.baldphone.R
@@ -120,7 +127,7 @@ class BatteryIconView
         }
 
         /**
-         * Updates the view state based on the provided [app.baldphone.neo.battery.BatteryState].
+         * Updates the view state based on the provided [BatteryState].
          */
         @UiThread
         fun setBatteryState(batteryState: BatteryState) {
@@ -150,6 +157,19 @@ class BatteryIconView
 
             if (visualChanged) {
                 invalidate()
+            }
+        }
+
+        /**
+         * Binds this view to the [BatteryRepository], automatically updating its state in sync with the lifecycle.
+         */
+        fun observeBatteryState(lifecycleOwner: LifecycleOwner) {
+            lifecycleOwner.lifecycleScope.launch {
+                lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    BatteryRepository.get(context).batteryState.collect { state ->
+                        setBatteryState(state)
+                    }
+                }
             }
         }
 
@@ -301,10 +321,10 @@ class BatteryIconView
             updateAnimationState()
         }
 
-        override fun getAccessibilityClassName(): CharSequence = android.widget.Button::class.java.name
+        override fun getAccessibilityClassName(): CharSequence = Button::class.java.name
 
-        override fun onInitializeAccessibilityNodeInfo(info: android.view.accessibility.AccessibilityNodeInfo) {
+        override fun onInitializeAccessibilityNodeInfo(info: AccessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(info)
-            info.className = android.widget.Button::class.java.name
+            info.className = Button::class.java.name
         }
     }
