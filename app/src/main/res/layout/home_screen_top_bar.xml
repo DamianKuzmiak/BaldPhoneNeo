@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
+    <app.baldphone.neo.features.home.ui.FlashlightButton
         android:id="@+id/flash"
         android:layout_width="0dp"
         android:layout_height="70dp"
@@ -48,7 +48,7 @@
         app:layout_constraintStart_toEndOf="@+id/battery"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
+    <app.baldphone.neo.features.home.ui.SoundButton
         android:id="@+id/sound"
         android:layout_width="0dp"
         android:layout_height="70dp"
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toEndOf="@+id/flash"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
+    <app.baldphone.neo.features.home.ui.NotificationsButton
         android:id="@+id/notifications"
         android:layout_width="0dp"
         android:layout_height="70dp"

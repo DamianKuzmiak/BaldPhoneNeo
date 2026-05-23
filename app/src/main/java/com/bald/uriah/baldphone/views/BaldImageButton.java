@@ -139,4 +139,15 @@ public class BaldImageButton extends AppCompatImageView implements BaldButtonInt
         }
         return null;
     }
+
+    @Override
+    public CharSequence getAccessibilityClassName() {
+        return android.widget.ImageButton.class.getName();
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo info) {
+        super.onInitializeAccessibilityNodeInfo(info);
+        info.setClassName(android.widget.ImageButton.class.getName());
+    }
 }

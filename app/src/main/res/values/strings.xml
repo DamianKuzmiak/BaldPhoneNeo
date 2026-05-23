@@ -530,6 +530,16 @@
     <string name="battery_time_h_m_tts">%1$d hours and %2$d minutes</string>
     <string name="battery_time_m_tts">%1$d minutes</string>
     <string name="battery_unavailable">Battery. Status unknown.</string>
+    <string name="flashlight_off">Flashlight. Off.</string>
+    <string name="flashlight_on">Flashlight. On.</string>
+    <string name="sound_mode_mute">Sound mode. Muted.</string>
+    <string name="sound_mode_normal">Sound mode. Normal.</string>
+    <string name="sound_mode_vibrate">Sound mode. Vibrate.</string>
+    <string name="notifications_accessibility_none">Notifications. None.</string>
+    <plurals name="notifications_accessibility_plural">
+        <item quantity="one">Notifications. One new.</item>
+        <item quantity="other">Notifications. %d new.</item>
+    </plurals>
 
     <string name="content_desc_gallery_photo_thumbnail">Photo thumbnail</string>
     <string name="content_desc_gallery_video_thumbnail">Video thumbnail</string>

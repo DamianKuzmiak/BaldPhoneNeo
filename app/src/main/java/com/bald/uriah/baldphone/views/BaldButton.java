@@ -134,4 +134,15 @@ public class BaldButton extends AppCompatTextView implements BaldButtonInterface
         }
         return null;
     }
+
+    @Override
+    public CharSequence getAccessibilityClassName() {
+        return android.widget.Button.class.getName();
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo info) {
+        super.onInitializeAccessibilityNodeInfo(info);
+        info.setClassName(android.widget.Button.class.getName());
+    }
 }
