@@ -14,8 +14,8 @@ abstract class ModularListAdapter<T, VH : RecyclerView.ViewHolder>(
 
     private val mDiffer = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<T>?) {
-        mDiffer.submitList(list)
+    fun submitList(list: List<T>?, commitCallback: Runnable? = null) {
+        mDiffer.submitList(list, commitCallback)
     }
 
     protected fun getItem(position: Int): T {

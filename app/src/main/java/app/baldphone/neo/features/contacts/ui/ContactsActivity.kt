@@ -1,7 +1,6 @@
 package app.baldphone.neo.features.contacts.ui
 
 import android.content.Intent
-import android.graphics.drawable.ClipDrawable.VERTICAL
 import android.os.Bundle
 
 import androidx.activity.viewModels
@@ -15,6 +14,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.coroutines.launch
 
@@ -23,24 +25,25 @@ import app.baldphone.neo.features.contacts.SimpleContact
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog
-import app.baldphone.neo.viewmodels.ContactsViewModel
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 import com.bald.uriah.baldphone.databinding.ActivityContactsBinding
 
 class ContactsActivity : BaseActivity() {
-
     companion object {
         /** Pass as a boolean extra to open the activity in contact-picker mode. */
         const val EXTRA_PICK_CONTACT = "extra_pick_contact"
 
         /** Result extra containing the selected contact's lookup key. */
         const val EXTRA_CONTACT_LOOKUP_KEY = "extra_contact_lookup_key"
+
+        private const val PRELOAD_THRESHOLD = 15
     }
 
     private lateinit var binding: ActivityContactsBinding
     private val viewModel: ContactsViewModel by viewModels()
+    private var lastTriggeredTotalItems = -1
 
     private val isPickerMode: Boolean by lazy {
         intent.getBooleanExtra(EXTRA_PICK_CONTACT, false)
@@ -48,13 +51,17 @@ class ContactsActivity : BaseActivity() {
 
     private val adapter by lazy {
         ContactAdapter { contact ->
-            if (isPickerMode) showPickerConfirmation(contact)
-            else ContactDetailsActivity.openContact(this, contact.lookupKey)
+            if (isPickerMode) {
+                showPickerConfirmation(contact)
+            } else {
+                ContactDetailsActivity.openContact(this, contact.lookupKey)
+            }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityContactsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -65,16 +72,11 @@ class ContactsActivity : BaseActivity() {
 
         PermissionManager.checkOrRequest(this, RuntimePermission.ReadWriteContacts) {
             onGranted {
-                observeViewModel()
                 viewModel.refresh()
+                observeViewModel()
             }
             onDenied { finish() }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.refresh()
     }
 
     private fun observeViewModel() {
@@ -86,12 +88,15 @@ class ContactsActivity : BaseActivity() {
 
                 launch {
                     viewModel.contactsFlow.collect { contacts ->
-                        // Handle null as a loading state
-                        // binding.progressBar.isVisible = contacts == null
-
-                        contacts?.let {
-                            adapter.submitList(it)
-                            updateEmptyState(it.isEmpty())
+                        if (contacts != null) {
+                            adapter.submitList(contacts) {
+                                lastTriggeredTotalItems = -1
+                                binding.progressBar.isVisible = false
+                                updateEmptyState(contacts.isEmpty())
+                            }
+                        } else {
+                            binding.progressBar.isVisible = true
+                            updateEmptyState(false)
                         }
                     }
                 }
@@ -106,10 +111,37 @@ class ContactsActivity : BaseActivity() {
 
     private fun setupRecyclerView() {
         binding.contactsRecyclerView.apply {
+            val lm = LinearLayoutManager(this@ContactsActivity)
+            layoutManager = lm
             adapter = this@ContactsActivity.adapter
             itemAnimator = null
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(this@ContactsActivity, VERTICAL))
+
+            addOnScrollListener(
+                object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(
+                        rv: RecyclerView,
+                        dx: Int,
+                        dy: Int
+                    ) {
+                        if (dy <= 0) return
+                        val lastVisible = lm.findLastVisibleItemPosition()
+                        val totalItems = adapter?.itemCount ?: 0
+                        if (totalItems > 0 &&
+                            totalItems != lastTriggeredTotalItems &&
+                            lastVisible >= totalItems - PRELOAD_THRESHOLD
+                        ) {
+                            lastTriggeredTotalItems = totalItems
+                            android.util.Log.d(
+                                "ContactsActivity",
+                                "Scroll trigger: lastVisible=$lastVisible, total=$totalItems. Loading next page."
+                            )
+                            viewModel.loadNextPage()
+                        }
+                    }
+                }
+            )
         }
     }
 
@@ -158,9 +190,10 @@ class ContactsActivity : BaseActivity() {
             setTitle(contact.name)
             setMessage(getString(R.string.add_as_an_emergency_contact, contact.name))
             setPositiveButton(android.R.string.ok) { _ ->
-                val resultIntent = Intent().apply {
-                    putExtra(EXTRA_CONTACT_LOOKUP_KEY, contact.lookupKey)
-                }
+                val resultIntent =
+                    Intent().apply {
+                        putExtra(EXTRA_CONTACT_LOOKUP_KEY, contact.lookupKey)
+                    }
                 setResult(RESULT_OK, resultIntent)
                 finish()
             }

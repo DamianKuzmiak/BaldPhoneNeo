@@ -27,7 +27,7 @@ import app.baldphone.neo.features.calls.model.Call
 import app.baldphone.neo.features.calls.model.CallLogItemType
 import app.baldphone.neo.features.contacts.Contact
 import app.baldphone.neo.features.contacts.ContactPinManager
-import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl
+import app.baldphone.neo.features.contacts.data.ContactRepository
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.formatAsElapsedDuration
 import app.baldphone.neo.utils.formatTime
@@ -42,7 +42,7 @@ import com.bald.uriah.baldphone.R
 class ContactDetailsViewModel(
     application: Application
 ) : AndroidViewModel(application) {
-    private val contactRepository = ContactRepositoryImpl.getInstance(application)
+    private val contactRepository = ContactRepository.getInstance(application)
     private val callsRepository = CallsRepository(application)
     private val pinManager = ContactPinManager(application)
 
@@ -60,7 +60,9 @@ class ContactDetailsViewModel(
     init {
         // Listen for changes in the contact database, e.g. contact has been edited in AddContactActivity
         viewModelScope.launch {
-            contactRepository.refresh()
+            contactRepository.refreshEvents.collect {
+                lookupKey?.let { loadContact(it) }
+            }
         }
     }
 
@@ -142,7 +144,7 @@ class ContactDetailsViewModel(
     fun toggleFavorite() {
         val key = lookupKey ?: return
         viewModelScope.launch {
-            contactRepository.updateFavorite(key, !_uiState.value.isFavorite)
+            contactRepository.toggleFavorite(key)
         }
     }
 

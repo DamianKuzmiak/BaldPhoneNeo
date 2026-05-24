@@ -5,20 +5,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 import app.baldphone.neo.features.contacts.ContactItemType
-import app.baldphone.neo.features.contacts.ContactSearcher
-import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl
+import app.baldphone.neo.features.contacts.data.ContactRepository
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.getDeviceRegion
 
@@ -27,7 +22,7 @@ import app.baldphone.neo.utils.getDeviceRegion
  * - Manages the dialer number state (add/remove digits)
  * - Formats phone numbers using AsYouTypeFormatter
  * - Provides formatted number as StateFlow for UI observation
- * - Handles contact searching via ContactSearcher
+ * - Searches contacts by phone number and T9 name matching
  */
 class DialerViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -41,29 +36,27 @@ class DialerViewModel(application: Application) : AndroidViewModel(application) 
 
     private val deviceRegion: String = application.getDeviceRegion()
 
-    private val contactProvider = ContactRepositoryImpl.getInstance(application)
-    private val contactSearcher = ContactSearcher(application)
+    private val contactRepository = ContactRepository.getInstance(application)
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val searchResults: StateFlow<List<ContactItemType>> = contactProvider.contacts.flatMapLatest { contacts ->
-        contactSearcher.searchContactsFlow(
-            allContacts = contacts ?: emptyList(),
-            searchQueryFlow = rawNumber,
-            enableT9 = true,
-            showAllWhenEmpty = false
-        )
-    }
-        .flowOn(Dispatchers.Default)
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = emptyList()
-        )
+    val searchResults: StateFlow<List<ContactItemType>?> =
+        contactRepository.observeDialer(rawNumber)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = null
+            )
 
-    init {
+    /** Trigger a full refresh of the contact data. Useful after permissions are granted. */
+    fun refresh() {
         viewModelScope.launch {
-            contactProvider.refresh()
+            contactRepository.refresh()
         }
+    }
+
+    /** Called by the Activity when the user scrolls near the end of the list. */
+    fun loadNextPage() {
+        android.util.Log.d("DialerViewModel", "loadNextPage: Requesting more dialer results")
+        contactRepository.loadNextDialerPage()
     }
 
     /** Add a digit to the number. */

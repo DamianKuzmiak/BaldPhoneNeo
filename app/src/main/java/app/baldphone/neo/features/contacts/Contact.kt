@@ -3,37 +3,33 @@ package app.baldphone.neo.features.contacts
 import android.content.res.Resources
 import android.provider.ContactsContract
 
-interface BaseContact {
-    val id: Long
-    val lookupKey: String
-    val name: String
-    val photoUri: String?
-    val isStarred: Boolean
-}
-
 /** Full contact with all related data (phones, emails, etc.) */
 data class Contact(
-    override val id: Long,
-    override val lookupKey: String,
-    override val name: String,
-    override val photoUri: String?,
-    override val isStarred: Boolean,
+    val id: Long,
+    val lookupKey: String,
+    val name: String,
+    val photoUri: String?,
+    val isStarred: Boolean,
     val note: String?,
     val phones: List<Phone>,
     val emails: List<Email>,
     val addresses: List<Address>,
     val whatsappNumbers: List<String>,
-    val signalNumbers: List<String>,
-) : BaseContact {
+    val signalNumbers: List<String>
+) {
     val mobilePhone: String?
-        get() = phones.firstOrNull {
-            it.type == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
-        }?.value
+        get() =
+            phones
+                .firstOrNull {
+                    it.type == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
+                }?.value
 
     val homePhone: String?
-        get() = phones.firstOrNull {
-            it.type == ContactsContract.CommonDataKinds.Phone.TYPE_HOME
-        }?.value
+        get() =
+            phones
+                .firstOrNull {
+                    it.type == ContactsContract.CommonDataKinds.Phone.TYPE_HOME
+                }?.value
 
     val firstAddress: String?
         get() = addresses.firstOrNull()?.value
@@ -44,55 +40,62 @@ data class Contact(
 
 /** Simplified version of a contact, used for lists and searches */
 data class SimpleContact(
-    override val id: Long,
-    override val lookupKey: String,
-    override val name: String,
-    override val photoUri: String? = null,
-    override val isStarred: Boolean = false,
+    val id: Long,
+    val lookupKey: String,
+    val name: String,
+    val photoUri: String? = null,
+    val isStarred: Boolean = false,
     val phoneNumber: String,
+    val normalizedNumber: String = "",
+    val normalizedName: String = "",
     val isPrimary: Boolean = false,
     val phoneType: Int = 0,
     val phoneLabel: String? = null
-) : BaseContact
+)
 
 /** UI Model for contact list */
-sealed class ContactItemType {
-    data class Header(val letter: String) : ContactItemType()
+sealed interface ContactItemType {
+    data class Header(
+        val letter: String
+    ) : ContactItemType
 
-    data class ContactItem(val contact: SimpleContact) : ContactItemType()
+    data class ContactItem(
+        val contact: SimpleContact
+    ) : ContactItemType
 }
 
 /** Helper types for contacts */
 interface Labeled {
-        val type: Int
-        val value: String
-        val label: String?
-        fun getLabel(res: Resources): CharSequence
-    }
+    val type: Int
+    val value: String
+    val label: String?
 
-    data class Phone(
-        override val type: Int,
-        override val value: String,
-        override val label: String? = null
-    ) : Labeled {
-        override fun getLabel(res: Resources): CharSequence =
-            ContactsContract.CommonDataKinds.Phone.getTypeLabel(res, type, label)
-    }
+    fun getLabel(res: Resources): CharSequence
+}
 
-    data class Email(
-        override val type: Int,
-        override val value: String,
-        override val label: String? = null
-    ) : Labeled {
-        override fun getLabel(res: Resources): CharSequence =
-            ContactsContract.CommonDataKinds.Email.getTypeLabel(res, type, label)
-    }
+data class Phone(
+    override val type: Int,
+    override val value: String,
+    override val label: String? = null
+) : Labeled {
+    override fun getLabel(res: Resources): CharSequence =
+        ContactsContract.CommonDataKinds.Phone.getTypeLabel(res, type, label)
+}
 
-    data class Address(
-        override val type: Int,
-        override val value: String,
-        override val label: String? = null
-    ) : Labeled {
-        override fun getLabel(res: Resources): CharSequence =
-            ContactsContract.CommonDataKinds.StructuredPostal.getTypeLabel(res, type, label)
-    }
+data class Email(
+    override val type: Int,
+    override val value: String,
+    override val label: String? = null
+) : Labeled {
+    override fun getLabel(res: Resources): CharSequence =
+        ContactsContract.CommonDataKinds.Email.getTypeLabel(res, type, label)
+}
+
+data class Address(
+    override val type: Int,
+    override val value: String,
+    override val label: String? = null
+) : Labeled {
+    override fun getLabel(res: Resources): CharSequence =
+        ContactsContract.CommonDataKinds.StructuredPostal.getTypeLabel(res, type, label)
+}

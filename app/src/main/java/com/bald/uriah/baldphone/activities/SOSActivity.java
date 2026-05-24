@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Set;
 
 import app.baldphone.neo.features.calls.CallUiHelper;
-import app.baldphone.neo.features.contacts.data.ContactsDataSource;
+import app.baldphone.neo.features.contacts.data.ContactRepository;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 import app.baldphone.neo.utils.PhoneNumberUtils;
 
@@ -64,7 +64,7 @@ public class SOSActivity extends BaldActivity {
 
         ((TextView) baldLinearLayoutButton.getChildAt(1)).setText(miniContact.name);
         baldLinearLayoutButton.setOnClickListener(v -> {
-            String phoneNumber = new ContactsDataSource(v.getContext()).resolvePhoneNumberBlocking(miniContact.lookupKey);
+            String phoneNumber = ContactRepository.Companion.getInstance(v.getContext()).resolvePhoneNumberJava(miniContact.lookupKey);
             if (phoneNumber != null) {
                 CallUiHelper.INSTANCE.callDirectly(v.getContext(), phoneNumber);
             } else {

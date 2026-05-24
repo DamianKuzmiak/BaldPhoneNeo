@@ -32,7 +32,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import app.baldphone.neo.features.contacts.Contact;
-import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl;
+import app.baldphone.neo.features.contacts.data.ContactRepository;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
 import com.bald.uriah.baldphone.R;
@@ -147,7 +147,7 @@ public class ShareActivity extends BaseContactsActivity {
     }
 
     public void whatsappShare(String lookupKey) {
-        Contact contact = ContactRepositoryImpl.Companion.getInstance(getApplicationContext()).getContactByLookupKeyJava(lookupKey);
+        Contact contact = ContactRepository.Companion.getInstance(getApplicationContext()).getContactByLookupKeyJava(lookupKey);
         if (contact == null) {
             BaldToast.error(this);
             finish();

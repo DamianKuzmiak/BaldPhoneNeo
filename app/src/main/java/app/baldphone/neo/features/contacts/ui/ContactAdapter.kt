@@ -26,13 +26,16 @@ class ContactAdapter(
     private val showPhoneNumbers: Boolean = false,
     private val onContactClick: ((SimpleContact) -> Unit)? = null
 ) : ModularListAdapter<ContactItemType, RecyclerView.ViewHolder>(ContactDiffCallback()) {
+    override fun getItemViewType(position: Int): Int =
+        when (getItem(position)) {
+            is ContactItemType.Header -> R.layout.contact_item_header
+            is ContactItemType.ContactItem -> R.layout.contact_item
+        }
 
-    override fun getItemViewType(position: Int): Int = when (getItem(position)) {
-        is ContactItemType.Header -> R.layout.contact_item_header
-        is ContactItemType.ContactItem -> R.layout.contact_item
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             R.layout.contact_item_header -> {
@@ -45,11 +48,16 @@ class ContactAdapter(
                 ContactViewHolder(binding, showPhoneNumbers, onContactClick)
             }
 
-            else -> throw IllegalArgumentException("Unsupported layout ID: $viewType")
+            else -> {
+                throw IllegalArgumentException("Unsupported layout ID: $viewType")
+            }
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int
+    ) {
         val item = getItem(position)
         when (holder) {
             is HeaderViewHolder -> holder.bind(item as ContactItemType.Header)
@@ -70,7 +78,6 @@ class ContactAdapter(
         private val showPhoneNumbers: Boolean,
         private val onContactClick: ((SimpleContact) -> Unit)?
     ) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(contactItem: ContactItemType.ContactItem) {
             val contact = contactItem.contact
 
@@ -79,10 +86,14 @@ class ContactAdapter(
 
             if (contact.isStarred) {
                 binding.contactName.setCompoundDrawablesWithIntrinsicBounds(
-                    0, 0, R.drawable.ic_star_small, 0
+                    0,
+                    0,
+                    R.drawable.ic_star_small,
+                    0
                 )
                 binding.contactName.compoundDrawablePadding =
-                    binding.root.context.resources.getDimensionPixelSize(R.dimen.padding_small)
+                    binding.root.context.resources
+                        .getDimensionPixelSize(R.dimen.padding_small)
             } else {
                 binding.contactName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
@@ -95,9 +106,12 @@ class ContactAdapter(
                     if (contact.phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE) {
                         phoneNumber
                     } else {
-                        val typeLabel = ContactsContract.CommonDataKinds.Phone.getTypeLabel(
-                            context.resources, contact.phoneType, contact.phoneLabel
-                        )
+                        val typeLabel =
+                            ContactsContract.CommonDataKinds.Phone.getTypeLabel(
+                                context.resources,
+                                contact.phoneType,
+                                contact.phoneLabel
+                            )
                         "$phoneNumber ($typeLabel)"
                     }
             } else {
@@ -113,23 +127,28 @@ class ContactAdapter(
     }
 
     private class ContactDiffCallback : DiffUtil.ItemCallback<ContactItemType>() {
-        override fun areItemsTheSame(oldItem: ContactItemType, newItem: ContactItemType): Boolean {
-            return when {
-                oldItem is ContactItemType.Header && newItem is ContactItemType.Header ->
+        override fun areItemsTheSame(
+            oldItem: ContactItemType,
+            newItem: ContactItemType
+        ): Boolean =
+            when {
+                oldItem is ContactItemType.Header && newItem is ContactItemType.Header -> {
                     oldItem.letter == newItem.letter
+                }
 
-                oldItem is ContactItemType.ContactItem && newItem is ContactItemType.ContactItem ->
-                    oldItem.contact.id == newItem.contact.id
-                            && oldItem.contact.phoneNumber == newItem.contact.phoneNumber
+                oldItem is ContactItemType.ContactItem && newItem is ContactItemType.ContactItem -> {
+                    oldItem.contact.id == newItem.contact.id &&
+                        oldItem.contact.phoneNumber == newItem.contact.phoneNumber
+                }
 
-                else -> false
+                else -> {
+                    false
+                }
             }
-        }
 
         override fun areContentsTheSame(
-            oldItem: ContactItemType, newItem: ContactItemType
-        ): Boolean {
-            return oldItem == newItem
-        }
+            oldItem: ContactItemType,
+            newItem: ContactItemType
+        ): Boolean = oldItem == newItem
     }
 }

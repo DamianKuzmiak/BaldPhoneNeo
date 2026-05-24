@@ -39,7 +39,7 @@ import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
 
 import app.baldphone.neo.features.contacts.Contact;
-import app.baldphone.neo.features.contacts.data.ContactRepositoryImpl;
+import app.baldphone.neo.features.contacts.data.ContactRepository;
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 
@@ -160,7 +160,7 @@ public class AddContactActivity extends BaldActivity {
     }
 
     private void fillWithContact(String contactLookupKey) {
-        currentContact = ContactRepositoryImpl.Companion.getInstance(getApplicationContext()).getContactByLookupKeyJava(contactLookupKey);
+        currentContact = ContactRepository.Companion.getInstance(getApplicationContext()).getContactByLookupKeyJava(contactLookupKey);
         if (currentContact == null) {
             throw new IllegalStateException(TAG + " contact cannot be null!");
         }
@@ -215,7 +215,7 @@ public class AddContactActivity extends BaldActivity {
                 final String contactId = contactsCursor.getString(
                         contactsCursor.getColumnIndex(ContactsContract.RawContacts.CONTACT_ID)
                 );
-                currentContact = ContactRepositoryImpl.Companion.getInstance(getApplicationContext()).getContactByIdJava(contactId); // TODO: handle exceptions
+                currentContact = ContactRepository.Companion.getInstance(getApplicationContext()).getContactByIdJava(contactId); // TODO: handle exceptions
             }
             return update();
         } catch (Exception e) {
@@ -234,7 +234,7 @@ public class AddContactActivity extends BaldActivity {
     public boolean update() {
         final ArrayList<ContentProviderOperation> operations = new ArrayList<>();
 
-        final long rawId = ContactRepositoryImpl.Companion.getInstance(this).getRawContactId(currentContact.getId());
+        final long rawId = ContactRepository.Companion.getInstance(this).getRawContactId(currentContact.getId());
 
         final String[] args = {String.valueOf(currentContact.getId()), ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE};
         final String name = String.valueOf(et_name.getText());
