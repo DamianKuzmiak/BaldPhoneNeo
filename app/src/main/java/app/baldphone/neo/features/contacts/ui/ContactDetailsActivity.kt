@@ -72,7 +72,6 @@ class ContactDetailsActivity : BaseActivity() {
 
     private fun initViews() {
         binding.titleBar.setOnMoreClickListener(::showPopup)
-        binding.titleBar.showMoreButton()
         binding.btShow.setOnClickListener { viewModel.toggleCallLogVisibility() }
     }
 

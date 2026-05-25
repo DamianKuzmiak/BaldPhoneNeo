@@ -60,4 +60,8 @@
     <dimen name="snackbar_margin">12dp</dimen>
     <dimen name="snackbar_icon_padding">12dp</dimen>
     <dimen name="snackbar_icon_size">32dp</dimen>
+
+    <!-- TitleBarView dimensions -->
+    <dimen name="title_bar_elevation">4dp</dimen>
+    <dimen name="title_bar_side_padding">5dp</dimen>
 </resources>

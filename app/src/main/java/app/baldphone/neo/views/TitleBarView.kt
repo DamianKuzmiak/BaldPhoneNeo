@@ -1,12 +1,13 @@
 package app.baldphone.neo.views
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.RelativeLayout
 
-import androidx.activity.ComponentActivity
+import androidx.activity.findViewTreeOnBackPressedDispatcherOwner
 import androidx.annotation.StringRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isVisible
 
@@ -14,68 +15,82 @@ import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.databinding.ViewTitleBarBinding
 
 /**
- * A custom view that displays a title, an exit button, and an optional 'more' button.
+ * A custom toolbar-like view that provides a consistent header across the application.
+ * It features a title, an exit (back) button, and an optional "more" options button.
  *
- * This view can be customized via XML attributes:
- * - `titleBarTitle`: Sets the text for the title.
- * - `titleBarBackgroundColor`: Sets the background color of the title bar.
+ * XML Attributes:
+ * - `titleBarTitle`: The text to display in the center of the bar.
+ * - `titleBarBackgroundColor`: The background color for the entire bar.
  */
-class TitleBarView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
-) : RelativeLayout(context, attrs) {
+class TitleBarView
+    @JvmOverloads
+    constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+    ) : ConstraintLayout(context, attrs, defStyleAttr) {
+        private val binding: ViewTitleBarBinding = ViewTitleBarBinding.inflate(LayoutInflater.from(context), this)
 
-    private val binding: ViewTitleBarBinding =
-        ViewTitleBarBinding.inflate(LayoutInflater.from(context), this)
+        init {
+            elevation = resources.getDimension(R.dimen.title_bar_elevation)
 
-    init {
-        binding.btnMore.isVisible = false
+            val horizontalPadding = resources.getDimensionPixelSize(R.dimen.title_bar_side_padding)
+            setPaddingRelative(horizontalPadding, paddingTop, horizontalPadding, paddingBottom)
 
-        // The default exit behavior is to simulate a back press.
-        // This can be overridden by setOnExitClickListener.
-        binding.btnExit.setOnClickListener {
-            (context as? ComponentActivity)?.onBackPressedDispatcher?.onBackPressed()
-        }
+            binding.btnExit.setOnClickListener {
+                findViewTreeOnBackPressedDispatcherOwner()?.onBackPressedDispatcher?.onBackPressed()
+            }
 
-        attrs?.let {
-            context.obtainStyledAttributes(it, R.styleable.TitleBarView).use { a ->
-                a.getString(R.styleable.TitleBarView_titleBarTitle)?.let { title ->
-                    setTitle(title)
+            attrs?.let { attributeSet ->
+                context.obtainStyledAttributes(attributeSet, R.styleable.TitleBarView).use { a ->
+                    a.getString(R.styleable.TitleBarView_titleBarTitle)?.let { title ->
+                        setTitle(title)
+                    }
+
+                    // Background: Fallback to a Gray color
+                    val backgroundColor = a.getColor(R.styleable.TitleBarView_titleBarBackgroundColor, Color.GRAY)
+                    setBackgroundColor(backgroundColor)
                 }
-
-                val bgColor = a.getColor(R.styleable.TitleBarView_titleBarBackgroundColor, -1)
-                if (bgColor != -1) binding.titleBarRoot.setBackgroundColor(bgColor)
             }
         }
-    }
 
-    /** Sets the title text from a string resource. */
-    fun setTitle(@StringRes resId: Int) {
-        binding.txtTitle.setText(resId)
-    }
+        /**
+         * Sets the title text from a string resource.
+         */
+        fun setTitle(
+            @StringRes resId: Int
+        ) {
+            binding.txtTitle.setText(resId)
+        }
 
-    /** Sets the title text from a string. */
-    fun setTitle(title: String) {
-        binding.txtTitle.text = title
-    }
+        /**
+         * Sets the title text from a string.
+         */
+        fun setTitle(title: String) {
+            binding.txtTitle.text = title
+        }
 
-    /** Makes the 'More settings' button visible, as it is not visible by default. */
-    fun showMoreButton() {
-        binding.btnMore.isVisible = true
-    }
+        /**
+         * Sets the visibility of the 'More' options button.
+         */
+        fun showMoreButton(isVisible: Boolean = true) {
+            binding.btnMore.isVisible = isVisible
+        }
 
-    /**
-     * Registers a callback to be invoked when the 'More' options button is clicked.
-     * Call {@link #showMoreButton()} to make the button visible, as it is not visible by default.
-     */
-    fun setOnMoreClickListener(listener: OnClickListener?) {
-        binding.btnMore.setOnClickListener(listener)
-    }
+        /**
+         * Registers a callback to be invoked when the 'More' options button is clicked.
+         * Providing a non-null listener automatically makes the button visible via [showMoreButton].
+         */
+        fun setOnMoreClickListener(listener: OnClickListener?) {
+            binding.btnMore.setOnClickListener(listener)
+            if (listener != null) showMoreButton()
+        }
 
-    /**
-     * Overrides the default exit behavior with a custom click listener.
-     * The default action is to trigger a back press.
-     */
-    fun setOnExitClickListener(listener: OnClickListener?) {
-        binding.btnExit.setOnClickListener(listener)
+        /**
+         * Overrides the default exit behavior with a custom click listener.
+         * The default action is to trigger a back press.
+         */
+        fun setOnExitClickListener(listener: OnClickListener?) {
+            binding.btnExit.setOnClickListener(listener)
+        }
     }
-}
