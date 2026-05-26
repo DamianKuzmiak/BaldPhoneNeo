@@ -120,7 +120,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_display_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Wallpaper">
 
         <activity
             android:name="app.baldphone.neo.LauncherProxyActivity"

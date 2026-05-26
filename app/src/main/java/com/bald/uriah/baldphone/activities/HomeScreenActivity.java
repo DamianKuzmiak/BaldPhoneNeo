@@ -77,6 +77,7 @@ public class HomeScreenActivity extends BaldActivity {
 
     private final Handler handler = new Handler();
 
+    private boolean createdWithWallpaperSetting;
     private boolean permissionBannerDismissed = false;
     private boolean isResumed = false;
     private boolean isFirstResume = true;
@@ -103,8 +104,15 @@ public class HomeScreenActivity extends BaldActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        if (!Prefs.getShowWallpaper()) {
+            setTheme(R.style.AppTheme_Starting_NoWallpaper);
+        }
+
+        // 2. Install splash screen (it will now transition directly to AppTheme)
         SplashScreen.installSplashScreen(this);
+
         super.onCreate(savedInstanceState);
+        createdWithWallpaperSetting = Prefs.getShowWallpaper();
 
         Log.d(TAG, "onCreate");
 
@@ -227,6 +235,12 @@ public class HomeScreenActivity extends BaldActivity {
     protected void onResume() { // remember to change in Page1EditorActivity.java too!
         super.onResume();
         Log.v(TAG, "onResume");
+
+        if (createdWithWallpaperSetting != Prefs.getShowWallpaper()) {
+            viewPagerHolder.getViewPager().removeAllViews();
+            this.recreate();
+            return;
+        }
 
         if (isResumed) {
             Log.d(TAG, "onResume: was already visible!");

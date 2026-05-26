@@ -55,4 +55,7 @@ object PrefKeys {
     // Custom Phone Number
     const val KEY_HOME_PHONE_ENABLED = "pref_home_phone_enabled"
     const val KEY_HOME_PHONE_NUMBER = "pref_home_phone_number"
+
+    // Display Settings
+    const val KEY_SHOW_WALLPAPER = "pref_show_wallpaper"
 }

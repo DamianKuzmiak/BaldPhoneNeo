@@ -207,6 +207,12 @@ object Prefs {
      */
     var homePhoneNumber: String? by obfuscatedStringPref(PrefKeys.KEY_HOME_PHONE_NUMBER, null)
 
+    /**
+     * Controls whether the system wallpaper is shown behind the transparent window.
+     */
+    @JvmStatic
+    var showWallpaper: Boolean by booleanPref(PrefKeys.KEY_SHOW_WALLPAPER, false)
+
     // Helper functions for the delegate
     private fun booleanPref(
         key: String,

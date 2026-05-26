@@ -11,6 +11,9 @@
             android:id="@+id/action_settings_to_calls"
             app:destination="@id/callsSettingsFragment" />
         <action
+            android:id="@+id/action_settings_to_display"
+            app:destination="@id/displaySettingsFragment" />
+        <action
             android:id="@+id/action_settings_to_battery"
             app:destination="@id/batterySettingsFragment" />
         <action
@@ -22,6 +25,13 @@
         <action
             android:id="@+id/action_settings_to_suppport"
             app:destination="@id/settingsAboutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/displaySettingsFragment"
+        android:name="app.baldphone.neo.settings.ui.DisplaySettingsFragment"
+        android:label="@string/display_settings">
+        <deepLink app:uri="myapp://settings/display" />
     </fragment>
 
     <fragment

@@ -516,6 +516,9 @@
     <string name="phone_number_on_home_text">Show my phone number</string>
     <string name="phone_number_on_home_description">Twój numer telefonu będzie widoczny na głównym ekranie aplikacji.\nDzięki temu łatwo go sprawdzisz.</string>
 
+    <!-- Wallpaper Settings -->
+    <string name="show_wallpaper">Show wallpaper</string>
+
     <string name="battery_alert_channel_name">Low Battery Reminder</string>
     <string name="battery_alert_channel_description">Repeating alerts for low battery</string>
     <string name="battery_alert_notification_title">Low Battery</string>

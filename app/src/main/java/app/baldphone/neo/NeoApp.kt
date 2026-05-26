@@ -41,6 +41,7 @@ import app.baldphone.neo.helpers.AppForegroundState
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
 import com.bald.uriah.baldphone.BuildConfig
+import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler
@@ -79,6 +80,17 @@ class NeoApp : Application(), Configuration.Provider, SingletonImageLoader.Facto
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 if (activity is LauncherProxyActivity) return
 
+                Log.d(
+                    TAG,
+                    "ON_CREATE: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())} " +
+                        "| Intent: ${activity.intent} (Flags: 0x${
+                            Integer.toHexString(activity.intent.flags)
+                        }) "
+                )
+                if (activity.javaClass.simpleName != "HomeScreenActivity") {
+                    activity.setTheme(R.style.AppTheme)
+                }
+
                 val rootView = activity.findViewById<ViewGroup>(android.R.id.content)
 
                 if (activity is ComponentActivity) {
@@ -106,17 +118,32 @@ class NeoApp : Application(), Configuration.Provider, SingletonImageLoader.Facto
                 }
             }
 
-            override fun onActivityStarted(activity: Activity) {}
+            override fun onActivityStarted(activity: Activity) {
+                Log.d(TAG, "ON_START: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())}")
+            }
 
-            override fun onActivityResumed(activity: Activity) {}
+            override fun onActivityResumed(activity: Activity) {
+                Log.d(TAG, "ON_RESUME: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())}")
+            }
 
-            override fun onActivityPaused(activity: Activity) {}
+            override fun onActivityPaused(activity: Activity) {
+                Log.d(TAG, "ON_PAUSE: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())}")
+            }
 
-            override fun onActivityStopped(activity: Activity) {}
+            override fun onActivityStopped(activity: Activity) {
+                Log.d(TAG, "ON_STOP: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())}")
+            }
 
-            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+                Log.d(
+                    TAG,
+                    "ON_SAVE_INSTANCE: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())}"
+                )
+            }
 
-            override fun onActivityDestroyed(activity: Activity) {}
+            override fun onActivityDestroyed(activity: Activity) {
+                Log.d(TAG, "ON_DESTROY: ${activity.javaClass.simpleName}@${Integer.toHexString(activity.hashCode())}")
+            }
         }
 
     override val workManagerConfiguration: Configuration

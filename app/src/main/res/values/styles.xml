@@ -17,7 +17,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="BaseAppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Window -->
-        <item name="android:windowBackground">?attr/colorSurface</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="28">shortEdges</item>
 
         <!-- System Bar -->
@@ -100,12 +99,24 @@
 
     <style name="AppTheme" parent="BaseAppTheme">
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:windowShowWallpaper">false</item>
+    </style>
+
+    <style name="AppTheme.Wallpaper" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowShowWallpaper">true</item>
     </style>
 
     <style name="AppTheme.Starting" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.Wallpaper</item>
+    </style>
+
+    <style name="AppTheme.Starting.NoWallpaper" parent="AppTheme.Starting">
         <item name="postSplashScreenTheme">@style/AppTheme</item>
     </style>
+
 
     <style name="AppButtonStyle" parent="Widget.Material3.Button">
         <item name="shapeAppearance">@style/AppButtonShape</item>
