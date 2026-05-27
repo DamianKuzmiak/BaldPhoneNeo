@@ -39,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.baldphone.neo.data.Prefs;
-import app.baldphone.neo.extensions.ActivityExtensions;
 
 import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.CAMERA;
@@ -160,7 +159,6 @@ public abstract class BaldActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        applyStatusBarSettings();
         super.onCreate(savedInstanceState);
         final SharedPreferences sharedPreferences = BPrefs.get(this);
         testing = sharedPreferences.getBoolean(BPrefs.TEST_KEY, BPrefs.TEST_DEFAULT_VALUE);
@@ -216,9 +214,5 @@ public abstract class BaldActivity extends AppCompatActivity {
 
     protected int requiredPermissions() {
         return PERMISSION_NONE;
-    }
-
-    private void applyStatusBarSettings() {
-        ActivityExtensions.applyStatusBarSettings(this);
     }
 }

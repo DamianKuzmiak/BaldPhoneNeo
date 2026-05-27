@@ -8,7 +8,6 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 
 import app.baldphone.neo.data.Prefs
-import app.baldphone.neo.extensions.applyStatusBarSettings
 
 import com.bald.uriah.baldphone.utils.D
 
@@ -19,7 +18,6 @@ import com.bald.uriah.baldphone.utils.D
 abstract class BaseActivity : AppCompatActivity() {
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        applyStatusBarSettings()
         super.onCreate(savedInstanceState)
 
         onBackPressedDispatcher.addCallback(this) {
