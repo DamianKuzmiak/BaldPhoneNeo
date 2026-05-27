@@ -72,6 +72,8 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
     private val globalActivityLifecycleListener =
         object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+                if (activity is LauncherProxyActivity) return
+
                 val rootView = activity.findViewById<ViewGroup>(android.R.id.content)
 
                 if (activity is ComponentActivity) {
