@@ -17,8 +17,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:fillViewport="true"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:tag="edgeToEdge">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -32,8 +34,8 @@
                 android:fontFamily="monospace"
                 android:padding="8dp"
                 android:textColor="?attr/colorOnSurface"
-                android:textSize="12sp"
                 android:textIsSelectable="true"
+                android:textSize="12sp"
                 tools:text="Log entry 1\nLog entry 2\nLog entry 3" />
         </HorizontalScrollView>
     </ScrollView>

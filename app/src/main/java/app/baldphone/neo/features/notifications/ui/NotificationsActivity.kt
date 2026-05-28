@@ -20,6 +20,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.extensions.applyBottomInsetsAsMargin
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.SpecialPermission
@@ -55,6 +56,8 @@ class NotificationsActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.recyclerView.adapter = adapter
+        binding.clearAllNotifications.applyBottomInsetsAsMargin()
+
         binding.clearAllNotifications.setOnClickListener {
             viewModel.clearAll()
             finish()
@@ -90,7 +93,7 @@ class NotificationsActivity : BaseActivity() {
         adapter.submitList(items)
 
         binding.noNotificationsText.isVisible = items.isEmpty()
-        binding.clearAllNotificationsContainer.isVisible = items.any { it.isClearable }
+        binding.clearAllNotifications.isVisible = items.any { it.isClearable }
 
         val titleText =
             if (items.isNotEmpty()) {

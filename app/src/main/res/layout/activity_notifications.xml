@@ -34,7 +34,7 @@
         android:id="@+id/scrolling_helper"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/clear_all_notifications_container"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bald_title_bar">
@@ -45,6 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
+            android:requiresFadingEdge="none"
+            android:tag="edgeToEdge"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_notification" />
     </com.bald.uriah.baldphone.views.ScrollingHelper>
@@ -57,45 +59,31 @@
         android:gravity="center"
         android:text="@string/no_new_notifications"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/clear_all_notifications_container"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bald_title_bar"
         tools:visibility="visible" />
 
-    <FrameLayout
-        android:id="@+id/clear_all_notifications_container"
-        android:layout_width="0dp"
+    <com.bald.uriah.baldphone.views.BaldButton
+        android:id="@+id/clear_all_notifications"
+        style="@style/Bald.Button"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:layout_marginBottom="12dp"
+        android:drawableStart="@drawable/delete_on_background"
+        android:drawablePadding="8dp"
+        android:elevation="6dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:singleLine="true"
+        android:text="@string/clear_all_notifications"
+        android:textColor="?attr/bald_text_on_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.bald.uriah.baldphone.views.BaldLinearLayoutButton
-            android:id="@+id/clear_all_notifications"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/style_for_buttons_transparent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingStart="0dp"
-            android:paddingEnd="5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:contentDescription="@null"
-                android:src="@drawable/delete_on_background" />
-
-            <TextView
-                style="@style/BackgroundText.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:text="@string/clear_all_notifications" />
-        </com.bald.uriah.baldphone.views.BaldLinearLayoutButton>
-    </FrameLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

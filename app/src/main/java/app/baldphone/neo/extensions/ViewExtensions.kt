@@ -55,12 +55,57 @@ fun View.applyTopBarInsets() {
  */
 fun ViewGroup.applyEdgeToEdgeInsets() {
     ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
-        val typesMask = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
-        val targetInsets = insets.getInsets(typesMask)
+        // Common logic: Left and right insets for the main container
+        val sideInsetsMask = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+        val sideInsets = insets.getInsets(sideInsetsMask)
 
-        view.updatePadding(left = targetInsets.left, right = targetInsets.right, bottom = targetInsets.bottom)
+        view.updatePadding(left = sideInsets.left, right = sideInsets.right)
 
-        insets.inset(targetInsets.left, 0, targetInsets.right, targetInsets.bottom)
+        // Common logic: Bottom insets for the root layout (rootLayout)
+        val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        val rootLayout = (view as ViewGroup).getChildAt(0)
+
+        if (rootLayout != null) {
+            val edgeToEdgeTarget = rootLayout.findViewWithTag<View>("edgeToEdge")
+            if (edgeToEdgeTarget != null) {
+                rootLayout.updatePadding(bottom = 0)
+                edgeToEdgeTarget.updatePadding(bottom = systemBarsInsets.bottom)
+            } else if (rootLayout.findViewWithTag<View>("noEdgeToEdge") == null) {
+                rootLayout.updatePadding(bottom = systemBarsInsets.bottom)
+            }
+        }
+
+        // Passing some insets down the hierarchy, side insets consumed.
+        insets.inset(sideInsets.left, 0, sideInsets.right, 0)
+    }
+    ViewCompat.requestApplyInsets(this)
+}
+
+/**
+ * Applies bottom window insets as padding to this view.
+ */
+fun View.applyBottomInsets() {
+    val initialPaddingBottom = paddingBottom
+    ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+        val types = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+        view.updatePadding(bottom = initialPaddingBottom + insets.getInsets(types).bottom)
+        insets
+    }
+    ViewCompat.requestApplyInsets(this)
+}
+
+/**
+ * Applies bottom window insets as margin to this view.
+ */
+fun View.applyBottomInsetsAsMargin() {
+    val initialMarginBottom = (layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 0
+    ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+        val types = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+        (view.layoutParams as? ViewGroup.MarginLayoutParams)?.let { params ->
+            params.bottomMargin = initialMarginBottom + insets.getInsets(types).bottom
+            view.layoutParams = params
+        }
+        insets
     }
     ViewCompat.requestApplyInsets(this)
 }
