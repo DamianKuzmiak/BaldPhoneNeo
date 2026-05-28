@@ -60,6 +60,8 @@ data class SimpleContact(
 
 /** UI Model for contact list */
 sealed interface ContactItemType {
+    data object AddContact : ContactItemType
+
     data class Header(
         val letter: String
     ) : ContactItemType

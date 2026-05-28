@@ -47,10 +47,11 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
-        android:requiresFadingEdge="vertical"
+        android:paddingBottom="87dp"
+        android:requiresFadingEdge="none"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/contacts_bottom_actions"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_text_input_layout"
@@ -72,48 +73,23 @@
         app:layout_constraintTop_toBottomOf="@id/search_edit_text"
         tools:visibility="visible" />
 
-    <!-- Bottom action bar -->
-    <LinearLayout
-        android:id="@+id/contacts_bottom_actions"
-        android:layout_width="0dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_favorites"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/style_for_buttons_checkable"
+        android:checkable="true"
+        android:paddingHorizontal="12dp"
+        android:text="@string/favorites"
+        app:backgroundTint="@null"
+        app:icon="@drawable/star_on_button"
+        app:iconGravity="top"
+        app:iconSize="32dp"
+        app:iconTint="?bald_color_gold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_add_contact"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/style_for_buttons_checkable"
-            app:backgroundTint="@null"
-            android:minHeight="56dp"
-            android:text="@string/add_contact"
-            android:textAllCaps="false"
-            app:icon="@drawable/add_on_button"
-            app:iconGravity="textStart"
-            app:iconSize="28dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_favorites"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/style_for_buttons_checkable"
-            android:checkable="true"
-            android:minHeight="56dp"
-            android:text="@string/favorites"
-            android:textAllCaps="false"
-            app:backgroundTint="@null"
-            app:icon="@drawable/star_on_button"
-            app:iconGravity="textStart"
-            app:iconSize="28dp"
-            app:iconTint="?bald_color_gold" />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
