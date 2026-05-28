@@ -2,9 +2,16 @@ package app.baldphone.neo.features.contacts.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.ViewGroup
 
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -164,6 +171,26 @@ class ContactsActivity : BaseActivity() {
     private fun setupButtons() {
         binding.buttonFavorites.setOnClickListener {
             viewModel.toggleFavorites()
+        }
+
+        // Handle Edge-to-Edge: Ensure button stays above Nav Bar and RecyclerView content isn't obscured
+        val originalMarginBottom = binding.buttonFavorites.marginBottom
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val systemInsets =
+                insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+
+            binding.buttonFavorites.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = systemInsets.bottom + originalMarginBottom
+            }
+
+            binding.buttonFavorites.post {
+                if (isDestroyed || isFinishing) return@post
+                val totalBottomPadding =
+                    systemInsets.bottom + binding.buttonFavorites.height + (originalMarginBottom * 1.5).toInt()
+                binding.contactsRecyclerView.updatePadding(bottom = totalBottomPadding)
+            }
+
+            insets
         }
     }
 

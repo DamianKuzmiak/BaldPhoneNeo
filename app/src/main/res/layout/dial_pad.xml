@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?bald_background"
     android:padding="4dp">
 
     <RelativeLayout
@@ -108,7 +107,7 @@
         android:id="@+id/b_call"
         android:layout_width="@dimen/dialpad_key_size"
         android:layout_height="@dimen/dialpad_key_height"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/call_button_circle"
         android:contentDescription="@string/call"
         android:src="@drawable/phone_on_button"
