@@ -67,6 +67,7 @@
         <item name="bald_button_positive">@color/bald_button_positive</item>
         <item name="bald_text_on_button_positive">@color/bald_text_on_button_positive</item>
         <item name="bald_button_bg_color">?attr/bald_button</item>
+        <item name="bald_category_contacts">@color/color_1</item>
         <item name="bald_category_settings">@color/color_3</item>
         <item name="bald_category_apps">@color/color_4</item>
 

@@ -19,15 +19,18 @@ import app.baldphone.neo.features.contacts.SimpleContact
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.adapters.ModularListAdapter
+import com.bald.uriah.baldphone.databinding.ContactItemAddBinding
 import com.bald.uriah.baldphone.databinding.ContactItemBinding
 import com.bald.uriah.baldphone.databinding.ContactItemHeaderBinding
 
 class ContactAdapter(
     private val showPhoneNumbers: Boolean = false,
+    private val onAddContactClick: (() -> Unit)? = null,
     private val onContactClick: ((SimpleContact) -> Unit)? = null
 ) : ModularListAdapter<ContactItemType, RecyclerView.ViewHolder>(ContactDiffCallback()) {
     override fun getItemViewType(position: Int): Int =
         when (getItem(position)) {
+            is ContactItemType.AddContact -> R.layout.contact_item_add
             is ContactItemType.Header -> R.layout.contact_item_header
             is ContactItemType.ContactItem -> R.layout.contact_item
         }
@@ -38,6 +41,11 @@ class ContactAdapter(
     ): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
+            R.layout.contact_item_add -> {
+                val binding = ContactItemAddBinding.inflate(inflater, parent, false)
+                AddContactViewHolder(binding, onAddContactClick)
+            }
+
             R.layout.contact_item_header -> {
                 val binding = ContactItemHeaderBinding.inflate(inflater, parent, false)
                 HeaderViewHolder(binding)
@@ -62,6 +70,16 @@ class ContactAdapter(
         when (holder) {
             is HeaderViewHolder -> holder.bind(item as ContactItemType.Header)
             is ContactViewHolder -> holder.bind(item as ContactItemType.ContactItem)
+            is AddContactViewHolder -> holder.bind()
+        }
+    }
+
+    class AddContactViewHolder(
+        private val binding: ContactItemAddBinding,
+        private val onClick: (() -> Unit)?
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            binding.root.setOnClickListener { onClick?.invoke() }
         }
     }
 
@@ -139,6 +157,10 @@ class ContactAdapter(
                 oldItem is ContactItemType.ContactItem && newItem is ContactItemType.ContactItem -> {
                     oldItem.contact.id == newItem.contact.id &&
                         oldItem.contact.phoneNumber == newItem.contact.phoneNumber
+                }
+
+                oldItem is ContactItemType.AddContact && newItem is ContactItemType.AddContact -> {
+                    true
                 }
 
                 else -> {

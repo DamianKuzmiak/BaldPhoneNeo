@@ -4,11 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 
 import androidx.activity.viewModels
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.SimpleContact
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
@@ -50,13 +47,21 @@ class ContactsActivity : BaseActivity() {
     }
 
     private val adapter by lazy {
-        ContactAdapter { contact ->
-            if (isPickerMode) {
-                showPickerConfirmation(contact)
-            } else {
-                ContactDetailsActivity.openContact(this, contact.lookupKey)
+        ContactAdapter(
+            onAddContactClick =
+                if (!isPickerMode) {
+                    { startActivity(Intent(this, AddContactActivity::class.java)) }
+                } else {
+                    null
+                },
+            onContactClick = { contact ->
+                if (isPickerMode) {
+                    showPickerConfirmation(contact)
+                } else {
+                    ContactDetailsActivity.openContact(this, contact.lookupKey)
+                }
             }
-        }
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +73,6 @@ class ContactsActivity : BaseActivity() {
         setupRecyclerView()
         setupSearch()
         setupButtons()
-        setupKeyboardInsets()
 
         PermissionManager.checkOrRequest(this, RuntimePermission.ReadWriteContacts) {
             onGranted {
@@ -89,7 +93,13 @@ class ContactsActivity : BaseActivity() {
                 launch {
                     viewModel.contactsFlow.collect { contacts ->
                         if (contacts != null) {
-                            adapter.submitList(contacts) {
+                            val listWithAction =
+                                if (!isPickerMode) {
+                                    listOf(ContactItemType.AddContact) + contacts
+                                } else {
+                                    contacts
+                                }
+                            adapter.submitList(listWithAction) {
                                 lastTriggeredTotalItems = -1
                                 binding.progressBar.isVisible = false
                                 updateEmptyState(contacts.isEmpty())
@@ -106,7 +116,7 @@ class ContactsActivity : BaseActivity() {
 
     private fun updateEmptyState(isEmpty: Boolean) {
         binding.emptyStateText.isVisible = isEmpty
-        binding.contactsRecyclerView.isVisible = !isEmpty
+        binding.contactsRecyclerView.isVisible = !isEmpty || !isPickerMode
     }
 
     private fun setupRecyclerView() {
@@ -128,8 +138,7 @@ class ContactsActivity : BaseActivity() {
                         if (dy <= 0) return
                         val lastVisible = lm.findLastVisibleItemPosition()
                         val totalItems = adapter?.itemCount ?: 0
-                        if (totalItems > 0 &&
-                            totalItems != lastTriggeredTotalItems &&
+                        if (totalItems > 0 && totalItems != lastTriggeredTotalItems &&
                             lastVisible >= totalItems - PRELOAD_THRESHOLD
                         ) {
                             lastTriggeredTotalItems = totalItems
@@ -153,31 +162,8 @@ class ContactsActivity : BaseActivity() {
     }
 
     private fun setupButtons() {
-        binding.buttonAddContact.isVisible = !isPickerMode
-        binding.buttonAddContact.setOnClickListener {
-            startActivity(Intent(this, AddContactActivity::class.java))
-        }
         binding.buttonFavorites.setOnClickListener {
             viewModel.toggleFavorites()
-        }
-    }
-
-    /** Hides the bottom action buttons when the keyboard is visible to save screen space. */
-    private fun setupKeyboardInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val isImeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
-
-            binding.contactsBottomActions.isGone = isImeVisible
-
-            view.updatePadding(
-                left = systemBars.left,
-                top = systemBars.top,
-                right = systemBars.right,
-                bottom = if (isImeVisible) imeInsets.bottom else systemBars.bottom
-            )
-            insets
         }
     }
 
