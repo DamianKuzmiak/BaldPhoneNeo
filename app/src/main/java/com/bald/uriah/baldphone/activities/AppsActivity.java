@@ -139,7 +139,7 @@ public class AppsActivity extends com.bald.uriah.baldphone.activities.BaldActivi
         super.onRestoreInstanceState(savedInstanceState);
         final int index = savedInstanceState.getInt(SELECTED_APP_INDEX);
         final AppsRecyclerViewAdapter adapter = ((AppsRecyclerViewAdapter) recyclerView.getAdapter());
-        if (index < adapter.dataList.size() && index > 0 && adapter.dataList.get(index).type() != TYPE_HEADER) {
+        if (index < adapter.dataList.size() && index > 0 && !(adapter.dataList.get(index) instanceof AppsRecyclerViewAdapter.AppStickyHeader)) {
             adapter.index = index;
             recyclerView.getLayoutManager().scrollToPosition(index);
             recyclerView.post(() -> showDropDown(index));

@@ -63,7 +63,7 @@ public class HomeViewFactory extends HomeView {
                                     (((i % 2)) * AMOUNT_PER_PAGE / 2))
             );
             homeScreenAppView.setVisibility(VISIBLE);
-            baldPagerAdapter.pinnedList.get(i + startIndex).applyToHomeScreenAppView(homeScreenAppView);
+            homeScreenAppView.bind(baldPagerAdapter.pinnedList.get(i + startIndex));
         }
     }
 

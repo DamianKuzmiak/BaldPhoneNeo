@@ -51,7 +51,7 @@ public class BaldPagerAdapter extends BaldViewAdapter {
      */
     public int startingPage;
     @SuppressWarnings("unchecked")
-    public List<HomeScreenPinHelper.HomeScreenPinnable> pinnedList = Collections.EMPTY_LIST;
+    public List<Object> pinnedList = Collections.EMPTY_LIST;
     private int numItemsBefore, numItems;
     private HomeScreenActivity homeScreen;
 

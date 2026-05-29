@@ -6,12 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 
-import app.baldphone.neo.launcher.apps.AppIconBinder
 import app.baldphone.neo.launcher.apps.data.PredefinedApps
-
-import com.bald.uriah.baldphone.adapters.AppsRecyclerViewAdapter
-import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper
-import com.bald.uriah.baldphone.views.HomeScreenAppView
 
 /**
  * Room entity representing a launchable application (activity) in the database.
@@ -37,7 +32,7 @@ data class AppEntry(
     @ColumnInfo(name = "install_time") val installTime: Long = -1L,
     /** Timestamp when the app was last updated. -1L for built-in apps. */
     @ColumnInfo(name = "update_time") val updateTime: Long = -1L
-) : AppsRecyclerViewAdapter.InAppsRecyclerView, HomeScreenPinHelper.HomeScreenPinnable {
+) {
     /** The [ComponentName] object representing this entry. */
     @Ignore
     val component: ComponentName =
@@ -49,16 +44,6 @@ data class AppEntry(
     /** Flattened component name in "package/class" format, e.g. "com.example/com.example.MainActivity". */
     @Ignore
     val componentName: String = "$packageName/$className"
-
-    @Ignore
-    override fun type(): Int = AppsRecyclerViewAdapter.TYPE_ITEM
-
-    @Ignore
-    override fun applyToHomeScreenAppView(homeScreenAppView: HomeScreenAppView) {
-        homeScreenAppView.setText(label)
-        AppIconBinder.loadPic(this, homeScreenAppView.iv_icon)
-        homeScreenAppView.setIntent(component, userId)
-    }
 
     /** Whether this app is a predefined (built-in) application. */
     @get:Ignore

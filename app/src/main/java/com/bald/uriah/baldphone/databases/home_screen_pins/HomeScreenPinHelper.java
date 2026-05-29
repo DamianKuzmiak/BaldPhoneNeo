@@ -23,7 +23,6 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 
 import com.bald.uriah.baldphone.databases.contacts.MiniContact;
-import com.bald.uriah.baldphone.views.HomeScreenAppView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -107,8 +106,8 @@ public class HomeScreenPinHelper {
         sharedPreferences.edit().putStringSet(SET_KEY, newSet).apply();
     }
 
-    public static List<HomeScreenPinnable> getAll(Context context) {
-        final List<HomeScreenPinnable> ret =
+    public static List<Object> getAll(Context context) {
+        final List<Object> ret =
                 new ArrayList<>(
                         AppsRepository.getAllPinnedFromCache()
                 );
@@ -117,10 +116,6 @@ public class HomeScreenPinHelper {
             ret.addAll(contactList);
         return ret;
 
-    }
-
-    public interface HomeScreenPinnable {
-        void applyToHomeScreenAppView(HomeScreenAppView homeScreenAppView);
     }
 
     public static final class PinnedContactPreferences {
