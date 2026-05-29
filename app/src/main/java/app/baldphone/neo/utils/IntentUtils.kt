@@ -2,9 +2,11 @@ package app.baldphone.neo.utils
 
 import android.content.ActivityNotFoundException
 import android.content.ClipData
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.pm.LauncherApps
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -13,6 +15,8 @@ import android.util.Log
 import androidx.core.net.toUri
 
 import app.baldphone.neo.features.share.ShareActivity
+import app.baldphone.neo.launcher.apps.data.db.AppEntry
+import app.baldphone.neo.launcher.apps.getUserForSerialNumber
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 
 import com.bald.uriah.baldphone.R
@@ -134,4 +138,32 @@ fun Context.startActivityWithNewTask(intent: Intent, options: Bundle? = null) {
 @JvmOverloads
 fun Context.startActivityWithNewTaskClear(intent: Intent, options: Bundle? = null) {
     startActivitySafe(intent, options, flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+}
+
+/**
+ * Starts the activity of the given [componentName].
+ * If a non-zero [userId] is specified, attempts to launch it as the corresponding user.
+ */
+@JvmOverloads
+fun Context.startComponentName(componentName: ComponentName, userId: Long = 0L) {
+    if (userId != 0L) {
+        try {
+            val user = getUserForSerialNumber(userId)
+            if (user != null) {
+                val launcherApps = getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
+                launcherApps.startMainActivity(componentName, user, null, null)
+                return
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to launch app with LauncherApps for user: $userId", e)
+        }
+    }
+    startActivity(Intent.makeRestartActivityTask(componentName))
+}
+
+/**
+ * Starts the activity of the given [appEntry].
+ */
+fun Context.startComponentName(appEntry: AppEntry) {
+    startComponentName(appEntry.component, appEntry.userId)
 }

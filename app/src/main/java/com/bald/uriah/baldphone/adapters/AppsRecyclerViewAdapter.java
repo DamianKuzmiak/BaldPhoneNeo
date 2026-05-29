@@ -32,11 +32,12 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import app.baldphone.neo.launcher.apps.AppIconBinder;
+import app.baldphone.neo.launcher.apps.data.db.AppEntry;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.BaldActivity;
-import com.bald.uriah.baldphone.databases.apps.App;
-import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
 import com.bald.uriah.baldphone.fragments_and_dialogs.LetterChooserDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
@@ -61,7 +62,7 @@ public class AppsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<
     public AppViewHolder lastView;
     private boolean appsOneGrid;
 
-    public AppsRecyclerViewAdapter(List<App> appList, BaldActivity activity, AppsActivity.ChangeAppListener changeAppListener, RecyclerView caller) {
+    public AppsRecyclerViewAdapter(List<AppEntry> appList, BaldActivity activity, AppsActivity.ChangeAppListener changeAppListener, RecyclerView caller) {
         this.caller = caller;
         this.activity = activity;
         this.layoutInflater = LayoutInflater.from(activity);
@@ -93,6 +94,27 @@ public class AppsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<
         textColorOnSelected = typedValue.data;
         theme.resolveAttribute(R.attr.bald_text_on_background, typedValue, true);
         textColorOnBackground = typedValue.data;
+    }
+
+    /**
+     * Replaces the adapter data with a new list of apps.
+     * Rebuilds section headers and notifies the RecyclerView of the change.
+     */
+    public void updateData(List<AppEntry> appList) {
+        dataList.clear();
+        letterToPosition.clear();
+        String lastChar = "";
+        String disChar;
+        for (int i = 0; i < appList.size(); i++) {
+            disChar = appList.get(i).getLabel().substring(0, 1).toUpperCase();
+            if (!appsOneGrid && !disChar.equals(lastChar)) {
+                dataList.add(new AppStickyHeader(disChar));
+                letterToPosition.append(disChar.charAt(0), dataList.size() - 1);
+            }
+            dataList.add(appList.get(i));
+            lastChar = disChar;
+        }
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -179,9 +201,9 @@ public class AppsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<
         }
 
         public void update(final int index) {
-            final App app = (App) AppsRecyclerViewAdapter.this.dataList.get(index);
+            final AppEntry app = (AppEntry) AppsRecyclerViewAdapter.this.dataList.get(index);
             this.app_name.setText(app.getLabel());
-            AppsDatabaseHelper.loadPic(app, app_icon);
+            AppIconBinder.loadPic(app, app_icon);
 
             if (this.pinned) {
                 if (!app.isPinned()) {

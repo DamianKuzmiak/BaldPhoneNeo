@@ -2,6 +2,8 @@ package app.baldphone.neo
 
 import android.app.Activity
 import android.app.Application
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat.getInsetsController
 import androidx.core.view.WindowInsetsCompat.Type.statusBars
 import androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
@@ -38,6 +41,9 @@ import app.baldphone.neo.extensions.applyEdgeToEdgeInsets
 import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
 import app.baldphone.neo.helpers.AppForegroundState
+import app.baldphone.neo.launcher.apps.data.AppsRepository
+import app.baldphone.neo.launcher.apps.sync.LauncherAppsReceiver
+import app.baldphone.neo.receivers.LocaleChangedReceiver
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
 import com.bald.uriah.baldphone.BuildConfig
@@ -69,6 +75,17 @@ class NeoApp : Application(), Configuration.Provider, SingletonImageLoader.Facto
         TouchGuardManager.init(this)
 
         NotificationChannels.init(this)
+
+        // Apps handling
+        LauncherAppsReceiver.init(this)
+        AppsRepository.init(this)
+        ContextCompat.registerReceiver(
+            this,
+            LocaleChangedReceiver(),
+            IntentFilter(Intent.ACTION_LOCALE_CHANGED),
+            ContextCompat.RECEIVER_EXPORTED
+        )
+
         BatteryMonitor.initOnAppStart(this) // WorkManager
         ProcessLifecycleOwner.get().lifecycle.addObserver(AppForegroundState)
 

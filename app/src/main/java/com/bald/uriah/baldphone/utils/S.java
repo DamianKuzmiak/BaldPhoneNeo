@@ -49,6 +49,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.utils.IntentUtilsKt;
+import app.baldphone.neo.launcher.apps.data.db.AppEntry;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
@@ -252,7 +253,15 @@ public class S {
     }
 
     public static void startComponentName(final Context context, final ComponentName componentName) {
-        context.startActivity(Intent.makeRestartActivityTask(componentName));
+        IntentUtilsKt.startComponentName(context, componentName, 0L);
+    }
+
+    public static void startComponentName(final Context context, final ComponentName componentName, final long userId) {
+        IntentUtilsKt.startComponentName(context, componentName, userId);
+    }
+
+    public static void startComponentName(final Context context, final AppEntry appEntry) {
+        IntentUtilsKt.startComponentName(context, appEntry);
     }
 
     public static void applyDim(@NonNull ViewGroup parent) {

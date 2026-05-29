@@ -119,13 +119,7 @@ public class HomePage2 extends HomeView {
 
         if (bt_apps != null) {
             bt_apps.setOnClickListener(
-                    v -> {
-                        if (!homeScreen.finishedUpdatingApps) {
-                            homeScreen.launchAppsActivity = true;
-                        } else {
-                            homeScreen.startActivity(new Intent(getContext(), AppsActivity.class));
-                        }
-                    });
+                    v -> homeScreen.startActivity(new Intent(getContext(), AppsActivity.class)));
         }
 
         if (bt_alarms != null) {

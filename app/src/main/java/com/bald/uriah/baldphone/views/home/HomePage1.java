@@ -16,8 +16,6 @@
 
 package com.bald.uriah.baldphone.views.home;
 
-import static com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper.PREDEFINED_APP_PREFIX;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -50,6 +48,10 @@ import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
+import app.baldphone.neo.launcher.apps.AppIconBinder;
+import app.baldphone.neo.launcher.apps.data.PredefinedApps;
+import app.baldphone.neo.launcher.apps.data.AppsRepository;
+import app.baldphone.neo.launcher.apps.data.db.AppEntry;
 import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.permissions.model.SpecialPermission;
 import app.baldphone.neo.services.DeviceLock;
@@ -62,9 +64,6 @@ import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.Page1EditorActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
-import com.bald.uriah.baldphone.databases.apps.App;
-import com.bald.uriah.baldphone.databases.apps.AppsDatabase;
-import com.bald.uriah.baldphone.databases.apps.AppsDatabaseHelper;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
@@ -78,7 +77,7 @@ import java.util.Set;
 public class HomePage1 extends HomeView {
     public static final String TAG = HomePage1.class.getSimpleName();
     private final NotificationRepository repo = NotificationRepository.INSTANCE;
-    private Map<App, FirstPageAppIcon> viewsToApps;
+    private Map<AppEntry, FirstPageAppIcon> viewsToApps;
     private FirstPageAppIcon bt_assistant,
             bt_camera,
             bt_contacts,
@@ -158,6 +157,10 @@ public class HomePage1 extends HomeView {
                     bt_recent.setBadgeVisibility(!missedCalls.isEmpty());
                 }
             });
+            AppsRepository.getAllAppsLiveData().observe(owner, apps -> {
+                viewsToApps.clear();
+                setupOnClickListeners();
+            });
         } else {
             Log.e(TAG, "LifecycleOwner is null. Cannot observe LiveData.");
         }
@@ -189,18 +192,26 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_RECENTS_KEY,
                 bt_recent,
+                R.string.recent,
+                R.drawable.history_on_background,
                 v -> IntentUtilsKt.startActivityWithNewTaskClear(homeScreen, new Intent(homeScreen, RecentCallsActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_DIALER_KEY,
                 bt_dialer,
+                R.string.dialer,
+                R.drawable.phone_on_background,
                 v -> IntentUtilsKt.startActivityWithNewTaskClear(homeScreen, new Intent(homeScreen, DialerActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_CONTACTS_KEY,
                 bt_contacts,
+                R.string.contacts,
+                R.drawable.human_on_background,
                 v -> IntentUtilsKt.startActivityWithNewTaskClear(homeScreen, new Intent(homeScreen, ContactsActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_APP_KEY,
                 bt_whatsapp,
+                R.string.whatsapp,
+                R.drawable.whatsapp_on_background,
                 v -> {
                     try {
                         WhatsAppHandler.INSTANCE.launch(homeScreen);
@@ -211,6 +222,8 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_ASSISTANT_KEY,
                 bt_assistant,
+                R.string.assistant,
+                R.drawable.voice_on_background,
                 v -> {
                     try {
                         homeScreen.startActivity(
@@ -226,6 +239,8 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_MESSAGES_KEY,
                 bt_messages,
+                R.string.messages,
+                R.drawable.message_on_background,
                 v -> {
                     try {
                         final ResolveInfo resolveInfo =
@@ -255,10 +270,14 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_EMERGENCY_KEY,
                 bt_emergency,
+                R.string.sos,
+                R.drawable.emergency,
                 v -> homeScreen.startActivity(new Intent(homeScreen, SOSActivity.class)));
         setupButton(
                 BPrefs.CUSTOM_CAMERA_KEY,
                 bt_camera,
+                R.string.camera,
+                R.drawable.camera_on_background,
                 v -> {
                     Intent intent = getCameraIntent();
                     if (intent != null) {
@@ -268,6 +287,8 @@ public class HomePage1 extends HomeView {
         setupButton(
                 BPrefs.CUSTOM_VIDEOS_KEY,
                 bt_lock_screen,
+                R.string.label_lock_screen_short,
+                R.drawable.icon_lock_outline,
                 v -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         requestDeviceLock();
@@ -280,37 +301,35 @@ public class HomePage1 extends HomeView {
     private void setupButton(
             String bPrefsKey,
             @NonNull FirstPageAppIcon button,
+            int defaultTextRes,
+            int defaultIconRes,
             View.OnClickListener defaultListener) {
         if (homeScreen != null) {
-            setupButtonForHomeScreen(bPrefsKey, button, defaultListener);
+            setupButtonForHomeScreen(bPrefsKey, button, defaultTextRes, defaultIconRes, defaultListener);
         } else {
-            setupButtonForEditor(bPrefsKey, button);
+            setupButtonForEditor(bPrefsKey, button, defaultTextRes, defaultIconRes);
         }
     }
 
     private void setupButtonForHomeScreen(
             String bPrefsKey,
             @NonNull FirstPageAppIcon button,
+            int defaultTextRes,
+            int defaultIconRes,
             View.OnClickListener defaultListener) {
-        App app = findAppByPreference(bPrefsKey);
-
-        if (app == null) {
-            setupDefault(button, defaultListener);
-        } else {
+        AppEntry app = findAppByPreference(bPrefsKey);
+        if (app != null) {
             button.setText(app.getLabel());
-            AppsDatabaseHelper.loadPic(app, button.imageView);
-            button.setOnClickListener(
-                    v ->
-                            S.startComponentName(
-                                    homeScreen,
-                                    ComponentName.unflattenFromString(
-                                            app.getFlattenComponentName())));
+            AppIconBinder.loadPic(app, button.imageView);
+            button.setOnClickListener(v -> S.startComponentName(homeScreen, app));
             viewsToApps.put(app, button);
+        } else {
+            setupDefault(button, defaultTextRes, defaultIconRes, defaultListener);
         }
     }
 
-    private void setupButtonForEditor(String bPrefsKey, @NonNull FirstPageAppIcon bt) {
-        App app = findAppByPreference(bPrefsKey);
+    private void setupButtonForEditor(String bPrefsKey, @NonNull FirstPageAppIcon bt, int defaultTextRes, int defaultIconRes) {
+        AppEntry app = findAppByPreference(bPrefsKey);
 
         // This is for Page1EditorActivity context
         final Page1EditorActivity page1EditorActivity = (Page1EditorActivity) activity;
@@ -318,19 +337,19 @@ public class HomePage1 extends HomeView {
 
         if (bt == bt_lock_screen && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             if (app == null) {
-                App appsActivityApp =
-                        AppsDatabase.getInstance(activity)
-                                .appsDatabaseDao()
-                                .findByFlattenComponentName(
-                                        PREDEFINED_APP_PREFIX + AppsActivity.class.getName());
+                AppEntry appsActivityApp = PredefinedApps.getAppsActivityEntry(activity);
                 if (appsActivityApp != null) {
-                    bt.setText(R.string.apps);
-                    AppsDatabaseHelper.loadPic(appsActivityApp, bt.imageView);
+                    bt.setText(appsActivityApp.getLabel());
+                    AppIconBinder.loadPic(appsActivityApp, bt.imageView);
                 }
             }
             initialAppName = activity.getText(R.string.apps);
         } else {
-            initialAppName = bt.getText();
+            if (app != null) {
+                initialAppName = app.getLabel();
+            } else {
+                initialAppName = activity.getText(defaultTextRes);
+            }
         }
 
         final BDB bdb =
@@ -369,42 +388,44 @@ public class HomePage1 extends HomeView {
 
         if (app != null) {
             bt.setText(app.getLabel());
-            AppsDatabaseHelper.loadPic(app, bt.imageView);
+            AppIconBinder.loadPic(app, bt.imageView);
             viewsToApps.put(app, bt);
+        } else {
+            if (bt != bt_lock_screen || Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                bt.setText(defaultTextRes);
+                bt.setImageResource(defaultIconRes);
+            }
         }
     }
 
-    private void setupDefault(@NonNull FirstPageAppIcon bt, OnClickListener onClickListener) {
+    private void setupDefault(@NonNull FirstPageAppIcon bt, int defaultTextRes, int defaultIconRes, OnClickListener onClickListener) {
         if (bt == bt_lock_screen) {
             // The lock screen button has a different behavior on older APIs
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
                 // On older APIs, this button opens the Apps screen
-                App app =
-                        AppsDatabase.getInstance(homeScreen)
-                                .appsDatabaseDao()
-                                .findByFlattenComponentName(
-                                        PREDEFINED_APP_PREFIX + AppsActivity.class.getName());
-                bt.setText(R.string.apps);
-                AppsDatabaseHelper.loadPic(app, bt.imageView);
+                AppEntry app = PredefinedApps.getAppsActivityEntry(getContext());
+                if (app != null) {
+                    bt.setText(app.getLabel());
+                    AppIconBinder.loadPic(app, bt.imageView);
+                }
+            } else {
+                bt.setText(defaultTextRes);
+                bt.setImageResource(defaultIconRes);
             }
+        } else {
+            bt.setText(defaultTextRes);
+            bt.setImageResource(defaultIconRes);
         }
         bt.setOnClickListener(onClickListener);
     }
 
     // Helper
     @Nullable
-    private App findAppByPreference(String bPrefsKey) {
+    private AppEntry findAppByPreference(String bPrefsKey) {
         if (sharedPreferences.contains(bPrefsKey)) {
-            App app =
-                    AppsDatabase.getInstance(homeScreen)
-                            .appsDatabaseDao()
-                            .findByFlattenComponentName(
-                                    sharedPreferences.getString(bPrefsKey, null));
-            // If app is not found in DB, preference is stale. Remove it.
-            if (app == null) {
-                sharedPreferences.edit().remove(bPrefsKey).apply();
-            }
-            return app;
+            String componentName = sharedPreferences.getString(bPrefsKey, null);
+            if (componentName == null) return null;
+            return AppsRepository.findByComponentName(componentName);
         }
         return null;
     }
@@ -463,25 +484,14 @@ public class HomePage1 extends HomeView {
             }
         }
 
-        for (Map.Entry<App, FirstPageAppIcon> app : viewsToApps.entrySet()) {
+        for (Map.Entry<AppEntry, FirstPageAppIcon> app : viewsToApps.entrySet()) {
             if (app == null) continue;
 
             FirstPageAppIcon icon = app.getValue();
             if (icon != null) {
-                String flatComponentName = app.getKey().getFlattenComponentName();
-                if (flatComponentName != null) {
-                    ComponentName cn =
-                            ComponentName.unflattenFromString(flatComponentName);
-                    if (cn != null) {
-                        icon.setBadgeVisibility(
-                                packagesSet.contains(cn.getPackageName()));
-                    } else {
-                        icon.setBadgeVisibility(
-                                false); // Invalid component or no package name
-                    }
-                } else {
-                    icon.setBadgeVisibility(false); // No component name in app data
-                }
+                ComponentName cn = app.getKey().getComponent();
+                icon.setBadgeVisibility(
+                    packagesSet.contains(cn.getPackageName()));
             }
         }
     }

@@ -24,9 +24,10 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import app.baldphone.neo.launcher.apps.data.AppsRepository;
+
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.databases.apps.AppsDatabase;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
@@ -42,7 +43,7 @@ public class TechnicalInfoActivity extends BaldActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AppsDatabase.getInstance(context).appsDatabaseDao().deleteAll();
+        AppsRepository.INSTANCE.clearAll();
     }
 
     public static boolean deleteDir(File dir) {
