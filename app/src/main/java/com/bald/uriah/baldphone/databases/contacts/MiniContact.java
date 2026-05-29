@@ -18,18 +18,12 @@ package com.bald.uriah.baldphone.databases.contacts;
 
 import androidx.annotation.Nullable;
 
-import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper;
 import com.bald.uriah.baldphone.utils.Constants;
-import com.bald.uriah.baldphone.utils.S;
-import com.bald.uriah.baldphone.views.HomeScreenAppView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
 /**
  * Mini contact, contains lookupkey,photo,name and id.
  */
-public class MiniContact implements HomeScreenPinHelper.HomeScreenPinnable, Constants.BaseContactsConstants {
+public class MiniContact implements Constants.BaseContactsConstants {
 
     public final String lookupKey, photo;
     @Nullable
@@ -43,18 +37,5 @@ public class MiniContact implements HomeScreenPinHelper.HomeScreenPinnable, Cons
         this.photo = photo;
         this.id = id;
         this.favorite = favorite;
-    }
-
-    @Override
-    public void applyToHomeScreenAppView(HomeScreenAppView homeScreenAppView) {
-        if (S.isValidContextForGlide(homeScreenAppView.iv_icon.getContext()))
-            Glide
-                    .with(homeScreenAppView.iv_icon)
-                    .load(photo)
-                    .apply(new RequestOptions()
-                            .error(R.drawable.face_on_button))
-                    .into(homeScreenAppView.iv_icon);
-        homeScreenAppView.setText(name);
-        homeScreenAppView.setIntent(lookupKey);
     }
 }

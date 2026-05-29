@@ -49,7 +49,7 @@ public class AppsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_ITEM = 1;
     public final float elevation;
-    public final List<InAppsRecyclerView> dataList;
+    public final List<Object> dataList;
     @ColorInt
     private final int textColorOnSelected, textColorOnBackground;
     private final Drawable selectedDrawable;
@@ -138,7 +138,7 @@ public class AppsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<
 
     @Override
     public int getItemViewType(int position) {
-        return dataList.get(position).type();
+        return (dataList.get(position) instanceof AppStickyHeader) ? TYPE_HEADER : TYPE_ITEM;
     }
 
     @Override
@@ -146,13 +146,7 @@ public class AppsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<
         return dataList.size();
     }
 
-    public interface InAppsRecyclerView {
-        default int type() {
-            return TYPE_HEADER;
-        }
-    }
-
-    public static class AppStickyHeader implements InAppsRecyclerView {
+    public static class AppStickyHeader {
         public final String name;
 
         AppStickyHeader(String name) {
