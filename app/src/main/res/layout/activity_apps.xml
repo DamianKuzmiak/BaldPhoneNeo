@@ -19,16 +19,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.bald.uriah.baldphone.views.BaldTitleBar
-        android:id="@+id/bald_title_bar"
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/title_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="?bald_category_apps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/apps" />
-
+        app:titleBarBackgroundColor="?bald_category_apps"
+        app:titleBarTitle="@string/apps" />
 
     <com.bald.uriah.baldphone.views.ScrollingHelper
         android:id="@+id/scrolling_helper"
@@ -38,8 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/bald_title_bar">
+        app:layout_constraintTop_toBottomOf="@id/title_bar">
 
         <com.bald.uriah.baldphone.views.ModularRecyclerView
             android:id="@+id/rc_apps"
@@ -52,6 +50,5 @@
             android:requiresFadingEdge="none"
             android:tag="edgeToEdge" />
     </com.bald.uriah.baldphone.views.ScrollingHelper>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

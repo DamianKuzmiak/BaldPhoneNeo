@@ -285,7 +285,7 @@ public class S {
         return ret;
     }
 
-    public static void showDropDownPopup(BaldActivity baldActivity, int windowsWidth, DropDownRecyclerViewAdapter.DropDownListener dropDownListener, View view) {
+    public static void showDropDownPopup(Activity baldActivity, int windowsWidth, DropDownRecyclerViewAdapter.DropDownListener dropDownListener, View view) {
         final RelativeLayout dropDownContainer = (RelativeLayout) LayoutInflater.from(baldActivity).inflate(R.layout.drop_down_recycler_view, null, false);
         final RecyclerView recyclerView = dropDownContainer.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(baldActivity) {
@@ -311,7 +311,7 @@ public class S {
         });
         popupWindow.setBackgroundDrawable(baldActivity.getDrawable(R.drawable.empty));
         popupWindow.showAsDropDown(view);
-        baldActivity.autoDismiss(popupWindow);
+//        baldActivity.autoDismiss(popupWindow);
         S.applyDim(root);
     }
 

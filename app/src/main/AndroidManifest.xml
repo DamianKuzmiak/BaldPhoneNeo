@@ -255,7 +255,7 @@
             android:label="@string/timer"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.AppsActivity"
+            android:name="app.baldphone.neo.launcher.apps.ui.AppsActivity"
             android:exported="false"
             android:label="@string/apps" />
         <activity

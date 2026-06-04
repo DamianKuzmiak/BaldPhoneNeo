@@ -52,6 +52,7 @@ import app.baldphone.neo.launcher.apps.AppIconBinder;
 import app.baldphone.neo.launcher.apps.data.PredefinedApps;
 import app.baldphone.neo.launcher.apps.data.AppsRepository;
 import app.baldphone.neo.launcher.apps.data.db.AppEntry;
+import app.baldphone.neo.launcher.apps.ui.AppsActivity;
 import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.permissions.model.SpecialPermission;
 import app.baldphone.neo.services.DeviceLock;
@@ -60,7 +61,6 @@ import app.baldphone.neo.utils.IntentUtilsKt;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
 import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.Page1EditorActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
