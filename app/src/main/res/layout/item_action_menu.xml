@@ -2,21 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="52dp"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:minWidth="220dp"
+    android:minWidth="200dp"
+    android:minHeight="50dp"
     android:orientation="horizontal"
-    android:paddingStart="8dp"
-    android:paddingEnd="12dp">
+    android:paddingHorizontal="12dp">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="12dp"
         android:contentDescription="@null"
         tools:src="@android:drawable/ic_menu_help" />
@@ -27,8 +26,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textAlignment="viewStart"
-        android:singleLine="true"
         android:textSize="@dimen/medium_plus"
         tools:text="Action menu item" />
 
@@ -36,8 +36,9 @@
         android:id="@+id/switch_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:clickable="false"
+        android:duplicateParentState="true"
         android:focusable="false"
         android:visibility="gone"
         tools:visibility="visible" />

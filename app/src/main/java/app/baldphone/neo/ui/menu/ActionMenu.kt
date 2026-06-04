@@ -3,6 +3,7 @@ package app.baldphone.neo.ui.menu
 import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Color
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -21,6 +22,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.databinding.ItemActionMenuBinding
 import com.bald.uriah.baldphone.databinding.ItemActionMenuDividerBinding
+import com.bald.uriah.baldphone.databinding.ItemActionMenuSubtleDividerBinding
 import com.bald.uriah.baldphone.databinding.ViewActionMenuBinding
 
 /**
@@ -55,7 +57,6 @@ class ActionMenu(
             WindowManager.LayoutParams.WRAP_CONTENT,
             true
         ).apply {
-            elevation = 8f
             setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             isOutsideTouchable = true
             setOnDismissListener {
@@ -70,7 +71,14 @@ class ActionMenu(
 
     private fun populateMenu(context: Context) {
         val inflater = LayoutInflater.from(context)
-        items.forEach { item ->
+
+        items.forEachIndexed { index, item ->
+            if (index > 0) {
+                if (item !is ActionMenuItem.Separator && items[index - 1] !is ActionMenuItem.Separator) {
+                    ItemActionMenuSubtleDividerBinding.inflate(inflater, binding.container, true)
+                }
+            }
+
             if (item is ActionMenuItem.Separator) {
                 ItemActionMenuDividerBinding.inflate(inflater, binding.container, true)
             } else {
@@ -137,13 +145,26 @@ class ActionMenu(
     /** Displays the action menu popup anchored to the specified view. */
     fun show(anchor: View) {
         if (!anchor.isAttachedToWindow) return
+
+        val rootBounds = Rect()
+        anchor.rootView.getWindowVisibleDisplayFrame(rootBounds)
+
+        val density = anchor.context.resources.displayMetrics.density
+        val marginPx = (8 * density).toInt()
+        val maxWidth = rootBounds.width() - (marginPx * 2)
+        val minWidth = binding.root.minimumWidth
+
+        // Measure once to get the "natural" width and height
         binding.root.measure(
             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         )
-        popupWindow.width = binding.root.measuredWidth
-        popupWindow.height = binding.root.measuredHeight
-        popupWindow.showAsDropDown(anchor)
+
+        popupWindow.apply {
+            width = binding.root.measuredWidth.coerceIn(minWidth, maxWidth)
+            height = binding.root.measuredHeight
+            showAsDropDown(anchor, 0, 0)
+        }
     }
 
     /** Dismisses the popup window if it is currently showing. */
