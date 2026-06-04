@@ -35,9 +35,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import app.baldphone.neo.features.gallery.MediaActivity;
+import app.baldphone.neo.launcher.apps.ui.AppsActivity;
 
 import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.SettingsActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;

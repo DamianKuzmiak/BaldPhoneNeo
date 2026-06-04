@@ -21,6 +21,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import app.baldphone.neo.launcher.apps.ui.AppsActivity;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
@@ -46,7 +48,7 @@ public class Page1EditorActivity extends BaldActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AppsActivity.REQUEST_SELECT_CUSTOM_APP && resultCode == RESULT_OK && data != null && data.getComponent() != null) {
+        if (resultCode == RESULT_OK && data != null && data.hasExtra(AppsActivity.CHOOSE_MODE) && data.getComponent() != null) {
             BPrefs.get(this).edit().putString(data.getStringExtra(AppsActivity.CHOOSE_MODE), data.getComponent().flattenToString()).apply();
         }
     }

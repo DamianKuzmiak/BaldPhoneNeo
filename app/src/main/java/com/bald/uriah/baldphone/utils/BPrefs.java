@@ -72,9 +72,6 @@ public final class BPrefs {
 
     public static final String AFTER_TUTORIAL_KEY = "AFTER_TUTORIAL_KEY";
 
-    public static final String APPS_ONE_GRID_KEY = "APPS_ONE_GRID_KEY";
-    public static final boolean APPS_ONE_GRID_DEFAULT_VALUE = false;
-
     public static final String LAST_CRASH_KEY = "LAST_CRASH_KEY";
     public static final long LAST_CRASH_TIME_OK = 12 * D.SECOND;
 

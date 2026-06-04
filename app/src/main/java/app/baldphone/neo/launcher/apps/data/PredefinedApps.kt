@@ -5,8 +5,6 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.edit
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,10 +17,10 @@ import app.baldphone.neo.features.calls.ui.RecentCallsActivity
 import app.baldphone.neo.features.contacts.ui.ContactsActivity
 import app.baldphone.neo.features.gallery.MediaActivity
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
+import app.baldphone.neo.launcher.apps.ui.AppsActivity
 
 import com.bald.uriah.baldphone.BuildConfig
 import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.activities.AppsActivity
 import com.bald.uriah.baldphone.activities.SOSActivity
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity
 import com.bald.uriah.baldphone.activities.pills.PillsActivity
@@ -51,14 +49,6 @@ object PredefinedApps {
         _pinnedApps.map { names ->
             names.mapNotNull { getAppEntry(applicationContext, it) }
         }
-
-    val allAppsFlow: Flow<List<AppEntry>> by lazy {
-        _pinnedApps.map { getApps(applicationContext) }
-    }
-
-    val allAppsLiveData: LiveData<List<AppEntry>> by lazy {
-        allAppsFlow.asLiveData()
-    }
 
     private data class AppInfo(
         val className: String,

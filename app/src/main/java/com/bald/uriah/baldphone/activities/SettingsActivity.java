@@ -299,19 +299,6 @@ public class SettingsActivity extends BaldActivity {
                         .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.DUAL_SIM_KEY, BPrefs.DUAL_SIM_DEFAULT_VALUE) ? 0 : 1),
                 R.drawable.sim_on_button
         ));
-        personalizationCategory.add(
-                new BDBSettingsItem(R.string.apps_sort_method,
-                        BDB.from(this)
-                                .addFlag(BDialog.FLAG_OK | BDialog.FLAG_CANCEL).setTitle(R.string.apps_sort_method)
-                                .setSubText(R.string.apps_sort_method_subtext)
-                                .setOptions(R.string.one_grid, R.string.groups)
-                                .setPositiveButtonListener(params -> {
-                                    editor.putBoolean(BPrefs.APPS_ONE_GRID_KEY, params[0].equals(0)).apply();
-                                    this.recreate();
-                                    return true;
-                                })
-                                .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.APPS_ONE_GRID_KEY, BPrefs.APPS_ONE_GRID_DEFAULT_VALUE) ? 0 : 1),
-                        R.drawable.apps_on_button));
 
         SettingsItem fontSettingsItem = new RunnableSettingsItem(R.string.font_size, v -> startActivity(new Intent(this, FontChangerActivity.class)), R.drawable.font_on_button);
         personalizationCategory.add(fontSettingsItem);

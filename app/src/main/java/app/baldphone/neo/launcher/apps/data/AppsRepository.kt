@@ -163,9 +163,7 @@ object AppsRepository {
     /**
      * Updates the pinned state of an app.
      */
-    @JvmStatic
-    @JvmOverloads
-    fun updatePinnedJava(componentName: String, userId: Long = 0L, pinned: Boolean) {
+    fun updatePinned(componentName: String, userId: Long = 0L, pinned: Boolean) {
         if (PredefinedApps.isPredefined(componentName)) {
             PredefinedApps.setPinned(applicationContext, componentName, pinned)
             return
