@@ -5,9 +5,7 @@ import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 
-import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.utils.HomeAppUtils
-import app.baldphone.neo.wizard.SetupActivity
 
 import com.bald.uriah.baldphone.activities.HomeScreenActivity
 
@@ -20,10 +18,6 @@ class LauncherProxyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         when {
-            !Prefs.isSetupComplete && !Prefs.isSetupSkipped -> {
-                startActivity(Intent(this, SetupActivity::class.java))
-            }
-
             HomeAppUtils.isDefaultLauncher(this) -> {
                 val homeIntent =
                     Intent(Intent.ACTION_MAIN).apply {

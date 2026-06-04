@@ -57,3 +57,9 @@ fun Context.getHtmlString(
     val htmlWithBreaks = rawString.replace("\n", "<br>")
     return HtmlCompat.fromHtml(htmlWithBreaks, HtmlCompat.FROM_HTML_MODE_LEGACY)
 }
+
+/**
+ * Converts a value in density-independent pixels (dp) to pixels (px).
+ */
+fun Context.dpToPx(dp: Int): Int =
+    (resources.displayMetrics.density * dp).toInt()
