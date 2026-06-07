@@ -406,6 +406,7 @@
 
     <!-- Notification Service -->
     <string name="notification_service_label">Notifiche semplificate</string>
+    <string name="notification_service_description">Consente di mostrare notifiche espanse e badge sulle icone.</string>
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Blocca schermo</string>

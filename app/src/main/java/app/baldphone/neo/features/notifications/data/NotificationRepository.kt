@@ -4,9 +4,6 @@ import android.app.Notification
 import android.content.Context
 import android.service.notification.StatusBarNotification
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +13,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
+import app.baldphone.neo.BuildConfig
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.services.NotificationReceiverService
 
@@ -24,6 +22,7 @@ object NotificationRepository {
         CALL,
         ALARM,
         MESSAGE,
+        THIS_APP,
         OTHER
     }
 
@@ -43,10 +42,9 @@ object NotificationRepository {
      * Emits the single highest-priority [NotificationItem], or null when no notifications exist.
      */
     fun getTopNotification(context: Context): Flow<NotificationItem?> =
-        getNotificationItems(context)
-            .map { items ->
-                selectTopNotification(items)
-            }
+        getNotificationItems(context).map { items ->
+            selectTopNotification(items)
+        }
 
     /**
      * Evaluates a list of [NotificationItem]s and returns the single highest-priority notification.
@@ -56,39 +54,39 @@ object NotificationRepository {
     private fun selectTopNotification(items: List<NotificationItem>): NotificationItem? =
         items
             .asSequence()
-            .filter { it.isClearable || classifyPriority(it) == Priority.CALL }
-            .minWithOrNull(
-                compareBy<NotificationItem> { classifyPriority(it).ordinal }
-                    .thenByDescending { it.timeStamp }
-            )
+            .map { it to classifyPriority(it) }
+            .filter { (item, priority) ->
+                item.isClearable || priority == Priority.CALL || priority == Priority.ALARM ||
+                    priority == Priority.THIS_APP
+            }.minWithOrNull(
+                compareBy<Pair<NotificationItem, Priority>> {
+                    it.second.ordinal
+                }.thenByDescending { it.first.timeStamp }
+            )?.first
 
-    private fun classifyPriority(item: NotificationItem): Priority =
-        when {
-            item.category == Notification.CATEGORY_CALL ||
-                item.category == Notification.CATEGORY_MISSED_CALL ||
-                NotificationClassifier.isKnownDialer(item.packageName) -> Priority.CALL
+    private fun classifyPriority(item: NotificationItem): Priority {
+        if (item.packageName == BuildConfig.APPLICATION_ID) return Priority.THIS_APP
 
-            item.category == Notification.CATEGORY_ALARM -> Priority.ALARM
-
-            item.category == Notification.CATEGORY_MESSAGE ||
-                item.category == Notification.CATEGORY_SOCIAL -> Priority.MESSAGE
-
-            else -> Priority.OTHER
+        return when (item.category) {
+            Notification.CATEGORY_CALL, Notification.CATEGORY_MISSED_CALL -> Priority.CALL
+            Notification.CATEGORY_ALARM -> Priority.ALARM
+            Notification.CATEGORY_MESSAGE, Notification.CATEGORY_SOCIAL -> Priority.MESSAGE
+            else -> if (NotificationClassifier.isKnownDialer(item.packageName)) Priority.CALL else Priority.OTHER
         }
+    }
 
     /**
-     * LiveData wrapper for [getTopNotification] for Java callers.
-     */
-    fun getTopNotificationLiveData(context: Context): LiveData<NotificationItem?> =
-        getTopNotification(context).asLiveData()
-
-    /**
-     * Returns a flow of all active package names.
+     * Returns a flow of all active package names, excluding the current app.
      */
     val activeNotificationPackages: Flow<Set<String>> =
         notifications
-            .map { it.map { sbn -> sbn.packageName }.toSet() }
-            .distinctUntilChanged()
+            .map { list ->
+                list
+                    .asSequence()
+                    .map { sbn -> sbn.packageName }
+                    .filter { it != BuildConfig.APPLICATION_ID }
+                    .toSet()
+            }.distinctUntilChanged()
 
     /**
      * Flow of missed call notifications. Requires a context.
@@ -106,6 +104,7 @@ object NotificationRepository {
     }
 
     // Helpers to cancel notification(s) via the service.
+
     fun cancelAll() = NotificationReceiverService.getInstance()?.dismissNotifications()
 
     fun cancelNotification(key: String) = NotificationReceiverService.getInstance()?.dismissNotification(key)
