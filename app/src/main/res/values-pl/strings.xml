@@ -367,6 +367,7 @@
 
     <!-- Notification Service -->
     <string name="notification_service_label">Łatwe powiadomienia</string>
+    <string name="notification_service_description">Pozwala wyświetlać powiadomienia w powiększonej, łatwiejszej do odczytania formie, oraz pokazywać kropki na ikonach.</string>
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Zablokuj ekran</string>

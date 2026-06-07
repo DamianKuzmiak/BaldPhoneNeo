@@ -342,7 +342,8 @@
         <service
             android:name="app.baldphone.neo.services.NotificationReceiverService"
             android:exported="true"
-            android:label="@string/notification_service_label"
+            android:label="@string/app_display_name"
+            android:description="@string/notification_service_description"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />

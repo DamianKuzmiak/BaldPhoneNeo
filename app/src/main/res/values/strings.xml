@@ -421,6 +421,7 @@
 
     <!-- Notification Service -->
     <string name="notification_service_label">Easy Notifications</string>
+    <string name="notification_service_description">Enables enhanced notification formats and icon badges.</string>
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Lock Screen</string>
