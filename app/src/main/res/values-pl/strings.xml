@@ -440,4 +440,9 @@
 
     <string name="content_desc_gallery_photo_thumbnail">Miniaturka zdjęcia</string>
     <string name="content_desc_gallery_video_thumbnail">Miniaturka wideo</string>
+
+    <!-- Komunikaty trybów dźwięku (Toasty) -->
+    <string name="toast_mode_normal">Dźwięk włączony. Słyszysz dzwonki i powiadomienia.</string>
+    <string name="toast_mode_vibrate">Same wibracje. Telefon nie będzie dzwonił.</string>
+    <string name="toast_mode_silent">Całkowicie wyciszony. Brak dźwięków i wibracji.</string>
 </resources>

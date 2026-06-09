@@ -78,12 +78,35 @@ class SoundButton
                 }
             }
 
-            setOnClickListener { anchor ->
-                onSoundButtonClicked(anchor)
+            setOnClickListener { onSoundButtonClicked() }
+            setOnLongClickListener { anchor ->
+                onSoundButtonLongClicked(anchor)
+                true
             }
         }
 
-        private fun onSoundButtonClicked(anchor: View) {
+        private fun onSoundButtonClicked() {
+            val am = audioManager ?: return
+            val availableModes = getAvailableRingerModes()
+            if (availableModes.isEmpty()) return
+
+            val currentMode = am.ringerMode
+            val currentIndex = availableModes.indexOf(currentMode)
+            val nextIndex = if (currentIndex != -1) (currentIndex + 1) % availableModes.size else 0
+            val nextMode = availableModes[nextIndex]
+
+            if (setRingerMode(nextMode)) {
+                val msgRes =
+                    when (nextMode) {
+                        AudioManager.RINGER_MODE_SILENT -> R.string.toast_mode_silent
+                        AudioManager.RINGER_MODE_VIBRATE -> R.string.toast_mode_vibrate
+                        else -> R.string.toast_mode_normal
+                    }
+                BaldSnackbar.show(context, msgRes, BaldSnackbar.TYPE_SUCCESS)
+            }
+        }
+
+        private fun onSoundButtonLongClicked(anchor: View) {
             val availableModes = getAvailableRingerModes()
             context.showActionMenu(anchor) {
                 showCancel = false

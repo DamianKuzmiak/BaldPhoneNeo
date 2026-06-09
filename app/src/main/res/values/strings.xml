@@ -543,4 +543,9 @@
 
     <string name="content_desc_gallery_photo_thumbnail">Photo thumbnail</string>
     <string name="content_desc_gallery_video_thumbnail">Video thumbnail</string>
+
+    <!-- Sound mode messages (Toasts) -->
+    <string name="toast_mode_normal">Sound ON. You will hear ringtones and alerts.</string>
+    <string name="toast_mode_vibrate">Vibration only. The phone will not ring.</string>
+    <string name="toast_mode_silent">Completely silent. No sounds or vibrations.</string>
 </resources>
