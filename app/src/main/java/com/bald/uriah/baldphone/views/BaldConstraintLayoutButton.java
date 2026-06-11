@@ -16,150 +16,54 @@
 
 package com.bald.uriah.baldphone.views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.AttributeSet;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import app.baldphone.neo.core.system.HapticManager;
-
-import com.bald.uriah.baldphone.R;
-import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.BaldToast;
-import com.bald.uriah.baldphone.utils.D;
+import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
 
 /**
  * Simple Button, extends {@link ConstraintLayout}; adapted to App settings.
  * EXACTLY the same code as {@link BaldButton}, but extends {@link ConstraintLayout} instead.
- * for more details, head to {@link BaldButton}
  */
-public class BaldConstraintLayoutButton extends ConstraintLayout implements BaldButtonInterface, View.OnLongClickListener, View.OnClickListener {
-    private final SharedPreferences sharedPreferences;
-    private final boolean longPresses, longPressesShorter;
-    private final BaldToast longer;
-    private OnClickListener onClickListener;
-    private BaldButtonTouchListener baldButtonTouchListener;
+public class BaldConstraintLayoutButton extends ConstraintLayout {
 
-    @SuppressLint("ClickableViewAccessibility")
     public BaldConstraintLayoutButton(Context context) {
         super(context);
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        this.longPresses = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE);
-        this.longPressesShorter = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE);
-        longer = longPresses ? BaldToast.from(context).setText(context.getText(R.string.press_longer)).setType(BaldToast.TYPE_DEFAULT).setLength(0).build() : null;
-        if (longPresses)
-            if (longPressesShorter) {
-                baldButtonTouchListener = new BaldButtonTouchListener(this);
-                super.setOnTouchListener(baldButtonTouchListener);
-                super.setOnClickListener(D.EMPTY_CLICK_LISTENER);
-            } else {
-                super.setOnLongClickListener(this);
-                super.setOnClickListener(this);
-            }
-        else
-            super.setOnClickListener(this);
-
+        init(context);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     public BaldConstraintLayoutButton(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        this.longPresses = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE);
-        this.longPressesShorter = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE);
-        longer = longPresses ? BaldToast.from(context).setText(context.getText(R.string.press_longer)).setType(BaldToast.TYPE_DEFAULT).setLength(0).build() : null;
-        if (longPresses)
-            if (longPressesShorter) {
-                baldButtonTouchListener = new BaldButtonTouchListener(this);
-                super.setOnTouchListener(baldButtonTouchListener);
-                super.setOnClickListener(D.EMPTY_CLICK_LISTENER);
-            } else {
-                super.setOnLongClickListener(this);
-                super.setOnClickListener(this);
-            }
-        else
-            super.setOnClickListener(this);
+        init(context);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     public BaldConstraintLayoutButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        this.longPresses = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_KEY, BPrefs.LONG_PRESSES_DEFAULT_VALUE);
-        this.longPressesShorter = sharedPreferences.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, BPrefs.LONG_PRESSES_SHORTER_DEFAULT_VALUE);
-        longer = longPresses ? BaldToast.from(context).setText(context.getText(R.string.press_longer)).setType(BaldToast.TYPE_DEFAULT).setLength(0).build() : null;
-        if (longPresses)
-            if (longPressesShorter) {
-                baldButtonTouchListener = new BaldButtonTouchListener(this);
-                super.setOnTouchListener(baldButtonTouchListener);
-                super.setOnClickListener(D.EMPTY_CLICK_LISTENER);
-            } else {
-                super.setOnLongClickListener(this);
-                super.setOnClickListener(this);
-            }
-        else
-            super.setOnClickListener(this);
+        init(context);
+    }
+
+    public BaldConstraintLayoutButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context);
+    }
+
+    private void init(Context context) {
+        setClickable(true);
+        setFocusable(true);
+        ViewExtensionsKt.enableAssistTouch(this);
     }
 
     @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
-    }
-
-    /**
-     * use {@link BaldButton#setOnLongClickListener(android.view.View.OnLongClickListener)} instead
-     */
-    @Deprecated
-    @Override
-    public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
-        throw new RuntimeException("use setOnClickListener(View.OnClickListener onClickListener) instead");
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    public void setOnTouchListener(OnTouchListener l) {
-        if (longPressesShorter)
-            baldButtonTouchListener.addListener(l);
-        else
-            super.setOnTouchListener(l);
+    public CharSequence getAccessibilityClassName() {
+        return android.widget.Button.class.getName();
     }
 
     @Override
-    public void onClick(View v) {
-        if (longPresses) {
-            longer.show();
-        } else {
-            vibrate();
-            if (onClickListener != null)
-                onClickListener.onClick(v);
-        }
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        if (longPresses) {
-            vibrate();
-
-            if (onClickListener != null)
-                onClickListener.onClick(v);
-            return true;
-        }
-        return false;
-
-    }
-
-    @Override
-    public void baldPerformClick() {
-        if (onClickListener != null)
-            onClickListener.onClick(this);
-    }
-
-    @Override
-    public void vibrate() {
-        HapticManager.INSTANCE.vibrate();
+    public void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo info) {
+        super.onInitializeAccessibilityNodeInfo(info);
+        info.setClassName(android.widget.Button.class.getName());
     }
 }

@@ -39,6 +39,7 @@ object BaldSnackbar {
 
     const val LENGTH_LONG = Snackbar.LENGTH_LONG
     const val LENGTH_SHORT = Snackbar.LENGTH_SHORT
+    const val LENGTH_VERY_SHORT = 500 // ms
 
     private var snackbarRef: WeakReference<Snackbar>? = null
 

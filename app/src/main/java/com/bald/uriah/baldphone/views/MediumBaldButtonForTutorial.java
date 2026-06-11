@@ -17,48 +17,29 @@
 package com.bald.uriah.baldphone.views;
 
 import android.content.Context;
-import android.os.Vibrator;
 import android.util.AttributeSet;
 
-import androidx.annotation.Nullable;
+import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
 
-import com.bald.uriah.baldphone.utils.D;
-
-public class MediumBaldButtonForTutorial extends androidx.appcompat.widget.AppCompatTextView implements BaldButtonInterface {
-    private Vibrator vibrator;
-    private OnClickListener onClickListener;
-
+public class MediumBaldButtonForTutorial extends androidx.appcompat.widget.AppCompatTextView {
     public MediumBaldButtonForTutorial(Context context) {
         super(context);
-        this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        init(context);
     }
 
     public MediumBaldButtonForTutorial(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        init(context);
     }
 
     public MediumBaldButtonForTutorial(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        init(context);
     }
 
-    @Override
-    public void baldPerformClick() {
-        if (onClickListener != null)
-            onClickListener.onClick(this);
-    }
-
-    @Override
-    public void vibrate() {
-        vibrator.vibrate(D.vibetime);
-    }
-
-    @Override
-    public void setOnClickListener(@Nullable OnClickListener l) {
-        this.onClickListener = l;
-        super.setOnClickListener(D.EMPTY_CLICK_LISTENER);
-        super.setOnTouchListener(new BaldButtonTouchListener(this));
-
+    private void init(Context context) {
+        setClickable(true);
+        setFocusable(true);
+        ViewExtensionsKt.enableAssistTouch(this);
     }
 }

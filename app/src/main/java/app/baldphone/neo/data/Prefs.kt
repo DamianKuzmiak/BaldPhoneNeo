@@ -106,6 +106,33 @@ object Prefs {
     var vibrationDuration: Int by intPref(PrefKeys.KEY_VIBRATION_DURATION, 50)
 
     /**
+     * Timeout for short press (longer press) duration in milliseconds.
+     */
+    @JvmStatic
+    var shortPressTimeoutMs: Int by intPref(
+        BPrefs.SHORT_PRESS_DURATION_MS_KEY,
+        BPrefs.SHORT_PRESS_DURATION_MS_DEFAULT_VALUE
+    )
+
+    /**
+     * Timeout for long press duration in milliseconds.
+     */
+    @JvmStatic
+    var longPressTimeoutMs: Int by intPref(
+        BPrefs.LONG_PRESS_DURATION_MS_KEY,
+        BPrefs.LONG_PRESS_DURATION_MS_DEFAULT_VALUE
+    )
+
+    /**
+     * Controls whether a hint is shown when a press is released too quickly.
+     */
+    @JvmStatic
+    var showPressLongerHint: Boolean by booleanPref(
+        BPrefs.SHOW_PRESS_LONGER_HINT_KEY,
+        BPrefs.SHOW_PRESS_LONGER_HINT_DEFAULT_VALUE
+    )
+
+    /**
      * Protects against accidental touches by using the proximity sensor.
      */
     @JvmStatic
