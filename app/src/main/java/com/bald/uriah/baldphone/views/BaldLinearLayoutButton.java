@@ -22,8 +22,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
-
 /**
  * Simple Button, extends {@link LinearLayout}; adapted to App settings.
  * EXACTLY the same code as {@link BaldButton}, but extends {@link LinearLayout} instead.
@@ -53,7 +51,6 @@ public class BaldLinearLayoutButton extends LinearLayout {
     private void init(Context context) {
         setClickable(true);
         setFocusable(true);
-        ViewExtensionsKt.enableAssistTouch(this);
     }
 
     @Override

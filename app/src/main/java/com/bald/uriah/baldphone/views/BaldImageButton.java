@@ -6,8 +6,6 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
-
 public class BaldImageButton extends AppCompatImageView {
 
     public BaldImageButton(Context context) {
@@ -28,7 +26,6 @@ public class BaldImageButton extends AppCompatImageView {
     private void init(Context context) {
         setClickable(true);
         setFocusable(true);
-        ViewExtensionsKt.enableAssistTouch(this);
     }
 
     @Override

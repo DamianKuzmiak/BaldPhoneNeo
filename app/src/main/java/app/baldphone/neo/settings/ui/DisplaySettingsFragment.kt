@@ -5,6 +5,7 @@ import android.view.View
 
 import com.google.android.material.materialswitch.MaterialSwitch
 
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.settings.BaseSettingsFragment
@@ -24,6 +25,7 @@ class DisplaySettingsFragment : BaseSettingsFragment(R.layout.fragment_display_s
         cbShowWallpaper.isChecked = Prefs.showWallpaper
 
         btShowWallpaper.setClickableAccessibilityRole()
+        btShowWallpaper.enableAssistTouchHierarchy()
         btShowWallpaper.setOnClickListener {
             Prefs.showWallpaper = !Prefs.showWallpaper
             cbShowWallpaper.isChecked = Prefs.showWallpaper

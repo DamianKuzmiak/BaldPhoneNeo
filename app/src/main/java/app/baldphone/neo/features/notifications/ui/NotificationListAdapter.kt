@@ -1,8 +1,8 @@
 package app.baldphone.neo.features.notifications.ui
 
 import android.content.res.ColorStateList
-import android.graphics.RenderEffect
-import android.graphics.Shader
+import android.graphics.RenderEffect.createBlurEffect
+import android.graphics.Shader.TileMode
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +13,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
+import app.baldphone.neo.core.assisttouch.disableAssistTouch
+import app.baldphone.neo.core.assisttouch.enableAssistTouch
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.utils.formatDayAwareTimestamp
 
@@ -27,7 +29,7 @@ class NotificationListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemNotificationBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding, onItemCleared, onContentClick)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -42,11 +44,24 @@ class NotificationListAdapter(
         }
     }
 
-    class ViewHolder(
-        private val binding: ItemNotificationBinding,
-        private val onDismiss: (NotificationItem) -> Unit,
-        private val onContentClick: (NotificationItem) -> Unit
+    inner class ViewHolder(
+        private val binding: ItemNotificationBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.clickableContentArea.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onContentClick(getItem(position))
+                }
+            }
+            binding.buttonClear.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemCleared(getItem(position))
+                }
+            }
+        }
+
         fun bind(item: NotificationItem) {
             val context = itemView.context
 
@@ -60,7 +75,7 @@ class NotificationListAdapter(
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     backgroundIcon.setImageIcon(item.smallIcon)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        backgroundIcon.setRenderEffect(RenderEffect.createBlurEffect(15f, 15f, Shader.TileMode.CLAMP))
+                        backgroundIcon.setRenderEffect(RENDER_EFFECT)
                     }
 
                     if (item.largeIcon != null) {
@@ -86,13 +101,21 @@ class NotificationListAdapter(
 
                 val hasIntent = item.contentIntent != null
                 clickableContentArea.apply {
-                    setOnClickListener { onContentClick(item) }
                     isClickable = hasIntent
                     isFocusable = hasIntent
+                    if (hasIntent) {
+                        enableAssistTouch()
+                    } else {
+                        disableAssistTouch()
+                    }
                 }
 
                 buttonClear.isVisible = item.isClearable
-                buttonClear.setOnClickListener { onDismiss(item) }
+                if (item.isClearable) {
+                    buttonClear.enableAssistTouch()
+                } else {
+                    buttonClear.disableAssistTouch()
+                }
             }
         }
 
@@ -108,6 +131,10 @@ class NotificationListAdapter(
 
     companion object {
         const val PAYLOAD_TIME_TICK = "PAYLOAD_TIME_TICK"
+
+        private val RENDER_EFFECT by lazy {
+            createBlurEffect(15f, 15f, TileMode.CLAMP)
+        }
 
         private object DiffCallback : DiffUtil.ItemCallback<NotificationItem>() {
             override fun areItemsTheSame(oldItem: NotificationItem, newItem: NotificationItem) =

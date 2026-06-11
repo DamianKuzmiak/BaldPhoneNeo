@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.ViewGroup
 
 import androidx.activity.ComponentActivity
-import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -32,6 +31,7 @@ import net.danlew.android.joda.JodaTimeAndroid
 
 import app.baldphone.neo.battery.alert.BatteryMonitor
 import app.baldphone.neo.core.NotificationChannels
+import app.baldphone.neo.core.assisttouch.AssistTouchInjector
 import app.baldphone.neo.core.system.HapticManager
 import app.baldphone.neo.crashes.CrashHandler
 import app.baldphone.neo.data.Prefs
@@ -119,20 +119,22 @@ class NeoApp : Application(), Configuration.Provider, SingletonImageLoader.Facto
                     setupStatusBar(activity)
                 }
 
-                if (activity is ComponentActivity) {
-                    activity.window.decorView.post {
-                        if (activity.isDestroyed || activity.isFinishing) return@post
+                AssistTouchInjector.inject(activity)
 
-                        activity.onBackPressedDispatcher.addCallback(activity) {
-                            if (Prefs.isVibrationFeedbackEnabled) {
-                                HapticManager.vibrate()
-                            }
-                            isEnabled = false
-                            activity.onBackPressedDispatcher.onBackPressed()
-                            isEnabled = true
-                        }
-                    }
-                }
+//              if (activity is ComponentActivity) {
+//                  activity.window.decorView.post {
+//                      if (activity.isDestroyed || activity.isFinishing) return@post
+//
+//                      activity.onBackPressedDispatcher.addCallback(activity) {
+//                          if (Prefs.isVibrationFeedbackEnabled) {
+//                              HapticManager.vibrate()
+//                          }
+//                          isEnabled = false
+//                          activity.onBackPressedDispatcher.onBackPressed()
+//                          isEnabled = true
+//                      }
+//                  }
+//              }
             }
 
             override fun onActivityStarted(activity: Activity) {

@@ -18,6 +18,8 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
+
 import com.bald.uriah.baldphone.databinding.DialogBaldBinding
 
 /**
@@ -46,6 +48,7 @@ class BaldDialog private constructor(
         setupButtons()
         setupBackground()
         setupListeners()
+        binding.root.enableAssistTouchHierarchy()
     }
 
     private fun setupContent() =

@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 
-import androidx.fragment.app.Fragment
-
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.slider.Slider
 
 import app.baldphone.neo.battery.alert.BatteryMonitor
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.settings.BaseSettingsFragment
@@ -31,6 +30,7 @@ class BatterySettingsFragment : BaseSettingsFragment(R.layout.fragment_battery_s
         cbBatteryAlert.isChecked = Prefs.isBatteryAlertEnabled
 
         btBatteryAlert.setClickableAccessibilityRole()
+        btBatteryAlert.enableAssistTouchHierarchy()
         btBatteryAlert.setOnClickListener {
             Prefs.isBatteryAlertEnabled = !Prefs.isBatteryAlertEnabled
             cbBatteryAlert.isChecked = Prefs.isBatteryAlertEnabled

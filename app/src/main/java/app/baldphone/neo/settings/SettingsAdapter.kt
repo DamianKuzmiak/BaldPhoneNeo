@@ -8,6 +8,8 @@ import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
 
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
+
 import com.bald.uriah.baldphone.R
 
 class SettingsAdapter(
@@ -34,6 +36,7 @@ class SettingsAdapter(
             icon.setImageResource(item.iconRes ?: 0)
             itemView.contentDescription = itemView.context.getString(item.titleRes)
             itemView.setOnClickListener { onClick(item.id) }
+            itemView.enableAssistTouchHierarchy()
         }
     }
 }

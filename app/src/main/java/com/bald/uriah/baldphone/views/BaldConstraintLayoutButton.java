@@ -22,8 +22,6 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
-
 /**
  * Simple Button, extends {@link ConstraintLayout}; adapted to App settings.
  * EXACTLY the same code as {@link BaldButton}, but extends {@link ConstraintLayout} instead.
@@ -53,7 +51,6 @@ public class BaldConstraintLayoutButton extends ConstraintLayout {
     private void init(Context context) {
         setClickable(true);
         setFocusable(true);
-        ViewExtensionsKt.enableAssistTouch(this);
     }
 
     @Override

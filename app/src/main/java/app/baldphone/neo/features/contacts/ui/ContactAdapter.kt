@@ -14,6 +14,7 @@ import coil3.request.fallback
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.SimpleContact
 
@@ -80,6 +81,7 @@ class ContactAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             binding.root.setOnClickListener { onClick?.invoke() }
+            binding.root.enableAssistTouchHierarchy()
         }
     }
 
@@ -141,6 +143,8 @@ class ContactAdapter(
                 fallback(R.drawable.face)
                 transformations(CircleCropTransformation())
             }
+
+            itemView.enableAssistTouchHierarchy()
         }
     }
 

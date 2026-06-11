@@ -7,6 +7,7 @@ import android.widget.TextView
 
 import androidx.navigation.fragment.findNavController
 
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.settings.BaseSettingsFragment
 
@@ -25,6 +26,7 @@ class SystemSettingsFragment : BaseSettingsFragment(R.layout.fragment_system_set
                 findNavController().navigate(R.id.action_system_to_permissions)
             }
             setClickableAccessibilityRole()
+            enableAssistTouchHierarchy()
         }
     }
 }

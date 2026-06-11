@@ -53,6 +53,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.activities.FeedbackActivity;
+import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
 import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
@@ -590,6 +591,7 @@ public class SettingsActivity extends BaldActivity {
                 this.textView.setText(settingsItem.textResId);
                 this.setting_icon.setImageResource(settingsItem.drawableResId);
                 this.itemView.setOnClickListener(settingsItem);
+                ViewExtensionsKt.enableAssistTouchHierarchy(this.itemView);
             }
         }
     }
