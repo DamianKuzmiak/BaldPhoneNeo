@@ -23,18 +23,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingVertical="4dp"
             android:gravity="start|center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/fieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="viewStart"
-                android:paddingBottom="3dp"
                 android:fontFamily="sans-serif-light"
-                android:textColor="?attr/bald_button_clicked"
+                android:paddingBottom="3dp"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/colorControlHighlight"
                 android:textSize="13sp"
                 tools:text="Mobile" />
 
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="viewStart"
-                android:textColor="?attr/bald_text_on_button"
+                android:textColor="?attr/colorOnSecondaryContainer"
                 android:textSize="18sp"
                 tools:text="+12 700 800 900"
                 tools:textStyle="bold" />
@@ -55,8 +55,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.bald.uriah.baldphone.views.BaldImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnActionSecondary"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="5dp"
@@ -64,17 +65,23 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/message"
                 android:visibility="gone"
-                tools:src="@drawable/message_on_button"
+                app:backgroundTint="@null"
+                app:iconGravity="textStart"
+                app:iconSize="44dp"
+                tools:icon="@drawable/message_on_button"
                 tools:visibility="visible" />
 
-            <com.bald.uriah.baldphone.views.BaldImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnActionPrimary"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/call"
                 android:visibility="gone"
-                tools:src="@drawable/phone_on_button"
+                app:iconGravity="textStart"
+                app:iconSize="44dp"
+                tools:icon="@drawable/phone_on_button"
                 tools:visibility="visible" />
         </LinearLayout>
 

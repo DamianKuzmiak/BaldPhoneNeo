@@ -15,38 +15,37 @@
         app:titleBarBackgroundColor="@color/color_1"
         app:titleBarTitle="@string/contacts" />
 
-    <EditText
-        android:id="@+id/search_edit_text"
-        style="@style/EditText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_text_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/search_contact"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="60dp"
-        android:padding="12dp"
-        android:paddingStart="50dp"
-        android:textAlignment="viewStart"
+        android:padding="4dp"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_bar" />
+        app:layout_constraintTop_toBottomOf="@id/title_bar"
+        app:startIconDrawable="@drawable/search_on_button"
+        app:startIconTint="?attr/colorOnSurfaceVariant">
 
-    <com.bald.uriah.baldphone.views.BaldImageButton
-        android:id="@+id/bt_speak"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:padding="8dp"
-        android:src="@drawable/search_on_button"
-        app:layout_constraintBottom_toBottomOf="@id/search_edit_text"
-        app:layout_constraintStart_toStartOf="@id/search_edit_text"
-        app:layout_constraintTop_toTopOf="@id/search_edit_text" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_edit_text"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_contact"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/medium_plus" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contacts_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:requiresFadingEdge="vertical"
         android:scrollbars="vertical"
@@ -54,7 +53,7 @@
         app:layout_constraintBottom_toTopOf="@id/contacts_bottom_actions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/search_text_input_layout"
         app:layout_goneMarginBottom="0dp" />
 
     <TextView

@@ -46,7 +46,7 @@ import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 import com.bald.uriah.baldphone.databinding.ActivityContactDetailsBinding
 import com.bald.uriah.baldphone.databinding.ContactCallItemBinding
 import com.bald.uriah.baldphone.databinding.ItemContactFieldBinding
-import com.bald.uriah.baldphone.views.BaldImageButton
+import com.google.android.material.button.MaterialButton
 
 /** Activity for viewing and interacting with a single contact. */
 class ContactDetailsActivity : BaseActivity() {
@@ -162,7 +162,7 @@ class ContactDetailsActivity : BaseActivity() {
     }
 
     private fun setupFieldButton(
-        btn: BaldImageButton,
+        btn: MaterialButton,
         action: FieldActionUiModel?
     ) {
         if (action == null) {
@@ -170,11 +170,11 @@ class ContactDetailsActivity : BaseActivity() {
             return
         }
         btn.visibility = View.VISIBLE
-        btn.setImageResource(action.icon)
+        btn.setIconResource(action.icon)
         if (action.tint != null) {
-            btn.setColorFilter(ContextCompat.getColor(this, action.tint))
+            btn.setIconTintResource(action.tint)
         } else {
-            btn.clearColorFilter()
+            btn.setIconTint(null)
         }
         btn.contentDescription = getString(action.description)
         btn.setOnClickListener { handleFieldAction(action) }
@@ -233,8 +233,8 @@ class ContactDetailsActivity : BaseActivity() {
         binding.btShow.apply {
             val icon = if (isExpanded) R.drawable.drop_up_on_button else R.drawable.drop_down_on_button
             val textRes = if (isExpanded) R.string.hide else R.string.show
-            imageView.setImageResource(icon)
-            textView.setText(textRes)
+            setIconResource(icon)
+            setText(textRes)
         }
 
         binding.llCalls.isVisible = isExpanded

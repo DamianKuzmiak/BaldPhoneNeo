@@ -236,4 +236,19 @@
         <item name="android:drawablePadding">@dimen/link_row_drawable_padding</item>
     </style>
 
+    <style name="BaldIconButton" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/style_for_buttons</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+        <item name="android:textSize">@dimen/small</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">8dp</item>
+        <item name="iconSize">16dp</item>
+        <item name="iconTint">?attr/colorOnSecondaryContainer</item>
+    </style>
+
 </resources>

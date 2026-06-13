@@ -52,7 +52,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:gravity="center_vertical"
                     android:paddingHorizontal="10dp"
-                    android:textColor="?attr/bald_text_on_button"
+                    android:textColor="?attr/colorOnSecondaryContainer"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     tool:drawableEnd="@drawable/star_gold"
@@ -69,8 +69,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/list_shape"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tool:visibility="visible">
 
                     <View
                         android:id="@+id/history_divider"
@@ -79,41 +79,40 @@
                         android:layout_marginTop="30dp"
                         android:background="#3E3E3E" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
                         android:paddingHorizontal="10dp">
 
                         <TextView
                             android:id="@+id/history_title"
                             style="@style/BackgroundText.Large"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:minHeight="40dp"
                             android:text="@string/call_log" />
 
-                        <com.bald.uriah.baldphone.views.BaldPictureTextButton
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/bt_show"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/style_for_buttons"
-                            app:_src="@drawable/drop_down_on_button"
-                            app:_text="@string/show"
-                            app:_size="16dp" />
-                    </RelativeLayout>
+                            style="@style/BaldIconButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/show"
+                            app:icon="@drawable/drop_down_on_button" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_calls"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
                         android:visibility="gone" />
                 </LinearLayout>
 
