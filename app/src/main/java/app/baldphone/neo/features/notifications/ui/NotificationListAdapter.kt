@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import app.baldphone.neo.core.assisttouch.disableAssistTouch
 import app.baldphone.neo.core.assisttouch.enableAssistTouch
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.utils.formatDayAwareTimestamp
 
@@ -104,6 +105,7 @@ class NotificationListAdapter(
                     isClickable = hasIntent
                     isFocusable = hasIntent
                     if (hasIntent) {
+                        setClickableAccessibilityRole()
                         enableAssistTouch()
                     } else {
                         disableAssistTouch()

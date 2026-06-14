@@ -58,6 +58,7 @@ import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
 import app.baldphone.neo.extensions.ThemeExtensions;
+import app.baldphone.neo.extensions.ViewExtensions;
 import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.utils.HomeAppRoleManager;
 import app.baldphone.neo.views.TitleBarView;
@@ -591,6 +592,7 @@ public class SettingsActivity extends BaldActivity {
                 this.textView.setText(settingsItem.textResId);
                 this.setting_icon.setImageResource(settingsItem.drawableResId);
                 this.itemView.setOnClickListener(settingsItem);
+                ViewExtensions.setClickableAccessibilityRole(this.itemView);
                 ViewExtensionsKt.enableAssistTouchHierarchy(this.itemView);
             }
         }

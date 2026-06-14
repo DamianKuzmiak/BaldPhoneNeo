@@ -5,8 +5,11 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.transition.TransitionManager
 
 import com.bald.uriah.baldphone.R
@@ -52,10 +55,23 @@ class SettingsSwitchButton
 
             updateDescriptionForState(isChecked())
 
+            ViewCompat.setAccessibilityDelegate(
+                this,
+                object : androidx.core.view.AccessibilityDelegateCompat() {
+                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                        super.onInitializeAccessibilityNodeInfo(host, info)
+                        info.className = "android.widget.Switch"
+                        info.isCheckable = true
+                        info.isChecked = isChecked()
+                    }
+                }
+            )
+
             setOnClickListener {
                 val newState = !isChecked()
                 setChecked(newState)
                 onCheckedChangeListener?.invoke(newState)
+                sendAccessibilityEvent(android.view.accessibility.AccessibilityEvent.TYPE_VIEW_CLICKED)
             }
         }
 

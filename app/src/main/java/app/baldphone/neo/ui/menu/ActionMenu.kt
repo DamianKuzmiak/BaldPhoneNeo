@@ -19,6 +19,8 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
+
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.databinding.ItemActionMenuBinding
 import com.bald.uriah.baldphone.databinding.ItemActionMenuDividerBinding
@@ -106,6 +108,7 @@ class ActionMenu(
                 itemBinding.icon.setImageResource(item.iconRes)
                 itemBinding.label.setText(item.labelRes)
                 itemBinding.switchWidget.isVisible = false
+                root.setClickableAccessibilityRole()
             }
 
             is ActionMenuItem.Toggle -> {

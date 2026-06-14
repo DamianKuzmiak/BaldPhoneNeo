@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.settings.BaseSettingsFragment
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.getDeviceRegion
@@ -41,6 +42,7 @@ class HomeSettingsFragment : BaseSettingsFragment() {
             etCustomPhoneNumber.isEnabled = isNumberEnabled
             etCustomPhoneNumber.setText(currentNumber)
 
+            btCustomPhoneSwitch.setClickableAccessibilityRole()
             btCustomPhoneSwitch.setOnClickListener {
                 val isChecked = !binding.switchCustomPhone.isChecked
                 switchCustomPhone.isChecked = isChecked

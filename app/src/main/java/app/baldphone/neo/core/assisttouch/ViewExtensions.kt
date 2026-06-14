@@ -5,11 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-import androidx.core.view.ViewCompat
-
 import app.baldphone.neo.data.AccessibilityLevel
 import app.baldphone.neo.data.Prefs
-import app.baldphone.neo.extensions.setClickableAccessibilityRole
 
 import com.bald.uriah.baldphone.R
 
@@ -107,15 +104,8 @@ fun View.enableAssistTouchHierarchy() {
             } else {
                 Log.v("AssistTouch", "View is excluded: $this")
             }
-            if (ViewCompat.getAccessibilityDelegate(this) == null) {
-                this.setClickableAccessibilityRole()
-            }
         } else {
             Log.v("AssistTouch", "View is already enabled: $this")
-        }
-
-        if (ViewCompat.getAccessibilityDelegate(this) == null) {
-            this.setClickableAccessibilityRole()
         }
     }
 }

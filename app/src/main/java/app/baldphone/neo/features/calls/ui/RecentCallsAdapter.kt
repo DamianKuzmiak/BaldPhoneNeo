@@ -19,6 +19,7 @@ import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 
 import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.features.calls.model.CallListEntry
 import app.baldphone.neo.features.calls.model.CallLogItemType
 import app.baldphone.neo.utils.formatRecentTimestamp
@@ -80,6 +81,7 @@ class RecentCallsAdapter(
     private inner class ItemViewHolder(private val binding: CallLogItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
+            binding.root.setClickableAccessibilityRole()
             binding.btnCallLogItem.setOnClickListener {
                 val pos = bindingAdapterPosition
                 if (pos != RecyclerView.NO_POSITION) {

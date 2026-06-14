@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 import app.baldphone.neo.core.assisttouch.enableAssistTouch
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.launcher.apps.AppIconBinder
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 
@@ -90,6 +91,7 @@ class AppsListAdapter(
         private val defaultBackground = binding.root.background
 
         init {
+            binding.root.setClickableAccessibilityRole()
             binding.root.enableAssistTouch()
             binding.root.setOnClickListener {
                 val pos = bindingAdapterPosition
