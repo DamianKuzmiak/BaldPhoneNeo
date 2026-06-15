@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/btn_permissions"
-        layout="@layout/item_setting_main"
+        layout="@layout/item_setting"
         android:layout_width="match_parent"
         android:layout_height="80dp" />
 

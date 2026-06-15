@@ -239,10 +239,21 @@
         <item name="android:textColor">?attr/bald_text_on_button</item>
         <item name="android:textSize">@dimen/link_row_text_size</item>
         <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="LinkRow.Icon" parent="LinkRow">
         <item name="android:drawablePadding">@dimen/link_row_drawable_padding</item>
+        <item name="iconPadding">@dimen/link_row_drawable_padding</item>
+        <item name="iconGravity">start</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconTint">@null</item>
     </style>
 
     <style name="BaldIconButton" parent="Widget.Material3.Button">

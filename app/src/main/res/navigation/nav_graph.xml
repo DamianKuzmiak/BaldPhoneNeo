@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_settings_to_system"
             app:destination="@id/systemSettingsFragment" />
+        <action
+            android:id="@+id/action_settings_to_suppport"
+            app:destination="@id/settingsAboutFragment" />
     </fragment>
 
     <fragment
@@ -37,4 +40,20 @@
         android:label="@string/permissions_part">
         <deepLink app:uri="myapp://settings/system/permissions" />
     </fragment>
+
+    <!-- HELP -->
+    <fragment
+        android:id="@+id/settingsAboutFragment"
+        android:name="app.baldphone.neo.settings.help.SettingsAboutFragment"
+        android:label="@string/about">
+        <deepLink app:uri="myapp://settings/about" />
+        <action
+            android:id="@+id/action_about_to_license"
+            app:destination="@id/licenseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/licenseFragment"
+        android:name="app.baldphone.neo.settings.help.LicenseFragment"
+        android:label="@string/about_app_license" />
 </navigation>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/about_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    android:tag="edgeToEdge"
+    tools:context="app.baldphone.neo.settings.help.SettingsAboutFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_default">
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:importantForAccessibility="no"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            style="@style/BackgroundText.Huge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/app_display_name"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/about_version"
+            style="@style/BackgroundText.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:text="Version 15.0.9" />
+
+        <TextView
+            style="@style/BackgroundText.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:paddingHorizontal="28dp"
+            android:text="@string/about_tag_line"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <!-- LINKS SECTION -->
+        <TextView
+            style="@style/AboutSectionTitle"
+            android:text="@string/about_overview_section" />
+
+        <Button
+            android:id="@+id/whats_new"
+            style="@style/LinkRow.Icon"
+            android:text="@string/what_s_new"
+            app:icon="@drawable/link_external" />
+
+        <Button
+            android:id="@+id/web_page"
+            style="@style/LinkRow.Icon"
+            android:text="@string/about_web_page"
+            app:icon="@drawable/link_external" />
+
+        <!-- CREDITS SECTION -->
+        <TextView
+            style="@style/AboutSectionTitle"
+            android:text="@string/about_credits_title" />
+
+        <Button
+            android:id="@+id/credits"
+            style="@style/LinkRow.Icon"
+            android:text="@string/about_credits"
+            app:icon="@drawable/ic_people" />
+
+        <!-- LEGAL SECTION -->
+        <TextView
+            style="@style/AboutSectionTitle"
+            android:text="@string/about_legal_title" />
+
+        <Button
+            android:id="@+id/item_license"
+            style="@style/LinkRow.Icon"
+            android:text="@string/about_app_license"
+            app:icon="@drawable/link_external" />
+
+        <Button
+            android:id="@+id/third_party_licenses"
+            style="@style/LinkRow.Icon"
+            android:text="@string/about_licenses"
+            app:icon="@drawable/link_external" />
+
+        <Button
+            android:id="@+id/item_privacy"
+            style="@style/LinkRow.Icon"
+            android:text="@string/about_privacy_policy"
+            app:icon="@drawable/link_external" />
+    </LinearLayout>
+</ScrollView>

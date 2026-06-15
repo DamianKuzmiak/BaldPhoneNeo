@@ -5,6 +5,8 @@ import androidx.annotation.StringRes
 sealed class SettingId {
     object Calls : SettingId()
 
+    object Help : SettingId()
+
     object System : SettingId()
 }
 

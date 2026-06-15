@@ -52,7 +52,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import app.baldphone.neo.activities.AboutActivity;
 import app.baldphone.neo.activities.FeedbackActivity;
 import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.data.StatusBarMode;
@@ -379,7 +378,8 @@ public class SettingsActivity extends BaldActivity {
         );
         mainCategory.add(
                 new RunnableSettingsItem(R.string.about,
-                        v -> startActivity(new Intent(this, AboutActivity.class)),
+                        v -> startActivity(new Intent(this, app.baldphone.neo.settings.ui.SettingsActivity.class)
+                                .setData(android.net.Uri.parse("myapp://settings/about"))),
                         R.drawable.ic_info)
         );
     }

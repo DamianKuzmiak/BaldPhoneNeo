@@ -15,7 +15,7 @@ class SettingsAdapter(
     private val onClick: (SettingId) -> Unit
 ) : RecyclerView.Adapter<SettingsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_setting_main, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_setting, parent, false)
         return ViewHolder(view)
     }
 

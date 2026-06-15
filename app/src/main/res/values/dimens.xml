@@ -39,6 +39,7 @@
     <dimen name="dialpad_grid_spacing_vertical">10dp</dimen>
 
     <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_default">12dp</dimen>
 
     <!-- Style specific dimensions -->
     <dimen name="bald_button_padding">12dp</dimen>
