@@ -1,4 +1,4 @@
-package app.baldphone.neo.permissions
+package app.baldphone.neo.permissions.model
 
 import android.annotation.SuppressLint
 import android.content.Context

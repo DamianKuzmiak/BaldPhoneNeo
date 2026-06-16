@@ -1,4 +1,4 @@
-package app.baldphone.neo.permissions
+package app.baldphone.neo.permissions.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -15,6 +15,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 
+import app.baldphone.neo.permissions.PermissionManager
+import app.baldphone.neo.permissions.model.AppPermission
+import app.baldphone.neo.permissions.model.PermissionResult
+import app.baldphone.neo.permissions.model.RuntimePermission
+import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.BaldDialog
 
 import com.bald.uriah.baldphone.R

@@ -25,7 +25,7 @@ import app.baldphone.neo.features.contacts.data.ContactRepository
 import app.baldphone.neo.features.contacts.ui.ContactAdapter
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
 import app.baldphone.neo.permissions.PermissionManager
-import app.baldphone.neo.permissions.RuntimePermission
+import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.utils.getTextFromClipboard
 import app.baldphone.neo.viewmodels.DialerViewModel
 

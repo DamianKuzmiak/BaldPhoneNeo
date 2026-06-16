@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import app.baldphone.neo.activities.BaseActivity
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.permissions.PermissionManager
-import app.baldphone.neo.permissions.SpecialPermission
+import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 
 import com.bald.uriah.baldphone.R

@@ -4,6 +4,10 @@ import android.util.Log
 
 import androidx.fragment.app.FragmentActivity
 
+import app.baldphone.neo.permissions.model.AppPermission
+import app.baldphone.neo.permissions.model.PermissionResult
+import app.baldphone.neo.permissions.ui.PermissionFragment
+
 /**
  * PermissionManager handles permission requests scoped to the specific Activity.
  */
@@ -38,7 +42,7 @@ object PermissionManager {
      *
      * If the permission is already granted, the [callback] is invoked immediately with [PermissionResult.Granted].
      *
-     * If the permission is not granted, it initiates a request flow using a hidden [PermissionFragment].
+     * If the permission is not granted, it initiates a request flow using a hidden [app.baldphone.neo.permissions.ui.PermissionFragment].
      * This involves attaching a fragment to the activity, so it must be called from the main thread
      * and when the activity is in a valid state (e.g., in `onCreate`, `onStart`).
      *

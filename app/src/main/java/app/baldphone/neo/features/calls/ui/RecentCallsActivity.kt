@@ -20,7 +20,7 @@ import app.baldphone.neo.features.calls.model.CallListEntry
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
 import app.baldphone.neo.features.notifications.data.NotificationRepository
 import app.baldphone.neo.permissions.PermissionManager
-import app.baldphone.neo.permissions.RuntimePermission
+import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showInfoSnackbar
 import app.baldphone.neo.ui.menu.showActionMenu

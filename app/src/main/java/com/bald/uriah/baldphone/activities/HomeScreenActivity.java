@@ -51,8 +51,8 @@ import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
 import app.baldphone.neo.flashlight.FlashLightController;
 import app.baldphone.neo.flashlight.FlashlightState;
 import app.baldphone.neo.permissions.PermissionManager;
-import app.baldphone.neo.permissions.PermissionResult;
-import app.baldphone.neo.permissions.RuntimePermission;
+import app.baldphone.neo.permissions.model.PermissionResult;
+import app.baldphone.neo.permissions.model.RuntimePermission;
 import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 import app.baldphone.neo.utils.HomeAppUtils;
 

@@ -1,4 +1,4 @@
-package app.baldphone.neo.permissions
+package app.baldphone.neo.permissions.model
 
 sealed interface PermissionResult {
     data object Denied : PermissionResult

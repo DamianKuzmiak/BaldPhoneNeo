@@ -1,4 +1,4 @@
-package app.baldphone.neo.permissions
+package app.baldphone.neo.permissions.ui
 
 import android.os.SystemClock
 import android.util.Log
@@ -8,6 +8,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+
+import app.baldphone.neo.permissions.PermissionManager
+import app.baldphone.neo.permissions.model.AppPermission
 
 class PermissionViewModel : ViewModel() {
     companion object {

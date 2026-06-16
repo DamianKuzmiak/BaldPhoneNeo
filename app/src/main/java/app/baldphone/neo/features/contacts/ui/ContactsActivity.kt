@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import app.baldphone.neo.activities.BaseActivity
 import app.baldphone.neo.features.contacts.SimpleContact
 import app.baldphone.neo.permissions.PermissionManager
-import app.baldphone.neo.permissions.RuntimePermission
+import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog
 
 import com.bald.uriah.baldphone.R
