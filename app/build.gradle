@@ -62,7 +62,11 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.release
+            if (keystorePropertiesFile.exists()) {
+                signingConfig = signingConfigs.release
+            } else {
+                signingConfig = null
+            }
             debuggable false
             minifyEnabled true
             shrinkResources = true
@@ -80,6 +84,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
 
         coreLibraryDesugaringEnabled = true // java.util.stream for API below 24, java.time for API below 26
+    }
+
+    dependencyLocking {
+        lockAllConfigurations()
     }
 
     lint {
