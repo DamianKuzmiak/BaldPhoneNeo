@@ -1,9 +1,6 @@
 package app.baldphone.neo.permissions.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,6 +12,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 
+import kotlinx.coroutines.launch
+
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.AppPermission
 import app.baldphone.neo.permissions.model.PermissionResult
@@ -24,10 +23,7 @@ import app.baldphone.neo.ui.dialogs.BaldDialog
 
 import com.bald.uriah.baldphone.R
 
-import kotlinx.coroutines.launch
-
 class PermissionFragment : Fragment() {
-
     private companion object {
         const val TAG = "PermissionFragment"
     }
@@ -47,12 +43,13 @@ class PermissionFragment : Fragment() {
                 return@registerForActivityResult
             }
 
+            if (req.permission.isGranted(requireContext())) {
+                finishAndContinue(PermissionResult.Granted)
+                return@registerForActivityResult
+            }
+
             val denied = result.filterValues { !it }.keys
             when {
-                denied.isEmpty() -> {
-                    finishAndContinue(PermissionResult.Granted)
-                }
-
                 viewModel.wasSystemDialogNotShown() -> {
                     // User previously chose "Don't ask again"
                     viewModel.updateUiState(PermissionViewModel.UiState.Recovery(req.permission))
@@ -70,14 +67,15 @@ class PermissionFragment : Fragment() {
             val ctx = context ?: return@registerForActivityResult
             val req = viewModel.current ?: return@registerForActivityResult
 
-            val result = if (req.permission.isGranted(ctx)) {
-                PermissionResult.Granted
-            } else {
-                when (req.permission) {
-                    is SpecialPermission -> PermissionResult.PermanentlyDenied
-                    is RuntimePermission -> PermissionResult.Denied
+            val result =
+                if (req.permission.isGranted(ctx)) {
+                    PermissionResult.Granted
+                } else {
+                    when (req.permission) {
+                        is SpecialPermission -> PermissionResult.PermanentlyDenied
+                        is RuntimePermission -> PermissionResult.Denied
+                    }
                 }
-            }
             finishAndContinue(result)
         }
 
@@ -156,7 +154,7 @@ class PermissionFragment : Fragment() {
             return
         }
 
-        Log.d(TAG, "processQueue: next=${permission}")
+        Log.d(TAG, "processQueue: next=$permission")
         viewModel.current = PermissionViewModel.ActiveRequest(permission)
         evaluatePermission(permission)
     }
@@ -210,7 +208,7 @@ class PermissionFragment : Fragment() {
         runtimeLauncher.launch(denied.toTypedArray())
     }
 
-    private fun startSpecial(permission: SpecialPermission) {
+    private fun launchSettings(permission: AppPermission) {
         val ctx = context ?: return
         permission.settingsIntent(ctx)?.let {
             viewModel.markSystemDialogLaunched()
@@ -225,7 +223,7 @@ class PermissionFragment : Fragment() {
             onPositive = {
                 when (permission) {
                     is RuntimePermission -> startRuntime(denied)
-                    is SpecialPermission -> startSpecial(permission)
+                    is SpecialPermission -> launchSettings(permission)
                 }
             },
             onNegative = { finishAndContinue(PermissionResult.Denied) }
@@ -236,7 +234,7 @@ class PermissionFragment : Fragment() {
         showPermissionDialog(
             permission = permission,
             messageRes = R.string.dialog_message_permission_settings,
-            onPositive = { openSettings() },
+            onPositive = { launchSettings(permission) },
             onNegative = { finishAndContinue(PermissionResult.Denied) }
         )
     }
@@ -250,16 +248,17 @@ class PermissionFragment : Fragment() {
         if (!isAdded) return
 
         closeDialog()
-        dialog = BaldDialog.Builder(requireContext())
-            .setTitle(permission.titleRes)
-            .setMessage(messageRes)
-            .setPositiveButton(R.string.allow) { onPositive() }
-            .setNegativeButton(android.R.string.cancel) { onNegative() }
-            .setCancelable(false)
-            .show()
-            .apply {
-                setOnDismissListener { if (dialog == this) dialog = null }
-            }
+        dialog =
+            BaldDialog
+                .Builder(requireContext())
+                .setIcon(permission.iconRes)
+                .setTitle(getString(R.string.grant_permission_for, getString(permission.titleRes)))
+                .setMessage(messageRes)
+                .setPositiveButton(R.string.allow) { onPositive() }
+                .setNegativeButton(android.R.string.cancel) { onNegative() }
+                .setOnCancelListener { onNegative() }
+                .setOnDismissListener { if (dialog == it) dialog = null }
+                .show()
     }
 
     private fun clearState() {
@@ -270,16 +269,5 @@ class PermissionFragment : Fragment() {
     private fun closeDialog() {
         dialog?.dismiss()
         dialog = null
-    }
-
-    private fun openSettings() {
-        val ctx = context ?: return
-        viewModel.markSystemDialogLaunched()
-        specialLauncher.launch(
-            Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package", ctx.packageName, null)
-            )
-        )
     }
 }

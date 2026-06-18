@@ -359,33 +359,49 @@
     <string name="low_battery_alert">Low battery alert</string>
     <string name="low_battery_alert_subtext">Choose if you want the status bar to be red on the home screen when battery is under 20%\nNotice It won\'t be shown if the system status bar is hidden.</string>
 
-    <!-- Permissions -->
+    <!-- Permissions General UI -->
     <string name="grant_all_permissions">Grant All Permissions</string>
+    <string name="banner_home_enable_features_cta">Tap here to enable all features</string>
+    <string name="mandatory_badge">Required</string>
     <string name="grant_contacts_permission">Grant Contacts Permission</string>
-    <string name="permission_not_granted">Required permission was not granted."</string>
+    <string name="perm_activity_header">Please allow the following permissions:</string>
     <string name="dialog_title_permission_required">Permission Required</string>
     <string name="dialog_message_permission_settings">In the application settings, go to Permissions and grant all required access.</string>
+    <string name="grant_permission_for">Grant permission for:\n%s</string>
 
     <!-- Runtime Permissions -->
-    <string name="dialog_message_permission_phone">Phone permission is required to make calls.</string>
-    <string name="dialog_message_permission_contacts">Contacts permission is required to view and add contacts.</string>
-    <string name="dialog_message_permission_media">The app needs access to photos and videos to display and save media.</string>
-    <string name="dialog_message_permission_call_log">Call log permission is required to view recent calls.</string>
+    <string name="permission_call_phone_title">Phone calls</string>
+    <string name="permission_call_phone_description">Allows making phone calls directly from the app.</string>
+    <string name="permission_camera_title">Camera</string>
+    <string name="permission_camera_description">Allows use of the built‑in LED (located with the camera) as a flashlight.</string>
+    <string name="permission_contacts_title">Contacts</string>
+    <string name="permission_contacts_description">Allows viewing and editing your saved contacts.</string>
+    <string name="permission_phone_title">Phone and calls</string>
+    <string name="permission_phone_description">Manages calls and identifies emergency numbers.</string>
+    <string name="permission_post_notifications_title">Notifications</string>
+    <string name="permission_post_notifications_description">Allows to send important updates and reminders.</string>
+    <string name="permission_read_call_log_title">Call logs</string>
+    <string name="permission_read_call_log_description">Allows viewing your recent call history.</string>
+    <string name="permission_read_media_title">Photos and videos</string>
+    <string name="permission_read_media_description">Allows viewing and saving photos and videos.</string>
+    <string name="permission_read_phone_state_title">Phone Status</string>
+    <string name="permission_read_phone_state_description">Helps with call management and dual-SIM support.</string>
 
     <!-- Special Permissions -->
-    <string name="dialog_title_permission_write_settings">Modify system settings</string>
-    <string name="dialog_message_permission_write_settings">To function properly, the app needs permission to modify selected system settings.</string>
-    <string name="dialog_title_permission_overlay">Display over other apps</string>
-    <string name="dialog_message_permission_overlay">The app needs permission to appear over other apps in order to show important information.</string>
-    <string name="dialog_title_permission_notification">Notification access</string>
-    <string name="dialog_message_permission_notification">Enable notification access so the app can read and display important alerts.</string>
+    <string name="permission_accessibility_service_title">Accessibility</string>
+    <string name="accessibility_service_description">Enables screen locking with a single tap, without needing to use the side buttons.</string>
+    <string name="permission_overlay_title">Display over other apps</string>
+    <string name="permission_overlay_description">Allows to display reminders over other active apps.</string>
+    <string name="permission_system_notifications_title">Device &amp; app notifications</string>
+    <string name="permission_system_notifications_description">Enables enhanced notification formats and icon badges.</string>
+    <string name="permission_write_settings_title">Modify system settings</string>
+    <string name="permission_write_settings_description">Allows adjusting settings like brightness and font size.</string>
 
     <!-- Notification Service -->
     <string name="notification_service_label">Easy Notifications</string>
 
     <!-- Accessibility -->
     <string name="label_lock_screen_short">Lock Screen</string>
-    <string name="accessibility_service_description">Enables BaldPhone Neo’s quick screen lock feature, allowing you to lock your device instantly with a single tap.</string>
     <string name="accessibility_permission_dialog_title">Accessibility Permission Required"</string>
     <string name="accessibility_permission_dialog_message">To enable one-tap screen lock, BaldPhone Neo needs Accessibility permission.\nIt’s safe and used only for this feature.</string>
     <string name="accessibility_permission_check_title">Accessibility Permission Check</string>

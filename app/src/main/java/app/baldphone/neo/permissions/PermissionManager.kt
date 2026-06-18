@@ -6,15 +6,25 @@ import androidx.fragment.app.FragmentActivity
 
 import app.baldphone.neo.permissions.model.AppPermission
 import app.baldphone.neo.permissions.model.PermissionResult
+import app.baldphone.neo.permissions.model.RuntimePermission
+import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.permissions.ui.PermissionFragment
 
 /**
  * PermissionManager handles permission requests scoped to the specific Activity.
  */
 object PermissionManager {
-
     private const val TAG = "PermissionManager"
     private const val FRAGMENT_TAG = "PermissionManagerFragment"
+
+    @JvmField
+    val WRITE_SETTINGS = SpecialPermission.WriteSettings
+
+    @JvmField
+    val CAMERA = RuntimePermission.Camera
+
+    @JvmField
+    val GRANTED = PermissionResult.Granted
 
     /** Callback interface used to receive the result of a permission request. */
     fun interface PermissionCallback {
@@ -22,7 +32,8 @@ object PermissionManager {
     }
 
     data class RequestEntry(
-        val permission: AppPermission, val callback: PermissionCallback
+        val permission: AppPermission,
+        val callback: PermissionCallback
     )
 
     /**
@@ -42,7 +53,7 @@ object PermissionManager {
      *
      * If the permission is already granted, the [callback] is invoked immediately with [PermissionResult.Granted].
      *
-     * If the permission is not granted, it initiates a request flow using a hidden [app.baldphone.neo.permissions.ui.PermissionFragment].
+     * If the permission is not granted, it initiates a request flow using a hidden [PermissionFragment].
      * This involves attaching a fragment to the activity, so it must be called from the main thread
      * and when the activity is in a valid state (e.g., in `onCreate`, `onStart`).
      *
@@ -52,7 +63,9 @@ object PermissionManager {
      */
     @JvmStatic
     fun checkOrRequest(
-        activity: FragmentActivity, permission: AppPermission, callback: PermissionCallback
+        activity: FragmentActivity,
+        permission: AppPermission,
+        callback: PermissionCallback
     ) {
         // Fast path: if permission is already granted, exit early
         if (permission.isGranted(activity)) {
@@ -139,15 +152,16 @@ object PermissionManager {
             val fm = activity.supportFragmentManager
             val existing = fm.findFragmentByTag(FRAGMENT_TAG) as? PermissionFragment
 
-            val fragment = if (existing != null) {
-                Log.w(TAG, "request: reusing existing fragment")
-                existing
-            } else {
-                Log.d(TAG, "request: creating new fragment")
-                PermissionFragment().also {
-                    fm.beginTransaction().add(it, FRAGMENT_TAG).commitNow()
+            val fragment =
+                if (existing != null) {
+                    Log.w(TAG, "request: reusing existing fragment")
+                    existing
+                } else {
+                    Log.d(TAG, "request: creating new fragment")
+                    PermissionFragment().also {
+                        fm.beginTransaction().add(it, FRAGMENT_TAG).commitNow()
+                    }
                 }
-            }
 
             fragment.processRequests(
                 pending.toList()

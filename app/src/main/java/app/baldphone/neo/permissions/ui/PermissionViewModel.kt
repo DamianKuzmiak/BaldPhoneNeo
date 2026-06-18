@@ -20,13 +20,17 @@ class PermissionViewModel : ViewModel() {
 
     sealed class UiState {
         object Idle : UiState()
+
         data class Rationale(val permission: AppPermission, val denied: List<String>) : UiState()
+
         data class Recovery(val permission: AppPermission) : UiState()
+
         object WaitingForSystem : UiState()
     }
 
     data class ActiveRequest(
-        val permission: AppPermission, val startTimeMs: Long? = null
+        val permission: AppPermission,
+        val startTimeMs: Long? = null
     )
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
@@ -63,7 +67,8 @@ class PermissionViewModel : ViewModel() {
      * existing flow and re-link the new Activity's callbacks to the active process.
      */
     fun syncWithRequests(
-        requests: List<PermissionManager.RequestEntry>, onCompletion: () -> Unit
+        requests: List<PermissionManager.RequestEntry>,
+        onCompletion: () -> Unit
     ): Boolean {
         val newPermissions: List<AppPermission> = requests.map { it.permission }
         val isNew = (newPermissions != activePermissions) // TODO: it compares order
@@ -84,14 +89,15 @@ class PermissionViewModel : ViewModel() {
 
     private fun updateCallbacks(entry: PermissionManager.RequestEntry) {
         val existing = callbackMap[entry.permission]
-        callbackMap[entry.permission] = if (existing == null) {
-            entry.callback
-        } else {
-            PermissionManager.PermissionCallback { r ->
-                existing.onResult(r)
-                entry.callback.onResult(r)
+        callbackMap[entry.permission] =
+            if (existing == null) {
+                entry.callback
+            } else {
+                PermissionManager.PermissionCallback { r ->
+                    existing.onResult(r)
+                    entry.callback.onResult(r)
+                }
             }
-        }
     }
 
     fun markSystemDialogLaunched() {
