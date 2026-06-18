@@ -352,6 +352,8 @@
     <string name="permission_read_call_log_description">Pozwala sprawdzić listę ostatnich połączeń telefonicznych.</string>
     <string name="permission_read_media_title">Zdjęcia i filmy</string>
     <string name="permission_read_media_description">Pozwala przeglądać i zapisywać zdjęcia oraz filmy.</string>
+    <string name="permission_manage_media_title">Zarządzanie mediami</string>
+    <string name="permission_manage_media_description">Zezwala na usuwanie plików multimedialnych bez systemowych okien dialogowych potwierdzenia.</string>
     <string name="permission_read_phone_state_title">Stan telefonu</string>
     <string name="permission_read_phone_state_description">Pomaga aplikacji lepiej obługiwać rozmowy, szczególnie jeśli używasz dówch kart SIM.</string>
 

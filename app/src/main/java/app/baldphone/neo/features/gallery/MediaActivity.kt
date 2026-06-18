@@ -63,6 +63,7 @@ class MediaActivity : BaseActivity() {
         PermissionManager.checkOrRequest(this, RuntimePermission.MediaStorage) { result ->
             if (result == PermissionManager.GRANTED) {
                 viewModel.refresh(mode)
+                PermissionManager.checkOrRequest(this, SpecialPermission.ManageMedia) {}
             }
         }
     }

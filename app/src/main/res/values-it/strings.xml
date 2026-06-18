@@ -408,4 +408,6 @@
     <string name="t9_key_8">tuv</string>
     <string name="t9_key_9">wxyz</string>
 
+    <string name="permission_manage_media_title">Gestione dei media</string>
+    <string name="permission_manage_media_description">Consente di eliminare e modificare i file multimediali senza finestre di dialogo di conferma del sistema.</string>
 </resources>

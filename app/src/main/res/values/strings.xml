@@ -406,6 +406,8 @@
     <string name="permission_read_call_log_description">Allows viewing your recent call history.</string>
     <string name="permission_read_media_title">Photos and videos</string>
     <string name="permission_read_media_description">Allows viewing and saving photos and videos.</string>
+    <string name="permission_manage_media_title">Manage media files</string>
+    <string name="permission_manage_media_description">Allows deleting media files without system confirmation dialogs.</string>
     <string name="permission_read_phone_state_title">Phone Status</string>
     <string name="permission_read_phone_state_description">Helps with call management and dual-SIM support.</string>
 

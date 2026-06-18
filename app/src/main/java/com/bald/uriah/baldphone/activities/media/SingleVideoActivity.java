@@ -96,15 +96,18 @@ public class SingleVideoActivity extends SingleMediaActivity implements Constant
 
         @Override
         protected void deletePost29(Activity activity) throws SecurityException {
-            final int id =
-                    cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
-            final Uri deleteUri =
-                    ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
+            final Uri deleteUri = getUri(cursor);
 
             activity.getContentResolver().delete(
                     deleteUri,
                     null,
                     null);
+        }
+
+        @Override
+        protected Uri getUri(Cursor cursor) {
+            final int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+            return ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
         }
 
         private String getPath(Uri uri) {
@@ -245,4 +248,3 @@ public class SingleVideoActivity extends SingleMediaActivity implements Constant
 
     }
 }
-

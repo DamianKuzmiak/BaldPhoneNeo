@@ -50,6 +50,7 @@ sealed class AppPermission(
                 RuntimePermission.PostNotifications,
                 RuntimePermission.ReadCallLog,
                 RuntimePermission.ReadWriteContacts,
+                SpecialPermission.ManageMedia,
                 SpecialPermission.NotificationListener,
                 SpecialPermission.Overlay,
                 SpecialPermission.WriteSettings,

@@ -17,12 +17,15 @@
 package com.bald.uriah.baldphone.activities.media;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.app.RecoverableSecurityException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -33,6 +36,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.Pools;
+import java.util.Collections;
 
 import app.baldphone.neo.utils.IntentUtilsKt;
 
@@ -110,7 +114,10 @@ public abstract class SingleMediaActivity extends BaldActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ALLOW_PHOTO_CODE && resultCode == RESULT_OK) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                this.setResult(SHOULD_REFRESH);
+                this.finish();
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 mediaPagerAdapter.deletePost29(this);
                 this.setResult(SHOULD_REFRESH);
                 this.finish();
@@ -133,8 +140,23 @@ public abstract class SingleMediaActivity extends BaldActivity {
         @RequiresApi(api = Build.VERSION_CODES.Q)
         protected abstract void deletePost29(Activity activity) throws SecurityException;
 
+        protected abstract Uri getUri(Cursor cursor);
+
         private void delete(int position) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                cursor.moveToPosition(position);
+                final Uri deleteUri = getUri(cursor);
+                final PendingIntent pendingIntent = MediaStore.createDeleteRequest(
+                        activity.getContentResolver(), Collections.singletonList(deleteUri)
+                );
+                try {
+                    activity.startIntentSenderForResult(pendingIntent.getIntentSender(), ALLOW_PHOTO_CODE, null, 0, 0, 0);
+                } catch (IntentSender.SendIntentException e) {
+                    Log.e(TAG, S.str(e.getMessage()));
+                    e.printStackTrace();
+                    BaldToast.error(activity);
+                }
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 cursor.moveToPosition(position);
                 try {
                     deletePost29(activity);

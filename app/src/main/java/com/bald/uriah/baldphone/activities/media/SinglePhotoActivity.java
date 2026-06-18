@@ -69,15 +69,18 @@ public class SinglePhotoActivity extends SingleMediaActivity implements Constant
         @RequiresApi(api = Build.VERSION_CODES.Q)
         @Override
         protected void deletePost29(Activity activity) throws SecurityException {
-            final int id =
-                    cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
-            final Uri deleteUri =
-                    ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+            final Uri deleteUri = getUri(cursor);
 
             activity.getContentResolver().delete(
                     deleteUri,
                     null,
                     null);
+        }
+
+        @Override
+        protected Uri getUri(Cursor cursor) {
+            final int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+            return ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
         }
 
         @Override

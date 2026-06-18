@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.os.Build
+import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.accessibility.AccessibilityManager
@@ -121,6 +122,32 @@ sealed class SpecialPermission(
 
         override fun settingsIntent(context: Context): Intent =
             createIntent(context, Settings.ACTION_ACCESSIBILITY_SETTINGS, isPackageUri = false)
+    }
+
+    data object ManageMedia : SpecialPermission(
+        titleRes = R.string.permission_manage_media_title,
+        messageRes = R.string.permission_manage_media_description,
+        iconRes = R.drawable.ic_photo_library
+    ) {
+        override fun isDeclared(packageInfo: PackageInfo): Boolean {
+            return packageInfo.requestedPermissions?.contains("android.permission.MANAGE_MEDIA") == true
+        }
+
+        override fun checkIsGranted(context: Context): Boolean {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                MediaStore.canManageMedia(context)
+            } else {
+                true
+            }
+        }
+
+        override fun settingsIntent(context: Context): Intent? {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                createIntent(context, Settings.ACTION_REQUEST_MANAGE_MEDIA)
+            } else {
+                null
+            }
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------------------
