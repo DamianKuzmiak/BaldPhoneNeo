@@ -25,6 +25,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,8 +51,7 @@ import app.baldphone.neo.features.notifications.ui.NotificationsActivity;
 import app.baldphone.neo.flashlight.FlashLightController;
 import app.baldphone.neo.flashlight.FlashlightState;
 import app.baldphone.neo.permissions.PermissionManager;
-import app.baldphone.neo.permissions.model.PermissionResult;
-import app.baldphone.neo.permissions.model.RuntimePermission;
+import app.baldphone.neo.permissions.PermissionRepository;
 import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 import app.baldphone.neo.utils.HomeAppUtils;
 import app.baldphone.neo.wizard.SetupActivity;
@@ -105,6 +105,22 @@ public class HomeScreenActivity extends BaldActivity {
     private final Handler handler = new Handler();
 
     private NotificationRepository repo;
+    private boolean permissionBannerDismissed = false;
+    private boolean isResumed = false;
+    private boolean isFirstResume = true;
+
+    private final Runnable showPermissionBannerRunnable = () -> {
+        final View permissionBanner = findViewById(R.id.permission_banner);
+        if (permissionBanner == null) return;
+        boolean hasPermission = PermissionRepository.INSTANCE.isMandatoryGranted(this);
+        if (hasPermission) {
+            permissionBanner.setVisibility(View.GONE);
+        } else {
+            if (!permissionBannerDismissed) {
+                permissionBanner.setVisibility(View.VISIBLE);
+            }
+        }
+    };
 
     public enum LaunchSource {
         HOME, LAUNCHER, UNKNOWN
@@ -252,6 +268,9 @@ public class HomeScreenActivity extends BaldActivity {
 
         repo = NotificationRepository.INSTANCE;
         repo.getCount().observe(this, this::handleNotificationCount);
+
+        setupPermissionBanner();
+
     }
 
     private void handleFlashlightEvent(FlashlightState event) {
@@ -267,11 +286,23 @@ public class HomeScreenActivity extends BaldActivity {
         }
     }
 
+    private void setupPermissionBanner() {
+        final View permissionBanner = findViewById(R.id.permission_banner);
+
+        permissionBanner.findViewById(R.id.permission_banner_text).setOnClickListener(v ->
+            startActivity(new Intent(this, app.baldphone.neo.settings.ui.SettingsActivity.class)
+                .setData(Uri.parse("myapp://settings/system/permissions"))));
+        permissionBanner.findViewById(R.id.permission_banner_close).setOnClickListener(v -> {
+            permissionBanner.setVisibility(View.GONE);
+            permissionBannerDismissed = true;
+        });
+    }
+
     private void onFlashlightButtonPressed() {
         if (flashlight == null) return;
 
-        PermissionManager.checkOrRequest(this, RuntimePermission.Camera.INSTANCE, result -> {
-            if (result == PermissionResult.Granted.INSTANCE) {
+        PermissionManager.checkOrRequest(this, PermissionManager.CAMERA, result -> {
+            if (result == PermissionManager.GRANTED) {
                 flashlight.toggle();
             }
         });
@@ -290,17 +321,41 @@ public class HomeScreenActivity extends BaldActivity {
         super.onResume();
         Log.v(TAG, "onResume");
 
+        if (isResumed) {
+            Log.d(TAG, "onResume: was already visible!");
+        } else {
+            // Case: The user just returned from Settings where they might have granted missing permissions.
+            if (!permissionBannerDismissed) {
+                PermissionRepository.INSTANCE.refresh();
+            }
+        }
+        isResumed = true;
+
+
         if (baldPrefsUtils.hasChanged(this)) {
             viewPagerHolder.getViewPager().removeAllViews();//android auto saves fragments, not good for us in this case
             this.recreate();
         }
 
         soundButton.setImageResource(SOUND_DRAWABLES[audioManager.getRingerMode()]);
+
+        if (isFirstResume) {
+            isFirstResume = false;
+            final View permissionBanner = findViewById(R.id.permission_banner);
+            if (permissionBanner != null) {
+                permissionBanner.setVisibility(View.GONE);
+            }
+            handler.removeCallbacks(showPermissionBannerRunnable);
+            handler.postDelayed(showPermissionBannerRunnable, 2000);
+        } else {
+            showPermissionBannerRunnable.run();
+        }
     }
 
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
+        handler.removeCallbacks(showPermissionBannerRunnable);
         handler.removeCallbacks(shakeIt);
         super.onPause();
     }
@@ -309,6 +364,7 @@ public class HomeScreenActivity extends BaldActivity {
     protected void onStop() {
         Log.d(TAG, "onStop");
         handler.removeCallbacksAndMessages(null);
+        isResumed = false;
         super.onStop();
     }
 
