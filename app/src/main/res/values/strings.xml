@@ -218,6 +218,7 @@
     <string name="phone">Phone</string>
     <string name="photo">Photo</string>
     <string name="photos">Photos</string>
+    <string name="photos_and_videos">Photos &amp; Videos</string>
     <string name="pill_added">Pill added</string>
     <string name="pill_name">Pill Name</string>
     <string name="pills">Pills</string>
@@ -477,4 +478,7 @@
     <string name="battery_time_h_m_tts">%1$d hours and %2$d minutes</string>
     <string name="battery_time_m_tts">%1$d minutes</string>
     <string name="battery_unavailable">Battery. Status unknown.</string>
+
+    <string name="content_desc_gallery_photo_thumbnail">Photo thumbnail</string>
+    <string name="content_desc_gallery_video_thumbnail">Video thumbnail</string>
 </resources>

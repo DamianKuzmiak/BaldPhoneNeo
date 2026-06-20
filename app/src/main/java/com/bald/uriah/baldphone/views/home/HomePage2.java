@@ -18,6 +18,8 @@ package com.bald.uriah.baldphone.views.home;
 
 import static android.os.Build.VERSION_CODES;
 
+import static app.baldphone.neo.utils.IntentUtilsKt.startActivityWithNewTaskClear;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -32,13 +34,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import app.baldphone.neo.features.gallery.MediaActivity;
+
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.SettingsActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
-import com.bald.uriah.baldphone.activities.media.PhotosActivity;
-import com.bald.uriah.baldphone.activities.media.VideosActivity;
 import com.bald.uriah.baldphone.activities.pills.PillsActivity;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.DropDownRecyclerViewAdapter;
@@ -99,12 +101,14 @@ public class HomePage2 extends HomeView {
 
         if (bt_photo != null) {
             bt_photo.setOnClickListener(
-                    v -> homeScreen.startActivity(new Intent(getContext(), PhotosActivity.class)));
+                    v -> startActivityWithNewTaskClear(getContext(), new Intent(getContext(), MediaActivity.class)
+                            .putExtra(MediaActivity.EXTRA_MODE, MediaActivity.MODE_PHOTOS_ONLY)));
         }
 
         if (bt_videos != null) {
             bt_videos.setOnClickListener(
-                    v -> homeScreen.startActivity(new Intent(getContext(), VideosActivity.class)));
+                    v -> startActivityWithNewTaskClear(getContext(), new Intent(getContext(), MediaActivity.class)
+                            .putExtra(MediaActivity.EXTRA_MODE, MediaActivity.MODE_VIDEOS_ONLY)));
         }
 
         if (bt_pills != null) {

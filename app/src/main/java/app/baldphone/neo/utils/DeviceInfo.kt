@@ -6,21 +6,26 @@ import android.os.Build
 import android.os.SystemClock
 import android.telephony.TelephonyManager
 
-import com.bald.uriah.baldphone.BuildConfig
-
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-
 import java.util.Locale
+
+import coil3.SingletonImageLoader
+
+import com.bald.uriah.baldphone.BuildConfig
+
+private const val BYTES_IN_KB = 1024
 
 fun Context.getDeviceInfoFull(): String {
     val dm = resources.displayMetrics
     val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     val memInfo = ActivityManager.MemoryInfo().also { am.getMemoryInfo(it) }
 
-    val maxMemInKb = Runtime.getRuntime().maxMemory() / 1024
-    val freeMemInKb = Runtime.getRuntime().freeMemory() / 1024
-    val usedMemInKb = (Runtime.getRuntime().totalMemory() / 1024) - freeMemInKb
+    val maxMemInKb = Runtime.getRuntime().maxMemory() / BYTES_IN_KB
+    val freeMemInKb = Runtime.getRuntime().freeMemory() / BYTES_IN_KB
+    val usedMemInKb = (Runtime.getRuntime().totalMemory() / BYTES_IN_KB) - freeMemInKb
+
+    val coilCacheInfo = getCoilCacheInfo(this)
 
     return """
         Version: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})
@@ -45,7 +50,9 @@ fun Context.getDeviceInfoFull(): String {
         Low Memory: ${memInfo.lowMemory}
         Threads: ${Thread.activeCount()}
         Uptime: ${SystemClock.uptimeMillis()} ms
-    """.trimIndent()
+        Coil RAM Cache: ${coilCacheInfo.first}
+        Coil Disk Cache: ${coilCacheInfo.second}
+        """.trimIndent()
 }
 
 private fun gmtOffsetString(): String {
@@ -80,12 +87,13 @@ fun Context.getDeviceRegion(): String {
     }
 
     // 2. Fallback to device locale
-    val primaryLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        resources.configuration.locales[0]
-    } else {
-        @Suppress("DEPRECATION")
-        resources.configuration.locale
-    }
+    val primaryLocale =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            resources.configuration.locales[0]
+        } else {
+            @Suppress("DEPRECATION")
+            resources.configuration.locale
+        }
 
     if (primaryLocale != null) {
         val country = primaryLocale.country
@@ -96,4 +104,24 @@ fun Context.getDeviceRegion(): String {
 
     // 3. Final fallback to a default region
     return "US"
+}
+
+private fun getCoilCacheInfo(context: Context): Pair<String, String> {
+    val imageLoader = SingletonImageLoader.get(context)
+
+    val ramCacheInfo =
+        imageLoader.memoryCache?.let { ramCache ->
+            val currentSizeMb = ramCache.size / (BYTES_IN_KB * BYTES_IN_KB)
+            val maxSizeMb = ramCache.maxSize / (BYTES_IN_KB * BYTES_IN_KB)
+            "$currentSizeMb/$maxSizeMb MB"
+        } ?: "Disabled"
+
+    val diskCacheInfo =
+        imageLoader.diskCache?.let { diskCache ->
+            val currentSizeMb = diskCache.size / (BYTES_IN_KB * BYTES_IN_KB)
+            val maxSizeMb = diskCache.maxSize / (BYTES_IN_KB * BYTES_IN_KB)
+            "$currentSizeMb/$maxSizeMb MB"
+        } ?: "Disabled"
+
+    return Pair(ramCacheInfo, diskCacheInfo)
 }

@@ -194,6 +194,7 @@
     <string name="phone">Telefon</string>
     <string name="photo">Zdjęcie</string>
     <string name="photos">Zdjęcia</string>
+    <string name="photos_and_videos">Zdjęcia i filmy</string>
     <string name="pill_added">Dodano lek</string>
     <string name="pill_name">Nazwa leku</string>
     <string name="pills">Leki</string>
@@ -412,4 +413,7 @@
     <string name="battery_time_h_m_tts">%1$d godzin i %2$d minut</string>
     <string name="battery_time_m_tts">%1$d minut</string>
     <string name="battery_unavailable">Bateria. Status nieznany.</string>
+
+    <string name="content_desc_gallery_photo_thumbnail">Miniaturka zdjęcia</string>
+    <string name="content_desc_gallery_video_thumbnail">Miniaturka wideo</string>
 </resources>

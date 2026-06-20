@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import app.baldphone.neo.activities.DialerActivity;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
+import app.baldphone.neo.features.gallery.MediaActivity;
 
 import com.bald.uriah.baldphone.BuildConfig;
 import com.bald.uriah.baldphone.R;
@@ -37,8 +38,6 @@ import com.bald.uriah.baldphone.activities.AppsActivity;
 import com.bald.uriah.baldphone.activities.Page1EditorActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
-import com.bald.uriah.baldphone.activities.media.PhotosActivity;
-import com.bald.uriah.baldphone.activities.media.VideosActivity;
 import com.bald.uriah.baldphone.activities.pills.PillsActivity;
 import com.bald.uriah.baldphone.utils.S;
 import com.bumptech.glide.Glide;
@@ -54,6 +53,9 @@ import java.util.Map;
 public class AppsDatabaseHelper {
     private static final String TAG = AppsDatabaseHelper.class.getSimpleName();
 
+    /** Matches the activity-alias name in AndroidManifest.xml for the videos media mode. */
+    private static final String VIDEOS_ALIAS_CLASS = "app.baldphone.neo.features.gallery.VideosMediaAlias";
+
     public static final String baldComponentNameBeginning = BuildConfig.APPLICATION_ID + "/";
     public static Map<String, Integer> baldComponentNames = new HashMap<>(10);
 
@@ -61,8 +63,8 @@ public class AppsDatabaseHelper {
         baldComponentNames.put(baldComponentNameBeginning + RecentCallsActivity.class.getName(), R.drawable.history_on_background);
         baldComponentNames.put(baldComponentNameBeginning + ContactsActivity.class.getName(), R.drawable.human_on_background);
         baldComponentNames.put(baldComponentNameBeginning + DialerActivity.class.getName(), R.drawable.phone_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + PhotosActivity.class.getName(), R.drawable.photo_on_background);
-        baldComponentNames.put(baldComponentNameBeginning + VideosActivity.class.getName(), R.drawable.movie_on_background);
+        baldComponentNames.put(baldComponentNameBeginning + MediaActivity.class.getName(), R.drawable.photo_on_background);
+        baldComponentNames.put(baldComponentNameBeginning + VIDEOS_ALIAS_CLASS, R.drawable.movie_on_background);
         baldComponentNames.put(baldComponentNameBeginning + PillsActivity.class.getName(), R.drawable.pill);
         baldComponentNames.put(baldComponentNameBeginning + AppsActivity.class.getName(), R.drawable.apps_on_background);
         baldComponentNames.put(baldComponentNameBeginning + AlarmsActivity.class.getName(), R.drawable.clock_on_background);

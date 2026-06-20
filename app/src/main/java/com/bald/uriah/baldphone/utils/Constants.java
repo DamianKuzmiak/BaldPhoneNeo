@@ -28,8 +28,6 @@ public class Constants {
     /**
      * contains the constants used in
      * {@link com.bald.uriah.baldphone.activities.media.SinglePhotoActivity}
-     * and
-     * {@link com.bald.uriah.baldphone.activities.media.PhotosActivity}
      */
     public interface PhotosConstants {
         String SORT_ORDER = MediaStore.Images.Media.DATE_MODIFIED + " DESC";
@@ -40,8 +38,6 @@ public class Constants {
     /**
      * contains the constants used in
      * {@link com.bald.uriah.baldphone.activities.media.SingleVideoActivity}
-     * and
-     * {@link com.bald.uriah.baldphone.activities.media.VideosActivity}
      */
     public interface VideosConstants {
         String SORT_ORDER = MediaStore.Video.Media.DATE_TAKEN + " DESC";

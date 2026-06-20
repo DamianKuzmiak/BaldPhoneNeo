@@ -42,10 +42,10 @@ import app.baldphone.neo.features.contacts.Contact;
 import app.baldphone.neo.features.contacts.data.ContactRepository;
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
+import app.baldphone.neo.features.gallery.MediaActivity;
 
 import com.bald.uriah.baldphone.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
-import com.bald.uriah.baldphone.activities.media.PhotosActivity;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BaldToast;
@@ -125,7 +125,10 @@ public class AddContactActivity extends BaldActivity {
         }
         iv_image.setOnClickListener(v ->
                 startActivityForResult(
-                        new Intent(this, PhotosActivity.class).setAction(Intent.ACTION_GET_CONTENT), SELECT_IMAGE_REQUEST_CODE)
+                        new Intent(this, MediaActivity.class)
+                                .setAction(Intent.ACTION_GET_CONTENT)
+                                .putExtra(MediaActivity.EXTRA_MODE, MediaActivity.MODE_PHOTOS_ONLY),
+                        SELECT_IMAGE_REQUEST_CODE)
         );
         iv_delete.setOnClickListener(v -> {
             iv_image.setImageResource(R.drawable.photo_on_button);

@@ -148,19 +148,23 @@
             android:exported="false"
             android:label="@string/recent_calls" />
         <activity
-            android:name=".activities.media.PhotosActivity"
+            android:name="app.baldphone.neo.features.gallery.MediaActivity"
             android:exported="false"
             android:label="@string/photos" />
-        <activity
-            android:name=".activities.media.VideosActivity"
+        <activity-alias
+            android:name="app.baldphone.neo.features.gallery.VideosMediaAlias"
             android:exported="true"
-            android:label="@string/videos">
+            android:label="@string/videos"
+            android:targetActivity="app.baldphone.neo.features.gallery.MediaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <data android:mimeType="video/*" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+            <meta-data
+                android:name="media_mode"
+                android:value="2" />
+        </activity-alias>
         <activity
             android:name=".activities.media.SinglePhotoActivity"
             android:exported="false"

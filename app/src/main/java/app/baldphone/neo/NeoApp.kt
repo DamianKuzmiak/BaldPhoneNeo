@@ -15,6 +15,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.SingletonImageLoader
+import coil3.memory.MemoryCache
+import coil3.util.DebugLogger
 import net.danlew.android.joda.JodaTimeAndroid
 
 import app.baldphone.neo.data.Prefs
@@ -22,13 +27,15 @@ import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
 import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
+import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
+import com.bald.uriah.baldphone.BuildConfig
 import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler
 import com.bald.uriah.baldphone.utils.BaldUncaughtExceptionHandler
 
-class NeoApp : Application() {
+class NeoApp : Application(), SingletonImageLoader.Factory  {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         Thread.setDefaultUncaughtExceptionHandler(
@@ -100,6 +107,22 @@ class NeoApp : Application() {
         super.onLowMemory()
         Log.w(TAG, "onLowMemory()")
     }
+
+    override fun newImageLoader(context: PlatformContext): ImageLoader =
+        ImageLoader
+            .Builder(context)
+            .memoryCache {
+                MemoryCache
+                    .Builder()
+                    .maxSizePercent(context, 0.35)
+                    .build()
+            }.components {
+                add(MediaStoreThumbnailFetcher.Factory(context))
+            }.apply {
+                if (BuildConfig.DEBUG) {
+                    logger(DebugLogger(coil3.util.Logger.Level.Verbose))
+                }
+            }.build()
 
     companion object {
         private const val TAG = "NeoApp"

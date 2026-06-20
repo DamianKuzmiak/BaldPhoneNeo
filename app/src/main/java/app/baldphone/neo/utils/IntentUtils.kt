@@ -127,3 +127,11 @@ fun Context.startActivitySafe(
 fun Context.startActivityWithNewTask(intent: Intent, options: Bundle? = null) {
     startActivitySafe(intent, options, flags = FLAG_ACTIVITY_NEW_TASK)
 }
+
+/**
+ * Starts an activity with [Intent.FLAG_ACTIVITY_NEW_TASK] and [Intent.FLAG_ACTIVITY_CLEAR_TASK] flags.
+ */
+@JvmOverloads
+fun Context.startActivityWithNewTaskClear(intent: Intent, options: Bundle? = null) {
+    startActivitySafe(intent, options, flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+}

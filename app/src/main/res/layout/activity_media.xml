@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleBarBackgroundColor="?bald_category_apps"
+        app:titleBarTitle="@string/contact_details" />
+
+    <com.bald.uriah.baldphone.views.ScrollingHelper
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.bald.uriah.baldphone.views.ModularRecyclerView
+            android:id="@+id/child"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="1dp"
+            android:paddingTop="1dp"
+            android:requiresFadingEdge="none"
+            android:tag="edgeToEdge" />
+    </com.bald.uriah.baldphone.views.ScrollingHelper>
+</LinearLayout>
