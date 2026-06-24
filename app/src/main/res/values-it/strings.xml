@@ -320,7 +320,6 @@
     <string name="dialer_sounds">Suoni tastierino</string>
     <string name="dialer_sounds_subtext">Scegli se vuoi che il tastierino emetta dei suoni quando componi un numero di telefono.</string>
     <string name="low_battery_alert">Avviso batteria scarica</string>
-    <string name="low_battery_alert_subtext">Scegli se vuoi che la barra di stato nella schermata Home diventi rossa quando la carica della batteria è inferiore al 20%.\nNon è visibile se la barra di stato è nascosta.</string>
 
     <string name="grant_all_permissions">Autorizzazioni richieste</string>
 

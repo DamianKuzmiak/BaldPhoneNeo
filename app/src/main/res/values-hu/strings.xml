@@ -308,7 +308,6 @@ https://baldphone.com</string>
     <string name="dialer_sounds">Tárcsázási Hang</string>
     <string name="dialer_sounds_subtext">Válaszd ki hogy akarsz-e tárcsázási hangot</string>
     <string name="low_battery_alert">Alacsony töltöttségi szint jelzés</string>
-    <string name="low_battery_alert_subtext">Válaszd ki, hogy az állapotjelző sáv 20% töltöttségi szint alatt pirosan jelezzen-e.</string>
 
     <string name="grant_all_permissions">Minden engedély megadása</string>
 

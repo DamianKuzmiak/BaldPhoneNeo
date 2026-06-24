@@ -327,7 +327,6 @@
     <string name="dialer_sounds">डायलर लगता है</string>
     <string name="dialer_sounds_subtext">चुनें कि क्या आप डायलर ध्वनियां चाहते हैं।</string>
     <string name="low_battery_alert">कम बैटरी अलर्ट</string>
-    <string name="low_battery_alert_subtext">चुनें कि क्या आप चाहते हैं कि होम स्क्रीन पर स्टेटस बार लाल हो, जब बैटरी 20% से कम हो\nध्यान दें कि सिस्टम स्टेटस बार छुपा हुआ है तो यह नहीं दिखाया जाएगा।</string>
 
     <string name="grant_all_permissions">सभी अनुमतियां प्रदान करें</string>
 

@@ -328,7 +328,6 @@
     <string name="dialer_sounds">Звуци при набиране</string>
     <string name="dialer_sounds_subtext">Изберете дали желаете да има звуци при набиране.</string>
     <string name="low_battery_alert">Предупреждение за изтощена батерия</string>
-    <string name="low_battery_alert_subtext">Изберете дали лентата на състоянието да бъде червена на началния екран, когато батерията е под  20%\nЗабележете, че това няма да се вижда, ако лентата на състоянието е скрита.</string>
 
     <string name="grant_all_permissions">Даване на всички разрешения</string>
 

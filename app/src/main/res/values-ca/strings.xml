@@ -338,9 +338,6 @@ Pressioni OK per a atorgar els permisos o No per a sortir de BaldPhone.
     <string name="dialer_sounds">To de trucada</string>
     <string name="dialer_sounds_subtext">Triï si desitja tenir to de trucada.</string>
     <string name="low_battery_alert">Alerta de bateria baixa</string>
-    <string name="low_battery_alert_subtext">Marqui si vol que la barra d\'estat es posi vermella si la bateria està per sota del 20%\n
-No es veuran canvis si la barra d\'estat està oculta.
-</string>
 
     <string name="grant_all_permissions">Donar tots els Permisos</string>
 

@@ -320,7 +320,6 @@
     <string name="dialer_sounds">Sunete butoane telefon</string>
     <string name="dialer_sounds_subtext">Alegeți dacă doriți sunete</string>
     <string name="low_battery_alert">Alertă nivel scăzut baterie</string>
-    <string name="low_battery_alert_subtext">Alegeți dacă doriți ca bara de status sa apară roșie atunci când bateria scade sub 20%.</string>
 
     <string name="grant_all_permissions">Acordați toate permisiunile</string>
 

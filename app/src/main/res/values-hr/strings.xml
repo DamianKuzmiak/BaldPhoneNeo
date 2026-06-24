@@ -314,7 +314,6 @@
     <string name="dialer_sounds">Zvukovi Brojčanika</string>
     <string name="dialer_sounds_subtext">Odaberite ukoliko želite Zvukove Brojčanika.</string>
     <string name="low_battery_alert">Upozorenje baterije pri kraju</string>
-    <string name="low_battery_alert_subtext">Odaberite ukoliko želite da Statusna Traka pocrveni kada je stanje baterije ispod 20%\nUpozorenje neće biti prikazano ukoliko je Statusna Traka sakrivena.</string>
 
     <string name="grant_all_permissions">Dopusti Sve Dozvole</string>
 

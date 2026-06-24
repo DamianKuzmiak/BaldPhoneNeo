@@ -39,15 +39,13 @@ import static com.bald.uriah.baldphone.utils.BPrefs.EMERGENCY_BUTTON_VISIBLE_DEF
 import static com.bald.uriah.baldphone.utils.BPrefs.EMERGENCY_BUTTON_VISIBLE_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.LONG_PRESSES_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.LONG_PRESSES_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.LOW_BATTERY_ALERT_DEFAULT_VALUE;
-import static com.bald.uriah.baldphone.utils.BPrefs.LOW_BATTERY_ALERT_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.NOTE_VISIBLE_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.NOTE_VISIBLE_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.TOUCH_NOT_HARD_KEY;
 
 public class BaldPrefsUtils {
-    private final boolean vibrationFeedback, touchNoHard, longPresses, notes, lowBatteryAlert, sos;
+    private final boolean vibrationFeedback, touchNoHard, longPresses, notes, sos;
     private final int statusBar;
     private final String CUSTOM_APP;
     private final String CUSTOM_RECENTS;
@@ -62,13 +60,12 @@ public class BaldPrefsUtils {
     private final String CUSTOM_APPS;
     private final String CUSTOM_ALARMS;
 
-    private BaldPrefsUtils(boolean vibrationFeedback, boolean touchNoHard, boolean longPresses, boolean notes, int statusBar, boolean lowBatteryAlert, boolean sos, String custom_app, String custom_recents, String custom_dialer, String custom_contacts, String custom_assistant, String custom_messages, String custom_photos, String custom_camera, String custom_videos, String custom_pills, String custom_apps, String custom_alarms) {
+    private BaldPrefsUtils(boolean vibrationFeedback, boolean touchNoHard, boolean longPresses, boolean notes, int statusBar, boolean sos, String custom_app, String custom_recents, String custom_dialer, String custom_contacts, String custom_assistant, String custom_messages, String custom_photos, String custom_camera, String custom_videos, String custom_pills, String custom_apps, String custom_alarms) {
         this.vibrationFeedback = vibrationFeedback;
         this.touchNoHard = touchNoHard;
         this.longPresses = longPresses;
         this.notes = notes;
         this.statusBar = statusBar;
-        this.lowBatteryAlert = lowBatteryAlert;
         this.sos = sos;
         CUSTOM_APP = custom_app;
         CUSTOM_RECENTS = custom_recents;
@@ -95,7 +92,6 @@ public class BaldPrefsUtils {
                 sharedPreferences
                         .getBoolean(NOTE_VISIBLE_KEY, NOTE_VISIBLE_DEFAULT_VALUE),
                 Prefs.getStatusBarMode().getValue(),
-                sharedPreferences.getBoolean(LOW_BATTERY_ALERT_KEY, LOW_BATTERY_ALERT_DEFAULT_VALUE),
                 sharedPreferences.getBoolean(EMERGENCY_BUTTON_VISIBLE_KEY, EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE),
                 sharedPreferences.getString(CUSTOM_APP_KEY, null),
                 sharedPreferences.getString(CUSTOM_RECENTS_KEY, null),
@@ -125,7 +121,6 @@ public class BaldPrefsUtils {
                 touchNoHard == that.touchNoHard &&
                 longPresses == that.longPresses &&
                 notes == that.notes &&
-                lowBatteryAlert == that.lowBatteryAlert &&
                 sos == that.sos &&
                 statusBar == that.statusBar &&
                 Objects.equals(CUSTOM_APP, that.CUSTOM_APP) &&
@@ -144,6 +139,6 @@ public class BaldPrefsUtils {
 
     @Override
     public int hashCode() {
-        return Objects.hash(vibrationFeedback, touchNoHard, longPresses, notes, lowBatteryAlert, sos, statusBar, CUSTOM_APP, CUSTOM_RECENTS, CUSTOM_DIALER, CUSTOM_CONTACTS, CUSTOM_ASSISTANT, CUSTOM_MESSAGES, CUSTOM_PHOTOS, CUSTOM_CAMERA, CUSTOM_VIDEOS, CUSTOM_PILLS, CUSTOM_APPS, CUSTOM_ALARMS);
+        return Objects.hash(vibrationFeedback, touchNoHard, longPresses, notes, sos, statusBar, CUSTOM_APP, CUSTOM_RECENTS, CUSTOM_DIALER, CUSTOM_CONTACTS, CUSTOM_ASSISTANT, CUSTOM_MESSAGES, CUSTOM_PHOTOS, CUSTOM_CAMERA, CUSTOM_VIDEOS, CUSTOM_PILLS, CUSTOM_APPS, CUSTOM_ALARMS);
     }
 }
