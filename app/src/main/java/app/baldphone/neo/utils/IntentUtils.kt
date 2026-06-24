@@ -116,11 +116,17 @@ fun Context.startActivitySafe(
     flags: Int? = null
 ) {
     flags?.let { intent.addFlags(it) }
+    @Suppress("TooGenericExceptionCaught")
     try {
         startActivity(intent, options)
     } catch (e: ActivityNotFoundException) {
         Log.e(TAG, "Activity not found: $intent", e)
         BaldSnackbar.show(this, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
+    } catch (e: SecurityException) {
+        Log.e(TAG, "Security exception: $intent", e)
+        BaldSnackbar.show(this, R.string.an_error_has_occurred, BaldSnackbar.TYPE_ERROR)
+    } catch (e: Exception) {
+        Log.e(TAG, "Unexpected exception", e)
     }
 }
 
@@ -158,7 +164,20 @@ fun Context.startComponentName(componentName: ComponentName, userId: Long = 0L) 
             Log.e(TAG, "Failed to launch app with LauncherApps for user: $userId", e)
         }
     }
-    startActivity(Intent.makeRestartActivityTask(componentName))
+    if (componentName.packageName == packageName &&
+        componentName.className == "app.baldphone.neo.features.gallery.VideosMediaAlias"
+    ) {
+        val intent =
+            Intent().apply {
+                component = componentName
+                action = Intent.ACTION_MAIN
+                addCategory(Intent.CATEGORY_DEFAULT)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            }
+        startActivity(intent)
+    } else {
+        startActivity(Intent.makeRestartActivityTask(componentName))
+    }
 }
 
 /**

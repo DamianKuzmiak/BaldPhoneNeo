@@ -38,6 +38,8 @@ class LauncherProxyActivity : AppCompatActivity() {
                 // We are not the default launcher:
                 val homeScreenIntent =
                     Intent(this, HomeScreenActivity::class.java).apply {
+                        action = Intent.ACTION_MAIN
+                        addCategory(Intent.CATEGORY_DEFAULT)
                         intent.extras?.let { putExtras(it) }
                     }
                 startActivity(homeScreenIntent)

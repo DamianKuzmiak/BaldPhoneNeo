@@ -188,7 +188,7 @@ public class ReminderScheduler {
             alarmManager.setAlarmClock(
                     new AlarmManager.AlarmClockInfo(
                             DateTime.now().getMillis() + SNOOZE_MILLIS,
-                            PendingIntent.getActivity(context, alarm.getId(), new Intent(context, HomeScreenActivity.class), PendingIntent.FLAG_IMMUTABLE)//TODO??
+                            PendingIntent.getActivity(context, alarm.getId(), new Intent(context, HomeScreenActivity.class).setAction(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_DEFAULT), PendingIntent.FLAG_IMMUTABLE)//TODO??
                     ),
                     getIntent(context, alarm.getId())
             );
