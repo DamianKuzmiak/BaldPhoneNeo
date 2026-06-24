@@ -326,7 +326,6 @@ ja muuttaa kirkkautta.</string>
     <string name="dialer_sounds">Soittajan äänet</string>
     <string name="dialer_sounds_subtext">Valitse, haluatko käyttää Soittajan ääniä.</string>
     <string name="low_battery_alert">Akku vähissä hälytys</string>
-    <string name="low_battery_alert_subtext">Valitse, haluatko tilarivin olevan punainen aloitusnäytössä, kun akun varaus on alle 20%\nHuomaa, Sitä ei näytetä, jos järjestelmän tilarivi on piilotettu.</string>
 
     <string name="grant_all_permissions">Myönnä kaikki käyttöoikeudet</string>
 

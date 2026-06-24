@@ -321,8 +321,6 @@
     <string name="dialer_sounds">Zvoki klicalnika</string>
     <string name="dialer_sounds_subtext">Izberi ali želiš zvoke klicalnika.</string>
     <string name="low_battery_alert">Baterija je skoraj prazna</string>
-    <string name="low_battery_alert_subtext">Izberi, ali želiš, da se opravilno vrstica na domačem zaslonu obarva rdeče,
-		ko je zmogljivost baterije pod 20%.\nV vednost: to ne bo vidno, če je opravilna vrstica skrita.</string>
 
     <string name="grant_all_permissions">Potrdi vsa dovoljenja</string>
 

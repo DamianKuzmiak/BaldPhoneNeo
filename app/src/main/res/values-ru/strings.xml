@@ -317,7 +317,6 @@
     <string name="dialer_sounds">Звуки Номеронабирателя</string>
     <string name="dialer_sounds_subtext">Выберите, хотите ли вы иметь Звуки Номеронабирателя.</string>
     <string name="low_battery_alert">Предупреждение о низком заряде батареи</string>
-    <string name="low_battery_alert_subtext">Выберите, хотите ли вы, чтобы строка состояния была красной на главном экране, когда уровень заряда батареи ниже 20%\nПримечание: не будет отображаться, если строка состояния системы скрыта.</string>
 
     <string name="grant_all_permissions">Предоставить Все Разрешения</string>
 

@@ -309,7 +309,6 @@ geen schade veroorzaken. Druk op OK om de bevoegdheden te geven of druk op nee o
     <string name="dialer_sounds">Toetsgeluiden</string>
     <string name="dialer_sounds_subtext">Kies dit als je toetsgeluiden wilt hebben.</string>
     <string name="low_battery_alert">Waarschuwing lage batterij</string>
-    <string name="low_battery_alert_subtext">Kies dit als u wilt dat de statusbalk rood wordt op het startscherm wanneer de batterij onder de 20% is\nLet op: Wanneer de statusbalk verborgen is wordt dit niet weergegeven.</string>
 
     <string name="grant_all_permissions">Verleen alle bevoegdheden</string>
 

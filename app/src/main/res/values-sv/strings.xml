@@ -322,8 +322,6 @@
     <string name="dialer_sounds_subtext">Vill du höra knappljud när du slår ett nummer för att ringa?
     </string>
     <string name="low_battery_alert">Batterivarning</string>
-    <string name="low_battery_alert_subtext">Välj om du vill att statuslisten ska visas röd när batterinivån är lägre än 20%\n Observera att statuslisten måste vara synlig för att det ska märkas.
-    </string>
 
     <string name="grant_all_permissions">Tillåt alla rättigheter</string>
 

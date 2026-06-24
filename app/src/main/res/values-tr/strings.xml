@@ -312,7 +312,6 @@
     <string name="dialer_sounds">Arama sesleri</string>
     <string name="dialer_sounds_subtext">Arama sesleri istiyorsanız seçiniz.</string>
     <string name="low_battery_alert">Düşük pil alarmı</string>
-    <string name="low_battery_alert_subtext">Eğer pil düşük olduğu zaman durum çubuğunun kırmızıya boyanmasını istiyorsanız seçiniz.\nNot: eğer durum çubuğu gizliyse görünmeyecektir.</string>
 
     <string name="grant_all_permissions">Tüm izinleri veriniz</string>
 

@@ -40,7 +40,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
 import app.baldphone.neo.battery.BatteryRepository;
@@ -92,7 +91,6 @@ public class HomeScreenActivity extends BaldActivity {
     private BaldPrefsUtils baldPrefsUtils;
     private ViewPagerHolder viewPagerHolder;
     private BatteryIconView batteryIconView;
-    private boolean lowBatteryAlert;
 
     @Nullable
     private FlashLightController flashlight = null;
@@ -164,7 +162,7 @@ public class HomeScreenActivity extends BaldActivity {
         }
 
         new UpdateApps(this).execute(this.getApplicationContext());
-        lowBatteryAlert = sharedPreferences.getBoolean(BPrefs.LOW_BATTERY_ALERT_KEY, BPrefs.LOW_BATTERY_ALERT_DEFAULT_VALUE);
+
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         final TypedValue typedValue = new TypedValue();
@@ -224,15 +222,6 @@ public class HomeScreenActivity extends BaldActivity {
         BatteryRepository batteryRepository = BatteryRepository.get(this);
         batteryRepository.getBatteryLiveData().observe(this, batteryState -> {
             batteryIconView.setBatteryState(batteryState);
-            final Integer percentage = batteryState.getPercentage();
-            if (lowBatteryAlert) {
-                final boolean isLow = percentage != null
-                        && percentage <= D.LOW_BATTERY_LEVEL
-                        && !batteryState.isCharging();
-//                getWindow().setStatusBarColor(isLow ?
-//                        ContextCompat.getColor(this, R.color.battery_low) :
-//                        D.DEFAULT_STATUS_BAR_COLOR);
-            }
         });
         batteryIconView.setOnClickListener((v) -> {
             String batteryInfo = batteryIconView.getDetailedContentDescription();

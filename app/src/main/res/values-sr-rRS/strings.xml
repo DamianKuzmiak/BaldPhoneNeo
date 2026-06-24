@@ -305,7 +305,6 @@
     <string name="dialer_sounds">Tonovi tastera</string>
     <string name="dialer_sounds_subtext">Izaberite ukoliko želite da se čuju Tonovi tastera</string>
     <string name="low_battery_alert">Upozorenje o pražnjenju baterije</string>
-    <string name="low_battery_alert_subtext">Da li želite da statusna traka bude crvena na početnom ekranu kada vam je baterija manja od 20%\nNapomena - Statusna traka neće biti vidljiva ukoliko je sistemska statusna traka sakrivena.</string>
 
     <string name="grant_all_permissions">Odobri sve dozvole</string>
 

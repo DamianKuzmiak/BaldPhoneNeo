@@ -317,7 +317,6 @@
     <string name="dialer_sounds">鈴聲</string>
     <string name="dialer_sounds_subtext">選擇你的鈴聲。</string>
     <string name="low_battery_alert">低電量警告</string>
-    <string name="low_battery_alert_subtext">你可以選擇電量低於 20% 時，讓狀態列轉紅\n注意，如果狀態列不顯示時，紅色效果也不會顯示。</string>
 
     <string name="grant_all_permissions">允許所有權限</string>
 

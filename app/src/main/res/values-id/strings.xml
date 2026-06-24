@@ -326,7 +326,6 @@
     <string name="dialer_sounds">Suara Pemanggil</string>
     <string name="dialer_sounds_subtext">Pilih jika Anda menginginkan Suara Pemanggil.</string>
     <string name="low_battery_alert">Peringatan Baterai Rendah</string>
-    <string name="low_battery_alert_subtext">Pilih jika Anda ingin bilah status menjadi merah di layar beranda ketika baterai di bawah 20%\nPerhatikan ia tidak akan ditampilkan jika bilah status disembunyikan.</string>
 
     <string name="grant_all_permissions">Berikan semua perizinan</string>
 

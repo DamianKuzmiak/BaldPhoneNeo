@@ -319,8 +319,6 @@
     <string name="dialer_sounds">Tono de llamada</string>
     <string name="dialer_sounds_subtext">Elige los posibles tonos de llamada.</string>
     <string name="low_battery_alert">Alerta de batería baja</string>
-    <string name="low_battery_alert_subtext">Elige si quieres que la barra de estado se ponga roja en la pantalla de inicio cuando la batería baje del 20%. Ten en cuenta que esta opción no sirve de nada si la barra de estado está oculta.
-    </string>
 
     <string name="grant_all_permissions">Conceder todos los permisos</string>
 

@@ -317,7 +317,6 @@
     <string name="dialer_sounds">Son du composeur de numéros</string>
     <string name="dialer_sounds_subtext">Choisissez si les touches du composeur de numéro téléphonique ont un son.</string>
     <string name="low_battery_alert">Alerte de batterie faible</string>
-    <string name="low_battery_alert_subtext">Choisissez si vous voulez que la barre d\'état de l\'écran d\'acceuil devienne rouge quand la batterie a une charge inférieure à 20%\nNottez que cela ne sera pas visible si la barre d\'état est cachée.</string>
 
     <string name="grant_all_permissions">Accorder toutes les autorisations</string>
 

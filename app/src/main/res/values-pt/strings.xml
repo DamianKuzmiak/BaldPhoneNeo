@@ -309,8 +309,6 @@
     <string name="dialer_sounds">Sons de Marcador</string>
     <string name="dialer_sounds_subtext">Escolha se deseja ter sons do Marcador.</string>
     <string name="low_battery_alert">Pouca Bateria</string>
-    <string name="low_battery_alert_subtext">
-        Escolha se quer a barra de notificações em vermelho quando a bateria está abaixo de 20%\nNão será mostrado se a barra de notificações estiver escondida.</string>
 
     <string name="grant_all_permissions">Grant All Permissions</string>
 

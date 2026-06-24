@@ -326,7 +326,6 @@
     <string name="dialer_sounds">Numbriklahvide heli</string>
     <string name="dialer_sounds_subtext">Valige, kui soovite kuulda numbriklahvide helisid.</string>
     <string name="low_battery_alert">Madala akutaseme teavitus</string>
-    <string name="low_battery_alert_subtext">Valige, kui soovite, et avakuva tegumiriba oleks punane, kui aku mahutavus on alla 20%\nTähelepanek Seda ei näidata, kui süsteemi tegumiriba on peidus.</string>
 
     <string name="grant_all_permissions">Anna kõik vajalikud juurdepääsuload</string>
 
