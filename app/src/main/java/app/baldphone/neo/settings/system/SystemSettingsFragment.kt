@@ -28,5 +28,17 @@ class SystemSettingsFragment : BaseSettingsFragment(R.layout.fragment_system_set
             setClickableAccessibilityRole()
             enableAssistTouchHierarchy()
         }
+
+        val btnLanguage = view.findViewById<View>(R.id.btn_language)
+        btnLanguage.apply {
+            findViewById<TextView>(R.id.title).setText(R.string.language)
+            findViewById<ImageView>(R.id.icon).setImageResource(R.drawable.translate_on_button)
+            contentDescription = context.getString(R.string.language)
+            setOnClickListener {
+                findNavController().navigate(R.id.action_system_to_language)
+            }
+            setClickableAccessibilityRole()
+            enableAssistTouchHierarchy()
+        }
     }
 }

@@ -14,27 +14,41 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.core.view.updatePadding
 
-private val CLICKABLE_ROLE_DELEGATE =
-    object : AccessibilityDelegateCompat() {
-        override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-            super.onInitializeAccessibilityNodeInfo(host, info)
+private val DELEGATES_CACHE = mutableMapOf<AccessibilityRole?, AccessibilityDelegateCompat>()
 
-            info.className =
-                when (host) {
-                    is ImageView -> ImageButton::class.java.name
-                    else -> Button::class.java.name
+private fun getOrCreateDelegate(role: AccessibilityRole?): AccessibilityDelegateCompat =
+    DELEGATES_CACHE.getOrPut(role) {
+        object : AccessibilityDelegateCompat() {
+            override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                super.onInitializeAccessibilityNodeInfo(host, info)
+
+                val targetRoleName =
+                    when {
+                        role != null -> role.className
+                        host is ImageView -> AccessibilityRole.IMAGE_BUTTON.className
+                        else -> AccessibilityRole.BUTTON.className
+                    }
+
+                info.className = targetRoleName
+
+                if (targetRoleName == AccessibilityRole.RADIO_BUTTON.className) {
+                    info.isCheckable = true
+                    info.isChecked = host.isSelected
                 }
+            }
         }
     }
 
 /**
- * Sets an accessibility delegate on the view so screen readers report it as a Button or ImageButton.
+ * Sets an accessibility delegate to the view that reports it as a specific accessibility role.
  */
-fun View.setClickableAccessibilityRole() {
+fun View.setClickableAccessibilityRole(role: AccessibilityRole? = null) {
     if (this is Button || this is ImageButton) return
+
     if (ViewCompat.getAccessibilityDelegate(this) != null) return
 
-    ViewCompat.setAccessibilityDelegate(this, CLICKABLE_ROLE_DELEGATE)
+    val delegate = getOrCreateDelegate(role)
+    ViewCompat.setAccessibilityDelegate(this, delegate)
 }
 
 /**
