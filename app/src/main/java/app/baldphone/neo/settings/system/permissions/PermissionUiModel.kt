@@ -1,4 +1,4 @@
-package app.baldphone.neo.permissions.ui
+package app.baldphone.neo.settings.system.permissions
 
 import app.baldphone.neo.permissions.model.AppPermission
 

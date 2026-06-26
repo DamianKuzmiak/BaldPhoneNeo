@@ -352,7 +352,7 @@
     <string name="banner_home_enable_features_cta">Tocca qui per attivare tutte le funzioni</string>
     <string name="mandatory_badge">Obbligatoria</string>
     <string name="grant_contacts_permission">Concedi l’autorizzazione ai contatti</string>
-    <string name="perm_activity_header">Consenti le seguenti autorizzazioni:</string>
+    <string name="perm_activity_header">Per funzionare al meglio, l’app richiede l’accesso ad alcune funzioni:</string>
     <string name="dialog_title_permission_required">Autorizzazione richiesta</string>
     <string name="dialog_message_permission_settings">Nelle impostazioni dell’app, apri Autorizzazioni e concedi tutti gli accessi richiesti.</string>
     <string name="grant_permission_for">Concedi l’autorizzazione per:\n%s</string>

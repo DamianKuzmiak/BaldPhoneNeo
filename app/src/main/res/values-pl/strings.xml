@@ -324,7 +324,7 @@
     <string name="banner_home_enable_features_cta">Kliknij tutaj, aby włączyć wszystkie funkcje</string>
     <string name="mandatory_badge">Wymagane</string>
     <string name="grant_contacts_permission">Zezwól na dostęp do kontaktów</string>
-    <string name="perm_activity_header">Wymagane są następujące uprawnienia:</string>
+    <string name="perm_activity_header">Aby aplikacja działała poprawnie, wymagany jest dostęp do kilku funkcji:</string>
     <string name="dialog_title_permission_required">Wymagane uprawnienie</string>
     <string name="dialog_message_permission_settings">Przejdź do zakładki Uprawnienia i udziel wszystkich brakujących dostępów.</string>
     <string name="grant_permission_for">Udziel pozwolenia dla:\n\"%s\"</string>

@@ -1,4 +1,4 @@
-package app.baldphone.neo.settings.system
+package app.baldphone.neo.settings.system.permissions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,14 +17,13 @@ import kotlinx.coroutines.launch
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.PermissionRepository
 import app.baldphone.neo.permissions.model.AppPermission
-import app.baldphone.neo.permissions.ui.PermissionListAdapter
-import app.baldphone.neo.permissions.ui.PermissionUiModel
+import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.settings.BaseSettingsFragment
 
 import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.databinding.FragmentPermissionsBinding
 
-class PermissionsFragment : BaseSettingsFragment() {
+class PermissionListFragment : BaseSettingsFragment() {
     private var binding: FragmentPermissionsBinding? = null
 
     private val adapter by lazy {
@@ -52,7 +51,7 @@ class PermissionsFragment : BaseSettingsFragment() {
 
         binding!!.permissionsList.apply {
             addItemDecoration(divider)
-            adapter = this@PermissionsFragment.adapter
+            adapter = this@PermissionListFragment.adapter
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -67,14 +66,20 @@ class PermissionsFragment : BaseSettingsFragment() {
     }
 
     private fun updateUi(missingPermissions: List<AppPermission>) {
+        val context = requireContext()
         val permissionItems =
             missingPermissions
                 .map { permission ->
                     PermissionUiModel(
                         permission = permission,
-                        isMandatory = PermissionRepository.mandatoryPolicy.isMandatory(requireContext(), permission)
+                        isMandatory = PermissionRepository.mandatoryPolicy.isMandatory(context, permission)
                     )
-                }.sortedByDescending { it.isMandatory }
+                }
+                .sortedWith(
+                    compareByDescending<PermissionUiModel> { it.isMandatory }
+                        .thenByDescending { it.permission is RuntimePermission }
+                        .thenBy { context.getString(it.permission.titleRes).lowercase() }
+                )
 
         adapter.submitList(permissionItems)
 

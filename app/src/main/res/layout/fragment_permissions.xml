@@ -10,7 +10,7 @@
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="18dp"
+        android:padding="12dp"
         android:text="@string/perm_activity_header"
         android:textColor="?bald_decoration_on_background"
         android:textSize="@dimen/medium_plus"

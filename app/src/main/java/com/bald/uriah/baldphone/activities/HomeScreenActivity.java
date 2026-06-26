@@ -21,6 +21,7 @@ import static app.baldphone.neo.utils.IntentUtilsKt.startActivitySafe;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -40,6 +41,7 @@ import app.baldphone.neo.launcher.ui.FlashlightButton;
 import app.baldphone.neo.launcher.ui.NotificationsButton;
 import app.baldphone.neo.launcher.ui.SoundButton;
 import app.baldphone.neo.permissions.PermissionManager;
+import app.baldphone.neo.permissions.PermissionRepository;
 import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 import app.baldphone.neo.utils.HomeAppUtils;
 
@@ -68,6 +70,23 @@ public class HomeScreenActivity extends BaldActivity {
     private ViewPagerHolder viewPagerHolder;
 
     private final Handler handler = new Handler();
+
+    private boolean permissionBannerDismissed = false;
+    private boolean isResumed = false;
+    private boolean isFirstResume = true;
+
+    private final Runnable showPermissionBannerRunnable = () -> {
+        final View permissionBanner = findViewById(R.id.permission_banner);
+        if (permissionBanner == null) return;
+        boolean hasPermission = PermissionRepository.INSTANCE.isMandatoryGranted(this);
+        if (hasPermission) {
+            permissionBanner.setVisibility(View.GONE);
+        } else {
+            if (!permissionBannerDismissed) {
+                permissionBanner.setVisibility(View.VISIBLE);
+            }
+        }
+    };
 
     public enum LaunchSource {
         HOME, LAUNCHER, UNKNOWN
@@ -111,6 +130,8 @@ public class HomeScreenActivity extends BaldActivity {
                 updateViewPager(false, false);
             }
         });
+
+        setupPermissionBanner();
     }
 
     private void setupTopBarButtons() {
@@ -139,6 +160,19 @@ public class HomeScreenActivity extends BaldActivity {
         });
     }
 
+    private void setupPermissionBanner() {
+        final View permissionBanner = findViewById(R.id.permission_banner);
+        if (permissionBanner == null) return;
+
+        permissionBanner.findViewById(R.id.permission_banner_text).setOnClickListener(v ->
+            startActivity(new Intent(this, app.baldphone.neo.settings.ui.SettingsActivity.class)
+                .setData(Uri.parse("myapp://settings/system/permissions"))));
+        permissionBanner.findViewById(R.id.permission_banner_close).setOnClickListener(v -> {
+            permissionBanner.setVisibility(View.GONE);
+            permissionBannerDismissed = true;
+        });
+    }
+
     private void requestFlashlightPermission(@NonNull Runnable onGranted) {
         PermissionManager.checkOrRequest(this, PermissionManager.CAMERA, result -> {
             if (result == PermissionManager.GRANTED) {
@@ -164,6 +198,28 @@ public class HomeScreenActivity extends BaldActivity {
             viewPagerHolder.getViewPager().removeAllViews();//android auto saves fragments, not good for us in this case
             this.recreate();
         }
+
+        if (isResumed) {
+            Log.d(TAG, "onResume: was already visible!");
+        } else {
+            // Case: The user just returned from Settings where they might have granted missing permissions.
+            if (!permissionBannerDismissed) {
+                PermissionRepository.INSTANCE.refresh();
+            }
+        }
+        isResumed = true;
+
+        if (isFirstResume) {
+            isFirstResume = false;
+            final View permissionBanner = findViewById(R.id.permission_banner);
+            if (permissionBanner != null) {
+                permissionBanner.setVisibility(View.GONE);
+            }
+            handler.removeCallbacks(showPermissionBannerRunnable);
+            handler.postDelayed(showPermissionBannerRunnable, 2000);
+        } else {
+            showPermissionBannerRunnable.run();
+        }
     }
 
     @Override
@@ -177,6 +233,7 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
+        handler.removeCallbacks(showPermissionBannerRunnable);
         super.onPause();
     }
 
@@ -184,6 +241,7 @@ public class HomeScreenActivity extends BaldActivity {
     protected void onStop() {
         Log.d(TAG, "onStop");
         handler.removeCallbacksAndMessages(null);
+        isResumed = false;
         super.onStop();
     }
 
@@ -207,6 +265,8 @@ public class HomeScreenActivity extends BaldActivity {
      * Sets the page to {@link BaldPagerAdapter#startingPage}
      */
     private void updateViewPager(boolean animate, boolean resetToHome) {
+        if (baldPagerAdapter == null || viewPagerHolder == null) return;
+
         baldPagerAdapter.obtainAppList();
         if (resetToHome)
             viewPagerHolder.getViewPager().setCurrentItem(baldPagerAdapter.startingPage, animate);
@@ -252,6 +312,12 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "onBackPressed");
+
+        if (viewPagerHolder == null || baldPagerAdapter == null) {
+            super.onBackPressed();
+            return;
+        }
+
         if (vibrator != null)
             vibrator.vibrate(D.vibetime);
 
@@ -268,6 +334,8 @@ public class HomeScreenActivity extends BaldActivity {
     @Override
     protected void onNewIntent(@NonNull Intent intent) {
         super.onNewIntent(intent);
+        if (isFinishing() || isDestroyed()) return;
+
         setIntent(intent); // update the activity's intent
         final LaunchSource launchSource = detectLaunchSource(intent);
         Log.d(TAG, "onNewIntent: launchSource=" + launchSource);

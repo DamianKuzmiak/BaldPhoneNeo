@@ -354,7 +354,7 @@
     <string name="banner_home_enable_features_cta">Tap here to enable all features</string>
     <string name="mandatory_badge">Required</string>
     <string name="grant_contacts_permission">Grant Contacts Permission</string>
-    <string name="perm_activity_header">Please allow the following permissions:</string>
+    <string name="perm_activity_header">To work properly, the app needs access to a few features:</string>
     <string name="dialog_title_permission_required">Permission Required</string>
     <string name="dialog_message_permission_settings">In the application settings, go to Permissions and grant all required access.</string>
     <string name="grant_permission_for">Grant permission for:\n%s</string>

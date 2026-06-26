@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/permissionsFragment"
-        android:name="app.baldphone.neo.settings.system.PermissionsFragment"
+        android:name="app.baldphone.neo.settings.system.permissions.PermissionListFragment"
         android:label="@string/permissions_part">
         <deepLink app:uri="myapp://settings/system/permissions" />
     </fragment>
