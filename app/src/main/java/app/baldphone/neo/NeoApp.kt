@@ -23,6 +23,7 @@ import coil3.PlatformContext
 import coil3.SingletonImageLoader
 import coil3.memory.MemoryCache
 import coil3.util.DebugLogger
+import coil3.util.Logger
 import net.danlew.android.joda.JodaTimeAndroid
 
 import app.baldphone.neo.core.assisttouch.AssistTouchInjector
@@ -150,13 +151,13 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
             .memoryCache {
                 MemoryCache
                     .Builder()
-                    .maxSizePercent(context, 0.35)
+                    .maxSizePercent(context, 0.55)
                     .build()
             }.components {
                 add(MediaStoreThumbnailFetcher.Factory(context))
             }.apply {
                 if (BuildConfig.DEBUG) {
-                    logger(DebugLogger(coil3.util.Logger.Level.Verbose))
+                    logger(DebugLogger(Logger.Level.Verbose))
                 }
             }.build()
 

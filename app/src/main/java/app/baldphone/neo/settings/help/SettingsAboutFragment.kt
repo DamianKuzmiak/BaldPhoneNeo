@@ -6,6 +6,8 @@ import android.view.View
 
 import androidx.navigation.fragment.findNavController
 
+import coil3.SingletonImageLoader
+
 import app.baldphone.neo.BuildConfig
 import app.baldphone.neo.Constants
 import app.baldphone.neo.R
@@ -62,6 +64,21 @@ class SettingsAboutFragment : BaseSettingsFragment(R.layout.fragment_settings_ab
                 context.copyToClipboard("Device Info", deviceInfo)
             }.setNegativeButton(android.R.string.cancel)
             .show()
+
+        val memoryCache = SingletonImageLoader.get(requireContext()).memoryCache
+
+        memoryCache?.let { cache ->
+            cache.keys.forEachIndexed { index, key ->
+                val value = cache[key]
+                val image = value?.image
+                if (image != null) {
+                    val dimensions = "${image.width}x${image.height}"
+                    val sizeInKB = image.size / 1024
+
+                    android.util.Log.d("CoilCache", "id: $index, key: ${key.key} | Size: $dimensions | Memory: ${sizeInKB}KB")
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

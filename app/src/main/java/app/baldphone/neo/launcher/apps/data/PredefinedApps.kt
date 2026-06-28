@@ -17,7 +17,7 @@ import app.baldphone.neo.R
 import app.baldphone.neo.activities.DialerActivity
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity
 import app.baldphone.neo.features.contacts.ui.ContactsActivity
-import app.baldphone.neo.features.gallery.MediaActivity
+import app.baldphone.neo.features.media.ui.browser.MediaActivity
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.launcher.apps.ui.AppsActivity
 
@@ -40,7 +40,7 @@ object PredefinedApps {
     private const val PACKAGE_NAME = BuildConfig.APPLICATION_ID
 
     /** Matches the activity-alias name in AndroidManifest.xml for the videos media mode. */
-    private const val VIDEOS_ALIAS_CLASS = "app.baldphone.neo.features.gallery.VideosMediaAlias"
+    private const val VIDEOS_ALIAS_CLASS = "app.baldphone.neo.features.media.ui.browser.VideosMediaAlias"
 
     private lateinit var applicationContext: Context
 

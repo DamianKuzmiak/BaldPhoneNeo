@@ -79,10 +79,11 @@
         <item name="bald_button_positive">@color/bald_button_positive</item>
         <item name="bald_text_on_button_positive">@color/bald_text_on_button_positive</item>
         <item name="bald_button_bg_color">?attr/colorSecondaryContainer</item>
-        <item name="bald_category_contacts">@color/color_1</item>
-        <item name="bald_category_settings">@color/color_3</item>
         <item name="bald_category_apps">@color/color_4</item>
+        <item name="bald_category_contacts">@color/color_1</item>
         <item name="bald_category_crashes">@color/color_5</item>
+        <item name="bald_category_media">@color/color_2</item>
+        <item name="bald_category_settings">@color/color_3</item>
         <item name="bald_color_red">?attr/colorError</item>
         <item name="bald_color_green">@color/green</item>
         <item name="bald_color_blue">?attr/colorTertiary</item>

@@ -9,21 +9,12 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleBarBackgroundColor="?bald_category_apps"
-        app:titleBarTitle="@string/contact_details" />
+        app:titleBarBackgroundColor="?bald_category_media"
+        app:titleBarTitle="@string/photos_and_videos" />
 
-    <com.bald.uriah.baldphone.views.ScrollingHelper
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.bald.uriah.baldphone.views.ModularRecyclerView
-            android:id="@+id/child"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingHorizontal="1dp"
-            android:paddingTop="1dp"
-            android:requiresFadingEdge="none"
-            android:tag="edgeToEdge" />
-    </com.bald.uriah.baldphone.views.ScrollingHelper>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

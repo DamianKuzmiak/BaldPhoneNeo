@@ -50,6 +50,20 @@ fun Context.share(intent: Intent) {
 }
 
 /**
+ * Shares a media file (image/video) with the specified [uri] and optional [mimeType].
+ */
+fun Context.shareMedia(uri: Uri, mimeType: String? = null) {
+    val resolvedType = mimeType ?: contentResolver.getType(uri) ?: "*/*"
+    val shareIntent =
+        Intent(Intent.ACTION_SEND).apply {
+            type = resolvedType
+            putExtra(Intent.EXTRA_STREAM, uri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+    share(shareIntent)
+}
+
+/**
  * Shares a contact as a vCard.
  */
 fun Context.shareContact(lookupKey: String?, name: String? = null) {

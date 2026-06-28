@@ -34,7 +34,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import app.baldphone.neo.features.gallery.MediaActivity;
+import app.baldphone.neo.features.media.MediaMode;
+import app.baldphone.neo.features.media.ui.browser.MediaActivity;
 import app.baldphone.neo.launcher.apps.ui.AppsActivity;
 
 import app.baldphone.neo.R;
@@ -102,13 +103,13 @@ public class HomePage2 extends HomeView {
         if (bt_photo != null) {
             bt_photo.setOnClickListener(
                     v -> startActivityWithNewTaskClear(getContext(), new Intent(getContext(), MediaActivity.class)
-                            .putExtra(MediaActivity.EXTRA_MODE, MediaActivity.MODE_PHOTOS_ONLY)));
+                            .putExtra(MediaMode.EXTRA, MediaMode.PHOTOS)));
         }
 
         if (bt_videos != null) {
             bt_videos.setOnClickListener(
                     v -> startActivityWithNewTaskClear(getContext(), new Intent(getContext(), MediaActivity.class)
-                            .putExtra(MediaActivity.EXTRA_MODE, MediaActivity.MODE_VIDEOS_ONLY)));
+                            .putExtra(MediaMode.EXTRA, MediaMode.VIDEOS)));
         }
 
         if (bt_pills != null) {

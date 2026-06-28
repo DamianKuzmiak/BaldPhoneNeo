@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bald.uriah.baldphone.views.ScrollingHelper
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.bald.uriah.baldphone.views.ModularRecyclerView
+        android:id="@+id/media_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:requiresFadingEdge="none"
+        android:tag="edgeToEdge" />
+</com.bald.uriah.baldphone.views.ScrollingHelper>

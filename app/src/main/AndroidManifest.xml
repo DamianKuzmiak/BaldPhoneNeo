@@ -199,19 +199,14 @@
             android:exported="false"
             android:label="@string/recent_calls" />
         <activity
-            android:name=".features.gallery.MediaActivity"
-            android:exported="false"
+            android:name=".features.media.ui.browser.MediaActivity"
+            android:exported="true"
             android:label="@string/photos" />
         <activity-alias
-            android:name=".features.gallery.VideosMediaAlias"
+            android:name=".features.media.ui.browser.VideosMediaAlias"
             android:exported="true"
             android:label="@string/videos"
-            android:targetActivity=".features.gallery.MediaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <data android:mimeType="video/*" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            android:targetActivity=".features.media.ui.browser.MediaActivity">
             <meta-data
                 android:name="media_mode"
                 android:value="2" />
