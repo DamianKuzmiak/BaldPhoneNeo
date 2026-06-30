@@ -170,10 +170,6 @@
             android:exported="false"
             android:label="Contact details" />
         <activity
-            android:name="com.bald.uriah.baldphone.activities.media.SingleVideoActivity"
-            android:exported="false"
-            android:label="@string/video" />
-        <activity
             android:name="com.bald.uriah.baldphone.activities.TutorialActivity"
             android:exported="false"
             android:label="@string/video_tutorials"
@@ -211,10 +207,6 @@
                 android:name="media_mode"
                 android:value="2" />
         </activity-alias>
-        <activity
-            android:name="com.bald.uriah.baldphone.activities.media.SinglePhotoActivity"
-            android:exported="false"
-            android:label="@string/photo" />
         <activity
             android:name="com.bald.uriah.baldphone.activities.contacts.AddContactActivity"
             android:exported="false"
