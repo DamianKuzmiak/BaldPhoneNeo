@@ -7,15 +7,15 @@
     android:clickable="true"
     android:focusable="true"
     android:gravity="center_vertical"
-    android:minWidth="200dp"
-    android:minHeight="50dp"
+    android:minWidth="230dp"
+    android:minHeight="55dp"
     android:orientation="horizontal"
     android:paddingHorizontal="12dp">
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginEnd="12dp"
         android:contentDescription="@null"
         tools:src="@android:drawable/ic_menu_help" />
@@ -28,15 +28,16 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
+        android:padding="4dp"
         android:textAlignment="viewStart"
-        android:textSize="@dimen/medium_plus"
+        android:textSize="@dimen/large"
         tools:text="Action menu item" />
 
     <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/switch_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="12dp"
         android:clickable="false"
         android:duplicateParentState="true"
         android:focusable="false"

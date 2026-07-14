@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -34,6 +35,7 @@ class ActionMenu(
     context: Context,
     actionMenuItems: List<ActionMenuItem>,
     showCancel: Boolean = true,
+    private val onDismissListener: (() -> Unit)? = null,
     private val onClickListener: ((ActionMenuItem) -> Unit)? = null
 ) : DefaultLifecycleObserver {
     private val binding = ViewActionMenuBinding.inflate(LayoutInflater.from(context))
@@ -41,7 +43,7 @@ class ActionMenu(
 
     private val cancelItem =
         ActionMenuItem.Option(
-            iconRes = android.R.drawable.ic_menu_close_clear_cancel,
+            icon = MenuIcon.Resource(android.R.drawable.ic_menu_close_clear_cancel),
             labelRes = R.string.action_close
         )
 
@@ -63,6 +65,7 @@ class ActionMenu(
             isOutsideTouchable = true
             setOnDismissListener {
                 cleanup()
+                onDismissListener?.invoke()
             }
         }
 
@@ -105,7 +108,11 @@ class ActionMenu(
 
         when (item) {
             is ActionMenuItem.Option -> {
-                itemBinding.icon.setImageResource(item.iconRes)
+                when (val icon = item.icon) {
+                    is MenuIcon.Drawable -> itemBinding.icon.setImageDrawable(icon.drawable)
+                    is MenuIcon.Resource -> itemBinding.icon.setImageResource(icon.resId)
+                    null -> itemBinding.icon.setImageDrawable(null)
+                }
                 itemBinding.label.setText(item.labelRes)
                 itemBinding.switchWidget.isVisible = false
             }
@@ -166,6 +173,15 @@ class ActionMenu(
             height = binding.root.measuredHeight
             showAsDropDown(anchor, 0, 0)
         }
+
+        val container = popupWindow.contentView.rootView
+        val layoutParams = container.layoutParams as? WindowManager.LayoutParams
+        if (layoutParams != null) {
+            layoutParams.flags = layoutParams.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
+            layoutParams.dimAmount = 0.4f
+            val windowManager = anchor.context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            windowManager.updateViewLayout(container, layoutParams)
+        }
     }
 
     /** Dismisses the popup window if it is currently showing. */
@@ -217,9 +233,10 @@ private fun Context.findLifecycleOwner(): LifecycleOwner? {
 class ActionMenuBuilder {
     private val items = mutableListOf<ActionMenuItem>()
     var showCancel: Boolean = true
+    var onDismiss: (() -> Unit)? = null
 
     fun option(
-        @DrawableRes iconRes: Int,
+        @DrawableRes iconRes: Int = 0,
         @StringRes labelRes: Int,
         @ColorInt iconTint: Int? = null,
         enabled: Boolean = true,
@@ -227,7 +244,25 @@ class ActionMenuBuilder {
     ) {
         items.add(
             ActionMenuItem.Option(
-                iconRes = iconRes,
+                icon = if (iconRes != 0) MenuIcon.Resource(iconRes) else null,
+                labelRes = labelRes,
+                iconTint = iconTint,
+                enabled = enabled,
+                onClick = onClick
+            )
+        )
+    }
+
+    fun option(
+        iconDrawable: Drawable?,
+        @StringRes labelRes: Int,
+        @ColorInt iconTint: Int? = null,
+        enabled: Boolean = true,
+        onClick: () -> Unit
+    ) {
+        items.add(
+            ActionMenuItem.Option(
+                icon = iconDrawable?.let { MenuIcon.Drawable(it) },
                 labelRes = labelRes,
                 iconTint = iconTint,
                 enabled = enabled,
@@ -260,7 +295,7 @@ class ActionMenuBuilder {
         items.add(ActionMenuItem.Separator)
     }
 
-    fun build(context: Context): ActionMenu = ActionMenu(context, items, showCancel)
+    fun build(context: Context): ActionMenu = ActionMenu(context, items, showCancel, onDismissListener = onDismiss)
 }
 
 /** Displays a [ActionMenu] anchored to the specified view. */

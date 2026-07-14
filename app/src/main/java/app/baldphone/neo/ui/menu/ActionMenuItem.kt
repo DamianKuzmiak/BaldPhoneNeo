@@ -17,7 +17,7 @@ sealed interface ActionMenuItem {
     val iconTint: Int?
 
     data class Option(
-        @param:DrawableRes val iconRes: Int,
+        val icon: MenuIcon? = null,
         @param:StringRes val labelRes: Int,
         @param:ColorInt override val iconTint: Int? = null,
         override var enabled: Boolean = true,
@@ -41,4 +41,12 @@ sealed interface ActionMenuItem {
         override var enabled = false
         override val iconTint: Int? = null
     }
+}
+
+sealed interface MenuIcon {
+    data class Resource(
+        @DrawableRes val resId: Int
+    ) : MenuIcon
+
+    data class Drawable(val drawable: android.graphics.drawable.Drawable) : MenuIcon
 }

@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_action_popup"
     android:elevation="8dp"
-    android:minWidth="200dp"
+    android:minWidth="230dp"
     android:orientation="vertical"
     android:padding="2dp"
-    tools:minHeight="50dp"
-    tools:minWidth="200dp" />
+    tools:minHeight="55dp"
+    tools:minWidth="230dp" />
