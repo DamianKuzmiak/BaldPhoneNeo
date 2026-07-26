@@ -350,6 +350,8 @@
     <!-- Special Permissions -->
     <string name="permission_accessibility_service_title">Ułatwienia dostępu</string>
     <string name="accessibility_service_description">Umożliwia szybkie wygaszenie ekranu jednym dotknięciem, bez używania bocznych przycisków.</string>
+    <string name="permission_dnd_access_title">Dostęp do trybu Nie przeszkadzać</string>
+    <string name="permission_dnd_access_description">Pozwala na przełączanie trybu cichego.</string>
     <string name="permission_overlay_title">Wyświetlanie nad innymi aplikacjami</string>
     <string name="permission_overlay_description">Pozwala wyświetlać ekrany alarmów, przypomnień i leków na wierzchu, nawet gdy używasz innych aplikacji.</string>
     <string name="permission_system_notifications_title">Powiadomienia na urządzeniu i w aplikacjach</string>
@@ -429,4 +431,9 @@
 
     <string name="content_desc_gallery_photo_thumbnail">Miniaturka zdjęcia</string>
     <string name="content_desc_gallery_video_thumbnail">Miniaturka wideo</string>
+
+    <!-- Komunikaty trybów dźwięku (Toasty) -->
+    <string name="toast_mode_normal">Dźwięk włączony. Słyszysz dzwonki i powiadomienia.</string>
+    <string name="toast_mode_vibrate">Same wibracje. Telefon nie będzie dzwonił.</string>
+    <string name="toast_mode_silent">Całkowicie wyciszony. Brak dźwięków i wibracji.</string>
 </resources>

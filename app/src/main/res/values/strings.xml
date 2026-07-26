@@ -380,6 +380,8 @@
     <!-- Special Permissions -->
     <string name="permission_accessibility_service_title">Accessibility</string>
     <string name="accessibility_service_description">Enables screen locking with a single tap, without needing to use the side buttons.</string>
+    <string name="permission_dnd_access_title">Do Not Disturb access</string>
+    <string name="permission_dnd_access_description">Allows toggling silent mode.</string>
     <string name="permission_overlay_title">Display over other apps</string>
     <string name="permission_overlay_description">Allows to display reminders over other active apps.</string>
     <string name="permission_system_notifications_title">Device &amp; app notifications</string>
@@ -488,4 +490,9 @@
 
     <string name="content_desc_gallery_photo_thumbnail">Photo thumbnail</string>
     <string name="content_desc_gallery_video_thumbnail">Video thumbnail</string>
+
+    <!-- Sound mode messages (Toasts) -->
+    <string name="toast_mode_normal">Sound ON. You will hear ringtones and alerts.</string>
+    <string name="toast_mode_vibrate">Vibration only. The phone will not ring.</string>
+    <string name="toast_mode_silent">Completely silent. No sounds or vibrations.</string>
 </resources>

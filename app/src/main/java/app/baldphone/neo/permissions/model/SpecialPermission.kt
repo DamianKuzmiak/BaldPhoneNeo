@@ -123,6 +123,31 @@ sealed class SpecialPermission(
             createIntent(context, Settings.ACTION_ACCESSIBILITY_SETTINGS, isPackageUri = false)
     }
 
+    data object AccessNotificationPolicy : SpecialPermission(
+        titleRes = R.string.permission_dnd_access_title,
+        messageRes = R.string.permission_dnd_access_description,
+        iconRes = R.drawable.ic_notifications_active
+    ) {
+        override fun checkIsGranted(context: Context): Boolean =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
+                notificationManager?.isNotificationPolicyAccessGranted == true
+            } else {
+                true
+            }
+
+        @SuppressLint("InlinedApi")
+        override fun isDeclared(packageInfo: PackageInfo): Boolean =
+            packageInfo.requestedPermissions?.contains(Manifest.permission.ACCESS_NOTIFICATION_POLICY) == true
+
+        override fun settingsIntent(context: Context): Intent? =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                createIntent(context, Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS, isPackageUri = false)
+            } else {
+                null
+            }
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
 
     companion object {

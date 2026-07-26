@@ -1,5 +1,7 @@
 package app.baldphone.neo.permissions
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.util.Log
 
 import androidx.fragment.app.FragmentActivity
@@ -35,18 +37,6 @@ object PermissionManager {
         val permission: AppPermission,
         val callback: PermissionCallback
     )
-
-    /**
-     * Entry point for building a [RequestBatch]
-     *
-     * Usage:
-     * ```kotlin
-     * PermissionManager.with(this)
-     *     .add(RuntimePermission.Camera, callback)
-     *     .request()
-     * ```
-     */
-    fun with(activity: FragmentActivity): RequestBatch = RequestBatch(activity)
 
     /**
      * Checks if the given [permission] is granted and requests it if necessary.
@@ -100,6 +90,48 @@ object PermissionManager {
             handler.handle(result)
         }
     }
+
+    /**
+     * Checks if the given [permission] is granted and requests it if necessary.
+     *
+     * Resolves the [FragmentActivity] from the provided [Context].
+     * If it cannot be resolved, logs an error and invokes the error handler of the block.
+     */
+    fun checkOrRequest(
+        context: Context,
+        permission: AppPermission,
+        block: PermissionResultHandler.() -> Unit
+    ) {
+        val activity = findFragmentActivity(context)
+        if (activity != null) {
+            checkOrRequest(activity, permission, block)
+        } else {
+            Log.e(TAG, "Cannot check or request permission: Context is not a FragmentActivity wrapper: $context")
+            val handler = PermissionResultHandler().apply(block)
+            handler.handle(PermissionResult.Error)
+        }
+    }
+
+    private fun findFragmentActivity(context: Context): FragmentActivity? {
+        var cur = context
+        while (cur is ContextWrapper) {
+            if (cur is FragmentActivity) return cur
+            cur = cur.baseContext
+        }
+        return null
+    }
+
+    /**
+     * Entry point for building a [RequestBatch]
+     *
+     * Usage:
+     * ```kotlin
+     * PermissionManager.with(this)
+     *     .add(RuntimePermission.Camera, callback)
+     *     .request()
+     * ```
+     */
+    fun with(activity: FragmentActivity): RequestBatch = RequestBatch(activity)
 
     /**
      * Starts a permission request batch using a DSL builder.

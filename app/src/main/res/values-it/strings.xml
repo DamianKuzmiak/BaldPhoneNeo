@@ -378,6 +378,8 @@
     <!-- Special Permissions -->
     <string name="permission_accessibility_service_title">Accessibilità</string>
     <string name="accessibility_service_description">Consente di bloccare lo schermo con un solo tocco, senza usare i pulsanti laterali.</string>
+    <string name="permission_dnd_access_title">Accesso a Non disturbare</string>
+    <string name="permission_dnd_access_description">Consente di controllare la modalità silenziosa.</string>
     <string name="permission_overlay_title">Visualizzazione sopra altre app</string>
     <string name="permission_overlay_description">Consente di mostrare i promemoria sopra le altre app aperte.</string>
     <string name="permission_system_notifications_title">Notifiche del dispositivo e delle app</string>
@@ -487,4 +489,9 @@
 
     <string name="content_desc_gallery_photo_thumbnail">Miniatura foto</string>
     <string name="content_desc_gallery_video_thumbnail">Miniatura video</string>
+
+    <!-- Sound mode messages (Toasts) -->
+    <string name="toast_mode_normal">Suono attivo. Sentirai suonerie e notifiche.</string>
+    <string name="toast_mode_vibrate">Solo vibrazione. Il telefono non squillerà.</string>
+    <string name="toast_mode_silent">Completamente silenzioso. Nessun suono o vibrazione.</string>
 </resources>
