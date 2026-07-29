@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +24,10 @@ import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -49,6 +52,10 @@ import com.bald.uriah.baldphone.utils.S;
 public class AlarmScreenActivity extends TimedBaldActivity {
     private static final String TAG = AlarmScreenActivity.class.getSimpleName();
     private static final int TIME_DELAYED_SCHEDULE = 100;
+    /**
+     * How often the ringtone is checked on API levels that cannot loop it natively.
+     */
+    private static final int RINGTONE_POLL_INTERVAL = 500;
     private static final AudioAttributes alarmAttributes =
             new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_ALARM)
@@ -58,6 +65,19 @@ public class AlarmScreenActivity extends TimedBaldActivity {
     private TextView tv_name, snooze;
     private ImageView cancel;
     private Ringtone ringtone;
+    private final Handler ringtoneHandler = new Handler(Looper.getMainLooper());
+    /**
+     * Fallback for API < 28, where {@link Ringtone#setLooping(boolean)} does not exist:
+     * restarts the ringtone as soon as it has finished playing.
+     */
+    private final Runnable ringtoneWatchdog = new Runnable() {
+        @Override
+        public void run() {
+            if (ringtone != null && !ringtone.isPlaying())
+                ringtone.play();
+            ringtoneHandler.postDelayed(this, RINGTONE_POLL_INTERVAL);
+        }
+    };
     private Alarm alarm;
 
     public static Ringtone getRingtone(Context context) {
@@ -125,13 +145,6 @@ public class AlarmScreenActivity extends TimedBaldActivity {
         });
 
         ringtone = getRingtone(this);
-        try {
-            ringtone.play();
-        } catch (Exception e) {
-            BaldToast.error(this);
-            Log.e(TAG, e.getMessage());
-            e.printStackTrace();
-        }
 
         Animations.makeBiggerAndSmaller(this, cancel, () -> {
             if (vibrator != null) vibrator.vibrate(D.vibetime);
@@ -142,22 +155,49 @@ public class AlarmScreenActivity extends TimedBaldActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (ringtone != null)
-            ringtone.play();
+        startRingtone();
     }
 
     @Override
     protected void onStop() {
-        if (ringtone != null)
-            ringtone.stop();
+        stopRingtone();
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
+        stopRingtone();
+        super.onDestroy();
+    }
+
+    /**
+     * Starts the ringtone and keeps it going until the alarm is dismissed or snoozed.
+     * <p>
+     * A plain {@link Ringtone#play()} stops after a single pass, which used to leave the alarm
+     * silent after a few seconds. From API 28 the ringtone can loop natively; below that a
+     * watchdog restarts it whenever it stops.
+     */
+    private void startRingtone() {
+        if (ringtone == null)
+            return;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                ringtone.setLooping(true);
+                ringtone.play();
+            } else {
+                ringtone.play();
+                ringtoneHandler.postDelayed(ringtoneWatchdog, RINGTONE_POLL_INTERVAL);
+            }
+        } catch (Exception e) {
+            BaldToast.error(this);
+            Log.e(TAG, "could not play the alarm ringtone", e);
+        }
+    }
+
+    private void stopRingtone() {
+        ringtoneHandler.removeCallbacks(ringtoneWatchdog);
         if (ringtone != null)
             ringtone.stop();
-        super.onDestroy();
     }
 
     private void attachXml() {
