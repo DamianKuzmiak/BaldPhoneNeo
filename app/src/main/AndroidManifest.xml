@@ -153,7 +153,9 @@
             android:name=".activities.alarms.AlarmScreenActivity"
             android:exported="false"
             android:label="@string/alarm"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true" />
         <activity
             android:name=".activities.alarms.AddAlarmActivity"
             android:exported="false"
@@ -256,7 +258,9 @@
             android:name=".activities.pills.PillScreenActivity"
             android:exported="false"
             android:label="@string/pills"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true" />
         <activity
             android:name=".activities.FontChangerActivity"
             android:exported="false"
