@@ -1,5 +1,5 @@
-BaldPhone Neo
-Copyright 2025 Damian Kuzmiak
+ZenPhone
+Copyright 2026 Zenolabs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,13 +15,22 @@ limitations under the License.
 
 ---
 
-This product includes software derived from the original
-"BaldPhone" project by Uriah Shaul Mandel
-(https://github.com/UriahShaulMandel/BaldPhone).
+This product includes software derived from "BaldPhone Neo" by
+Damian Kuzmiak (https://github.com/DamianKuzmiak/BaldPhoneNeo),
+which is itself derived from the original "BaldPhone" project by
+Uriah Shaul Mandel (https://github.com/UriahShaulMandel/BaldPhone).
 
-BaldPhone Neo is an independent fork that modernizes and optimizes
-the original BaldPhone experience with updated design, improved
-performance, and ongoing usability enhancements.
+Upstream works:
+
+    BaldPhone       Copyright 2019 Uriah Shaul Mandel
+    BaldPhone Neo   Copyright 2025 Damian Kuzmiak
+
+ZenPhone is an independent fork that continues this lineage with its
+own roadmap and release schedule. It is not affiliated with, endorsed
+by, or supported by the authors of the upstream projects.
+
+Files modified by Zenolabs carry an added copyright notice alongside
+the original ones, as required by Section 4(b) of the License.
 
 ---
 

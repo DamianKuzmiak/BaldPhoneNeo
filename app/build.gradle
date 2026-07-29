@@ -1,6 +1,7 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
  * Copyright 2025 Damian Kuzmiak
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,12 +35,12 @@ android {
     namespace = "com.bald.uriah.baldphone"
     compileSdk = 35
     defaultConfig {
-        applicationId = "app.baldphone.neo"
+        applicationId = "net.zenolabs.zenphone"
         minSdk = 21
         //noinspection OldTargetApi
         targetSdk = 34
-        versionCode = 106
-        versionName = "15.0.0"
+        versionCode = 1
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [fullApp: "true", recentCalls: "true"]
     }

@@ -15,8 +15,7 @@
   -->
 <resources>
     <string name="api_level" translatable="false">Api Level:</string>
-    <string name="app_display_name" translatable="false">BaldPhone Neo</string>
-    <string name="authorities" translatable="false">com.bald.uriah.baldphone.fileprovider</string>
+    <string name="app_display_name" translatable="false">ZenPhone</string>
 
     <string name="empty" translatable="false" />
     <string name="not_available_duration" translatable="false">---</string>

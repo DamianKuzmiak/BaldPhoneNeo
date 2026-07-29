@@ -1,93 +1,72 @@
-## Table of Contents
-- [Branding](#baldphone-neo)
-- [Project Overview](#project-overview)
-- [Key Goals](#key-goals)
-- [Screenshots](#screenshots)
-- [Installation](#installation)
-- [Google Play Policy](#google-play-policy--future-plans)
-- [Get Involved](#get-involved)
-- [Community](#community)
-- [Contact](#contact)
-- [Licence](#license)
+# ZenPhone
 
-# BaldPhone Neo
-*A modern, optimized, and user-friendly evolution of BaldPhone.*
+*An accessible Android launcher for older adults and people with visual or motor impairments.*
 
-<img src="logo/rectangle.png" alt="BaldPhone Neo logo" width="240">
+ZenPhone replaces the phone's interface with a larger, simpler and friendlier one. It is free
+and open source, and it stands on the shoulders of two earlier projects: the original
+[BaldPhone](https://github.com/UriahShaulMandel/BaldPhone) by Uriah Shaul Mandel, and its
+modernized continuation [BaldPhone Neo](https://github.com/DamianKuzmiak/BaldPhoneNeo) by
+Damian Kuzmiak.
 
-[![GitHub version](https://img.shields.io/github/tag/DamianKuzmiak/BaldPhone.svg)](https://github.com/DamianKuzmiak/BaldPhone/releases/latest)
-[![Repo size](https://img.shields.io/github/repo-size/DamianKuzmiak/BaldPhone)](https://github.com/DamianKuzmiak/BaldPhone)
-[![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/DamianKuzmiak/BaldPhone)
+ZenPhone is an independent fork with its own roadmap. It is not affiliated with or endorsed by
+the upstream authors.
 
-## Project Overview
-**BaldPhone Neo** is a standalone continuation of the original [BaldPhone](https://github.com/UriahShaulMandel/BaldPhone) by Uriah Shaul Mandel.  
+## Features
 
-It preserves the inclusive vision of making smartphones more accessible while introducing modern design, better performance, and smoother user experience.
+- Home launcher with large, high-contrast targets
+- Dialer and contacts designed for shaky hands and poor eyesight
+- Alarms and medication reminders
+- SOS button
+- Photo and video viewer
+- Simplified keyboard
+- Notification management
+- Available in 38 languages
 
-Building on the great work of the original author, this fork aims to carry the project forward with frequent updates and fresh UX improvements.
+## Status
 
-## Key Goals
-- **Modern UI/UX:** A refreshed interface designed for clarity and comfort.
-- **Performance Optimization:** Faster loading, smoother animations.
-- **Preserve Core Features:** All essential BaldPhone functionality remains available.
-- **Frequent Updates:** Regular improvements based on community feedback.
-- **Enhanced Accessibility:** Continued focus on simplicity and ease of use.
+Early stage. The project inherits an in-progress migration from Java to Kotlin — roughly half
+the codebase has been converted so far — along with a modernized Android toolchain.
 
-## Screenshots
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20white.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20white.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/recents.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/recents.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/dialer.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/dialer.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/contacts.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/contacts.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/tony.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/tony.jpg)
+Current priorities:
 
-<details><summary>More screenshots</summary>
+1. Restore full-screen alarms on Android 14+
+2. Raise `targetSdk` to 35, then 36
+3. Continuous integration
+4. Continue the Kotlin migration
 
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20black.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20black.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/sos.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/sos.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/keyboard.jpg" width=505.68>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/keyboard.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/alarms.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/alarms.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/alarms%20empty.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/alarms%20empty.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/pills.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/pills.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/settings.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/settings.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/video%20tutorials.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/video%20tutorials.jpg)
-</details>
+## Building
+
+Requirements: a recent Android Studio (the project uses AGP 9.1.1 and Gradle 9.4.1),
+JDK 17 or newer, and Android SDK platforms 35 and 36.
+
+```bash
+git clone https://github.com/zenolabs/ZenPhone.git
+cd ZenPhone
+./gradlew assembleDebug
+```
+
+On Windows use `gradlew.bat`, and make sure `JAVA_HOME` points at a JDK 17+ installation —
+the runtime bundled with Android Studio, under `<install dir>\jbr`, works fine.
 
 ## Installation
-Coming soon
 
-## Google Play Policy & Future Plans
-At this stage, **BaldPhone Neo is not available on Google Play**.
+No releases yet. Distribution will target F-Droid and direct APK downloads.
 
-The current Google Play policies restrict apps that request multiple system-level permissions (e.g., managing calls, SMS, and media) - which are essential for BaldPhone Neo’s all-in-one accessibility experience.
+Note that Google Play policies restrict apps requesting several system-level permissions at
+once (call log, contacts, media). Publishing there would require splitting the app or dropping
+core functionality, so it is not currently planned.
 
-Publishing on Google Play would require splitting the app into several smaller ones or removing critical functionality.  
-To preserve the unified experience, **distribution is currently focused on F-Droid and direct APK releases**.
+## Contributing
 
-However, future publication on Google Play is not ruled out.  
+Bug reports and pull requests are welcome. For larger changes, please open an issue first so
+the approach can be discussed.
 
-## Get Involved
-You can help make BaldPhone Neo better by:
-- [Translating](TRANSLATING.md) or improving existing languages
-- Testing and reporting issues
-- Sharing the app with accessibility communities
-- Suggesting UX improvements
-
-Contributions that make the experience simpler, faster, and more delightful are always welcome!
-
-## Community
-Although BaldPhone Neo is an independent fork, you can connect with the existing BaldPhone community:
-- [Subreddit r/BaldPhone](https://www.reddit.com/r/BaldPhone/)
-- [Telegram](https://t.me/BaldPhone)
-
-## Contact
-For questions, suggestions, or feedback: [neo.baldphone@gmail.com](mailto:neo.baldphone@gmail.com?subject=[GitHub]%20BaldPhone%20Neo)
+Translations are inherited from upstream and cover 38 languages. Improvements to existing
+translations are especially welcome.
 
 ## License
-BaldPhone Neo is an open-source project, released under the **Apache License, Version 2.0** -  
-the same license as the original [BaldPhone](https://github.com/UriahShaulMandel/BaldPhone).
 
-This means you are free to:
-- Use, modify, and distribute the app
-- As long as derivative works remain open-source under the same license
+Apache License 2.0 — see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
-For the full license text, see the [LICENSE](LICENSE) file.
+The `NOTICE` file records the full attribution chain and must be preserved in any
+redistribution or derivative work.
