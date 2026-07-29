@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +41,7 @@ public class CrashActivity extends BaldActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onBackPressedCompat() {
         //Nope
     }
 

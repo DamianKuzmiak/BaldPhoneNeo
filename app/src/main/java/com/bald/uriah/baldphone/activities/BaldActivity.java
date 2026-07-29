@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.PopupWindow;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,6 +58,13 @@ public abstract class BaldActivity extends AppCompatActivity {
     private List<WeakReference<Dialog>> dialogsToClose = new ArrayList<>(1);
     private List<WeakReference<PopupWindow>> popupWindowsToClose = new ArrayList<>(1);
 
+    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            onBackPressedCompat();
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +73,8 @@ public abstract class BaldActivity extends AppCompatActivity {
 
         vibrator = Prefs.isVibrationFeedbackEnabled()
                 ? (Vibrator) getSystemService(VIBRATOR_SERVICE) : null;
+
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
     }
 
     @Override
@@ -83,11 +94,30 @@ public abstract class BaldActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    public void onBackPressed() {
+    /**
+     * Replacement for the deprecated {@link #onBackPressed()}.
+     * <p>
+     * Subclasses must override this method instead of {@code onBackPressed()}, and call
+     * {@code super.onBackPressedCompat()} where they used to call {@code super.onBackPressed()}.
+     * From {@code targetSdk} 36 the predictive back gesture invokes the dispatcher directly and
+     * overrides of {@code onBackPressed()} are never called.
+     */
+    protected void onBackPressedCompat() {
         if (vibrator != null)
             vibrator.vibrate(D.vibetime);
-        super.onBackPressed();
+        finishAfterBack();
+    }
+
+    /**
+     * Hands the back press back to the system, which normally means finishing this activity.
+     * <p>
+     * The callback is disabled for the duration of the call, otherwise the dispatcher would
+     * route the event straight back into {@link #onBackPressedCompat()} and loop forever.
+     */
+    protected final void finishAfterBack() {
+        onBackPressedCallback.setEnabled(false);
+        getOnBackPressedDispatcher().onBackPressed();
+        onBackPressedCallback.setEnabled(true);
     }
 
     public void autoDismiss(Dialog dialog) {

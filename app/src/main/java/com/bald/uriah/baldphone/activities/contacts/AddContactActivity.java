@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -136,7 +137,7 @@ public class AddContactActivity extends BaldActivity {
             v.setVisibility(View.INVISIBLE);
         });
         save.setOnClickListener(v -> save());
-        ((BaldTitleBar) findViewById(R.id.bald_title_bar)).getBt_back().setOnClickListener(v -> onBackPressed());
+        ((BaldTitleBar) findViewById(R.id.bald_title_bar)).getBt_back().setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void save() {
@@ -427,9 +428,9 @@ public class AddContactActivity extends BaldActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onBackPressedCompat() {
         if (safeToExit())
-            super.onBackPressed();
+            super.onBackPressedCompat();
         else {
             if (vibrator != null)
                 vibrator.vibrate(D.vibetime);

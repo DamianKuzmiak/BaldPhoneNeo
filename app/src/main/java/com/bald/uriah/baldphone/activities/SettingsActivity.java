@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,7 +120,7 @@ public class SettingsActivity extends BaldActivity {
 
 
         titleBarView = findViewById(R.id.title_bar);
-        titleBarView.setOnExitClickListener((v) -> onBackPressed());
+        titleBarView.setOnExitClickListener((v) -> getOnBackPressedDispatcher().onBackPressed());
 
         recyclerView = findViewById(R.id.child);
 
@@ -540,9 +541,9 @@ public class SettingsActivity extends BaldActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onBackPressedCompat() {
         if (!goBack())
-            super.onBackPressed();
+            super.onBackPressedCompat();
     }
 
     public class SettingsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<SettingsRecyclerViewAdapter.ViewHolder> {

@@ -228,9 +228,9 @@ public class AlarmScreenActivity extends TimedBaldActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onBackPressedCompat() {
         snooze();
-        super.onBackPressed();
+        super.onBackPressedCompat();
     }
 
     @Override

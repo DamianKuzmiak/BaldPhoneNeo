@@ -1,5 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
+ * Copyright 2026 Zenolabs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -248,7 +249,7 @@ public class HomeScreenActivity extends BaldActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onBackPressedCompat() {
         Log.v(TAG, "onBackPressed");
         if (vibrator != null)
             vibrator.vibrate(D.vibetime);
@@ -258,7 +259,7 @@ public class HomeScreenActivity extends BaldActivity {
             // updateViewPager();
         } else {
             if (!HomeAppUtils.isDefaultLauncher(this)) {
-                super.onBackPressed();
+                super.onBackPressedCompat();
             }
         }
     }
