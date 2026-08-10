@@ -20,20 +20,41 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import app.baldphone.neo.utils.HomeAppUtils;
 
 /**
  * Way to trigger "choose home screen" dialog without having to ask for that Permission;
  */
 public class FakeLauncherActivity extends AppCompatActivity {
 
-    //could have been everywhere but this looks like the logical place to put it;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        android.util.Log.d("FakeLauncherActivity", "FakeLauncherActivity started!");
+        // If this activity is ever started, it means it served its purpose (triggering the chooser)
+        // or the user picked it by mistake. Disable it and go to the real home.
+        PackageManager pm = getPackageManager();
+        pm.setComponentEnabledSetting(
+                new ComponentName(this, FakeLauncherActivity.class),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+        );
+
+        // Start the real home screen
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+        finish();
+    }
+
     public static void resetPreferredLauncherAndOpenChooser(Context context) {
-        final PackageManager packageManager = context.getPackageManager();
-        final ComponentName componentName = new ComponentName(context, FakeLauncherActivity.class);
-        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-        context.startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
+        HomeAppUtils.requestDefaultLauncher(context);
     }
 }

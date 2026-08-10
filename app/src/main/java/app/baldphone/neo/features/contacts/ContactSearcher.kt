@@ -95,11 +95,26 @@ class ContactSearcher(
                             contact.normalizedName,
                             query
                         )
-                ) || contact.normalizedName.contains(normalizedNameQuery)
+                ) || matchesNamePrefix(contact.normalizedName, normalizedNameQuery)
             } else {
-                contact.normalizedName.contains(normalizedNameQuery)
+                matchesNamePrefix(contact.normalizedName, normalizedNameQuery)
             }
         }
+    }
+
+    /**
+     * Checks if the contact name or any word within it starts with the query.
+     */
+    private fun matchesNamePrefix(
+        normalizedName: String,
+        normalizedQuery: String
+    ): Boolean {
+        if (normalizedQuery.isEmpty()) return true
+        if (normalizedName.startsWith(normalizedQuery)) return true
+
+        // Check if any word starts with the query (e.g., "Doe" for query "d" in "John Doe")
+        // We look for the query preceded by a space.
+        return normalizedName.contains(" $normalizedQuery")
     }
 
     /**
@@ -110,16 +125,22 @@ class ContactSearcher(
         query: String
     ): Boolean {
         if (query.isEmpty() || !query.matches(numericRegex)) return false
-        val cleanName = normalizedName.replace(nonLetterRegex, "")
-        if (cleanName.isEmpty()) return false
+        val cleanName = normalizedName.replace(nonLetterRegex, " ")
+        if (cleanName.trim().isEmpty()) return false
 
+        // Generate T9 representation of the name, preserving spaces to allow word-start matching
         val nameT9 =
             buildString(cleanName.length) {
                 for (ch in cleanName) {
-                    append(charToDigit[ch] ?: '?')
+                    if (ch == ' ') {
+                        append(' ')
+                    } else {
+                        append(charToDigit[ch] ?: '?')
+                    }
                 }
             }
-        return nameT9.contains(query)
+
+        return nameT9.startsWith(query) || nameT9.contains(" $query")
     }
 
     /**
