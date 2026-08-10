@@ -106,6 +106,8 @@ public class HomeScreenActivity extends BaldActivity {
         viewPagerHandler();
         recognizerManager.setHomeScreen(this);
 
+        HomeAppUtils.cleanupFakeLauncher(this);
+
         AppsRepository.getPinnedAppsLiveData().observe(this, pinnedApps -> {
             if (!isFinishing() && !isDestroyed()) {
                 updateViewPager(false, false);
