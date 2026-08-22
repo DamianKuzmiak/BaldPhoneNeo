@@ -15,66 +15,78 @@
   -->
 
 <resources>
+    <string name="onb_permissions_done">✓ Tutte le autorizzazioni concesse</string>
     <string name="about">Informazioni</string>
     <string name="accessibility_level">Livello di accessibilità</string>
     <string name="accessibility_settings">Accessibilità</string>
-    <string name="accidental_touches">Protezione contro i tocchi accidentali</string>
-    <string name="accidental_touches_settings_subtext">La protezione dai tocchi accidentali evita che ci siano tocchi indesiderati quando il telefono è
-        coperto.\nSe riscontri qualche problema puoi disattivarlo.
-    </string>
-    <string name="accidental_touches_subtext">Se questo messaggio compare spesso, puoi disattivare questa funzione nelle impostazioni di accessibilità.</string>
+    <string name="accidental_touches">Protezione dai tocchi accidentali</string>
+    <string name="accidental_touches_settings_subtext">Questa protezione impedisce i tocchi quando il telefono è coperto.\nSe riscontri problemi, puoi disattivarla.</string>
+    <string name="accidental_touches_subtext">Se questo messaggio compare spesso, puoi disattivare la funzione nelle impostazioni di Accessibilità.</string>
     <string name="pocket_mode_guard_title">Protezione dai tocchi accidentali.</string>
-    <string name="pocket_mode_guard_subtitle">Lo schermo è temporaneamente bloccato.</string>
-    <string name="pocket_mode_guard_instruction">Rimuovi la mano dalla parte superiore del telefono per sbloccare lo schermo.</string>
+    <string name="pocket_mode_guard_subtitle">Lo schermo è stato temporaneamente bloccato.</string>
+    <string name="pocket_mode_guard_instruction">Scopri la parte superiore del telefono per sbloccare lo schermo.</string>
     <string name="acknowledgments">Ringraziamenti</string>
+    <string name="action_close">Chiudi</string>
+    <string name="action_dismiss">Ignora</string>
+    <string name="action_pin_to_home">Nella schermata Home</string>
+    <string name="action_toggle_favorite">Nei preferiti</string>
+    <string name="action_view">Visualizza</string>
     <string name="adaptive">Adattivo</string>
     <string name="add_alarm">Aggiungi sveglia</string>
     <string name="add_alarm_quickly">Aggiungi timer</string>
     <string name="add_contact">Aggiungi contatto</string>
-    <string name="add_emergency_contact">Aggiungi contatto di emergenza</string>
+    <string name="add_new_contact">Aggiungi nuovo contatto</string>
+    <string name="add_emergency_contact">Aggiungi</string>
     <string name="add_pill">Aggiungi pillola</string>
-    <string name="add_shortcut">Aggiungi scorciatoia</string>
-    <string name="add_to_favorite">Aggiungi ai preferiti</string>
-    <string name="add_to_home">Aggiungi alla Home</string>
+    <string name="add_shortcut">Aggiungi collegamento</string>
     <string name="add_to_sos">Aggiungi a SOS</string>
+    <string name="add_as_an_emergency_contact">Aggiungere %s come contatto di emergenza SOS?</string>
     <string name="address">Indirizzo</string>
-    <string name="advanced_options">Impostazioni avanzate</string>
+    <string name="advanced_options">Opzioni avanzate</string>
     <string name="afternoon">Pomeriggio</string>
     <string name="airplane_mode">Modalità aereo</string>
     <string name="alarm_name">Nome sveglia</string>
     <string name="alarm_volume">Volume sveglia</string>
-    <string name="alarm_volume_subtext">Imposta il volume per le sveglie.\nAumenta il volume spostando il selettore verso destra.</string>
+    <string name="alarm_volume_subtext">Scegli il volume delle sveglie.\nIl volume aumenta da sinistra verso destra.</string>
     <string name="alarms">Sveglie</string>
 
-    <string name="alarms_repeats_every">Si ripete ogni</string>
-    <string name="all_alarms">tutte le sveglie</string>
+    <string name="alarms_repeats_every">La sveglia si ripete ogni</string>
+    <string name="all_alarms">Tutte le sveglie</string>
     <string name="allow">Consenti</string>
-    <string name="already_setted">Tastiera impostata.\nTocca qui per cambiare.</string>
+    <string name="already_setted">Già impostato!\nTocca qui per selezionarlo.</string>
     <string name="an_error_has_occurred">Si è verificato un errore!</string>
-    <string name="and_welcome_to_baldphone">benvenuto in BaldPhone!</string>
+    <string name="and_welcome_to_baldphone">e benvenuto in BaldPhone</string>
 
-    <string name="apps">Applicazioni</string>
-    <string name="are_you_sure_you_want_to_delete___">Sei sicuro di voler eliminare %s?</string>
+    <string name="apps">App</string>
+    <string name="are_you_sure_you_want_to_delete___">Vuoi davvero eliminare %s?</string>
     <string name="assistant">Assistente</string>
     <string name="at_least_one_day_must_be_selected">Devi selezionare almeno un giorno!</string>
-    <string name="auto_brightness">Luminosità\nadattiva</string>
-    <string name="backspace">Annulla</string>
-    <string name="baldphone_bla_allow_permission">Sono richieste le seguenti autorizzazioni:</string>
+    <string name="auto_brightness">Luminosità\nautomatica</string>
+    <string name="backspace">Cancella</string>
     <string name="blocked">Bloccato</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Luminosità</string>
-    <string name="brightness_subtext">Livello di luminosità.</string>
-    <string name="cache_cleared_successfully">La cache è stata pulita correttamente</string>
-    <string name="call">Chiama</string>
-    <string name="calling">Gestione telefonate</string>
+    <string name="brightness_subtext">Regola la luminosità</string>
+    <string name="cache_cleared_successfully">Cache svuotata correttamente!</string>
 
-    <string name="call_log">Chiamate recenti</string>
-    <string name="call_subtext">Autorizzazione necessaria per effettuare telefonate.</string>
+    <string name="call">Chiama</string>
+    <string name="calling">Chiamata in corso…</string>
+    <string name="call_log">Registro chiamate:</string>
+    <string name="call_dialog_title">Effettuare la chiamata?</string>
+    <string name="call_dialog_confirm">Chiama ora</string>
+    <string name="call_settings_title">Conferma chiamata</string>
+    <string name="call_settings_message">Scegli cosa deve accadere quando premi il pulsante Chiama.</string>
+    <string name="call_settings_option_confirm">Chiedi conferma</string>
+    <string name="call_settings_option_direct">Chiama subito</string>
+    <string name="settings_section_calls">Chiamate</string>
+    <string name="setting_confirm_before_calling">Conferma prima di chiamare</string>
+    <string name="setting_confirm_before_calling_desc_on">Ti verrà chiesta conferma prima di avviare la chiamata</string>
+    <string name="setting_confirm_before_calling_desc_off">Le chiamate vengono avviate subito, senza chiedere conferma</string>
+
     <string name="camera">Fotocamera</string>
-    <string name="camera_subtext">Autorizzazione necessaria per accendere la torcia.</string>
     <string name="cancel">Annulla</string>
-    <string name="change_pills_time">Modifica orari pillole</string>
-    <string name="change_system_settings_subtext">Per cortesia consenti a BaldPhone di modificare le impostazioni, ad esempio aumentare la dimensione dei caratteri, cambiare la luminosità, ecc.</string>
+    <string name="change_pills_time">Modifica orario delle pillole</string>
+    <string name="change_system_settings_subtext">Consenti a BaldPhone di modificare impostazioni come la dimensione del testo e la luminosità dello schermo.</string>
     <string name="choose_friday">Ven</string>
     <string name="choose_monday">Lun</string>
     <string name="choose_saturday">Sab</string>
@@ -82,315 +94,360 @@
     <string name="choose_thursday">Gio</string>
     <string name="choose_tuesday">Mar</string>
     <string name="choose_wednesday">Mer</string>
-    <string name="clear">Elimina</string>
-    <string name="clear_cache">Pulizia cache</string>
-    <string name="clear_data">Elimina dati</string>
-    <string name="clear_data_subtext">Sei sicuro di voler eliminare tutti i dati? La app tornerà come appena installata.</string>
-    <string name="clear_data_subtext2">Sicuro al 100%?</string>
-    <string name="clear_data_subtext3">Sicuro sicuro?\nToccando Sì eliminerai tutti i dati!</string>
+    <string name="clear">Cancella</string>
+    <string name="clear_cache">Svuota cache</string>
+    <string name="clear_cache_subtext">Vuoi svuotare la cache? L’operazione può risolvere alcuni problemi, ma rimuoverà i collegamenti dalla schermata Home.</string>
+    <string name="clear_data">Elimina tutti i dati</string>
+    <string name="clear_data_subtext">Elimina tutti i dati e le impostazioni dell’utente.\nBaldPhone tornerà allo stato predefinito, come appena installato.</string>
+    <string name="clear_data_subtext2">Sei sicuro al 100%?</string>
+    <string name="clear_data_subtext3">Sei sicuro? Premendo Sì verranno eliminati tutti i dati!</string>
     <string name="clock">Orologio</string>
-    <string name="coming_soon">In arrivo prossimamente!</string>
-    <string name="connection_settings">Connessione</string>
-    <string name="contact_must_has_name">Il contatto deve avere un nome!</string>
-    <string name="contact_not_created">Contatto non creato!</string>
+    <string name="combine_duplicated_calls">Raggruppa chiamate uguali</string>
+    <string name="coming_soon">Prossimamente!</string>
+    <string name="connection_settings">Connettività</string>
+
+    <string name="contact_must_has_name">Il contatto deve avere un nome</string>
+    <string name="contact_details">Contatto</string>
+    <string name="contact_not_created">Contatto non creato</string>
+    <string name="contact_added_to_home">Contatto aggiunto alla schermata Home</string>
+    <string name="contact_removed_from_home">Contatto rimosso dalla schermata Home</string>
+    <string name="contact_added_to_favorites">Contatto aggiunto ai preferiti</string>
+    <string name="contact_removed_from_favorites">Contatto rimosso dai preferiti</string>
+
     <string name="contacts">Contatti</string>
-    <string name="contacts_read_subtext">Autorizzazione necessaria per mostrare i contatti memorizzati nel dispositivo.</string>
-    <string name="contacts_subtext">Autorizzazione necessaria per aggiungere nuovi contatti.</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="pasted_from_clipboard">Pasted from clipboard</string>
-    <string name="crash">Oops!\nBaldPhone ha riscontrato un problema ed ora si riavvierà.</string>
-    <string name="current_time">Orario attuale</string>
-    <string name="custom">Personalizza</string>
+    <string name="search_contact">Cerca contatto per nome</string>
+    <string name="copied_to_clipboard">Copiato negli appunti</string>
+    <string name="pasted_from_clipboard">Incollato dagli appunti</string>
+    <string name="crash">Qualcosa è andato storto.\nRiavvio tra pochi secondi…</string>
+    <string name="current_time">Ora attuale</string>
+    <string name="custom">Personalizzato</string>
     <string name="dark">Scuro</string>
     <string name="delete">Elimina</string>
-    <string name="delete___">Elimina %s?</string>
-    <string name="delete_all_alarms">Elimina tutti</string>
-    <string name="dialer">Telefono</string>
-    <string name="display_settings">Schermo</string>
-    <string name="done">Fatto</string>
+    <string name="delete___">Eliminare %s?</string>
+    <string name="delete_all_alarms">Elimina tutte le sveglie</string>
+    <string name="dialer">Tastierino</string>
+
+    <string name="dialog_delete_contact_title">Eliminare questo contatto?</string>
+    <string name="dialog_delete_contact_message">%1$s verrà rimosso dall’elenco dei contatti.</string>
+    <string name="dialog_delete_contact_confirm">Elimina</string>
+    <string name="dialog_delete_contact_cancel">Annulla</string>
+
+    <string name="display_settings">Schermo e aspetto</string>
+    <string name="done">Fine</string>
     <string name="down">Giù</string>
     <string name="edit">Modifica</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Accesso alle notifiche</string>
-    <string name="enable_notification_access_subtext">Per cortesia consenti a BaldPhone di accedere alle notifiche.</string>
     <string name="enter">Invio</string>
     <string name="enter_contact_or_phone_number">Inserisci il nome del contatto:</string>
     <string name="evening">Sera</string>
-    <string name="example_of_different_text_sizes">Esempio di testo in varie dimensioni. Scegli una impostazione per cui sia leggibile, ma non esagerato.</string>
-    <string name="external_storage_subtext">Autorizzazione necessaria per salvare le immagini.</string>
-    <string name="feedback">Invia feedback</string>
-    <string name="feedback_advanced">Advanced</string>
-    <string name="feedback_cannot_be_empty">Il feedback non può essere vuoto!</string>
-    <string name="feedback_choose_email_app">Select an email app</string>
-    <string name="feedback_email_subject">Feedback for %s</string>
-    <string name="feedback_hint">Write your message here…</string>
-    <string name="feedback_no_email_app_found">No app available to send email.</string>
-    <string name="feedback_send">Send Email</string>
-    <string name="feedback_subtitle">Share feedback or report a problem to help improve BaldPhone Neo.</string>
-    <string name="feedback_include_info">Include technical details (recommended)</string>
-    <string name="first_please_select_how_you_want_to_interact_with_buttons">Scegli il livello di accessibilità:</string>
-    <string name="font_size">Dimensioni carattere</string>
+    <string name="example_of_different_text_sizes">Esempio di testo in diverse dimensioni.\nDovrebbe essere leggibile e non uscire dai bordi.</string>
+    <string name="favorites">Preferiti</string>
+
+    <string name="feedback">Feedback e assistenza</string>
+    <string name="feedback_advanced">Avanzate</string>
+    <string name="feedback_cannot_be_empty">Inserisci il feedback prima di inviarlo.</string>
+    <string name="feedback_choose_email_app">Seleziona un’app di posta</string>
+    <string name="feedback_email_subject">Feedback su %s</string>
+    <string name="feedback_hint">Scrivi qui il tuo messaggio…</string>
+    <string name="feedback_no_email_app_found">Nessuna app disponibile per inviare email.</string>
+    <string name="feedback_send">Invia email</string>
+    <string name="feedback_subtitle">Invia un commento o segnala un problema per aiutarci a migliorare BaldPhone Neo.</string>
+    <string name="feedback_include_info">Includi dettagli tecnici (consigliato)</string>
+
+    <string name="first_please_select_how_you_want_to_interact_with_buttons">Scegli il livello di accessibilità che preferisci.</string>
+    <string name="font_size">Dimensione del testo</string>
     <string name="friday">Venerdì</string>
-    <string name="have_hard_time_using_the_phone_s_keyboard_use_baldphone_s_big_keyboard_instead">È difficile utilizzare la tastiera del telefono? Usa la tastiera GRANDE di BaldPhone!</string>
+    <string name="have_hard_time_using_the_phone_s_keyboard_use_baldphone_s_big_keyboard_instead">Hai difficoltà a usare la tastiera del telefono?\nProva la tastiera GRANDE di BaldPhone!</string>
     <string name="hello">Ciao</string>
-    <string name="help">Aiuto</string>
+    <string name="help">Video tutorial</string>
     <string name="hide">Nascondi</string>
-    <string name="high_level">Alto</string>
-    <string name="home_phone_number">Numero di telefono di casa</string>
+    <string name="high_level">Livello alto</string>
+    <string name="home_phone_number">Numero di casa</string>
     <string name="hour">Ora</string>
     <string name="huge">Molto grande</string>
     <string name="internet">Internet</string>
-    <string name="invoked_in">Suona fra</string>
-    <string name="it_s_highly_recommended_to_use_baldphone_s_home_screen_as_the_default_home_launcher">Un\'ultima
-        cosa:\nsi consiglia vivamente di utilizzare BaldPhone come launcher (Home page) predefinito.</string>
+    <string name="invoked_in">Si attiverà tra:</string>
+    <string name="it_s_highly_recommended_to_use_baldphone_s_home_screen_as_the_default_home_launcher">È consigliabile impostare BaldPhone come schermata Home predefinita.</string>
     <string name="language">Lingua</string>
-    <string name="language_settings">Lingua</string>
+    <string name="language_settings">Lingue</string>
     <string name="follow_system_language">Lingua del dispositivo</string>
     <string name="large">Grande</string>
-    <string name="left_handed">Sinistra</string>
+    <string name="left_handed">Mano sinistra</string>
     <string name="light">Chiaro</string>
-    <string name="location">Geolocalizzazione</string>
-    <string name="emergency_services">112 Numero di Emergenza</string>
-    <string name="mail">Mail</string>
+    <string name="location">Posizione</string>
+    <string name="emergency_services">Servizi di emergenza</string>
+    <string name="mail">Posta</string>
     <string name="maps">Mappe</string>
 
     <string name="medium">Medio</string>
-    <string name="medium_level">Medio</string>
+    <string name="medium_level">Livello medio</string>
     <string name="message">Messaggio</string>
     <string name="messages">Messaggi</string>
     <string name="minute">Minuto</string>
     <string name="minutes">Minuti</string>
     <string name="missed">Persa</string>
 
-    <string name="mobile_phone_number">Numero di telefono cellulare</string>
+    <string name="mobile_phone_number">Numero di cellulare</string>
     <string name="monday">Lunedì</string>
-    <string name="more">di più</string>
+    <string name="more">Altro</string>
     <string name="morning">Mattina</string>
     <string name="name">Nome</string>
     <string name="named__">chiamato</string>
-    <string name="new_alarm___was_created">Nuova sveglia %s impostata</string>
+    <string name="new_alarm___was_created">È stata creata la sveglia %s!</string>
     <string name="nfc">NFC</string>
     <string name="no">No</string>
+    <string name="note">Nota</string>
     <string name="notes">Note</string>
-    <string name="notes_settings">Pagina note</string>
-    <string name="notes_settings_subtext">Scegli se vuoi la pagina delle note insieme alla schermata principale.</string>
+    <string name="notes_settings">Note</string>
+    <string name="notes_settings_subtext">Attiva o disattiva la pagina Note nella schermata Home.</string>
     <string name="notifications">Notifiche</string>
 
     <string name="of">di</string>
-    <string name="off">Non attivo</string>
+    <string name="off">Disattivato</string>
     <string name="ok">OK</string>
-    <string name="on">Attivo</string>
+    <string name="on">Attivato</string>
 
-    <string name="only_once">Solo una</string>
+    <string name="only_once">Una sola volta</string>
 
     <string name="open">Apri</string>
 
     <string name="outgoing">In uscita</string>
-    <string name="page">Page</string>
+    <string name="page">Pagina</string>
     <string name="permissions_part">Autorizzazioni</string>
-    <string name="personalization_settings">Personalizza</string>
+    <string name="personalization_settings">Personalizzazione</string>
     <string name="phone">Telefono</string>
     <string name="photo">Foto</string>
-    <string name="photos">Galleria</string>
+    <string name="photos">Foto</string>
+    <string name="photos_and_videos">Foto e video</string>
     <string name="pill_added">Pillola aggiunta</string>
     <string name="pill_name">Nome della pillola</string>
     <string name="pills">Pillole</string>
-    <string name="press_longer">Tocca più a lungo</string>
+    <string name="press_longer">Tieni premuto più a lungo!</string>
     <string name="timer">Timer</string>
-    <string name="read_call_log">Lettura chiamate recenti</string>
-    <string name="read_call_log_subtext">Autorizzazione necessaria per mostrare l\'elenco delle chiamate recenti.</string>
-    <string name="read_contacts">Lettura contatti</string>
-    <string name="received">Ricevuto</string>
-    <string name="recent">Chiamate</string>
-    <string name="regular_level">Normale</string>
+    <string name="read_contacts">Leggi contatti</string>
+    <string name="received">Ricevuta</string>
+    <string name="recent">Recenti</string>
+    <string name="recent_calls">Chiamate recenti</string>
+    <string name="regular_level">Livello standard</string>
 
-    <string name="remove_from_favorite">Rimuovi dai preferiti</string>
-    <string name="remove_from_home">Rimuovi dalla schermata Home</string>
     <string name="remove_from_sos">Rimuovi da SOS</string>
-    <string name="remove_shortcut">Rimuovi scorciatoia</string>
-    <string name="removed_all_alarms">Tutte le sveglie sono stete eliminate</string>
+    <string name="remove_shortcut">Rimuovi collegamento</string>
+    <string name="removed_all_alarms">Tutte le sveglie sono state eliminate!</string>
     <string name="repeats_every_day">Ogni giorno</string>
-    <string name="right_handed">Destra</string>
+    <string name="right_handed">Mano destra</string>
 
     <string name="saturday">Sabato</string>
     <string name="save">Salva</string>
     <string name="send">Invia</string>
-    <string name="set_default_dialer">Imposta come app predefinita per la chiamata</string>
-    <string name="set_default_dialer_subtext">BaldPhone ha bisogno di essere impostata come app predefinita per le chiamate.</string>
-    <string name="set_home_screen">Imposta Home page</string>
-    <string name="set_home_screen_subtext">Per utilizzare BaldPhone dovresti impostarlo come Home page. È una scelta che puoi sempre modificare dalle impostazioni avanzate.</string>
+    <string name="set_default_dialer">Imposta come app di chiamata predefinita</string>
+    <string name="set_default_dialer_subtext">BaldPhone deve essere impostata come app di chiamata predefinita.</string>
+    <string name="set_home_screen">Imposta come schermata Home</string>
+    <string name="set_home_screen_subtext">Per usare BaldPhone, impostala come schermata Home.\nPuoi modificare questa scelta in qualsiasi momento nelle impostazioni di sistema.</string>
     <string name="set_keyboard">Imposta tastiera</string>
     <string name="setting_does_not_exist">Questa impostazione non esiste</string>
     <string name="settings">Impostazioni</string>
-    <string name="settings_permission">Impostazione autorizzazioni</string>
+    <string name="neo_settings">Impostazioni Neo</string>
+    <string name="settings_system">Altre opzioni</string>
+    <string name="settings_permission">Autorizzazione alle impostazioni</string>
     <string name="share">Condividi</string>
-    <string name="share_actual_text">Ciao, sto usando una app chiamata \"BaldPhone\" che sostituisce l\'interfaccia dello smartphone con una
-        più grande e facile da usare.\nTi interessa?\nPuoi scaricarla gratuitamente!\nGuarda questo link
-        per altre informazioni:\n\nhttps://baldphone.com
-    </string>
-    <string name="share_bald_phone_subtext">Conosci qualcuno che potrebbe essere interessato a BaldPhone? Fagli sapere che esiste!</string>
+    <string name="share_actual_text">Ciao! Uso un’app chiamata “BaldPhone”, che sostituisce l’interfaccia del telefono con un design semplice e facile da usare.\nÈ gratuita: scoprila qui:\nhttps://baldphone.com</string>
+    <string name="share_bald_phone_subtext">Conosci qualcuno a cui BaldPhone potrebbe essere utile?\nCondividila!</string>
     <string name="share_baldphone">Condividi BaldPhone</string>
     <string name="share_contact">Condividi contatto</string>
-    <string name="share_differently">Condividi per mezzo di un\'altra app</string>
-    <string name="share_via_whatsapp">Condividi via WhatsApp</string>
-    <string name="shift">sposta</string>
+    <string name="share_via_app">Condividi tramite app</string>
+    <string name="shift">Maiusc</string>
     <string name="show">Mostra</string>
     <string name="small">Piccolo</string>
-    <string name="snooze">Più tardi</string>
+    <string name="snooze">Posticipa</string>
     <string name="sos">SOS</string>
-    <string name="sos_is_full">SOS è pieno!</string>
-    <string name="sos_is_full_subtext">La schermata emergenza è piena! Rimuovi uno dei contatti di emergenza per poterne aggiungere un altro.</string>
-    <string name="speak">Detta</string>
-    <string name="speech_to_text">Detta</string>
-    <string name="strong_hand">Mano preferita</string>
-    <string name="strong_hand_subtext">Scegli la mano preferita per impostare l\'interfaccia utente.</string>
-    <string name="submit">Imposta</string>
+    <string name="sos_is_full">L’elenco SOS è pieno!</string>
+    <string name="sos_is_full_subtext">Rimuovi un altro contatto SOS prima di aggiungerne uno nuovo.</string>
+    <string name="speak">Parla</string>
+    <string name="speech_to_text">Dettatura vocale</string>
+    <string name="strong_hand">Mano dominante</string>
+    <string name="strong_hand_subtext">Scegli la mano dominante per adattare l’interfaccia.</string>
+    <string name="submit">Invia</string>
     <string name="sunday">Domenica</string>
     <string name="technical_information">Informazioni tecniche</string>
     <string name="theme_settings">Tema</string>
-    <string name="theme_settings_subtext">Scegli un tema.</string>
+    <string name="theme_settings_subtext">Scegli un tema</string>
+    <string name="theme_system_default">Sistema</string>
 
-    <string name="theme_system_default">System</string>
     <string name="thursday">Giovedì</string>
-    <string name="time_changer">Modifica orario pillole</string>
-    <string name="tiny">Piccolo</string>
-    <string name="to___days_and___hours_from_now">Suona fra %d giorni e %d ore</string>
-    <string name="to___hours_and___minutes_from_now">Suona fra %d ore e %d minuti</string>
-    <string name="to___minuets_from_now">Suona fra %d minuti</string>
+    <string name="time_changer">Modifica orario delle pillole</string>
+    <string name="tiny">Molto piccolo</string>
+    <string name="to___days_and___hours_from_now">tra %1$d giorni e %1$d ore</string>
+    <string name="to___hours_and___minutes_from_now">tra %d ore e %d minuti</string>
+    <string name="to___minuets_from_now">tra %d minuti</string>
     <string name="today">Oggi</string>
-    <string name="took">Preso!</string>
+    <string name="now">Ora</string>
+    <string name="time_format_now">%1$s, ora</string>
+    <plurals name="relative_minutes_ago">
+        <item quantity="one">1 minuto fa</item>
+        <item quantity="many">%d minuti fa</item>
+        <item quantity="other">%d minuti fa</item>
+    </plurals>
+    <plurals name="relative_hours_ago">
+        <item quantity="one">1 ora fa</item>
+        <item quantity="many">%d ore fa</item>
+        <item quantity="other">%d ore fa</item>
+    </plurals>
+    <string name="took">Assunta!</string>
     <string name="tuesday">Martedì</string>
     <string name="uninstall">Disinstalla</string>
-    <string name="uninstall_subtext">Sei sicuro di voler cancellare %s?\n%s\le informazioni verranno cancellate per sempre!</string>
-    <string name="up">Sopra</string>
+    <string name="up">Su</string>
     <string name="video">Video</string>
-    <string name="video_tutorials">Video introduttivi</string>
+    <string name="video_tutorials">Video tutorial</string>
     <string name="videos">Video</string>
 
-    <string name="voice_mail">Messaggio vocale</string>
+    <string name="voice_mail">Segreteria telefonica</string>
     <string name="wednesday">Mercoledì</string>
     <string name="whatsapp">WhatsApp</string>
     <string name="wifi">Wi-Fi</string>
-    <string name="will_repeat_only_once">Si ripete una sola volta.</string>
+    <string name="will_repeat_only_once">si ripeterà una sola volta!</string>
     <string name="write">Scrivi</string>
-    <string name="write_contacts">Scrittura contatti</string>
-    <string name="write_external_storage">Accesso ai file sul dispositivo</string>
     <string name="yes">Sì</string>
     <string name="yesterday">Ieri</string>
-    <string name="nothing">Nessun contenuto</string>
-    <string name="no_contacts_found">Nessun contatto trovato!</string>
-    <string name="no_alarms">Nessuna sveglia impostata.\nPuoi crearne una toccando \"Aggiungi sveglia\" oppure \"Aggiungi timer\".</string>
-    <string name="no_pills">Nessuna pillola definita.\nPuoi crearne una toccando \"Aggiungi pillola\".</string>
-    <string name="clear_all_notifications">Elimina tutte le notifiche</string>
-    <string name="clear_cache_subtext">Vuoi eliminare il contenuto della cache?\nEliminare i file temporanei può risolvere alcuni malfunzionamenti della app, ma verranno eliminate anche le scorciatoie create nella Home.
-    </string>
-    <string name="permissions_calm">Ciao, BaldPhone deve avere le seguenti autorizzazioni per funzionare. Alcune di queste
-        possono spaventarti, ma è l\'unico modo in cui BaldPhone può sostituire l\'interfaccia del telefono. Nessuna informazione viene presa e non causa
-        danni. Premi OK per fornire le autorizzazioni o premi No per uscire da BaldPhone.
-    </string>
-    <string name="what_s_new">Cosa c\'è di nuovo</string>
+    <string name="nothing">Niente</string>
+    <string name="no_contacts_found">Nessun contatto trovato</string>
+    <string name="no_alarms">Nessuna sveglia\nCreane una toccando\n“Aggiungi sveglia”\noppure\n“Aggiungi timer”</string>
+    <string name="no_pills">Nessuna pillola\nCreane una toccando\n“Aggiungi pillola”</string>
+    <string name="clear_all_notifications">Cancella tutte le notifiche</string>
+    <string name="what_s_new">Novità</string>
     <string name="what_do_you_want_to_do_with___">Cosa vuoi fare con %s?</string>
-    <string name="crash_reports">Segnalazione automatica errori</string>
-    <string name="crash_reports_subtext">La segnalazione automatica errori serve agli sviluppatori per migliorare il funzionamento di BaldPhone. Vengono raccolte e inviate solo le informazioni necessarie a risolvere il problema.</string>
-    <string name="custom_app">Personalizza app</string>
-    <string name="custom_app_subtext">Scegli l\'app che vuoi assegnare a questo pulsante nella schermata Home.</string>
-    <string name="no_app_was_found">Non è stata trovata alcuna app corrispondente!</string>
+    <string name="crash_reports">Rapporti sugli arresti anomali</string>
+    <string name="crash_reports_subtext">I rapporti sugli arresti anomali aiutano a migliorare BaldPhone.\nContengono solo le informazioni tecniche necessarie per correggere gli errori.</string>
+    <string name="custom_app">App personalizzata</string>
+    <string name="custom_app_subtext">Scegli un’app personalizzata da mostrare nella schermata Home.</string>
+    <string name="no_app_was_found">Nessuna app corrispondente trovata!</string>
     <string name="alarm">Sveglia</string>
     <string name="no_new_notifications">Nessuna nuova notifica</string>
-    <string name="sound">Normale</string>
+    <string name="sound">Suono</string>
     <string name="mute">Silenzioso</string>
     <string name="vibrate">Vibrazione</string>
-    <string name="your_phone_doesnt_have_assistant_installed">Il tuo telefono non ha alcun assistente installato.</string>
+    <string name="your_phone_doesnt_have_assistant_installed">Sul telefono non è installato alcun assistente.</string>
 
     <string name="status_bar_settings">Barra di stato</string>
-    <string name="status_bar_settings_subtext">Quando vuoi che sia visibile la barra di stato Android?</string>
-    <string name="only_home_screen">Schermata Home</string>
-    <string name="nowhere">Mai</string>
-    <string name="everywhere">Sempre</string>
+    <string name="status_bar_settings_subtext">Dove vuoi mostrare la barra di stato?</string>
+    <string name="only_home_screen">Solo nella schermata Home</string>
+    <string name="nowhere">Da nessuna parte</string>
+    <string name="everywhere">Ovunque</string>
 
     <string name="share_photo">Condividi foto</string>
 
-    <string name="choose_language_for_keyboard">Scegli la lingua</string>
+    <string name="choose_language_for_keyboard">Scegli lingua</string>
     <string name="hebrew">Ebraico</string>
     <string name="english">Inglese</string>
 
     <string name="search">Cerca</string>
-    <string name="next">Prossimo</string>
+    <string name="next">Avanti</string>
     <string name="go">Vai</string>
 
-    <string name="dialer_sounds">Suoni tastierino</string>
-    <string name="dialer_sounds_subtext">Scegli se vuoi che il tastierino emetta dei suoni quando componi un numero di telefono.</string>
+    <string name="dialer_sounds">Suoni del tastierino</string>
+    <string name="dialer_sounds_subtext">Scegli se riprodurre i suoni del tastierino.</string>
     <string name="low_battery_alert">Avviso batteria scarica</string>
 
-    <string name="grant_all_permissions">Autorizzazioni richieste</string>
+    <!-- Permissions General UI -->
+    <string name="grant_all_permissions">Concedi tutte le autorizzazioni</string>
+    <string name="banner_home_enable_features_cta">Tocca qui per attivare tutte le funzioni</string>
+    <string name="mandatory_badge">Obbligatoria</string>
+    <string name="grant_contacts_permission">Concedi l’autorizzazione ai contatti</string>
+    <string name="perm_activity_header">Consenti le seguenti autorizzazioni:</string>
+    <string name="dialog_title_permission_required">Autorizzazione richiesta</string>
+    <string name="dialog_message_permission_settings">Nelle impostazioni dell’app, apri Autorizzazioni e concedi tutti gli accessi richiesti.</string>
+    <string name="grant_permission_for">Concedi l’autorizzazione per:\n%s</string>
 
-    <string name="label_lock_screen_short">Lock Screen</string>
-    <string name="accessibility_service_description">Enables BaldPhone Neo’s quick screen lock feature, allowing you to lock your device instantly with a single tap.</string>
-    <string name="accessibility_permission_dialog_title">Accessibility Permission Required</string>
-    <string name="accessibility_permission_dialog_message">To enable one-tap screen lock, BaldPhone Neo needs Accessibility permission. It’s safe and used only for this feature.</string>
-    <string name="accessibility_permission_check_title">Accessibility Permission Check</string>
-    <string name="accessibility_permission_check_message">Please restart the permission: turn the BaldPhone Neo service OFF, and then back ON.</string>
-    <string name="dialog_button_not_now">Not now</string>
-    <string name="dialog_button_enable">Enable in settings</string>
+    <!-- Runtime Permissions -->
+    <string name="permission_call_phone_title">Chiamate telefoniche</string>
+    <string name="permission_call_phone_description">Consente di effettuare chiamate direttamente dall’app.</string>
+    <string name="permission_camera_title">Fotocamera</string>
+    <string name="permission_camera_description">Consente di usare il LED integrato, accanto alla fotocamera, come torcia.</string>
+    <string name="permission_contacts_title">Contatti</string>
+    <string name="permission_contacts_description">Consente di visualizzare e modificare i contatti salvati.</string>
+    <string name="permission_phone_title">Telefono e chiamate</string>
+    <string name="permission_phone_description">Gestisce le chiamate e identifica i numeri di emergenza.</string>
+    <string name="permission_post_notifications_title">Notifiche</string>
+    <string name="permission_post_notifications_description">Consente di inviare aggiornamenti e promemoria importanti.</string>
+    <string name="permission_read_call_log_title">Registro chiamate</string>
+    <string name="permission_read_call_log_description">Consente di visualizzare la cronologia delle chiamate recenti.</string>
+    <string name="permission_read_media_title">Foto e video</string>
+    <string name="permission_read_media_description">Consente di visualizzare e salvare foto e video.</string>
+    <string name="permission_read_phone_state_title">Stato del telefono</string>
+    <string name="permission_read_phone_state_description">Agevola la gestione delle chiamate e il supporto dual SIM.</string>
+
+    <!-- Special Permissions -->
+    <string name="permission_accessibility_service_title">Accessibilità</string>
+    <string name="accessibility_service_description">Consente di bloccare lo schermo con un solo tocco, senza usare i pulsanti laterali.</string>
+    <string name="permission_overlay_title">Visualizzazione sopra altre app</string>
+    <string name="permission_overlay_description">Consente di mostrare i promemoria sopra le altre app aperte.</string>
+    <string name="permission_system_notifications_title">Notifiche del dispositivo e delle app</string>
+    <string name="permission_system_notifications_description">Abilita formati di notifica avanzati e badge sulle icone.</string>
+    <string name="permission_write_settings_title">Modifica impostazioni di sistema</string>
+    <string name="permission_write_settings_description">Consente di regolare impostazioni come luminosità e dimensione del testo.</string>
+
+    <!-- Notification Service -->
+    <string name="notification_service_label">Notifiche semplificate</string>
+
+    <!-- Accessibility -->
+    <string name="label_lock_screen_short">Blocca schermo</string>
+    <string name="accessibility_permission_check_title">Verifica autorizzazione di Accessibilità</string>
+    <string name="accessibility_permission_check_message">Riavvia l’autorizzazione: disattiva il servizio BaldPhone Neo, quindi riattivalo.</string>
+    <string name="dialog_button_not_now">Non ora</string>
+    <string name="dialog_button_enable">Attiva nelle impostazioni</string>
 
     <!-- Overview -->
-    <string name="about_overview_section">Learn More</string>
-    <string name="about_tag_line">A simple launcher that combines calling, messaging, and everyday features into one easy-to-use experience.</string>
-    <string name="about_version_title">Version %s</string>
-    <string name="about_web_page">GitHub Project</string>
-    <string name="about_faq">FAQ / Help</string>
+    <string name="about_overview_section">Scopri di più</string>
+    <string name="about_tag_line">Un launcher semplice che riunisce chiamate, messaggi e funzioni quotidiane in un’esperienza facile da usare.</string>
+    <string name="about_version_title">Versione %s</string>
+    <string name="about_web_page">Progetto GitHub</string>
+    <string name="about_faq">Domande frequenti / Guida</string>
 
     <!-- Credits -->
-    <string name="about_credits_title">Credits</string>
-    <string name="about_credits">Contributors &amp; Translators</string>
+    <string name="about_credits_title">Riconoscimenti</string>
+    <string name="about_credits">Collaboratori e traduttori</string>
 
     <!-- Legal & Privacy -->
-    <string name="about_legal_title">Licenses &amp; Privacy</string>
-    <string name="about_licenses">Open Source Licenses</string>
-    <string name="about_app_license">App License</string>
-    <string name="about_privacy_policy">Privacy Policy</string>
+    <string name="about_legal_title">Licenze e privacy</string>
+    <string name="about_licenses">Licenze open source</string>
+    <string name="about_app_license">Licenza dell’app</string>
+    <string name="about_privacy_policy">Informativa sulla privacy</string>
 
     <!--For Tests:-->
     <string name="medication_1">Eltroxin 100</string>
     <string name="medication_2">Eltroxin 150</string>
     <string name="donate">Dona</string>
-    <string name="emergency_button">Pulsante emergenza</string>
-    <string name="emergency_settings_subtext">Scegli se vuoi avere il pulsante emergenza nella schermata Home.</string>
-    <string name="private_number">Private Number</string>
-    <string name="swipe_left_or_right">Striscia verso sinistra o destra</string>
-    <string name="press_next_or_back_buton">Tocca la freccia destra o sinistra</string>
-    <string name="click_delay">Tocco</string>
-    <string name="no_delay">Immediato</string>
-    <string name="scrolling">Scorri</string>
+    <string name="emergency_button">Pulsante di emergenza</string>
+    <string name="emergency_settings_subtext">Scegli se mostrare un pulsante di emergenza nella schermata Home.</string>
+    <string name="private_number">Numero privato</string>
+    <string name="swipe_left_or_right">Scorri verso sinistra o destra</string>
+    <string name="press_next_or_back_buton">Premi la freccia Avanti o Indietro</string>
+    <string name="click_delay">Ritardo del tocco</string>
+    <string name="no_delay">Nessun ritardo</string>
+    <string name="scrolling">Scorrimento</string>
     <string name="arrows">Frecce</string>
-    <string name="swipe">Striscia</string>
+    <string name="swipe">Scorrimento</string>
     <string name="_long">Lungo</string>
     <string name="_short">Breve</string>
     <string name="do_you_want_to_save_your_changes">Vuoi salvare le modifiche?</string>
-    <string name="discard">Ignora</string>
+    <string name="discard">Scarta</string>
     <string name="no_recent_calls">Nessuna chiamata recente</string>
-    <string name="apps_sort_method">Ordinamento app</string>
-    <string name="apps_sort_method_subtext">Scegli se vuoi vedere le app ordinate in una griglia o se le vuoi raggruppate per lettera.</string>
-    <string name="groups">Per lettera</string>
-    <string name="one_grid">Griglia</string>
-    <string name="edit_home_screen">Modifica schermata Home</string>
-    <string name="dual_sim">Dual sim</string>
-    <string name="dual_sim_subtext">Scegli come vuoi gestire due sim\nNota: Se scegli Mostra Opzioni, dovrai accettare un\'altra autorizzazione</string>
-    <string name="use_default">Usa predefinito</string>
-    <string name="show_options">Mostra opzioni</string>
-    <string name="read_phone_state">Lettura stato telefono</string>
-    <string name="read_phone_state_subtext">Autorizzazione necessaria per effettuare chiamate dalla sim secondaria</string>
-    <string name="choose_sim">Scegli la Sim</string>
-    <string name="choose_sim_subtext">Scegli la sim da cui vuoi effettuare la chiamata</string>
-    <string name="website">Sito Web</string>
-    <string name="appear_on_top">Mostra Sopra</string>
-    <string name="appear_on_top_subtext">Questa autorizzazione è necessaria nelle nuove versioni di android per poter mostrare allarmi e promemoria quando lo schermo è bloccato</string>
 
-    <string name="get_involved">Get Involved</string>
+    <string name="edit_home_screen">Modifica schermata Home</string>
+    <string name="dual_sim">Dual SIM</string>
+    <string name="dual_sim_subtext">Scegli come gestire le chiamate dual SIM.\nNota: selezionando “Mostra opzioni” sarà necessaria un’autorizzazione aggiuntiva.</string>
+    <string name="use_default">Usa impostazione predefinita</string>
+    <string name="show_options">Mostra opzioni</string>
+    <string name="choose_sim">Scegli SIM</string>
+    <string name="choose_sim_subtext">Scegli la SIM da usare per la chiamata</string>
+    <string name="website">Sito web</string>
+    <string name="appear_on_top">Visualizza sopra altre app</string>
+    <string name="appear_on_top_subtext">Questa autorizzazione è necessaria per mostrare sveglie e promemoria quando lo schermo è spento.</string>
+
+    <string name="get_involved">Partecipa</string>
 
     <string-array name="names_for_screenshots">
-        <item>Il Padrino</item>
-        <item>Abramo Lincoln</item>
+        <item>The Godfather</item>
+        <item>Abraham Lincoln</item>
         <item>Paul McCartney</item>
         <item>Tyrion Lannister</item>
         <item>The Rock</item>
@@ -408,4 +465,26 @@
     <string name="t9_key_8">tuv</string>
     <string name="t9_key_9">wxyz</string>
 
+    <!-- Content descriptions -->
+    <string name="battery_charging">%1$d%%. In carica.</string>
+    <string name="battery_charging_with_time">%1$d%%. In carica. Tempo al completamento: %2$s.</string>
+    <string name="battery_full">Batteria carica.</string>
+    <string name="battery_remaining">Batteria. %1$d%%.</string>
+    <string name="battery_time_h_m_tts">%1$d ore e %2$d minuti</string>
+    <string name="battery_time_m_tts">%1$d minuti</string>
+    <string name="battery_unavailable">Batteria. Stato sconosciuto.</string>
+    <string name="flashlight_off">Torcia. Spenta.</string>
+    <string name="flashlight_on">Torcia. Accesa.</string>
+    <string name="sound_mode_mute">Modalità audio. Silenzioso.</string>
+    <string name="sound_mode_normal">Modalità audio. Normale.</string>
+    <string name="sound_mode_vibrate">Modalità audio. Vibrazione.</string>
+    <string name="notifications_accessibility_none">Notifiche. Nessuna.</string>
+    <plurals name="notifications_accessibility_plural">
+        <item quantity="one">Notifiche. Una nuova.</item>
+        <item quantity="many">Notifiche. %d nuove.</item>
+        <item quantity="other">Notifiche. %d nuove.</item>
+    </plurals>
+
+    <string name="content_desc_gallery_photo_thumbnail">Miniatura foto</string>
+    <string name="content_desc_gallery_video_thumbnail">Miniatura video</string>
 </resources>
