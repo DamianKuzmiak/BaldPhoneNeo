@@ -194,17 +194,6 @@
             android:exported="false"
             android:label="@string/notifications" />
         <activity
-            android:name=".activities.FakeLauncherActivity"
-            android:enabled="false"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="app.baldphone.neo.features.calls.ui.RecentCallsActivity"
             android:exported="false"
             android:label="@string/recent_calls" />

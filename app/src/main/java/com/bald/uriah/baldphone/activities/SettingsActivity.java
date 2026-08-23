@@ -58,6 +58,7 @@ import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
 import app.baldphone.neo.extensions.ThemeExtensions;
 import app.baldphone.neo.permissions.PermissionManager;
+import app.baldphone.neo.utils.HomeAppUtils;
 import app.baldphone.neo.views.TitleBarView;
 
 import com.bald.uriah.baldphone.R;
@@ -181,7 +182,7 @@ public class SettingsActivity extends BaldActivity {
 
         mainCategory.add(
                 new RunnableSettingsItem(R.string.set_home_screen,
-                        v -> FakeLauncherActivity.resetPreferredLauncherAndOpenChooser(this)
+                        v -> HomeAppUtils.requestDefaultLauncher(this)
                         , R.drawable.home_on_button)
         );
 
