@@ -170,6 +170,7 @@
     <string name="it_s_highly_recommended_to_use_baldphone_s_home_screen_as_the_default_home_launcher">It’s highly recommended to set BaldPhone as your default home screen.</string>
     <string name="language">Language</string>
     <string name="language_settings">Languages</string>
+    <string name="follow_system_language">Follow device language</string>
     <string name="large">Large</string>
     <string name="left_handed">Left Handed</string>
     <string name="light">Light</string>

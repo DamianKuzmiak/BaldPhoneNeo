@@ -154,6 +154,7 @@
     <string name="it_s_highly_recommended_to_use_baldphone_s_home_screen_as_the_default_home_launcher">Zaleca się ustawienie BaldPhone jako domyślnego ekranu głównego.</string>
     <string name="language">Język</string>
     <string name="language_settings">Języki</string>
+    <string name="follow_system_language">Język urządzenia</string>
     <string name="large">Duży</string>
     <string name="left_handed">Leworęczny</string>
     <string name="light">Jasny</string>

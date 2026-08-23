@@ -16,13 +16,22 @@ class SystemSettingsFragment : BaseSettingsFragment(R.layout.fragment_system_set
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnPermissions = view.findViewById<View>(R.id.btn_permissions)
-        btnPermissions.apply {
+        view.findViewById<View>(R.id.btn_permissions).apply {
             findViewById<TextView>(R.id.title).setText(R.string.permissions_part)
             findViewById<ImageView>(R.id.icon).setImageResource(R.drawable.grant_all_permissions_on_button)
             contentDescription = context.getString(R.string.permissions_part)
             setOnClickListener {
                 findNavController().navigate(R.id.action_system_to_permissions)
+            }
+            setClickableAccessibilityRole()
+        }
+
+        view.findViewById<View>(R.id.btn_language).apply {
+            findViewById<TextView>(R.id.title).setText(R.string.language)
+            findViewById<ImageView>(R.id.icon).setImageResource(R.drawable.translate_on_button)
+            contentDescription = context.getString(R.string.language)
+            setOnClickListener {
+                findNavController().navigate(R.id.action_system_to_language)
             }
             setClickableAccessibilityRole()
         }

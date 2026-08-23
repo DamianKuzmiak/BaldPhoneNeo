@@ -190,23 +190,8 @@ public class SettingsActivity extends BaldActivity {
 
         final SettingsItem keyboard = new RunnableSettingsItem(R.string.set_keyboard, v -> startActivity(new Intent(this, KeyboardChangerActivity.class)), R.drawable.keyboard_on_button);
         accessibilityCategory.add(keyboard);
+
         personalizationCategory.add(keyboard);
-
-        personalizationCategory.add(new RunnableSettingsItem(R.string.language_settings, v -> startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS)), R.drawable.translate_on_button));
-
-//        personalizationCategory.add(
-//                new BDBSettingsItem(R.string.emergency_button, BDB.from(this)
-//                        .addFlag(BDialog.FLAG_OK | BDialog.FLAG_CANCEL).setTitle(R.string.emergency_button)
-//                        .setSubText(R.string.emergency_settings_subtext)
-//                        .setOptions(R.string.yes, R.string.no)
-//                        .setPositiveButtonListener(params -> {
-//                            editor.putBoolean(BPrefs.EMERGENCY_BUTTON_VISIBLE_KEY, params[0].equals(0)).apply();
-//                            this.recreate();
-//                            return true;
-//                        })
-//                        .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.EMERGENCY_BUTTON_VISIBLE_KEY, BPrefs.EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE) ? 0 : 1),
-//                        R.drawable.emergency_on_button));
-
         personalizationCategory.add(new RunnableSettingsItem(R.string.time_changer, v -> startActivity(new Intent(this, PillTimeSetterActivity.class)), R.drawable.pill));
         personalizationCategory.add(new RunnableSettingsItem(R.string.edit_home_screen, v -> startActivity(new Intent(this, Page1EditorActivity.class)), R.drawable.edit_on_button));
 

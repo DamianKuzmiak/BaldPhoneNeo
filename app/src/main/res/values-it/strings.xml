@@ -145,6 +145,7 @@
         cosa:\nsi consiglia vivamente di utilizzare BaldPhone come launcher (Home page) predefinito.</string>
     <string name="language">Lingua</string>
     <string name="language_settings">Lingua</string>
+    <string name="follow_system_language">Lingua del dispositivo</string>
     <string name="large">Grande</string>
     <string name="left_handed">Sinistra</string>
     <string name="light">Chiaro</string>

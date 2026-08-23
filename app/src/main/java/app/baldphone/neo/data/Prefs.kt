@@ -29,6 +29,11 @@ object Prefs {
     // Appearance and UI related preferences.
 
     /**
+     * Stored language tag (e.g., "pl", "en"). Set empty if the application should follow the system language.
+     */
+    var locale: String? by stringPref(PrefKeys.KEY_LOCALE, "")
+
+    /**
      * Determines how the status bar is displayed: Hidden, Only Home Screen or Everywhere
      */
     @JvmStatic
@@ -154,6 +159,9 @@ object Prefs {
         SharedPreferences::getBoolean,
         SharedPreferences.Editor::putBoolean,
     )
+
+    private fun stringPref(key: String, default: String?) =
+        PreferenceDelegate(key, default, SharedPreferences::getString, SharedPreferences.Editor::putString)
 
     private fun <T> enumPref(
         key: String,

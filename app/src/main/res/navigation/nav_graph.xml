@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_system_to_permissions"
             app:destination="@id/permissionsFragment" />
+        <action
+            android:id="@+id/action_system_to_language"
+            app:destination="@id/languageFragment" />
     </fragment>
 
     <fragment
@@ -39,6 +42,12 @@
         android:name="app.baldphone.neo.settings.system.PermissionsFragment"
         android:label="@string/permissions_part">
         <deepLink app:uri="myapp://settings/system/permissions" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="app.baldphone.neo.settings.system.LanguageFragment"
+        android:label="@string/language">
     </fragment>
 
     <!-- HELP -->

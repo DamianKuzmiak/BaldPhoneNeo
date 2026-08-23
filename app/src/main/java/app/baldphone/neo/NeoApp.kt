@@ -33,6 +33,7 @@ import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
 import app.baldphone.neo.launcher.apps.data.AppsRepository
 import app.baldphone.neo.launcher.apps.sync.LauncherAppsReceiver
+import app.baldphone.neo.utils.LocaleUtils
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
 import com.bald.uriah.baldphone.BuildConfig
@@ -54,6 +55,8 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
         Log.i(TAG, "Application started")
 
         Prefs.init(this)
+
+        LocaleUtils.initLocale()
 
         val theme = Prefs.theme
         if (!theme.isSystem) {

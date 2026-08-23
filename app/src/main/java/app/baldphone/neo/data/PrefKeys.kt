@@ -11,8 +11,9 @@ object PrefKeys {
     const val PREFS_VERSION_KEY = "prefs_version"
     const val CURRENT_PREFS_VERSION = 1
 
-    // Theme
+    // Theme / UI
     const val THEME_KEY = "theme"
+    const val KEY_LOCALE = "locale"
 
     const val KEY_ACCESSIBILITY_LEVEL = "accessibility_level"
 
