@@ -89,7 +89,7 @@ public class HomeScreenActivity extends BaldActivity {
         sharedPreferences = BPrefs.get(this);
         if (!sharedPreferences.getBoolean(BPrefs.AFTER_TUTORIAL_KEY, false) && !testing) {
             startActivity(new Intent(this, TutorialActivity.class));
-            finish();
+            handler.post(this::finish);
             return;
         }
 
@@ -157,6 +157,8 @@ public class HomeScreenActivity extends BaldActivity {
     protected void onResume() { // remember to change in Page1EditorActivity.java too!
         super.onResume();
         Log.v(TAG, "onResume");
+
+        if (isFinishing() || isDestroyed() || baldPrefsUtils == null) return;
 
         if (baldPrefsUtils.hasChanged(this)) {
             viewPagerHolder.getViewPager().removeAllViews();//android auto saves fragments, not good for us in this case

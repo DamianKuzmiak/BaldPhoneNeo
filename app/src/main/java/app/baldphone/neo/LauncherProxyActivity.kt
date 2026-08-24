@@ -1,9 +1,8 @@
 package app.baldphone.neo
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-
-import androidx.appcompat.app.AppCompatActivity
 
 import app.baldphone.neo.utils.HomeAppUtils
 
@@ -13,7 +12,7 @@ import com.bald.uriah.baldphone.activities.HomeScreenActivity
  * Invisible proxy activity to handle launching the app drawer entry point.
  * It ensures HomeScreenActivity is only ever launched via the dedicated system HOME task, avoiding duplicate instances.
  */
-class LauncherProxyActivity : AppCompatActivity() {
+class LauncherProxyActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

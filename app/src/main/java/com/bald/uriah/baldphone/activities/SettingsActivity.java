@@ -143,7 +143,7 @@ public class SettingsActivity extends BaldActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (baldPrefsUtils.hasChanged(this))
+        if (baldPrefsUtils != null && baldPrefsUtils.hasChanged(this))
             recreate();
     }
 

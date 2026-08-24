@@ -40,7 +40,8 @@ public class Page1EditorActivity extends BaldActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (baldPrefsUtils.hasChanged(this)) {
+        if (isFinishing() || isDestroyed()) return;
+        if (baldPrefsUtils != null && baldPrefsUtils.hasChanged(this)) {
             recreate();
         }
     }

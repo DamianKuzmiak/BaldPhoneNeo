@@ -49,6 +49,7 @@ public class BaldUncaughtExceptionHandler implements Thread.UncaughtExceptionHan
                 .edit()
                 .putLong(BPrefs.LAST_CRASH_KEY, currentTime)
                 .commit(); // commit and not apply because of System.exit(2)
+        e.printStackTrace();
         S.logImportant("BaldPhone CRASHED!");
 //        if (baldPrefs.getBoolean(BPrefs.CRASH_REPORTS_KEY, BPrefs.CRASH_REPORTS_DEFAULT_VALUE))
             // placeholder for future error reporting
