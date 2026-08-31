@@ -27,7 +27,7 @@ class PermissionListFragment : BaseSettingsFragment() {
 
     private val adapter by lazy {
         PermissionListAdapter { permission ->
-            PermissionManager.checkOrRequest(requireActivity(), permission) { _ ->
+            PermissionManager.checkOrRequest(requireActivity(), permission, showRationale = false) { _ ->
                 PermissionRepository.refresh()
             }
         }

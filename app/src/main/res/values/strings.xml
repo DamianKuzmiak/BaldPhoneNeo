@@ -34,6 +34,7 @@
     <string name="acknowledgments">Acknowledgments</string>
     <string name="action_close">Close</string>
     <string name="action_dismiss">Dismiss</string>
+    <string name="action_go_to_settings">Go to settings</string>
     <string name="action_pin_to_home">On home screen</string>
     <string name="action_toggle_favorite">In favorites</string>
     <string name="action_view">View</string>

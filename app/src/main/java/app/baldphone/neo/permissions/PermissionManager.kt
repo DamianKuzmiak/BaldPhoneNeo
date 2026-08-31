@@ -49,12 +49,15 @@ object PermissionManager {
      *
      * @param activity The [FragmentActivity] used to check and request permissions.
      * @param permission The [AppPermission] to check or request.
+     * @param showRationale Whether to display a rationale dialog to the user before requesting the permission.
      * @param callback The [PermissionCallback] to be notified of the result.
      */
     @JvmStatic
+    @JvmOverloads
     fun checkOrRequest(
         activity: FragmentActivity,
         permission: AppPermission,
+        showRationale: Boolean = true,
         callback: PermissionCallback
     ) {
         // Fast path: if permission is already granted, exit early
@@ -62,7 +65,9 @@ object PermissionManager {
             callback.onResult(PermissionResult.Granted)
             return
         }
-        with(activity).add(permission, callback).request()
+        val batch = with(activity).add(permission, callback)
+        batch.showRationale = showRationale
+        batch.request()
     }
 
     /**
@@ -78,15 +83,17 @@ object PermissionManager {
      *
      * @param activity The [FragmentActivity] used to check and request permissions.
      * @param permission The [AppPermission] to check or request.
+     * @param showRationale Whether to display a rationale dialog to the user before requesting the permission.
      * @param block A configuration block for [PermissionResultHandler].
      */
     fun checkOrRequest(
         activity: FragmentActivity,
         permission: AppPermission,
+        showRationale: Boolean = true,
         block: PermissionResultHandler.() -> Unit
     ) {
         val handler = PermissionResultHandler().apply(block)
-        checkOrRequest(activity, permission) { result ->
+        checkOrRequest(activity, permission, showRationale) { result ->
             handler.handle(result)
         }
     }
@@ -100,11 +107,12 @@ object PermissionManager {
     fun checkOrRequest(
         context: Context,
         permission: AppPermission,
+        showRationale: Boolean = true,
         block: PermissionResultHandler.() -> Unit
     ) {
         val activity = findFragmentActivity(context)
         if (activity != null) {
-            checkOrRequest(activity, permission, block)
+            checkOrRequest(activity, permission, showRationale, block)
         } else {
             Log.e(TAG, "Cannot check or request permission: Context is not a FragmentActivity wrapper: $context")
             val handler = PermissionResultHandler().apply(block)
@@ -150,6 +158,7 @@ object PermissionManager {
 
     class RequestBatch internal constructor(private val activity: FragmentActivity) {
         private val pending = ArrayDeque<RequestEntry>()
+        internal var showRationale: Boolean = true
 
         fun add(permission: AppPermission, callback: PermissionCallback): RequestBatch {
             Log.d(TAG, "add: $permission")
@@ -195,9 +204,7 @@ object PermissionManager {
                     }
                 }
 
-            fragment.processRequests(
-                pending.toList()
-            ) {
+            fragment.processRequests(pending.toList(), showRationale) {
                 Log.d(TAG, "request: batch complete, removing fragment")
                 if (fragment.isAdded) {
                     fm.beginTransaction().remove(fragment).commitAllowingStateLoss()

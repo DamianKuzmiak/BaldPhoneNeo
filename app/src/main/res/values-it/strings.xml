@@ -34,6 +34,7 @@
     <string name="acknowledgments">Ringraziamenti</string>
     <string name="action_close">Chiudi</string>
     <string name="action_dismiss">Ignora</string>
+    <string name="action_go_to_settings">Vai alle impostazioni</string>
     <string name="action_pin_to_home">Nella schermata Home</string>
     <string name="action_toggle_favorite">Nei preferiti</string>
     <string name="action_view">Visualizza</string>

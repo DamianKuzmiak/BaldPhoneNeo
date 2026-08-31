@@ -42,6 +42,7 @@ class PermissionViewModel : ViewModel() {
     private var activePermissions: List<AppPermission>? = null
     private val callbackMap = mutableMapOf<AppPermission, PermissionManager.PermissionCallback>()
     var batchFinish: (() -> Unit)? = null
+    var showRationale: Boolean = true
 
     /** Getter for callbacks to ensure external code doesn't mutate directly */
     fun getCallback(permission: AppPermission) = callbackMap[permission]
@@ -57,6 +58,7 @@ class PermissionViewModel : ViewModel() {
         _uiState.value = UiState.Idle
         callbackMap.clear()
         batchFinish = null
+        showRationale = true
     }
 
     /**
@@ -68,6 +70,7 @@ class PermissionViewModel : ViewModel() {
      */
     fun syncWithRequests(
         requests: List<PermissionManager.RequestEntry>,
+        showRationale: Boolean,
         onCompletion: () -> Unit
     ): Boolean {
         val newPermissions: List<AppPermission> = requests.map { it.permission }
@@ -78,6 +81,7 @@ class PermissionViewModel : ViewModel() {
             clearState()
             activePermissions = newPermissions
             queue.addAll(newPermissions)
+            this.showRationale = showRationale
         } else {
             Log.d(TAG, "Same batch, reattached callbacks")
         }

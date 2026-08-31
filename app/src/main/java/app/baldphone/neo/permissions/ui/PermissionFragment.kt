@@ -47,7 +47,6 @@ class PermissionFragment : Fragment() {
                 return@registerForActivityResult
             }
 
-            val denied = result.filterValues { !it }.keys
             when {
                 viewModel.wasSystemDialogNotShown() -> {
                     // User previously chose "Don't ask again"
@@ -131,9 +130,10 @@ class PermissionFragment : Fragment() {
      */
     fun processRequests(
         requests: List<PermissionManager.RequestEntry>,
+        showRationale: Boolean,
         onCompletion: () -> Unit
     ) {
-        if (viewModel.syncWithRequests(requests, onCompletion)) {
+        if (viewModel.syncWithRequests(requests, showRationale, onCompletion)) {
             processQueue()
         }
     }
@@ -165,21 +165,26 @@ class PermissionFragment : Fragment() {
         if (permission.isGranted(ctx)) {
             Log.d(TAG, "evaluatePermission: already granted: $permission")
             finishAndContinue(PermissionResult.Granted)
-            return
-        }
+        } else {
+            val showRationale = viewModel.showRationale
 
-        when (permission) {
-            is RuntimePermission -> {
-                val list = permission.permissions.toList()
-                if (list.any { ActivityCompat.shouldShowRequestPermissionRationale(act, it) }) {
-                    viewModel.updateUiState(PermissionViewModel.UiState.Rationale(permission, list))
-                } else {
-                    startRuntime(list)
+            when (permission) {
+                is RuntimePermission -> {
+                    val list = permission.permissions.toList()
+                    if (showRationale && list.any { ActivityCompat.shouldShowRequestPermissionRationale(act, it) }) {
+                        viewModel.updateUiState(PermissionViewModel.UiState.Rationale(permission, list))
+                    } else {
+                        startRuntime(list)
+                    }
                 }
-            }
 
-            is SpecialPermission -> {
-                viewModel.updateUiState(PermissionViewModel.UiState.Rationale(permission, emptyList()))
+                is SpecialPermission -> {
+                    if (showRationale) {
+                        viewModel.updateUiState(PermissionViewModel.UiState.Rationale(permission, emptyList()))
+                    } else {
+                        launchSettings(permission)
+                    }
+                }
             }
         }
     }
@@ -219,6 +224,7 @@ class PermissionFragment : Fragment() {
         showPermissionDialog(
             permission = permission,
             messageRes = permission.messageRes,
+            positiveButtonRes = if (permission is SpecialPermission) R.string.action_go_to_settings else R.string.allow,
             onPositive = {
                 when (permission) {
                     is RuntimePermission -> startRuntime(denied)
@@ -233,6 +239,7 @@ class PermissionFragment : Fragment() {
         showPermissionDialog(
             permission = permission,
             messageRes = R.string.dialog_message_permission_settings,
+            positiveButtonRes = R.string.action_go_to_settings,
             onPositive = { launchSettings(permission) },
             onNegative = { finishAndContinue(PermissionResult.Denied) }
         )
@@ -241,6 +248,7 @@ class PermissionFragment : Fragment() {
     private fun showPermissionDialog(
         permission: AppPermission,
         @StringRes messageRes: Int,
+        @StringRes positiveButtonRes: Int = R.string.allow,
         onPositive: () -> Unit,
         onNegative: () -> Unit
     ) {
@@ -253,7 +261,7 @@ class PermissionFragment : Fragment() {
                 .setIcon(permission.iconRes)
                 .setTitle(getString(R.string.grant_permission_for, getString(permission.titleRes)))
                 .setMessage(messageRes)
-                .setPositiveButton(R.string.allow) { onPositive() }
+                .setPositiveButton(positiveButtonRes) { onPositive() }
                 .setNegativeButton(android.R.string.cancel) { onNegative() }
                 .setOnCancelListener { onNegative() }
                 .setOnDismissListener { if (dialog == it) dialog = null }
