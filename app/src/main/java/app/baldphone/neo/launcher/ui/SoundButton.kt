@@ -1,17 +1,17 @@
 package app.baldphone.neo.launcher.ui
 
-import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
-import android.os.Build
 import android.os.Vibrator
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
@@ -20,10 +20,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 
 import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 import app.baldphone.neo.permissions.PermissionManager
@@ -42,7 +45,19 @@ class SoundButton
     ) : AppCompatImageButton(context, attrs, defStyleAttr) {
         private val audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)
         private var isUserRequestedChange = false
+        private var bindJob: Job? = null
+        private val availableRingerModes: List<Int> by lazy {
+            buildList {
+                add(AudioManager.RINGER_MODE_NORMAL)
+                val vibrator = ContextCompat.getSystemService(context, Vibrator::class.java)
+                if (vibrator?.hasVibrator() == true) {
+                    add(AudioManager.RINGER_MODE_VIBRATE)
+                }
+                add(AudioManager.RINGER_MODE_SILENT)
+            }
+        }
 
+        @OptIn(FlowPreview::class)
         private val ringerModeFlow =
             callbackFlow {
                 val am = audioManager ?: return@callbackFlow
@@ -69,6 +84,7 @@ class SoundButton
                     }
                 }
             }.debounce(100.milliseconds)
+                .distinctUntilChanged()
 
         fun bind(lifecycleOwner: LifecycleOwner) {
             val am = audioManager
@@ -77,14 +93,17 @@ class SoundButton
                 visibility = GONE
                 return
             }
+            visibility = VISIBLE
 
-            lifecycleOwner.lifecycleScope.launch {
-                lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    ringerModeFlow.collectLatest { mode ->
-                        updateSoundIcon(mode)
+            bindJob?.cancel()
+            bindJob =
+                lifecycleOwner.lifecycleScope.launch {
+                    lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        ringerModeFlow.collectLatest { mode ->
+                            updateSoundIcon(mode)
+                        }
                     }
                 }
-            }
 
             setOnClickListener { onSoundButtonClicked() }
             setOnLongClickListener { anchor ->
@@ -93,82 +112,65 @@ class SoundButton
             }
         }
 
+        private fun getNextRingerMode(mode: Int): Int {
+            if (availableRingerModes.isEmpty()) return AudioManager.RINGER_MODE_NORMAL
+            val currentIndex = availableRingerModes.indexOf(mode)
+            val nextIndex = if (currentIndex != -1) (currentIndex + 1) % availableRingerModes.size else 0
+            return availableRingerModes[nextIndex]
+        }
+
         private fun onSoundButtonClicked() {
             val am = audioManager ?: return
-            val availableModes = getAvailableRingerModes()
-            if (availableModes.isEmpty()) return
-
-            val currentMode = am.ringerMode
-            val currentIndex = availableModes.indexOf(currentMode)
-            val nextIndex = if (currentIndex != -1) (currentIndex + 1) % availableModes.size else 0
-            val nextMode = availableModes[nextIndex]
-
+            val nextMode = getNextRingerMode(am.ringerMode)
             setRingerMode(nextMode)
         }
 
         private fun onSoundButtonLongClicked(anchor: View) {
-            val availableModes = getAvailableRingerModes()
             context.showActionMenu(anchor) {
                 showCancel = false
-                availableModes.forEach { mode ->
-                    when (mode) {
-                        AudioManager.RINGER_MODE_SILENT -> {
-                            option(R.drawable.mute_on_background, R.string.mute) {
-                                setRingerMode(mode)
-                            }
-                        }
-
-                        AudioManager.RINGER_MODE_VIBRATE -> {
-                            option(R.drawable.vibration_on_background, R.string.vibrate) {
-                                setRingerMode(mode)
-                            }
-                        }
-
-                        AudioManager.RINGER_MODE_NORMAL -> {
-                            option(R.drawable.sound_on_background, R.string.sound) {
-                                setRingerMode(mode)
-                            }
-                        }
+                availableRingerModes.forEach { mode ->
+                    val info = getRingerModeUiInfo(mode)
+                    option(info.iconRes, info.menuLabelRes) {
+                        setRingerMode(mode)
                     }
                 }
             }
         }
 
-        private fun getAvailableRingerModes(): List<Int> =
-            buildList {
-                add(AudioManager.RINGER_MODE_NORMAL)
-                add(AudioManager.RINGER_MODE_SILENT)
-                val vibrator = ContextCompat.getSystemService(context, Vibrator::class.java)
-                if (vibrator?.hasVibrator() == true) {
-                    add(AudioManager.RINGER_MODE_VIBRATE)
-                }
-            }
-
-        private fun setRingerMode(mode: Int) {
+        private fun setRingerMode(targetMode: Int) {
             val am = audioManager ?: return
 
+            if (am.ringerMode == targetMode) {
+                isUserRequestedChange = false
+                return
+            }
+
             try {
-                if (mode == AudioManager.RINGER_MODE_SILENT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    val nm = ContextCompat.getSystemService(context, NotificationManager::class.java)
-                    nm?.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALARMS)
-                } else {
-                    am.ringerMode = mode
-                }
+                am.ringerMode = targetMode
                 isUserRequestedChange = true
             } catch (e: SecurityException) {
                 Log.e(TAG, "SecurityException while setting ringer mode", e)
-                handleRingerModeSecurityException(e)
+                isUserRequestedChange = false
+                handleRingerModeSecurityException(targetMode, e)
             }
         }
 
-        private fun handleRingerModeSecurityException(e: SecurityException) {
+        private fun handleRingerModeSecurityException(targetMode: Int, e: SecurityException) {
+            val errorMessage = e.message ?: context.getString(R.string.an_error_has_occurred)
             if (SpecialPermission.AccessNotificationPolicy.isGranted(context)) {
-                BaldSnackbar.show(context, e.message ?: "SecurityException", BaldSnackbar.TYPE_ERROR)
+                BaldSnackbar.show(context, errorMessage, BaldSnackbar.TYPE_ERROR)
             } else {
                 PermissionManager.checkOrRequest(context, SpecialPermission.AccessNotificationPolicy) {
+                    onGranted {
+                        setRingerMode(targetMode)
+                    }
+                    onDenied {
+                        val nextMode = getNextRingerMode(targetMode)
+                        setRingerMode(nextMode)
+                    }
                     onError {
                         Log.e(TAG, "Could not resolve FragmentActivity", e)
-                        BaldSnackbar.show(context, e.message ?: "SecurityException", BaldSnackbar.TYPE_ERROR)
+                        BaldSnackbar.show(context, errorMessage, BaldSnackbar.TYPE_ERROR)
                     }
                 }
             }
@@ -176,37 +178,55 @@ class SoundButton
 
         private fun updateSoundIcon(mode: Int) {
             Log.v(TAG, "updateSoundIcon: mode=$mode")
-            val (iconRes, textRes) =
-                when (mode) {
-                    AudioManager.RINGER_MODE_SILENT -> {
-                        R.drawable.mute_on_background to R.string.sound_mode_mute
-                    }
+            val info = getRingerModeUiInfo(mode)
 
-                    AudioManager.RINGER_MODE_VIBRATE -> {
-                        R.drawable.vibration_on_background to R.string.sound_mode_vibrate
-                    }
-
-                    else -> {
-                        R.drawable.sound_on_background to R.string.sound_mode_normal
-                    }
-                }
-
-            setImageResource(iconRes)
-            contentDescription = context.getString(textRes)
+            setImageResource(info.iconRes)
+            contentDescription = context.getString(info.contentDescRes)
 
             if (isUserRequestedChange) {
                 isUserRequestedChange = false
-                val msgRes =
-                    when (mode) {
-                        AudioManager.RINGER_MODE_SILENT -> R.string.toast_mode_silent
-                        AudioManager.RINGER_MODE_VIBRATE -> R.string.toast_mode_vibrate
-                        else -> R.string.toast_mode_normal
-                    }
-                BaldSnackbar.show(context, msgRes, BaldSnackbar.TYPE_SUCCESS)
+                BaldSnackbar.show(context, info.toastRes, BaldSnackbar.TYPE_SUCCESS)
             }
         }
+
+        private fun getRingerModeUiInfo(mode: Int): RingerModeUiInfo =
+            when (mode) {
+                AudioManager.RINGER_MODE_SILENT -> {
+                    RingerModeUiInfo(
+                        iconRes = R.drawable.mute_on_background,
+                        menuLabelRes = R.string.mute,
+                        contentDescRes = R.string.sound_mode_mute,
+                        toastRes = R.string.toast_mode_silent
+                    )
+                }
+
+                AudioManager.RINGER_MODE_VIBRATE -> {
+                    RingerModeUiInfo(
+                        iconRes = R.drawable.vibration_on_background,
+                        menuLabelRes = R.string.vibrate,
+                        contentDescRes = R.string.sound_mode_vibrate,
+                        toastRes = R.string.toast_mode_vibrate
+                    )
+                }
+
+                else -> {
+                    RingerModeUiInfo(
+                        iconRes = R.drawable.sound_on_background,
+                        menuLabelRes = R.string.sound,
+                        contentDescRes = R.string.sound_mode_normal,
+                        toastRes = R.string.toast_mode_normal
+                    )
+                }
+            }
 
         companion object {
             private const val TAG = "SoundButton"
         }
     }
+
+private data class RingerModeUiInfo(
+    @get:DrawableRes val iconRes: Int,
+    @get:StringRes val menuLabelRes: Int,
+    @get:StringRes val contentDescRes: Int,
+    @get:StringRes val toastRes: Int
+)

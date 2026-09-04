@@ -126,7 +126,7 @@ sealed class SpecialPermission(
     data object AccessNotificationPolicy : SpecialPermission(
         titleRes = R.string.permission_dnd_access_title,
         messageRes = R.string.permission_dnd_access_description,
-        iconRes = R.drawable.ic_notifications_active
+        iconRes = R.drawable.ic_do_not_disturb
     ) {
         override fun checkIsGranted(context: Context): Boolean =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

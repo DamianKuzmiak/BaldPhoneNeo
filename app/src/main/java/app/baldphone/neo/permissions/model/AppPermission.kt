@@ -37,7 +37,6 @@ sealed class AppPermission(
             if (isPackageUri) {
                 data = Uri.fromParts("package", context.packageName, null)
             }
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
         }
 
@@ -51,7 +50,10 @@ sealed class AppPermission(
                 RuntimePermission.ReadCallLog,
                 RuntimePermission.ReadWriteContacts,
                 SpecialPermission.Accessibility,
-                SpecialPermission.AccessNotificationPolicy,
+                // AccessNotificationPolicy is commented out because NotificationListener implicitly includes
+                // Do Not Disturb access. It still remains as a fallback if NotificationListener is not granted when
+                // tapping the [SoundButton].
+//                SpecialPermission.AccessNotificationPolicy,
                 SpecialPermission.NotificationListener,
                 SpecialPermission.Overlay,
                 SpecialPermission.WriteSettings
