@@ -35,6 +35,12 @@ object NotificationClassifier {
         )
 
     /**
+     * Checks if the given package name belongs to a known dialer application.
+     */
+    fun isKnownDialer(packageName: String): Boolean =
+        KNOWN_DIALERS.any { packageName.startsWith(it) }
+
+    /**
      * Determines whether a given notification represents a missed call.
      */
     fun isMissedCall(context: Context, sbn: StatusBarNotification): Boolean {
@@ -66,22 +72,24 @@ object NotificationClassifier {
             }
 
         val isMissedIndicator = isMissedType || hasMissedCount || isMissedCategory || isKnownMissedChannel
-        val isNotOngoing = (n.flags and Notification.FLAG_ONGOING_EVENT) == 0
+        val isOngoing = (n.flags and Notification.FLAG_ONGOING_EVENT) != 0
+
+        val isMissed = fromDialer && isMissedIndicator && !isOngoing
 
         Log.d(
             "NotificationClassifier",
-            "isMissedCall: pkg=$pkg, " +
+            "pkg=$pkg, " +
                 "fromDialer=$fromDialer, " +
+                "channelId=${if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) n.channelId else "N/A"}, " +
+                "ongoing=$isOngoing, " +
+                "category=${n.category}, " +
                 "callType=$callType, " +
                 "missedCallCount=$missedCallCount, " +
-                "category=${n.category}, " +
-                "channelId=${if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) n.channelId else "N/A"}, " +
                 "isMissedIndicator=$isMissedIndicator, " +
-                "isNotOngoing=$isNotOngoing, " +
-                "extrasKeys=${extras.keySet().joinToString(",")}"
+                "isMissed=$isMissed"
         )
 
-        return fromDialer && isMissedIndicator && isNotOngoing
+        return isMissed
     }
 
     /**
@@ -97,7 +105,7 @@ object NotificationClassifier {
      * Checks if the given package name belongs to a dialer application.
      */
     private fun isFromDialer(context: Context, packageName: String): Boolean {
-        if (KNOWN_DIALERS.any { packageName.startsWith(it) }) return true
+        if (isKnownDialer(packageName)) return true
 
         val defaultDialer =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

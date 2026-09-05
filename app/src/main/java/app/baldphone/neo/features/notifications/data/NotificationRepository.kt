@@ -1,5 +1,6 @@
 package app.baldphone.neo.features.notifications.data
 
+import android.app.Notification
 import android.content.Context
 import android.service.notification.StatusBarNotification
 
@@ -18,6 +19,13 @@ import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.services.NotificationReceiverService
 
 object NotificationRepository {
+    private enum class Priority {
+        CALL,
+        ALARM,
+        MESSAGE,
+        OTHER
+    }
+
     private val _notifications = MutableStateFlow<List<StatusBarNotification>>(emptyList())
     val notifications: StateFlow<List<StatusBarNotification>> = _notifications.asStateFlow()
 
@@ -30,23 +38,55 @@ object NotificationRepository {
                 NotificationItemMapper.toNotificationItems(context, sbns)
             }.flowOn(Dispatchers.Default)
 
-    // Legacy
-    val count: LiveData<Int> =
-        notifications
-            .map { it.size }
-            .asLiveData()
+    /**
+     * Emits the single highest-priority [NotificationItem], or null when no notifications exist.
+     */
+    fun getTopNotification(context: Context): Flow<NotificationItem?> =
+        getNotificationItems(context)
+            .map { items ->
+                selectTopNotification(items)
+            }
+
+    /**
+     * Evaluates a list of [NotificationItem]s and returns the single highest-priority notification.
+     * Ongoing calls (and clearable notifications) are considered.
+     * Returns null if no eligible notifications exist.
+     */
+    private fun selectTopNotification(items: List<NotificationItem>): NotificationItem? =
+        items
+            .asSequence()
+            .filter { it.isClearable || classifyPriority(it) == Priority.CALL }
+            .minWithOrNull(
+                compareBy<NotificationItem> { classifyPriority(it).ordinal }
+                    .thenByDescending { it.timeStamp }
+            )
+
+    private fun classifyPriority(item: NotificationItem): Priority =
+        when {
+            item.category == Notification.CATEGORY_CALL ||
+                item.category == Notification.CATEGORY_MISSED_CALL ||
+                NotificationClassifier.isKnownDialer(item.packageName) -> Priority.CALL
+
+            item.category == Notification.CATEGORY_ALARM -> Priority.ALARM
+
+            item.category == Notification.CATEGORY_MESSAGE ||
+                item.category == Notification.CATEGORY_SOCIAL -> Priority.MESSAGE
+
+            else -> Priority.OTHER
+        }
+
+    /**
+     * LiveData wrapper for [getTopNotification] for Java callers.
+     */
+    fun getTopNotificationLiveData(context: Context): LiveData<NotificationItem?> =
+        getTopNotification(context).asLiveData()
 
     // Legacy
-    val packages: LiveData<Set<String>> =
-        notifications
-            .map { it.map { sbn -> sbn.packageName }.toSet() }
-            .asLiveData()
+    val packages: LiveData<Set<String>> = notifications.map { it.map { sbn -> sbn.packageName }.toSet() }.asLiveData()
 
     // Legacy
     fun getMissedCalls(context: Context): LiveData<List<StatusBarNotification>> =
-        notifications
-            .map { it.filter { sbn -> NotificationClassifier.isMissedCall(context, sbn) } }
-            .asLiveData()
+        notifications.map { it.filter { sbn -> NotificationClassifier.isMissedCall(context, sbn) } }.asLiveData()
 
     /**
      * Updates the repository with a new list of active notifications.

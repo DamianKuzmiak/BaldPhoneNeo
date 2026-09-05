@@ -45,7 +45,10 @@ import androidx.lifecycle.ViewTreeLifecycleOwner;
 import app.baldphone.neo.activities.DialerActivity;
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
+import app.baldphone.neo.features.notifications.NotificationExtensionsKt;
+import app.baldphone.neo.features.notifications.NotificationItem;
 import app.baldphone.neo.features.notifications.data.NotificationRepository;
+import app.baldphone.neo.features.notifications.ui.NotificationItemView;
 import app.baldphone.neo.launcher.apps.AppIconBinder;
 import app.baldphone.neo.launcher.apps.data.PredefinedApps;
 import app.baldphone.neo.launcher.apps.data.AppsRepository;
@@ -85,6 +88,8 @@ public class HomePage1 extends HomeView {
             bt_recent,
             bt_whatsapp;
     private SharedPreferences sharedPreferences;
+    private View notificationAreaView;
+    private NotificationItemView notificationItemView;
 
     public HomePage1(@NonNull Context context) {
         super(
@@ -119,6 +124,9 @@ public class HomePage1 extends HomeView {
         bt_messages = rootView.findViewById(R.id.bt_messages);
         bt_recent = rootView.findViewById(R.id.bt_recent);
         bt_whatsapp = rootView.findViewById(R.id.bt_whatsapp);
+        notificationAreaView = rootView.findViewById(R.id.notification_area);
+        notificationItemView = rootView.findViewById(R.id.notification_overlay);
+
     }
 
     @Override
@@ -137,8 +145,36 @@ public class HomePage1 extends HomeView {
                 viewsToApps.clear();
                 setupOnClickListeners();
             });
+
+            if (homeScreen != null && notificationAreaView != null && notificationItemView != null) {
+                repo.getTopNotificationLiveData(activity).observe(owner, this::bindOverlayNotification);
+            }
         } else {
             Log.e(TAG, "LifecycleOwner is null. Cannot observe LiveData.");
+        }
+    }
+
+    private void bindOverlayNotification(@Nullable NotificationItem item) {
+        if (notificationAreaView == null || notificationItemView == null) return;
+
+        boolean showOverlay = (item != null);
+        notificationAreaView.setVisibility(showOverlay ? View.GONE : View.VISIBLE);
+        notificationItemView.setVisibility(showOverlay ? View.VISIBLE : View.GONE);
+
+        if (item != null) {
+            notificationItemView.bind(
+                    item,
+                    notificationItem -> {
+                        if (notificationItem.getContentIntent() != null) {
+                            NotificationExtensionsKt.sendNotificationIntent(notificationItem.getContentIntent(), null);
+                        }
+                        return kotlin.Unit.INSTANCE;
+                    },
+                    notificationItem -> {
+                        NotificationRepository.INSTANCE.cancelNotification(notificationItem.getKey());
+                        return kotlin.Unit.INSTANCE;
+                    }
+            );
         }
     }
 

@@ -12,6 +12,7 @@ data class NotificationItem(
     val timeStamp: Long,
     val contentIntent: PendingIntent?,
     val isClearable: Boolean,
+    val category: String?,
     val smallIcon: Icon?, // For API >= 23
     val smallIconResId: Int, // For API < 23
     val largeIcon: Icon? // For API >= 23

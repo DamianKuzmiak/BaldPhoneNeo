@@ -37,11 +37,12 @@ object NotificationItemMapper {
                 key = sbn.key,
                 packageName = sbn.packageName,
                 appName = getAppNameFromPackage(context, sbn.packageName),
-                title = extras.getCharSequence(Notification.EXTRA_TITLE),
-                text = extractText(extras, messagingStyle),
+                title = extractTitle(extras),
+                text = extractText(extras, notification, messagingStyle),
                 timeStamp = if (notification.`when` != 0L) notification.`when` else sbn.postTime,
                 contentIntent = notification.contentIntent,
                 isClearable = sbn.isClearable,
+                category = notification.category,
                 smallIcon = extractSmallIcon(notification),
                 largeIcon = extractIconPriority(context, notification, extras, messagingStyle),
                 smallIconResId = notification.icon
@@ -49,11 +50,23 @@ object NotificationItemMapper {
         }
     }
 
-    private fun extractText(extras: Bundle, messagingStyle: NotificationCompat.MessagingStyle?): CharSequence? =
+    private fun extractTitle(extras: Bundle): CharSequence? =
+        extras.getCharSequence(Notification.EXTRA_TITLE)
+            ?: extras.getCharSequence(Notification.EXTRA_TITLE_BIG)
+            ?: extras.getCharSequence(NotificationCompat.EXTRA_CONVERSATION_TITLE)
+
+    private fun extractText(
+        extras: Bundle,
+        notification: Notification,
+        messagingStyle: NotificationCompat.MessagingStyle?
+    ): CharSequence? =
         extras.getCharSequence(Notification.EXTRA_TEXT)
             ?: messagingStyle?.messages?.lastOrNull()?.text
             ?: extras.getCharSequence(Notification.EXTRA_BIG_TEXT)
+            ?: extras.getCharSequence(Notification.EXTRA_SUB_TEXT)
+            ?: extras.getCharSequence(Notification.EXTRA_INFO_TEXT)
             ?: extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT)
+            ?: notification.tickerText
 
     private fun extractSmallIcon(n: Notification): Icon? =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -63,7 +76,7 @@ object NotificationItemMapper {
         }
 
     /**
-     * Extracts the most appropriate icon for the notification based on a priority order:
+     * Extracts the most appropriate icon for the notification based on a priority order.
      */
     private fun extractIconPriority(
         context: Context,
