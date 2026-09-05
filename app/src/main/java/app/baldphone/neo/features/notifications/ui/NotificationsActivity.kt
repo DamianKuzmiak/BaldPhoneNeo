@@ -1,17 +1,9 @@
 package app.baldphone.neo.features.notifications.ui
 
-import android.app.ActivityOptions
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +16,7 @@ import app.baldphone.neo.activities.BaseActivity
 import app.baldphone.neo.databinding.ActivityNotificationsBinding
 import app.baldphone.neo.extensions.applyBottomInsetsAsMargin
 import app.baldphone.neo.features.notifications.NotificationItem
+import app.baldphone.neo.features.notifications.sendNotificationIntent
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
@@ -36,16 +29,6 @@ class NotificationsActivity : BaseActivity() {
             onItemCleared = { item -> viewModel.dismiss(item) },
             onContentClick = { item -> onContentClick(item) }
         )
-
-    private val timeTickReceiver =
-        object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent?.action == Intent.ACTION_TIME_TICK) {
-                    Log.v(TAG, "ACTION_TIME_TICK: refreshing timestamps")
-                    adapter.notifyItemRangeChanged(0, adapter.itemCount, NotificationListAdapter.PAYLOAD_TIME_TICK)
-                }
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,17 +59,6 @@ class NotificationsActivity : BaseActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        val filter = IntentFilter(Intent.ACTION_TIME_TICK)
-        ContextCompat.registerReceiver(this, timeTickReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED)
-    }
-
-    override fun onStop() {
-        unregisterReceiver(timeTickReceiver)
-        super.onStop()
-    }
-
     private fun updateUI(items: List<NotificationItem>) {
         Log.d(TAG, "processNotifications: ${items.size}")
         adapter.submitList(items)
@@ -104,23 +76,11 @@ class NotificationsActivity : BaseActivity() {
     }
 
     private fun onContentClick(item: NotificationItem) {
-        item.contentIntent?.let { intent ->
-            try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                    val options = ActivityOptions.makeBasic()
-                    options.setPendingIntentBackgroundActivityStartMode(
-                        ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED
-                    )
-                    intent.send(options.toBundle())
-                } else {
-                    intent.send()
-                }
-                finish()
-            } catch (e: PendingIntent.CanceledException) {
-                showErrorSnackbar(R.string.an_error_has_occurred)
-                Log.e(TAG, "Notification intent was canceled", e)
-            }
-        }
+        val success =
+            item.contentIntent?.sendNotificationIntent(
+                onCanceled = { showErrorSnackbar(R.string.an_error_has_occurred) }
+            ) ?: false
+        if (success) finish()
     }
 
     companion object {

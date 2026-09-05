@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="16dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="false"
-    app:strokeWidth="0dp">
+    tools:parentTag="com.google.android.material.card.MaterialCardView">
 
     <ImageView
         android:id="@+id/background_icon"
@@ -72,14 +64,14 @@
 
         <ImageView
             android:id="@+id/button_clear"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/action_dismiss"
             android:padding="4dp"
-            android:src="@drawable/delete_on_background"
+            android:src="@drawable/ic_cancel_circle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#B04A48" />
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--            app:tint="#B04A48" />-->
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/header_barrier"
@@ -93,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="6dp"
             android:background="@drawable/bg_notification_clickable"
             android:clickable="true"
@@ -139,4 +131,4 @@
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+</merge>
