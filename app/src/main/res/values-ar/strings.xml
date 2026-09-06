@@ -28,8 +28,6 @@
     <string name="add_emergency_contact">إضافة</string>
     <string name="add_pill">إضافة دواء</string>
     <string name="add_shortcut">إضافة إختصار</string>
-    <string name="add_to_favorite">إضافة إلي المفضلة</string>
-    <string name="add_to_home">إضافة إلي الرئيسية</string>
     <string name="add_to_sos">إضافة إلي الطوارئ</string>
     <string name="address">عنوان</string>
     <string name="advanced_options">الاعدادات المتقدمة</string>
@@ -51,7 +49,6 @@
     <string name="assistant">المساعد</string>
     <string name="at_least_one_day_must_be_selected">يجب ان تحدد يوم واحد علي اللأقل</string>
     <string name="auto_brightness">مستوي إضائة تلقائي</string>
-    <string name="baldphone_bla_allow_permission">من فضلك السماح للصلاحيات الأتية:</string>
     <string name="blocked">محظور</string>
     <string name="bluetooth">بلوتوث</string>
     <string name="brightness">مستوي السطوع</string>
@@ -61,9 +58,7 @@
     <string name="calling">يتم الإتصال</string>
 
     <string name="call_log">سجل المكالمات</string>
-    <string name="call_subtext">هذا الإذن مطلوب لعمل مكالمات</string>
     <string name="camera">الكاميرا</string>
-    <string name="camera_subtext">هذا الإذن مطلوب لتشغيل الفلاش</string>
     <string name="cancel">إلغاء</string>
     <string name="change_pills_time">تغيير ميعاد الدواء</string>
     <string name="clear_cache">مسح الذاكرة المؤقتة</string>
@@ -137,8 +132,6 @@
     <string name="timer">مؤقت</string>
     <string name="received">مستلمة</string>
     <string name="recent">جديد</string>
-    <string name="remove_from_favorite">حذف من المفضلة</string>
-    <string name="remove_from_home">حذف من الرئيسية</string>
     <string name="remove_from_sos">حذف من الطوارئ</string>
     <string name="removed_all_alarms">تم حذف كل المنبهات!</string>
     <string name="repeats_every_day">كل يوم</string>
@@ -147,8 +140,6 @@
     <string name="send">إرسال</string>
     <string name="share">مشاركة</string>
     <string name="share_contact">مشاركة جهة إتصال</string>
-    <string name="share_differently">مشاركة عبر تطبيق اخر</string>
-    <string name="share_via_whatsapp">مشاركة عبر الواتساب</string>
     <string name="snooze">غفوة</string>
     <string name="speak">تحدث</string>
     <string name="today">اليوم</string>

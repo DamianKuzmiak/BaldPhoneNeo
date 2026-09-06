@@ -112,7 +112,6 @@
 
     <string name="contacts">Kontakty</string>
     <string name="search_contact">Szukaj kontaktów po nazwie</string>
-    <string name="crash">Coś poszło nie tak.\nPonowne uruchomienie za kilka sekund…</string>
     <string name="current_time">Aktualny czas</string>
     <string name="custom">Niestandardowy</string>
     <string name="dark">Ciemny</string>
@@ -279,7 +278,6 @@
     <string name="took">Wzięto</string>
     <string name="tuesday">Wtorek</string>
     <string name="uninstall">Odinstaluj</string>
-    <string name="uninstall_subtext">Czy na pewno chcesz odinstalować %s?\nDane %s zostaną usunięte!</string>
     <string name="up">W górę</string>
     <string name="video">Wideo</string>
     <string name="video_tutorials">Samouczki wideo</string>
@@ -396,10 +394,6 @@
     <string name="do_you_want_to_save_your_changes">Czy chcesz zapisać zmiany?</string>
     <string name="discard">Odrzuć</string>
     <string name="no_recent_calls">Brak ostatnich połączeń</string>
-    <string name="apps_sort_method">Metoda sortowania aplikacji</string>
-    <string name="apps_sort_method_subtext">Wybierz, czy chcesz sortować aplikacje w jednej siatce, czy podzielić je na grupy według liter</string>
-    <string name="groups">Grupy</string>
-    <string name="one_grid">Jedna siatka</string>
     <string name="edit_home_screen">Edytuj ekran główny</string>
     <string-array name="names_for_screenshots">
         <item>The Godfather</item>

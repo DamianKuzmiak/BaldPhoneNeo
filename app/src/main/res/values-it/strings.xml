@@ -118,7 +118,6 @@
     <string name="search_contact">Cerca contatto per nome</string>
     <string name="copied_to_clipboard">Copiato negli appunti</string>
     <string name="pasted_from_clipboard">Incollato dagli appunti</string>
-    <string name="crash">Qualcosa è andato storto.\nRiavvio tra pochi secondi…</string>
     <string name="current_time">Ora attuale</string>
     <string name="custom">Personalizzato</string>
     <string name="dark">Scuro</string>

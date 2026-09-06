@@ -32,8 +32,6 @@
     <string name="add_emergency_contact">Gehitu</string>
     <string name="add_pill">Pilula gehitu</string>
     <string name="add_shortcut">Lasterbidea gehitu</string>
-    <string name="add_to_favorite">Gogokoenetan gehitu</string>
-    <string name="add_to_home">Hasieran gehitu</string>
     <string name="add_to_sos">Larrialdira gehitu</string>
     <string name="address">Helbidea</string>
     <string name="advanced_options">Ezarpen aurreratuak</string>
@@ -57,7 +55,6 @@
     <string name="at_least_one_day_must_be_selected">Egun bat aukeratu behar duzu gutxienez!</string>
     <string name="auto_brightness">Distira\ndoigarria</string>
     <string name="backspace">atzera egin</string>
-    <string name="baldphone_bla_allow_permission">Hurrengo baimenak baimendu, mesedez:</string>
     <string name="blocked">Blokeatuta</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Distira</string>
@@ -67,9 +64,7 @@
     <string name="calling">Deitzen</string>
 
     <string name="call_log">Deien historia:</string>
-    <string name="call_subtext">Baimen hau derrigorrezkoa da kontaktuak deitzeko.</string>
     <string name="camera">Kamera</string>
-    <string name="camera_subtext">Baimen hau derrigorrezkoa da linterna pizteko.</string>
     <string name="cancel">Utzi</string>
     <string name="change_pills_time">Pilulen ordua aldatu</string>
     <string name="change_system_settings_subtext">Mesedez, baimena emaiozu BaldPhone-ri, ezarpenak aldatu ahal izateko, adibidez:
@@ -93,9 +88,6 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="contact_must_has_name">Kontaktuak izen bat behar du!</string>
     <string name="contact_not_created">Kontaktua ez da sortu!</string>
     <string name="contacts">Kontaktuak</string>
-    <string name="contacts_read_subtext">Baimen hau derrigorrezkoa da kontaktuak irakurtzeko.</string>
-    <string name="contacts_subtext">Baimen hau derrigorrezkoa da kontaktu berriak sortzeko.</string>
-    <string name="crash">Epa!\nBaldPhonek arazo bat aurkitu du eta berriro hasiko da.</string>
     <string name="current_time">Oraingo ordua</string>
     <string name="custom">Neurrira</string>
     <string name="dark">Iluna</string>
@@ -108,12 +100,9 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="down">Behera</string>
     <string name="edit">Editatu</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Baimendu jakinarazpenen sarbidea</string>
-    <string name="enable_notification_access_subtext">Mesedez emaiozu BaldPhoneri sarbidea jakinarazpenak irakurtzeko</string>
     <string name="enter">Sartu</string>
     <string name="enter_contact_or_phone_number">Sartu kontaktuaren izena:</string>
     <string name="evening">Arratsalde</string>
-    <string name="external_storage_subtext">Baimen hau derrigorrezkoa da argazkiak gordetzeko.</string>
 
     <string name="feedback">Iruzkinak</string>
     <string name="feedback_advanced">Aukera gehiago</string>
@@ -188,15 +177,10 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="pill_name">Pilularen izena</string>
     <string name="pills">Pilulak</string>
     <string name="press_longer">Luzeago sakatu!</string>
-    <string name="read_call_log">Deien historia irakurri</string>
-    <string name="read_call_log_subtext">Baimen hau derrigorrezkoa da deien historia ikusteko.</string>
     <string name="read_contacts">Kontaktuak irakurri</string>
     <string name="received">Jasota</string>
     <string name="recent">Gertatu berria</string>
     <string name="regular_level">Maila arrunta</string>
-
-    <string name="remove_from_favorite">Gogokoetatik kendu</string>
-    <string name="remove_from_home">Hasieratik kendu</string>
     <string name="remove_from_sos">SOStik kendu</string>
     <string name="remove_shortcut">Kendu lasterbidea</string>
     <string name="removed_all_alarms">Alarma guztiak kendu dira!</string>
@@ -209,8 +193,6 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="share">Partekatu</string>
     <string name="share_baldphone">BaldPhone partekatu</string>
     <string name="share_contact">Kontaktua partekatu </string>
-    <string name="share_differently">Beste app baten bidez partekatu</string>
-    <string name="share_via_whatsapp">WhatsApp bidez partekatu</string>
     <string name="shift">aldaketa</string>
     <string name="show">Erakutsi</string>
     <string name="small">Txikia</string>
@@ -233,14 +215,10 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="took">Hartuta!</string>
     <string name="tuesday">Asteartea</string>
     <string name="uninstall">Desinstalatu</string>
-    <string name="uninstall_subtext">Ziur zaude %s desinstalatu nahi duzula?\n%s-ren datuak betirako ezabatuko dira!</string>
     <string name="up">Gora</string>
     <string name="video">Bideo</string>
     <string name="video_tutorials">Bideo tutorialak</string>
     <string name="videos">Bideo tutorialak</string>
-
-    <string name="read_phone_state">Irakurri telefonoaren egoera</string>
-    <string name="read_phone_state_subtext">Baimen hau derrigorrezkoa da bigarren simarekin deiak egiteko.</string>
     <string name="choose_sim">Aukeratu sima</string>
     <string name="choose_sim_subtext">Aukeratu zein sim erabili nahi duzun deia egiteko</string>
     <string-array name="names_for_screenshots">

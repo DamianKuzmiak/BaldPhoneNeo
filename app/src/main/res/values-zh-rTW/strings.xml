@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">新增</string>
     <string name="add_pill">新增藥物</string>
     <string name="add_shortcut">新增捷徑</string>
-    <string name="add_to_favorite">加至我的最愛</string>
-    <string name="add_to_home">加至主頁</string>
     <string name="add_to_sos">加至緊急聯絡</string>
     <string name="address">地址</string>
     <string name="advanced_options">進階功能</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">最少要選擇一日！</string>
     <string name="auto_brightness">自動調校亮度</string>
     <string name="backspace">退格鍵</string>
-    <string name="baldphone_bla_allow_permission">請允許以下權限：</string>
     <string name="blocked">已封鎖</string>
     <string name="bluetooth">藍牙</string>
     <string name="brightness">亮度</string>
@@ -68,9 +65,7 @@
     <string name="calling">致電</string>
 
     <string name="call_log">來電記錄：</string>
-    <string name="call_subtext">需要以下權限才可致電其他人。</string>
     <string name="camera">相機</string>
-    <string name="camera_subtext">需要以下權限才可開啟閃光燈。</string>
     <string name="cancel">取消</string>
     <string name="change_pills_time">更改服藥時間</string>
     <string name="change_system_settings_subtext">請允許清風電話更改系統設定，包括放大字體及改變亮度。
@@ -94,9 +89,6 @@
     <string name="contact_must_has_name">聯絡人必須有名稱！</string>
     <string name="contact_not_created">沒有建立聯絡人！</string>
     <string name="contacts">聯絡人</string>
-    <string name="contacts_read_subtext">需要以下權限才可查看聯絡人。</string>
-    <string name="contacts_subtext">需要以下權限才可編輯聯絡人。</string>
-    <string name="crash">噢！\n清風電話遇上錯誤，需要重啟。</string>
     <string name="current_time">現在時間</string>
     <string name="custom">自訂</string>
     <string name="dark">暗色</string>
@@ -109,14 +101,11 @@
     <string name="down">向下</string>
     <string name="edit">編輯</string>
     <string name="email">電郵：</string>
-    <string name="enable_notification_access">開啟通知存取</string>
-    <string name="enable_notification_access_subtext">請給予清風電話通知存取。</string>
     <string name="enter">確定</string>
     <string name="enter_contact_or_phone_number">輸入聯絡人名稱：</string>
     <string name="evening">晚上</string>
     <string name="example_of_different_text_sizes">不同字體示範\n應該看得見，又不出界。
     </string>
-    <string name="external_storage_subtext">需要以下權限才可儲存照片。</string>
 
     <string name="feedback">傳送回饋</string>
     <string name="feedback_advanced">更多選項</string>
@@ -200,15 +189,10 @@
     <string name="pills">藥物</string>
     <string name="press_longer">按久一點！</string>
     <string name="timer">倒數計時器</string>
-    <string name="read_call_log">查看通話記錄</string>
-    <string name="read_call_log_subtext">需要以下權限才可查看通話記錄。</string>
     <string name="read_contacts">查看聯絡人</string>
     <string name="received">已接聽</string>
     <string name="recent">最近</string>
     <string name="regular_level">普通</string>
-
-    <string name="remove_from_favorite">從我的最愛移除</string>
-    <string name="remove_from_home">從桌面移除</string>
     <string name="remove_from_sos">從緊急聯絡移除</string>
     <string name="remove_shortcut">移除捷徑</string>
     <string name="removed_all_alarms">已移除所有鬧鐘！</string>
@@ -234,8 +218,6 @@
     </string>
     <string name="share_baldphone">分享清風電話</string>
     <string name="share_contact">分享聯絡人</string>
-    <string name="share_differently">通過其他程式分享</string>
-    <string name="share_via_whatsapp">通過 Whatsapp 分享</string>
     <string name="shift">shift</string>
     <string name="show">顯示</string>
     <string name="small">小</string>
@@ -263,7 +245,6 @@
     <string name="took">已服食！</string>
     <string name="tuesday">星期二</string>
     <string name="uninstall">移除</string>
-    <string name="uninstall_subtext">你肯定要移除 %s？\n%s 的所有資料將會刪除！</string>
     <string name="up">上</string>
     <string name="video">影片</string>
     <string name="video_tutorials">影片教學</string>
@@ -275,8 +256,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">只會響鬧一次</string>
     <string name="write">新增筆記</string>
-    <string name="write_contacts">編輯聯絡人</string>
-    <string name="write_external_storage">寫入外置儲存</string>
     <string name="yes">是</string>
     <string name="yesterday">昨天</string>
     <string name="nothing">無</string>
@@ -285,8 +264,6 @@
     <string name="no_pills">無藥物\n按一下\n「新增藥物」新增記錄</string>
     <string name="clear_all_notifications">清除所有通知</string>
     <string name="clear_cache_subtext">你肯定要清除緩存？\n所有捷徑也會移除！
-    </string>
-    <string name="permissions_calm">你好，清風電話需要以下權限才可運作。有部分聽起來很嚴重，但清風電話需要它們才可以正常運作。清風電話不會偷取資料或者損害你的電話。按確定以給予清風電話這些權限，或按否退出清風電話。
     </string>
 
     <string name="what_s_new">新功能</string>
@@ -349,10 +326,6 @@
     <string name="do_you_want_to_save_your_changes">你想儲存你所作的變更嗎？</string>
     <string name="discard">捨棄</string>
     <string name="no_recent_calls">無最近通話</string>
-    <string name="apps_sort_method">程式排序方式</string>
-    <string name="apps_sort_method_subtext">你想以單一網格排序程式，還是按字母分組顯示</string>
-    <string name="groups">分組</string>
-    <string name="one_grid">網格</string>
     <string name="edit_home_screen">編輯主螢幕</string>
 
 

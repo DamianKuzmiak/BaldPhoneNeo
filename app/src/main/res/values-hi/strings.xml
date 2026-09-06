@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">आपातकालीन संपर्क जोड़ें</string>
     <string name="add_pill">गोली जोड़ें</string>
     <string name="add_shortcut">छोटा रास्ता जोडें</string>
-    <string name="add_to_favorite">पसंदीदा लिस्ट मे डालें</string>
-    <string name="add_to_home">घर में जोड़ें</string>
     <string name="add_to_sos">एसओएस में जोड़ें</string>
     <string name="address">पता</string>
     <string name="advanced_options">उन्नत विकल्प</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">कम से कम एक दिन चुना जाना चाहिए!</string>
     <string name="auto_brightness">स्वतः\nचमक</string>
     <string name="backspace">बैकस्पेस</string>
-    <string name="baldphone_bla_allow_permission">कृपया निम्नलिखित अनुमतियों की अनुमति दें:</string>
     <string name="blocked">अवरोधित</string>
     <string name="bluetooth">ब्लूटूथ</string>
     <string name="brightness">चमक</string>
@@ -69,9 +66,7 @@
     <string name="calling">कॉलिंग</string>
 
     <string name="call_log">कॉल लॉग:</string>
-    <string name="call_subtext">संपर्कों को कॉल करने के लिए यह अनुमति आवश्यक है</string>
     <string name="camera">कैमरा</string>
-    <string name="camera_subtext">टॉर्च चालू करने के लिए यह अनुमति आवश्यक है।</string>
     <string name="cancel">रद्द करें</string>
     <string name="change_pills_time">गोलियां समय बदलें</string>
     <string name="change_system_settings_subtext">कृपया बाल्डफोन को सेटिंग बदलने की अनुमति दें, जैसे कि फ़ॉन्ट बढ़ाना
@@ -96,9 +91,6 @@
     <string name="contact_must_has_name">संपर्क का एक नाम होना चाहिए!</string>
     <string name="contact_not_created">संपर्क नहीं बनाया गया!</string>
     <string name="contacts">Contacts</string>
-    <string name="contacts_read_subtext">संपर्कों को पढ़ने के लिए यह अनुमति आवश्यक है।</string>
-    <string name="contacts_subtext">नए संपर्क जोड़ने के लिए यह अनुमति आवश्यक है.</string>
-    <string name="crash">ओह!\nबाल्डफ़ोन में समस्या आ गई और अब पुनः प्रारंभ होगा।</string>
     <string name="current_time">वर्तमान समय</string>
     <string name="custom">रीति</string>
     <string name="dark">अंधेरा</string>
@@ -111,14 +103,11 @@
     <string name="down">नीचे</string>
     <string name="edit">संपादित करें</string>
     <string name="email">ईमेल:</string>
-    <string name="enable_notification_access">अधिसूचना पहुंच सक्षम करें</string>
-    <string name="enable_notification_access_subtext">कृपया बाल्डफोन को सूचनाओं तक पहुंच प्रदान करें.</string>
     <string name="enter">प्रवेश करना</string>
     <string name="enter_contact_or_phone_number">संपर्क नाम दर्ज करें:</string>
     <string name="evening">शाम</string>
     <string name="example_of_different_text_sizes">विभिन्न पाठ आकारों का उदाहरण\nपढ़ने योग्य होना चाहिए न कि
         अतिप्रवाह।</string>
-    <string name="external_storage_subtext">चित्रों को सहेजने के लिए यह अनुमति आवश्यक है.</string>
 
     <string name="feedback">प्रतिक्रिया भेजें</string>
     <string name="feedback_advanced">अधिक विकल्प</string>
@@ -204,15 +193,10 @@
     <string name="pills">गोली</string>
     <string name="press_longer">लंबे समय तक दबाएं!</string>
     <string name="timer">घड़ी</string>
-    <string name="read_call_log">कॉल इतिहास पढ़ें</string>
-    <string name="read_call_log_subtext">कॉल इतिहास देखने के लिए यह अनुमति आवश्यक है.</string>
     <string name="read_contacts">संपर्क पढ़ें</string>
     <string name="received">प्राप्त</string>
     <string name="recent">हालिया</string>
     <string name="regular_level">नियमित स्तर</string>
-
-    <string name="remove_from_favorite">पसंदीदा से निकालें</string>
-    <string name="remove_from_home">घर से हटाएं</string>
     <string name="remove_from_sos">एसओएस से हटाएं</string>
     <string name="remove_shortcut">शॉर्टकट हटाएं</string>
     <string name="removed_all_alarms">सभी अलार्म हटा दिए!</string>
@@ -242,8 +226,6 @@
     </string>
     <string name="share_baldphone">बाल्डफ़ोन साझा करें</string>
     <string name="share_contact">संपर्क साझा करें</string>
-    <string name="share_differently">अन्य ऐप के माध्यम से साझा करें</string>
-    <string name="share_via_whatsapp">Whatsapp के माध्यम से साझा करें</string>
     <string name="shift">खिसक जाना</string>
     <string name="show">प्रदर्शन</string>
     <string name="small">छोटा</string>
@@ -271,7 +253,6 @@
     <string name="took">लिया!</string>
     <string name="tuesday">मंगलवार</string>
     <string name="uninstall">स्थापना रद्द करें</string>
-    <string name="uninstall_subtext">क्या आप वाकई %s को अनइंस्टॉल करना चाहते हैं?\n%s\'s डेटा हमेशा के लिए चला जाएगा!</string>
     <string name="up">ऊपर</string>
     <string name="video">वीडियो</string>
     <string name="video_tutorials">वीडियो शिक्षण</string>
@@ -283,8 +264,6 @@
     <string name="wifi">वाई - फाई</string>
     <string name="will_repeat_only_once">केवल एक बार दोहराएंगे!</string>
     <string name="write">लिखना</string>
-    <string name="write_contacts">संपर्क लिखें</string>
-    <string name="write_external_storage">बाहरी भंडारण लिखें</string>
     <string name="yes">हां</string>
     <string name="yesterday">कल</string>
     <string name="nothing">कुछ नहीं</string>
@@ -293,10 +272,6 @@
     <string name="no_pills">कोई गोली नहीं\n\n\"गोली जोड़ें\" क्लिक करके एक बनाएं</string>
     <string name="clear_all_notifications">सभी सूचनाएं साफ़ करें</string>
     <string name="clear_cache_subtext">क्या आप वाकई कैशे की सामग्री को हटाना चाहते हैं? अस्थायी फ़ाइलों को हटाने से कुछ बाल्डफ़ोन ऐप की खराबी का समाधान हो सकता है, लेकिन होम स्क्रीन में बनाए गए शॉर्टकट भी हटा दिए जाएंगे।</string>
-    <string name="permissions_calm">नमस्ते, बाल्डफोन को चलाने के लिए निम्नलिखित अनुमतियां होनी चाहिए। उनमे से कुछ
-        ध्वनि डरावना है, लेकिन यह एकमात्र तरीका है जिससे बाल्डफोन फोन के इंटरफेस को बदल सकता है। कोई डेटा नहीं लिया जाता है और इसका कारण बनता है
-        कोई नुकसान नहीं। BaldPhone से बाहर निकलने के लिए अनुमति या नहीं देने के लिए OK दबाएं।
-    </string>
 
     <string name="what_s_new">नया क्या है</string>
     <string name="what_do_you_want_to_do_with___">आप %s के साथ क्या करना चाहते हैं?</string>
@@ -359,17 +334,11 @@
     <string name="do_you_want_to_save_your_changes">क्या आप अपने परिवर्तनों को सहेजना चाहते हैं?</string>
     <string name="discard">नामंज़ूर करना</string>
     <string name="no_recent_calls">कोई हालिया कॉल नहीं</string>
-    <string name="apps_sort_method">ऐप्स सॉर्ट विधि</string>
-    <string name="apps_sort_method_subtext">चुनें कि क्या आप ऐप्स को एक ग्रिड में सॉर्ट करना चाहते हैं या उन्हें अक्षरों के माध्यम से अलग-अलग समूहों में विभाजित करना चाहते हैं</string>
-    <string name="groups">समूहों</string>
-    <string name="one_grid">एक ग्रिड</string>
     <string name="edit_home_screen">होम स्क्रीन संपादित करें</string>
     <string name="dual_sim">दोहरी सिम</string>
     <string name="dual_sim_subtext">चुनें कि आप दोहरी सिम कैसे प्रबंधित करना चाहते हैं\nनोट: यदि आप विकल्प दिखाएँ चुनते हैं, तो आपको एक और अनुमति की अनुमति देनी होगी</string>
     <string name="use_default">डिफ़ॉल्ट उपयोग करें</string>
     <string name="show_options">विकल्प दिखाएं</string>
-    <string name="read_phone_state">फोन की स्थिति पढ़ें</string>
-    <string name="read_phone_state_subtext">दूसरी सिम से कॉल करने के लिए यह अनुमति आवश्यक है</string>
     <string name="choose_sim">सिम चुनें</string>
     <string name="choose_sim_subtext">वह सिम चुनें जिससे आप कॉल करना चाहते हैं</string>
     <string name="website">वेबसाइट</string>

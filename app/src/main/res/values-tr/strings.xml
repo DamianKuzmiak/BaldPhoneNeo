@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">Acil arama kişisini ekle</string>
     <string name="add_pill">İlaç ekle</string>
     <string name="add_shortcut">Uygulama kısayolu ekle</string>
-    <string name="add_to_favorite">Favorilerine ekle</string>
-    <string name="add_to_home">Ana sayfaya ekle</string>
     <string name="add_to_sos">Acile/SOS\'e ekle</string>
     <string name="address">Adres</string>
     <string name="advanced_options">Geliştirilmiş Ayarlar</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">En az bir gün seçilmek sorunda!</string>
     <string name="auto_brightness">Otomatik\n parlaklık</string>
     <string name="backspace">Geri tuşu</string>
-    <string name="baldphone_bla_allow_permission">Lütfen gerekli izinleri veriniz:</string>
     <string name="blocked">Bloke edilmiş</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Parlaklık</string>
@@ -68,9 +65,7 @@
     <string name="calling">Aranıyor</string>
 
     <string name="call_log">Arama kayıtı:</string>
-    <string name="call_subtext">Bu gerekçe, aramaları yapmak için gerekli.</string>
     <string name="camera">Kamera</string>
-    <string name="camera_subtext">Bu gerekçe, el fenerini kullanmak için gerekli.</string>
     <string name="cancel">Vazgeç</string>
     <string name="change_pills_time">Hap zamanını değiştir.</string>
     <string name="change_system_settings_subtext">Lütfen Baldphone\'a ayarları değiştirme onayı veriniz, örneğin yazı tipini değiştirmek veya parlaklığı değiştirmek için.
@@ -94,9 +89,6 @@
     <string name="contact_must_has_name">Kişinin ismi olması lazim!</string>
     <string name="contact_not_created">Kişi eklenmedi!</string>
     <string name="contacts">Kişiler</string>
-    <string name="contacts_read_subtext">Bu gerekçe, Kişilere bakmak için gerekli.</string>
-    <string name="contacts_subtext">But gerekçe, yeni Kişi eklemek için gerekli..</string>
-    <string name="crash">Hay daaa!\ BaldPhone\'da Hata oluştu! Yeniden başlatılıyot.</string>
     <string name="current_time">Şimdiki zaman</string>
     <string name="custom">Özel</string>
     <string name="dark">Karanlık</string>
@@ -109,14 +101,11 @@
     <string name="down">Aşağı</string>
     <string name="edit">Düzenle</string>
     <string name="email">E-posta:</string>
-    <string name="enable_notification_access">Bildirim erişimine izin veriniz</string>
-    <string name="enable_notification_access_subtext">Lütfen BaldPhone bildirimlerine izin veriniz.</string>
     <string name="enter">Giriş</string>
     <string name="enter_contact_or_phone_number">Kişinin ismini giriniz:</string>
     <string name="evening">Akşam</string>
     <string name="example_of_different_text_sizes">Değişik metin büyüklükleri\n Sözlerin kesintisiz okunabilecek olması lazım.
     </string>
-    <string name="external_storage_subtext">Bu gerekçe resim ve dosya kaydede bilmeniz için gerekli.</string>
 
     <string name="feedback">Geri bildirim</string>
     <string name="feedback_advanced">Daha fazla seçenek</string>
@@ -200,15 +189,10 @@
     <string name="pills">İlaçlar</string>
     <string name="press_longer">Daha uzun basınız!</string>
     <string name="timer">Zaman ölçer</string>
-    <string name="read_call_log">Arama geçmişi</string>
-    <string name="read_call_log_subtext">Bu izin arama geçmişinizi görmeniz için gereklidir.</string>
     <string name="read_contacts">Kişiler</string>
     <string name="received">Alınan</string>
     <string name="recent">Yeni</string>
     <string name="regular_level">Sıradan seviye</string>
-
-    <string name="remove_from_favorite">Favorilerden çıkarın</string>
-    <string name="remove_from_home">Ana sayfadan çıkarın</string>
     <string name="remove_from_sos">Acil/SOS\'den çıkarın</string>
     <string name="remove_shortcut">Kısayolu silin</string>
     <string name="removed_all_alarms">Tüm alarmlarınız silindi!</string>
@@ -232,8 +216,6 @@
     <string name="share_bald_phone_subtext">Hey, BaldPhone\'u tanımayan birini mi tanıyorsunuz?\nBunu onunla paylaşa bilirsiniz!</string>
     <string name="share_baldphone">BaldPhone\'u paylaş</string>
     <string name="share_contact">Kişiyi paylaş</string>
-    <string name="share_differently">Başka uygulamayla paylaş</string>
-    <string name="share_via_whatsapp">Whatsapp ile paylaş</string>
     <string name="shift">Değiştir</string>
     <string name="show">Göster</string>
     <string name="small">Small</string>
@@ -261,7 +243,6 @@
     <string name="took">Alındı!</string>
     <string name="tuesday">Salı</string>
     <string name="uninstall">Kaldırın</string>
-    <string name="uninstall_subtext">Kaldırmak istediğinize emin misiniz %s?\n%s\'a ait bilgiler silinecek!</string>
     <string name="up">Yukarı</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Video Dersler</string>
@@ -273,8 +254,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">Yalnız bir kere tekrarlanacak!</string>
     <string name="write">Yazın</string>
-    <string name="write_contacts">Kişileri yazınız</string>
-    <string name="write_external_storage">Harici depolama alanına yazın</string>
     <string name="yes">Evet</string>
     <string name="yesterday">Dün</string>
     <string name="nothing">Hiçbir şey</string>
@@ -283,7 +262,6 @@
     <string name="no_pills">Listede hiç bir ilacınız yok \nŞuraya basarak birini yaratın\n\"İlaç ekle\"</string>
     <string name="clear_all_notifications">Tüm bildirimleri temizle</string>
     <string name="clear_cache_subtext">Önbelleyi temizlemek istediğinize emin misiniz?\nUygulama kısayolları kaldırılacak!</string>
-    <string name="permissions_calm">Merhaba, BaldPhone\'un düzgün çalışması için aşağıdakı izinleri vermelisiniz. Bazı izinler korkunç seslene bilir, ama BaldPhone\'un telefonunuzun arayüzünün yerini almasının başka bir yolu yok. Bu işlem tamamen zararsızdır ve hiç bir bilginiz ele geçirilmeyecek. Tamama basarak şu izinleri veriniz.</string>
 
     <string name="what_s_new">Yeni ne var?</string>
     <string name="what_do_you_want_to_do_with___">Şununla ne etmek istiyorsunuz %s?</string>
@@ -344,10 +322,6 @@
     <string name="do_you_want_to_save_your_changes">Değişiklikleri kaydetmek istiyor musunuz?</string>
     <string name="discard">Atın</string>
     <string name="no_recent_calls">Yeni çağrı yok</string>
-    <string name="apps_sort_method">Uygulamaları dizme yöntemi</string>
-    <string name="apps_sort_method_subtext">Uygulamaları tek bir hanede mi yoksa harflerle farklı gruplara mı ayırmak istediğinizi seçin</string>
-    <string name="groups">Gruplar</string>
-    <string name="one_grid">Tek hane</string>
     <string name="edit_home_screen">Ana sayfayı düzenle</string>
 
 

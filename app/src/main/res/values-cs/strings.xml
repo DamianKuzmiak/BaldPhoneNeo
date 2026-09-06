@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Přidat</string>
     <string name="add_pill">Přidat pilulku</string>
     <string name="add_shortcut">Přidat zkratku</string>
-    <string name="add_to_favorite">Přidat do oblíbených</string>
-    <string name="add_to_home">Přidat na domovskou obrazovku</string>
     <string name="add_to_sos">Přidat do SOS</string>
     <string name="address">Adresa</string>
     <string name="advanced_options">Pokročilé nastavení</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">Aspoň jedno musí být vybráno!</string>
     <string name="auto_brightness">Automatický\njas</string>
     <string name="backspace">backspace</string>
-    <string name="baldphone_bla_allow_permission">Prosím povolte následující oprávnění:</string>
     <string name="blocked">Zablokováno</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Jas</string>
@@ -69,9 +66,7 @@
     <string name="calling">Volám</string>
 
     <string name="call_log">Historie hovorů:</string>
-    <string name="call_subtext">Toto oprávnění je nutné k volání kontaktů.</string>
     <string name="camera">Fotoaparát</string>
-    <string name="camera_subtext">Toto oprávnění je nutné k používání svítilny.</string>
     <string name="cancel">Zrušit</string>
     <string name="change_pills_time">Změnit čas pilulky</string>
     <string name="change_system_settings_subtext">Prosím povolte BaldPhone změnu nastavení, jako například
@@ -96,9 +91,6 @@
     <string name="contact_must_has_name">Kontakt musí mít jméno!</string>
     <string name="contact_not_created">Kontakt nebyl vytvořen!</string>
     <string name="contacts">Kontakty</string>
-    <string name="contacts_read_subtext">Toto oprávnění je nutné ke čtení kontaktů.</string>
-    <string name="contacts_subtext">Toto oprávnění je nutné k přidání nových kontaktů.</string>
-    <string name="crash">Ale ne!\nBaldPhone narazil na problém a nyní se restartuje.</string>
     <string name="current_time">Čas nyní</string>
     <string name="custom">Vlastní</string>
     <string name="dark">Tmavý</string>
@@ -111,15 +103,12 @@
     <string name="down">Dolů</string>
     <string name="edit">Upravit</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Povolit Přístup K Upozorněním</string>
-    <string name="enable_notification_access_subtext">Prosím povolte BaldPhone přístup k upozorněním.</string>
     <string name="enter">Zadat</string>
     <string name="enter_contact_or_phone_number">Zadejte jméno kontaktu:</string>
     <string name="evening">Večer</string>
     <string name="example_of_different_text_sizes">Příklad různých velikostí textu\nMěl by být
     čitelný a nepřetékat
     </string>
-    <string name="external_storage_subtext">Toto oprávnění je nutné k ukládání obrázků.</string>
 
     <string name="feedback">Zpětná vazba</string>
     <string name="feedback_advanced">Další možnosti</string>
@@ -205,15 +194,10 @@
     <string name="pills">Pilulky</string>
     <string name="press_longer">Držte déle!</string>
     <string name="timer">Časovač</string>
-    <string name="read_call_log">Přečíst historii telefonátů</string>
-    <string name="read_call_log_subtext">Toto oprávnění je nutné k zobrazení historii telefonátů</string>
     <string name="read_contacts">Přečíst kontakty</string>
     <string name="received">Přijaté</string>
     <string name="recent">Nedávné</string>
     <string name="regular_level">Normální úroveň</string>
-
-    <string name="remove_from_favorite">Odebrat z oblíbených</string>
-    <string name="remove_from_home">Odebrat z domu</string>
     <string name="remove_from_sos">Odebrat z SOS</string>
     <string name="remove_shortcut">Odstaranit zkratku</string>
     <string name="removed_all_alarms">Všechny alarmy byly odstraněny!</string>
@@ -243,8 +227,6 @@
     </string>
     <string name="share_baldphone">Sdílet BaldPhone</string>
     <string name="share_contact">Sdílet kontakt</string>
-    <string name="share_differently">Sdílet přes jinou aplikaci</string>
-    <string name="share_via_whatsapp">Sdílet přes Whatsapp</string>
     <string name="shift">shift</string>
     <string name="show">Ukaž</string>
     <string name="small">Malý</string>
@@ -272,7 +254,6 @@
     <string name="took">Měl jsem!</string>
     <string name="tuesday">Úterý</string>
     <string name="uninstall">Odinstalovat</string>
-    <string name="uninstall_subtext">Jste si jistí, že chcete odistalovat %s?\n%s\'s data budou smazány!</string>
     <string name="up">Nahoru</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Video Tutoriál</string>
@@ -284,8 +265,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">Bude se opakovat pouze jednou!</string>
     <string name="write">Napsat</string>
-    <string name="write_contacts">Zapsat kontakty</string>
-    <string name="write_external_storage">Zapsat externí úložiště</string>
     <string name="yes">Ano</string>
     <string name="yesterday">Včera</string>
     <string name="nothing">Nic</string>
@@ -294,10 +273,6 @@
     <string name="no_pills">Žádné pilulky nejsou!\nVytvořte kliknutím na\n\"Přidat pilulku\"</string>
     <string name="clear_all_notifications">Vyčistit všechna upozornění</string>
     <string name="clear_cache_subtext">Jste si jistí že chcete smazat všechna dočastná data?\nZkratky aplikací budou smazány také!
-    </string>
-    <string name="permissions_calm">Ahoj, BaldPhone potřebuje následující oprávnění k funkci. Některá z nich
-        zní strašidelně, ale je to jediný způsob, jak může BaldPhone nahradit prostředí vašeho telefonu. Žádné data nejsou sebrána a nezpůsobuje
-        žádné škody. Zmáčkněte OK pro udělení oprávnění, nebo ne pro opuštění BaldPhone.
     </string>
 
     <string name="what_s_new">Co je nového</string>
@@ -361,10 +336,6 @@
     <string name="do_you_want_to_save_your_changes">Do you want to save your changes?</string>
     <string name="discard">Discard</string>
     <string name="no_recent_calls">No Recent Calls</string>
-    <string name="apps_sort_method">Apps Sort Method</string>
-    <string name="apps_sort_method_subtext">Choose whether you want to sort the apps in one grid or to have them divided into different groups via letters</string>
-    <string name="groups">Groups</string>
-    <string name="one_grid">One Grid</string>
     <string name="edit_home_screen">Edit Home Screen</string>
     <string-array name="names_for_screenshots">
         <item>The Godfather</item>

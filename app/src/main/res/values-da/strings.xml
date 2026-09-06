@@ -32,8 +32,6 @@
     <string name="add_emergency_contact">Tilføj</string>
     <string name="add_pill">Tilføj pille</string>
     <string name="add_shortcut">Tilføj genvej</string>
-    <string name="add_to_favorite">Tilføj til favoritter</string>
-    <string name="add_to_home">Tilføj til Forside</string>
     <string name="add_to_sos">Tilføj til SOS</string>
     <string name="address">Adresse</string>
     <string name="advanced_options">Avancerede indstillinger</string>
@@ -57,7 +55,6 @@
     <string name="at_least_one_day_must_be_selected">Du skal vælge mindst én dag!</string>
     <string name="auto_brightness">Automatisk\nlysstyrke</string>
     <string name="backspace">Slet</string>
-    <string name="baldphone_bla_allow_permission">Du skal give følgende tilladelser:</string>
     <string name="blocked">Blokeret</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Lysstyrke</string>
@@ -67,9 +64,7 @@
     <string name="calling">Ringer op</string>
 
     <string name="call_log">Opkaldsliste:</string>
-    <string name="call_subtext">Denne rettighed er nødvendig for, at du kan ringe til dine kontakter.</string>
     <string name="camera">Kamera</string>
-    <string name="camera_subtext">Denne rettighed er nødvendig for, at du kan tænde lommelygten.</string>
     <string name="cancel">Annullér</string>
     <string name="change_pills_time">Skift tidspunkt for piller</string>
     <string name="change_system_settings_subtext">Tillad at BaldPhone ændrer indstillinger, såsom at øge skriftstørrelsen og ændre lysstyrken.</string>
@@ -92,9 +87,6 @@
     <string name="contact_must_has_name">Du SKAL skriv et navn på kontakten!</string>
     <string name="contact_not_created">Kontakten blev ikke oprettet!</string>
     <string name="contacts">Kontakter</string>
-    <string name="contacts_read_subtext">Denne rettighed er nødvendig for, at app\'en kan se og vise dine kontakter.</string>
-    <string name="contacts_subtext">Denne rettighed er nødvendig for, at du kan tilføje nye kontakter.</string>
-    <string name="crash">Hov!\nBaldPhone har kludret i det og er nødt til at genstarte sig selv nu.</string>
     <string name="current_time">Nuværende tid</string>
     <string name="custom">Tilpasset</string>
     <string name="dark">Mørk</string>
@@ -107,13 +99,10 @@
     <string name="down">Ned</string>
     <string name="edit">Ændr</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Giv adgang til notifikationer</string>
-    <string name="enable_notification_access_subtext">Du er nødt til at give BaldPhone adgang til dine notifikationer.</string>
     <string name="enter">Indtast</string>
     <string name="enter_contact_or_phone_number">Indtast navn på kontakten:</string>
     <string name="evening">Aften</string>
     <string name="example_of_different_text_sizes">Eksempel på forskellige tekststørrelser.\nSkal være læslige og ikke forsvinde ud over skærmen.</string>
-    <string name="external_storage_subtext">Denne rettighed er nødvendig for at kunne gemme billeder.</string>
 
     <string name="feedback">Send feedback</string>
     <string name="feedback_advanced">Flere muligheder</string>
@@ -194,15 +183,10 @@
     <string name="pills">Piller</string>
     <string name="press_longer">Tryk og hold lidt længere tid med fingeren.</string>
     <string name="timer">Stopur</string>
-    <string name="read_call_log">Læs opkaldshistorik</string>
-    <string name="read_call_log_subtext">Denne rettighed er nødvendig for at app\'en kan vise din opkaldshistorik.</string>
     <string name="read_contacts">Læs kontaktliste</string>
     <string name="received">Modtaget</string>
     <string name="recent">Seneste opkald</string>
     <string name="regular_level">Normalt niveau</string>
-
-    <string name="remove_from_favorite">Fjern fra Favoritter</string>
-    <string name="remove_from_home">Fjern fra \"skrivebord\"</string>
     <string name="remove_from_sos">Fjern fra SOS</string>
     <string name="remove_shortcut">Fjern genvej</string>
     <string name="removed_all_alarms">Alle alarmer blev slettet.</string>
@@ -225,8 +209,6 @@
     <string name="share_bald_phone_subtext">Kender du nogen, som du synes skal høre om BaldPhone?\nSå kan du dele den med dem her!</string>
     <string name="share_baldphone">Del et link til BaldPhone</string>
     <string name="share_contact">Del kontaktinformation</string>
-    <string name="share_differently">Del via en anden app</string>
-    <string name="share_via_whatsapp">Del via Whatsapp</string>
     <string name="shift">Ryk</string>
     <string name="show">Vis</string>
     <string name="small">Lille</string>
@@ -254,7 +236,6 @@
     <string name="took">Er taget!</string>
     <string name="tuesday">Tirsdag</string>
     <string name="uninstall">Afinstallér</string>
-    <string name="uninstall_subtext">Er du sikker på, at du vil afinstallere %s?\n%s\'s data vil blive permanent slettet!</string>
     <string name="up">Op</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Videoinstruktioner</string>
@@ -265,8 +246,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">gentages kun én gang!</string>
     <string name="write">Skriv</string>
-    <string name="write_contacts">Skriv kontaktinformation</string>
-    <string name="write_external_storage">Skriv til ekstern hukommelse</string>
     <string name="yes">Ja</string>
     <string name="yesterday">I går</string>
     <string name="nothing">Ingenting</string>
@@ -275,8 +254,6 @@
     <string name="no_pills">Ingen piller\nOpret en ved at klikke på\n\"Tilføj pille\"</string>
     <string name="clear_all_notifications">Ryd alle notifikationer</string>
     <string name="clear_cache_subtext">Er du sikker på, at du vil slette den midlertidige hukommelse? Dette kan afhjælpe småfejl i BaldPhone, men vil også slette genvejene på \"skrivebordet\".</string>
-    <string name="permissions_calm">BaldPhone har brug for nogle rettigheder for at fungere. Nogle af dem lyder måske ubetryggende, men det er den eneste måde BaldPhone kan ændre din telefons udseende, så det bliver bedre for dig. Intet data vil blive taget fra dig eller ødelagt.\nTryk OK for at give app\'en de nødvendige rettigheder eller \"Nej\" for at afslutte BaldPhone.
-    </string>
 
     <string name="what_s_new">Nyheder</string>
     <string name="what_do_you_want_to_do_with___">Hvad vil du gerne gøre med %s?</string>
@@ -332,17 +309,11 @@
     <string name="do_you_want_to_save_your_changes">Do you want to save your changes?</string>
     <string name="discard">Discard</string>
     <string name="no_recent_calls">No Recent Calls</string>
-    <string name="apps_sort_method">Apps Sort Method</string>
-    <string name="apps_sort_method_subtext">Choose whether you want to sort the apps in one grid or to have them divided into different groups via letters</string>
-    <string name="groups">Groups</string>
-    <string name="one_grid">One Grid</string>
     <string name="edit_home_screen">Edit Home Screen</string>
     <string name="dual_sim">Dual Sim</string>
     <string name="dual_sim_subtext">Choose how you want to manage dual sim\nNote: If you choose Show Options, you\'ll need to allow another permission</string>
     <string name="use_default">Use Default</string>
     <string name="show_options">Show Options</string>
-    <string name="read_phone_state">Read Phone State</string>
-    <string name="read_phone_state_subtext">This permission is required in order to call from the second sim</string>
     <string name="choose_sim">Choose Sim</string>
     <string name="choose_sim_subtext">Choose the sim you want to make the call from</string>
     <string-array name="names_for_screenshots">

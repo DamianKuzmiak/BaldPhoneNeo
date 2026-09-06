@@ -32,8 +32,6 @@
     <string name="add_emergency_contact">추가</string>
     <string name="add_pill">알약 추가</string>
     <string name="add_shortcut">바로가기 추가</string>
-    <string name="add_to_favorite">좋아하는 것 추가</string>
-    <string name="add_to_home">집 추가</string>
     <string name="add_to_sos">비상 연락망 추가</string>
     <string name="address">주소</string>
     <string name="advanced_options">상향된 옵션</string>
@@ -57,7 +55,6 @@
     <string name="at_least_one_day_must_be_selected">하루 이상의 날짜가 선택되었습니다!</string>
     <string name="auto_brightness">자동 밝기</string>
     <string name="backspace">지우기</string>
-    <string name="baldphone_bla_allow_permission">다음 권한을 사용하십시오:</string>
     <string name="blocked">잠금</string>
     <string name="bluetooth">블루투스</string>
     <string name="brightness">밝기</string>
@@ -67,9 +64,7 @@
     <string name="calling">통화중</string>
 
     <string name="call_log">전화 기록:</string>
-    <string name="call_subtext">전화를 사용하려면 허가가 필요합니다.</string>
     <string name="camera">카메라</string>
-    <string name="camera_subtext">플래시를 사용하려면 허가가 필요합니다.</string>
     <string name="cancel">취소</string>
     <string name="change_pills_time">알약 시간 변경</string>
     <string name="change_system_settings_subtext">BaldPhone에서 글꼴 크기 늘리기 및 밝기 변경과 같은 설정을 변경할 수 있도록하십시오.</string>
@@ -92,9 +87,6 @@
     <string name="contact_must_has_name">연락처는 반드시 이름이 있어야 합니다!</string>
     <string name="contact_not_created">연락처가 추가되지 않았습니다!</string>
     <string name="contacts">연락처 목록</string>
-    <string name="contacts_read_subtext">연락처를 읽기 위해서 권한이 필요합니다.</string>
-    <string name="contacts_subtext">새 연락처를 추가하기 위해서 권한이 필요합니다.</string>
-    <string name="crash">이런! BaldPhone가 문제가 생겼습니다. 다시 시작합니다.</string>
     <string name="current_time">현재 시간</string>
     <string name="custom">사용자 지정</string>
     <string name="dark">어두운</string>
@@ -107,13 +99,10 @@
     <string name="down">다운</string>
     <string name="edit">수정</string>
     <string name="email">이메일:</string>
-    <string name="enable_notification_access">알람 접근 활성화</string>
-    <string name="enable_notification_access_subtext">BaldPhone에 알림에 대한 접근 권한을 부여하십시오.</string>
     <string name="enter">입력</string>
     <string name="enter_contact_or_phone_number">연락처 이름 입력:</string>
     <string name="evening">저녁</string>
     <string name="example_of_different_text_sizes">다른 텍스트 크기의 예는 읽을 수 있고 오버플로되지 않아야합니다.</string>
-    <string name="external_storage_subtext">사진을 저장하기 위해서 허가가 필요합니다.</string>
 
     <string name="feedback">피드백 보내기</string>
     <string name="feedback_advanced">추가 옵션</string>
@@ -193,15 +182,10 @@
     <string name="pills">알약 목록</string>
     <string name="press_longer">길게 누르시오!</string>
     <string name="timer">타이머</string>
-    <string name="read_call_log">통화 내역 읽기</string>
-    <string name="read_call_log_subtext">통화 내역을 보기 위해서 허가가 필요합니다.</string>
     <string name="read_contacts">연락처 읽기</string>
     <string name="received">수신</string>
     <string name="recent">최근</string>
     <string name="regular_level">보통 수준</string>
-
-    <string name="remove_from_favorite">좋아하는 것 삭제</string>
-    <string name="remove_from_home">홈 삭제</string>
     <string name="remove_from_sos">SOS 삭제</string>
     <string name="remove_shortcut">바로가기 삭제</string>
     <string name="removed_all_alarms">모든 알람 삭제!</string>
@@ -224,8 +208,6 @@
     <string name="share_bald_phone_subtext">BaldPhone에 대해 알고 싶은 사람이 있습니까? 당신은 그들과 이야기 나눌 수 있습니다!</string>
     <string name="share_baldphone">BaldPhone 공유</string>
     <string name="share_contact">연락처 공유</string>
-    <string name="share_differently">다른 앱으로 공유</string>
-    <string name="share_via_whatsapp">Whatsapp를 통해 공유</string>
     <string name="shift">이동</string>
     <string name="show">보기</string>
     <string name="small">작은</string>
@@ -252,7 +234,6 @@
     <string name="took">완료!</string>
     <string name="tuesday">화요일</string>
     <string name="uninstall">제거</string>
-    <string name="uninstall_subtext">정말로 제거하시겠습니까 %s? %s의 데이터는 영원히 사라집니다!</string>
     <string name="up">위로</string>
     <string name="video">비디오</string>
     <string name="video_tutorials">비디오 튜토리얼</string>
@@ -264,8 +245,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">한 번만 반복됩니다!</string>
     <string name="write">쓰기</string>
-    <string name="write_contacts">연락처 쓰기</string>
-    <string name="write_external_storage">외부 저장소 쓰기</string>
     <string name="yes">예</string>
     <string name="yesterday">어제</string>
     <string name="nothing">없음</string>
@@ -274,7 +253,6 @@
     <string name="no_pills">알약 없음 알약 추가를 클릭하여 생성하십시오</string>
     <string name="clear_all_notifications">모든 알람 지우기</string>
     <string name="clear_cache_subtext">캐시를 지우길 원하십니까? 앱 바로가기도 제거됩니다1</string>
-    <string name="permissions_calm">안녕하세요, BaldPhone을 사용하려면 다음 권한이 있어야합니다. 그들 중 일부는 무섭게 들리지만 BaldPhone이 전화기의 인터페이스를 대체 할 수있는 유일한 방법입니다. 데이터가 수집되지 않으며 피해를주지 않습니다. OK를 눌러 권한을 부여하거나 No를 눌러 BaldPhone을 종료하십시오.</string>
 
     <string name="what_s_new">새로운 소식</string>
     <string name="what_do_you_want_to_do_with___">당신은 %s와 무엇을 같이하고 싶나요?</string>
@@ -335,10 +313,6 @@
     <string name="do_you_want_to_save_your_changes">변경된 사항을 저장하시겠습니까?</string>
     <string name="discard">연결 끊김</string>
     <string name="no_recent_calls">최근 전화 없음</string>
-    <string name="apps_sort_method">앱 정렬 방법</string>
-    <string name="apps_sort_method_subtext">앱을 하나의 격자로 정렬할지 또는 문자를 통해 다른 그룹으로 나눌 지 선택하세요</string>
-    <string name="groups">그룹</string>
-    <string name="one_grid">하나의 그리드</string>
     <string name="edit_home_screen">Edit Home Screen</string>
     <bool name="is_right_to_left">false</bool>
 

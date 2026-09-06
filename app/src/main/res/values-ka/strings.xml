@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">დამატება</string>
     <string name="add_pill">აბის დამატება</string>
     <string name="add_shortcut">მალსახმობის დამატება</string>
-    <string name="add_to_favorite">დავამატოთ რჩეულებს</string>
-    <string name="add_to_home">დავამატოთ მთავარ ეკრანს-ს</string>
     <string name="add_to_sos">დავამატოთ SOS</string>
     <string name="address">მისამართი</string>
     <string name="advanced_options">დამატებითი პარამეტრები</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">ერთი დღე მაინც უნდა იყოს მონიშნული!</string>
     <string name="auto_brightness">ავტო\nსიკაშკაშე</string>
     <string name="backspace">backspace</string>
-    <string name="baldphone_bla_allow_permission">გთხოვთ ნება დართოთ შემდეგ ნებართვებს:</string>
     <string name="blocked">ბლოკირებულია</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">სიკაშკაშე</string>
@@ -68,9 +65,7 @@
     <string name="calling">რეკავს</string>
 
     <string name="call_log">ზარების ისტორია:</string>
-    <string name="call_subtext">ეს ნებართვა აუცილებელია კონტაქტებისთვის დასარეკად.</string>
     <string name="camera">კამერა</string>
-    <string name="camera_subtext">ეს ნებართვა აუცილებელია ფარნის ჩასართავად.</string>
     <string name="cancel">უარი</string>
     <string name="change_pills_time">აბის დროის შეცვლა</string>
     <string name="change_system_settings_subtext">გთხოვთ ნება დართოთ BaldPhone-ს რომ შეცვალოს პარამეტრები,როგორებიცაა შრიფტის ზომის და სიკაშკაშის შეცვლა.
@@ -94,9 +89,6 @@
     <string name="contact_must_has_name">კონტაქტს უნდა ჰქონდეს სახელი!</string>
     <string name="contact_not_created">კონტაქტი არაა შექმნილი!</string>
     <string name="contacts">კონტაქტები</string>
-    <string name="contacts_read_subtext">ეს ნებართვა საჭიროა თქვენი კონტაქტების წასაკითხად.</string>
-    <string name="contacts_subtext">ეს ნებართვა საჭიროა ახალი კონტაქტების დასამატებლად.</string>
-    <string name="crash">უი!\nBaldPhone-ს პრობლემა აქვს და გადაიტვირთება.</string>
     <string name="current_time">ახლანდელი დრო</string>
     <string name="custom">შერჩევითი</string>
     <string name="dark">ბნელი</string>
@@ -109,14 +101,11 @@
     <string name="down">დაბლა</string>
     <string name="edit">რედაქტირება</string>
     <string name="email">ელ-ფოსტა:</string>
-    <string name="enable_notification_access">გაფრთხილებებზე წვდომის მინიჭება</string>
-    <string name="enable_notification_access_subtext"> BaldPhone-ს წვდომა გაფრთხილებებზე.</string>
     <string name="enter">შეყვანა</string>
     <string name="enter_contact_or_phone_number">შეიყვანეთ კონტაქტის სახელი:</string>
     <string name="evening">საღამო</string>
     <string name="example_of_different_text_sizes">განსხვავებული ტექსტების ზომების მაგალითები\nუნდა იყოს წაკითხვადი და არა დიდი.
     </string>
-    <string name="external_storage_subtext">ეს ნებართვა საჭიროა სურათების შესანახად.</string>
 
     <string name="feedback">უკუკავშირის გაგზავნა</string>
     <string name="feedback_advanced">მეტი პარამეტრები</string>
@@ -200,15 +189,10 @@
     <string name="pills">აბები</string>
     <string name="press_longer">დიდხანს დააჭირეთ!</string>
     <string name="timer">ტაიმერი</string>
-    <string name="read_call_log">ზარების ისტორიის წაკითხვა</string>
-    <string name="read_call_log_subtext">ეს ნებართვა საჭიროა ზარების ისტორიის სანახავად.</string>
     <string name="read_contacts">კონტაქტების წაკითხვა</string>
     <string name="received">შემოსული</string>
     <string name="recent">ახალი</string>
     <string name="regular_level">რეგულარული დონის</string>
-
-    <string name="remove_from_favorite">რჩეულებიდან წაშლა</string>
-    <string name="remove_from_home">მთავარი ეკრანიდან წაშლა</string>
     <string name="remove_from_sos">SOS-დან წაშლა</string>
     <string name="remove_shortcut">მალსახმობის წაშლა</string>
     <string name="removed_all_alarms">ყველა მაღვიძარა წაშლილია!</string>
@@ -234,8 +218,6 @@
     </string>
     <string name="share_baldphone">გააზიარე BaldPhone</string>
     <string name="share_contact">კონტაქტთან გაზიარება</string>
-    <string name="share_differently">გააზიარე სხვა აპლიკაციით</string>
-    <string name="share_via_whatsapp">გააზიარე Whatsapp-ით</string>
     <string name="shift">shift</string>
     <string name="show">ჩვენება</string>
     <string name="small">პატარა</string>
@@ -263,7 +245,6 @@
     <string name="took">ავიღე!</string>
     <string name="tuesday">სამშაბათი</string>
     <string name="uninstall">წაშლა</string>
-    <string name="uninstall_subtext">დარწმუნებული ხართ რომ გსურთ წაშალოთ %s?\n%s მონაცემები გაქრება სამუდამოდ!</string>
     <string name="up">მაღლა</string>
     <string name="video">ვიდეო</string>
     <string name="video_tutorials">ვიდეო გაკვეთილები</string>
@@ -275,8 +256,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">მხოლოდ ერთხელ გამეორდება!</string>
     <string name="write">ჩაწერა</string>
-    <string name="write_contacts">კონტაქტების ჩაწერა</string>
-    <string name="write_external_storage">გარე ინფორმაციის მატარებელზე ჩაწერა</string>
     <string name="yes">დიახ</string>
     <string name="yesterday">გუშინ</string>
     <string name="nothing">არაფერი</string>
@@ -285,8 +264,6 @@
     <string name="no_pills">აბები არაა\nშექმენით დაჭერით\n\"აბის დამატება\"</string>
     <string name="clear_all_notifications">ყველა გაფრთხილების წაშლა</string>
     <string name="clear_cache_subtext">დარწმუნებული ხართ რომ გსურთ წაშალოთ ქეშის კონტენტი? დროებითი ფაილების წაშლამ შესაძლოა გამოასწოროს ზოგიერთი შეცდომა,მაგრამ მთავარ ეკრანზე შექმნილი მალსახმობები წაიშლება.</string>
-    <string name="permissions_calm">სალამი,BaldPhone-ს სჭირდება შემდეგი ნებართვები გასაშვებად. ზოგიერთი საშიშად მოგეჩვენებათ,მაგრამ ეს ერთადერთი გზაა ტელეფონის ინტერფეისის შესაცვლელად.თქვენი მონაცემები არ იქნება მოპარული და არ მოგადგებათ ზიანი. დააჭირეთ OK ნებართვის მისაცემად ან უარს(no) რომ გამოხვიდეთ BaldPhone-დან.
-    </string>
 
     <string name="what_s_new">რა არის ახალი</string>
     <string name="what_do_you_want_to_do_with___">რისი მოქმედება გსურთ %s?</string>
@@ -344,17 +321,11 @@
     <string name="do_you_want_to_save_your_changes">გსურთ ცვლილებების შენახვა?</string>
     <string name="discard">უარყოფა</string>
     <string name="no_recent_calls">ახალი ზარები არაა</string>
-    <string name="apps_sort_method">აპების დახარისხების მეთოდი</string>
-    <string name="apps_sort_method_subtext">გსურთ დაახარისხოთ აპლიკაციები ერთ ბადეში თუ დაყოფთ სხვადასხვა ჯგუფებში ასოების მიხედვით </string>
-    <string name="groups">ჯგუფები</string>
-    <string name="one_grid">ერთი ბადე</string>
     <string name="edit_home_screen">მთავარი ეკრანის რედაქტირება</string>
     <string name="dual_sim">ორმაგი სიმ ბარათი</string>
     <string name="dual_sim_subtext">აირჩიეთ როგორ გსურთ ორმაგი სიმ ბარათის განკარგვა.\nშენიშვნა: თუ თქბვენ აირჩევთ პარამეტრების ჩვენებას, თქვენ დაგჭირდებათ კიდევ ერთი ნებართვის მიცემა.</string>
     <string name="use_default">ნაგულისხმევების გამოყენება</string>
     <string name="show_options">პარამეტრების ჩვენება</string>
-    <string name="read_phone_state">ტელეფონის მდგომარეობის წაკითხვა</string>
-    <string name="read_phone_state_subtext">ეს ნებართვა საჭიროა მეორე სიმ ბარათიდან დასარეკად</string>
     <string name="choose_sim">აირჩიეთ სიმ ბარათი</string>
     <string name="choose_sim_subtext">აირჩიეთ სიმ ბარათი,რომლიდანაც გსურთ დარეკვა</string>
     <string name="website">ვებსაიტი</string>

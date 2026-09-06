@@ -32,8 +32,6 @@
     <string name="add_emergency_contact">Toevoegen</string>
     <string name="add_pill">Pil toevoegen</string>
     <string name="add_shortcut">Snelkoppeling toevoegen</string>
-    <string name="add_to_favorite">Toevoegen aan favorieten</string>
-    <string name="add_to_home">Toevoegen aan startpagina</string>
     <string name="add_to_sos">Toevoegen aan SOS</string>
     <string name="address">Adres</string>
     <string name="advanced_options">Geavanceerde opties</string>
@@ -57,7 +55,6 @@
     <string name="at_least_one_day_must_be_selected">Er moet minimaal één dag zijn geselecteerd!</string>
     <string name="auto_brightness">Automatische\nHelderheid</string>
     <string name="backspace">backspace</string>
-    <string name="baldphone_bla_allow_permission">Sta de volgende bevoegdheden toe:</string>
     <string name="blocked">Geblokkeerd</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Helderheid</string>
@@ -67,9 +64,7 @@
     <string name="calling">Aan het bellen</string>
 
     <string name="call_log">Oproepgeschiedenis</string>
-    <string name="call_subtext">Deze bevoegdheid is vereist om contacten te kunnen bellen.</string>
     <string name="camera">Camera</string>
-    <string name="camera_subtext">Deze bevoegdheid is vereist om de zaklamp aan te zetten.</string>
     <string name="cancel">Annuleren</string>
     <string name="change_pills_time">Verander tijd van de medicijnen</string>
     <string name="change_system_settings_subtext">Geef a.u.b. toestemming aan BaldPhone om de instellingen te wijzigen, zoals het vergroten van het lettertype</string>
@@ -92,9 +87,6 @@
     <string name="contact_must_has_name">Contactpersoon moet een naam hebben!</string>
     <string name="contact_not_created">Contact niet aangemaakt!</string>
     <string name="contacts">Contacten</string>
-    <string name="contacts_read_subtext">Deze bevoegdheid is vereist om contacten te lezen.</string>
-    <string name="contacts_subtext">Deze bevoegdheid is vereist om nieuwe contacten toe te voegen.</string>
-    <string name="crash">Oeps!\nBaldPhone is een probleem tegengekomen en zal daarom nu opnieuw opstarten.</string>
     <string name="current_time">Huidige tijd</string>
     <string name="custom">Aangepaste</string>
     <string name="dark">Donker</string>
@@ -107,13 +99,10 @@
     <string name="down">Naar beneden</string>
     <string name="edit">Bewerken</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Notificatietoestemming geven</string>
-    <string name="enable_notification_access_subtext">Geef BaldPhone notificatietoestemming.</string>
     <string name="enter">Enter</string>
     <string name="enter_contact_or_phone_number">Voer contactnaam in:</string>
     <string name="evening">Avond</string>
     <string name="example_of_different_text_sizes">Voorbeeld van verschillende tekstgroottes\nMoet leesbaar zijn en niet overlopen.</string>
-    <string name="external_storage_subtext">Deze bevoegdheid is vereist om afbeeldingen op te slaan.</string>
 
     <string name="feedback">Feedback verzenden</string>
     <string name="feedback_advanced">Meer opties</string>
@@ -194,15 +183,10 @@
     <string name="pills">Medicatie</string>
     <string name="press_longer">Druk langer!</string>
     <string name="timer">Timer</string>
-    <string name="read_call_log">Inzien van de oproepgeschiedenis</string>
-    <string name="read_call_log_subtext">Deze bevoegdheid is vereist om de oproepgeschiedenis te bekijken.</string>
     <string name="read_contacts">Inzien van de contacten</string>
     <string name="received">Ontvangen</string>
     <string name="recent">Recent</string>
     <string name="regular_level">Gemiddeld niveau</string>
-
-    <string name="remove_from_favorite">Verwijderen uit Favorieten</string>
-    <string name="remove_from_home">Verwijderen uit de Startpagina</string>
     <string name="remove_from_sos">Verwijderen uit SOS</string>
     <string name="remove_shortcut">Snelkoppeling verwijderen</string>
     <string name="removed_all_alarms">Alle alarmen zijn verwijderd!</string>
@@ -227,8 +211,6 @@ veranderbaar en kan worden gewijzigd in de instellingen.</string>
 Deel het met hen!\"</string>
     <string name="share_baldphone">BaldPhone delen</string>
     <string name="share_contact">Delen met Contact</string>
-    <string name="share_differently">Delen via een andere app</string>
-    <string name="share_via_whatsapp">Delen via WhatsApp</string>
     <string name="shift">verschuiven</string>
     <string name="show">Tonen</string>
     <string name="small">Klein</string>
@@ -256,7 +238,6 @@ Deel het met hen!\"</string>
     <string name="took">Genomen!</string>
     <string name="tuesday">Dinsdag</string>
     <string name="uninstall">Deïnstalleren</string>
-    <string name="uninstall_subtext">Weet u zeker dat u %s wilt verwijderen?\n%s\'s gegevens zullen voor voor altijd worden verwijderd!</string>
     <string name="up">Omhoog</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Video-uitleg</string>
@@ -268,8 +249,6 @@ Deel het met hen!\"</string>
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">zal slechts één keer herhalen!</string>
     <string name="write">Schrijven</string>
-    <string name="write_contacts">Naar Contacten schrijven</string>
-    <string name="write_external_storage">Schrijf naar externe opslag</string>
     <string name="yes">Ja</string>
     <string name="yesterday">Gisteren</string>
     <string name="nothing">Niets</string>
@@ -278,9 +257,6 @@ Deel het met hen!\"</string>
     <string name="no_pills">Geen medicatie ingesteld\nMaak er een door op\n\"Medicatie toevoegen\" te klikken</string>
     <string name="clear_all_notifications">Wis alle notificaties</string>
     <string name="clear_cache_subtext">Weet u zeker dat u de cache-inhoud wilt verwijderen? Het verwijderen van tijdelijke bestanden kan enkele storingen in de BaldPhone-app oplossen, maar ook snelkoppelingen die in het startscherm zijn gemaakt zullen worden verwijderd.</string>
-    <string name="permissions_calm">Hallo, BaldPhone moet de volgende bevoegdheden hebben om goed te kunnen werken. Sommigen van hen
-klinken misschien eng, maar het is de enige manier waarop BaldPhone de interface van de telefoon kan vervangen. Er worden geen gegevens verzameld en zal ook
-geen schade veroorzaken. Druk op OK om de bevoegdheden te geven of druk op nee om BaldPhone af te sluiten.</string>
 
     <string name="what_s_new">Wat is er nieuw</string>
     <string name="what_do_you_want_to_do_with___">Wat wilt u doen met %s?</string>
@@ -341,17 +317,11 @@ geen schade veroorzaken. Druk op OK om de bevoegdheden te geven of druk op nee o
     <string name="do_you_want_to_save_your_changes">Wilt u de wijzigingen opslaan?</string>
     <string name="discard">Veranderingen ongedaan maken</string>
     <string name="no_recent_calls">Geen recente oproepen</string>
-    <string name="apps_sort_method">Sorteermethode voor Apps</string>
-    <string name="apps_sort_method_subtext">Kies of je de apps in één raster wilt sorteren of ze wilt groeperen aan de hand van letters.</string>
-    <string name="groups">Groepen</string>
-    <string name="one_grid">Eén raster</string>
     <string name="edit_home_screen">Startscherm aanpassen</string>
     <string name="dual_sim">Dual Sim</string>
     <string name="dual_sim_subtext">Kies hoe je dual sim wilt beheren\nAls je Toon Opties kiest, moet je ook nog een andere bevoegdheid geven</string>
     <string name="use_default">Gebruik standaardinstellingen</string>
     <string name="show_options">Toon Opties</string>
-    <string name="read_phone_state">Telefoonstatus inzien</string>
-    <string name="read_phone_state_subtext">Deze bevoegdheid is vereist om met de tweede sim te kunnen bellen</string>
     <string name="choose_sim">Kies simkaart</string>
     <string name="choose_sim_subtext">Kies de simkaart waarmee je wilt bellen</string>
     <string name="website">Website</string>

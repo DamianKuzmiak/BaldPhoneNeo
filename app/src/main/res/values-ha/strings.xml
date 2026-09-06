@@ -33,7 +33,6 @@
     <string name="assistant">Mataimaki</string>
     <string name="at_least_one_day_must_be_selected">Aƙalla rana ɗaya dole ne a zaɓi!</string>
     <string name="backspace">kashin baya</string>
-    <string name="baldphone_bla_allow_permission">Da fatan za a ba da izini masu izini kamar haka:</string>
     <string name="blocked">An toshe</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Haske</string>
@@ -43,7 +42,6 @@
     <string name="calling">Kan Kira</string>
 
     <string name="camera">Kyamara</string>
-    <string name="camera_subtext">Ana buƙatar wannan izinin don kunna walƙiya</string>
     <string name="cancel">Sake</string>
     <string name="change_pills_time">Canja Lokaci Kwayoyin</string>
     <string name="choose_friday">Jum</string>
@@ -57,8 +55,6 @@
     <string name="clear_cache">Share Cache</string>
     <string name="clock">Agogo</string>
     <string name="contacts">Adiresoshi</string>
-    <string name="contacts_read_subtext">Ana buƙatar wannan izinin don karanta lambobin sadarwa.</string>
-    <string name="contacts_subtext">Ana buƙatar wannan izinin don ƙara sababbin lambobin sadarwa.</string>
     <string name="current_time">Lokaci Na Yanzu</string>
     <string name="dark">Duhu</string>
     <string name="delete">Share</string>
@@ -80,7 +76,6 @@
     <string name="speak">Yi magana</string>
     <string name="today">Yau</string>
     <string name="write">Rubuta</string>
-    <string name="write_contacts">Rubuta Lambobin Sadarwa</string>
     <string name="yes">Haka ne</string>
     <string name="discard">A watse</string>
     <bool name="is_right_to_left">false</bool>

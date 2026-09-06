@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Dodaj</string>
     <string name="add_pill">Dodaj zdravilo</string>
     <string name="add_shortcut">Dodaj bližnjico</string>
-    <string name="add_to_favorite">Dodaj k priljubljenim</string>
-    <string name="add_to_home">Dodaj na domač zaslon</string>
     <string name="add_to_sos">Dodaj k SOS</string>
     <string name="address">Naslov</string>
     <string name="advanced_options">Napredne nastavitve</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">Izbran mora biti vsaj en dan!</string>
     <string name="auto_brightness">Samodejna\nSvetlost</string>
     <string name="backspace">vračalka</string>
-    <string name="baldphone_bla_allow_permission">Prosimo odobrite sledeča dovoljenja:</string>
     <string name="blocked">Blokiran</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Svetlost</string>
@@ -69,9 +66,7 @@
     <string name="calling">Klicanje</string>
 
     <string name="call_log">Dnevnik klicev:</string>
-    <string name="call_subtext">Ta odobritev je potrebna, da se lahko pokliče stike.</string>
     <string name="camera">Kamera</string>
-    <string name="camera_subtext">Ta odobritev je potrebna, da se lahko vključi svetilko.</string>
     <string name="cancel">Prekliči</string>
     <string name="change_pills_time">Spremeni čas za zdravila</string>
     <string name="change_system_settings_subtext">Prosimo odobrite aplikaciji BaldPhone, da lahko spreminja nastavitve, kot sta povečanje velikosti pisave
@@ -96,9 +91,6 @@
     <string name="contact_must_has_name">Stik mora imeti ime!</string>
     <string name="contact_not_created">Stik ni ustvarjen!</string>
     <string name="contacts">Stiki</string>
-    <string name="contacts_read_subtext">Ta odobritev je potrebna, da se lahko dostopa do stikov.</string>
-    <string name="contacts_subtext">Ta odobritev je potrebna, da se lahko doda nove stike.</string>
-    <string name="crash">Ups!\nBaldPhone je naletel na težavo in se bo sedaj zagnal znova.</string>
     <string name="current_time">Trenutni čas</string>
     <string name="custom">Po meri</string>
     <string name="dark">Temna</string>
@@ -111,13 +103,10 @@
     <string name="down">Dol</string>
     <string name="edit">Uredi</string>
     <string name="email">E-pošta:</string>
-    <string name="enable_notification_access">Omogoči dostop do obvestil</string>
-    <string name="enable_notification_access_subtext">Prosimo omogočite aplikaciji BaldPhone dostop do obvestil.</string>
     <string name="enter">Vnesi</string>
     <string name="enter_contact_or_phone_number">Vnesi ime stika:</string>
     <string name="evening">Zvečer</string>
     <string name="example_of_different_text_sizes">Primer različnih velikosti pisave.\nBesedilo mora ostati vidljivo in brez prekrivanja.</string>
-    <string name="external_storage_subtext">Ta odobritev je potrebna, da lahko shranite slike.</string>
 
     <string name="feedback">Povratne informacije</string>
     <string name="feedback_advanced">Več možnosti</string>
@@ -200,15 +189,10 @@
     <string name="pills">Zdravila</string>
     <string name="press_longer">Drži pritisk dlje časa!</string>
     <string name="timer">Štoparica</string>
-    <string name="read_call_log">Preberi dnevnik klicev</string>
-    <string name="read_call_log_subtext">Ta odobritev je potrebna, da lahko vidite zgodovino klicev.</string>
     <string name="read_contacts">Preberi stike</string>
     <string name="received">Prejeto</string>
     <string name="recent">Nedavno</string>
     <string name="regular_level">Običajna stopnja</string>
-
-    <string name="remove_from_favorite">Odstrani od priljubljenih</string>
-    <string name="remove_from_home">Odstrani z domačega zaslona</string>
     <string name="remove_from_sos">Odstrani iz SOS</string>
     <string name="remove_shortcut">Odstrani bližnjico</string>
     <string name="removed_all_alarms">Vse budilke so bile odstranjene!</string>
@@ -236,8 +220,6 @@
     <string name="share_bald_phone_subtext">Hej, morda poznaš ljudi, ki bi želeli spoznati BaldPhone ?\nLahko ga deliš z njimi !"</string>
     <string name="share_baldphone">Deli BaldPhone</string>
     <string name="share_contact">Deli stik</string>
-    <string name="share_differently">Deli preko druge aplikacije</string>
-    <string name="share_via_whatsapp">Deli preko WhatsApp</string>
     <string name="shift">Dvigovalka</string>
     <string name="show">Prikaži</string>
     <string name="small">Majhno</string>
@@ -265,7 +247,6 @@
     <string name="took">Vzel!</string>
     <string name="tuesday">Torek</string>
     <string name="uninstall">Odstrani</string>
-    <string name="uninstall_subtext">Ali ste prepričani, da želite odstraniti %s?\n%s\ podatki bodo izbrisani za vedno!</string>
     <string name="up">Gor</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Video vodiči</string>
@@ -277,8 +258,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">Ponovila se bo le enkrat!</string>
     <string name="write">Zapiši</string>
-    <string name="write_contacts">Zapiši stike</string>
-    <string name="write_external_storage">Zapiši na zunanjo shrambo</string>
     <string name="yes">Da</string>
     <string name="yesterday">Včeraj</string>
     <string name="nothing">Nič</string>
@@ -287,10 +266,6 @@
     <string name="no_pills">Ni zdravil.\nDodaj novo s tem, da klikneš\n\'Dodaj zdravilo\'</string>
     <string name="clear_all_notifications">Počisti vsa obvestila</string>
     <string name="clear_cache_subtext">Ali ste prepričani, da želite počistiti celoten predpomnilnik?\nOdstranjene bodo tudi bližnjice aplikacij!</string>
-    <string name="permissions_calm">Pozdravljeni, BaldPhone potrebuje sledeča dovoljenja da lahko deluje pravilno. Nekatera izmed teh zvenijo
-        veliko, ampak so edini način, da lahko BaldPhone zamenja telefonski vmesnik. Poslanih ne bo nič podatkov in povzročene ne bo nobene škode.
-        Pritisni \'Ok\', da odobriš dovoljenja, ali \'ne\' da zapustiš BaldPhone.
-    </string>
 
     <string name="what_s_new">Kaj je novega</string>
     <string name="what_do_you_want_to_do_with___">Kaj želiš storiti s %s?</string>
@@ -353,17 +328,11 @@
     <string name="do_you_want_to_save_your_changes">Ali želite shraniti spremembe?</string>
     <string name="discard">Zavrzi</string>
     <string name="no_recent_calls">Ni nedavnih klicev</string>
-    <string name="apps_sort_method">Razvrščanje aplikacij</string>
-    <string name="apps_sort_method_subtext">Izberite, ali želite aplikacije razvrstiti v mrežo, ali v skupine, ločene po začetnicah imen.</string>
-    <string name="groups">Skupine</string>
-    <string name="one_grid">Mreža</string>
     <string name="edit_home_screen">Uredi elemente na domačem zaslonu</string>
     <string name="dual_sim">Dve SIM kartici</string>
     <string name="dual_sim_subtext">Izberite, kako želite upravljati dve sim kartici\nOpomba: Če izberete Prikaži Možnosti, boste morali odobriti še eno dovoljenje </string>
     <string name="use_default">Uporabi privzeto</string>
     <string name="show_options">Prikaži Možnosti</string>
-    <string name="read_phone_state">Preberi stanje telefona</string>
-    <string name="read_phone_state_subtext">To dovoljenje je potrebno, da lahko kličete z druge SIM kartice</string>
     <string name="choose_sim">Izberite SIM kartico</string>
     <string name="choose_sim_subtext">Izberite SIM kartico, s katere boste klicali</string>
     <string name="website">Spletna stran</string>

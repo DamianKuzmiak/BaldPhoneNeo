@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Afegir</string>
     <string name="add_pill">Afegir Pastilla</string>
     <string name="add_shortcut">Afegir accés directe</string>
-    <string name="add_to_favorite">Afegir a Preferits</string>
-    <string name="add_to_home">Afegir a Inici</string>
     <string name="add_to_sos">Afegir a SOS</string>
     <string name="address">Adreça</string>
     <string name="advanced_options">Opcions Avançades</string>
@@ -60,7 +58,6 @@
     <string name="at_least_one_day_must_be_selected">Ha de seleccionar-se almenys un dia!</string>
     <string name="auto_brightness">Brillantor\nAutomàtic</string>
     <string name="backspace">retrocés</string>
-    <string name="baldphone_bla_allow_permission">Si us plau, permeti els següents permisos:</string>
     <string name="blocked">Bloquejat</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Brillantor</string>
@@ -70,9 +67,7 @@
     <string name="calling">Trucada</string>
 
     <string name="call_log">Historial de crides:</string>
-    <string name="call_subtext">Aquest permís és necessari per a poder cridar als seus contactes.</string>
     <string name="camera">Càmera</string>
-    <string name="camera_subtext">Aquest permís és necessari per a activar la llanterna.</string>
     <string name="cancel">Cancel·lar</string>
     <string name="change_pills_time">Canviar Hora Pastilles</string>
     <string name="change_system_settings_subtext">Si us plau, permeti a BaldPhone canviar els ajustos,
@@ -97,9 +92,6 @@ com augmentar la grandària de font o canviar la lluentor.
     <string name="contact_must_has_name">El Contacte ha de tenir un Nom!</string>
     <string name="contact_not_created">Contacte no creat!</string>
     <string name="contacts">Contactes</string>
-    <string name="contacts_read_subtext">Aquest permís és necessari per a accedir als contactes.</string>
-    <string name="contacts_subtext">Aquest permís és necessari per a afegir contactes.</string>
-    <string name="crash">Oops!\*nBaldPhone ha trobat un problema i ha de reiniciar-se.</string>
     <string name="current_time">Hora actual</string>
     <string name="custom">Personalitzat</string>
     <string name="dark">Fosc</string>
@@ -112,15 +104,12 @@ com augmentar la grandària de font o canviar la lluentor.
     <string name="down">Baixar</string>
     <string name="edit">Editar</string>
     <string name="email">Correu:</string>
-    <string name="enable_notification_access">Habilitar accés a Notificacions</string>
-    <string name="enable_notification_access_subtext">Si us plau, concedeixi a BaldPhone accés a les notificacions.</string>
     <string name="enter">Enter</string>
     <string name="enter_contact_or_phone_number">Introdueixi el nom del contacte:</string>
     <string name="evening">A la Nit</string>
     <string name="example_of_different_text_sizes">Exemple de diferents grandàries de text\n
 	Ha de ser llegible i no sortir-se.
 </string>
-    <string name="external_storage_subtext">Aquest permís és necessari per a guardar Fotos.</string>
 
     <string name="feedback">Enviar Comentaris</string>
     <string name="feedback_advanced">Més opcions</string>
@@ -207,15 +196,10 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
     <string name="pills">Pastilles</string>
     <string name="press_longer">Pressioni més temps!</string>
     <string name="timer">Temporitzador</string>
-    <string name="read_call_log">Llegir historial de Trucades</string>
-    <string name="read_call_log_subtext">Aquest permís és necessari per a veure l\'historial de trucades.</string>
     <string name="read_contacts">Llegir contactes</string>
     <string name="received">Rebuda</string>
     <string name="recent">Recents</string>
     <string name="regular_level">Nivell Normal</string>
-
-    <string name="remove_from_favorite">Treure de Favorits</string>
-    <string name="remove_from_home">Treure d\'Inici</string>
     <string name="remove_from_sos">Treure de SOS</string>
     <string name="remove_shortcut">Treure accés directe</string>
     <string name="removed_all_alarms">Eliminades totes les alarmes!</string>
@@ -249,8 +233,6 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
 </string>
     <string name="share_baldphone">Compartir BaldPhone</string>
     <string name="share_contact">Compartir Contacte</string>
-    <string name="share_differently">Compartir amb una altra App</string>
-    <string name="share_via_whatsapp">Compartir per Whatsapp</string>
     <string name="shift">canvi</string>
     <string name="show">Mostrar</string>
     <string name="small">Petit</string>
@@ -278,7 +260,6 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
     <string name="took">Presa!</string>
     <string name="tuesday">Dimarts</string>
     <string name="uninstall">Desinstal·lar</string>
-    <string name="uninstall_subtext">Està segur de voler desinstal·lar %s\nLes dades de %s es perdran per sempre!</string>
     <string name="up">A dalt</string>
     <string name="video">Vídeo</string>
     <string name="video_tutorials">Vídeo Tutorials</string>
@@ -290,8 +271,6 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">es repetirà només una vegada!</string>
     <string name="write">Escriure</string>
-    <string name="write_contacts">Escriure Contactes</string>
-    <string name="write_external_storage">Escriure en emmagatzematge extern</string>
     <string name="yes">Si</string>
     <string name="yesterday">Ahir</string>
     <string name="nothing">Res</string>
@@ -300,12 +279,6 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
     <string name="no_pills">Sense Pastilles\nCrea una prement\n\"Afegir Pastilla\"</string>
     <string name="clear_all_notifications">Treure totes les Notificacions</string>
     <string name="clear_cache_subtext">De veritat voleu esborrar per complet la caché?\nEls enllaços directes també s\'esborraran!
-</string>
-    <string name="permissions_calm">
-Hola, BaldPhone ha de tenir els següents permisos per a executar-se. Alguns
-poden espantar, però és l\'única forma en què BaldPhone pot reemplaçar la interfície del telèfon.
-BaldPhone no usarà les seves dades personals ni danyarà el seu telèfon.
-Pressioni OK per a atorgar els permisos o No per a sortir de BaldPhone.
 </string>
 
     <string name="what_s_new">Novetats</string>
@@ -370,17 +343,11 @@ Pressioni OK per a atorgar els permisos o No per a sortir de BaldPhone.
     <string name="do_you_want_to_save_your_changes">Voleu guardar els canvis?</string>
     <string name="discard">Descartar</string>
     <string name="no_recent_calls">Sense trucades recents</string>
-    <string name="apps_sort_method">Mètode ordenació Apps</string>
-    <string name="apps_sort_method_subtext">Trieu si voleu ordenar les apps en una columna o dividits en grups mitjançant lletres</string>
-    <string name="groups">Grups</string>
-    <string name="one_grid">Una Columna</string>
     <string name="edit_home_screen">Edita Pàgina Inici</string>
     <string name="dual_sim">SIM Dual</string>
     <string name="dual_sim_subtext">Trieu com voleu gestionar la doble SIM\*nNota: Si trieu Mostrar Opcions, haureu d\'acceptar un altre permís</string>
     <string name="use_default">Usar predeterminat</string>
     <string name="show_options">Mostrar Opcions</string>
-    <string name="read_phone_state">Consultar estat del telèfon</string>
-    <string name="read_phone_state_subtext">Aquest permís és necessari per a poder trucar des de la segona SIM</string>
     <string name="choose_sim">Trieu SIM</string>
     <string name="choose_sim_subtext">Trieu la SIM des de la qual vulgueu realitzar la trucada</string>
     <string-array name="names_for_screenshots">

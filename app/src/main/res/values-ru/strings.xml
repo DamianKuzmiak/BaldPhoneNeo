@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">Добавить</string>
     <string name="add_pill">Добавить Таблетку</string>
     <string name="add_shortcut">Добавить Ярлык</string>
-    <string name="add_to_favorite">Добавить в Избранное</string>
-    <string name="add_to_home">Добавить на Главный Экран</string>
     <string name="add_to_sos">Добавить в SOS</string>
     <string name="address">Адрес</string>
     <string name="advanced_options">Дополнительные Параметры</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">Не меньше одного дня должно быть выбранно!</string>
     <string name="auto_brightness">Автоматическая\nЯркость</string>
     <string name="backspace">удалить</string>
-    <string name="baldphone_bla_allow_permission">Пожалуйста предоставьте следующие разрешения:</string>
     <string name="blocked">Заблокирован</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Яркость</string>
@@ -68,9 +65,7 @@
     <string name="calling">Звоню</string>
 
     <string name="call_log">Журнал Вызовов:</string>
-    <string name="call_subtext">Это разрешение требуется для вызова контактов.</string>
     <string name="camera">Камера</string>
-    <string name="camera_subtext">Это разрешение требуется для включения фонарика.</string>
     <string name="cancel">Отмена</string>
     <string name="change_pills_time">Изменить время Приема Таблеток</string>
     <string name="change_system_settings_subtext">Пожалуйста, разрешите BaldPhone изменять настройки, такие как увеличение размера шрифта и изменение яркости.
@@ -94,9 +89,6 @@
     <string name="contact_must_has_name">Контакт должен иметь Имя!</string>
     <string name="contact_not_created">Контакт не создан!</string>
     <string name="contacts">Контакты</string>
-    <string name="contacts_read_subtext">Это разрешение требуется для чтения контактов.</string>
-    <string name="contacts_subtext">Это разрешение требуется для добавления новых контактов.</string>
-    <string name="crash">Упс!\nBaldPhone столкнулся с проблемой и теперь перезапустится.</string>
     <string name="current_time">Текущее время</string>
     <string name="custom">Свое</string>
     <string name="dark">Темный</string>
@@ -109,14 +101,11 @@
     <string name="down">Вниз</string>
     <string name="edit">Изменить</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Включить Доступ к Уведомлениям</string>
-    <string name="enable_notification_access_subtext">Пожалуйста, предоставьте BaldPhone доступ к уведомлениям.</string>
     <string name="enter">Ввод</string>
     <string name="enter_contact_or_phone_number">Введите имя контакта:</string>
     <string name="evening">Вечер</string>
     <string name="example_of_different_text_sizes">Пример текста разных размеров\nДолжен быть читаемым и не слишком большим.
     </string>
-    <string name="external_storage_subtext">Это разрешение требуется для сохранения изображений.</string>
 
     <string name="feedback">Отправить Отзыв</string>
     <string name="feedback_advanced">Дополнительные параметры</string>
@@ -200,15 +189,10 @@
     <string name="pills">Таблетки</string>
     <string name="press_longer">Нажмите и удерживайте!</string>
     <string name="timer">Таймер</string>
-    <string name="read_call_log">Чтение Истории Вызовов</string>
-    <string name="read_call_log_subtext">Это разрешение требуется для просмотра журнала звонков.</string>
     <string name="read_contacts">Чтение контактов</string>
     <string name="received">Получен</string>
     <string name="recent">Недавние</string>
     <string name="regular_level">Обычный уровень</string>
-
-    <string name="remove_from_favorite">Удалить из Избранного</string>
-    <string name="remove_from_home">Удалить с Домашнего экрана</string>
     <string name="remove_from_sos">Удалить из SOS</string>
     <string name="remove_shortcut">Удалить ярлык</string>
     <string name="removed_all_alarms">Удалены все будильники!</string>
@@ -234,8 +218,6 @@
     </string>
     <string name="share_baldphone">Поделиться BaldPhone</string>
     <string name="share_contact">Поделиться Контактом</string>
-    <string name="share_differently">Поделиться Другим Приложением</string>
-    <string name="share_via_whatsapp">Поделиться в Whatsapp</string>
     <string name="shift">регистр</string>
     <string name="show">Показать</string>
     <string name="small">Маленький</string>
@@ -263,7 +245,6 @@
     <string name="took">Взял!</string>
     <string name="tuesday">Вторник</string>
     <string name="uninstall">Удалить</string>
-    <string name="uninstall_subtext">Вы уверены что хотите удалить %s?\n%s данные пропадут навсегда!</string>
     <string name="up">Вверх</string>
     <string name="video">Видео</string>
     <string name="video_tutorials">Видео Инструкции</string>
@@ -275,8 +256,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">повторить только один раз!</string>
     <string name="write">Записать</string>
-    <string name="write_contacts">Записать контакты</string>
-    <string name="write_external_storage">Записать на внешнее хранилище</string>
     <string name="yes">Да</string>
     <string name="yesterday">Вчера</string>
     <string name="nothing">Пусто</string>
@@ -285,8 +264,6 @@
     <string name="no_pills">Нет Таблеток\nСоздайте ее нажав на\n\"Добавить Таблетку\"</string>
     <string name="clear_all_notifications">Очистить Все Оповещения</string>
     <string name="clear_cache_subtext">Вы уверенны что хотите очистить кэш?\nЯрлык программы будет удален тоже!
-    </string>
-    <string name="permissions_calm">Привет, BaldPhone должны быть предоставленны следующие разрешения для запуска. Некоторые из них, звучат страшно, но это единственный способ для BaldPhone заменить интерфейс телефона. Это не причинит вреда и не украдет ваши данные. Нажмите OK для предоставления разрешений или Нет что бы выйти из BaldPhone.
     </string>
 
     <string name="what_s_new">Что нового</string>
@@ -349,10 +326,6 @@
     <string name="do_you_want_to_save_your_changes">Do you want to save your changes?</string>
     <string name="discard">Discard</string>
     <string name="no_recent_calls">No Recent Calls</string>
-    <string name="apps_sort_method">Apps Sort Method</string>
-    <string name="apps_sort_method_subtext">Choose whether you want to sort the apps in one grid or to have them divided into different groups via letters</string>
-    <string name="groups">Groups</string>
-    <string name="one_grid">One Grid</string>
     <string name="edit_home_screen">Edit Home Screen</string>
     <string-array name="names_for_screenshots">
         <item>The Godfather</item>

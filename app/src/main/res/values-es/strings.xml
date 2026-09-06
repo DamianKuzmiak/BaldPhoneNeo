@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">Añadir</string>
     <string name="add_pill">Añadir pastilla</string>
     <string name="add_shortcut">Añadir acceso directo</string>
-    <string name="add_to_favorite">Añadir a favoritos</string>
-    <string name="add_to_home">Añadir a inicio</string>
     <string name="add_to_sos">Añadir a SOS</string>
     <string name="address">Dirección</string>
     <string name="advanced_options">Opciones avanzadas</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">Hay que elegir al menos un día.</string>
     <string name="auto_brightness">Brillo\nautomático</string>
     <string name="backspace">retroceso</string>
-    <string name="baldphone_bla_allow_permission">Para que la aplicación funcione se necesitan los siguientes permisos:</string>
     <string name="blocked">Bloqueado</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Brillo</string>
@@ -68,9 +65,7 @@
     <string name="calling">Llamadas telefónicas</string>
 
     <string name="call_log">Historial de llamadas:</string>
-    <string name="call_subtext">Se necesita este permiso para llamar a tus contactos.</string>
     <string name="camera">Cámara</string>
-    <string name="camera_subtext">Se necesita este permiso para encender la linterna.</string>
     <string name="cancel">Cancelar</string>
     <string name="change_pills_time">Cambiar la hora de tomar pastillas</string>
     <string name="change_system_settings_subtext">Para que BaldPhone funcione correctamente necesita poder cambiar los ajustes, como aumentar el tamaño del texto o cambiar el brillo.
@@ -94,9 +89,6 @@
     <string name="contact_must_has_name">Al contacto hay que ponerle un nombre.</string>
     <string name="contact_not_created">No se ha creado el contacto.</string>
     <string name="contacts">Contactos</string>
-    <string name="contacts_read_subtext">Se necesita este permiso para poder acceder a los contactos almacenados.</string>
-    <string name="contacts_subtext">Se necesita este permiso para poder añadir contactos nuevos.</string>
-    <string name="crash">¡Uy! ¡Vaya, hombre!\nBaldPhone ha tenido un problema y tiene que reiniciarse.</string>
     <string name="current_time">Hora actual</string>
     <string name="custom">Personalizado</string>
     <string name="dark">Oscuro</string>
@@ -109,15 +101,12 @@
     <string name="down">Bajar</string>
     <string name="edit">Editar</string>
     <string name="email">Correo:</string>
-    <string name="enable_notification_access">Permitir ver las notificaciones</string>
-    <string name="enable_notification_access_subtext">Para que BaldPhone acceda a las notificaciones tienes que conceder permisos adicionales.</string>
     <string name="enter">Guardar y aceptar</string>
     <string name="enter_contact_or_phone_number">Introduce el nombre del contacto:</string>
     <string name="evening">Por la noche</string>
     <string name="example_of_different_text_sizes">Ejemplo de diferentes tamaños de texto\n
         Las letras deben ser legibles y no salirse.
     </string>
-    <string name="external_storage_subtext">Este permiso es necesario para guardar Fotos.</string>
 
     <string name="feedback">Comentarios</string>
     <string name="feedback_advanced">Más opciones</string>
@@ -199,15 +188,10 @@
     <string name="pills">Pastillas</string>
     <string name="press_longer">Mantén pulsado el botón un poco más…</string>
     <string name="timer">Temporizador</string>
-    <string name="read_call_log">Leer el historial de llamadas</string>
-    <string name="read_call_log_subtext">Se necesita este permiso para poder ver el historial de llamadas.</string>
     <string name="read_contacts">Leer contactos</string>
     <string name="received">Entrante</string>
     <string name="recent">Recientes</string>
     <string name="regular_level">Normal</string>
-
-    <string name="remove_from_favorite">Quitar de favoritos</string>
-    <string name="remove_from_home">Quitar de inicio</string>
     <string name="remove_from_sos">Quitar de SOS</string>
     <string name="remove_shortcut">Quitar acceso directo</string>
     <string name="removed_all_alarms">Se han borrado todas las alarmas.</string>
@@ -233,8 +217,6 @@
     </string>
     <string name="share_baldphone">Compartir que usas BaldPhone</string>
     <string name="share_contact">Compartir contacto</string>
-    <string name="share_differently">Compartir por otra aplicación</string>
-    <string name="share_via_whatsapp">Compartir por WhatsApp</string>
     <string name="shift">mayús</string>
     <string name="show">Mostrar</string>
     <string name="small">Pequeño</string>
@@ -262,7 +244,6 @@
     <string name="took">Pastilla tomada.</string>
     <string name="tuesday">martes</string>
     <string name="uninstall">Desinstalar</string>
-    <string name="uninstall_subtext">¿Seguro que quieres desinstalar «%s»? Los datos de «%s» se perderán para siempre.</string>
     <string name="up">Arriba</string>
     <string name="video">Vídeo</string>
     <string name="video_tutorials">Guías en formato vídeo</string>
@@ -274,8 +255,6 @@
     <string name="wifi">Wi-Fi</string>
     <string name="will_repeat_only_once">¡solo se repetirá una vez!</string>
     <string name="write">Exportar</string>
-    <string name="write_contacts">Exportar contactos</string>
-    <string name="write_external_storage">Exportar en almacenamiento externo</string>
     <string name="yes">Sí</string>
     <string name="yesterday">Ayer</string>
     <string name="nothing">Nada</string>
@@ -284,11 +263,6 @@
     <string name="no_pills">Parece que todavía no hay ninguna pastilla registrada, añade alguna pulsando el botón de «añadir pastilla».</string>
     <string name="clear_all_notifications">Quitar todas las notificaciones</string>
     <string name="clear_cache_subtext">¿Seguro que quieres borrar del todo la memoria caché de BaldPhone? Puede que borrar los archivos temporales solucione algunos problemas, pero los enlaces directos de la pantalla de inicio también desaparecerán.
-    </string>
-    <string name="permissions_calm">
-		Hola, BaldPhone debe tener los siguientes permisos para ejecutarse. Algunos pueden parecer demasiado, pero es la única forma de que BaldPhone pueda reemplazar la interfaz del teléfono.
-		BaldPhone no hará nada raro con tus datos personales ni dañará tu teléfono.
-		Presiona el botón de «Aceptar» para otorgar los permisos o «No» para salir de BaldPhone.
     </string>
 
     <string name="what_s_new">Novedades</string>
@@ -351,17 +325,11 @@
     <string name="do_you_want_to_save_your_changes">¿Quieres guardar los cambios?</string>
     <string name="discard">No, descartar</string>
     <string name="no_recent_calls">Sin llamadas recientes</string>
-    <string name="apps_sort_method">Ordenar lista de aplicaciones</string>
-    <string name="apps_sort_method_subtext">Elige si quieres ordenar las aplicaciones en una sola tabla o separarlas en varios grupos, alfabéticamente, por letras.</string>
-    <string name="groups">Por grupos</string>
-    <string name="one_grid">En una tabla</string>
     <string name="edit_home_screen">Cambiar pantalla de inicio</string>
     <string name="dual_sim">SIM dual</string>
     <string name="dual_sim_subtext">Elige cómo quieres gestionar las tarjetas SIM dobles. Nota: Si eliges «ver opciones», tendrás que aceptar otro permiso.</string>
     <string name="use_default">Usar predeterminado</string>
     <string name="show_options">Ver opciones</string>
-    <string name="read_phone_state">Consultar el estado del teléfono</string>
-    <string name="read_phone_state_subtext">Este permiso es necesario para poder llamar desde la segunda tarjeta SIM</string>
     <string name="choose_sim">Elige una tarjeta SIM</string>
     <string name="choose_sim_subtext">Elige la tarjeta SIM con la que quieras llamar</string>
     <string name="website">Página Web</string>

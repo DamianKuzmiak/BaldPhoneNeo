@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">Ny Nödkontakt</string>
     <string name="add_pill">Lägg till läkemedel</string>
     <string name="add_shortcut">Skapa genväg</string>
-    <string name="add_to_favorite">Lägg till som favorit</string>
-    <string name="add_to_home">Fäst på hemskärmen</string>
     <string name="add_to_sos">Ange som nödkontakt</string>
     <string name="address">Adress</string>
     <string name="advanced_options">Avancerade alternativ</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">Minst en dag måste anges!</string>
     <string name="auto_brightness">Automatisk Ljusstyrka</string>
     <string name="backspace">backsteg</string>
-    <string name="baldphone_bla_allow_permission">Vänligen tillåt följande rättigheter:</string>
     <string name="blocked">Blockerad</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Ljusstyrka</string>
@@ -68,9 +65,7 @@
     <string name="calling">Ring</string>
 
     <string name="call_log">Samtalshistorik:</string>
-    <string name="call_subtext">Den här rättigheten krävs för att ringa upp kontakter med BaldPhone.</string>
     <string name="camera">Kamera</string>
-    <string name="camera_subtext">Den här rättigheten krävs för att starta ficklampan med BaldPhone.</string>
     <string name="cancel">Avbryt</string>
     <string name="change_pills_time">Ändra Läkemedelstider</string>
     <string name="change_system_settings_subtext">Ger BaldPhone tillåtelse att ändra telefonens inställningar</string>
@@ -93,9 +88,6 @@
     <string name="contact_must_has_name">Ett namn måste anges för kontakten!</string>
     <string name="contact_not_created">Ingen kontakt skapades!</string>
     <string name="contacts">Kontakter</string>
-    <string name="contacts_read_subtext">Den här rättigheten krävs för att visa kontakter i BaldPhone.</string>
-    <string name="contacts_subtext">Den här rättigheten krävs för att lägga till nya kontakter med BaldPhone.</string>
-    <string name="crash">Oj!\nBaldPhone stötte på ett problem och startas nu om.</string>
     <string name="current_time">Klockan är nu:</string>
     <string name="custom">annan…</string>
     <string name="dark">Mörk</string>
@@ -108,14 +100,11 @@
     <string name="down">Ner</string>
     <string name="edit">Ändra</string>
     <string name="email">Epost:</string>
-    <string name="enable_notification_access">Tillåt hantering av aviseringar</string>
-    <string name="enable_notification_access_subtext">Tillåter att BaldPhone att hantera aviseringar.</string>
     <string name="enter">Ange</string>
     <string name="enter_contact_or_phone_number">Ange namn på kontakt:</string>
     <string name="evening">Kväll</string>
     <string name="example_of_different_text_sizes">Exempel på olika teckenstorlekar\n Tecknen bör vara läsbara och inte försvinna ur \nsynligt fält:
     </string>
-    <string name="external_storage_subtext">Den här rättigheten krävs för att spara bilder med BaldPhone.</string>
 
     <string name="feedback">Skicka återkoppling</string>
     <string name="feedback_advanced">Fler alternativ</string>
@@ -199,15 +188,10 @@
     <string name="pills">Läkemedel</string>
     <string name="press_longer">Längre tryck krävs!</string>
     <string name="timer">Timer</string>
-    <string name="read_call_log">Se samtalshistorik</string>
-    <string name="read_call_log_subtext">Den här rättigheten krävs för att visa samtalshistoriken i BaldPhone.</string>
     <string name="read_contacts">Läsa Kontakter</string>
     <string name="received">Inkommande</string>
     <string name="recent">Samtalslista</string>
     <string name="regular_level">Standard</string>
-
-    <string name="remove_from_favorite">Ta bort från favoriter</string>
-    <string name="remove_from_home">Ta bort från hemskärmen</string>
     <string name="remove_from_sos">Ta bort från nödkontakt</string>
     <string name="remove_shortcut">Ta bort genväg</string>
     <string name="removed_all_alarms">Alla alarm togs bort!</string>
@@ -234,8 +218,6 @@
     </string>
     <string name="share_baldphone">Berätta om BaldPhone</string>
     <string name="share_contact">Dela Kontakt</string>
-    <string name="share_differently">via en annan app</string>
-    <string name="share_via_whatsapp">via WhatsApp</string>
     <string name="shift">shift</string>
     <string name="show">Visa</string>
     <string name="small">Liten</string>
@@ -264,7 +246,6 @@
     <string name="took">Took!</string>
     <string name="tuesday">Tisdag</string>
     <string name="uninstall">Avinstallera</string>
-    <string name="uninstall_subtext">Är du säker på att du vill avinstallera %s?\n%s data rensas!</string>
     <string name="up">Upp</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Videoinstruktioner</string>
@@ -276,8 +257,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">Upprepas ej!</string>
     <string name="write">Skriv</string>
-    <string name="write_contacts">Skapa Kontakter</string>
-    <string name="write_external_storage">Åtkomst till filer och media</string>
     <string name="yes">Ja</string>
     <string name="yesterday">Igår</string>
     <string name="nothing">Ingenting</string>
@@ -288,8 +267,6 @@
     </string>
     <string name="clear_all_notifications">Rensa alla aviseringar</string>
     <string name="clear_cache_subtext">Är du säker på att du vill rensa cachen?\n Även appgenvägar kommer att rensas!
-    </string>
-    <string name="permissions_calm">BaldPhone behöver följande rättigheter för att köras. Några av dem kan låta skrämmande, men det är det enda sättet för BaldPhone att ersätta telefonens ursprungliga användargränssnitt. Detta är ofarligt och ingen data samlas in. Tryck på OK för att tillåta eller Nej för att avsluta BaldPhone.
     </string>
 
     <string name="what_s_new">Vad som är nytt</string>
@@ -354,17 +331,11 @@
     <string name="do_you_want_to_save_your_changes">Vill du spara dina ändringar?</string>
     <string name="discard">Avfärda</string>
     <string name="no_recent_calls">Inga Nya Samtal</string>
-    <string name="apps_sort_method">Visning av appar</string>
-    <string name="apps_sort_method_subtext">Ange om du vill visa appar i ett rutmönster eller gruppera dem på första bokstaven i appens namn.</string>
-    <string name="groups">Gruppera</string>
-    <string name="one_grid">Rutmönster</string>
     <string name="edit_home_screen">Anpassa Hemskärmen</string>
     <string name="dual_sim">Dubbel SIM</string>
     <string name="dual_sim_subtext">Välj hur du vill hantera dubbel SIM\nObs! Om du väljer Visa alternativ måste du tillåta annan rättighet</string>
     <string name="use_default">Använd standard</string>
     <string name="show_options">Visa alternativ</string>
-    <string name="read_phone_state">Läs telefonens tillstånd</string>
-    <string name="read_phone_state_subtext">Den här rättighet krävs för att kunna ringa från den andra SIM</string>
     <string name="choose_sim">Välj SIM</string>
     <string name="choose_sim_subtext">Välj den SIM du vill ringa från</string>
     <string name="website">Webbplats</string>

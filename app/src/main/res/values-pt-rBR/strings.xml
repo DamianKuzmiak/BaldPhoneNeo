@@ -33,8 +33,6 @@
     <string name="add_emergency_contact">Adicionar</string>
     <string name="add_pill">Adicionar Medicamento</string>
     <string name="add_shortcut">Adicionar Atalho</string>
-    <string name="add_to_favorite">Adicionar aos Favoritos</string>
-    <string name="add_to_home">Adicionar à Página Inicial</string>
     <string name="add_to_sos">Adicionar ao SOS</string>
     <string name="address">Endereço</string>
     <string name="advanced_options">Configurações Avançadas</string>
@@ -58,7 +56,6 @@
     <string name="at_least_one_day_must_be_selected">Pelo menos um dia deve estar selecionado!</string>
     <string name="auto_brightness">Brilho\nAutomático</string>
     <string name="backspace">Apagar</string>
-    <string name="baldphone_bla_allow_permission">Por favor, conceda as seguintes permissões:</string>
     <string name="blocked">Bloqueado</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Brilho</string>
@@ -68,9 +65,7 @@
     <string name="calling">Chamadas</string>
 
     <string name="call_log">Registo de Chamadas:</string>
-    <string name="call_subtext">Essa permissão é necessária para conseguir realizar chamadas.</string>
     <string name="camera">Câmera</string>
-    <string name="camera_subtext">Essa permissão é necessária para ligar a lanterna.</string>
     <string name="cancel">Cancelar</string>
     <string name="change_pills_time">Alterar Horário dos Medicamentos</string>
     <string name="change_system_settings_subtext">Por favor, permita que o BaldPhone altere configurações do telefone, como alterar o tamanho da fonte ou o brilho da tela.</string>
@@ -93,9 +88,6 @@
     <string name="contact_must_has_name">O contato precisa ter um nome!</string>
     <string name="contact_not_created">Contato não criado!</string>
     <string name="contacts">Contatos</string>
-    <string name="contacts_read_subtext">Essa permissão é necessária para vizualizar os contatos.</string>
-    <string name="contacts_subtext">Essa permissão é necessária para salvar novos contatos.</string>
-    <string name="crash">Oops!\nO BaldPhone encontrou um problema e vai reiniciar agora.</string>
     <string name="current_time">Hora Atual</string>
     <string name="custom">Personalizado</string>
     <string name="dark">Escuro</string>
@@ -108,13 +100,10 @@
     <string name="down">Descer</string>
     <string name="edit">Editar</string>
     <string name="email">E-mail:</string>
-    <string name="enable_notification_access">Permitir Notificações</string>
-    <string name="enable_notification_access_subtext">Por favor, permita o acesso às notificações.</string>
     <string name="enter">Enter</string>
     <string name="enter_contact_or_phone_number">Insira o nome do contato:</string>
     <string name="evening">Noite</string>
     <string name="example_of_different_text_sizes">Exemplos de tamanhos\nDeve ser legível e não passar do limite.</string>
-    <string name="external_storage_subtext">Essa permissão é necessária para acessar arquivos como fotos.</string>
 
     <string name="feedback">Enviar Comentário</string>
     <string name="feedback_advanced">Mais opções</string>
@@ -196,15 +185,10 @@
     <string name="pills">Medicamento</string>
     <string name="press_longer">Pressione por mais tempo!</string>
     <string name="timer">Cronômetro</string>
-    <string name="read_call_log">Ver histórico de chamadas</string>
-    <string name="read_call_log_subtext">Essa permissão é necessária para ver o histórico de chamadas.</string>
     <string name="read_contacts">Ver contatos</string>
     <string name="received">Recebida</string>
     <string name="recent">Chamadas</string>
     <string name="regular_level">Regular</string>
-
-    <string name="remove_from_favorite">Remover dos Favoritos</string>
-    <string name="remove_from_home">Remover da Página Inicial</string>
     <string name="remove_from_sos">Remover do SOS</string>
     <string name="remove_shortcut">Remover atalho</string>
     <string name="removed_all_alarms">Remover todos os alarmes!</string>
@@ -228,8 +212,6 @@
     <string name="share_bald_phone_subtext">Olá! Conhece alguém que gostaria de saber sobre o BaldPhone?\nCompartilhe com eles agora mesmo!</string>
     <string name="share_baldphone">Compartilhar o BaldPhone</string>
     <string name="share_contact">Compartilhar Contato</string>
-    <string name="share_differently">Compartilhar através de outro aplicativo</string>
-    <string name="share_via_whatsapp">Compartilhar pelo Whatsapp</string>
     <string name="shift">shift</string>
     <string name="show">Mostrar</string>
     <string name="small">Pequena</string>
@@ -257,7 +239,6 @@
     <string name="took">Tomado!</string>
     <string name="tuesday">Terça-feira</string>
     <string name="uninstall">Desinstalar</string>
-    <string name="uninstall_subtext">Tem certeza que deseja desinstalar %s?\n%sTodos os dados serão apagados!</string>
     <string name="up">Cima</string>
     <string name="video">Vídeo</string>
     <string name="video_tutorials">Tutorial em Vídeo</string>
@@ -269,8 +250,6 @@
     <string name="wifi">Wi-fi</string>
     <string name="will_repeat_only_once">Tocará apenas uma vez!</string>
     <string name="write">Salvar</string>
-    <string name="write_contacts">Salvar Contatos</string>
-    <string name="write_external_storage">Acesso à memória externa</string>
     <string name="yes">Sim</string>
     <string name="yesterday">Ontem</string>
     <string name="nothing">Vazio</string>
@@ -280,7 +259,6 @@
     <string name="clear_all_notifications">Limpar Todas as Notificações</string>
     <string name="clear_cache_subtext">Tem a certeza que deseja apagar o cache?\nOs Aplicativos e Atalhos também serão removidos!
     </string>
-    <string name="permissions_calm">Olá, o BaldPhone necessita das seguintes permissões para poder substituir a interface do telefone. Algumas soam assustadoramente, mas nenhum dado será coletado e não causará problemas em seu telefone. Pressione OK para conceder as permissões ou Não para saír do BaldPhone.</string>
 
     <string name="what_s_new">O que há de novo</string>
     <string name="what_do_you_want_to_do_with___">O que deseja fazer com %s?</string>
@@ -341,17 +319,11 @@
     <string name="do_you_want_to_save_your_changes">Gostaria de salvar as mudanças?</string>
     <string name="discard">Descartar</string>
     <string name="no_recent_calls">Nenhuma Chamada Recente</string>
-    <string name="apps_sort_method">Método de classificação dos aplicativos</string>
-    <string name="apps_sort_method_subtext">Escolha se deseja classificar os aplicativos em uma grade ou dividi-los em grupos diferentes por meio de letras</string>
-    <string name="groups">Grupos</string>
-    <string name="one_grid">Uma grade</string>
     <string name="edit_home_screen">Editar Página Inicial</string>
     <string name="dual_sim">Dual SIM</string>
     <string name="dual_sim_subtext">Escolha como deseja gerenciar o dual sim\nNota: Se você escolher Mostrar Opções, precisará permitir outra permissão</string>
     <string name="use_default">Usar Padrão</string>
     <string name="show_options">Mostrar Opções</string>
-    <string name="read_phone_state">Ler o Estado do Telefone</string>
-    <string name="read_phone_state_subtext">Essa permissão é necessária para realizar chamadas a partir do segundo SIM</string>
     <string name="choose_sim">Escolher SIM</string>
     <string name="choose_sim_subtext">Escolha o SIM que você deseja realizar a chamada</string>
     <string name="website">Site</string>

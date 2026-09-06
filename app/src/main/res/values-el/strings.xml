@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Προσθήκη</string>
     <string name="add_pill">Νέο Χάπι</string>
     <string name="add_shortcut">Νέα Συντόμευση</string>
-    <string name="add_to_favorite">Προσθήκη στα Αγαπημένα</string>
-    <string name="add_to_home">Προσθήκη στην Αρχική Σελίδα</string>
     <string name="add_to_sos">Προσθήκη στο SOS</string>
     <string name="address">Διεύθυνση</string>
     <string name="advanced_options">Ρυθμίσεις για προχωρημένους</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">Τουλάχιστον μια ήμερα πρέπει να επιλεγεί!</string>
     <string name="auto_brightness">Αυτόματη\nΦωτεινότητα</string>
     <string name="backspace">backspace</string>
-    <string name="baldphone_bla_allow_permission">Παρακαλώ επιτρέψτε τις ακόλουθες άδειες:</string>
     <string name="blocked">Μπλοκαρίστηκε</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Φωτεινότητα</string>
@@ -69,9 +66,7 @@
     <string name="calling">Κλήση σε εξέλιξη</string>
 
     <string name="call_log">Πρόσφατες Κλήσεις:</string>
-    <string name="call_subtext">Αυτή η άδεια απαιτείται για να λειτουργήσει η κλήση επαφών.</string>
     <string name="camera">Φωτογραφ. μηχανή</string>
-    <string name="camera_subtext">Αυτή η άδεια απαιτείται για να λειτουργήσει ο φακός. </string>
     <string name="cancel">Ακύρωση</string>
     <string name="change_pills_time">Αλλαγή Ώρας Χαπιών</string>
     <string name="change_system_settings_subtext">Παρακαλώ δώστε άδεια στο BaldPhone για να αλλάξει τις ρυθμίσεις , όπως η αύξηση της γραμματοσειράς
@@ -96,9 +91,6 @@
     <string name="contact_must_has_name">Η επαφή πρέπει να έχει όνομα!</string>
     <string name="contact_not_created">Η επαφή δεν προστέθηκε!</string>
     <string name="contacts">Επαφές</string>
-    <string name="contacts_read_subtext">Αυτή η άδεια απαιτείται για να λειτουργήσουν οι επαφές.</string>
-    <string name="contacts_subtext"> Αυτή η άδεια απαιτείται για να μπορείτε να προσθέσετε νέες επαφές.</string>
-    <string name="crash">Ουπς!\nΤο BaldPhone αντιμετώπισε πρόβλημα και θα κάνει επανεκκίνηση.</string>
     <string name="current_time">Τρέχουσα Ώρα</string>
     <string name="custom">Επιλογή</string>
     <string name="dark">Σκοτεινό</string>
@@ -111,15 +103,12 @@
     <string name="down">Κάτω</string>
     <string name="edit">Επεξεργασία</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Ενεργοποίηση Πρόσβασης στις Ειδοποιήσεις</string>
-    <string name="enable_notification_access_subtext">Παρακαλώ δώστε άδεια στο BaldPhone για πρόσβαση στις ειδοποιήσεις.</string>
     <string name="enter">Enter</string>
     <string name="enter_contact_or_phone_number">Εισάγεται ένα όνομα επαφής:</string>
     <string name="evening">Βράδυ</string>
     <string name="example_of_different_text_sizes">Παραδειγμα μεγέθους γραμματοσειράς \nΘα πρέπει να μπορείτε να
         διαβάζετε.
     </string>
-    <string name="external_storage_subtext">Αυτή η άδεια απαιτείται για να αποθηκεύετε φωτογραφίες.</string>
 
     <string name="feedback">Αποστολή σχολίων</string>
     <string name="feedback_advanced">Περισσότερες επιλογές</string>
@@ -205,15 +194,10 @@
     <string name="pills">Χάπια</string>
     <string name="press_longer">Πατήστε παρατεταμένα!</string>
     <string name="timer">Χρονόμετρο</string>
-    <string name="read_call_log">Εμφάνιση Ιστορικού Κλήσεων</string>
-    <string name="read_call_log_subtext">Αυτή η άδεια απαιτείται για την εμφάνιση του ιστορικού κλήσεων</string>
     <string name="read_contacts">Διαβάστε τις επαφές</string>
     <string name="received">Ληφθέντα</string>
     <string name="recent">Πρόσφατα</string>
     <string name="regular_level">Κανονικό επίπεδο</string>
-
-    <string name="remove_from_favorite">Αφαίρεση από τα Αγαπημένα</string>
-    <string name="remove_from_home">Αφαίρεση από την Αρχική Σελίδα</string>
     <string name="remove_from_sos">Αφαίρεση από το SOS</string>
     <string name="remove_shortcut">Αφαίρεση Συντόμευσης</string>
     <string name="removed_all_alarms">Αφαιρεθήκαν όλες οι αφυπνίσεις!</string>
@@ -243,8 +227,6 @@
     </string>
     <string name="share_baldphone">Κοινοποιήστε το BaldPhone</string>
     <string name="share_contact">Κοινοποίηση Επαφής</string>
-    <string name="share_differently">Κοινοποιήστε σε άλλη Εφαρμογή</string>
-    <string name="share_via_whatsapp">Κοινοποιήστε στο Whatsapp</string>
     <string name="shift">shift</string>
     <string name="show">Εμφάνιση</string>
     <string name="small">Μικρό</string>
@@ -272,7 +254,6 @@
     <string name="took">Took!</string>
     <string name="tuesday">Tρίτη</string>
     <string name="uninstall">Απεγκατάσταση</string>
-    <string name="uninstall_subtext">Είστε σίγουροι ότι θέλετε να απεγκαταστήσετε %s;\n%s\ τα δεδομένα θα χαθούν για πάντα!</string>
     <string name="up">Επάνω</string>
     <string name="video">Βίντεο</string>
     <string name="video_tutorials">Βοήθεια σε Βίντεο</string>
@@ -284,8 +265,6 @@
     <string name="wifi">Wifi</string>
     <string name="will_repeat_only_once">θα γίνει επανάληψη μόνο μια φορά!</string>
     <string name="write">Γράψε</string>
-    <string name="write_contacts">Εγγραφή Επαφών</string>
-    <string name="write_external_storage">Εγγραφή σε εξωτερική αποθήκευση </string>
     <string name="yes">Ναι</string>
     <string name="yesterday">Τετάρτη</string>
     <string name="nothing">Τίποτα</string>
@@ -294,10 +273,6 @@
     <string name="no_pills">Κανένα Χάπι\nπροσθέστε ένα επιλέγοντας\n\"Νέο Χάπι\"</string>
     <string name="clear_all_notifications">Διαγραφή Ειδοποιήσεων</string>
     <string name="clear_cache_subtext">Είστε σίγουροι ότι θέλετε να σβήσετε την μνήμη cache?\nΠροσωρινά αρχεία και συντομεύσεις θα διαγραφούν!
-    </string>
-    <string name="permissions_calm">Γειά σας, το BaldPhone χρειάζεται κάποιες άδειες για να λειτουργήσει, κάποιες από αυτές
-      φαίνονται τρομακτικές αλλά μόνο έτσι το BaldPhone μπορεί να αντικαταστήσει τη διεπαφή του τηλεφώνου. Η εφαρμογή δεν λαμβάνει δεδομένα και
-      δεν προκαλεί ζημιά στην συσκευή σας. Πατήστε Ναι για να χορηγήσετε τα δικαιώματα ή Όχι για να βγείτε από το BaldPhone.
     </string>
 
     <string name="what_s_new">Νέα χαρακτηριστικά</string>
@@ -361,18 +336,11 @@
     <string name="do_you_want_to_save_your_changes">Θέλετε να σώσετε τις αλλαγές σας;</string>
     <string name="discard">Απόρριψη</string>
     <string name="no_recent_calls">Δεν υπάρχουν πρόσφατες κλήσεις</string>
-    <string name="apps_sort_method">Ταξινόμηση εφαρμογών</string>
-    <string name="apps_sort_method_subtext"> Επιλέξτε αν θέλετε να ταξινομήσετε τις εφαρμογές σε ένα πλέγμα ή αν θέλετε να τις χωρίσετε σε ομάδες βάση του πρώτου
-  γράμματος</string>
-    <string name="groups">Ομάδες</string>
-    <string name="one_grid">Ένα πλέγμα</string>
     <string name="edit_home_screen">Προσαρμογή αρχικής οθόνης</string>
     <string name="dual_sim">Διπλή κάρτα sim</string>
     <string name="dual_sim_subtext">Επιλέξτε πως θέλετε να διαχειριστείτε τις δύο sim\nΣημείωση: Αν επιλέξετε Προβολή Επιλογών, θα χρειαστεί να επιτρέψετε μια νέα άδεια</string>
     <string name="use_default">Χρήση προεπιλογής</string>
     <string name="show_options">Προβολή Eπιλογών</string>
-    <string name="read_phone_state">Ανάγνωση κατάστασης τηλεφώνου</string>
-    <string name="read_phone_state_subtext">Αυτή η άδεια απαιτείται για κλήση από την δεύτερη κάρτα sim</string>
     <string name="choose_sim">Επιλογή κάρτας sim</string>
     <string name="choose_sim_subtext">Επιλογή κάρτας sim από την οποία θα γίνει η κλήση</string>
     <string name="website">Ιστότοπος</string>

@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Lisää</string>
     <string name="add_pill">Lisää lääke</string>
     <string name="add_shortcut">Lisää pikakuvake</string>
-    <string name="add_to_favorite">Lisää suosikkeihin</string>
-    <string name="add_to_home">Lisää kotisivulle</string>
     <string name="add_to_sos">Lisää SOS:iin</string>
     <string name="address">Osoite</string>
     <string name="advanced_options">Edistyneet asetukset</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">Vähintään yksi päivä tulee valita</string>
     <string name="auto_brightness">Automaattinen kirkkaus</string>
     <string name="backspace">askelpalautin</string>
-    <string name="baldphone_bla_allow_permission">Tarvitaan seuraavat oikeudet</string>
     <string name="blocked">Estetty</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Kirkkaus</string>
@@ -69,9 +66,7 @@
     <string name="calling">Puhelu</string>
 
     <string name="call_log">Puhelu-loki</string>
-    <string name="call_subtext">Tämä lupa tarvitaan yhtayshenkilöille soittamiseen</string>
     <string name="camera">Kamera</string>
-    <string name="camera_subtext">Tämä lupa tarvitaan taskulampun sytyttämiseksi</string>
     <string name="cancel">Peruuta</string>
     <string name="change_pills_time">Muuta lääkitysaikaa</string>
     <string name="change_system_settings_subtext">Anna BaldPhonen muuttaa asetuksia, kuten isontaa kirjasinkokoa
@@ -95,9 +90,6 @@ ja muuttaa kirkkautta.</string>
     <string name="contact_must_has_name">Yhteystiedolla pitää olla nimi!</string>
     <string name="contact_not_created">Yhteystietoa ei luotu!</string>
     <string name="contacts">Kontaktit</string>
-    <string name="contacts_read_subtext">Tämä oikeus on tarpeen yhteystietojen lukemiseksi.</string>
-    <string name="contacts_subtext">Tämä oikeus on tarpeen uusien yhteystietojen luomiseksi.</string>
-    <string name="crash">Hups! \nBaldPhone törmäsi ongelmaan ja käynnistyy nyt uudelleen.</string>
     <string name="current_time">Tänhetkinen aika</string>
     <string name="custom">Mukautettu</string>
     <string name="dark">Tumma</string>
@@ -110,15 +102,12 @@ ja muuttaa kirkkautta.</string>
     <string name="down">Alas</string>
     <string name="edit">Muuta</string>
     <string name="email">Sähköposti:</string>
-    <string name="enable_notification_access">Ota käyttöön ilmoitusten käyttö</string>
-    <string name="enable_notification_access_subtext">Anna BaldPhonelle käyttöoikeus ilmoituksiin.</string>
     <string name="enter">Syötä</string>
     <string name="enter_contact_or_phone_number">Syötä yhteyshenkilön nimi</string>
     <string name="evening">Ilta</string>
     <string name="example_of_different_text_sizes">Esimerkki eri tekstikoista\nPitäisi olla luettava ja ei
         ylivuotoa.
     </string>
-    <string name="external_storage_subtext">Tämä oikeus tarvitaan kuvien tallentamiseksi</string>
 
     <string name="feedback">Lähetä palautetta</string>
     <string name="feedback_advanced">Lisää vaihtoehtoja</string>
@@ -203,15 +192,10 @@ ja muuttaa kirkkautta.</string>
     <string name="pills">Lääkkeet</string>
     <string name="press_longer">Paina pidempään!</string>
     <string name="timer">Ajastin</string>
-    <string name="read_call_log">Lue puheluhistoria</string>
-    <string name="read_call_log_subtext">Tämä lupa tarvitaan puheluhistorian tarkastelemiseen.</string>
     <string name="read_contacts">Lue yhteystiedot</string>
     <string name="received">Vastaanotettu</string>
     <string name="recent">Viimeksi</string>
     <string name="regular_level">Tavallinen taso</string>
-
-    <string name="remove_from_favorite">Poista suosikeista</string>
-    <string name="remove_from_home">Poista kotinäkymästä</string>
     <string name="remove_from_sos">Poista SOS:sta</string>
     <string name="remove_shortcut">Poista pikakuvake</string>
     <string name="removed_all_alarms">Poista hälytykset</string>
@@ -241,8 +225,6 @@ ja muuttaa kirkkautta.</string>
     </string>
     <string name="share_baldphone">Jaa BaldPhonea</string>
     <string name="share_contact">Jaa yhteystieto</string>
-    <string name="share_differently">Jaa toisen sovelluksen kautta</string>
-    <string name="share_via_whatsapp">Jaa Whatsappissa</string>
     <string name="shift">vaihto</string>
     <string name="show">Näytä</string>
     <string name="small">Pieni</string>
@@ -270,7 +252,6 @@ ja muuttaa kirkkautta.</string>
     <string name="took">Otettu!</string>
     <string name="tuesday">Tiistai</string>
     <string name="uninstall">Poista asennus</string>
-    <string name="uninstall_subtext">Oletko varma että haluat poistaa %s?\n%sn tiedot poistuvat lopullisesti!</string>
     <string name="up">Ylös</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Video-ohjeet</string>
@@ -282,8 +263,6 @@ ja muuttaa kirkkautta.</string>
     <string name="wifi">Wi-Fi</string>
     <string name="will_repeat_only_once">toistaa vain kerran!</string>
     <string name="write">Tallenna</string>
-    <string name="write_contacts">Tallenna Yhteystiedot</string>
-    <string name="write_external_storage">Tallenna ulkoiseen muistiin</string>
     <string name="yes">Kyllä</string>
     <string name="yesterday">Eilen</string>
     <string name="nothing">Ei mitään</string>
@@ -292,10 +271,6 @@ ja muuttaa kirkkautta.</string>
     <string name="no_pills">Ei lääkityksiä\nLisää uusi painamalla\n\"Lisää lääkitys\"</string>
     <string name="clear_all_notifications">Poista kaikki muistutukset</string>
     <string name="clear_cache_subtext">Haluatko varmasti poistaa välimuistin sisällön? Väliaikaistiedostojen poistaminen voi ratkaista joitain BaldPhone-sovelluksen toimintahäiriöitä, mutta myös aloitusnäytölle luodut pikakuvakkeet poistetaan.</string>
-    <string name="permissions_calm">Hei, BaldPhone tarvitsee seuraavat oikeudet toimiakseen. Osa voi kuulostaa
-        pelottavalta, mutta vain niin BaldPhone voi korvata käyttöliittymän. Tietoja ei oteta eikä se aiheuta haittaa
-        Paina OK antaaksesi oikeudet tai Ei poistuaksesi BaldPhonesta.
-    </string>
 
     <string name="what_s_new">Mikä on uutta</string>
     <string name="what_do_you_want_to_do_with___">Mitä haluat tehdä: %s?</string>
@@ -358,17 +333,11 @@ ja muuttaa kirkkautta.</string>
     <string name="do_you_want_to_save_your_changes">Haluatko tallentaa muutokset?</string>
     <string name="discard">Hylkää</string>
     <string name="no_recent_calls">Ei viime puheluita</string>
-    <string name="apps_sort_method">Sovellusten lajittelutapa</string>
-    <string name="apps_sort_method_subtext">Valitse, haluatko lajitella sovellukset yhteen ruudukkoon vai jakaa ne eri ryhmiin kirjaimilla</string>
-    <string name="groups">Ryhmät</string>
-    <string name="one_grid">Yksi ruudukko</string>
     <string name="edit_home_screen">Muokkaa aloitusnäyttöä</string>
     <string name="dual_sim">Kaksois-SIM</string>
     <string name="dual_sim_subtext">Valitse, kuinka haluat hallita kaksois-SIM:ä\nHuomaa: Jos valitset Näytä vaihtoehdot, sinun on annettava uusi käyttöoikeus</string>
     <string name="use_default">Käytä oletusta</string>
     <string name="show_options">Näytä valinnat</string>
-    <string name="read_phone_state">Lue puhelimen tila</string>
-    <string name="read_phone_state_subtext">Tämä lupa tarvitaan, jotta toisella SIM:llä voi soittaa</string>
     <string name="choose_sim">Valitse SIM-kortti</string>
     <string name="choose_sim_subtext">Valitse SIM, jolla haluat soittaa puhelun</string>
     <string name="website">Verkkosivusto</string>

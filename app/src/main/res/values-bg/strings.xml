@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Добавяне на контакт за спешни случаи</string>
     <string name="add_pill">Добавяне на Лекарство</string>
     <string name="add_shortcut">Добавяне на Пряк път</string>
-    <string name="add_to_favorite">Добавяне в Любими</string>
-    <string name="add_to_home">Добавяне към Начален екран</string>
     <string name="add_to_sos">Добавяне към SOS</string>
     <string name="address">Адрес</string>
     <string name="advanced_options">Разширени опции</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">Трябва да бъде избран поне един ден!</string>
     <string name="auto_brightness">Автоматична\nЯркост</string>
     <string name="backspace">назад</string>
-    <string name="baldphone_bla_allow_permission">Моля, позволете следните разрешения:</string>
     <string name="blocked">Блокиран</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Яркост</string>
@@ -69,9 +66,7 @@
     <string name="calling">Позвъняване</string>
 
     <string name="call_log">Списък на обажданията:</string>
-    <string name="call_subtext">Разрешението е необходимо, за да набирате контакти.</string>
     <string name="camera">Камера</string>
-    <string name="camera_subtext">Разрешението е необходимо, за да включите светкавицата.</string>
     <string name="cancel">Отказ</string>
     <string name="change_pills_time">Промяна на времето за прием на лекарства</string>
     <string name="change_system_settings_subtext">Моля, позволете на BaldPhone да променя настройките, като например увеличаване
@@ -96,9 +91,6 @@
     <string name="contact_must_has_name">Контактът трябва да има Име!</string>
     <string name="contact_not_created">Контактът не е създаден!</string>
     <string name="contacts">Контакти</string>
-    <string name="contacts_read_subtext">Разрешението е необходимо, за да има достъп до контактите.</string>
-    <string name="contacts_subtext">Разрешението е необходимо, за да добавите нов контакт.</string>
-    <string name="crash">Oops!\nBaldPhone се сблъска с проблем и ще се рестартира.</string>
     <string name="current_time">Текущо време</string>
     <string name="custom">Персонализиран</string>
     <string name="dark">Тъмен</string>
@@ -111,15 +103,12 @@
     <string name="down">Надолу</string>
     <string name="edit">Редактиране</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Активиране на достъп до известията</string>
-    <string name="enable_notification_access_subtext">Моля да предоставите на BaldPhone достъп до известията.</string>
     <string name="enter">Въвеждане</string>
     <string name="enter_contact_or_phone_number">Въведете името на контакта:</string>
     <string name="evening">Вечер</string>
     <string name="example_of_different_text_sizes">Пример за различни размери на текста\nТрябва да е четим и без
         препълване.
     </string>
-    <string name="external_storage_subtext">Разрешението е необходимо, за да се запазват снимките.</string>
 
     <string name="feedback">Обратна връзка</string>
     <string name="feedback_advanced">Повече опции</string>
@@ -205,15 +194,10 @@
     <string name="pills">Лекарства</string>
     <string name="press_longer">Натиснете по-продължително!</string>
     <string name="timer">Таймер</string>
-    <string name="read_call_log">Прочетете История на обажданията</string>
-    <string name="read_call_log_subtext">Разрешението е необходимо, за да виждате историята на обажданията.</string>
     <string name="read_contacts">Прочитане на контактите</string>
     <string name="received">Входящи</string>
     <string name="recent">Скорошни</string>
     <string name="regular_level">Обичайно ниво</string>
-
-    <string name="remove_from_favorite">Премахвне от Любими</string>
-    <string name="remove_from_home">Премахвне от Начален екран</string>
     <string name="remove_from_sos">Премахване от SOS</string>
     <string name="remove_shortcut">Премахвне на Пряк път</string>
     <string name="removed_all_alarms">Всички аларми са изтрити!</string>
@@ -243,8 +227,6 @@
     </string>
     <string name="share_baldphone">Споделяне на BaldPhone</string>
     <string name="share_contact">Споделяне на контакт</string>
-    <string name="share_differently">Споделяне посредством друго приложение</string>
-    <string name="share_via_whatsapp">Споделяне посредством Whatsapp</string>
     <string name="shift">смяна</string>
     <string name="show">Показване</string>
     <string name="small">Малък</string>
@@ -272,7 +254,6 @@
     <string name="took">Взет!</string>
     <string name="tuesday">Вторник</string>
     <string name="uninstall">Деинсталиране</string>
-    <string name="uninstall_subtext">Сигурни ли сте, че желаете да деинсталирате %s?\nданните от %s\ ще бъдат изтрити завинаги!</string>
     <string name="up">Нагоре</string>
     <string name="video">Видео</string>
     <string name="video_tutorials">Видео уроци</string>
@@ -284,8 +265,6 @@
     <string name="wifi">WiFi</string>
     <string name="will_repeat_only_once">ще се повтори замо веднъж!</string>
     <string name="write">Записване</string>
-    <string name="write_contacts">Записване на контакти</string>
-    <string name="write_external_storage">Записване на външен носител</string>
     <string name="yes">Да</string>
     <string name="yesterday">Вчера</string>
     <string name="nothing">Нищо</string>
@@ -294,10 +273,6 @@
     <string name="no_pills">Няма лекрства\nСъздайте ново като натиснете\n\"Добавяне на лекарство\"</string>
     <string name="clear_all_notifications">Изтриване на всички известия</string>
     <string name="clear_cache_subtext">Сигурни ли сте, че желаете да изтриете съдържанието на кеш паметта? Изтриването на временните файлове може да разреши някои функционални проблеми на BaldPhone, но също така ще изтрие от началния екран създадените преки пътища.</string>
-    <string name="permissions_calm">Здравейте, за да работи BaldPhone трябва да има следните разрешения. Някои
-        от тях звучат плашещо, но това е единственият начин BaldPhone да замени интерфейса на телефона ви. Той не събира данни и не
-         причинява вреди. Натиснете OK, за да предоставите разрешенията или Не за изход от BaldPhone.
-    </string>
 
     <string name="what_s_new">Какво ново</string>
     <string name="what_do_you_want_to_do_with___">Какво желаете да направите с %s?</string>
@@ -360,17 +335,11 @@
     <string name="do_you_want_to_save_your_changes">Желаете ли да запазите направените промени?</string>
     <string name="discard">Откажи</string>
     <string name="no_recent_calls">Няма скорошни обаждания</string>
-    <string name="apps_sort_method">Метод за подреждане на приложенията</string>
-    <string name="apps_sort_method_subtext">Изберете дали желаете да подредите приложенията в общ списък или да ги разделите в групи по букви</string>
-    <string name="groups">Групи</string>
-    <string name="one_grid">Общ списък</string>
     <string name="edit_home_screen">Редактиране на Начален екран</string>
     <string name="dual_sim">Две SIM карти</string>
     <string name="dual_sim_subtext">Изберете как искате да управлявате двете SIM карти\nЗабележка: Ако изберете Показване на опции, ще трябва да позволите и друго разрешение</string>
     <string name="use_default">Използвай това по подразбиране</string>
     <string name="show_options">Покаване на опции</string>
-    <string name="read_phone_state">Прочитане на състоянието на телефона</string>
-    <string name="read_phone_state_subtext">Разрешението е необходимо, за да наберете използвайки втората SIM карта</string>
     <string name="choose_sim">Избор на SIM карта</string>
     <string name="choose_sim_subtext">Изберете SIM картата от която да се проведе разговорът</string>
     <string name="website">WEB сайт</string>

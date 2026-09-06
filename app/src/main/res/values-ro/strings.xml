@@ -34,8 +34,6 @@
     <string name="add_emergency_contact">Adaugă</string>
     <string name="add_pill">Adaugă medicant</string>
     <string name="add_shortcut">Adaugă scurtătură </string>
-    <string name="add_to_favorite">Adaugă la favorite</string>
-    <string name="add_to_home">Adaugă la pagină principală</string>
     <string name="add_to_sos">Adaugă la SOS</string>
     <string name="address">Adresă</string>
     <string name="advanced_options">Opțiuni avansate</string>
@@ -59,7 +57,6 @@
     <string name="at_least_one_day_must_be_selected">Cel puțin o zi trebuie selectată!</string>
     <string name="auto_brightness">Luminiozitate\auto</string>
     <string name="backspace">Șterge</string>
-    <string name="baldphone_bla_allow_permission">Vă rugăm să acceptați urmatoarele permisiuni:</string>
     <string name="blocked">Blocat</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="brightness">Luminiozitate</string>
@@ -69,9 +66,7 @@
     <string name="calling">Se apelează</string>
 
     <string name="call_log">Istoric apeluri:</string>
-    <string name="call_subtext">Această permisiune este necesară pentru a plasa apeluri.</string>
     <string name="camera">Cameră</string>
-    <string name="camera_subtext">Această permisiune este necesară pentru a porni lanterna</string>
     <string name="cancel">Anuleaza</string>
     <string name="change_pills_time">Schimbă orele medicamentelor</string>
     <string name="change_system_settings_subtext">Va rugăm să permiteți schimbarea setărilor, cum ar fi creșterea textului sau schimbarea luminiozității.
@@ -95,9 +90,6 @@
     <string name="contact_must_has_name">Contactul trebuie să aibe un nume!</string>
     <string name="contact_not_created">Contactul nu s-a creat!</string>
     <string name="contacts">Contacte</string>
-    <string name="contacts_read_subtext">Această permisiune este necesară pentru a citi contacte.</string>
-    <string name="contacts_subtext">Această permisiune este necesară pentru a adauga contacte noi.</string>
-    <string name="crash">Oops!\nBaldPhone a întâmpinat o problema și se va restarta</string>
     <string name="current_time">Ora curentă</string>
     <string name="custom">Personalizat</string>
     <string name="dark">Întuneric</string>
@@ -110,14 +102,11 @@
     <string name="down">Jos</string>
     <string name="edit">Edit</string>
     <string name="email">Email:</string>
-    <string name="enable_notification_access">Permiteți accesul la notificări</string>
-    <string name="enable_notification_access_subtext">Vă rugam permiteti accesul la notificări</string>
     <string name="enter">Introdu</string>
     <string name="enter_contact_or_phone_number">Introduceți numele contactului:</string>
     <string name="evening">Seară</string>
     <string name="example_of_different_text_sizes">Exemple de diferite dimensiuni ale textului\nAr trebui sa fie lizibil și să nu treacă peste margini
     </string>
-    <string name="external_storage_subtext">Această permisiune este necesară pentru a salva poze</string>
 
     <string name="feedback">Trimite feedback </string>
     <string name="feedback_advanced">Mai multe opțiuni</string>
@@ -200,15 +189,10 @@
     <string name="pills">Medicamente</string>
     <string name="press_longer">Ține apăsat!</string>
     <string name="timer">Temporizator</string>
-    <string name="read_call_log">Citește istoric apeluriy</string>
-    <string name="read_call_log_subtext">Această permisiune este necesară pentru a citi istoricul apelurilor.</string>
     <string name="read_contacts">Citește contacte</string>
     <string name="received">Primit</string>
     <string name="recent">Trimis</string>
     <string name="regular_level">Nivel normal</string>
-
-    <string name="remove_from_favorite">Șterge de la favorite</string>
-    <string name="remove_from_home">Șterge de pe pagina principală</string>
     <string name="remove_from_sos">Șterge de la SOS</string>
     <string name="remove_shortcut">Șterga scurtăturăt</string>
     <string name="removed_all_alarms">Toate alarmele au fost șterse!</string>
@@ -237,8 +221,6 @@
     </string>
     <string name="share_baldphone">Share BaldPhone</string>
     <string name="share_contact">Share Contact</string>
-    <string name="share_differently">Share prin altă aplicație</string>
-    <string name="share_via_whatsapp">Share Via Whatsapp</string>
     <string name="shift">shift</string>
     <string name="show">Arată</string>
     <string name="small">Mic</string>
@@ -266,7 +248,6 @@
     <string name="took">Luat!</string>
     <string name="tuesday">Marți</string>
     <string name="uninstall">Dezinstalare</string>
-    <string name="uninstall_subtext">Sunteți sigur că vreți să dezinstalați %s?\n Datele %s vor fii șterse pentru totdeauna!</string>
     <string name="up">Sus</string>
     <string name="video">Video</string>
     <string name="video_tutorials">Tutoriale video</string>
@@ -278,8 +259,6 @@
     <string name="wifi">Wi-Fi</string>
     <string name="will_repeat_only_once">se va repeta o singură dată!</string>
     <string name="write">Scrieți</string>
-    <string name="write_contacts">Scrieți in lista de contacte</string>
-    <string name="write_external_storage">Scrieți în mediul de stocare externă </string>
     <string name="yes">Da</string>
     <string name="yesterday">Ieri</string>
     <string name="nothing">Nimic</string>
@@ -289,8 +268,6 @@
     <string name="clear_all_notifications">Stergeți toate notificările</string>
     <string name="clear_cache_subtext">Sunteți sigur că vreți să stergeți datele cache?\nScurtăturilor vor fi de asemenea șterse!
     </string>
-    <string name="permissions_calm">Hei, BaldPhone are nevoie de urmatoarele permisuni pentru a funcțion\n
-        Unele pot suna înspăimântător dar altfel nu îti vom putea înlocui interfața telefonului\nNu îți vom gestiona datele.  Apasă OK pentru a permite sau No pentru a inchide BaldPhone</string>
 
     <string name="what_s_new">Ce este nou</string>
     <string name="what_do_you_want_to_do_with___">Ce doriți să faceți cu %s?</string>
@@ -352,10 +329,6 @@
     <string name="do_you_want_to_save_your_changes">Doriți să salvați schimbările?</string>
     <string name="discard">Înlaturați</string>
     <string name="no_recent_calls">Nici un apel recent</string>
-    <string name="apps_sort_method">Metodă sortare aplicații</string>
-    <string name="apps_sort_method_subtext">Alegeți dacă vreți ca aplicațiile sa fie sortate in grupe sau alfabetic.</string>
-    <string name="groups">Grupe</string>
-    <string name="one_grid">Alfabetic</string>
     <string name="edit_home_screen">Editați Ecranul Acasă</string>
     <string-array name="names_for_screenshots">
         <item>The Godfather</item>
