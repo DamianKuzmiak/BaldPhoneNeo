@@ -208,8 +208,8 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="thursday">Osteguna</string>
     <string name="time_changer">Pilulen denbora aldatzailea</string>
     <string name="tiny">Ñimiñoa</string>
-    <string name="to___days_and___hours_from_now">oraindik %d egun eta %d ordutara</string>
-    <string name="to___hours_and___minutes_from_now">oraindik %d ordu eta %d minutura</string>
+    <string name="to___days_and___hours_from_now">oraindik %1$d egun eta %2$d ordutara</string>
+    <string name="to___hours_and___minutes_from_now">oraindik %1$d ordu eta %2$d minutura</string>
     <string name="to___minuets_from_now">oraindik %d minututara</string>
     <string name="today">Gaur</string>
     <string name="took">Hartuta!</string>

@@ -245,8 +245,8 @@
     <string name="thursday">Neljapäev</string>
     <string name="time_changer">Tabletivõtmise aja muutmine</string>
     <string name="tiny">Tilluke</string>
-    <string name="to___days_and___hours_from_now">%d päeva ja %d tunni pärast</string>
-    <string name="to___hours_and___minutes_from_now">%d tunni ja %d minuti pärast</string>
+    <string name="to___days_and___hours_from_now">%1$d päeva ja %2$d tunni pärast</string>
+    <string name="to___hours_and___minutes_from_now">%1$d tunni ja %2$d minuti pärast</string>
     <string name="to___minuets_from_now">%d minuti pärast</string>
     <string name="today">Täna</string>
     <string name="took">Juba võetud.</string>

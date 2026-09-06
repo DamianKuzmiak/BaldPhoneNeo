@@ -229,8 +229,8 @@
     <string name="thursday">Torsdag</string>
     <string name="time_changer">Ændr tid for pilletagning</string>
     <string name="tiny">Meget lille</string>
-    <string name="to___days_and___hours_from_now">til %d dage og %d timer fra nu</string>
-    <string name="to___hours_and___minutes_from_now">til %d timer og %d minutter fra nu</string>
+    <string name="to___days_and___hours_from_now">til %1$d dage og %2$d timer fra nu</string>
+    <string name="to___hours_and___minutes_from_now">til %1$d timer og %2$d minutter fra nu</string>
     <string name="to___minuets_from_now">til %d minutter fra nu</string>
     <string name="today">I dag</string>
     <string name="took">Er taget!</string>

@@ -238,8 +238,8 @@
     <string name="thursday">Четверг</string>
     <string name="time_changer">Изменение времени приема таблеток</string>
     <string name="tiny">Крошечный</string>
-    <string name="to___days_and___hours_from_now">%d дней и %d час(ов) с текущего момента</string>
-    <string name="to___hours_and___minutes_from_now">%d час(ов) и %d минут с текущего момента</string>
+    <string name="to___days_and___hours_from_now">%1$d дней и %2$d час(ов) с текущего момента</string>
+    <string name="to___hours_and___minutes_from_now">%1$d час(ов) и %2$d минут с текущего момента</string>
     <string name="to___minuets_from_now">%d минут(ы) с текущего момента</string>
     <string name="today">Сегодня</string>
     <string name="took">Взял!</string>

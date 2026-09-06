@@ -244,8 +244,8 @@
     <string name="thursday">Kamis</string>
     <string name="time_changer">Pengubah Waktu Pil</string>
     <string name="tiny">Sangat Kecil</string>
-    <string name="to___days_and___hours_from_now">ke %d hari dan %d jam dari sekarang</string>
-    <string name="to___hours_and___minutes_from_now">ke %d jam dan %d menit dari sekarang</string>
+    <string name="to___days_and___hours_from_now">ke %1$d hari dan %2$d jam dari sekarang</string>
+    <string name="to___hours_and___minutes_from_now">ke %1$d jam dan %2$d menit dari sekarang</string>
     <string name="to___minuets_from_now">ke %d menit dari sekarang</string>
     <string name="today">hari ini</string>
     <string name="took">Ambil!</string>

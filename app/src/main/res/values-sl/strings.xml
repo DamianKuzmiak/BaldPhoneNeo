@@ -240,8 +240,8 @@
     <string name="thursday">Četrtek</string>
     <string name="time_changer">Spreminjanje časa za zdravila</string>
     <string name="tiny">Majceno</string>
-    <string name="to___days_and___hours_from_now">do %d dni in %d ur od sedaj</string>
-    <string name="to___hours_and___minutes_from_now">do %d ur in %d minut od sedaj</string>
+    <string name="to___days_and___hours_from_now">do %1$d dni in %2$d ur od sedaj</string>
+    <string name="to___hours_and___minutes_from_now">do %1$d ur in %2$d minut od sedaj</string>
     <string name="to___minuets_from_now">do %d minut od sedaj</string>
     <string name="today">Danes</string>
     <string name="took">Vzel!</string>

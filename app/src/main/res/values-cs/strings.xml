@@ -247,8 +247,8 @@
     <string name="thursday">Čtvrtek</string>
     <string name="time_changer">Měnič času pilulky</string>
     <string name="tiny">Malinký</string>
-    <string name="to___days_and___hours_from_now">Do %d dnů a %d hodin od teď</string>
-    <string name="to___hours_and___minutes_from_now">do %d hodin a %d minut od teď</string>
+    <string name="to___days_and___hours_from_now">Do %1$d dnů a %2$d hodin od teď</string>
+    <string name="to___hours_and___minutes_from_now">do %1$d hodin a %2$d minut od teď</string>
     <string name="to___minuets_from_now">do %d minut od teď</string>
     <string name="today">Dnes</string>
     <string name="took">Měl jsem!</string>

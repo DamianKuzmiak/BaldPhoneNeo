@@ -246,8 +246,8 @@
     <string name="thursday">חמישי</string>
     <string name="time_changer">שינוי זמן תרופות</string>
     <string name="tiny">קטנטן</string>
-    <string name="to___days_and___hours_from_now">ל%d ימים ו%d שעות מעכשיו</string>
-    <string name="to___hours_and___minutes_from_now">ל%d שעות ו%d דקות מעכשיו</string>
+    <string name="to___days_and___hours_from_now">ל%1$d ימים ו%2$d שעות מעכשיו</string>
+    <string name="to___hours_and___minutes_from_now">ל%1$d שעות ו%2$d דקות מעכשיו</string>
     <string name="to___minuets_from_now">ל%d דקות מעכשיו</string>
     <string name="today">היום</string>
     <string name="took">לקחתי!</string>

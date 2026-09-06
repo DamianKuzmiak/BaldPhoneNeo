@@ -238,8 +238,8 @@
     <string name="thursday">Jeudi</string>
     <string name="time_changer">Horaires médicaments</string>
     <string name="tiny">Très petit</string>
-    <string name="to___days_and___hours_from_now">Sonnera dans %d jours et %d heures</string>
-    <string name="to___hours_and___minutes_from_now">Sonnera dans %d heures et %d minutes</string>
+    <string name="to___days_and___hours_from_now">Sonnera dans %1$d jours et %2$d heures</string>
+    <string name="to___hours_and___minutes_from_now">Sonnera dans %1$d heures et %2$d minutes</string>
     <string name="to___minuets_from_now">Sonnera dans %d minutes</string>
     <string name="today">Aujourd\'hui</string>
     <string name="took">Prise !</string>

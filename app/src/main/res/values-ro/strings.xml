@@ -241,8 +241,8 @@
     <string name="thursday">Joi</string>
     <string name="time_changer">Schimbare timp medicamente</string>
     <string name="tiny">Mic</string>
-    <string name="to___days_and___hours_from_now">la %d zile și %d ore de acum</string>
-    <string name="to___hours_and___minutes_from_now">la %d ore și %d minute de acum</string>
+    <string name="to___days_and___hours_from_now">la %1$d zile și %2$d ore de acum</string>
+    <string name="to___hours_and___minutes_from_now">la %1$d ore și %2$d minute de acum</string>
     <string name="to___minuets_from_now">la %d minute de acum</string>
     <string name="today">Asțazi</string>
     <string name="took">Luat!</string>

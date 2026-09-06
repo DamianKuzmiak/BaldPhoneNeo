@@ -275,8 +275,8 @@
     <string name="thursday">Giovedì</string>
     <string name="time_changer">Modifica orario delle pillole</string>
     <string name="tiny">Molto piccolo</string>
-    <string name="to___days_and___hours_from_now">tra %1$d giorni e %1$d ore</string>
-    <string name="to___hours_and___minutes_from_now">tra %d ore e %d minuti</string>
+    <string name="to___days_and___hours_from_now">tra %1$d giorni e %2$d ore</string>
+    <string name="to___hours_and___minutes_from_now">tra %1$d ore e %2$d minuti</string>
     <string name="to___minuets_from_now">tra %d minuti</string>
     <string name="today">Oggi</string>
     <string name="now">Ora</string>

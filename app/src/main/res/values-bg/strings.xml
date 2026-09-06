@@ -247,8 +247,8 @@
     <string name="thursday">Четвъртък</string>
     <string name="time_changer">Промяна на времето за лекарствата</string>
     <string name="tiny">Дребен</string>
-    <string name="to___days_and___hours_from_now">до %d дни и %d часа от сега</string>
-    <string name="to___hours_and___minutes_from_now">до %d часа и %d минути от сега</string>
+    <string name="to___days_and___hours_from_now">до %1$d дни и %2$d часа от сега</string>
+    <string name="to___hours_and___minutes_from_now">до %1$d часа и %2$d минути от сега</string>
     <string name="to___minuets_from_now">до %d минути от сега</string>
     <string name="today">Днес</string>
     <string name="took">Взет!</string>

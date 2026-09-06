@@ -246,8 +246,8 @@
     <string name="thursday">गुरूवार</string>
     <string name="time_changer">गोलियां समय परिवर्तक</string>
     <string name="tiny">छोटा</string>
-    <string name="to___days_and___hours_from_now">अब से %d दिन और %d घंटे तक</string>
-    <string name="to___hours_and___minutes_from_now">अब से %d घंटे और %d मिनट तक</string>
+    <string name="to___days_and___hours_from_now">अब से %1$d दिन और %2$d घंटे तक</string>
+    <string name="to___hours_and___minutes_from_now">अब से %1$d घंटे और %2$d मिनट तक</string>
     <string name="to___minuets_from_now">अब से %d मिनट तक</string>
     <string name="today">आज</string>
     <string name="took">लिया!</string>

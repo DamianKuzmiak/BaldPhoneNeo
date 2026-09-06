@@ -232,8 +232,8 @@
     <string name="thursday">Quinta-feira</string>
     <string name="time_changer">Alterar Hora da Medicação</string>
     <string name="tiny">Minúsculo</string>
-    <string name="to___days_and___hours_from_now">Tocar em %d dias e %d horas</string>
-    <string name="to___hours_and___minutes_from_now">Tocar em %d horas e %d minutos</string>
+    <string name="to___days_and___hours_from_now">Tocar em %1$d dias e %2$d horas</string>
+    <string name="to___hours_and___minutes_from_now">Tocar em %1$d horas e %2$d minutos</string>
     <string name="to___minuets_from_now">Tocar em %d minutos</string>
     <string name="today">Hoje</string>
     <string name="took">Took!</string>

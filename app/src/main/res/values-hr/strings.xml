@@ -237,8 +237,8 @@
     <string name="thursday">Četvrtak</string>
     <string name="time_changer">Promjena Termina Pilula</string>
     <string name="tiny">Sitno</string>
-    <string name="to___days_and___hours_from_now">na %d dan/a i %d sat/i od sada</string>
-    <string name="to___hours_and___minutes_from_now">na %d sat/i i %d minute/a od sada</string>
+    <string name="to___days_and___hours_from_now">na %1$d dan/a i %2$d sat/i od sada</string>
+    <string name="to___hours_and___minutes_from_now">na %1$d sat/i i %2$d minute/a od sada</string>
     <string name="to___minuets_from_now">na %d minute/a od sada</string>
     <string name="today">Danaas</string>
     <string name="took">Uzeto!</string>

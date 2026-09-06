@@ -279,8 +279,8 @@
     <string name="thursday">Thursday</string>
     <string name="time_changer">Pills Time Changer</string>
     <string name="tiny">Tiny</string>
-    <string name="to___days_and___hours_from_now">to %1$d days and %1$d hours from now</string>
-    <string name="to___hours_and___minutes_from_now">to %d hours and %d minutes from now</string>
+    <string name="to___days_and___hours_from_now">to %1$d days and %2$d hours from now</string>
+    <string name="to___hours_and___minutes_from_now">to %1$d hours and %2$d minutes from now</string>
     <string name="to___minuets_from_now">to %d minutes from now</string>
     <string name="today">Today</string>
     <string name="now">Now</string>

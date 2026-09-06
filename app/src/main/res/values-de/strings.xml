@@ -238,8 +238,8 @@
     <string name="thursday">Donnerstag</string>
     <string name="time_changer">Änderung der Zeiten für die Medikamente</string>
     <string name="tiny">Winzig</string>
-    <string name="to___days_and___hours_from_now">zu %d Tagen und %d Stunden von jetzt an</string>
-    <string name="to___hours_and___minutes_from_now">zu %d Stunden und %d Minuten von jetzt an</string>
+    <string name="to___days_and___hours_from_now">zu %1$d Tagen und %2$d Stunden von jetzt an</string>
+    <string name="to___hours_and___minutes_from_now">zu %1$d Stunden und %2$d Minuten von jetzt an</string>
     <string name="to___minuets_from_now">zu %d Minuten von jetzt an</string>
     <string name="today">Heute</string>
     <string name="took">Angenommen!</string>

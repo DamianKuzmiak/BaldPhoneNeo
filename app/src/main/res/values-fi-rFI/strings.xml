@@ -245,8 +245,8 @@ ja muuttaa kirkkautta.</string>
     <string name="thursday">Torstai</string>
     <string name="time_changer">Lääkitysajan vaihtaja</string>
     <string name="tiny">Pikkanen</string>
-    <string name="to___days_and___hours_from_now"> %d päivää ja %d tuntia tästä alkaen</string>
-    <string name="to___hours_and___minutes_from_now"> %d tuntia ja %d minuuttia tästä alkaen</string>
+    <string name="to___days_and___hours_from_now"> %1$d päivää ja %2$d tuntia tästä alkaen</string>
+    <string name="to___hours_and___minutes_from_now"> %1$d tuntia ja %2$d minuuttia tästä alkaen</string>
     <string name="to___minuets_from_now"> %d minuuttia tästä alkaen</string>
     <string name="today">Tänään</string>
     <string name="took">Otettu!</string>

@@ -253,8 +253,8 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
     <string name="thursday">Dijous</string>
     <string name="time_changer">Canviar hora Pastilles</string>
     <string name="tiny">Diminut</string>
-    <string name="to___days_and___hours_from_now">a %d dies i %d hores des d\'ara</string>
-    <string name="to___hours_and___minutes_from_now">a %d hores i %d minuts des d\'ara</string>
+    <string name="to___days_and___hours_from_now">a %1$d dies i %2$d hores des d\'ara</string>
+    <string name="to___hours_and___minutes_from_now">a %1$d hores i %2$d minuts des d\'ara</string>
     <string name="to___minuets_from_now">a %d minuts des d\'ara</string>
     <string name="today">Avui</string>
     <string name="took">Presa!</string>
