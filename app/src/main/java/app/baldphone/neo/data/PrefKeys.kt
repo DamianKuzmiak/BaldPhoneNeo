@@ -40,4 +40,15 @@ object PrefKeys {
     const val SHORT_PRESS_DURATION_MS_KEY: String = "short_press_duration_ms"
     const val LONG_PRESS_DURATION_MS_KEY: String = "long_press_duration_ms"
     const val SHOW_PRESS_LONGER_HINT_KEY: String = "show_press_longer_hint"
+
+    // Home Screen Slots (Custom Apps)
+    const val KEY_HOME_SLOT_WHATSAPP = "CUSTOM_APP_KEY" // Legacy: CUSTOM_APP_KEY
+    const val KEY_HOME_SLOT_RECENTS = "CUSTOM_RECENTS_KEY"
+    const val KEY_HOME_SLOT_DIALER = "CUSTOM_DIALER_KEY"
+    const val KEY_HOME_SLOT_CONTACTS = "CUSTOM_CONTACTS_KEY"
+    const val KEY_HOME_SLOT_ASSISTANT = "CUSTOM_ASSISTANT_KEY"
+    const val KEY_HOME_SLOT_MESSAGES = "CUSTOM_MESSAGES_KEY"
+    const val KEY_HOME_SLOT_EMERGENCY = "CUSTOM_EMERGENCY_KEY"
+    const val KEY_HOME_SLOT_CAMERA = "CUSTOM_CAMERA_KEY"
+    const val KEY_HOME_SLOT_LOCK_SCREEN = "CUSTOM_VIDEOS_KEY"
 }

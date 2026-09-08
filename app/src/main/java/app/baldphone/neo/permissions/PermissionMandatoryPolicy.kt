@@ -4,11 +4,10 @@ import android.content.Context
 import android.os.Build
 
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.launcher.data.HomeSlot
 import app.baldphone.neo.permissions.model.AppPermission
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.permissions.model.SpecialPermission
-
-import com.bald.uriah.baldphone.utils.BPrefs
 
 /**
  * Interface for determining if a given [AppPermission] is considered mandatory.
@@ -43,7 +42,7 @@ class DefaultPermissionMandatoryPolicy : PermissionMandatoryPolicy {
             }
 
             is SpecialPermission.Accessibility -> {
-                isLockScreenEnabled(context)
+                isLockScreenEnabled()
             }
 
             else -> {
@@ -51,8 +50,6 @@ class DefaultPermissionMandatoryPolicy : PermissionMandatoryPolicy {
             }
         }
 
-    private fun isLockScreenEnabled(context: Context): Boolean {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) return false
-        return !BPrefs.get(context).contains(BPrefs.CUSTOM_VIDEOS_KEY)
-    }
+    private fun isLockScreenEnabled(): Boolean =
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && !Prefs.isCustomized(HomeSlot.LOCK_SCREEN)
 }

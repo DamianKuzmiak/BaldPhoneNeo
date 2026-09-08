@@ -23,18 +23,6 @@ import app.baldphone.neo.data.Prefs;
 
 import java.util.Objects;
 
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_ALARMS_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_APPS_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_APP_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_ASSISTANT_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_CAMERA_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_CONTACTS_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_DIALER_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_MESSAGES_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_EMERGENCY_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_PILLS_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_RECENTS_KEY;
-import static com.bald.uriah.baldphone.utils.BPrefs.CUSTOM_VIDEOS_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE;
 import static com.bald.uriah.baldphone.utils.BPrefs.EMERGENCY_BUTTON_VISIBLE_KEY;
 import static com.bald.uriah.baldphone.utils.BPrefs.LONG_PRESSES_DEFAULT_VALUE;
@@ -47,38 +35,14 @@ import static com.bald.uriah.baldphone.utils.BPrefs.TOUCH_NOT_HARD_KEY;
 public class BaldPrefsUtils {
     private final boolean vibrationFeedback, touchNoHard, longPresses, notes, sos;
     private final int statusBar;
-    private final String CUSTOM_APP;
-    private final String CUSTOM_RECENTS;
-    private final String CUSTOM_DIALER;
-    private final String CUSTOM_CONTACTS;
-    private final String CUSTOM_ASSISTANT;
-    private final String CUSTOM_MESSAGES;
-    private final String CUSTOM_PHOTOS;
-    private final String CUSTOM_CAMERA;
-    private final String CUSTOM_VIDEOS;
-    private final String CUSTOM_PILLS;
-    private final String CUSTOM_APPS;
-    private final String CUSTOM_ALARMS;
 
-    private BaldPrefsUtils(boolean vibrationFeedback, boolean touchNoHard, boolean longPresses, boolean notes, int statusBar, boolean sos, String custom_app, String custom_recents, String custom_dialer, String custom_contacts, String custom_assistant, String custom_messages, String custom_photos, String custom_camera, String custom_videos, String custom_pills, String custom_apps, String custom_alarms) {
+    private BaldPrefsUtils(boolean vibrationFeedback, boolean touchNoHard, boolean longPresses, boolean notes, int statusBar, boolean sos) {
         this.vibrationFeedback = vibrationFeedback;
         this.touchNoHard = touchNoHard;
         this.longPresses = longPresses;
         this.notes = notes;
         this.statusBar = statusBar;
         this.sos = sos;
-        CUSTOM_APP = custom_app;
-        CUSTOM_RECENTS = custom_recents;
-        CUSTOM_DIALER = custom_dialer;
-        CUSTOM_CONTACTS = custom_contacts;
-        CUSTOM_ASSISTANT = custom_assistant;
-        CUSTOM_MESSAGES = custom_messages;
-        CUSTOM_PHOTOS = custom_photos;
-        CUSTOM_CAMERA = custom_camera;
-        CUSTOM_VIDEOS = custom_videos;
-        CUSTOM_PILLS = custom_pills;
-        CUSTOM_APPS = custom_apps;
-        CUSTOM_ALARMS = custom_alarms;
     }
 
     public static BaldPrefsUtils newInstance(Context context) {
@@ -92,19 +56,7 @@ public class BaldPrefsUtils {
                 sharedPreferences
                         .getBoolean(NOTE_VISIBLE_KEY, NOTE_VISIBLE_DEFAULT_VALUE),
                 Prefs.getStatusBarMode().getValue(),
-                sharedPreferences.getBoolean(EMERGENCY_BUTTON_VISIBLE_KEY, EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE),
-                sharedPreferences.getString(CUSTOM_APP_KEY, null),
-                sharedPreferences.getString(CUSTOM_RECENTS_KEY, null),
-                sharedPreferences.getString(CUSTOM_DIALER_KEY, null),
-                sharedPreferences.getString(CUSTOM_CONTACTS_KEY, null),
-                sharedPreferences.getString(CUSTOM_ASSISTANT_KEY, null),
-                sharedPreferences.getString(CUSTOM_MESSAGES_KEY, null),
-                sharedPreferences.getString(CUSTOM_EMERGENCY_KEY, null),
-                sharedPreferences.getString(CUSTOM_CAMERA_KEY, null),
-                sharedPreferences.getString(CUSTOM_VIDEOS_KEY, null),
-                sharedPreferences.getString(CUSTOM_PILLS_KEY, null),
-                sharedPreferences.getString(CUSTOM_APPS_KEY, null),
-                sharedPreferences.getString(CUSTOM_ALARMS_KEY, null)
+                sharedPreferences.getBoolean(EMERGENCY_BUTTON_VISIBLE_KEY, EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE)
         );
     }
 
@@ -122,23 +74,11 @@ public class BaldPrefsUtils {
                 longPresses == that.longPresses &&
                 notes == that.notes &&
                 sos == that.sos &&
-                statusBar == that.statusBar &&
-                Objects.equals(CUSTOM_APP, that.CUSTOM_APP) &&
-                Objects.equals(CUSTOM_RECENTS, that.CUSTOM_RECENTS) &&
-                Objects.equals(CUSTOM_DIALER, that.CUSTOM_DIALER) &&
-                Objects.equals(CUSTOM_CONTACTS, that.CUSTOM_CONTACTS) &&
-                Objects.equals(CUSTOM_ASSISTANT, that.CUSTOM_ASSISTANT) &&
-                Objects.equals(CUSTOM_MESSAGES, that.CUSTOM_MESSAGES) &&
-                Objects.equals(CUSTOM_PHOTOS, that.CUSTOM_PHOTOS) &&
-                Objects.equals(CUSTOM_CAMERA, that.CUSTOM_CAMERA) &&
-                Objects.equals(CUSTOM_VIDEOS, that.CUSTOM_VIDEOS) &&
-                Objects.equals(CUSTOM_PILLS, that.CUSTOM_PILLS) &&
-                Objects.equals(CUSTOM_APPS, that.CUSTOM_APPS) &&
-                Objects.equals(CUSTOM_ALARMS, that.CUSTOM_ALARMS);
+                statusBar == that.statusBar;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vibrationFeedback, touchNoHard, longPresses, notes, sos, statusBar, CUSTOM_APP, CUSTOM_RECENTS, CUSTOM_DIALER, CUSTOM_CONTACTS, CUSTOM_ASSISTANT, CUSTOM_MESSAGES, CUSTOM_PHOTOS, CUSTOM_CAMERA, CUSTOM_VIDEOS, CUSTOM_PILLS, CUSTOM_APPS, CUSTOM_ALARMS);
+        return Objects.hash(vibrationFeedback, touchNoHard, longPresses, notes, sos, statusBar);
     }
 }

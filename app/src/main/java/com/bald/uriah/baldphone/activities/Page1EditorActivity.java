@@ -25,25 +25,13 @@ import app.baldphone.neo.launcher.apps.ui.AppsActivity;
 
 import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 
 public class Page1EditorActivity extends BaldActivity {
-    public BaldPrefsUtils baldPrefsUtils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_1_editor);
-        baldPrefsUtils = BaldPrefsUtils.newInstance(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (isFinishing() || isDestroyed()) return;
-        if (baldPrefsUtils != null && baldPrefsUtils.hasChanged(this)) {
-            recreate();
-        }
     }
 
     @Override
@@ -51,11 +39,7 @@ public class Page1EditorActivity extends BaldActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null && data.hasExtra(AppsActivity.CHOOSE_MODE) && data.getComponent() != null) {
             BPrefs.get(this).edit().putString(data.getStringExtra(AppsActivity.CHOOSE_MODE), data.getComponent().flattenToString()).apply();
+            recreate();
         }
-    }
-
-    @Override
-    protected int requiredPermissions() {
-        return PERMISSION_NONE;
     }
 }

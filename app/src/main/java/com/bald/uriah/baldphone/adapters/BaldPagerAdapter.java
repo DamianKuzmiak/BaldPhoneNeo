@@ -22,10 +22,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.util.Pools;
 
+import app.baldphone.neo.launcher.ui.HomePage1;
+
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper;
 import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.views.home.HomePage1;
 import com.bald.uriah.baldphone.views.home.HomePage2;
 import com.bald.uriah.baldphone.views.home.HomeViewFactory;
 import com.bald.uriah.baldphone.views.home.NotesView;
@@ -80,8 +81,8 @@ public class BaldPagerAdapter extends BaldViewAdapter {
                 view.setTag(HomePage2.TAG);
                 break;
             case 1:
-                view = new HomePage1(homeScreen);
-                view.setTag(HomePage1.TAG);
+                view = new HomePage1(homeScreen, null);
+                view.setTag(HomePage1.Companion.getTAG());
                 break;
             default:
                 HomeViewFactory homeFragmentFactory = factoryPool.acquire();

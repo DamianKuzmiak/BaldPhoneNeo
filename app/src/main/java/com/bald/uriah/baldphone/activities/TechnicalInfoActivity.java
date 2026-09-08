@@ -30,7 +30,6 @@ import app.baldphone.neo.BuildConfig;
 import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
-import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.S;
 
@@ -89,7 +88,6 @@ public class TechnicalInfoActivity extends BaldActivity {
                     .setSubText(R.string.clear_cache_subtext)
                     .setPositiveButtonListener(params -> {
                         deleteCache(this);
-                        BPrefs.get(this).edit().remove(BPrefs.CUSTOM_APP_KEY).apply();
                         BaldToast.simple(this, R.string.cache_cleared_successfully);
                         return true;
                     })

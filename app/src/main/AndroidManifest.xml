@@ -81,6 +81,9 @@
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
         <intent>
+            <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+        </intent>
+        <intent>
             <action android:name="android.intent.action.VOICE_COMMAND" />
         </intent>
 

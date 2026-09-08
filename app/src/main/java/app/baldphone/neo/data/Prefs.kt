@@ -9,6 +9,8 @@ import androidx.core.content.edit
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+import app.baldphone.neo.launcher.data.HomeSlot
+
 import com.bald.uriah.baldphone.utils.BPrefs
 
 object Prefs {
@@ -162,6 +164,33 @@ object Prefs {
      */
     @JvmStatic
     var shouldConfirmCalls: Boolean by booleanPref(PrefKeys.KEY_CALL_CONFIRMATION, false)
+    // Custom App Mappings (Home Screen)
+
+    /**
+     * Returns the component name for the given [slot], or null if not customized.
+     */
+    @JvmStatic
+    fun getCustomApp(slot: HomeSlot): String? = prefs.getString(slot.key, null)
+
+    /**
+     * Sets or removes the customized app for the given [slot].
+     */
+    @JvmStatic
+    fun setCustomApp(slot: HomeSlot, componentName: String?) {
+        prefs.edit {
+            if (componentName != null) {
+                putString(slot.key, componentName)
+            } else {
+                remove(slot.key)
+            }
+        }
+    }
+
+    /**
+     * Returns true if the [slot] has a custom app assigned.
+     */
+    @JvmStatic
+    fun isCustomized(slot: HomeSlot): Boolean = prefs.contains(slot.key)
 
     // Helper functions for the delegate
     private fun booleanPref(

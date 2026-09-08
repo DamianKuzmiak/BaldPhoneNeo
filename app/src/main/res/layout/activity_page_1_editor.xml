@@ -27,7 +27,7 @@
         android:backgroundTint="?bald_category_contacts"
         app:title="@string/edit_home_screen" />
 
-    <com.bald.uriah.baldphone.views.home.HomePage1
+    <app.baldphone.neo.launcher.ui.HomePage1
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"

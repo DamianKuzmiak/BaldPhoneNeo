@@ -10,8 +10,11 @@ import android.content.pm.LauncherApps
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.provider.MediaStore
+import android.provider.Telephony
 import android.util.Log
 
+import androidx.annotation.StringRes
 import androidx.core.net.toUri
 
 import app.baldphone.neo.R
@@ -21,6 +24,46 @@ import app.baldphone.neo.launcher.apps.getUserForSerialNumber
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 
 private const val TAG = "IntentUtils"
+
+/**
+ * Launches the system voice assistant (ACTION_VOICE_COMMAND).
+ */
+fun Context.launchAssistant() {
+    startActivitySafe(
+        intent = Intent(Intent.ACTION_VOICE_COMMAND),
+        flags = FLAG_ACTIVITY_NEW_TASK,
+        errorMsgRes = R.string.your_phone_doesnt_have_assistant_installed
+    )
+}
+
+fun Context.openCamera() {
+    val stillIntent = Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA)
+    val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+    val videoIntent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+
+    val intent =
+        when {
+            canHandle(stillIntent) -> {
+                stillIntent
+            }
+
+            canHandle(captureIntent) -> {
+                captureIntent
+            }
+
+            canHandle(videoIntent) -> {
+                videoIntent
+            }
+
+            else -> {
+                Log.e("Camera", "No camera app found to handle camera intents.")
+                BaldSnackbar.show(this, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
+                return
+            }
+        }
+
+    startActivityWithNewTask(intent)
+}
 
 /**
  * Launches a map application to display the given [address].
@@ -84,6 +127,29 @@ fun Context.shareContact(lookupKey: String?, name: String? = null) {
 }
 
 /**
+ * Launches the default SMS application (main screen).
+ */
+fun Context.openMessages() {
+    val messagingIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_APP_MESSAGING)
+    if (messagingIntent.resolveActivity(packageManager) != null) {
+        startActivityWithNewTask(messagingIntent)
+        return
+    }
+
+    // Fallback: launch intent of the default SMS package.
+    val launchIntent =
+        Telephony.Sms
+            .getDefaultSmsPackage(this)
+            ?.let { packageManager.getLaunchIntentForPackage(it) }
+    if (launchIntent != null) {
+        startActivityWithNewTask(launchIntent)
+    } else {
+        Log.e(TAG, "No messaging app found")
+        BaldSnackbar.show(this, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
+    }
+}
+
+/**
  * Launches the default SMS application to send a message to the given [number].
  */
 fun Context.sendMessage(number: String) {
@@ -126,14 +192,15 @@ fun Context.viewContactPhoto(photoUri: Uri) {
 fun Context.startActivitySafe(
     intent: Intent,
     options: Bundle? = null,
-    flags: Int? = null
+    flags: Int? = null,
+    @StringRes errorMsgRes: Int = R.string.no_app_was_found
 ) {
     flags?.let { intent.addFlags(it) }
     try {
         startActivity(intent, options)
     } catch (e: ActivityNotFoundException) {
         Log.e(TAG, "Activity not found: $intent", e)
-        BaldSnackbar.show(this, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
+        BaldSnackbar.show(this, errorMsgRes, BaldSnackbar.TYPE_ERROR)
     }
 }
 
@@ -180,3 +247,6 @@ fun Context.startComponentName(componentName: ComponentName, userId: Long = 0L) 
 fun Context.startComponentName(appEntry: AppEntry) {
     startComponentName(appEntry.component, appEntry.userId)
 }
+
+private fun Context.canHandle(intent: Intent): Boolean =
+    intent.resolveActivity(packageManager) != null

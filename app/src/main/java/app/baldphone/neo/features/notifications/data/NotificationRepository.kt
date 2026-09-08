@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
@@ -81,12 +82,21 @@ object NotificationRepository {
     fun getTopNotificationLiveData(context: Context): LiveData<NotificationItem?> =
         getTopNotification(context).asLiveData()
 
-    // Legacy
-    val packages: LiveData<Set<String>> = notifications.map { it.map { sbn -> sbn.packageName }.toSet() }.asLiveData()
+    /**
+     * Returns a flow of all active package names.
+     */
+    val activeNotificationPackages: Flow<Set<String>> =
+        notifications
+            .map { it.map { sbn -> sbn.packageName }.toSet() }
+            .distinctUntilChanged()
 
-    // Legacy
-    fun getMissedCalls(context: Context): LiveData<List<StatusBarNotification>> =
-        notifications.map { it.filter { sbn -> NotificationClassifier.isMissedCall(context, sbn) } }.asLiveData()
+    /**
+     * Flow of missed call notifications. Requires a context.
+     */
+    fun getMissedCallNotificationsFlow(context: Context): Flow<List<StatusBarNotification>> =
+        notifications
+            .map { it.filter { sbn -> NotificationClassifier.isMissedCall(context, sbn) } }
+            .distinctUntilChanged()
 
     /**
      * Updates the repository with a new list of active notifications.
