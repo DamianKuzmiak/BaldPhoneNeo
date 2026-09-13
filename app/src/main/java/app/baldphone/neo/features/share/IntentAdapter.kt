@@ -14,6 +14,7 @@ import coil3.load
 
 import app.baldphone.neo.R
 import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
 
 import com.bald.uriah.baldphone.views.ModularRecyclerView
 
@@ -40,6 +41,7 @@ class IntentAdapter(
 
         init {
             itemView.setOnClickListener(this)
+            itemView.setClickableAccessibilityRole()
             itemView.enableAssistTouchHierarchy()
         }
 

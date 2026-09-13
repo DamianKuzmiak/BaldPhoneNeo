@@ -3,10 +3,13 @@ package app.baldphone.neo.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.transition.TransitionManager
 
 import app.baldphone.neo.R
@@ -28,12 +31,10 @@ class SettingsSwitchButton
         private var descOff: String? = null
 
         init {
-            val density = context.resources.displayMetrics.density
+            setMinHeight(context.dpToPx(64))
 
-            setMinHeight((64 * density).toInt())
-
-            val paddingHorizontal = (12 * density).toInt()
-            val paddingVertical = (8 * density).toInt()
+            val paddingHorizontal = context.dpToPx(12)
+            val paddingVertical = context.dpToPx(8)
             setPadding(paddingHorizontal, paddingVertical, paddingVertical, paddingHorizontal)
             setBackgroundResource(R.drawable.style_for_buttons_rectangle)
 
@@ -53,10 +54,23 @@ class SettingsSwitchButton
 
             updateDescriptionForState(isChecked())
 
+            ViewCompat.setAccessibilityDelegate(
+                this,
+                object : androidx.core.view.AccessibilityDelegateCompat() {
+                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                        super.onInitializeAccessibilityNodeInfo(host, info)
+                        info.className = "android.widget.Switch"
+                        info.isCheckable = true
+                        info.isChecked = isChecked()
+                    }
+                }
+            )
+
             setOnClickListener {
                 val newState = !isChecked()
                 setChecked(newState)
                 onCheckedChangeListener?.invoke(newState)
+                sendAccessibilityEvent(android.view.accessibility.AccessibilityEvent.TYPE_VIEW_CLICKED)
             }
         }
 

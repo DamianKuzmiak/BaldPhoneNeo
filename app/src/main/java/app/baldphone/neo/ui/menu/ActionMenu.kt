@@ -25,6 +25,7 @@ import app.baldphone.neo.databinding.ItemActionMenuBinding
 import app.baldphone.neo.databinding.ItemActionMenuDividerBinding
 import app.baldphone.neo.databinding.ViewActionMenuBinding
 import app.baldphone.neo.databinding.ViewDividerBinding
+import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.utils.dpToPx
 
 /**
@@ -114,6 +115,7 @@ class ActionMenu(
                 }
                 itemBinding.label.setText(item.labelRes)
                 itemBinding.switchWidget.isVisible = false
+                root.setClickableAccessibilityRole()
             }
 
             is ActionMenuItem.Toggle -> {
