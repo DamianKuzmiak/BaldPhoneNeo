@@ -372,6 +372,8 @@ public class ScrollingHelper extends ConstraintLayout {
             } else {
                 final View up = layoutInflater.inflate(R.layout.scrolling_helper_up, container, false);
                 final View down = layoutInflater.inflate(R.layout.scrolling_helper_down, container, false);
+                up.setTag("exclude_assist_touch");
+                down.setTag("exclude_assist_touch");
                 container.addView(up, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
                 container.addView(down, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
                 up.setOnClickListener(onClickListener);
@@ -412,6 +414,8 @@ public class ScrollingHelper extends ConstraintLayout {
 
             final View upContainer = layoutInflater.inflate(R.layout.scrolling_helper_up, this, false);
             final View downContainer = layoutInflater.inflate(R.layout.scrolling_helper_down, this, false);
+            upContainer.setTag("exclude_assist_touch");
+            downContainer.setTag("exclude_assist_touch");
 
             upContainer.setId(upContainerId);
             downContainer.setId(downContainerId);

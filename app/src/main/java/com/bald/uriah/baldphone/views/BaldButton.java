@@ -22,8 +22,6 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
-
 public class BaldButton extends AppCompatTextView {
 
     public BaldButton(Context context) {
@@ -44,6 +42,5 @@ public class BaldButton extends AppCompatTextView {
     private void init(Context context) {
         setClickable(true);
         setFocusable(true);
-        ViewExtensionsKt.enableAssistTouch(this);
     }
 }

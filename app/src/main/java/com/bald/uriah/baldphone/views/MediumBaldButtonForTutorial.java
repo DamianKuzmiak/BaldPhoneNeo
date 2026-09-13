@@ -40,6 +40,6 @@ public class MediumBaldButtonForTutorial extends androidx.appcompat.widget.AppCo
     private void init(Context context) {
         setClickable(true);
         setFocusable(true);
-        ViewExtensionsKt.enableAssistTouch(this);
+//        ViewExtensionsKt.enableAssistTouch(this);
     }
 }

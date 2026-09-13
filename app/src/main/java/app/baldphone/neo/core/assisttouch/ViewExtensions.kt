@@ -1,6 +1,8 @@
 package app.baldphone.neo.core.assisttouch
 
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 
 import app.baldphone.neo.R
@@ -32,6 +34,7 @@ fun View.enableAssistTouch(): AssistTouchDelegate {
 //        existing.isActive = Prefs.accessibilityLevel != AccessibilityLevel.BASIC
 //        existing.minTapMs = Prefs.shortPressTimeoutMs.toLong()
 //        existing.longPressMs = Prefs.longPressTimeoutMs.toLong()
+        Log.v("AssistTouch", "Returning existing delegate - view already has one: $this")
         return existing
     }
 
@@ -69,4 +72,39 @@ fun View.disableAssistTouch() {
     val delegate = getTag(ASSIST_TOUCH_DELEGATE_TAG_KEY) as? AssistTouchDelegate
     delegate?.detach()
     setTag(ASSIST_TOUCH_DELEGATE_TAG_KEY, null)
+}
+
+/**
+ * Recursively traverses the view hierarchy and enables AssistTouch on all clickable and focusable views.
+ */
+fun View.enableAssistTouchHierarchy() {
+    val isAssistTouchActive = Prefs.accessibilityLevel != AccessibilityLevel.BASIC
+    if (!isAssistTouchActive) {
+        return
+    }
+
+    if (this is ViewGroup) {
+        for (i in 0 until childCount) {
+            getChildAt(i).enableAssistTouchHierarchy()
+        }
+    }
+
+    // We only enable AssistTouch if:
+    // - the view is clickable
+    // - not explicitly excluded
+    // Also:
+    // - not already using AssistTouch
+    // - not a scrollable
+    // - not an input component which needs native touch handling
+    if (this.isClickable && this.tag != "exclude_assist_touch") {
+        if (this.assistTouchDelegate == null) {
+            if (!AssistTouchExclusions.shouldExclude(this)) {
+                this.enableAssistTouch()
+            } else {
+                Log.v("AssistTouch", "View is excluded: $this")
+            }
+        } else {
+            Log.v("AssistTouch", "View is already enabled: $this")
+        }
+    }
 }

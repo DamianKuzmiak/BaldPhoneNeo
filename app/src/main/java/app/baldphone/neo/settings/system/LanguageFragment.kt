@@ -25,6 +25,7 @@ import java.util.Locale
 import org.xmlpull.v1.XmlPullParser
 
 import app.baldphone.neo.R
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.databinding.FragmentLanguageSelectorBinding
 import app.baldphone.neo.databinding.ItemLanguageBinding
 import app.baldphone.neo.extensions.AccessibilityRole
@@ -169,6 +170,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
                     onClick(bindingAdapterPosition)
                 }
                 binding.root.setClickableAccessibilityRole(AccessibilityRole.RADIO_BUTTON)
+                binding.root.enableAssistTouchHierarchy()
             }
 
             fun bind(option: LanguageOption, isSelected: Boolean) {

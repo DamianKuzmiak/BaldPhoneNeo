@@ -17,6 +17,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.databinding.DialogBaldBinding
 
 import com.bald.uriah.baldphone.views.BaldButton
@@ -47,6 +48,7 @@ class BaldDialog private constructor(
         setupButtons()
         setupBackground()
         setupListeners()
+        binding.root.enableAssistTouchHierarchy()
     }
 
     fun getInputText(): String = binding.editText.text.toString()

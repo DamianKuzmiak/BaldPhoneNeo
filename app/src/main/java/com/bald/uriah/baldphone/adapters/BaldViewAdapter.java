@@ -22,12 +22,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
+
 public abstract class BaldViewAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         final View layout = getItem(position);
         container.addView(layout);
+        ViewExtensionsKt.enableAssistTouchHierarchy(layout);
         return layout;
     }
 

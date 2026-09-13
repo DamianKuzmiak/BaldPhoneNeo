@@ -20,6 +20,8 @@ import coil3.request.transformations
 import coil3.transform.RoundedCornersTransformation
 
 import app.baldphone.neo.R
+import app.baldphone.neo.core.assisttouch.enableAssistTouch
+
 import com.bald.uriah.baldphone.views.ModularRecyclerView
 
 class MediaListAdapter(
@@ -121,6 +123,7 @@ class MediaListAdapter(
 
         init {
             itemView.setOnClickListener(this)
+            itemView.enableAssistTouch()
         }
 
         override fun onClick(v: View) {

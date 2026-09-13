@@ -25,6 +25,7 @@ import coil3.memory.MemoryCache
 import coil3.util.DebugLogger
 import net.danlew.android.joda.JodaTimeAndroid
 
+import app.baldphone.neo.core.assisttouch.AssistTouchInjector
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
@@ -92,6 +93,8 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
                 if (activity is AppCompatActivity) {
                     setupStatusBar(activity)
                 }
+
+                AssistTouchInjector.inject(activity)
             }
 
             override fun onActivityStarted(activity: Activity) {}

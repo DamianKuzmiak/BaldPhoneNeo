@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 
 import app.baldphone.neo.R
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
+
 import com.bald.uriah.baldphone.views.ModularRecyclerView
 
 class IntentAdapter(
@@ -38,6 +40,7 @@ class IntentAdapter(
 
         init {
             itemView.setOnClickListener(this)
+            itemView.enableAssistTouchHierarchy()
         }
 
         fun bind(resolveInfo: ResolveInfo) {

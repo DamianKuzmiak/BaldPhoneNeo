@@ -19,6 +19,7 @@ import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 
 import app.baldphone.neo.R
+import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.databinding.CallLogHeaderBinding
 import app.baldphone.neo.databinding.CallLogItemBinding
 import app.baldphone.neo.features.calls.model.CallListEntry
@@ -86,6 +87,7 @@ class RecentCallsAdapter(
                     }
                 }
             }
+            itemView.enableAssistTouchHierarchy()
         }
 
         fun bind(item: CallListEntry.Item) {

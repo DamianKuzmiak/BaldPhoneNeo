@@ -43,6 +43,8 @@ import com.bald.uriah.baldphone.views.BaldMultipleSelection;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
+
 public class BDialog extends Dialog {
     private static final String TAG = BDialog.class.getSimpleName();
     public static final int
@@ -233,6 +235,7 @@ public class BDialog extends Dialog {
                         cancel();
                 });
         }
+        ViewExtensionsKt.enableAssistTouchHierarchy(getWindow().getDecorView());
     }
 
     private void attachXml() {

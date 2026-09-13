@@ -22,8 +22,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 
-import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
-
 /**
  * Simple Button, extends {@link FrameLayout}; adapted to App settings.
  */
@@ -52,7 +50,6 @@ public class BaldFrameLayoutButton extends FrameLayout {
     private void init(Context context) {
         setClickable(true);
         setFocusable(true);
-        ViewExtensionsKt.enableAssistTouch(this);
     }
 
     @Override
