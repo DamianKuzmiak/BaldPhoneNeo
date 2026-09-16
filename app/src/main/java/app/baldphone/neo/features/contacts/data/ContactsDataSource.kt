@@ -59,7 +59,8 @@ class ContactsDataSource(
                 }
 
             val sortOrder =
-                "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY} ASC, ${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} ASC"
+                "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY} ASC, " +
+                    "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} ASC"
 
             Log.d(TAG, "fetchPhoneContacts: limit=$limit")
             val startTime = System.currentTimeMillis()
@@ -80,10 +81,10 @@ class ContactsDataSource(
                                     name = cursor.getString(indices.name) ?: unknownName,
                                     phoneNumber = cursor.getString(indices.number) ?: "",
                                     normalizedNumber =
-                                        (
-                                            cursor.getString(indices.number)
-                                                ?: ""
-                                        ).replace(Regex("[^0-9]"), ""),
+                                        cursor.getString(indices.normalizedNumber)
+                                            ?: PhoneNumberUtils.normalizeNumber(
+                                                cursor.getString(indices.number) ?: ""
+                                            ),
                                     normalizedName =
                                         (
                                             cursor.getString(indices.name)
@@ -296,6 +297,12 @@ class ContactsDataSource(
             null
         }
 
+    fun hasContactsPermission(): Boolean =
+        ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.READ_CONTACTS
+        ) == PackageManager.PERMISSION_GRANTED
+
     // ---- Private helpers ----
 
     private fun queryLookupKey(contactUri: Uri?): String? {
@@ -362,7 +369,7 @@ class ContactsDataSource(
         photoThumbnailUri: String?,
         starred: Boolean
     ): Contact {
-        val phones = mutableListOf<Phone>()
+        val phones = mutableListOf<PhoneCandidate>()
         val emails = mutableListOf<Email>()
         val addresses = mutableListOf<Address>()
         val whatsapp = mutableSetOf<String>()
@@ -390,7 +397,26 @@ class ContactsDataSource(
 
                     when (mime) {
                         ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE -> {
-                            phones += Phone(data2, data1, data3)
+                            val normalizedIdx =
+                                cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
+                            val accountTypeIdx = cursor.getColumnIndex(ContactsContract.RawContacts.ACCOUNT_TYPE)
+
+                            val normalizedNumber =
+                                normalizedIdx.takeIf { it != -1 }?.let { cursor.getString(it) }
+                                    ?: PhoneNumberUtils.normalizeNumber(data1).takeIf { it.isNotEmpty() }
+                            val accountType = accountTypeIdx.takeIf { it != -1 }?.let { cursor.getString(it) }
+
+                            phones +=
+                                PhoneCandidate(
+                                    phone =
+                                        Phone(
+                                            value = data1, // number
+                                            type = data2,
+                                            label = data3,
+                                            normalizedNumber = normalizedNumber
+                                        ),
+                                    accountType = accountType
+                                )
                         }
 
                         ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE -> {
@@ -424,7 +450,7 @@ class ContactsDataSource(
             photoThumbnailUri,
             starred,
             note,
-            phones,
+            deduplicatePhones(phones),
             emails,
             addresses,
             whatsapp.toList(),
@@ -432,13 +458,54 @@ class ContactsDataSource(
         )
     }
 
-    fun hasContactsPermission(): Boolean =
-        ContextCompat.checkSelfPermission(
-            context,
-            Manifest.permission.READ_CONTACTS
-        ) == PackageManager.PERMISSION_GRANTED
+    /**
+     * Deduplicates phone numbers across different accounts.
+     *
+     * The same number can appear multiple times, e.g. once from the SIM card and once from a
+     * synced account, or across two different accounts. When that happens we keep the "richest"
+     * source rather than a raw SIM entry.
 
-    // Helper to hold indices
+     */
+    private fun deduplicatePhones(candidates: List<PhoneCandidate>): List<Phone> {
+        if (candidates.isEmpty()) return emptyList()
+
+        val bestCandidates = LinkedHashMap<String, PhoneCandidate>()
+
+        for (candidate in candidates) {
+            val key = candidate.normalizedNumberKey()
+            val existing = bestCandidates[key]
+
+            if (existing == null || isBetterAccount(candidate, existing)) {
+                bestCandidates[key] = candidate
+            }
+        }
+
+        return bestCandidates.values.map { it.phone }
+    }
+
+    private fun isBetterAccount(candidate: PhoneCandidate, existing: PhoneCandidate): Boolean =
+        if (candidate.sourceRank != existing.sourceRank) {
+            candidate.sourceRank > existing.sourceRank
+        } else {
+            candidate.phone.type == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE &&
+                existing.phone.type != ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
+        }
+
+    private data class PhoneCandidate(
+        val phone: Phone,
+        val accountType: String?
+    ) {
+        val isSim: Boolean
+            get() = accountType?.contains(SIM_ACCOUNT_TYPE_SUFFIX, ignoreCase = true) == true
+
+        val sourceRank: Int
+            get() = if (isSim) SOURCE_RANK_SIM else SOURCE_RANK_ACCOUNT
+
+        /** To detect the same number across accounts. */
+        fun normalizedNumberKey(): String =
+            phone.normalizedNumber?.takeIf { it.isNotEmpty() } ?: phone.value
+    }
+
     private class PhoneIndices(
         cursor: Cursor
     ) {
@@ -446,6 +513,8 @@ class ContactsDataSource(
         val lookup = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)
         val name = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
         val number = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)
+        val normalizedNumber =
+            cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
         val photo = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
         val photoThumbnail =
             cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI)
@@ -458,6 +527,13 @@ class ContactsDataSource(
 
     companion object {
         private const val TAG = "ContactsDataSource"
+
+        // SIM account types are vendor-specific (e.g. "vnd.sec.contact.sim", "com.android.contacts.sim")...
+        private const val SIM_ACCOUNT_TYPE_SUFFIX = ".sim"
+
+        // Source ranking used when deduplicating a number across sources. Higher wins.
+        private const val SOURCE_RANK_SIM = 0
+        private const val SOURCE_RANK_ACCOUNT = 1
 
         private val CONTACT_PROJECTION =
             arrayOf(
@@ -472,15 +548,16 @@ class ContactsDataSource(
         private val PHONE_PROJECTION =
             arrayOf(
                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
-                ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                ContactsContract.CommonDataKinds.Phone.NUMBER,
-                ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
-                ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI,
                 ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
+                ContactsContract.CommonDataKinds.Phone.LABEL,
+                ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
+                ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER,
+                ContactsContract.CommonDataKinds.Phone.NUMBER,
+                ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI,
+                ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
                 ContactsContract.CommonDataKinds.Phone.STARRED,
-                ContactsContract.CommonDataKinds.Phone.TYPE,
-                ContactsContract.CommonDataKinds.Phone.LABEL
+                ContactsContract.CommonDataKinds.Phone.TYPE
             )
 
         private val DATA_PROJECTION =
@@ -488,7 +565,9 @@ class ContactsDataSource(
                 ContactsContract.Data.MIMETYPE,
                 ContactsContract.Data.DATA1,
                 ContactsContract.Data.DATA2,
-                ContactsContract.Data.DATA3
+                ContactsContract.Data.DATA3,
+                ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER,
+                ContactsContract.RawContacts.ACCOUNT_TYPE
             )
     }
 }

@@ -83,7 +83,12 @@ interface Labeled {
 data class Phone(
     override val type: Int,
     override val value: String,
-    override val label: String? = null
+    override val label: String? = null,
+    /**
+     * Prefers the provider's E.164 [ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER]
+     * when available, otherwise falls back to a digits-only normalization.
+     */
+    val normalizedNumber: String? = null
 ) : Labeled {
     override fun getLabel(res: Resources): CharSequence =
         ContactsContract.CommonDataKinds.Phone.getTypeLabel(res, type, label)

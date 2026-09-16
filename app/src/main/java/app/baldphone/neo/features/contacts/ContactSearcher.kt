@@ -45,6 +45,8 @@ class ContactSearcher(
 
     private val nonLetterRegex = Regex("[^a-z]")
     private val numericRegex = Regex("[0-9]+")
+    private val phoneQueryRegex = Regex("\\+?[0-9]+") // An optional leading '+' followed by digits (e.g. "+48").
+    private val nonDigitRegex = Regex("[^0-9]")
 
     /**
      * Performs a synchronous search and grouping operation.
@@ -84,16 +86,17 @@ class ContactSearcher(
         query: String,
         enableT9: Boolean
     ): List<SimpleContact> {
-        val isNumeric = query.matches(numericRegex)
+        val isPhoneQuery = query.matches(phoneQueryRegex)
         val normalizedNameQuery = query.toNormalizedLowercase()
+        val digitsQuery = query.replace(nonDigitRegex, "")
 
         return contacts.filter { contact ->
-            if (isNumeric) {
-                contact.normalizedNumber.contains(query) || (
+            if (isPhoneQuery) {
+                contact.normalizedNumber.replace(nonDigitRegex, "").contains(digitsQuery) || (
                     enableT9 &&
                         matchesT9Query(
                             contact.normalizedName,
-                            query
+                            digitsQuery
                         )
                 ) || contact.normalizedName.contains(normalizedNameQuery)
             } else {

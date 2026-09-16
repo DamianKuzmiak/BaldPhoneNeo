@@ -141,9 +141,8 @@ class ContactRepository private constructor(
             // Step 1: Fast initial fetch (first PAGE_SIZE)
             if (_allPhoneContacts.value.isNullOrEmpty()) {
                 val firstPageRows = dataSource.fetchPhoneContacts(limit = PAGE_SIZE)
-                val deduplicatedPage = deduplicateContacts(firstPageRows)
-                _contacts.value = deduplicatedPage
-                _allPhoneContacts.value = firstPageRows
+                _contacts.value = deduplicateContacts(firstPageRows)
+                _allPhoneContacts.value = deduplicatePhoneRows(firstPageRows)
 
                 // If we got fewer than PAGE_SIZE rows, we've already reached the end
                 if (firstPageRows.size < PAGE_SIZE) {
@@ -165,6 +164,7 @@ class ContactRepository private constructor(
             // Step 2: Full background fetch
             val allRows = dataSource.fetchPhoneContacts(limit = -1)
             val deduplicated = deduplicateContacts(allRows)
+            val allPhoneRows = deduplicatePhoneRows(allRows)
 
             if (deduplicated != _contacts.value) {
                 _contacts.value = deduplicated
@@ -173,9 +173,9 @@ class ContactRepository private constructor(
                 Log.d(TAG, "refresh: Contacts collection UNCHANGED")
             }
 
-            if (allRows != _allPhoneContacts.value) {
-                _allPhoneContacts.value = allRows
-                Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${allRows.size})")
+            if (allPhoneRows != _allPhoneContacts.value) {
+                _allPhoneContacts.value = allPhoneRows
+                Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${allPhoneRows.size})")
             }
 
             refreshTrigger.tryEmit(Unit)
@@ -367,6 +367,32 @@ class ContactRepository private constructor(
         }
         return false
     }
+
+    /**
+     * Deduplication for the dialer search source.
+     * Keeps one row per distinct number of a contact, so a person with multiple different numbers
+     * still yields multiple entries, as required by the dialer.
+     */
+    private suspend fun deduplicatePhoneRows(rows: List<SimpleContact>): List<SimpleContact> =
+        withContext(Dispatchers.Default) {
+            val result = LinkedHashMap<Pair<Long, String>, SimpleContact>(rows.size)
+
+            for (candidate in rows) {
+                val key = candidate.id to candidate.numberKey()
+                val existing = result[key]
+
+                if (existing == null || isBetter(candidate, existing)) {
+                    result[key] = candidate
+                }
+            }
+            result.values.toList()
+        }
+
+    /** Stable key identifying the same phone number regardless of source/formatting. */
+    private fun SimpleContact.numberKey(): String =
+        normalizedNumber.takeIf { it.isNotEmpty() }
+            ?: phoneNumber.filter { it.isDigit() || it == '+' }.takeIf { it.isNotEmpty() }
+            ?: phoneNumber
 
     companion object {
         private const val TAG = "ContactRepository"
