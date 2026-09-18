@@ -30,7 +30,7 @@ import android.widget.RadioButton;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.databases.reminders.Reminder;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;

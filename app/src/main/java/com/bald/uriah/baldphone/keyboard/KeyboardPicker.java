@@ -25,7 +25,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import app.baldphone.neo.utils.ContextUtilsKt;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 @SuppressLint("ViewConstructor")
 public class KeyboardPicker extends FrameLayout {

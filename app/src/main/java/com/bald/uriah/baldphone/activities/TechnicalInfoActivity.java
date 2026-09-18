@@ -26,8 +26,8 @@ import androidx.annotation.Nullable;
 
 import app.baldphone.neo.launcher.apps.data.AppsRepository;
 
-import com.bald.uriah.baldphone.BuildConfig;
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.BuildConfig;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;

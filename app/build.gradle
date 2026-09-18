@@ -31,7 +31,7 @@ def getDate() {
 }
 
 android {
-    namespace = "com.bald.uriah.baldphone"
+    namespace = "app.baldphone.neo"
     compileSdk = 35
     defaultConfig {
         applicationId = "app.baldphone.neo"

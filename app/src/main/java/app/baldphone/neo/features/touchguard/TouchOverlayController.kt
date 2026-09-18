@@ -17,7 +17,7 @@ import android.view.WindowManager
 
 import androidx.core.content.ContextCompat
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 /**
  * Manages the full-screen accidental-touch blocking overlay as a system overlay. The overlay consumes all touch events

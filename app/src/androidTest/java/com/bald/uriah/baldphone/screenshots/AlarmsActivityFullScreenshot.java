@@ -21,7 +21,7 @@ import android.content.Intent;
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
 import com.bald.uriah.baldphone.databases.alarms.Alarm;
 import com.bald.uriah.baldphone.databases.alarms.AlarmsDatabase;

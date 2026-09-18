@@ -7,10 +7,10 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
+import app.baldphone.neo.databinding.ItemPermissionBinding
 import app.baldphone.neo.permissions.model.AppPermission
 
 import com.bald.uriah.baldphone.adapters.ModularListAdapter
-import com.bald.uriah.baldphone.databinding.ItemPermissionBinding
 
 class PermissionListAdapter(
     private val onAllowClicked: (AppPermission) -> Unit

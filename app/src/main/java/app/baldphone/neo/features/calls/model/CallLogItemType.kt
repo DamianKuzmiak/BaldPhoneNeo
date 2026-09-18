@@ -6,7 +6,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 /**
  * Maps system call types to specific UI resources (drawable, string, and color) for display in the call log.

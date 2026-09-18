@@ -22,7 +22,7 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class TutorialFragment1 extends TutorialFragment {
     private TextView hello, and_welcome_to_baldphone;

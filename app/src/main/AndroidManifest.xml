@@ -106,7 +106,7 @@
     </queries>
 
     <application
-        android:name="app.baldphone.neo.NeoApp"
+        android:name=".NeoApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_display_name"
@@ -115,7 +115,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="app.baldphone.neo.LauncherProxyActivity"
+            android:name=".LauncherProxyActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:noHistory="true"
@@ -128,11 +128,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.HomeScreenActivity"
+            android:name="com.bald.uriah.baldphone.activities.HomeScreenActivity"
+            android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTask"
             android:taskAffinity=""
-            android:excludeFromRecents="true"
             android:resumeWhilePausing="true"
             android:theme="@style/AppTheme.Starting">
             <intent-filter>
@@ -143,70 +143,70 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="app.baldphone.neo.activities.DialerActivity"
+            android:name=".activities.DialerActivity"
             android:exported="false"
             android:label="@string/dialer" />
         <activity
-            android:name=".activities.alarms.AlarmsActivity"
+            android:name="com.bald.uriah.baldphone.activities.alarms.AlarmsActivity"
             android:exported="false"
             android:label="@string/alarms" />
         <activity
-            android:name=".activities.alarms.AlarmScreenActivity"
+            android:name="com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity"
             android:exported="false"
             android:label="@string/alarm"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.alarms.AddAlarmActivity"
+            android:name="com.bald.uriah.baldphone.activities.alarms.AddAlarmActivity"
             android:exported="false"
             android:label="@string/add_alarm"
             android:screenOrientation="portrait" />
         <activity
-            android:name="app.baldphone.neo.features.contacts.ui.ContactsActivity"
+            android:name=".features.contacts.ui.ContactsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize|stateUnchanged"
             android:label="@string/contacts" />
         <activity
-            android:name="app.baldphone.neo.features.contacts.ui.ContactDetailsActivity"
+            android:name=".features.contacts.ui.ContactDetailsActivity"
             android:exported="false"
             android:label="Contact details" />
         <activity
-            android:name=".activities.media.SingleVideoActivity"
+            android:name="com.bald.uriah.baldphone.activities.media.SingleVideoActivity"
             android:exported="false"
             android:label="@string/video" />
         <activity
-            android:name=".activities.TutorialActivity"
+            android:name="com.bald.uriah.baldphone.activities.TutorialActivity"
             android:exported="false"
             android:label="@string/video_tutorials"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SOSActivity"
+            android:name="com.bald.uriah.baldphone.activities.SOSActivity"
             android:exported="false"
             android:label="@string/sos" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="com.bald.uriah.baldphone.activities.SettingsActivity"
             android:exported="false"
             android:label="@string/settings" />
         <activity
-            android:name="app.baldphone.neo.settings.ui.SettingsActivity"
+            android:name=".settings.ui.SettingsActivity"
             android:exported="false"
             android:label="@string/neo_settings" />
         <activity
-            android:name="app.baldphone.neo.features.notifications.ui.NotificationsActivity"
+            android:name=".features.notifications.ui.NotificationsActivity"
             android:exported="false"
             android:label="@string/notifications" />
         <activity
-            android:name="app.baldphone.neo.features.calls.ui.RecentCallsActivity"
+            android:name=".features.calls.ui.RecentCallsActivity"
             android:exported="false"
             android:label="@string/recent_calls" />
         <activity
-            android:name="app.baldphone.neo.features.gallery.MediaActivity"
+            android:name=".features.gallery.MediaActivity"
             android:exported="false"
             android:label="@string/photos" />
         <activity-alias
-            android:name="app.baldphone.neo.features.gallery.VideosMediaAlias"
+            android:name=".features.gallery.VideosMediaAlias"
             android:exported="true"
             android:label="@string/videos"
-            android:targetActivity="app.baldphone.neo.features.gallery.MediaActivity">
+            android:targetActivity=".features.gallery.MediaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <data android:mimeType="video/*" />
@@ -217,82 +217,82 @@
                 android:value="2" />
         </activity-alias>
         <activity
-            android:name=".activities.media.SinglePhotoActivity"
+            android:name="com.bald.uriah.baldphone.activities.media.SinglePhotoActivity"
             android:exported="false"
             android:label="@string/photo" />
         <activity
-            android:name=".activities.contacts.AddContactActivity"
+            android:name="com.bald.uriah.baldphone.activities.contacts.AddContactActivity"
             android:exported="false"
             android:label="@string/add_contact" />
         <activity
-            android:name=".activities.alarms.AddTimerActivity"
+            android:name="com.bald.uriah.baldphone.activities.alarms.AddTimerActivity"
             android:exported="false"
             android:label="@string/timer"
             android:screenOrientation="portrait" />
         <activity
-            android:name="app.baldphone.neo.launcher.apps.ui.AppsActivity"
+            android:name=".launcher.apps.ui.AppsActivity"
             android:exported="false"
             android:label="@string/apps" />
         <activity
-            android:name=".activities.pills.PillsActivity"
+            android:name="com.bald.uriah.baldphone.activities.pills.PillsActivity"
             android:exported="false"
             android:label="@string/pills" />
         <activity
-            android:name=".activities.pills.AddPillActivity"
+            android:name="com.bald.uriah.baldphone.activities.pills.AddPillActivity"
             android:exported="false"
             android:label="@string/add_pill"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.pills.PillScreenActivity"
+            android:name="com.bald.uriah.baldphone.activities.pills.PillScreenActivity"
             android:exported="false"
             android:label="@string/pills"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.FontChangerActivity"
+            android:name="com.bald.uriah.baldphone.activities.FontChangerActivity"
             android:exported="false"
             android:label="@string/font_size"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.AccessibilityLevelChangerActivity"
+            android:name="com.bald.uriah.baldphone.activities.AccessibilityLevelChangerActivity"
             android:exported="false"
             android:label="@string/accessibility_level"
             android:screenOrientation="portrait" />
         <activity
-            android:name="app.baldphone.neo.features.share.ShareActivity"
+            android:name=".features.share.ShareActivity"
             android:exported="false"
             android:label="@string/share"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activities.CreditsActivity"
+            android:name="com.bald.uriah.baldphone.activities.CreditsActivity"
             android:exported="false"
             android:label="Credits" />
         <activity
-            android:name=".activities.CrashActivity"
+            android:name="com.bald.uriah.baldphone.activities.CrashActivity"
             android:exported="false"
             android:label="@string/crash_reports" />
         <activity
-            android:name=".activities.KeyboardChangerActivity"
+            android:name="com.bald.uriah.baldphone.activities.KeyboardChangerActivity"
             android:exported="false"
             android:label="@string/set_keyboard" />
         <activity
-            android:name=".activities.pills.PillTimeSetterActivity"
+            android:name="com.bald.uriah.baldphone.activities.pills.PillTimeSetterActivity"
             android:exported="false"
             android:label="@string/change_pills_time" />
         <activity
-            android:name=".activities.TechnicalInfoActivity"
+            android:name="com.bald.uriah.baldphone.activities.TechnicalInfoActivity"
             android:exported="false"
             android:label="@string/technical_information" />
         <activity
-            android:name="app.baldphone.neo.activities.FeedbackActivity"
+            android:name=".activities.FeedbackActivity"
             android:exported="false"
             android:label="@string/feedback" />
         <activity
-            android:name=".activities.Page1EditorActivity"
+            android:name="com.bald.uriah.baldphone.activities.Page1EditorActivity"
             android:exported="false"
             android:label="@string/edit_home_screen" />
 
         <service
-            android:name=".keyboard.BaldInputMethodService"
+            android:name="com.bald.uriah.baldphone.keyboard.BaldInputMethodService"
             android:exported="true"
             android:permission="android.permission.BIND_INPUT_METHOD"
             android:windowSoftInputMode="adjustPan|stateHidden">
@@ -304,7 +304,7 @@
                 android:resource="@xml/method" />
         </service>
         <service
-            android:name="app.baldphone.neo.services.NotificationReceiverService"
+            android:name=".services.NotificationReceiverService"
             android:exported="true"
             android:label="@string/notification_service_label"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
@@ -313,7 +313,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="app.baldphone.neo.services.DeviceLock$LockService"
+            android:name=".services.DeviceLock$LockService"
             android:exported="true"
             android:label="@string/app_display_name"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
@@ -327,10 +327,10 @@
         </service>
 
         <receiver
-            android:name=".broadcast_receivers.AlarmReceiver"
+            android:name="com.bald.uriah.baldphone.broadcast_receivers.AlarmReceiver"
             android:exported="false" />
         <receiver
-            android:name=".broadcast_receivers.ReminderReceiver"
+            android:name="com.bald.uriah.baldphone.broadcast_receivers.ReminderReceiver"
             android:exported="false" />
 
         <provider

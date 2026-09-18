@@ -18,13 +18,12 @@ import coil3.request.fallback
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.CallLogHeaderBinding
+import app.baldphone.neo.databinding.CallLogItemBinding
 import app.baldphone.neo.features.calls.model.CallListEntry
 import app.baldphone.neo.features.calls.model.CallLogItemType
 import app.baldphone.neo.utils.formatRecentTimestamp
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.CallLogHeaderBinding
-import com.bald.uriah.baldphone.databinding.CallLogItemBinding
 
 /**
  * RecyclerView adapter for the recent calls list.

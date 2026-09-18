@@ -57,7 +57,7 @@ import app.baldphone.neo.services.DeviceLock;
 import app.baldphone.neo.ui.dialogs.BaldDialog;
 import app.baldphone.neo.utils.messaging.WhatsAppHandler;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.Page1EditorActivity;
 import com.bald.uriah.baldphone.activities.SOSActivity;

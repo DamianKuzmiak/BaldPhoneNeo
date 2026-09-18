@@ -14,14 +14,14 @@ import coil3.request.fallback
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.ContactItemAddBinding
+import app.baldphone.neo.databinding.ContactItemBinding
+import app.baldphone.neo.databinding.ContactItemHeaderBinding
 import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.SimpleContact
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.adapters.ModularListAdapter
-import com.bald.uriah.baldphone.databinding.ContactItemAddBinding
-import com.bald.uriah.baldphone.databinding.ContactItemBinding
-import com.bald.uriah.baldphone.databinding.ContactItemHeaderBinding
 
 class ContactAdapter(
     private val showPhoneNumbers: Boolean = false,

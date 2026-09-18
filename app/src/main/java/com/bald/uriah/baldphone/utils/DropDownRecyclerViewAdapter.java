@@ -27,7 +27,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class DropDownRecyclerViewAdapter extends RecyclerView.Adapter<DropDownRecyclerViewAdapter.ViewHolder> {
     private final LayoutInflater layoutInflater;

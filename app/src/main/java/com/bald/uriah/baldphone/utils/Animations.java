@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class Animations {
 

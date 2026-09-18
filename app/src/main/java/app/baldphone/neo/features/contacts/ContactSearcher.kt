@@ -4,9 +4,8 @@ import android.content.Context
 
 import kotlin.text.iterator
 
+import app.baldphone.neo.R
 import app.baldphone.neo.utils.toNormalizedLowercase
-
-import com.bald.uriah.baldphone.R
 
 /**
  * Logic for searching contacts, including T9 matching and alphabetical grouping.

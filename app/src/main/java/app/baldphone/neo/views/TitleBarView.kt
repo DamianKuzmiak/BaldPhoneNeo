@@ -11,10 +11,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isVisible
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.ViewTitleBarBinding
 import app.baldphone.neo.extensions.applyTopBarInsets
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ViewTitleBarBinding
 
 /**
  * A custom toolbar-like view that provides a consistent header across the application.

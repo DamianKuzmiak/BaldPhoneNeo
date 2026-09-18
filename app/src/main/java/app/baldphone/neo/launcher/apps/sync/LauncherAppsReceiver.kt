@@ -11,11 +11,10 @@ import android.util.Log
 
 import kotlin.collections.emptyList
 
+import app.baldphone.neo.BuildConfig
 import app.baldphone.neo.launcher.apps.data.AppsRepository
 import app.baldphone.neo.launcher.apps.getSerialNumberForUser
 import app.baldphone.neo.launcher.apps.getUserForSerialNumber
-
-import com.bald.uriah.baldphone.BuildConfig
 
 /**
  * A callback that monitors system package changes (install, uninstall, updates, suspensions)
@@ -131,4 +130,3 @@ object LauncherAppsReceiver : LauncherApps.Callback() {
         }
     }
 }
-

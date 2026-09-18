@@ -6,7 +6,7 @@ import androidx.annotation.IntRange
 
 import java.util.concurrent.TimeUnit
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 /**
  * Data class representing the battery state.

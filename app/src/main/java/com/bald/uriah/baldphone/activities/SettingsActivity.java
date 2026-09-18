@@ -61,7 +61,7 @@ import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.utils.HomeAppUtils;
 import app.baldphone.neo.views.TitleBarView;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.alarms.AlarmScreenActivity;
 import com.bald.uriah.baldphone.activities.pills.PillTimeSetterActivity;
 import com.bald.uriah.baldphone.utils.BDB;

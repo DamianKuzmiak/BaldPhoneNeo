@@ -15,14 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
 import app.baldphone.neo.launcher.apps.data.AppsRepository
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.menu.showActionMenu
 import app.baldphone.neo.utils.startComponentName
-
-import com.bald.uriah.baldphone.R
 
 /**
  * Activity that displays all installed applications in a scrollable list, grouped by alphabetical section headers.

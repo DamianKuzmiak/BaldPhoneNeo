@@ -44,7 +44,7 @@ import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
 import app.baldphone.neo.features.contacts.ui.ContactsActivity;
 import app.baldphone.neo.features.gallery.MediaActivity;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;

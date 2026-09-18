@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class D {
 

@@ -13,12 +13,12 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.ItemNotificationBinding
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.utils.formatDayAwareTimestamp
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.adapters.ModularListAdapter
-import com.bald.uriah.baldphone.databinding.ItemNotificationBinding
 
 class NotificationListAdapter(
     private val onItemCleared: (NotificationItem) -> Unit,

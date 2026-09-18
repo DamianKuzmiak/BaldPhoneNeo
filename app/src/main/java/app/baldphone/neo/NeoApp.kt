@@ -36,7 +36,6 @@ import app.baldphone.neo.launcher.apps.sync.LauncherAppsReceiver
 import app.baldphone.neo.utils.LocaleUtils
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
-import com.bald.uriah.baldphone.BuildConfig
 import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler

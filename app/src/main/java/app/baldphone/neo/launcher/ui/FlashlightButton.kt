@@ -13,11 +13,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.flashlight.FlashLightController
 import app.baldphone.neo.flashlight.FlashlightState
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
-
-import com.bald.uriah.baldphone.R
 
 class FlashlightButton
     @JvmOverloads

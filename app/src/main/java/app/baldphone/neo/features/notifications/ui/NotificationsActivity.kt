@@ -19,15 +19,14 @@ import androidx.lifecycle.repeatOnLifecycle
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.databinding.ActivityNotificationsBinding
 import app.baldphone.neo.extensions.applyBottomInsetsAsMargin
 import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ActivityNotificationsBinding
 
 class NotificationsActivity : BaseActivity() {
     private lateinit var binding: ActivityNotificationsBinding

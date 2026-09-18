@@ -29,7 +29,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class FirstPageAppIcon extends BaldFrameLayoutButton {
     private final Context context;

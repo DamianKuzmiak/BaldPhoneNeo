@@ -22,7 +22,7 @@ import android.os.Handler;
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.contacts.ContactsActivity;
 import com.tomash.androidcontacts.contactgetter.main.ContactDataFactory;
 import com.tomash.androidcontacts.contactgetter.main.contactsSaver.ContactsSaverBuilder;

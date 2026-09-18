@@ -13,10 +13,9 @@ import android.provider.Settings
 import android.util.Log
 import android.view.accessibility.AccessibilityManager
 
+import app.baldphone.neo.R
 import app.baldphone.neo.services.DeviceLock
 import app.baldphone.neo.services.NotificationReceiverService
-
-import com.bald.uriah.baldphone.R
 
 sealed class SpecialPermission(
     titleRes: Int,

@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.utils.Constants;
 import com.bald.uriah.baldphone.utils.S;
 import com.bumptech.glide.Glide;

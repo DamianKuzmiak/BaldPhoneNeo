@@ -4,7 +4,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 /**
  * Represents an item within an action menu:

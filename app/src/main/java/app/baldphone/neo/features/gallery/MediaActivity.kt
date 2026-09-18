@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.views.TitleBarView
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.media.SingleMediaActivity
 import com.bald.uriah.baldphone.activities.media.SinglePhotoActivity
 import com.bald.uriah.baldphone.activities.media.SingleVideoActivity

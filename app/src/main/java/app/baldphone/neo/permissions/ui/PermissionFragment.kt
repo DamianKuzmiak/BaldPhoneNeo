@@ -14,14 +14,13 @@ import androidx.lifecycle.repeatOnLifecycle
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.AppPermission
 import app.baldphone.neo.permissions.model.PermissionResult
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.BaldDialog
-
-import com.bald.uriah.baldphone.R
 
 class PermissionFragment : Fragment() {
     private companion object {

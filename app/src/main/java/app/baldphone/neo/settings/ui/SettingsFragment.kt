@@ -10,11 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 
+import app.baldphone.neo.R
 import app.baldphone.neo.settings.Item
 import app.baldphone.neo.settings.SettingId
 import app.baldphone.neo.settings.SettingsAdapter
-
-import com.bald.uriah.baldphone.R
 
 class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
     private val items =

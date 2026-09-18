@@ -7,10 +7,9 @@ import android.widget.TextView
 
 import androidx.navigation.fragment.findNavController
 
+import app.baldphone.neo.R
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.settings.BaseSettingsFragment
-
-import com.bald.uriah.baldphone.R
 
 class SystemSettingsFragment : BaseSettingsFragment(R.layout.fragment_system_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

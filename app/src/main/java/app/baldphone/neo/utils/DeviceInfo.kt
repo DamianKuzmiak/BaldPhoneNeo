@@ -12,7 +12,7 @@ import java.util.Locale
 
 import coil3.SingletonImageLoader
 
-import com.bald.uriah.baldphone.BuildConfig
+import app.baldphone.neo.BuildConfig
 
 private const val BYTES_IN_KB = 1024
 

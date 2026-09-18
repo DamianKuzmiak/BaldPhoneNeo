@@ -12,13 +12,13 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.AppListItemBinding
+import app.baldphone.neo.databinding.AppsHeaderBinding
 import app.baldphone.neo.launcher.apps.AppIconBinder
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.adapters.ModularListAdapter
-import com.bald.uriah.baldphone.databinding.AppListItemBinding
-import com.bald.uriah.baldphone.databinding.AppsHeaderBinding
 
 /**
  * ListAdapter-based adapter for the applications list. Handles two view types:

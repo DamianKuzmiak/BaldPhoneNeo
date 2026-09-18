@@ -3,10 +3,9 @@ package app.baldphone.neo.core.assisttouch
 import android.view.View
 import android.widget.Toast
 
+import app.baldphone.neo.R
 import app.baldphone.neo.data.AccessibilityLevel
 import app.baldphone.neo.data.Prefs
-
-import com.bald.uriah.baldphone.R
 
 /**
  * Tag key for storing [AssistTouchDelegate] reference in View.

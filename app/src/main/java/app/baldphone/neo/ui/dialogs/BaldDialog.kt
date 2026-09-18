@@ -17,7 +17,8 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 
-import com.bald.uriah.baldphone.databinding.DialogBaldBinding
+import app.baldphone.neo.databinding.DialogBaldBinding
+
 import com.bald.uriah.baldphone.views.BaldButton
 
 /**

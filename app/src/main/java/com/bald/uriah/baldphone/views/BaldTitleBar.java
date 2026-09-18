@@ -31,7 +31,7 @@ import androidx.annotation.StringRes;
 
 import app.baldphone.neo.extensions.ViewExtensions;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.D;
 

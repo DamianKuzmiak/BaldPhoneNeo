@@ -26,7 +26,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

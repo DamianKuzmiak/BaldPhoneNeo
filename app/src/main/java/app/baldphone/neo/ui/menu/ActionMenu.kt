@@ -20,13 +20,12 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.ItemActionMenuBinding
+import app.baldphone.neo.databinding.ItemActionMenuDividerBinding
+import app.baldphone.neo.databinding.ViewActionMenuBinding
+import app.baldphone.neo.databinding.ViewDividerBinding
 import app.baldphone.neo.utils.dpToPx
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ItemActionMenuBinding
-import com.bald.uriah.baldphone.databinding.ItemActionMenuDividerBinding
-import com.bald.uriah.baldphone.databinding.ViewActionMenuBinding
-import com.bald.uriah.baldphone.databinding.ViewDividerBinding
 
 /**
  * A custom popup window used to display a list of menu actions: options, toggles, and separators.

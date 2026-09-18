@@ -18,10 +18,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.databinding.ActivityShareBinding
 
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ActivityShareBinding
 import com.bald.uriah.baldphone.utils.BaldToast
 
 /**

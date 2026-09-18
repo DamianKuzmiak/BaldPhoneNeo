@@ -13,9 +13,8 @@ import kotlinx.coroutines.withContext
 
 import java.io.IOException
 
+import app.baldphone.neo.R
 import app.baldphone.neo.settings.BaseSettingsFragment
-
-import com.bald.uriah.baldphone.R
 
 class LicenseFragment : BaseSettingsFragment(R.layout.fragment_licenses) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

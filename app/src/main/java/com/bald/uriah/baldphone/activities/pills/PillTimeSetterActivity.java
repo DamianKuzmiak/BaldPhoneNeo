@@ -21,7 +21,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler;
 import com.bald.uriah.baldphone.utils.BPrefs;

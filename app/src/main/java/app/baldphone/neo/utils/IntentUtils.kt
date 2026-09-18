@@ -14,12 +14,11 @@ import android.util.Log
 
 import androidx.core.net.toUri
 
+import app.baldphone.neo.R
 import app.baldphone.neo.features.share.ShareActivity
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.launcher.apps.getUserForSerialNumber
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
-
-import com.bald.uriah.baldphone.R
 
 private const val TAG = "IntentUtils"
 

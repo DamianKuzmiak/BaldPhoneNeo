@@ -36,7 +36,7 @@ import androidx.core.util.Pools;
 
 import app.baldphone.neo.utils.IntentUtilsKt;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 import com.bald.uriah.baldphone.adapters.BaldViewAdapter;
 import com.bald.uriah.baldphone.utils.BaldToast;

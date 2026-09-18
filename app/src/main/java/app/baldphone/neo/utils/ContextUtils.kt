@@ -10,9 +10,8 @@ import androidx.annotation.StringRes
 import androidx.core.content.getSystemService
 import androidx.core.text.HtmlCompat
 
+import app.baldphone.neo.R
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
-
-import com.bald.uriah.baldphone.R
 
 /**
  * Copies a given text to the system clipboard.

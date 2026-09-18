@@ -23,16 +23,16 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.databinding.ActivityContactsBinding
 import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.SimpleContact
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
-import com.bald.uriah.baldphone.databinding.ActivityContactsBinding
 
 class ContactsActivity : BaseActivity() {
     companion object {

@@ -9,8 +9,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import androidx.transition.TransitionManager
 
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ViewSettingsSwitchButtonBinding
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.ViewSettingsSwitchButtonBinding
+import app.baldphone.neo.utils.dpToPx
 
 class SettingsSwitchButton
     @JvmOverloads

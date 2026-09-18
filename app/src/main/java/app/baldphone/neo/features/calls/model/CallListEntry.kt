@@ -2,7 +2,7 @@ package app.baldphone.neo.features.calls.model
 
 import android.content.Context
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 /**
  * Represents a single entry in the recent calls list.

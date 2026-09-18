@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+import app.baldphone.neo.R
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.data.CallLogProvider
 import app.baldphone.neo.features.calls.model.Call
@@ -35,8 +36,6 @@ import app.baldphone.neo.utils.getDeviceRegion
 import app.baldphone.neo.utils.isSameDayAs
 import app.baldphone.neo.utils.messaging.WhatsAppHandler
 import app.baldphone.neo.utils.toRelativeDateString
-
-import com.bald.uriah.baldphone.R
 
 /** ViewModel for displaying and managing a single contact's information. */
 class ContactDetailsViewModel(

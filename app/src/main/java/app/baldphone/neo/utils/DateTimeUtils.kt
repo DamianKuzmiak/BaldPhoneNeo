@@ -8,7 +8,7 @@ import java.time.ZoneId
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 // Utility functions for formatting date and time.
 

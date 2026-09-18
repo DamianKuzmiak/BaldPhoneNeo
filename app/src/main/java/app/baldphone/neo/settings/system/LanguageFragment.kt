@@ -24,15 +24,14 @@ import java.util.Locale
 
 import org.xmlpull.v1.XmlPullParser
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.FragmentLanguageSelectorBinding
+import app.baldphone.neo.databinding.ItemLanguageBinding
 import app.baldphone.neo.extensions.AccessibilityRole
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
 import app.baldphone.neo.settings.BaseSettingsFragment
 import app.baldphone.neo.utils.LocaleUtils
 import app.baldphone.neo.utils.startActivitySafe
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.FragmentLanguageSelectorBinding
-import com.bald.uriah.baldphone.databinding.ItemLanguageBinding
 
 class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selector) {
     private var binding: FragmentLanguageSelectorBinding? = null

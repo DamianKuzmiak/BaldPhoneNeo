@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.databinding.ActivityRecentCallsBinding
 import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.features.calls.model.CallListEntry
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
@@ -26,9 +28,7 @@ import app.baldphone.neo.ui.dialogs.showInfoSnackbar
 import app.baldphone.neo.ui.menu.showActionMenu
 import app.baldphone.neo.utils.sendMessage
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
-import com.bald.uriah.baldphone.databinding.ActivityRecentCallsBinding
 import com.bald.uriah.baldphone.utils.BDB
 import com.bald.uriah.baldphone.utils.BDialog
 

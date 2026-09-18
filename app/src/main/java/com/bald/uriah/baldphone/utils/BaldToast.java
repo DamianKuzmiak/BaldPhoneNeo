@@ -37,7 +37,7 @@ import androidx.core.content.ContextCompat;
 
 import app.baldphone.neo.ui.dialogs.BaldSnackbar;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

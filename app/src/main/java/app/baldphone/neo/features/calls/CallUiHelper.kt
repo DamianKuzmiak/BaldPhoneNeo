@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 
 import java.util.Collections
 
+import app.baldphone.neo.R
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.data.CallIntentFactory
 import app.baldphone.neo.ui.dialogs.BaldDialog
@@ -24,7 +25,6 @@ import app.baldphone.neo.ui.dialogs.BaldSnackbar
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.getDeviceRegion
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.utils.BDB
 import com.bald.uriah.baldphone.utils.BDialog
 

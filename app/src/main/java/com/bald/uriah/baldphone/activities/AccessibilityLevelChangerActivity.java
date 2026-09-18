@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 /**
  * A simple holder to {@link com.bald.uriah.baldphone.fragments_and_dialogs.tutorial_fragments.TutorialFragment2}

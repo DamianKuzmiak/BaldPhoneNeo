@@ -30,7 +30,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class BaldPictureTextButton extends BaldLinearLayoutButton {
 

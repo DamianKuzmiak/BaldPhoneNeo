@@ -14,14 +14,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.FragmentPermissionsBinding
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.PermissionRepository
 import app.baldphone.neo.permissions.model.AppPermission
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.settings.BaseSettingsFragment
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.FragmentPermissionsBinding
 
 class PermissionListFragment : BaseSettingsFragment() {
     private var binding: FragmentPermissionsBinding? = null

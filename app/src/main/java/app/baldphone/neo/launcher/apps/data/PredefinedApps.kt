@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 
+import app.baldphone.neo.BuildConfig
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.DialerActivity
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity
 import app.baldphone.neo.features.contacts.ui.ContactsActivity
@@ -19,8 +21,6 @@ import app.baldphone.neo.features.gallery.MediaActivity
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.launcher.apps.ui.AppsActivity
 
-import com.bald.uriah.baldphone.BuildConfig
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.SOSActivity
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity
 import com.bald.uriah.baldphone.activities.pills.PillsActivity

@@ -19,7 +19,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.databinding.DialerBinding
+import app.baldphone.neo.databinding.DialpadButtonBinding
 import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.features.contacts.data.ContactRepository
 import app.baldphone.neo.features.contacts.ui.ContactAdapter
@@ -29,10 +32,7 @@ import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.utils.getTextFromClipboard
 import app.baldphone.neo.viewmodels.DialerViewModel
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
-import com.bald.uriah.baldphone.databinding.DialerBinding
-import com.bald.uriah.baldphone.databinding.DialpadButtonBinding
 
 class DialerActivity : BaseActivity() {
     companion object {

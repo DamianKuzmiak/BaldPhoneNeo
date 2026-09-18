@@ -22,7 +22,7 @@ import android.os.Handler;
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 import org.joda.time.DateTime;
 import org.junit.runner.RunWith;

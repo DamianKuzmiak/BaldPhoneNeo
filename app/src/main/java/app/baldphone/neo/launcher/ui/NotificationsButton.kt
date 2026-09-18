@@ -17,9 +17,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.features.notifications.data.NotificationRepository
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.utils.S
 
 class NotificationsButton

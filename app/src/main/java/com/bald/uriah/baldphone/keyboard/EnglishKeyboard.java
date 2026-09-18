@@ -20,7 +20,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.TextView;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 @SuppressLint("ViewConstructor")
 public class EnglishKeyboard extends BaldKeyboard implements BaldKeyboard.Capitalised {

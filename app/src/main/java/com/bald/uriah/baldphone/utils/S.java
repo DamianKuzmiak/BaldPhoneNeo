@@ -43,7 +43,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import app.baldphone.neo.utils.IntentUtilsKt;
 import app.baldphone.neo.launcher.apps.data.db.AppEntry;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.activities.BaldActivity;
 
 import org.joda.time.DateTime;

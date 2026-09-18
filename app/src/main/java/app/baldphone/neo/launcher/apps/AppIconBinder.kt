@@ -8,11 +8,10 @@ import coil3.request.error
 import coil3.request.fallback
 import coil3.request.placeholder
 
+import app.baldphone.neo.R
 import app.baldphone.neo.launcher.apps.data.PredefinedApps
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.launcher.apps.sync.AppIconStorage
-
-import com.bald.uriah.baldphone.R
 
 /**
  * Handles binding app icons to ImageViews using Coil.

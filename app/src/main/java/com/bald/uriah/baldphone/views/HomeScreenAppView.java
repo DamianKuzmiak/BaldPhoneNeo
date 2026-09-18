@@ -27,7 +27,7 @@ import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
 import app.baldphone.neo.launcher.apps.AppIconBinder;
 import app.baldphone.neo.launcher.apps.data.db.AppEntry;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.databases.contacts.MiniContact;
 import com.bald.uriah.baldphone.utils.S;
 import com.bumptech.glide.Glide;

@@ -23,7 +23,7 @@ import androidx.annotation.Nullable;
 
 import app.baldphone.neo.launcher.apps.ui.AppsActivity;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 

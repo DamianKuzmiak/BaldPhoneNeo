@@ -29,12 +29,11 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 import app.baldphone.neo.ui.menu.showActionMenu
-
-import com.bald.uriah.baldphone.R
 
 class SoundButton
     @JvmOverloads

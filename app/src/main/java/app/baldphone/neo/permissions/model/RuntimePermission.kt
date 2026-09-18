@@ -11,7 +11,7 @@ import android.util.Log
 
 import androidx.core.content.ContextCompat
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 /**
  * Class representing runtime permissions that need to be requested from the user.

@@ -8,7 +8,7 @@ import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 class SettingsAdapter(
     private val items: List<Item>,

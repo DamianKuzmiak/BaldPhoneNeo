@@ -32,7 +32,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 public class BaldSwitch extends LinearLayout {
     private static final String TAG = BaldSwitch.class.getSimpleName();

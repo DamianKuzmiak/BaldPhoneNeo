@@ -24,8 +24,13 @@ import kotlinx.coroutines.launch
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.error
+import com.google.android.material.button.MaterialButton
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
+import app.baldphone.neo.databinding.ActivityContactDetailsBinding
+import app.baldphone.neo.databinding.ContactCallItemBinding
+import app.baldphone.neo.databinding.ItemContactFieldBinding
 import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.features.contacts.Contact
 import app.baldphone.neo.ui.dialogs.BaldDialog
@@ -41,12 +46,7 @@ import app.baldphone.neo.utils.sendMessage
 import app.baldphone.neo.utils.shareContact
 import app.baldphone.neo.utils.viewContactPhoto
 
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
-import com.bald.uriah.baldphone.databinding.ActivityContactDetailsBinding
-import com.bald.uriah.baldphone.databinding.ContactCallItemBinding
-import com.bald.uriah.baldphone.databinding.ItemContactFieldBinding
-import com.google.android.material.button.MaterialButton
 
 /** Activity for viewing and interacting with a single contact. */
 class ContactDetailsActivity : BaseActivity() {

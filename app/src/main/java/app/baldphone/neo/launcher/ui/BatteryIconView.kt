@@ -30,10 +30,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
+import app.baldphone.neo.R
 import app.baldphone.neo.battery.BatteryRepository
 import app.baldphone.neo.battery.BatteryState
-
-import com.bald.uriah.baldphone.R
 
 /**
  * A custom vertical battery icon with five segmented bars.

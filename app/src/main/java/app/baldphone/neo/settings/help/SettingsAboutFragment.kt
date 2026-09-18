@@ -6,7 +6,10 @@ import android.view.View
 
 import androidx.navigation.fragment.findNavController
 
+import app.baldphone.neo.BuildConfig
 import app.baldphone.neo.Constants
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.FragmentSettingsAboutBinding
 import app.baldphone.neo.settings.BaseSettingsFragment
 import app.baldphone.neo.ui.dialogs.BaldDialog
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
@@ -14,10 +17,7 @@ import app.baldphone.neo.utils.copyToClipboard
 import app.baldphone.neo.utils.getDeviceInfoFull
 import app.baldphone.neo.utils.openUrl
 
-import com.bald.uriah.baldphone.BuildConfig
-import com.bald.uriah.baldphone.R
 import com.bald.uriah.baldphone.activities.CreditsActivity
-import com.bald.uriah.baldphone.databinding.FragmentSettingsAboutBinding
 
 class SettingsAboutFragment : BaseSettingsFragment(R.layout.fragment_settings_about) {
     private var binding: FragmentSettingsAboutBinding? = null

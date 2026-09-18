@@ -4,10 +4,9 @@ import android.os.Bundle
 
 import androidx.navigation.fragment.NavHostFragment
 
+import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ActivitySettingsNeoBinding
+import app.baldphone.neo.databinding.ActivitySettingsNeoBinding
 
 class SettingsActivity : BaseActivity() {
     private lateinit var binding: ActivitySettingsNeoBinding

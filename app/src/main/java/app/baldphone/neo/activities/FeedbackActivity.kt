@@ -7,12 +7,11 @@ import android.os.Bundle
 import androidx.core.net.toUri
 
 import app.baldphone.neo.Constants
+import app.baldphone.neo.R
+import app.baldphone.neo.databinding.ActivityFeedbackBinding
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showWarningSnackbar
 import app.baldphone.neo.utils.getDeviceInfoFull
-
-import com.bald.uriah.baldphone.R
-import com.bald.uriah.baldphone.databinding.ActivityFeedbackBinding
 
 class FeedbackActivity : BaseActivity() {
     private lateinit var binding: ActivityFeedbackBinding

@@ -24,7 +24,7 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 
 object BaldSnackbar {
     enum class Type { ERROR, WARNING, INFO, SUCCESS }

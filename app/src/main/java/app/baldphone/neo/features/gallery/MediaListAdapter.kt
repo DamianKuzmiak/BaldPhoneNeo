@@ -19,7 +19,7 @@ import coil3.request.placeholder
 import coil3.request.transformations
 import coil3.transform.RoundedCornersTransformation
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 import com.bald.uriah.baldphone.views.ModularRecyclerView
 
 class MediaListAdapter(

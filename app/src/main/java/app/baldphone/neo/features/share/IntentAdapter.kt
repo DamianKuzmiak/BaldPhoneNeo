@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import coil3.load
 
-import com.bald.uriah.baldphone.R
+import app.baldphone.neo.R
 import com.bald.uriah.baldphone.views.ModularRecyclerView
 
 class IntentAdapter(

@@ -9,7 +9,7 @@ import android.widget.Toast
 
 import java.lang.reflect.Field
 
-import com.bald.uriah.baldphone.BuildConfig
+import app.baldphone.neo.BuildConfig
 
 private const val TAG = "ActivityExtensions"
 

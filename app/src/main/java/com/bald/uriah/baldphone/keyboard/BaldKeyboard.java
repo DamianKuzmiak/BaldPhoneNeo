@@ -36,7 +36,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.data.Theme;
 
-import com.bald.uriah.baldphone.R;
+import app.baldphone.neo.R;
 
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_GO;
