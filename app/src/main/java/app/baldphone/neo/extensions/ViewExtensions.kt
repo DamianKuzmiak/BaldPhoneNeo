@@ -14,31 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.core.view.updatePadding
 
-private val DELEGATES_CACHE = mutableMapOf<AccessibilityRole?, AccessibilityDelegateCompat>()
-
-private fun getOrCreateDelegate(role: AccessibilityRole?): AccessibilityDelegateCompat =
-    DELEGATES_CACHE.getOrPut(role) {
-        object : AccessibilityDelegateCompat() {
-            override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-                super.onInitializeAccessibilityNodeInfo(host, info)
-
-                val targetRoleName =
-                    when {
-                        role != null -> role.className
-                        host is ImageView -> AccessibilityRole.IMAGE_BUTTON.className
-                        else -> AccessibilityRole.BUTTON.className
-                    }
-
-                info.className = targetRoleName
-
-                if (targetRoleName == AccessibilityRole.RADIO_BUTTON.className) {
-                    info.isCheckable = true
-                    info.isChecked = host.isSelected
-                }
-            }
-        }
-    }
-
 /**
  * Sets an accessibility delegate to the view that reports it as a specific accessibility role.
  */
@@ -50,6 +25,8 @@ fun View.setClickableAccessibilityRole(role: AccessibilityRole? = null) {
     val delegate = getOrCreateDelegate(role)
     ViewCompat.setAccessibilityDelegate(this, delegate)
 }
+
+// Window insets
 
 /**
  * Applies top window insets as padding to this view.
@@ -120,3 +97,47 @@ fun View.applyBottomInsetsAsMargin() {
     }
     ViewCompat.requestApplyInsets(this)
 }
+
+/**
+ * Applies soft keyboard inset as bottom padding to a [View], on top of any existing bottom padding.
+ *
+ * Needed because the app uses edge-to-edge, so `windowSoftInputMode="adjustResize"` alone
+ * does not move content above the keyboard.
+ */
+fun View.applyImeInsets() {
+    val initialPaddingBottom = paddingBottom
+    ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+        val imeBottom = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+        val systemBottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+        view.updatePadding(bottom = initialPaddingBottom + maxOf(imeBottom, systemBottom))
+        insets
+    }
+    ViewCompat.requestApplyInsets(this)
+}
+
+// Helpers
+
+private val DELEGATES_CACHE = mutableMapOf<AccessibilityRole?, AccessibilityDelegateCompat>()
+
+private fun getOrCreateDelegate(role: AccessibilityRole?): AccessibilityDelegateCompat =
+    DELEGATES_CACHE.getOrPut(role) {
+        object : AccessibilityDelegateCompat() {
+            override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                super.onInitializeAccessibilityNodeInfo(host, info)
+
+                val targetRoleName =
+                    when {
+                        role != null -> role.className
+                        host is ImageView -> AccessibilityRole.IMAGE_BUTTON.className
+                        else -> AccessibilityRole.BUTTON.className
+                    }
+
+                info.className = targetRoleName
+
+                if (targetRoleName == AccessibilityRole.RADIO_BUTTON.className) {
+                    info.isCheckable = true
+                    info.isChecked = host.isSelected
+                }
+            }
+        }
+    }

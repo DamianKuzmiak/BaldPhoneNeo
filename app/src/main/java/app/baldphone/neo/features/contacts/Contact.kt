@@ -3,7 +3,10 @@ package app.baldphone.neo.features.contacts
 import android.content.res.Resources
 import android.provider.ContactsContract
 
-/** Full contact with all related data (phones, emails, etc.) */
+/**
+ * Represents a complete contact entry, including related details such as phone numbers,
+ * email addresses, postal information, data from messaging apps, and more.
+ */
 data class Contact(
     val id: Long,
     val lookupKey: String,
@@ -16,7 +19,9 @@ data class Contact(
     val emails: List<Email>,
     val addresses: List<Address>,
     val whatsappNumbers: List<String>,
-    val signalNumbers: List<String>
+    val signalNumbers: List<String>,
+    val givenName: String? = null,
+    val familyName: String? = null
 ) {
     val lookupUri: android.net.Uri
         get() = ContactsContract.Contacts.getLookupUri(id, lookupKey)
@@ -42,7 +47,9 @@ data class Contact(
         get() = emails.firstOrNull()?.value
 }
 
-/** Simplified version of a contact, used for lists and searches */
+/**
+ * Simplified version of a contact, used for lists and searches.
+ */
 data class SimpleContact(
     val id: Long,
     val lookupKey: String,
@@ -84,10 +91,6 @@ data class Phone(
     override val type: Int,
     override val value: String,
     override val label: String? = null,
-    /**
-     * Prefers the provider's E.164 [ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER]
-     * when available, otherwise falls back to a digits-only normalization.
-     */
     val normalizedNumber: String? = null
 ) : Labeled {
     override fun getLabel(res: Resources): CharSequence =

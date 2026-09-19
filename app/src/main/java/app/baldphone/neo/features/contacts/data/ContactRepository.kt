@@ -35,6 +35,7 @@ import kotlinx.coroutines.withContext
 import java.util.LinkedHashMap
 
 import app.baldphone.neo.features.contacts.Contact
+import app.baldphone.neo.features.contacts.ContactForm
 import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.ContactSearcher
 import app.baldphone.neo.features.contacts.SimpleContact
@@ -95,7 +96,7 @@ class ContactRepository private constructor(
 
     private fun tryRegisterObserver() {
         if (isObserverRegistered) return
-        if (dataSource.hasContactsPermission()) {
+        if (dataSource.hasReadContactsPermission()) {
             try {
                 context.contentResolver.registerContentObserver(
                     ContactsContract.Contacts.CONTENT_URI,
@@ -308,16 +309,56 @@ class ContactRepository private constructor(
         return null
     }
 
-    // temporary for Java
-    @Deprecated("Java interop only")
-    fun getRawContactId(contactId: Long): Long = runBlocking { dataSource.getRawContactId(contactId) }
+    /**
+     * Creates a new contact from [draft] and applies the [photo] change.
+     * Returns true on success. Triggers a refresh so observers see the new contact.
+     *
+     * Photo convention: null = leave as is, empty = remove, non-empty = set/replace.
+     */
+    suspend fun createContact(draft: ContactForm, photo: ByteArray? = null): Boolean {
+        val rawContactId = dataSource.insertContact(draft)
+        if (rawContactId <= 0L) return false
 
-    // temporary for Java
-    @Deprecated("Java interop only")
-    fun getContactByLookupKeyJava(key: String): Contact? = runBlocking { dataSource.queryContact(key) }
+        applyPhoto(rawContactId, photo)
+        refresh(forceFullScan = true)
+        return true
+    }
 
-    @Deprecated("Java interop only")
-    fun getContactByIdJava(id: String): Contact? = runBlocking { dataSource.queryContactById(id) }
+    /**
+     * Updates the existing [contact] with the values in [draft] and applies the [photo] change.
+     * Returns true on success. Triggers a refresh so observers see the edited contact.
+     *
+     * Photo convention: null = leave as is, empty = remove, non-empty = set/replace.
+     */
+    suspend fun updateContact(
+        contactId: Long,
+        draft: ContactForm,
+        photo: ByteArray? = null
+    ): Boolean {
+        val rawContactId = dataSource.getRawContactId(contactId)
+        if (rawContactId <= 0L) return false
+
+        val updated = dataSource.updateContact(contactId, rawContactId, draft)
+        if (!updated) return false
+
+        applyPhoto(rawContactId, photo)
+        refresh(forceFullScan = true)
+        return true
+    }
+
+    /**
+     * Applies a photo change using the shared convention:
+     * - null: leave the current photo untouched (no-op)
+     * - empty (size 0): remove the current photo
+     * - non-empty: set/replace with the given JPEG bytes
+     */
+    private suspend fun applyPhoto(rawContactId: Long, photo: ByteArray?) {
+        when {
+            photo == null -> Unit
+            photo.isEmpty() -> dataSource.writeContactPhoto(rawContactId, jpegBytes = null)
+            else -> dataSource.writeContactPhoto(rawContactId, photo)
+        }
+    }
 
     @Deprecated("Java interop only")
     fun resolvePhoneNumberJava(lookupKey: String): String? =

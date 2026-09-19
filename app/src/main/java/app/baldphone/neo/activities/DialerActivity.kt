@@ -1,6 +1,5 @@
 package app.baldphone.neo.activities
 
-import android.content.Intent
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -25,14 +24,13 @@ import app.baldphone.neo.databinding.DialerBinding
 import app.baldphone.neo.databinding.DialpadButtonBinding
 import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.features.contacts.data.ContactRepository
+import app.baldphone.neo.features.contacts.ui.AddContactActivity
 import app.baldphone.neo.features.contacts.ui.ContactAdapter
 import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.utils.getTextFromClipboard
 import app.baldphone.neo.viewmodels.DialerViewModel
-
-import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
 
 class DialerActivity : BaseActivity() {
     companion object {
@@ -218,11 +216,7 @@ class DialerActivity : BaseActivity() {
     private fun setupEmptyState() {
         binding.emptyStateContainer.btAddContact.setOnClickListener {
             if (RuntimePermission.ReadWriteContacts.isGranted(this)) {
-                val intent =
-                    Intent(this, AddContactActivity::class.java).apply {
-                        putExtra(AddContactActivity.CONTACT_NUMBER, viewModel.rawNumber.value)
-                    }
-                startActivity(intent)
+                AddContactActivity.start(this, viewModel.rawNumber.value)
             } else {
                 PermissionManager.checkOrRequest(this, RuntimePermission.ReadWriteContacts) {
                     onGranted {

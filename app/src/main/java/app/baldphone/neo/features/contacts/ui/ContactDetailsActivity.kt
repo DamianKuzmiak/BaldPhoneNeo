@@ -46,8 +46,6 @@ import app.baldphone.neo.utils.sendMessage
 import app.baldphone.neo.utils.shareContact
 import app.baldphone.neo.utils.viewContactPhoto
 
-import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
-
 /** Activity for viewing and interacting with a single contact. */
 class ContactDetailsActivity : BaseActivity() {
     private lateinit var binding: ActivityContactDetailsBinding

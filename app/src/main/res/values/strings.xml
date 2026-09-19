@@ -120,6 +120,8 @@
     <string name="contact_removed_from_home">Contact removed from home screen</string>
     <string name="contact_added_to_favorites">Contact added to favorites</string>
     <string name="contact_removed_from_favorites">Contact removed from favorites</string>
+    <string name="contact_not_deleted">Contact could not be deleted</string>
+    <string name="contact_not_updated">Contact could not be updated</string>
 
     <string name="contacts">Contacts</string>
     <string name="search_contact">Search contact by name</string>
@@ -441,7 +443,9 @@
     <string name="_long">Long</string>
     <string name="_short">Short</string>
     <string name="do_you_want_to_save_your_changes">Do you want to save your changes?</string>
-    <string name="discard">Discard</string>
+    <string name="discard">Discard edits</string>
+    <string name="discard_changes_title">Discard edits?</string>
+    <string name="discard_changes_message">Unsaved changes will be lost.</string>
     <string name="no_recent_calls">No Recent Calls</string>
 
     <string name="edit_home_screen">Edit Home Screen</string>
@@ -503,6 +507,17 @@
     <string name="toast_mode_normal">Sound ON. You will hear ringtones and alerts.</string>
     <string name="toast_mode_vibrate">Vibration only. The phone will not ring.</string>
     <string name="toast_mode_silent">Completely silent. No sounds or vibrations.</string>
+
+    <!-- Add / Edit contact -->
+    <string name="add_photo">Add photo</string>
+    <string name="edit_contact">Edit contact</string>
+    <string name="edit_in_contacts_app">Edit in Contacts app</string>
+    <string name="edit_in_contacts_app_discard_warning">You have unsaved changes. Opening the Contacts app will discard them. Continue?</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="phone_number_optional">Second phone number</string>
+    <string name="remove_photo">Remove photo</string>
 
     <!-- Credits tasks -->
     <string name="credit_task_uriah">For establishing the foundation of this project</string>

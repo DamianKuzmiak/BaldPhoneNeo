@@ -211,7 +211,7 @@
                 android:value="2" />
         </activity-alias>
         <activity
-            android:name="com.bald.uriah.baldphone.activities.contacts.AddContactActivity"
+            android:name=".features.contacts.ui.AddContactActivity"
             android:exported="false"
             android:label="@string/add_contact" />
         <activity

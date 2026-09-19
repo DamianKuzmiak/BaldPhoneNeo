@@ -1,0 +1,197 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <app.baldphone.neo.views.TitleBarView
+        android:id="@+id/bald_title_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleBarBackgroundColor="?bald_category_contacts"
+        app:titleBarTitle="@string/add_contact" />
+
+    <ScrollView
+        android:id="@+id/form_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="16dp"
+        android:scrollbarStyle="outsideOverlay"
+        app:layout_constraintBottom_toTopOf="@+id/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bald_title_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp">
+
+            <!-- Avatar -->
+            <FrameLayout
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_for_buttons"
+                    android:contentDescription="@string/add_photo"
+                    android:padding="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_photo" />
+
+                <ImageButton
+                    android:id="@+id/button_delete"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/style_for_buttons"
+                    android:contentDescription="@string/remove_photo"
+                    android:padding="4dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/delete_on_button"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+
+            </FrameLayout>
+
+            <!-- First name -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/first_name"
+                app:startIconDrawable="@drawable/human_on_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords"
+                    android:nextFocusForward="@+id/et_last_name"
+                    android:textSize="@dimen/medium_plus" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Last name -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/last_name"
+                app:startIconDrawable="@drawable/human_on_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords"
+                    android:nextFocusForward="@+id/et_mobile_number"
+                    android:textSize="@dimen/medium_plus" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Phone number -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/phone_number"
+                app:startIconDrawable="@drawable/phone_on_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:nextFocusForward="@+id/et_home_number"
+                    android:textSize="@dimen/medium_plus" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Second phone number -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/phone_number_optional"
+                app:startIconDrawable="@drawable/home_on_button">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/home_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:nextFocusForward="@+id/et_address"
+                    android:textSize="@dimen/medium_plus" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Address -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/address"
+                app:startIconDrawable="@drawable/location_on_button">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress|textCapWords"
+                    android:nextFocusForward="@+id/et_mail"
+                    android:textSize="@dimen/medium_plus" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/mail"
+                app:startIconDrawable="@drawable/mail_on_button">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/medium_plus" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save"
+        style="@style/Bald.Button"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

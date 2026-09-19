@@ -1,7 +1,9 @@
 package app.baldphone.neo.features.contacts.data
 
 import android.Manifest
+import android.content.ContentProviderOperation
 import android.content.ContentResolver
+import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.content.pm.PackageManager
@@ -22,6 +24,7 @@ import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.features.contacts.Address
 import app.baldphone.neo.features.contacts.Contact
+import app.baldphone.neo.features.contacts.ContactForm
 import app.baldphone.neo.features.contacts.Email
 import app.baldphone.neo.features.contacts.Phone
 import app.baldphone.neo.features.contacts.SimpleContact
@@ -45,7 +48,7 @@ class ContactsDataSource(
      */
     suspend fun fetchPhoneContacts(limit: Int = -1): List<SimpleContact> =
         withContext(Dispatchers.IO) {
-            if (!hasContactsPermission()) return@withContext emptyList()
+            if (!hasReadContactsPermission()) return@withContext emptyList()
 
             val baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
             val targetUri =
@@ -118,28 +121,14 @@ class ContactsDataSource(
      */
     suspend fun queryContact(lookupKey: String): Contact? =
         withContext(Dispatchers.IO) {
-            queryContactInternal(
-                "${ContactsContract.Contacts.LOOKUP_KEY}=?",
-                arrayOf(lookupKey)
-            )
-        }
-
-    /**
-     * Loads full contact details by contact ID. Java interop.
-     */
-    suspend fun queryContactById(id: String): Contact? =
-        withContext(Dispatchers.IO) {
-            queryContactInternal(
-                "${ContactsContract.Contacts._ID}=?",
-                arrayOf(id)
-            )
+            queryContactInternal("${ContactsContract.Contacts.LOOKUP_KEY}=?", arrayOf(lookupKey))
         }
 
     /**
      * Resolves the raw contact ID for a given contact ID.
      */
     suspend fun getRawContactId(contactId: Long): Long =
-        withContext(Dispatchers.IO) {
+        guardedIo(default = -1L, errorTag = "getRawContactId: $contactId") {
             resolver
                 .query(
                     ContactsContract.RawContacts.CONTENT_URI,
@@ -149,73 +138,51 @@ class ContactsDataSource(
                     null
                 )?.use { c ->
                     if (c.moveToNext()) {
-                        return@withContext c.getLong(c.getColumnIndexOrThrow(ContactsContract.RawContacts._ID))
+                        c.getLong(c.getColumnIndexOrThrow(ContactsContract.RawContacts._ID))
+                    } else {
+                        null
                     }
-                }
-            -1L
+                } ?: -1L
         }
 
     /**
      * Deletes a contact by lookup key.
      */
     suspend fun deleteContact(lookupKey: String): Boolean =
-        withContext(Dispatchers.IO) {
-            if (!hasContactsPermission()) return@withContext false
-            runCatching {
-                val lookupUri =
-                    Uri.withAppendedPath(
-                        ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                        lookupKey
-                    )
-                resolver.delete(lookupUri, null, null) > 0
-            }.onFailure { Log.e(TAG, "deleteContact: $lookupKey", it) }
-                .getOrDefault(false)
+        guardedIo(default = false, errorTag = "deleteContact: $lookupKey") {
+            val lookupUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
+            resolver.delete(lookupUri, null, null) > 0
         }
 
     /**
      * Updates the favorite (starred) status of a contact.
      */
-    suspend fun updateFavorite(
-        lookupKey: String,
-        starred: Boolean
-    ): Boolean =
-        withContext(Dispatchers.IO) {
-            if (!hasContactsPermission()) return@withContext false
-            runCatching {
-                val values =
-                    ContentValues().apply {
-                        put(ContactsContract.Contacts.STARRED, if (starred) 1 else 0)
-                    }
-                resolver.update(
-                    ContactsContract.Contacts.CONTENT_URI,
-                    values,
-                    "${ContactsContract.Contacts.LOOKUP_KEY} = ?",
-                    arrayOf(lookupKey)
-                ) > 0
-            }.onFailure { Log.e(TAG, "updateFavorite: $lookupKey", it) }
-                .getOrDefault(false)
+    suspend fun updateFavorite(lookupKey: String, starred: Boolean): Boolean =
+        guardedIo(default = false, errorTag = "updateFavorite: $lookupKey") {
+            val values =
+                ContentValues().apply {
+                    put(ContactsContract.Contacts.STARRED, if (starred) 1 else 0)
+                }
+            resolver.update(
+                ContactsContract.Contacts.CONTENT_URI,
+                values,
+                "${ContactsContract.Contacts.LOOKUP_KEY} = ?",
+                arrayOf(lookupKey)
+            ) > 0
         }
 
     /**
      * Resolves a fresh lookup key for a contact given its previous (possibly stale) lookup key.
      */
     suspend fun resolveLatestLookupKey(oldLookupKey: String): String? =
-        withContext(Dispatchers.IO) {
-            try {
-                val lookupUri =
-                    Uri.withAppendedPath(
-                        ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                        oldLookupKey
-                    )
-                val contactUri =
-                    ContactsContract.Contacts.lookupContact(resolver, lookupUri) ?: run {
-                        Log.i(TAG, "Contact not found for lookup key: $oldLookupKey")
-                        return@withContext null
-                    }
-                queryLookupKey(contactUri)
-            } catch (e: Exception) {
-                Log.e(TAG, "Unexpected error resolving lookup key.", e)
+        guardedIo(default = null, errorTag = "resolveLatestLookupKey: $oldLookupKey") {
+            val lookupUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, oldLookupKey)
+            val contactUri = ContactsContract.Contacts.lookupContact(resolver, lookupUri)
+            if (contactUri == null) {
+                Log.i(TAG, "Contact not found for lookup key: $oldLookupKey")
                 null
+            } else {
+                queryLookupKey(contactUri)
             }
         }
 
@@ -224,32 +191,18 @@ class ContactsDataSource(
      */
     @RequiresPermission(Manifest.permission.READ_CONTACTS)
     suspend fun resolvePhoneNumber(lookupKey: String): String? =
-        withContext(Dispatchers.IO) {
-            if (!hasContactsPermission()) return@withContext null
-            val projection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            val selection = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} = ?"
-            val selectionArgs = arrayOf(lookupKey)
-            val sortOrder =
-                "${ContactsContract.CommonDataKinds.Phone.IS_PRIMARY} DESC, " +
-                    "${ContactsContract.CommonDataKinds.Phone.TYPE} ASC"
-
-            try {
-                resolver
-                    .query(
-                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                        projection,
-                        selection,
-                        selectionArgs,
-                        sortOrder
-                    )?.use { cursor ->
-                        if (cursor.moveToFirst()) {
-                            return@withContext cursor.getString(0)
-                        }
-                    }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error resolving phone number for lookupKey: $lookupKey", e)
-            }
-            null
+        guardedIo(default = null, errorTag = "resolvePhoneNumber: $lookupKey") {
+            resolver
+                .query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER),
+                    "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} = ?",
+                    arrayOf(lookupKey),
+                    "${ContactsContract.CommonDataKinds.Phone.IS_PRIMARY} DESC, " +
+                        "${ContactsContract.CommonDataKinds.Phone.TYPE} ASC"
+                )?.use { cursor ->
+                    if (cursor.moveToFirst()) cursor.getString(0) else null
+                }
         }
 
     /**
@@ -260,50 +213,260 @@ class ContactsDataSource(
         number: String?,
         name: String?
     ): String? =
-        withContext(Dispatchers.IO) {
-            // 1. Cached URI
-            if (!cachedLookupUri.isNullOrEmpty()) {
-                runCatching {
-                    val cached = cachedLookupUri.toUri()
-                    val freshUri = ContactsContract.Contacts.lookupContact(resolver, cached)
-                    queryLookupKey(freshUri)
-                }.getOrNull()?.let { return@withContext it }
-            }
-
-            // 2. Phone number
-            if (!number.isNullOrEmpty()) {
-                val normalized = PhoneNumberUtils.normalizeNumber(number)
-                if (!normalized.isNullOrEmpty()) {
-                    val filterUri =
-                        Uri.withAppendedPath(
-                            ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
-                            Uri.encode(normalized)
-                        )
-                    queryLookupKey(filterUri)?.let { return@withContext it }
+        guardedIo(default = null, errorTag = "resolveLookupKey") {
+            // Tried in order of confidence: cached URI, then phone number, then display name.
+            resolveFromCachedUri(cachedLookupUri)
+                ?: resolveFromNumber(number)
+                ?: resolveFromName(name)
+                ?: run {
+                    Log.w(TAG, "No lookup key found for the given details.")
+                    null
                 }
-            }
-
-            // 3. Display name
-            if (!name.isNullOrEmpty()) {
-                val filterUri =
-                    Uri.withAppendedPath(
-                        ContactsContract.Contacts.CONTENT_FILTER_URI,
-                        Uri.encode(name)
-                    )
-                queryLookupKey(filterUri)?.let { return@withContext it }
-            }
-
-            Log.w(TAG, "No lookup key found for the given details.")
-            null
         }
 
-    fun hasContactsPermission(): Boolean =
+    private fun resolveFromCachedUri(cachedLookupUri: String?): String? {
+        if (cachedLookupUri.isNullOrEmpty()) return null
+        return runCatching {
+            val freshUri =
+                ContactsContract.Contacts.lookupContact(resolver, cachedLookupUri.toUri())
+            queryLookupKey(freshUri)
+        }.getOrNull()
+    }
+
+    private fun resolveFromNumber(number: String?): String? {
+        if (number.isNullOrEmpty()) return null
+        val normalized = PhoneNumberUtils.normalizeNumber(number)
+        if (normalized.isNullOrEmpty()) return null
+        val filterUri =
+            Uri.withAppendedPath(
+                ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
+                Uri.encode(normalized)
+            )
+        return queryLookupKey(filterUri)
+    }
+
+    private fun resolveFromName(name: String?): String? {
+        if (name.isNullOrEmpty()) return null
+        val filterUri =
+            Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_URI, Uri.encode(name))
+        return queryLookupKey(filterUri)
+    }
+
+    fun hasReadContactsPermission(): Boolean =
         ContextCompat.checkSelfPermission(
             context,
             Manifest.permission.READ_CONTACTS
         ) == PackageManager.PERMISSION_GRANTED
 
+    // ---- Writes ----
+
+    /**
+     * Inserts a brand-new contact and returns its raw contact id, or -1 on failure.
+     * The photo (if any) is written separately by the repository once the raw id is known.
+     */
+    suspend fun insertContact(draft: ContactForm): Long =
+        guardedIo(default = -1L, errorTag = "insertContact failed") {
+            val ops = ArrayList<ContentProviderOperation>()
+            ops +=
+                ContentProviderOperation
+                    .newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                    .withValue(ContactsContract.RawContacts.DIRTY, 0)
+                    .build()
+            ops += draft.buildDataInserts(rawContactBackReference = 0)
+
+            val results = resolver.applyBatch(ContactsContract.AUTHORITY, ops)
+            val rawContactUri = results.firstOrNull()?.uri ?: return@guardedIo -1L
+            ContentUris.parseId(rawContactUri)
+        }
+
+    /**
+     * Rewrites the editable fields of the raw contact [rawContactId] from [draft].
+     *
+     * Scoping every delete/insert to RAW_CONTACT_ID (rather than the aggregated CONTACT_ID) is what
+     * keeps data owned by other raw contacts of the same aggregate, e.g. WhatsApp, Signal, SIM, or a
+     * secondary account, untouched. Within this one raw contact we mirror the "delete then insert"
+     * strategy the platform requires for multi-row data (name/phones/emails/addresses). Returns true
+     * on success.
+     */
+    suspend fun updateContact(contactId: Long, rawContactId: Long, draft: ContactForm): Boolean =
+        guardedIo(default = false, errorTag = "updateContact failed for $contactId (raw $rawContactId)") {
+            val ops = ArrayList<ContentProviderOperation>()
+            val rawSelection =
+                "${ContactsContract.Data.RAW_CONTACT_ID} = ? AND ${ContactsContract.Data.MIMETYPE} = ?"
+
+            // Clear then re-insert the rows this editor owns, scoped to the editable raw contact.
+            for (mimeType in REWRITABLE_MIME_TYPES) {
+                ops +=
+                    ContentProviderOperation
+                        .newDelete(ContactsContract.Data.CONTENT_URI)
+                        .withSelection(rawSelection, arrayOf(rawContactId.toString(), mimeType))
+                        .build()
+            }
+            ops += draft.buildDataInserts(rawContactId = rawContactId)
+
+            resolver.applyBatch(ContactsContract.AUTHORITY, ops)
+            true
+        }
+
+    /**
+     * Writes [jpegBytes] as the display photo of the raw contact, or deletes the existing photo
+     * when [jpegBytes] is null.
+     */
+    suspend fun writeContactPhoto(rawContactId: Long, jpegBytes: ByteArray?): Boolean =
+        guardedIo(default = false, errorTag = "writeContactPhoto failed for $rawContactId") {
+            if (jpegBytes == null) {
+                resolver.delete(
+                    ContactsContract.Data.CONTENT_URI,
+                    "${ContactsContract.Data.RAW_CONTACT_ID} = ? AND ${ContactsContract.Data.MIMETYPE} = ?",
+                    arrayOf(
+                        rawContactId.toString(),
+                        ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE
+                    )
+                )
+                return@guardedIo true
+            }
+
+            val rawContactUri = ContentUris.withAppendedId(ContactsContract.RawContacts.CONTENT_URI, rawContactId)
+            val displayPhotoUri =
+                Uri.withAppendedPath(
+                    rawContactUri,
+                    ContactsContract.RawContacts.DisplayPhoto.CONTENT_DIRECTORY
+                )
+            resolver.openAssetFileDescriptor(displayPhotoUri, "rw")?.use { fd ->
+                fd.createOutputStream().use { it.write(jpegBytes) }
+            }
+            true
+        }
+
     // ---- Private helpers ----
+
+    /**
+     * Runs [block] on [Dispatchers.IO] behind the contacts permission check, returning [default]
+     * when the permission is missing or [block] throws.
+     */
+    private suspend fun <T> guardedIo(
+        default: T,
+        errorTag: String,
+        block: () -> T
+    ): T =
+        withContext(Dispatchers.IO) {
+            if (!hasReadContactsPermission()) return@withContext default
+            runCatching(block)
+                .onFailure { Log.e(TAG, errorTag, it) }
+                .getOrDefault(default)
+        }
+
+    private fun String?.nullIfBlank(): String? = this?.takeIf { it.isNotBlank() }
+
+    /**
+     * Builds the data-row insert operations shared by insert and update. Exactly one of
+     * [rawContactBackReference] (for a batch that also inserts the raw contact) or [rawContactId]
+     * (for an existing raw contact) must be provided.
+     */
+    private fun ContactForm.buildDataInserts(
+        rawContactBackReference: Int? = null,
+        rawContactId: Long? = null
+    ): List<ContentProviderOperation> {
+        fun newDataInsert(): ContentProviderOperation.Builder =
+            ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI).apply {
+                when {
+                    rawContactBackReference != null -> {
+                        withValueBackReference(
+                            ContactsContract.Data.RAW_CONTACT_ID,
+                            rawContactBackReference
+                        )
+                    }
+
+                    rawContactId != null -> {
+                        withValue(ContactsContract.Data.RAW_CONTACT_ID, rawContactId)
+                    }
+
+                    else -> {
+                        error("Either a back reference or a raw contact id must be provided")
+                    }
+                }
+            }
+
+        // A data row that carries a single value plus a type (phone/email/postal share this shape).
+        fun singleRowInsert(
+            mimeType: String,
+            valueColumn: String,
+            value: String,
+            typeColumn: String,
+            typeValue: Int
+        ): ContentProviderOperation =
+            newDataInsert()
+                .withValue(ContactsContract.Data.MIMETYPE, mimeType)
+                .withValue(valueColumn, value)
+                .withValue(typeColumn, typeValue)
+                .build()
+
+        val ops = ArrayList<ContentProviderOperation>()
+
+        // Structured name. On insert this is the contact's only name row; on update the caller has
+        // already deleted the previous name row for this raw contact (StructuredName is part of
+        // REWRITABLE_MIME_TYPES), so re-inserting keeps a single, up-to-date name row.
+        ops +=
+            newDataInsert()
+                .withValue(
+                    ContactsContract.Data.MIMETYPE,
+                    ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE
+                ).withValue(
+                    ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
+                    givenName.nullIfBlank()
+                ).withValue(
+                    ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME,
+                    familyName.nullIfBlank()
+                ).build()
+
+        preferredPhone.nullIfBlank()?.let { number ->
+            ops +=
+                singleRowInsert(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE,
+                    ContactsContract.CommonDataKinds.Phone.NUMBER,
+                    number,
+                    ContactsContract.CommonDataKinds.Phone.TYPE,
+                    ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
+                )
+        }
+
+        otherPhone.nullIfBlank()?.let { number ->
+            ops +=
+                singleRowInsert(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE,
+                    ContactsContract.CommonDataKinds.Phone.NUMBER,
+                    number,
+                    ContactsContract.CommonDataKinds.Phone.TYPE,
+                    ContactsContract.CommonDataKinds.Phone.TYPE_HOME
+                )
+        }
+
+        email.nullIfBlank()?.let { addr ->
+            ops +=
+                singleRowInsert(
+                    ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE,
+                    ContactsContract.CommonDataKinds.Email.ADDRESS,
+                    addr,
+                    ContactsContract.CommonDataKinds.Email.TYPE,
+                    ContactsContract.CommonDataKinds.Email.TYPE_HOME
+                )
+        }
+
+        address.nullIfBlank()?.let { postal ->
+            ops +=
+                singleRowInsert(
+                    ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE,
+                    ContactsContract.CommonDataKinds.StructuredPostal.FORMATTED_ADDRESS,
+                    postal,
+                    ContactsContract.CommonDataKinds.StructuredPostal.TYPE,
+                    ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME
+                )
+        }
+
+        return ops
+    }
 
     private fun queryLookupKey(contactUri: Uri?): String? {
         contactUri ?: return null
@@ -330,58 +493,60 @@ class ContactsDataSource(
         args: Array<String>
     ): Contact? {
         return resolver
-            .query(
-                ContactsContract.Contacts.CONTENT_URI,
-                CONTACT_PROJECTION,
-                selection,
-                args,
-                null
-            )?.use { cursor ->
+            .query(ContactsContract.Contacts.CONTENT_URI, CONTACT_PROJECTION, selection, args, null)
+            ?.use { cursor ->
                 if (!cursor.moveToFirst()) return@use null
 
                 val idIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID)
                 val keyIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.LOOKUP_KEY)
-                val nameIdx =
-                    cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
+                val nameIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
                 val photoIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)
-                val photoThumbIdx =
-                    cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)
+                val photoThumbIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)
                 val starIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)
 
-                loadContactDetails(
-                    id = cursor.getLong(idIdx),
-                    key = cursor.getString(keyIdx),
+                val id = cursor.getLong(idIdx)
+                val details = loadContactDetails(id)
+
+                Contact(
+                    id = id,
+                    lookupKey = cursor.getString(keyIdx),
                     name =
                         cursor.getString(nameIdx)
                             ?: context.getString(android.R.string.unknownName),
                     photoUri = cursor.getString(photoIdx),
                     photoThumbnailUri = cursor.getString(photoThumbIdx),
-                    starred = cursor.getInt(starIdx) == 1
+                    isStarred = cursor.getInt(starIdx) == 1,
+                    note = details.note,
+                    phones = details.phones,
+                    emails = details.emails,
+                    addresses = details.addresses,
+                    whatsappNumbers = details.whatsappNumbers,
+                    signalNumbers = details.signalNumbers,
+                    givenName = details.givenName,
+                    familyName = details.familyName
                 )
             }
     }
 
-    private fun loadContactDetails(
-        id: Long,
-        key: String,
-        name: String,
-        photoUri: String?,
-        photoThumbnailUri: String?,
-        starred: Boolean
-    ): Contact {
+    /**
+     * Reads all rows from the Data table for [contactId] and groups them into a [ContactData].
+     */
+    private fun loadContactDetails(contactId: Long): ContactData {
         val phones = mutableListOf<PhoneCandidate>()
         val emails = mutableListOf<Email>()
         val addresses = mutableListOf<Address>()
         val whatsapp = mutableSetOf<String>()
         val signal = mutableSetOf<String>()
         var note: String? = null
+        var givenName: String? = null
+        var familyName: String? = null
 
         resolver
             .query(
                 ContactsContract.Data.CONTENT_URI,
                 DATA_PROJECTION,
                 "${ContactsContract.Data.CONTACT_ID} = ?",
-                arrayOf(id.toString()),
+                arrayOf(contactId.toString()),
                 null
             )?.use { cursor ->
                 val mimeIdx = cursor.getColumnIndexOrThrow(ContactsContract.Data.MIMETYPE)
@@ -431,6 +596,11 @@ class ContactsDataSource(
                             note = data1
                         }
 
+                        ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE -> {
+                            givenName = cursor.getString(data2Idx)
+                            familyName = data3
+                        }
+
                         WhatsAppHandler.WHATSAPP_PROFILE_MIMETYPE -> {
                             whatsapp += data1
                         }
@@ -442,19 +612,15 @@ class ContactsDataSource(
                 }
             }
 
-        return Contact(
-            id,
-            key,
-            name,
-            photoUri,
-            photoThumbnailUri,
-            starred,
-            note,
-            deduplicatePhones(phones),
-            emails,
-            addresses,
-            whatsapp.toList(),
-            signal.toList()
+        return ContactData(
+            addresses = addresses,
+            emails = emails,
+            familyName = familyName,
+            givenName = givenName,
+            note = note,
+            phones = deduplicatePhones(phones),
+            signalNumbers = signal.toList(),
+            whatsappNumbers = whatsapp.toList()
         )
     }
 
@@ -491,6 +657,20 @@ class ContactsDataSource(
                 existing.phone.type != ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
         }
 
+    /**
+     * Per-row details of a contact read from the Data table.
+     */
+    private data class ContactData(
+        val note: String?,
+        val phones: List<Phone>,
+        val emails: List<Email>,
+        val addresses: List<Address>,
+        val whatsappNumbers: List<String>,
+        val signalNumbers: List<String>,
+        val givenName: String?,
+        val familyName: String?
+    )
+
     private data class PhoneCandidate(
         val phone: Phone,
         val accountType: String?
@@ -513,13 +693,10 @@ class ContactsDataSource(
         val lookup = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)
         val name = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
         val number = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)
-        val normalizedNumber =
-            cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
+        val normalizedNumber = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
         val photo = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
-        val photoThumbnail =
-            cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI)
-        val primary =
-            cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY)
+        val photoThumbnail = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI)
+        val primary = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY)
         val starred = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.STARRED)
         val type = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.TYPE)
         val label = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL)
@@ -568,6 +745,19 @@ class ContactsDataSource(
                 ContactsContract.Data.DATA3,
                 ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER,
                 ContactsContract.RawContacts.ACCOUNT_TYPE
+            )
+
+        /**
+         * Data mime types that the add/edit screen fully owns and rewrites (delete + insert) on
+         * every update, scoped to the editable raw contact. StructuredName is included so the name
+         * row is rewritten rather than duplicated.
+         */
+        private val REWRITABLE_MIME_TYPES =
+            arrayOf(
+                ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE,
+                ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE,
+                ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE,
+                ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE
             )
     }
 }

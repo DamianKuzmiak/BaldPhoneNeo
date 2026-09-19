@@ -32,8 +32,6 @@ import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog
 
-import com.bald.uriah.baldphone.activities.contacts.AddContactActivity
-
 class ContactsActivity : BaseActivity() {
     companion object {
         /** Pass as a boolean extra to open the activity in contact-picker mode. */

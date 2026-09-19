@@ -438,7 +438,9 @@
     <string name="_long">Lungo</string>
     <string name="_short">Breve</string>
     <string name="do_you_want_to_save_your_changes">Vuoi salvare le modifiche?</string>
-    <string name="discard">Scarta</string>
+    <string name="discard">Scarta modifiche</string>
+    <string name="discard_changes_title">Annullare le modifiche?</string>
+    <string name="discard_changes_message">Le modifiche non salvate andranno perse.</string>
     <string name="no_recent_calls">Nessuna chiamata recente</string>
 
     <string name="edit_home_screen">Modifica schermata Home</string>
@@ -501,6 +503,17 @@
     <string name="toast_mode_normal">Suono attivo. Sentirai suonerie e notifiche.</string>
     <string name="toast_mode_vibrate">Solo vibrazione. Il telefono non squillerà.</string>
     <string name="toast_mode_silent">Completamente silenzioso. Nessun suono o vibrazione.</string>
+
+    <!-- Add / Edit contact -->
+    <string name="add_photo">Aggiungi foto</string>
+    <string name="edit_contact">Modifica contatto</string>
+    <string name="edit_in_contacts_app">Modifica nell\'app Contatti</string>
+    <string name="edit_in_contacts_app_discard_warning">Hai modifiche non salvate. Aprendo l\'app Contatti verranno annullate. Continuare?</string>
+    <string name="first_name">Nome</string>
+    <string name="last_name">Cognome</string>
+    <string name="phone_number">Numero di telefono</string>
+    <string name="phone_number_optional">Secondo numero di telefono</string>
+    <string name="remove_photo">Rimuovi foto</string>
 
     <!-- Credits tasks -->
     <string name="credit_task_uriah">Per aver posto le basi di questo progetto</string>

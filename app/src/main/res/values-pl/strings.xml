@@ -400,7 +400,9 @@
     <string name="_long">Długie</string>
     <string name="_short">Krótkie</string>
     <string name="do_you_want_to_save_your_changes">Czy chcesz zapisać zmiany?</string>
-    <string name="discard">Odrzuć</string>
+    <string name="discard">Odrzuć zmiany</string>
+    <string name="discard_changes_title">Anulować edycję?</string>
+    <string name="discard_changes_message">Niezapisane zmiany zostaną utracone.</string>
     <string name="no_recent_calls">Brak ostatnich połączeń</string>
     <string name="edit_home_screen">Edytuj ekran główny</string>
     <string-array name="names_for_screenshots">
@@ -446,6 +448,17 @@
     <string name="toast_mode_normal">Dźwięk włączony. Słyszysz dzwonki i powiadomienia.</string>
     <string name="toast_mode_vibrate">Same wibracje. Telefon nie będzie dzwonił.</string>
     <string name="toast_mode_silent">Całkowicie wyciszony. Brak dźwięków i wibracji.</string>
+
+    <!-- Add / Edit contact -->
+    <string name="add_photo">Dodaj zdjęcie</string>
+    <string name="edit_contact">Edytuj kontakt</string>
+    <string name="edit_in_contacts_app">Edytuj w aplikacji Kontakty</string>
+    <string name="edit_in_contacts_app_discard_warning">Masz niezapisane zmiany. Otwarcie aplikacji Kontakty spowoduje ich odrzucenie. Kontynuować?</string>
+    <string name="first_name">Imię</string>
+    <string name="last_name">Nazwisko</string>
+    <string name="phone_number">Numer telefonu</string>
+    <string name="phone_number_optional">Drugi numer telefonu</string>
+    <string name="remove_photo">Usuń zdjęcie</string>
 
     <!-- Credits tasks -->
     <string name="credit_task_uriah">Za stworzenie fundamentów tego projektu</string>
