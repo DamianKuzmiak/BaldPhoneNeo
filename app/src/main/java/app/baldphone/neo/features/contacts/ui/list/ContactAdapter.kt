@@ -1,4 +1,4 @@
-package app.baldphone.neo.features.contacts.ui
+package app.baldphone.neo.features.contacts.ui.list
 
 import android.provider.ContactsContract
 import android.view.LayoutInflater
@@ -20,8 +20,8 @@ import app.baldphone.neo.databinding.ContactItemAddBinding
 import app.baldphone.neo.databinding.ContactItemBinding
 import app.baldphone.neo.databinding.ItemListHeaderBinding
 import app.baldphone.neo.extensions.setClickableAccessibilityRole
-import app.baldphone.neo.features.contacts.ContactItemType
-import app.baldphone.neo.features.contacts.SimpleContact
+import app.baldphone.neo.features.contacts.model.ContactItemType
+import app.baldphone.neo.features.contacts.model.SimpleContact
 
 import com.bald.uriah.baldphone.adapters.ModularListAdapter
 

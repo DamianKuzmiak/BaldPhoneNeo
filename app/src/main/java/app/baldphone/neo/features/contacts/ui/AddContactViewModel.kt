@@ -31,9 +31,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.R
-import app.baldphone.neo.features.contacts.Contact
 import app.baldphone.neo.features.contacts.ContactForm
 import app.baldphone.neo.features.contacts.data.ContactRepository
+import app.baldphone.neo.features.contacts.model.Contact
 import app.baldphone.neo.utils.ImageUtils
 
 class AddContactViewModel(
@@ -100,24 +100,26 @@ class AddContactViewModel(
 
             viewModelScope.launch {
                 val photoBytes = resolvePhotoBytes()
+                val readyDraft = draft.copy(photo = photoBytes)
                 val contactId = state.contactId
                 val isEdit = contactId != null
 
-                val success =
+                val result =
                     if (contactId != null) {
-                        repository.updateContact(contactId, draft, photoBytes)
+                        repository.updateContact(contactId, readyDraft)
                     } else {
-                        repository.createContact(draft, photoBytes)
+                        repository.createContact(readyDraft)
                     }
 
-                if (success) {
-                    _uiState.update { it.copy(saveSuccess = true) }
-                } else {
-                    _uiState.update { it.copy(isSaving = false) }
-                    _errors.emit(
-                        if (isEdit) R.string.contact_not_updated else R.string.contact_not_created
-                    )
-                }
+                result
+                    .onSuccess {
+                        _uiState.update { it.copy(saveSuccess = true) }
+                    }.onFailure {
+                        _uiState.update { it.copy(isSaving = false) }
+                        _errors.emit(
+                            if (isEdit) R.string.contact_not_updated else R.string.contact_not_created
+                        )
+                    }
             }
         } else {
             viewModelScope.launch {

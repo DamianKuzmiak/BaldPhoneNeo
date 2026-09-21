@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.data.ContactRepository
+import app.baldphone.neo.features.contacts.model.ContactItemType
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.getDeviceRegion
 
@@ -25,7 +25,6 @@ import app.baldphone.neo.utils.getDeviceRegion
  * - Searches contacts by phone number and T9 name matching
  */
 class DialerViewModel(application: Application) : AndroidViewModel(application) {
-
     // Raw number input (unformatted)
     private val _rawNumber = MutableStateFlow("")
     val rawNumber: StateFlow<String> = _rawNumber.asStateFlow()
@@ -39,7 +38,8 @@ class DialerViewModel(application: Application) : AndroidViewModel(application) 
     private val contactRepository = ContactRepository.getInstance(application)
 
     val searchResults: StateFlow<List<ContactItemType>?> =
-        contactRepository.observeDialer(rawNumber)
+        contactRepository
+            .observeDialer(rawNumber)
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),

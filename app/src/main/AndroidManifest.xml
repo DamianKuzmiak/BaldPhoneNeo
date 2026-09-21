@@ -164,12 +164,12 @@
             android:label="@string/add_alarm"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".features.contacts.ui.ContactsActivity"
+            android:name=".features.contacts.ui.list.ContactsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize|stateUnchanged"
             android:label="@string/contacts" />
         <activity
-            android:name=".features.contacts.ui.ContactDetailsActivity"
+            android:name=".features.contacts.ui.details.ContactDetailsActivity"
             android:exported="false"
             android:label="Contact details" />
         <activity

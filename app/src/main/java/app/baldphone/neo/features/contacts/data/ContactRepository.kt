@@ -1,443 +1,143 @@
 package app.baldphone.neo.features.contacts.data
 
 import android.content.Context
-import android.database.ContentObserver
-import android.os.Handler
-import android.os.Looper
-import android.provider.ContactsContract
 import android.util.Log
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.job
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 
-import java.util.LinkedHashMap
-
-import app.baldphone.neo.features.contacts.Contact
 import app.baldphone.neo.features.contacts.ContactForm
-import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.ContactSearcher
-import app.baldphone.neo.features.contacts.SimpleContact
+import app.baldphone.neo.features.contacts.data.source.ContactReader
+import app.baldphone.neo.features.contacts.data.source.ContactWriter
+import app.baldphone.neo.features.contacts.model.Contact
+import app.baldphone.neo.features.contacts.model.ContactItemType
+import app.baldphone.neo.features.contacts.model.SimpleContact
 
-/**
- * Singleton contact repository that orchestrates data flow, caching, and reactivity.
- *
- * Delegates raw ContentResolver operations to [ContactsDataSource] and owns the reactive [contacts]
- * StateFlow fed by a ContentObserver.
- */
 class ContactRepository private constructor(
-    private val context: Context
+    context: Context
 ) {
-    private var isObserverRegistered = false
-    private val dataSource = ContactsDataSource(context)
-    private val contactSearcher = ContactSearcher(ContactSearcher.buildCharToDigitMap(context))
-
-    private val _contacts = MutableStateFlow<List<SimpleContact>?>(null)
-    private val _allPhoneContacts = MutableStateFlow<List<SimpleContact>?>(null)
-    private var activeRefreshJob: Job? = null
+    private val reader = ContactReader(context)
+    private val writer = ContactWriter(context)
+    private val searcher = ContactSearcher(ContactSearcher.buildCharToDigitMap(context))
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
-    private var refreshDebounceJob: Job? = null
 
-    // Paging state
-    private val contactsPage = MutableStateFlow(1)
-    private val dialerPage = MutableStateFlow(1)
-    private val refreshTrigger = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
-    private var lastContactsEmittedSize = 0
-    private var lastDialerEmittedSize = 0
+    private val cache = ContactCache(context, reader, scope)
+
+    private val contactsStream =
+        PagedContactStream(
+            source = cache.contacts,
+            searcher = searcher,
+            enableT9 = false,
+            showAllWhenEmpty = true,
+            supportsFavorites = true,
+            tag = "ContactsStream"
+        )
+
+    private val dialerStream =
+        PagedContactStream(
+            source = cache.allPhoneContacts,
+            searcher = searcher,
+            enableT9 = true,
+            showAllWhenEmpty = false,
+            supportsFavorites = false,
+            tag = "DialerStream"
+        )
 
     /** Emits whenever contacts database changes and a reload has completed. */
-    val refreshEvents: Flow<Unit> = refreshTrigger
+    val refreshEvents: Flow<Unit> = cache.refreshEvents
 
     /** Deduplicated contacts (one best phone per contact). Used by ContactsActivity. */
-    val contacts: StateFlow<List<SimpleContact>?> = _contacts.asStateFlow()
+    val contacts: StateFlow<List<SimpleContact>?> = cache.contacts
 
-    /**
-     * ContentObserver on Contacts URI. Fires on any external insert/update/delete.
-     * Debounced to avoid cascading reloads from batch operations (e.g., account sync).
-     */
-    private val contactsObserver =
-        object : ContentObserver(Handler(Looper.getMainLooper())) {
-            override fun onChange(selfChange: Boolean) {
-                Log.d(TAG, "contactsObserver: External change detected, scheduling refresh...")
-                refreshDebounceJob?.cancel()
-                refreshDebounceJob =
-                    scope.launch {
-                        delay(OBSERVER_DEBOUNCE_MS)
-                        Log.d(TAG, "contactsObserver: Debounce finished, triggering refresh")
-                        refresh(forceFullScan = true)
-                    }
-            }
-        }
+    fun clear() = cache.clear()
 
-    init {
-        tryRegisterObserver()
-    }
-
-    private fun tryRegisterObserver() {
-        if (isObserverRegistered) return
-        if (dataSource.hasReadContactsPermission()) {
-            try {
-                context.contentResolver.registerContentObserver(
-                    ContactsContract.Contacts.CONTENT_URI,
-                    true,
-                    contactsObserver
-                )
-                isObserverRegistered = true
-                Log.i(TAG, "ContentObserver registered successfully")
-            } catch (e: SecurityException) {
-                Log.e(TAG, "Failed to register ContentObserver even with permission check pass", e)
-            }
-        } else {
-            Log.d(TAG, "Skipping ContentObserver registration: No READ_CONTACTS permission")
-        }
-    }
-
-    fun clear() {
-        if (isObserverRegistered) {
-            context.contentResolver.unregisterContentObserver(contactsObserver)
-            isObserverRegistered = false
-        }
-        scope.cancel()
-    }
-
-    suspend fun refresh(forceFullScan: Boolean = false) {
-        tryRegisterObserver()
-        coroutineScope {
-            activeRefreshJob?.cancelAndJoin()
-            activeRefreshJob = coroutineContext.job
-
-            val startTime = System.currentTimeMillis()
-            Log.d(TAG, "refresh: Starting reload (forceFullScan=$forceFullScan)...")
-
-            // Skip full scan if we already have cached data and this is not a forced refresh (e.g. ContentObserver),
-            if (!forceFullScan && !_allPhoneContacts.value.isNullOrEmpty()) {
-                Log.d(TAG, "refresh: Cache already populated, skipping full scan")
-                refreshTrigger.tryEmit(Unit)
-                return@coroutineScope
-            }
-
-            var fullScanRequired = true
-
-            // Step 1: Fast initial fetch (first PAGE_SIZE)
-            if (_allPhoneContacts.value.isNullOrEmpty()) {
-                val firstPageRows = dataSource.fetchPhoneContacts(limit = PAGE_SIZE)
-                _contacts.value = deduplicateContacts(firstPageRows)
-                _allPhoneContacts.value = deduplicatePhoneRows(firstPageRows)
-
-                // If we got fewer than PAGE_SIZE rows, we've already reached the end
-                if (firstPageRows.size < PAGE_SIZE) {
-                    fullScanRequired = false
-                }
-
-                Log.i(
-                    TAG,
-                    "refresh: Initial page load complete (count: ${firstPageRows.size}) in ${System.currentTimeMillis() - startTime}ms"
-                )
-            }
-
-            if (!fullScanRequired) {
-                Log.d(TAG, "refresh: Full scan skipped (already at EOF)")
-                refreshTrigger.tryEmit(Unit)
-                return@coroutineScope
-            }
-
-            // Step 2: Full background fetch
-            val allRows = dataSource.fetchPhoneContacts(limit = -1)
-            val deduplicated = deduplicateContacts(allRows)
-            val allPhoneRows = deduplicatePhoneRows(allRows)
-
-            if (deduplicated != _contacts.value) {
-                _contacts.value = deduplicated
-                Log.i(TAG, "refresh: Contacts collection UPDATED (count: ${deduplicated.size})")
-            } else {
-                Log.d(TAG, "refresh: Contacts collection UNCHANGED")
-            }
-
-            if (allPhoneRows != _allPhoneContacts.value) {
-                _allPhoneContacts.value = allPhoneRows
-                Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${allPhoneRows.size})")
-            }
-
-            refreshTrigger.tryEmit(Unit)
-            Log.d(
-                TAG,
-                "refresh: Completed full load in ${System.currentTimeMillis() - startTime}ms"
-            )
-        }
-    }
+    suspend fun refresh(forceFullScan: Boolean = false) = cache.refresh(forceFullScan)
 
     fun observeContacts(
         queryFlow: Flow<String>,
         favoritesOnlyFlow: Flow<Boolean>
-    ): Flow<List<ContactItemType>?> = observeInternal(queryFlow, favoritesOnlyFlow, isDialer = false)
+    ): Flow<List<ContactItemType>?> = contactsStream.observe(queryFlow, favoritesOnlyFlow)
 
     fun observeDialer(queryFlow: Flow<String>): Flow<List<ContactItemType>?> =
-        observeInternal(queryFlow, flowOf(false), isDialer = true)
+        dialerStream.observe(queryFlow, flowOf(false))
 
-    private fun observeInternal(
-        queryFlow: Flow<String>,
-        favoritesOnlyFlow: Flow<Boolean>,
-        isDialer: Boolean
-    ): Flow<List<ContactItemType>?> {
-        val pageFlow = if (!isDialer) contactsPage else dialerPage
+    fun loadNextContactsPage() = contactsStream.loadNextPage()
 
-        val processedQuery =
-            queryFlow
-                .debounce { if (it.isEmpty()) 0L else 250L }
-                .distinctUntilChanged()
-                .onEach { pageFlow.value = 1 }
+    fun loadNextDialerPage() = dialerStream.loadNextPage()
 
-        val processedFavorites =
-            favoritesOnlyFlow
-                .distinctUntilChanged()
-                .onEach { pageFlow.value = 1 }
-
-        val sourceFlow = if (isDialer) _allPhoneContacts else _contacts
-
-        return combine(
-            processedQuery,
-            processedFavorites,
-            pageFlow,
-            sourceFlow
-        ) { query, favoritesOnly, page, sourceList ->
-            if (sourceList == null) {
-                Log.v(
-                    TAG,
-                    "observeInternal[isDialer=$isDialer]: Cache is null, returning null (loading)"
-                )
-                return@combine null
-            }
-
-            val startTime = System.currentTimeMillis()
-            Log.v(
-                TAG,
-                "observeInternal[isDialer=$isDialer]: Triggered by [query=\"$query\", fav=$favoritesOnly, page=$page, cached items=${sourceList.size}]"
-            )
-
-            val limit = page * PAGE_SIZE
-
-            // Apply in-memory Logic (T9, Phone Substring, Favorites, Grouping)
-            // Passing the paging limit down to avoid processing all 1000s of contacts if just showing the first page
-            val processed =
-                withContext(Dispatchers.Default) {
-                    contactSearcher.searchContacts(
-                        allContacts = sourceList,
-                        query = query,
-                        isFavorites = if (!isDialer) favoritesOnly else false,
-                        enableT9 = isDialer,
-                        showAllWhenEmpty = !isDialer,
-                        itemLimit = limit
-                    )
-                }
-
-            Log.d(
-                TAG,
-                "observeInternal[isDialer=$isDialer]: Emitting ${processed.size} items (processed in ${System.currentTimeMillis() - startTime}ms)"
-            )
-            if (isDialer) {
-                lastDialerEmittedSize = processed.size
-            } else {
-                lastContactsEmittedSize = processed.size
-            }
-            processed
-        }.flowOn(Dispatchers.Default)
-            .onStart {
-                if (sourceFlow.value == null) {
-                    Log.v(
-                        TAG,
-                        "observeInternal[isDialer=$isDialer]: Emitting initial null (loading)"
-                    )
-                    emit(null)
-                }
-            }.distinctUntilChanged()
-    }
-
-    fun loadNextContactsPage() {
-        val currentLimit = contactsPage.value * PAGE_SIZE
-        if (lastContactsEmittedSize >= currentLimit) {
-            contactsPage.value++
-            Log.d(TAG, "loadNextContactsPage: New Page: ${contactsPage.value}")
-        } else {
-            Log.d(TAG, "loadNextContactsPage: Blocked (reached EOF)")
-        }
-    }
-
-    fun loadNextDialerPage() {
-        val currentLimit = dialerPage.value * PAGE_SIZE
-        if (lastDialerEmittedSize >= currentLimit) {
-            dialerPage.value++
-            Log.d(TAG, "loadNextDialerPage: New Page: ${dialerPage.value}")
-        } else {
-            Log.d(TAG, "loadNextDialerPage: Blocked (reached EOF)")
-        }
-    }
-
-    /**
-     * One-shot fetch of a single contact. Automatically handles stale lookup keys.
-     */
+    /** One-shot fetch of a single contact. Automatically handles stale lookup keys. */
     suspend fun getContact(lookupKey: String): Contact? {
         Log.d(TAG, "getContact: $lookupKey")
 
-        dataSource.queryContact(lookupKey)?.let { return it }
+        reader.queryContact(lookupKey)?.let { return it }
 
-        val freshKey = dataSource.resolveLatestLookupKey(lookupKey)
+        val freshKey = reader.resolveLatestLookupKey(lookupKey)
         if (freshKey != null && freshKey != lookupKey) {
-            return dataSource.queryContact(freshKey)
+            return reader.queryContact(freshKey)
         }
 
         return null
     }
 
     /**
-     * Creates a new contact from [draft] and applies the [photo] change.
-     * Returns true on success. Triggers a refresh so observers see the new contact.
-     *
-     * Photo convention: null = leave as is, empty = remove, non-empty = set/replace.
+     * Creates a new contact from [draft]. Refresh for contact list is handled by the cache observer.
+     * Succeeds only when the provider returns a valid new id; any failure cause is propagated.
      */
-    suspend fun createContact(draft: ContactForm, photo: ByteArray? = null): Boolean {
-        val rawContactId = dataSource.insertContact(draft)
-        if (rawContactId <= 0L) return false
-
-        applyPhoto(rawContactId, photo)
-        refresh(forceFullScan = true)
-        return true
-    }
-
-    /**
-     * Updates the existing [contact] with the values in [draft] and applies the [photo] change.
-     * Returns true on success. Triggers a refresh so observers see the edited contact.
-     *
-     * Photo convention: null = leave as is, empty = remove, non-empty = set/replace.
-     */
-    suspend fun updateContact(
-        contactId: Long,
-        draft: ContactForm,
-        photo: ByteArray? = null
-    ): Boolean {
-        val rawContactId = dataSource.getRawContactId(contactId)
-        if (rawContactId <= 0L) return false
-
-        val updated = dataSource.updateContact(contactId, rawContactId, draft)
-        if (!updated) return false
-
-        applyPhoto(rawContactId, photo)
-        refresh(forceFullScan = true)
-        return true
-    }
-
-    /**
-     * Applies a photo change using the shared convention:
-     * - null: leave the current photo untouched (no-op)
-     * - empty (size 0): remove the current photo
-     * - non-empty: set/replace with the given JPEG bytes
-     */
-    private suspend fun applyPhoto(rawContactId: Long, photo: ByteArray?) {
-        when {
-            photo == null -> Unit
-            photo.isEmpty() -> dataSource.writeContactPhoto(rawContactId, jpegBytes = null)
-            else -> dataSource.writeContactPhoto(rawContactId, photo)
+    suspend fun createContact(draft: ContactForm): Result<Unit> =
+        writer.insertContact(draft).mapCatching { newId ->
+            check(newId > 0L) { "createContact: provider returned invalid id $newId" }
         }
+
+    /**
+     * Updates the existing contact identified by [contactId] with the values in [draft].
+     * Refresh for contact details is handled by the cache observer.
+     */
+    suspend fun updateContact(contactId: Long, draft: ContactForm): Result<Unit> {
+        val rawContactId = reader.getRawContactId(contactId)
+        if (rawContactId <= 0L) {
+            return Result.failure(IllegalStateException("updateContact: no raw contact for id $contactId"))
+        }
+
+        return writer.updateContact(rawContactId, draft).requireChanged("updateContact")
     }
 
     @Deprecated("Java interop only")
     fun resolvePhoneNumberJava(lookupKey: String): String? =
-        runBlocking { dataSource.resolvePhoneNumber(lookupKey) }
+        runBlocking { reader.resolvePhoneNumber(lookupKey) }
 
-    suspend fun deleteContact(lookupKey: String): Boolean = dataSource.deleteContact(lookupKey)
+    suspend fun deleteContact(lookupKey: String): Result<Unit> =
+        writer.deleteContact(lookupKey).requireChanged("deleteContact")
 
-    suspend fun toggleFavorite(lookupKey: String): Boolean {
+    suspend fun toggleFavorite(lookupKey: String): Result<Unit> {
         val current =
-            _contacts.value?.find { it.lookupKey == lookupKey }?.isStarred
-                ?: dataSource.queryContact(lookupKey)?.isStarred
-                ?: return false
+            contacts.value?.find { it.lookupKey == lookupKey }?.isStarred
+                ?: reader.queryContact(lookupKey)?.isStarred
+                ?: return Result.failure(IllegalStateException("toggleFavorite: contact not found"))
         return updateFavorite(lookupKey, !current)
     }
 
     suspend fun updateFavorite(
         lookupKey: String,
         starred: Boolean
-    ): Boolean = dataSource.updateFavorite(lookupKey, starred)
+    ): Result<Unit> = writer.updateFavorite(lookupKey, starred).requireChanged("updateFavorite")
 
     /**
-     * Keeps only the best phone number per contact for the Contacts list.
-     * Priority: isPrimary > TYPE_MOBILE > first encountered.
+     * Normalizes a writer result: a successful call that changed no rows is treated as a failure,
+     * so callers get a single "did it work" contract instead of a `Result<Boolean>`.
      */
-    private suspend fun deduplicateContacts(rows: List<SimpleContact>): List<SimpleContact> =
-        withContext(Dispatchers.Default) {
-            val result = LinkedHashMap<Long, SimpleContact>(rows.size)
-            for (candidate in rows) {
-                val existing = result[candidate.id]
-                if (existing == null || isBetter(candidate, existing)) {
-                    result[candidate.id] = candidate
-                }
-            }
-            result.values.toList()
+    private fun Result<Boolean>.requireChanged(op: String): Result<Unit> =
+        mapCatching { changed ->
+            check(changed) { "$op: provider reported no rows changed" }
         }
-
-    private fun isBetter(
-        candidate: SimpleContact,
-        current: SimpleContact
-    ): Boolean {
-        if (candidate.isPrimary && !current.isPrimary) return true
-        if (!current.isPrimary &&
-            candidate.phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE &&
-            current.phoneType != ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
-        ) {
-            return true
-        }
-        return false
-    }
-
-    /**
-     * Deduplication for the dialer search source.
-     * Keeps one row per distinct number of a contact, so a person with multiple different numbers
-     * still yields multiple entries, as required by the dialer.
-     */
-    private suspend fun deduplicatePhoneRows(rows: List<SimpleContact>): List<SimpleContact> =
-        withContext(Dispatchers.Default) {
-            val result = LinkedHashMap<Pair<Long, String>, SimpleContact>(rows.size)
-
-            for (candidate in rows) {
-                val key = candidate.id to candidate.numberKey()
-                val existing = result[key]
-
-                if (existing == null || isBetter(candidate, existing)) {
-                    result[key] = candidate
-                }
-            }
-            result.values.toList()
-        }
-
-    /** Stable key identifying the same phone number regardless of source/formatting. */
-    private fun SimpleContact.numberKey(): String =
-        normalizedNumber.takeIf { it.isNotEmpty() }
-            ?: phoneNumber.filter { it.isDigit() || it == '+' }.takeIf { it.isNotEmpty() }
-            ?: phoneNumber
 
     companion object {
         private const val TAG = "ContactRepository"
-        private const val OBSERVER_DEBOUNCE_MS = 300L
         internal const val PAGE_SIZE = 50
 
         @Volatile

@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.features.calls.ContactLookupResult
 import app.baldphone.neo.features.calls.RecentCallsPager
-import app.baldphone.neo.features.contacts.data.ContactsDataSource
+import app.baldphone.neo.features.contacts.data.source.ContactReader
 
 /**
  * ViewModel for [RecentCallsActivity].
@@ -26,7 +26,7 @@ import app.baldphone.neo.features.contacts.data.ContactsDataSource
 class RecentCallsViewModel(application: Application) : AndroidViewModel(application) {
     private val pager: RecentCallsPager =
         RecentCallsPager(application, viewModelScope, Prefs.isCombineDuplicateCallsEnabled)
-    private val dataSource by lazy { ContactsDataSource(getApplication()) }
+    private val contactReader by lazy { ContactReader(getApplication()) }
 
     private val _uiEvents = MutableSharedFlow<RecentCallsEvent>()
     val uiEvents = _uiEvents.asSharedFlow()
@@ -93,7 +93,7 @@ class RecentCallsViewModel(application: Application) : AndroidViewModel(applicat
             return ContactLookupResult.Unknown(number, name)
         }
 
-        val lookupKey = dataSource.resolveLookupKey(lookupUri, number, name)
+        val lookupKey = contactReader.resolveLookupKey(lookupUri, number, name)
         return if (lookupKey != null) {
             ContactLookupResult.Found(lookupKey)
         } else {

@@ -1,4 +1,4 @@
-package app.baldphone.neo.features.contacts.ui
+package app.baldphone.neo.features.contacts.ui.details
 
 import android.content.Context
 import android.content.Intent
@@ -32,7 +32,9 @@ import app.baldphone.neo.databinding.ActivityContactDetailsBinding
 import app.baldphone.neo.databinding.ContactCallItemBinding
 import app.baldphone.neo.databinding.ItemContactFieldBinding
 import app.baldphone.neo.features.calls.CallUiHelper
-import app.baldphone.neo.features.contacts.Contact
+import app.baldphone.neo.features.contacts.model.Contact
+import app.baldphone.neo.features.contacts.ui.AddContactActivity
+import app.baldphone.neo.features.contacts.ui.AddContactActivity.Companion.CONTACT_LOOKUP_KEY
 import app.baldphone.neo.ui.dialogs.BaldDialog
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.dialogs.showSuccessSnackbar
@@ -44,6 +46,7 @@ import app.baldphone.neo.utils.openMap
 import app.baldphone.neo.utils.sendEmail
 import app.baldphone.neo.utils.sendMessage
 import app.baldphone.neo.utils.shareContact
+import app.baldphone.neo.utils.startActivityWithNewTaskClear
 import app.baldphone.neo.utils.viewContactPhoto
 
 /** Activity for viewing and interacting with a single contact. */
@@ -90,12 +93,9 @@ class ContactDetailsActivity : BaseActivity() {
                 }
 
                 launch {
-                    viewModel.uiState
-                        .map { it.isFavorite }
-                        .distinctUntilChanged()
-                        .collect { isFavorite ->
-                            updateFavoriteIcon(isFavorite)
-                        }
+                    viewModel.uiState.map { it.isFavorite }.distinctUntilChanged().collect { isFavorite ->
+                        updateFavoriteIcon(isFavorite)
+                    }
                 }
 
                 launch {
@@ -117,6 +117,24 @@ class ContactDetailsActivity : BaseActivity() {
                             ContactDetailsResult.ContactNotFound -> {
                                 this@ContactDetailsActivity.showErrorSnackbar("No contact found!")
                                 finish()
+                            }
+
+                            ContactDetailsResult.ContactDeleteFailed -> {
+                                this@ContactDetailsActivity.showErrorSnackbar(R.string.contact_not_deleted)
+                            }
+
+                            ContactDetailsResult.ContactUpdateFailed -> {
+                                this@ContactDetailsActivity.showErrorSnackbar(R.string.contact_not_updated)
+                            }
+
+                            is ContactDetailsResult.FavoriteUpdated -> {
+                                val resId =
+                                    if (event.isFavorite) {
+                                        R.string.contact_added_to_favorites
+                                    } else {
+                                        R.string.contact_removed_from_favorites
+                                    }
+                                showSuccessSnackbar(resId)
                             }
                         }
                     }
@@ -311,11 +329,8 @@ class ContactDetailsActivity : BaseActivity() {
                 iconRes = R.drawable.star_on_button,
                 labelRes = R.string.action_toggle_favorite,
                 checked = isFavorite
-            ) { checked ->
+            ) {
                 viewModel.toggleFavorite()
-                val resId =
-                    if (checked) R.string.contact_added_to_favorites else R.string.contact_removed_from_favorites
-                showSuccessSnackbar(resId)
             }
 
             toggle(
@@ -372,20 +387,22 @@ class ContactDetailsActivity : BaseActivity() {
     }
 
     companion object {
-        const val CONTACT_LOOKUP_KEY = "contactLookupKey"
         private const val TAG = "ContactDetailsActivity"
 
         /**
-         * Open the BaldPhone contact details activity for the given contact.
+         * Open this contact details activity for the given contact.
          */
-        fun openContact(
-            context: Context,
-            key: String
-        ) {
+        @JvmStatic
+        @JvmOverloads
+        fun openContact(context: Context, key: String, clearTask: Boolean = false) {
             try {
                 val intent =
                     Intent(context, ContactDetailsActivity::class.java).apply { putExtra(CONTACT_LOOKUP_KEY, key) }
-                context.startActivity(intent)
+                if (clearTask) {
+                    context.startActivityWithNewTaskClear(intent)
+                } else {
+                    context.startActivity(intent)
+                }
             } catch (_: Exception) {
                 Toast
                     .makeText(

@@ -1,4 +1,4 @@
-package app.baldphone.neo.features.contacts.ui
+package app.baldphone.neo.features.contacts.ui.list
 
 import android.app.Application
 import android.util.Log
@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-import app.baldphone.neo.features.contacts.ContactItemType
 import app.baldphone.neo.features.contacts.data.ContactRepository
+import app.baldphone.neo.features.contacts.model.ContactItemType
 
 /**
  * ViewModel for [ContactsActivity].
@@ -22,7 +22,7 @@ import app.baldphone.neo.features.contacts.data.ContactRepository
 class ContactsViewModel(
     application: Application
 ) : AndroidViewModel(application) {
-    private val contactRepository = ContactRepository.Companion.getInstance(application)
+    private val contactRepository = ContactRepository.getInstance(application)
 
     val searchQuery = MutableStateFlow("")
     val isFavoritesOnly = MutableStateFlow(false)
@@ -37,7 +37,7 @@ class ContactsViewModel(
                 )
             }.stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.Companion.WhileSubscribed(5000),
+                started = SharingStarted.WhileSubscribed(5000),
                 initialValue = null
             )
 

@@ -46,7 +46,7 @@ import java.util.Set;
 
 import app.baldphone.neo.features.calls.CallUiHelper;
 import app.baldphone.neo.features.contacts.data.ContactRepository;
-import app.baldphone.neo.features.contacts.ui.ContactsActivity;
+import app.baldphone.neo.features.contacts.ui.list.ContactsActivity;
 import app.baldphone.neo.utils.PhoneNumberUtils;
 
 import static com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper.SHARED_PREFS_KEY;

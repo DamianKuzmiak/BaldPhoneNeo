@@ -25,8 +25,8 @@ import app.baldphone.neo.databinding.DialpadButtonBinding
 import app.baldphone.neo.features.calls.CallUiHelper
 import app.baldphone.neo.features.contacts.data.ContactRepository
 import app.baldphone.neo.features.contacts.ui.AddContactActivity
-import app.baldphone.neo.features.contacts.ui.ContactAdapter
-import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity
+import app.baldphone.neo.features.contacts.ui.details.ContactDetailsActivity
+import app.baldphone.neo.features.contacts.ui.list.ContactAdapter
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.utils.getTextFromClipboard

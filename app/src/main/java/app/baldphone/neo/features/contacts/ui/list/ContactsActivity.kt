@@ -1,8 +1,7 @@
-package app.baldphone.neo.features.contacts.ui
+package app.baldphone.neo.features.contacts.ui.list
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.ViewGroup
 
 import androidx.activity.viewModels
@@ -26,8 +25,10 @@ import kotlinx.coroutines.launch
 import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
 import app.baldphone.neo.databinding.ActivityContactsBinding
-import app.baldphone.neo.features.contacts.ContactItemType
-import app.baldphone.neo.features.contacts.SimpleContact
+import app.baldphone.neo.features.contacts.model.ContactItemType
+import app.baldphone.neo.features.contacts.model.SimpleContact
+import app.baldphone.neo.features.contacts.ui.AddContactActivity
+import app.baldphone.neo.features.contacts.ui.details.ContactDetailsActivity
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog

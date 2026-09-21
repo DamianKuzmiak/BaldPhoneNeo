@@ -5,6 +5,8 @@ import android.content.Context
 import kotlin.text.iterator
 
 import app.baldphone.neo.R
+import app.baldphone.neo.features.contacts.model.ContactItemType
+import app.baldphone.neo.features.contacts.model.SimpleContact
 import app.baldphone.neo.utils.toNormalizedLowercase
 
 /**

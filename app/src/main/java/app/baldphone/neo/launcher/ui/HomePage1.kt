@@ -28,7 +28,7 @@ import app.baldphone.neo.activities.DialerActivity
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.databinding.FragmentHomePage1Binding
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity
-import app.baldphone.neo.features.contacts.ui.ContactsActivity
+import app.baldphone.neo.features.contacts.ui.list.ContactsActivity
 import app.baldphone.neo.features.notifications.data.NotificationRepository
 import app.baldphone.neo.features.notifications.sendNotificationIntent
 import app.baldphone.neo.launcher.apps.AppIconBinder

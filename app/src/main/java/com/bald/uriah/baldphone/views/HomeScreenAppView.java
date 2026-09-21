@@ -17,13 +17,12 @@
 package com.bald.uriah.baldphone.views;
 
 import android.content.ComponentName;
-import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 
-import app.baldphone.neo.features.contacts.ui.ContactDetailsActivity;
+import app.baldphone.neo.features.contacts.ui.details.ContactDetailsActivity;
 import app.baldphone.neo.launcher.apps.AppIconBinder;
 import app.baldphone.neo.launcher.apps.data.db.AppEntry;
 
@@ -57,7 +56,8 @@ public class HomeScreenAppView {
     }
 
     public void setIntent(final String contactLookupKey) {
-        child.setOnClickListener(v -> v.getContext().startActivity(new Intent(v.getContext(), ContactDetailsActivity.class).putExtra(ContactDetailsActivity.CONTACT_LOOKUP_KEY, contactLookupKey)));
+        child.setOnClickListener(v ->
+            ContactDetailsActivity.openContact(v.getContext(), contactLookupKey, true));
     }
 
     public void setVisibility(int visibility) {
