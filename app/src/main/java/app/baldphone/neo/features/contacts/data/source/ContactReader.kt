@@ -85,6 +85,47 @@ class ContactReader(
                 } ?: emptyList()
         }
 
+    /**
+     * Queries every contact at the contact level, regardless of whether it has a phone number.
+     * Used as the contacts-list source. Rows carry no per-number data, so this must never feed
+     * the dialer search source (which needs one row per number, see [fetchPhoneContacts]).
+     *
+     * @param limit Maximum items to return. Use -1 for no limit.
+     */
+    suspend fun fetchAllContacts(limit: Int = -1): List<SimpleContact> =
+        withContext(Dispatchers.IO) {
+            if (!hasReadContactsPermission()) return@withContext emptyList()
+
+            val baseUri = ContactsContract.Contacts.CONTENT_URI
+            val targetUri =
+                if (limit > 0) {
+                    baseUri.buildUpon().appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY, limit.toString()).build()
+                } else {
+                    baseUri
+                }
+
+            resolver
+                .query(
+                    targetUri,
+                    ContactCursorMapper.CONTACT_LIST_PROJECTION,
+                    null,
+                    null,
+                    ContactCursorMapper.CONTACT_LIST_SORT_ORDER
+                )?.use { cursor ->
+                    val indices = ContactCursorMapper.ContactIndices(cursor)
+                    val unknownName = context.getString(android.R.string.unknownName)
+
+                    buildList {
+                        while (cursor.moveToNext()) {
+                            currentCoroutineContext().ensureActive()
+                            add(ContactCursorMapper.readContactListRow(cursor, indices, unknownName))
+
+                            if (limit > 0 && size >= limit) break
+                        }
+                    }
+                } ?: emptyList()
+        }
+
     /** Loads full contact details for a single contact by lookup key. */
     suspend fun queryContact(lookupKey: String): Contact? =
         withContext(Dispatchers.IO) {

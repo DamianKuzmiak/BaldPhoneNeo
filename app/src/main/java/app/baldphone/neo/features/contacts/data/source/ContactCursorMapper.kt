@@ -16,6 +16,16 @@ import app.baldphone.neo.utils.toNormalizedLowercase
  * Maps contacts-provider cursor rows into domain models.
  */
 internal object ContactCursorMapper {
+    val CONTACT_LIST_PROJECTION =
+        arrayOf(
+            ContactsContract.Contacts._ID,
+            ContactsContract.Contacts.LOOKUP_KEY,
+            ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
+            ContactsContract.Contacts.PHOTO_THUMBNAIL_URI,
+            ContactsContract.Contacts.PHOTO_URI,
+            ContactsContract.Contacts.STARRED
+        )
+
     val PHONE_PROJECTION =
         arrayOf(
             ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
@@ -41,10 +51,37 @@ internal object ContactCursorMapper {
             ContactsContract.RawContacts.ACCOUNT_TYPE
         )
 
+    const val CONTACT_LIST_SORT_ORDER =
+        "${ContactsContract.Contacts.DISPLAY_NAME_PRIMARY} ASC, " +
+            "${ContactsContract.Contacts._ID} ASC"
+
     /** Sort order matching [PHONE_PROJECTION], grouping a contact's rows together. */
     const val PHONE_SORT_ORDER =
         "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY} ASC, " +
             "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} ASC"
+
+    /**
+     * Reads a contact-level row as a [SimpleContact]. The contacts list does not display numbers,
+     * so [SimpleContact.phoneNumber] is left empty here.
+     */
+    fun readContactListRow(
+        cursor: Cursor,
+        indices: ContactIndices,
+        unknownName: String
+    ): SimpleContact {
+        val displayName = cursor.getString(indices.name) ?: unknownName
+
+        return SimpleContact(
+            id = cursor.getLong(indices.id),
+            lookupKey = cursor.getString(indices.lookup).orEmpty(),
+            name = displayName,
+            phoneNumber = "",
+            normalizedName = displayName.toNormalizedLowercase(),
+            photoUri = cursor.getString(indices.photo),
+            photoThumbnailUri = cursor.getString(indices.photoThumbnail),
+            isStarred = cursor.getInt(indices.starred) == 1
+        )
+    }
 
     /**
      * Reads the current row of a [PHONE_PROJECTION] cursor as a [SimpleContact].
@@ -75,6 +112,18 @@ internal object ContactCursorMapper {
             phoneType = cursor.getInt(indices.type),
             phoneLabel = cursor.getString(indices.label)
         )
+    }
+
+    /** Column indices for a cursor opened with [CONTACT_LIST_PROJECTION]. */
+    class ContactIndices(
+        cursor: Cursor
+    ) {
+        val id = cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID)
+        val lookup = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.LOOKUP_KEY)
+        val name = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
+        val photo = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)
+        val photoThumbnail = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)
+        val starred = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)
     }
 
     /**

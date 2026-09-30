@@ -3,6 +3,7 @@ package app.baldphone.neo.features.contacts.ui.list
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
@@ -32,6 +33,7 @@ import app.baldphone.neo.features.contacts.ui.details.ContactDetailsActivity
 import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.RuntimePermission
 import app.baldphone.neo.ui.dialogs.baldDialog
+import app.baldphone.neo.ui.dialogs.showWarningSnackbar
 
 class ContactsActivity : BaseActivity() {
     companion object {
@@ -196,20 +198,30 @@ class ContactsActivity : BaseActivity() {
     /**
      * Shows a confirmation dialog before returning the selected contact to the caller.
      * Cancelling dismisses the dialog and keeps the list open.
+     * An emergency contact must be callable, so we check a number first - contacts without one are
+     * rejected with a Toast.
      */
     private fun showPickerConfirmation(contact: SimpleContact) {
-        baldDialog {
-            setTitle(contact.name)
-            setMessage(getString(R.string.add_as_an_emergency_contact, contact.name))
-            setPositiveButton(android.R.string.ok) { _ ->
-                val resultIntent =
-                    Intent().apply {
-                        putExtra(EXTRA_CONTACT_LOOKUP_KEY, contact.lookupKey)
-                    }
-                setResult(RESULT_OK, resultIntent)
-                finish()
+        lifecycleScope.launch {
+            val number = viewModel.resolvePhoneNumber(contact.lookupKey)
+            if (number.isNullOrEmpty()) {
+                showWarningSnackbar(getString(R.string.contact_has_no_phone_number, contact.name))
+                return@launch
             }
-            setNegativeButton(android.R.string.cancel, null)
-        }.show()
+
+            baldDialog {
+                setTitle(contact.name)
+                setMessage(getString(R.string.add_as_an_emergency_contact, contact.name))
+                setPositiveButton(android.R.string.ok) { _ ->
+                    val resultIntent =
+                        Intent().apply {
+                            putExtra(EXTRA_CONTACT_LOOKUP_KEY, contact.lookupKey)
+                        }
+                    setResult(RESULT_OK, resultIntent)
+                    finish()
+                }
+                setNegativeButton(android.R.string.cancel, null)
+            }.show()
+        }
     }
 }

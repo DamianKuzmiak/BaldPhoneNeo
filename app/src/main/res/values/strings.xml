@@ -113,17 +113,18 @@
     <string name="coming_soon">Coming Soon!</string>
     <string name="connection_settings">Connectivity</string>
 
-    <string name="contact_must_has_name">Contact must have a Name</string>
-    <string name="contact_details">Contact</string>
-    <string name="contact_not_created">Contact not created</string>
-    <string name="contact_added_to_home">Contact added to home screen</string>
-    <string name="contact_removed_from_home">Contact removed from home screen</string>
     <string name="contact_added_to_favorites">Contact added to favorites</string>
-    <string name="contact_removed_from_favorites">Contact removed from favorites</string>
+    <string name="contact_added_to_home">Contact added to home screen</string>
+    <string name="contact_details">Contact</string>
+    <string name="contact_has_no_phone_number">%s has no phone number</string>
+    <string name="contact_must_has_name">Contact must have a Name</string>
+    <string name="contact_not_created">Contact not created</string>
     <string name="contact_not_deleted">Contact could not be deleted</string>
     <string name="contact_not_updated">Contact could not be updated</string>
-
+    <string name="contact_removed_from_favorites">Contact removed from favorites</string>
+    <string name="contact_removed_from_home">Contact removed from home screen</string>
     <string name="contacts">Contacts</string>
+
     <string name="search_contact">Search contact by name</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="pasted_from_clipboard">Pasted from clipboard</string>

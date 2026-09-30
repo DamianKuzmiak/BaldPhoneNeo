@@ -52,7 +52,7 @@ class ContactRepository private constructor(
     /** Emits whenever contacts database changes and a reload has completed. */
     val refreshEvents: Flow<Unit> = cache.refreshEvents
 
-    /** Deduplicated contacts (one best phone per contact). Used by ContactsActivity. */
+    /** Deduplicated contacts, including contacts without phone numbers. Used by ContactsActivity. */
     val contacts: StateFlow<List<SimpleContact>?> = cache.contacts
 
     fun clear() = cache.clear()
@@ -106,6 +106,9 @@ class ContactRepository private constructor(
 
         return writer.updateContact(rawContactId, draft).requireChanged("updateContact")
     }
+
+    /** Resolves the best available phone number for [lookupKey], or null when the contact has none. */
+    suspend fun resolvePhoneNumber(lookupKey: String): String? = reader.resolvePhoneNumber(lookupKey)
 
     @Deprecated("Java interop only")
     fun resolvePhoneNumberJava(lookupKey: String): String? =

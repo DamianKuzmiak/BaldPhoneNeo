@@ -33,7 +33,7 @@ import app.baldphone.neo.features.contacts.model.SimpleContact
  * Owns the cached contact collections.
  *
  * Holds two source-of-truth StateFlows:
- *  - [contacts]: one best phone per contact (contacts list source).
+ *  - [contacts]: every contact, with or without a phone number (contacts list and picker source).
  *  - [allPhoneContacts]: one row per distinct number per contact (dialer source).
  */
 class ContactCache(
@@ -49,7 +49,7 @@ class ContactCache(
     private val _allPhoneContacts = MutableStateFlow<List<SimpleContact>?>(null)
     private val refreshTrigger = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
-    /** Deduplicated contacts sed by ContactsActivity. */
+    /** Every contact, including contacts without phone numbers. */
     val contacts: StateFlow<List<SimpleContact>?> = _contacts.asStateFlow()
 
     /** One row per distinct number per contact, used as the dialer search source. */
@@ -86,8 +86,8 @@ class ContactCache(
             val startTime = System.currentTimeMillis()
             Log.d(TAG, "refresh: Starting reload (forceFullScan=$forceFullScan)...")
 
-            // Skip full scan if we already have cached data and this is not a forced refresh (e.g. ContentObserver),
-            if (!forceFullScan && !_allPhoneContacts.value.isNullOrEmpty()) {
+            // A non-null cache is populated even when the device has no contacts at all.
+            if (!forceFullScan && _contacts.value != null) {
                 Log.d(TAG, "refresh: Cache already populated, skipping full scan")
                 refreshTrigger.tryEmit(Unit)
                 return@coroutineScope
@@ -95,20 +95,24 @@ class ContactCache(
 
             var fullScanRequired = true
 
-            // Step 1: Fast initial fetch (first PAGE_SIZE)
-            if (_allPhoneContacts.value.isNullOrEmpty()) {
-                val firstPageRows = reader.fetchPhoneContacts(limit = PAGE_SIZE)
-                _contacts.value = deduplicateContacts(firstPageRows)
-                _allPhoneContacts.value = deduplicatePhoneRows(firstPageRows)
+            // Step 1: Fast initial fetch (first PAGE_SIZE rows from each source).
+            if (_contacts.value == null) {
+                val firstContacts = reader.fetchAllContacts(limit = PAGE_SIZE)
+                val firstPhoneRows = reader.fetchPhoneContacts(limit = PAGE_SIZE)
 
-                // If we got fewer than PAGE_SIZE rows, we've already reached the end
-                if (firstPageRows.size < PAGE_SIZE) {
+                _contacts.value = firstContacts
+                _allPhoneContacts.value = deduplicatePhoneRows(firstPhoneRows)
+
+                // Both queries must reach EOF for this to be a complete snapshot.
+                if (firstContacts.size < PAGE_SIZE && firstPhoneRows.size < PAGE_SIZE) {
                     fullScanRequired = false
                 }
 
                 Log.i(
                     TAG,
-                    "refresh: Initial page load complete (count: ${firstPageRows.size}) in ${System.currentTimeMillis() - startTime}ms"
+                    "refresh: Initial page load complete " +
+                        "(contacts: ${firstContacts.size}, phone rows: ${firstPhoneRows.size}) " +
+                        "in ${System.currentTimeMillis() - startTime}ms"
                 )
             }
 
@@ -118,21 +122,21 @@ class ContactCache(
                 return@coroutineScope
             }
 
-            // Step 2: Full background fetch
-            val allRows = reader.fetchPhoneContacts(limit = -1)
-            val deduplicated = deduplicateContacts(allRows)
-            val allPhoneRows = deduplicatePhoneRows(allRows)
+            // Step 2: Full background fetch.
+            val allContacts = reader.fetchAllContacts(limit = -1)
+            val allPhoneRows = reader.fetchPhoneContacts(limit = -1)
+            val dialerContacts = deduplicatePhoneRows(allPhoneRows)
 
-            if (deduplicated != _contacts.value) {
-                _contacts.value = deduplicated
-                Log.i(TAG, "refresh: Contacts collection UPDATED (count: ${deduplicated.size})")
+            if (allContacts != _contacts.value) {
+                _contacts.value = allContacts
+                Log.i(TAG, "refresh: Contacts collection UPDATED (count: ${allContacts.size})")
             } else {
                 Log.d(TAG, "refresh: Contacts collection UNCHANGED")
             }
 
-            if (allPhoneRows != _allPhoneContacts.value) {
-                _allPhoneContacts.value = allPhoneRows
-                Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${allPhoneRows.size})")
+            if (dialerContacts != _allPhoneContacts.value) {
+                _allPhoneContacts.value = dialerContacts
+                Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${dialerContacts.size})")
             }
 
             refreshTrigger.tryEmit(Unit)
@@ -169,22 +173,6 @@ class ContactCache(
             Log.d(TAG, "Skipping ContentObserver registration: No READ_CONTACTS permission")
         }
     }
-
-    /**
-     * Keeps only the best phone number per contact for the Contacts list.
-     * Priority: isPrimary > TYPE_MOBILE > first encountered.
-     */
-    private suspend fun deduplicateContacts(rows: List<SimpleContact>): List<SimpleContact> =
-        withContext(Dispatchers.Default) {
-            val result = LinkedHashMap<Long, SimpleContact>(rows.size)
-            for (candidate in rows) {
-                val existing = result[candidate.id]
-                if (existing == null || isBetter(candidate, existing)) {
-                    result[candidate.id] = candidate
-                }
-            }
-            result.values.toList()
-        }
 
     /**
      * Deduplication for the dialer search source.

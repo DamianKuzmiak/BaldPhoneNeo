@@ -41,6 +41,10 @@ class ContactsViewModel(
                 initialValue = null
             )
 
+    /** Resolves the best phone number for a contact, or null when it has none (picker validation). */
+    suspend fun resolvePhoneNumber(lookupKey: String): String? =
+        contactRepository.resolvePhoneNumber(lookupKey)
+
     fun toggleFavorites() {
         isFavoritesOnly.value = !isFavoritesOnly.value
     }

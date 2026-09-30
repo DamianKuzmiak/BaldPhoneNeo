@@ -113,15 +113,18 @@
     <string name="coming_soon">Prossimamente!</string>
     <string name="connection_settings">Connettività</string>
 
-    <string name="contact_must_has_name">Il contatto deve avere un nome</string>
-    <string name="contact_details">Contatto</string>
-    <string name="contact_not_created">Contatto non creato</string>
-    <string name="contact_added_to_home">Contatto aggiunto alla schermata Home</string>
-    <string name="contact_removed_from_home">Contatto rimosso dalla schermata Home</string>
     <string name="contact_added_to_favorites">Contatto aggiunto ai preferiti</string>
+    <string name="contact_added_to_home">Contatto aggiunto alla schermata Home</string>
+    <string name="contact_details">Contatto</string>
+    <string name="contact_has_no_phone_number">%s non ha un numero di telefono</string>
+    <string name="contact_must_has_name">Il contatto deve avere un nome</string>
+    <string name="contact_not_created">Contatto non creato</string>
+    <string name="contact_not_updated">Impossibile aggiornare il contatto</string>
+    <string name="contact_not_deleted">Impossibile eliminare il contatto</string>
     <string name="contact_removed_from_favorites">Contatto rimosso dai preferiti</string>
-
+    <string name="contact_removed_from_home">Contatto rimosso dalla schermata Home</string>
     <string name="contacts">Contatti</string>
+
     <string name="search_contact">Cerca contatto per nome</string>
     <string name="copied_to_clipboard">Copiato negli appunti</string>
     <string name="pasted_from_clipboard">Incollato dagli appunti</string>
