@@ -207,6 +207,7 @@
     <string name="pill_added">Dodano lek</string>
     <string name="pill_name">Nazwa leku</string>
     <string name="pills">Leki</string>
+    <string name="press_back_again_to_exit">Naciśnij wstecz ponownie aby wyjść</string>
     <string name="press_longer">Przytrzymaj dłużej</string>
     <string name="timer">Minutnik</string>
     <string name="read_contacts">Odczyt kontaktów</string>

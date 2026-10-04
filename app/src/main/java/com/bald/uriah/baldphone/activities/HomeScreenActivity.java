@@ -71,6 +71,7 @@ public class HomeScreenActivity extends BaldActivity {
 
     private final Handler handler = new Handler();
 
+    private boolean backPressedOnce = false;
     private boolean permissionBannerDismissed = false;
     private boolean isResumed = false;
     private boolean isFirstResume = true;
@@ -323,12 +324,26 @@ public class HomeScreenActivity extends BaldActivity {
 
         if (viewPagerHolder.getViewPager().getCurrentItem() != baldPagerAdapter.startingPage) {
             viewPagerHolder.setCurrentItem(baldPagerAdapter.startingPage);
-            // updateViewPager();
-        } else {
-            if (!HomeAppUtils.isDefaultLauncher(this)) {
-                super.onBackPressed();
-            }
+            return;
         }
+
+        if (HomeAppUtils.isDefaultLauncher(this)) {
+            return;
+        }
+
+        if (backPressedOnce) {
+            finish();
+            return;
+        }
+
+        backPressedOnce = true;
+        BaldSnackbar.INSTANCE.show(
+            this,
+            R.string.press_back_again_to_exit,
+            BaldSnackbar.TYPE_INFO,
+            BaldSnackbar.LENGTH_LONG  // ~3 sekundy
+        );
+        handler.postDelayed(() -> backPressedOnce = false, 3000);
     }
 
     @Override
