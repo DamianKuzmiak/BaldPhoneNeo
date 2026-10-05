@@ -131,7 +131,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bald.uriah.baldphone.activities.HomeScreenActivity"
+            android:name=".launcher.ui.HomeScreenActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTask"

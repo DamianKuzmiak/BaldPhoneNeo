@@ -35,10 +35,10 @@ import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
 import app.baldphone.neo.launcher.apps.data.AppsRepository
 import app.baldphone.neo.launcher.apps.sync.LauncherAppsReceiver
+import app.baldphone.neo.launcher.ui.HomeScreenActivity
 import app.baldphone.neo.utils.LocaleUtils
 import app.baldphone.neo.utils.MediaStoreThumbnailFetcher
 
-import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.databases.alarms.AlarmScheduler
 import com.bald.uriah.baldphone.databases.reminders.ReminderScheduler
 import com.bald.uriah.baldphone.utils.BaldUncaughtExceptionHandler

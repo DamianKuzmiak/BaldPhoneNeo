@@ -25,7 +25,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.bald.uriah.baldphone.activities.HomeScreenActivity;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
 import com.bald.uriah.baldphone.broadcast_receivers.AlarmReceiver;
 import com.bald.uriah.baldphone.utils.D;

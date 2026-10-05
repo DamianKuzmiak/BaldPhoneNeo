@@ -23,6 +23,8 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 
 import app.baldphone.neo.R;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
+
 import com.bald.uriah.baldphone.utils.D;
 
 public class CrashActivity extends BaldActivity {

@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.activities.HomeScreenActivity;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 import com.bald.uriah.baldphone.adapters.BaldPagerAdapter;
 import com.bald.uriah.baldphone.views.BaldLinearLayoutButton;
 import com.bald.uriah.baldphone.views.HomeScreenAppView;
@@ -48,7 +48,8 @@ public class HomeViewFactory extends HomeView {
     }
 
     public void populate(int index) {
-        @NonNull final BaldPagerAdapter baldPagerAdapter = homeScreen.baldPagerAdapter;
+        final BaldPagerAdapter baldPagerAdapter = homeScreen.getBaldPagerAdapter();
+        if (baldPagerAdapter == null) return;
 
         final int startIndex = AMOUNT_PER_PAGE * (index);
         int endIndex = ((AMOUNT_PER_PAGE * (index)) + AMOUNT_PER_PAGE);
@@ -75,4 +76,3 @@ public class HomeViewFactory extends HomeView {
         }
     }
 }
-

@@ -4,9 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 
+import app.baldphone.neo.launcher.ui.HomeScreenActivity
 import app.baldphone.neo.utils.HomeAppUtils
-
-import com.bald.uriah.baldphone.activities.HomeScreenActivity
 
 /**
  * Invisible proxy activity to handle launching the app drawer entry point.

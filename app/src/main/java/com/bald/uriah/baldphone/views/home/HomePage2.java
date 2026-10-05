@@ -39,7 +39,7 @@ import app.baldphone.neo.features.media.ui.browser.MediaActivity;
 import app.baldphone.neo.launcher.apps.ui.AppsActivity;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.activities.HomeScreenActivity;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 import com.bald.uriah.baldphone.activities.SettingsActivity;
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity;
 import com.bald.uriah.baldphone.activities.pills.PillsActivity;

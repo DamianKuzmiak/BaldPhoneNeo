@@ -21,7 +21,7 @@ import android.content.Intent;
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.bald.uriah.baldphone.activities.HomeScreenActivity;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 
 import org.junit.runner.RunWith;
 

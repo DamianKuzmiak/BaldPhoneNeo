@@ -27,6 +27,7 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import app.baldphone.neo.R;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

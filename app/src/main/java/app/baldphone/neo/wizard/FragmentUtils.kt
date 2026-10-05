@@ -4,7 +4,7 @@ import android.content.Intent
 
 import androidx.fragment.app.Fragment
 
-import com.bald.uriah.baldphone.activities.HomeScreenActivity
+import app.baldphone.neo.launcher.ui.HomeScreenActivity
 
 fun Fragment.finishSetupAndGoHome() {
     val intent =

@@ -30,7 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.activities.HomeScreenActivity;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.Toggeler;
 import com.bald.uriah.baldphone.views.BaldPictureTextButton;
@@ -48,7 +48,7 @@ public class NotesView extends HomeView {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        homeScreen.recognizerManager.setNotesFragment(this);
+        homeScreen.getRecognizerManager().setNotesFragment(this);
         sharedPreferences = BPrefs.get(getContext());
         final View view = inflater.inflate(R.layout.notes_fragment, container, false);
         editText = view.findViewById(R.id.edit_text);
@@ -74,7 +74,7 @@ public class NotesView extends HomeView {
                 }),
                 (v -> editText.setEnabled(false))
         );
-        view.findViewById(R.id.bt_speak).setOnClickListener((v) -> homeScreen.recognizerManager.displaySpeechRecognizer());
+        view.findViewById(R.id.bt_speak).setOnClickListener((v) -> homeScreen.displaySpeechRecognizer());
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -102,12 +102,6 @@ public class NotesView extends HomeView {
     public static class RecognizerManager {
         private WeakReference<HomeScreenActivity> homeScreen;
         private WeakReference<NotesView> notesFragment;
-
-        public void displaySpeechRecognizer() {
-            if (assertOk())
-                homeScreen.get().displaySpeechRecognizer();
-
-        }
 
         public void onSpeechRecognizerResult(String spokenText) {
             if (assertOk())

@@ -7,8 +7,6 @@ import android.content.IntentFilter
 import android.util.Log
 
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,20 +42,12 @@ object AppsRepository {
         }
     }
 
-    /** LiveData for Java */
-    @JvmStatic
-    val allAppsLiveData: LiveData<List<AppEntry>> by lazy { allAppsFlow.asLiveData() }
-
     /**
      * Pinned apps only.
      */
     val pinnedAppsFlow: Flow<List<AppEntry>> by lazy {
         allAppsFlow.map { apps -> apps.filter { it.isPinned } }
     }
-
-    /** LiveData for Java */
-    @JvmStatic
-    val pinnedAppsLiveData: LiveData<List<AppEntry>> by lazy { pinnedAppsFlow.asLiveData() }
 
     internal val dao: AppEntryDao by lazy {
         AppDatabase.getInstance(applicationContext).appEntryDao()
@@ -142,8 +132,6 @@ object AppsRepository {
     /**
      * Returns an app by its component name from the in-memory cache.
      */
-    @JvmStatic
-    @JvmOverloads
     fun findByComponentName(componentName: String, userId: Long = 0L): AppEntry? {
         val key = "$componentName#$userId"
         return appCache.value[key].also {

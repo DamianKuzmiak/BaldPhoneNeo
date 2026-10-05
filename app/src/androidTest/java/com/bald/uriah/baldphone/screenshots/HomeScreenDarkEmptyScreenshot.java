@@ -23,7 +23,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import app.baldphone.neo.helpers.ThemeHelper;
 
-import com.bald.uriah.baldphone.activities.HomeScreenActivity;
+import app.baldphone.neo.launcher.ui.HomeScreenActivity;
 
 import org.junit.runner.RunWith;
 

@@ -49,7 +49,6 @@ import app.baldphone.neo.utils.openMessages
 import app.baldphone.neo.utils.startActivityWithNewTaskClear
 import app.baldphone.neo.utils.startComponentName
 
-import com.bald.uriah.baldphone.activities.HomeScreenActivity
 import com.bald.uriah.baldphone.activities.SOSActivity
 import com.bald.uriah.baldphone.utils.BaldToast
 import com.bald.uriah.baldphone.views.FirstPageAppIcon

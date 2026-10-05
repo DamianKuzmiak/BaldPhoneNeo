@@ -252,11 +252,10 @@ public class SettingsActivity extends BaldActivity {
                         .setSubText(R.string.notes_settings_subtext)
                         .setOptions(R.string.yes, R.string.no)
                         .setPositiveButtonListener(params -> {
-                            editor.putBoolean(BPrefs.NOTE_VISIBLE_KEY, (Integer) params[0] == 0).apply();
-                            this.recreate();
+                            Prefs.setNoteVisible((Integer) params[0] == 0);
                             return true;
                         })
-                        .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.NOTE_VISIBLE_KEY, BPrefs.NOTE_VISIBLE_DEFAULT_VALUE) ? 0 : 1),
+                        .setOptionsStartingIndex(() -> Prefs.getNoteVisible() ? 0 : 1),
                 R.drawable.note_on_button
         ));
         personalizationCategory.add(new BDBSettingsItem(R.string.dialer_sounds,
