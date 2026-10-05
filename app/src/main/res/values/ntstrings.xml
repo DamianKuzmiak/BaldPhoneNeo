@@ -31,87 +31,27 @@
     <string name="icon_main" translatable="false">☎️</string>
     <string name="icon_other" translatable="false">▪️</string>
 
-    <string-array name="names">
-        <item>Uriah Shaul Mandel</item>
-        <item>Ido Heinemann</item>
-        <item>Klemen Skerbiš</item>
-        <item>Ido Sharon</item>
-        <item>Nadav Shalev</item>
-        <item>Kellyson Antunes</item>
-        <item>thomassth</item>
-        <item>Tadeáš Horák</item>
-        <item>Primokorn</item>
-        <item>Caibot</item>
-        <item>Zafeiris Ganas</item>
-        <item>Sahri Riza Umami</item>
-        <item>Dario Mastromattei\nFabio Parri</item>
-        <item>SIMSEUNGMIN</item>
-        <item>Qik</item>
-        <item>Vladyslav Rudakevych</item>
-        <item>Tibz Leet</item>
-        <item>Vintic</item>
-        <item>Klemen Skerbiš</item>
-        <item>Victor Arribas</item>
-        <item>Ismael Ferreras Morezuelas (Swyter)</item>
-        <item>Patrik Bogren</item>
-        <item>Samii571</item>
-        <item>Giorgi Abulashvili</item>
-        <item>yonniii</item>
-        <item>IzzySoft</item>
-        <item>DJCrashdummy</item>
-        <item>Yooda Or</item>
-        <item>Bait Balev</item>
-        <item>eHealthVentures</item>
-        <item>Haolam Haboker</item>
-        <item>Beni Kimron</item>
-        <item>Adam Antoshin</item>
-        <item>Shaked Aley-Raz</item>
-        <item>Edo Avidan</item>
-        <item>Ronnie Gilboa</item>
-        <item>Shay Gadot</item>
-        <item>Earboxer</item>
-    </string-array>
-
-    <string-array name="tasks">
-        <item>For establishing the foundation of this project</item>
-        <item>Programming counselor, Created BaldPhone Server</item>
-        <item>The Slovenian translations, Discord server, publishing articles in Slovenia and more</item>
-        <item>Being the longest and most helpful tester, Graphics Consultant</item>
-        <item>The awesome logo</item>
-        <item>The Brazilian Portuguese translations</item>
-        <item>The Chinese translations</item>
-        <item>The Czech translations</item>
-        <item>The French translations</item>
-        <item>The German translations</item>
-        <item>The Greek translations</item>
-        <item>The Indonesian translations</item>
-        <item>The Italian translations</item>
-        <item>The Korean translations</item>
-        <item>The Polish translations</item>
-        <item>The Portuguese translations</item>
-        <item>The Romanian translations</item>
-        <item>The Russian translations</item>
-        <item>The Slovenian translations</item>
-        <item>The Spanish translations</item>
-        <item>The Spanish translations</item>
-        <item>The Swedish translations</item>
-        <item>The Turkish translations</item>
-        <item>The Georgian translations</item>
-        <item>UI enhancements</item>
-        <item>GitHub constant contributor</item>
-        <item>GitHub constant contributor</item>
-        <item>Mentor</item>
-        <item>The opportunity to be in the incubator</item>
-        <item>The opportunity to be in the incubator</item>
-        <item>For hosting me and BaldPhone in live tv</item>
-        <item>Publishing an article about BaldPhone in MyNet</item>
-        <item>For uploading a Reddit post about BaldPhone which got 4.2k upvotes!</item>
-        <item>Graphics Consultant</item>
-        <item>Graphics Consultant</item>
-        <item>Tester</item>
-        <item>Tester</item>
-        <item>GitHub contributor</item>
-    </string-array>
+    <string name="credit_name_uriah" translatable="false">Uriah Shaul Mandel</string>
+    <string name="credit_name_ido" translatable="false">Ido Sharon</string>
+    <string name="credit_name_nadav" translatable="false">Nadav Shalev</string>
+    <string name="credit_name_cs" translatable="false">Tadeáš Horák</string>
+    <string name="credit_name_de" translatable="false">Caibot</string>
+    <string name="credit_name_el" translatable="false">Zafeiris Ganas</string>
+    <string name="credit_name_es" translatable="false">Victor Arribas\nIsmael Ferreras Morezuelas (Swyter)</string>
+    <string name="credit_name_fr" translatable="false">Primokorn</string>
+    <string name="credit_name_id" translatable="false">Sahri Riza Umami</string>
+    <string name="credit_name_it" translatable="false">Dario Mastromattei\nFabio Parri</string>
+    <string name="credit_name_ka" translatable="false">Giorgi Abulashvili</string>
+    <string name="credit_name_ko" translatable="false">SIMSEUNGMIN</string>
+    <string name="credit_name_pl" translatable="false">Qik</string>
+    <string name="credit_name_pt" translatable="false">Vladyslav Rudakevych</string>
+    <string name="credit_name_pt_br" translatable="false">Kellyson Antunes</string>
+    <string name="credit_name_ro" translatable="false">Tibz Leet</string>
+    <string name="credit_name_ru" translatable="false">Vintic</string>
+    <string name="credit_name_sl" translatable="false">Klemen Skerbiš</string>
+    <string name="credit_name_sv" translatable="false">Patrik Bogren</string>
+    <string name="credit_name_tr" translatable="false">Samii571</string>
+    <string name="credit_name_zh" translatable="false">thomassth</string>
 
     <string-array name="phone_numbers_for_tests">
         <item>783–412–4475</item>

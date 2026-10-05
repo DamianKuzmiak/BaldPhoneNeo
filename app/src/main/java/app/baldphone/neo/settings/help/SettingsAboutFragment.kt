@@ -1,6 +1,5 @@
 package app.baldphone.neo.settings.help
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 
@@ -18,8 +17,6 @@ import app.baldphone.neo.ui.dialogs.BaldSnackbar
 import app.baldphone.neo.utils.copyToClipboard
 import app.baldphone.neo.utils.getDeviceInfoFull
 import app.baldphone.neo.utils.openUrl
-
-import com.bald.uriah.baldphone.activities.CreditsActivity
 
 class SettingsAboutFragment : BaseSettingsFragment(R.layout.fragment_settings_about) {
     private var binding: FragmentSettingsAboutBinding? = null
@@ -41,7 +38,7 @@ class SettingsAboutFragment : BaseSettingsFragment(R.layout.fragment_settings_ab
             whatsNew.setOnClickListener { showComingSoon() }
             webPage.setOnClickListener { requireContext().openUrl(Constants.URL_GITHUB_REPO) }
 
-            credits.setOnClickListener { startActivity(Intent(requireContext(), CreditsActivity::class.java)) }
+            credits.setOnClickListener { findNavController().navigate(R.id.action_about_to_credits) }
 
             itemLicense.setOnClickListener { findNavController().navigate(R.id.action_about_to_license) }
             thirdPartyLicenses.setOnClickListener { showComingSoon() }
@@ -75,7 +72,10 @@ class SettingsAboutFragment : BaseSettingsFragment(R.layout.fragment_settings_ab
                     val dimensions = "${image.width}x${image.height}"
                     val sizeInKB = image.size / 1024
 
-                    android.util.Log.d("CoilCache", "id: $index, key: ${key.key} | Size: $dimensions | Memory: ${sizeInKB}KB")
+                    android.util.Log.d(
+                        "CoilCache",
+                        "id: $index, key: ${key.key} | Size: $dimensions | Memory: ${sizeInKB}KB"
+                    )
                 }
             }
         }

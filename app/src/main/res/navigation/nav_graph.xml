@@ -57,9 +57,17 @@
         android:label="@string/about">
         <deepLink app:uri="myapp://settings/about" />
         <action
+            android:id="@+id/action_about_to_credits"
+            app:destination="@id/creditsFragment" />
+        <action
             android:id="@+id/action_about_to_license"
             app:destination="@id/licenseFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/creditsFragment"
+        android:name="app.baldphone.neo.settings.help.CreditsFragment"
+        android:label="@string/acknowledgments" />
 
     <fragment
         android:id="@+id/licenseFragment"

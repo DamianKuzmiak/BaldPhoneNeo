@@ -135,8 +135,8 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTask"
-            android:taskAffinity=""
             android:resumeWhilePausing="true"
+            android:taskAffinity=""
             android:theme="@style/AppTheme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -252,10 +252,6 @@
             android:exported="false"
             android:label="@string/share"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.bald.uriah.baldphone.activities.CreditsActivity"
-            android:exported="false"
-            android:label="Credits" />
         <activity
             android:name="com.bald.uriah.baldphone.activities.CrashActivity"
             android:exported="false"

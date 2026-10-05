@@ -439,4 +439,27 @@
     <string name="toast_mode_normal">Dźwięk włączony. Słyszysz dzwonki i powiadomienia.</string>
     <string name="toast_mode_vibrate">Same wibracje. Telefon nie będzie dzwonił.</string>
     <string name="toast_mode_silent">Całkowicie wyciszony. Brak dźwięków i wibracji.</string>
+
+    <!-- Credits tasks -->
+    <string name="credit_task_uriah">Za stworzenie fundamentów tego projektu</string>
+    <string name="credit_task_ido_sharon">Najdłużej współpracujący i najbardziej pomocny tester, konsultant ds. grafiki</string>
+    <string name="credit_task_nadav">Wspaniałe logo</string>
+    <string name="credit_task_cs">Tłumaczenia na czeski</string>
+    <string name="credit_task_de">Tłumaczenia na niemiecki</string>
+    <string name="credit_task_el">Tłumaczenia na grecki</string>
+    <string name="credit_task_es">Tłumaczenia na hiszpański</string>
+    <string name="credit_task_fr">Tłumaczenia na francuski</string>
+    <string name="credit_task_id">Tłumaczenia na indonezyjski</string>
+    <string name="credit_task_it">Tłumaczenia na włoski</string>
+    <string name="credit_task_ka">Tłumaczenia na gruziński</string>
+    <string name="credit_task_ko">Tłumaczenia na koreański</string>
+    <string name="credit_task_pl">Tłumaczenia na polski</string>
+    <string name="credit_task_pt">Tłumaczenia na portugalski</string>
+    <string name="credit_task_pt_br">Tłumaczenia na brazylijski portugalski</string>
+    <string name="credit_task_ro">Tłumaczenia na rumuński</string>
+    <string name="credit_task_ru">Tłumaczenia na rosyjski</string>
+    <string name="credit_task_sl">Tłumaczenia na słoweński</string>
+    <string name="credit_task_sv">Tłumaczenia na szwedzki</string>
+    <string name="credit_task_tr">Tłumaczenia na turecki</string>
+    <string name="credit_task_zh">Tłumaczenia na chiński</string>
 </resources>

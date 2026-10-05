@@ -494,4 +494,27 @@
     <string name="toast_mode_normal">Suono attivo. Sentirai suonerie e notifiche.</string>
     <string name="toast_mode_vibrate">Solo vibrazione. Il telefono non squillerà.</string>
     <string name="toast_mode_silent">Completamente silenzioso. Nessun suono o vibrazione.</string>
+
+    <!-- Credits tasks -->
+    <string name="credit_task_uriah">Per aver posto le basi di questo progetto</string>
+    <string name="credit_task_ido_sharon">Il tester più longevo e più disponibile, consulente grafico</string>
+    <string name="credit_task_nadav">Il fantastico logo</string>
+    <string name="credit_task_cs">Le traduzioni in ceco</string>
+    <string name="credit_task_de">Le traduzioni in tedesco</string>
+    <string name="credit_task_el">Le traduzioni in greco</string>
+    <string name="credit_task_es">Le traduzioni in spagnolo</string>
+    <string name="credit_task_fr">Le traduzioni in francese</string>
+    <string name="credit_task_id">Le traduzioni in indonesiano</string>
+    <string name="credit_task_it">Le traduzioni in italiano</string>
+    <string name="credit_task_ka">Le traduzioni in georgiano</string>
+    <string name="credit_task_ko">Le traduzioni in coreano</string>
+    <string name="credit_task_pl">Le traduzioni in polacco</string>
+    <string name="credit_task_pt">Le traduzioni in portoghese</string>
+    <string name="credit_task_pt_br">Le traduzioni in portoghese brasiliano</string>
+    <string name="credit_task_ro">Le traduzioni in rumeno</string>
+    <string name="credit_task_ru">Le traduzioni in russo</string>
+    <string name="credit_task_sl">Le traduzioni in sloveno</string>
+    <string name="credit_task_sv">Le traduzioni in svedese</string>
+    <string name="credit_task_tr">Le traduzioni in turco</string>
+    <string name="credit_task_zh">Le traduzioni in cinese</string>
 </resources>

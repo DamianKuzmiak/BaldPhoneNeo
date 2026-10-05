@@ -496,4 +496,27 @@
     <string name="toast_mode_normal">Sound ON. You will hear ringtones and alerts.</string>
     <string name="toast_mode_vibrate">Vibration only. The phone will not ring.</string>
     <string name="toast_mode_silent">Completely silent. No sounds or vibrations.</string>
+
+    <!-- Credits tasks -->
+    <string name="credit_task_uriah">For establishing the foundation of this project</string>
+    <string name="credit_task_ido_sharon">Longest-serving and most helpful tester, graphics consultant</string>
+    <string name="credit_task_nadav">The awesome logo</string>
+    <string name="credit_task_cs">The Czech translations</string>
+    <string name="credit_task_de">The German translations</string>
+    <string name="credit_task_el">The Greek translations</string>
+    <string name="credit_task_es">The Spanish translations</string>
+    <string name="credit_task_fr">The French translations</string>
+    <string name="credit_task_id">The Indonesian translations</string>
+    <string name="credit_task_it">The Italian translations</string>
+    <string name="credit_task_ka">The Georgian translations</string>
+    <string name="credit_task_ko">The Korean translations</string>
+    <string name="credit_task_pl">The Polish translations</string>
+    <string name="credit_task_pt">The Portuguese translations</string>
+    <string name="credit_task_pt_br">The Brazilian Portuguese translations</string>
+    <string name="credit_task_ro">The Romanian translations</string>
+    <string name="credit_task_ru">The Russian translations</string>
+    <string name="credit_task_sl">The Slovenian translations</string>
+    <string name="credit_task_sv">The Swedish translations</string>
+    <string name="credit_task_tr">The Turkish translations</string>
+    <string name="credit_task_zh">The Chinese translations</string>
 </resources>
