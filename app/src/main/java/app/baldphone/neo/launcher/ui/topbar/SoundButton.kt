@@ -1,4 +1,4 @@
-package app.baldphone.neo.launcher.ui
+package app.baldphone.neo.launcher.ui.topbar
 
 import android.content.BroadcastReceiver
 import android.content.Context

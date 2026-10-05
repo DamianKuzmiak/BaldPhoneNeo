@@ -20,7 +20,7 @@
     android:layout_height="match_parent"
     android:background="@color/home_screen_top_bar_background">
 
-    <app.baldphone.neo.launcher.ui.NotificationsButton
+    <app.baldphone.neo.launcher.ui.topbar.NotificationsButton
         android:id="@+id/notifications"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <app.baldphone.neo.launcher.ui.SoundButton
+    <app.baldphone.neo.launcher.ui.topbar.SoundButton
         android:id="@+id/sound"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,13 +44,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifications" />
 
-    <app.baldphone.neo.launcher.ui.FlashlightButton
+    <app.baldphone.neo.launcher.ui.topbar.FlashlightButton
         android:id="@+id/flash"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/style_for_buttons_transparent"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
         android:src="@drawable/flashlight_off_on_background"
         app:layout_constraintBottom_toTopOf="@+id/battery"
@@ -58,13 +58,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sound" />
 
-    <app.baldphone.neo.launcher.ui.BatteryIconView
+    <app.baldphone.neo.launcher.ui.topbar.BatteryIconView
         android:id="@+id/battery"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/style_for_buttons_transparent"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/style_for_buttons_transparent"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
