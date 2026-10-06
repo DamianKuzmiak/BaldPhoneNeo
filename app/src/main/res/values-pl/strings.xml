@@ -16,6 +16,12 @@
   -->
 
 <resources>
+    <!-- Wizard -->
+    <string name="onb_welcome_title">Witamy!</string>
+    <string name="onb_welcome_subtitle">Przygotujmy wszystko w&#160;kilku prostych krokach.</string>
+    <string name="onb_action_skip_all">Pomiń na razie</string>
+    <string name="onb_action_start_setup">Rozpocznij konfigurację</string>
+
     <string name="about">O programie</string>
     <string name="accessibility_level">Poziom dostępności</string>
     <string name="accessibility_settings">Dostępność</string>

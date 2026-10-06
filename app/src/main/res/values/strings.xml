@@ -15,6 +15,12 @@
   -->
 
 <resources>
+    <!-- Wizard -->
+    <string name="onb_welcome_title">Welcome!</string>
+    <string name="onb_welcome_subtitle">Let’s get everything ready in a&#160;few simple steps.</string>
+    <string name="onb_action_skip_all">Skip for now</string>
+    <string name="onb_action_start_setup">Start Setup</string>
+
     <string name="onb_permissions_done">✓ All permissions granted</string>
     <string name="about">About</string>
     <string name="accessibility_level">Accessibility Level</string>

@@ -25,7 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.fragments_and_dialogs.tutorial_fragments.TutorialFragment1;
+import app.baldphone.neo.wizard.WelcomeFragment;
 import com.bald.uriah.baldphone.fragments_and_dialogs.tutorial_fragments.TutorialFragment2;
 import com.bald.uriah.baldphone.fragments_and_dialogs.tutorial_fragments.TutorialFragment4;
 import com.bald.uriah.baldphone.utils.BPrefs;
@@ -52,7 +52,7 @@ public class TutorialActivity extends BaldActivity {
         public Fragment getItem(final int position) {
             switch (position) {
                 case 0:
-                    return new TutorialFragment1();
+                    return new WelcomeFragment();
                 case 1:
                     return new TutorialFragment2();
                 case 2:
