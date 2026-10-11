@@ -73,13 +73,6 @@ class BaldDialog private constructor(
                 messageScrollView.visibility = View.GONE
             }
 
-            if (builder.showInput) {
-                editText.visibility = View.VISIBLE
-                editText.setText(builder.inputText)
-                editText.hint = builder.inputHint
-                editText.requestFocus()
-            }
-
             builder.customView?.let { customView ->
                 (customView.parent as? ViewGroup)?.removeView(customView)
                 customViewContainer.addView(customView)
@@ -138,8 +131,6 @@ class BaldDialog private constructor(
         internal var cancelable: Boolean = true
         internal var customView: View? = null
         internal var icon: Drawable? = null
-        internal var inputHint: CharSequence? = null
-        internal var inputText: CharSequence? = null
         internal var message: CharSequence? = null
         internal var negativeButtonListener: ((BaldDialog) -> Unit)? = null
         internal var negativeButtonText: CharSequence? = null
@@ -149,7 +140,6 @@ class BaldDialog private constructor(
         internal var onDismissListener: ((BaldDialog) -> Unit)? = null
         internal var positiveButtonListener: ((BaldDialog) -> Unit)? = null
         internal var positiveButtonText: CharSequence? = null
-        internal var showInput: Boolean = false
         internal var title: CharSequence? = null
 
         @ColorInt
@@ -173,13 +163,6 @@ class BaldDialog private constructor(
         fun setMessage(
             @StringRes resId: Int
         ) = setMessage(context.getText(resId))
-
-        fun setInput(show: Boolean = true, text: CharSequence? = null, hint: CharSequence? = null) =
-            apply {
-                this.showInput = show
-                this.inputText = text
-                this.inputHint = hint
-            }
 
         fun setPositiveButton(text: CharSequence, listener: ((BaldDialog) -> Unit)? = null) =
             apply {
@@ -213,6 +196,8 @@ class BaldDialog private constructor(
             @StringRes resId: Int,
             listener: ((BaldDialog) -> Unit)? = null
         ) = setNeutralButton(context.getText(resId), listener)
+
+        fun setCustomView(view: View) = apply { this.customView = view }
 
         fun setCancelable(cancelable: Boolean) = apply { this.cancelable = cancelable }
 

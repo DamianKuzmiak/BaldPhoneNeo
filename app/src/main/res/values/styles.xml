@@ -137,6 +137,12 @@
 <!--        <item name="colorOutline">@android:color/white</item>-->
     </style>
 
+    <style name="DialogRadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:textSize">@dimen/large</item>
+        <item name="android:paddingTop">@dimen/padding_default</item>
+        <item name="android:paddingBottom">@dimen/padding_default</item>
+    </style>
+
     <style name="Widget.BaldPhone.BatteryIconView" parent="">
         <item name="batteryNormalColor">?bald_decoration_on_background</item>
         <item name="batteryLowColor">#D50000</item>

@@ -4,9 +4,11 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.text.HtmlCompat
 
@@ -62,3 +64,9 @@ fun Context.getHtmlString(
  */
 fun Context.dpToPx(dp: Int): Int =
     (resources.displayMetrics.density * dp).toInt()
+
+/**
+ * Returns true if this context has been granted the given [permission].
+ */
+fun Context.hasPermission(permission: String): Boolean =
+    ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED

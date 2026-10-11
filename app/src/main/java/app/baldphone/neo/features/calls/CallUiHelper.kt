@@ -1,39 +1,31 @@
 package app.baldphone.neo.features.calls
 
-import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.telephony.SubscriptionInfo
-import android.telephony.SubscriptionManager
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.StyleSpan
+import android.view.ContextThemeWrapper
+import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 
-import androidx.core.content.ContextCompat
-
-import java.util.Collections
+import androidx.annotation.RequiresApi
+import androidx.core.text.bold
+import androidx.core.text.buildSpannedString
 
 import app.baldphone.neo.R
 import app.baldphone.neo.data.Prefs
-import app.baldphone.neo.features.calls.data.CallIntentFactory
 import app.baldphone.neo.ui.dialogs.BaldDialog
 import app.baldphone.neo.ui.dialogs.BaldSnackbar
 import app.baldphone.neo.utils.PhoneNumberUtils
 import app.baldphone.neo.utils.getDeviceRegion
 
-import com.bald.uriah.baldphone.utils.BDB
-import com.bald.uriah.baldphone.utils.BDialog
-
 /**
  * Handles the UI flow for making a phone call, including:
  * - Call confirmation dialogs
  * - Dual SIM selection dialogs
- * - Starting the call intent
- * - Showing error snackbars if no app is found
  */
 object CallUiHelper {
     /**
@@ -53,7 +45,6 @@ object CallUiHelper {
      * @param directly If true, bypasses Dual SIM selection.
      * @param skipPrompt If true, bypasses the call confirmation dialog.
      */
-    @JvmOverloads
     fun call(
         context: Context,
         number: CharSequence,
@@ -75,13 +66,11 @@ object CallUiHelper {
         directly: Boolean
     ) {
         val region = context.getDeviceRegion()
-        val formattedNumber = PhoneNumberUtils.formatForDisplay(number as String, region)
+        val formattedNumber = PhoneNumberUtils.formatForDisplay(number.toString(), region)
         val message =
             if (name != null) {
-                SpannableStringBuilder().apply {
-                    val start = length
-                    append(name)
-                    setSpan(StyleSpan(Typeface.BOLD), start, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                buildSpannedString {
+                    bold { append(name) }
                     append("\n")
                     append(formattedNumber)
                 }
@@ -102,43 +91,82 @@ object CallUiHelper {
     }
 
     private fun performCallFlow(context: Context, number: CharSequence, directly: Boolean) {
-        if (!directly && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 && Prefs.isDualSimActive) {
-            val sm = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
-
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.READ_PHONE_STATE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                val list = sm.activeSubscriptionInfoList?.let { Collections.unmodifiableList(it) } ?: emptyList()
-                if (list.size > 1) {
-                    val names = list.map { it.displayName ?: "" }.toTypedArray()
-                    BDB
-                        .from(context)
-                        .addFlag(BDialog.FLAG_OK or BDialog.FLAG_CANCEL)
-                        .setTitle(R.string.choose_sim)
-                        .setSubText(R.string.choose_sim_subtext)
-                        .setOptions(*names)
-                        .setPositiveButtonListener {
-                            startCall(context, number, list[it[0] as Int])
-                            true
-                        }.show()
-                    return
-                }
+        if (!directly && Prefs.isDualSimActive && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1)) {
+            val sims = CallUtils.getActiveSims(context)
+            if (sims.size > 1) {
+                showSimSelectionDialog(context, number, sims)
+                return
             }
         }
-
         startCall(context, number, null)
     }
 
-    private fun startCall(context: Context, number: CharSequence, subscriptionInfo: SubscriptionInfo?) {
-        val intent = CallIntentFactory.createCallIntent(context, number, subscriptionInfo)
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    private fun showSimSelectionDialog(
+        context: Context,
+        number: CharSequence,
+        sims: List<SubscriptionInfo>
+    ) {
+        val styledContext = ContextThemeWrapper(context, R.style.DialogRadioButton)
+        val radioButtons =
+            sims.mapIndexed { index, sim ->
+                RadioButton(styledContext).apply {
+                    id = View.generateViewId()
+                    text = getSimDisplayName(context, sim, index)
+                    if (index == 0) isChecked = true
+                }
+            }
+
+        val radioGroup =
+            RadioGroup(context).apply {
+                radioButtons.forEach { addView(it) }
+            }
+
+        BaldDialog
+            .Builder(context)
+            .setTitle(R.string.choose_sim_subtext) // using the existing string resource
+            .setIcon(R.drawable.sim_on_button)
+            .setCustomView(radioGroup)
+            .setPositiveButton(android.R.string.ok) {
+                val selectedIndex = radioButtons.indexOfFirst { it.id == radioGroup.checkedRadioButtonId }
+                (sims.getOrNull(selectedIndex) ?: sims.firstOrNull())?.let { selectedSim ->
+                    startCall(context, number, selectedSim)
+                }
+            }.setNegativeButton(android.R.string.cancel)
+            .show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    private fun getSimDisplayName(
+        context: Context,
+        sim: SubscriptionInfo,
+        index: Int
+    ): CharSequence =
+        sim.displayName?.takeIf { it.isNotBlank() }
+            ?: sim.carrierName?.takeIf { it.isNotBlank() }
+            ?: "${context.getString(R.string.choose_sim)} ${index + 1}"
+
+    private fun startCall(
+        context: Context,
+        number: CharSequence,
+        subscriptionInfo: SubscriptionInfo?
+    ) {
+        val intent = CallUtils.createCallIntent(context, number, subscriptionInfo)
+        if (context !is Activity) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
 
         runCatching {
             context.startActivity(intent)
         }.recoverCatching {
             val fallbackUri = Uri.fromParts("tel", number.toString(), null)
-            context.startActivity(Intent(Intent.ACTION_DIAL).setData(fallbackUri))
+            val fallbackIntent =
+                Intent(Intent.ACTION_DIAL, fallbackUri).apply {
+                    if (context !is Activity) {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                }
+            context.startActivity(fallbackIntent)
         }.onFailure {
             BaldSnackbar.show(context, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
         }
