@@ -157,15 +157,11 @@ object Prefs {
     /**
      * If true, the dialog for choosing a SIM will be shown when calling.
      */
-    var isDualSimActive: Boolean by booleanPref(
-        PrefKeys.KEY_DUAL_SIM_MODE,
-        PrefKeys.DEFAULT_DUAL_SIM_MODE,
-    )
+    var isDualSimActive: Boolean by booleanPref(PrefKeys.KEY_DUAL_SIM_MODE, false)
 
     /**
      * Whether a confirmation dialog should be shown before making a call.
      */
-    @JvmStatic
     var shouldConfirmCalls: Boolean by booleanPref(PrefKeys.KEY_CALL_CONFIRMATION, false)
 
     // Custom App Mappings (Home Screen)

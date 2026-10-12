@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <app.baldphone.neo.settings.views.SettingsSwitchButtonView
-        android:id="@+id/bt_confirm_calls"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:switchDescriptionOff="@string/setting_confirm_before_calling_desc_off"
-        app:switchDescriptionOn="@string/setting_confirm_before_calling_desc_on"
-        app:switchTitle="@string/setting_confirm_before_calling" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</LinearLayout>
+        <app.baldphone.neo.settings.views.SettingsSwitchButtonView
+            android:id="@+id/bt_confirm_calls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:switchDescriptionOff="@string/setting_confirm_before_calling_desc_off"
+            app:switchDescriptionOn="@string/setting_confirm_before_calling_desc_on"
+            app:switchTitle="@string/setting_confirm_before_calling" />
+
+        <app.baldphone.neo.settings.views.SettingsSwitchButtonView
+            android:id="@+id/bt_dual_sim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:switchDescriptionOff="@string/setting_dual_sim_desc_off"
+            app:switchDescriptionOn="@string/setting_dual_sim_desc_on"
+            app:switchTitle="@string/dual_sim"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</ScrollView>

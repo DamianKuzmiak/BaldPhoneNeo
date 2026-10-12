@@ -7,11 +7,10 @@
     <color name="bald_background">#1A1F23</color> <!-- Eerie black -->
     <color name="bald_background_transparent">#E4000000</color>
     <color name="home_screen_top_bar_background">#3E4756</color>
-    <color name="bald_button">#0b212f</color>
+    <color name="bald_button">#1F2B33</color>
     <color name="bald_button_clicked">#BAD6EF</color>  <!-- #44586a -->
     <color name="bald_button_disabled">#d6d6d6</color>
     <color name="bald_decoration_on_background">@color/bald_text_on_background</color>
-    <color name="bald_decoration_on_button">@color/bald_text_on_button</color>
     <color name="bald_decoration_on_key">@color/bald_text_on_key</color>
     <color name="bald_hint_on_button">#868686</color>
     <color name="bald_hint_on_settings_item">#A6BCC9</color>
@@ -19,7 +18,6 @@
     <color name="bald_keyboard_key_background">@color/bald_button</color>
     <color name="bald_keyboard_key_pressed_background">#F38630</color>
     <color name="bald_selected_on_background">#96A1AA</color>
-    <color name="bald_text_on_selected">#000</color>
     <color name="bald_stroke_color">#84cdd4db</color>
     <color name="bald_text_on_background">#cdd4db</color>
     <color name="bald_text_on_button">#cdd4db</color>

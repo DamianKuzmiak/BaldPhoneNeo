@@ -53,6 +53,14 @@ object CallUtils {
     }
 
     /**
+     * Returns true if the device has more than one active SIM card (and the READ_PHONE_STATE
+     * permission is granted). Returns false otherwise.
+     */
+    fun hasMultipleSims(context: Context): Boolean =
+        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) &&
+            (getActiveSims(context).size > 1)
+
+    /**
      * Returns the list of active SIM subscriptions if the READ_PHONE_STATE permission is granted.
      * Returns an empty list otherwise.
      */
