@@ -63,4 +63,9 @@
     <!-- TitleBarView dimensions -->
     <dimen name="title_bar_elevation">4dp</dimen>
     <dimen name="title_bar_side_padding">5dp</dimen>
+
+    <!-- SettingsSwitchButtonView dimensions -->
+    <dimen name="settings_switch_min_height">64dp</dimen>
+    <dimen name="settings_switch_padding_horizontal">16dp</dimen>
+    <dimen name="settings_switch_padding_vertical">12dp</dimen>
 </resources>

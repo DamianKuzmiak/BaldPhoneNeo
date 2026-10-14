@@ -2,12 +2,12 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@drawable/style_for_buttons_rectangle"
+    tools:background="@drawable/bg_settings_item_card"
     tools:layout_height="wrap_content"
     tools:layout_width="match_parent"
-    tools:minHeight="64dp"
-    tools:paddingHorizontal="12dp"
-    tools:paddingVertical="8dp"
+    tools:minHeight="@dimen/settings_switch_min_height"
+    tools:paddingHorizontal="@dimen/settings_switch_padding_horizontal"
+    tools:paddingVertical="@dimen/settings_switch_padding_vertical"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <TextView
@@ -30,14 +30,27 @@
         style="@style/ButtonsText.Medium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:gravity="start"
-        android:textColor="?attr/bald_hint_on_button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:minLines="2"
+        android:textColor="@color/bald_hint_on_settings_item"
+        app:layout_constraintBottom_toTopOf="@+id/content_slot"
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         tools:text="@string/dialog_delete_contact_message" />
+
+    <FrameLayout
+        android:id="@+id/content_slot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc"
+        tools:visibility="visible" />
 
     <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/sw_toggle"

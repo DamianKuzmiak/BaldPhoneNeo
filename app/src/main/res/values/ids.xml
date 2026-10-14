@@ -18,4 +18,5 @@
     <item name="id_dummy" type="id" />
     <item name="container" type="id" />
     <item name="container2" type="id" />
+    <item name="content_slot" type="id" />
 </resources>

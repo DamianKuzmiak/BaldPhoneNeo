@@ -14,6 +14,7 @@
     <color name="bald_decoration_on_button">@color/bald_text_on_button</color>
     <color name="bald_decoration_on_key">@color/bald_text_on_key</color>
     <color name="bald_hint_on_button">#868686</color>
+    <color name="bald_hint_on_settings_item">#A6BCC9</color>
     <color name="bald_hint_on_background">@color/bald_hint_on_button</color>
     <color name="bald_keyboard_key_background">@color/bald_button</color>
     <color name="bald_keyboard_key_pressed_background">#F38630</color>

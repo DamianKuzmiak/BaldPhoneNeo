@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <app.baldphone.neo.views.SettingsSwitchButton
+    <app.baldphone.neo.settings.views.SettingsSwitchButtonView
         android:id="@+id/bt_confirm_calls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

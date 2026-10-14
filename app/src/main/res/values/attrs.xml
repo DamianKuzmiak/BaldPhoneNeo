@@ -120,7 +120,7 @@
         <attr name="titleBarBackgroundColor" format="color|reference" />
     </declare-styleable>
 
-    <declare-styleable name="SettingsSwitchButton">
+    <declare-styleable name="SettingsSwitchButtonView">
         <attr name="switchTitle" format="string" />
         <attr name="switchDescription" format="string" />
         <attr name="switchDescriptionOn" format="string" />

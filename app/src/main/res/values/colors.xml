@@ -28,6 +28,7 @@
     <color name="bald_decoration_on_background">@color/bald_text_on_background</color>
     <color name="bald_decoration_on_key">@color/bald_text_on_key</color>
     <color name="bald_hint_on_button">#585858</color>
+    <color name="bald_hint_on_settings_item">#404040</color>
     <color name="bald_hint_on_background">@color/bald_hint_on_button</color>
     <color name="bald_keyboard_key_background">@color/bald_button</color>
     <color name="bald_keyboard_key_pressed_background">@color/bald_button_clicked</color>
