@@ -3,31 +3,28 @@ package app.baldphone.neo.data
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Base64
-import android.util.Log
 
 import androidx.core.content.edit
-
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
 
 import app.baldphone.neo.launcher.data.HomeSlot
 
 import com.bald.uriah.baldphone.utils.BPrefs
 
 object Prefs {
-    private const val TAG = "Prefs"
     private const val XOR_KEY = 0x5A
 
-    private lateinit var prefs: SharedPreferences
+    private lateinit var storage: SharedPreferences
 
-    @JvmStatic
     fun init(context: Context) {
         val applicationContext = context.applicationContext
-        prefs = applicationContext.getSharedPreferences(PrefKeys.PREFS_NAME, Context.MODE_PRIVATE)
+        storage = applicationContext.getSharedPreferences(PrefKeys.PREFS_NAME, Context.MODE_PRIVATE)
 
-        val version = prefs.getInt(PrefKeys.PREFS_VERSION_KEY, 0)
+        // Bind the same store used by the property delegates (see PreferenceDelegate.kt).
+        PreferenceDelegate.bind(storage)
+
+        val version = storage.getInt(PrefKeys.PREFS_VERSION_KEY, 0)
         if (version < PrefKeys.CURRENT_PREFS_VERSION) {
-            prefs.edit { putInt(PrefKeys.PREFS_VERSION_KEY, PrefKeys.CURRENT_PREFS_VERSION) }
+            storage.edit { putInt(PrefKeys.PREFS_VERSION_KEY, PrefKeys.CURRENT_PREFS_VERSION) }
         }
     }
 
@@ -46,7 +43,7 @@ object Prefs {
         PrefKeys.KEY_STATUS_BAR,
         StatusBarMode.EVERYWHERE,
         StatusBarMode::fromValue,
-        StatusBarMode::value,
+        StatusBarMode::value
     )
 
     /**
@@ -63,28 +60,28 @@ object Prefs {
     @JvmStatic
     var accessibilityLevel: AccessibilityLevel
         get() {
-            if (prefs.contains(PrefKeys.KEY_ACCESSIBILITY_LEVEL)) {
+            if (storage.contains(PrefKeys.KEY_ACCESSIBILITY_LEVEL)) {
                 return AccessibilityLevel.fromValue(
-                    prefs.getInt(
+                    storage.getInt(
                         PrefKeys.KEY_ACCESSIBILITY_LEVEL,
-                        0,
-                    ),
+                        0
+                    )
                 )
             }
             // Fallback to legacy boolean flags
             return when {
-                prefs.getBoolean(
+                storage.getBoolean(
                     BPrefs.TOUCH_NOT_HARD_KEY,
                     !BPrefs.LONG_PRESSES_DEFAULT_VALUE
                 ) -> AccessibilityLevel.BASIC
 
-                prefs.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, false) -> AccessibilityLevel.ENHANCED
+                storage.getBoolean(BPrefs.LONG_PRESSES_SHORTER_KEY, false) -> AccessibilityLevel.ENHANCED
 
                 else -> AccessibilityLevel.FULL
             }
         }
         set(level) {
-            prefs.edit {
+            storage.edit {
                 putInt(PrefKeys.KEY_ACCESSIBILITY_LEVEL, level.value)
                 // Still used by BPrefs and legacy code
                 val isNotBasic = level != AccessibilityLevel.BASIC
@@ -97,10 +94,10 @@ object Prefs {
     /**
      * Controls whether the app provides haptic feedback on back button press.
      */
-    @get:JvmStatic
+    @JvmStatic
     var isVibrationFeedbackEnabled: Boolean by booleanPref(
         PrefKeys.KEY_VIBRATION_FEEDBACK,
-        BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE,
+        BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE
     )
 
     /**
@@ -127,7 +124,7 @@ object Prefs {
     @JvmStatic
     var useAccidentalGuard: Boolean by booleanPref(
         PrefKeys.KEY_USE_ACCIDENTAL_GUARD,
-        true,
+        true
     )
 
     // Communication (Calls & Dialer) related preferences.
@@ -137,7 +134,7 @@ object Prefs {
      */
     var areDialerSoundsEnabled: Boolean by booleanPref(
         PrefKeys.KEY_DIALER_SOUNDS,
-        PrefKeys.DEFAULT_DIALER_SOUNDS,
+        PrefKeys.DEFAULT_DIALER_SOUNDS
     )
 
     /**
@@ -146,7 +143,7 @@ object Prefs {
      */
     var isCallLogVisible: Boolean by booleanPref(
         PrefKeys.KEY_CALL_LOG_VISIBLE,
-        false,
+        false
     )
 
     /**
@@ -169,13 +166,13 @@ object Prefs {
     /**
      * Returns the component name for the given [slot], or null if not customized.
      */
-    fun getCustomApp(slot: HomeSlot): String? = prefs.getString(slot.key, null)
+    fun getCustomApp(slot: HomeSlot): String? = storage.getString(slot.key, null)
 
     /**
      * Sets or removes the customized app for the given [slot].
      */
     fun setCustomApp(slot: HomeSlot, componentName: String?) {
-        prefs.edit {
+        storage.edit {
             if (componentName != null) {
                 putString(slot.key, componentName)
             } else {
@@ -187,7 +184,7 @@ object Prefs {
     /**
      * Returns true if the [slot] has a custom app assigned.
      */
-    fun isCustomized(slot: HomeSlot): Boolean = prefs.contains(slot.key)
+    fun isCustomized(slot: HomeSlot): Boolean = storage.contains(slot.key)
 
     /**
      * Controls whether the notes page is visible on the home screen.
@@ -205,87 +202,36 @@ object Prefs {
      */
     var homePhoneNumber: String? by obfuscatedStringPref(PrefKeys.KEY_HOME_PHONE_NUMBER, null)
 
-    // Helper functions for the delegate
-    private fun booleanPref(
-        key: String,
-        default: Boolean,
-    ) = PreferenceDelegate(
-        key,
-        default,
-        SharedPreferences::getBoolean,
-        SharedPreferences.Editor::putBoolean,
-    )
+    // Helper methods.
 
-    private fun intPref(key: String, default: Int) =
-        PreferenceDelegate(key, default, SharedPreferences::getInt, SharedPreferences.Editor::putInt)
+    private fun obfuscatedStringPref(key: String, default: String?) =
+        obfuscatedStringPref(
+            key,
+            default,
+            onDecode = { stored ->
+                // Fallback: if the value looks like a plain text phone number, return as is
+                if (stored.startsWith("+") || stored.firstOrNull()?.isDigit() == true) {
+                    stored
+                } else {
+                    stored.deobfuscate()
+                }
+            },
+            onEncode = { it.obfuscate() }
+        )
 
-    private fun stringPref(key: String, default: String?) =
-        PreferenceDelegate(key, default, SharedPreferences::getString, SharedPreferences.Editor::putString)
-
-    private fun obfuscatedStringPref(
-        key: String,
-        default: String?
-    ) = PreferenceDelegate(
-        key,
-        default,
-        getter = { p, k, d -> decrypt(p.getString(k, null)) ?: d },
-        setter = { e, k, v -> e.putString(k, encrypt(v)) }
-    )
-
-    private fun encrypt(value: String?): String? {
-        if (value == null) return null
-        val xored = value.map { (it.code xor XOR_KEY).toChar() }.joinToString("")
+    /** Lightweight obfuscation (XOR + Base64), it only prevents casual reading of stored values. */
+    private fun String.obfuscate(): String {
+        val xored = map { (it.code xor XOR_KEY).toChar() }.joinToString("")
         return Base64.encodeToString(xored.toByteArray(Charsets.UTF_8), Base64.NO_WRAP)
     }
 
-    private fun decrypt(value: String?): String? {
-        if (value == null) return null
-        // Fallback: If the value looks like a plain text phone number, return as is
-        if (value.startsWith("+") || value.firstOrNull()?.isDigit() == true) {
-            return value
-        }
-        return try {
-            val decodedBytes = Base64.decode(value, Base64.NO_WRAP)
+    /** Returns the original string unchanged if it cannot be decoded. */
+    private fun String.deobfuscate(): String =
+        try {
+            val decodedBytes = Base64.decode(this, Base64.NO_WRAP)
             val decodedStr = String(decodedBytes, Charsets.UTF_8)
             decodedStr.map { (it.code xor XOR_KEY).toChar() }.joinToString("")
         } catch (_: Exception) {
-            value
+            this
         }
-    }
-
-    private fun <T> enumPref(
-        key: String,
-        default: T,
-        fromInt: (Int) -> T,
-        toInt: (T) -> Int,
-    ) = PreferenceDelegate(
-        key,
-        default,
-        getter = { p, k, d -> fromInt(p.getInt(k, toInt(d))) },
-        setter = { e, k, v -> e.putInt(k, toInt(v)) },
-    )
-
-    private class PreferenceDelegate<T>(
-        private val key: String,
-        private val defaultValue: T,
-        private val getter: (SharedPreferences, String, T) -> T,
-        private val setter: (SharedPreferences.Editor, String, T) -> SharedPreferences.Editor,
-    ) : ReadWriteProperty<Prefs, T> {
-        override fun getValue(
-            thisRef: Prefs,
-            property: KProperty<*>,
-        ): T =
-            getter(thisRef.prefs, key, defaultValue).also {
-                Log.v(TAG, "Read $key: $it")
-            }
-
-        override fun setValue(
-            thisRef: Prefs,
-            property: KProperty<*>,
-            value: T,
-        ) {
-            Log.v(TAG, "Setting $key to $value")
-            thisRef.prefs.edit { setter(this, key, value) }
-        }
-    }
 }
