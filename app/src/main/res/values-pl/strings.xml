@@ -84,15 +84,15 @@
     <string name="call_settings_option_confirm">Pytaj o potwierdzenie</string>
     <string name="call_settings_option_direct">Dzwoń od razu</string>
 
-    <string name="settings_section_calls">Połączenia</string>
-    <string name="setting_confirm_before_calling">Potwierdzaj połączenia</string>
-    <string name="setting_confirm_before_calling_desc_on">Przed połączeniem pojawi się prośba o potwierdzenie</string>
-    <string name="setting_confirm_before_calling_desc_off">Telefon dzwoni od razu</string>
-    <string name="setting_dual_sim_desc_on">Przed każdym połączeniem pojawi się okno wyboru karty SIM</string>
-    <string name="setting_dual_sim_desc_off">Wszystkie połączenia będą wykonywane przez domyślną kartę SIM</string>
+    <string name="settings_calls_section">Połączenia</string>
+    <string name="settings_calls_confirm_calls_title">Potwierdzaj połączenia</string>
+    <string name="settings_calls_confirm_calls_desc_on">Przed połączeniem pojawi się prośba o potwierdzenie</string>
+    <string name="settings_calls_confirm_calls_desc_off">Telefon dzwoni od razu</string>
+    <string name="settings_calls_dual_sim_desc_on">Przed każdym połączeniem pojawi się okno wyboru karty SIM</string>
+    <string name="settings_calls_dual_sim_desc_off">Wszystkie połączenia będą wykonywane przez domyślną kartę SIM</string>
     <string name="settings_home_phone_number_title">Pokaż mój numer telefonu</string>
-    <string name="settings_home_phone_number_description_on">Widoczny na ekranie głównym</string>
-    <string name="settings_home_phone_number_description_off">Ukryty na ekranie głównym</string>
+    <string name="settings_home_phone_number_desc_on">Widoczny na ekranie głównym</string>
+    <string name="settings_home_phone_number_desc_off">Ukryty na ekranie głównym</string>
     <string name="settings_home_phone_number_hint">Numer telefonu</string>
 
     <string name="camera">Aparat</string>

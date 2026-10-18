@@ -10,8 +10,8 @@
         android:id="@+id/bt_custom_phone_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:switchDescriptionOff="@string/settings_home_phone_number_description_off"
-        app:switchDescriptionOn="@string/settings_home_phone_number_description_on"
+        app:switchDescriptionOff="@string/settings_home_phone_number_desc_off"
+        app:switchDescriptionOn="@string/settings_home_phone_number_desc_on"
         app:switchTitle="@string/settings_home_phone_number_title" />
 
 </LinearLayout>

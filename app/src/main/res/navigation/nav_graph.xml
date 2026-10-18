@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/callsSettingsFragment"
         android:name="app.baldphone.neo.settings.ui.CallsSettingsFragment"
-        android:label="@string/settings_section_calls">
+        android:label="@string/settings_calls_section">
     </fragment>
 
     <!-- SYSTEM -->

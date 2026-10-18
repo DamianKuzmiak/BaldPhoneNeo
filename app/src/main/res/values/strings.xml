@@ -86,15 +86,15 @@
     <string name="call_settings_option_confirm">Ask for confirmation</string>
     <string name="call_settings_option_direct">Call instantly</string>
 
-    <string name="settings_section_calls">Calls</string>
-    <string name="setting_confirm_before_calling">Confirm before calling</string>
-    <string name="setting_confirm_before_calling_desc_on">You will be asked to confirm before the call starts</string>
-    <string name="setting_confirm_before_calling_desc_off">Calls are placed immediately without asking</string>
-    <string name="setting_dual_sim_desc_on">A SIM selection dialog will appear before each call</string>
-    <string name="setting_dual_sim_desc_off">The default SIM will be used for all calls</string>
+    <string name="settings_calls_section">Calls</string>
+    <string name="settings_calls_confirm_calls_title">Confirm before calling</string>
+    <string name="settings_calls_confirm_calls_desc_on">You will be asked to confirm before the call starts</string>
+    <string name="settings_calls_confirm_calls_desc_off">Calls are placed immediately without asking</string>
+    <string name="settings_calls_dual_sim_desc_on">A SIM selection dialog will appear before each call</string>
+    <string name="settings_calls_dual_sim_desc_off">The default SIM will be used for all calls</string>
     <string name="settings_home_phone_number_title">Show my phone number</string>
-    <string name="settings_home_phone_number_description_on">Shown on the home screen</string>
-    <string name="settings_home_phone_number_description_off">Hidden from the home screen</string>
+    <string name="settings_home_phone_number_desc_on">Shown on the home screen</string>
+    <string name="settings_home_phone_number_desc_off">Hidden from the home screen</string>
     <string name="settings_home_phone_number_hint">Phone Number</string>
 
     <string name="camera">Camera</string>

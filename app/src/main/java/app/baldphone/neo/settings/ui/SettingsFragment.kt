@@ -19,7 +19,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings_list) {
     private val items =
         listOf(
             Item(SettingId.Home, R.string.edit_home_screen, R.drawable.home_on_button),
-            Item(SettingId.Calls, R.string.settings_section_calls, R.drawable.phone_on_button),
+            Item(SettingId.Calls, R.string.settings_calls_section, R.drawable.phone_on_button),
             Item(SettingId.System, R.string.settings_system, R.drawable.settings_on_button),
             Item(SettingId.Help, R.string.about, R.drawable.ic_info)
         )

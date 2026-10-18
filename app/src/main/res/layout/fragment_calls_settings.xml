@@ -16,9 +16,9 @@
             android:id="@+id/bt_confirm_calls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:switchDescriptionOff="@string/setting_confirm_before_calling_desc_off"
-            app:switchDescriptionOn="@string/setting_confirm_before_calling_desc_on"
-            app:switchTitle="@string/setting_confirm_before_calling" />
+            app:switchDescriptionOff="@string/settings_calls_confirm_calls_desc_off"
+            app:switchDescriptionOn="@string/settings_calls_confirm_calls_desc_on"
+            app:switchTitle="@string/settings_calls_confirm_calls_title" />
 
         <app.baldphone.neo.settings.views.SettingsSwitchButtonView
             android:id="@+id/bt_dual_sim"
@@ -26,8 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:visibility="gone"
-            app:switchDescriptionOff="@string/setting_dual_sim_desc_off"
-            app:switchDescriptionOn="@string/setting_dual_sim_desc_on"
+            app:switchDescriptionOff="@string/settings_calls_dual_sim_desc_off"
+            app:switchDescriptionOn="@string/settings_calls_dual_sim_desc_on"
             app:switchTitle="@string/dual_sim"
             tools:visibility="visible" />
 
