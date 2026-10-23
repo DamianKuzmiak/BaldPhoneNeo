@@ -4,6 +4,7 @@ import android.app.Notification
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
+import kotlin.time.Duration.Companion.milliseconds
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+import java.lang.ref.WeakReference
 
 import app.baldphone.neo.features.notifications.data.NotificationClassifier
 import app.baldphone.neo.features.notifications.data.NotificationRepository
@@ -25,39 +28,28 @@ class NotificationReceiverService : NotificationListenerService() {
         private const val DEBOUNCE_DELAY_MS = 250L
 
         @Volatile
-        private var instance: NotificationReceiverService? = null
+        private var instanceRef: WeakReference<NotificationReceiverService>? = null
 
-        fun isServiceAlive() = instance != null
-
-        fun getInstance() = instance
+        fun getInstance(): NotificationReceiverService? = instanceRef?.get()
     }
 
     private val repo = NotificationRepository
 
-//    override fun onStartCommand(
-//        intent: Intent?,
-//        flags: Int,
-//        startId: Int,
-//    ): Int {
-//        Log.v(TAG, "onStartCommand: intent=$intent, flags=$flags, startId=$startId")
-//        return super.onStartCommand(intent, flags, startId)
-//    }
-
     override fun onListenerConnected() {
 //        super.onListenerConnected()
         Log.i(TAG, "onListenerConnected: Binder established")
-        instance = this
+        instanceRef = WeakReference(this)
         triggerUpdate()
     }
 
     override fun onListenerDisconnected() {
         Log.i(TAG, "onListenerDisconnected: Binder dropped")
-        if (instance == this) instance = null
+        if (instanceRef?.get() == this) instanceRef = null
 //        super.onListenerDisconnected()
     }
 
     override fun onDestroy() {
-        if (instance == this) instance = null
+        if (instanceRef?.get() == this) instanceRef = null
         updateJob?.cancel()
         serviceScope.cancel()
         repo.update(emptyList())
@@ -78,7 +70,7 @@ class NotificationReceiverService : NotificationListenerService() {
         updateJob?.cancel()
         updateJob =
             serviceScope.launch {
-                delay(DEBOUNCE_DELAY_MS)
+                delay(DEBOUNCE_DELAY_MS.milliseconds)
                 refreshNotifications()
             }
     }
