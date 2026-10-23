@@ -13,14 +13,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -79,72 +77,80 @@ class ContactCache(
 
     suspend fun refresh(forceFullScan: Boolean = false) {
         tryRegisterObserver()
-        coroutineScope {
-            activeRefreshJob?.cancelAndJoin()
-            activeRefreshJob = coroutineContext.job
 
-            val startTime = System.currentTimeMillis()
-            Log.d(TAG, "refresh: Starting reload (forceFullScan=$forceFullScan)...")
-
-            // A non-null cache is populated even when the device has no contacts at all.
-            if (!forceFullScan && _contacts.value != null) {
-                Log.d(TAG, "refresh: Cache already populated, skipping full scan")
-                refreshTrigger.tryEmit(Unit)
-                return@coroutineScope
+        // Run the actual reload on the cache's own long-lived [scope] rather than on the caller's coroutine context,
+        // to avoid leaking the caller's scope.
+        activeRefreshJob?.cancelAndJoin()
+        val job =
+            scope.launch {
+                doRefresh(forceFullScan)
             }
+        activeRefreshJob = job
+        job.join()
+    }
 
-            var fullScanRequired = true
+    private suspend fun doRefresh(forceFullScan: Boolean) {
+        val startTime = System.currentTimeMillis()
+        Log.d(TAG, "refresh: Starting reload (forceFullScan=$forceFullScan)...")
 
-            // Step 1: Fast initial fetch (first PAGE_SIZE rows from each source).
-            if (_contacts.value == null) {
-                val firstContacts = reader.fetchAllContacts(limit = PAGE_SIZE)
-                val firstPhoneRows = reader.fetchPhoneContacts(limit = PAGE_SIZE)
-
-                _contacts.value = firstContacts
-                _allPhoneContacts.value = deduplicatePhoneRows(firstPhoneRows)
-
-                // Both queries must reach EOF for this to be a complete snapshot.
-                if (firstContacts.size < PAGE_SIZE && firstPhoneRows.size < PAGE_SIZE) {
-                    fullScanRequired = false
-                }
-
-                Log.i(
-                    TAG,
-                    "refresh: Initial page load complete " +
-                        "(contacts: ${firstContacts.size}, phone rows: ${firstPhoneRows.size}) " +
-                        "in ${System.currentTimeMillis() - startTime}ms"
-                )
-            }
-
-            if (!fullScanRequired) {
-                Log.d(TAG, "refresh: Full scan skipped (already at EOF)")
-                refreshTrigger.tryEmit(Unit)
-                return@coroutineScope
-            }
-
-            // Step 2: Full background fetch.
-            val allContacts = reader.fetchAllContacts(limit = -1)
-            val allPhoneRows = reader.fetchPhoneContacts(limit = -1)
-            val dialerContacts = deduplicatePhoneRows(allPhoneRows)
-
-            if (allContacts != _contacts.value) {
-                _contacts.value = allContacts
-                Log.i(TAG, "refresh: Contacts collection UPDATED (count: ${allContacts.size})")
-            } else {
-                Log.d(TAG, "refresh: Contacts collection UNCHANGED")
-            }
-
-            if (dialerContacts != _allPhoneContacts.value) {
-                _allPhoneContacts.value = dialerContacts
-                Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${dialerContacts.size})")
-            }
-
+        // A non-null cache is populated even when the device has no contacts at all.
+        if (!forceFullScan && _contacts.value != null) {
+            Log.d(TAG, "refresh: Cache already populated, skipping full scan")
             refreshTrigger.tryEmit(Unit)
-            Log.d(
+            return
+        }
+
+        var fullScanRequired = true
+
+        // Step 1: Fast initial fetch (first PAGE_SIZE rows from each source).
+        if (_contacts.value == null) {
+            val firstContacts = reader.fetchAllContacts(limit = PAGE_SIZE)
+            val firstPhoneRows = reader.fetchPhoneContacts(limit = PAGE_SIZE)
+
+            _contacts.value = firstContacts
+            _allPhoneContacts.value = deduplicatePhoneRows(firstPhoneRows)
+
+            // Both queries must reach EOF for this to be a complete snapshot.
+            if (firstContacts.size < PAGE_SIZE && firstPhoneRows.size < PAGE_SIZE) {
+                fullScanRequired = false
+            }
+
+            Log.i(
                 TAG,
-                "refresh: Completed full load in ${System.currentTimeMillis() - startTime}ms"
+                "refresh: Initial page load complete " +
+                    "(contacts: ${firstContacts.size}, phone rows: ${firstPhoneRows.size}) " +
+                    "in ${System.currentTimeMillis() - startTime}ms"
             )
         }
+
+        if (!fullScanRequired) {
+            Log.d(TAG, "refresh: Full scan skipped (already at EOF)")
+            refreshTrigger.tryEmit(Unit)
+            return
+        }
+
+        // Step 2: Full background fetch.
+        val allContacts = reader.fetchAllContacts(limit = -1)
+        val allPhoneRows = reader.fetchPhoneContacts(limit = -1)
+        val dialerContacts = deduplicatePhoneRows(allPhoneRows)
+
+        if (allContacts != _contacts.value) {
+            _contacts.value = allContacts
+            Log.i(TAG, "refresh: Contacts collection UPDATED (count: ${allContacts.size})")
+        } else {
+            Log.d(TAG, "refresh: Contacts collection UNCHANGED")
+        }
+
+        if (dialerContacts != _allPhoneContacts.value) {
+            _allPhoneContacts.value = dialerContacts
+            Log.i(TAG, "refresh: All phone contacts UPDATED (count: ${dialerContacts.size})")
+        }
+
+        refreshTrigger.tryEmit(Unit)
+        Log.d(
+            TAG,
+            "refresh: Completed full load in ${System.currentTimeMillis() - startTime}ms"
+        )
     }
 
     fun clear() {
@@ -199,8 +205,7 @@ class ContactCache(
         current: SimpleContact
     ): Boolean {
         if (candidate.isPrimary && !current.isPrimary) return true
-        if (!current.isPrimary &&
-            candidate.phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE &&
+        if (!current.isPrimary && candidate.phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE &&
             current.phoneType != ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
         ) {
             return true
@@ -210,9 +215,9 @@ class ContactCache(
 
     /** Stable key identifying the same phone number regardless of source/formatting. */
     private fun SimpleContact.numberKey(): String =
-        normalizedNumber.takeIf { it.isNotEmpty() }
-            ?: phoneNumber.filter { it.isDigit() || it == '+' }.takeIf { it.isNotEmpty() }
-            ?: phoneNumber
+        normalizedNumber.takeIf { it.isNotEmpty() } ?: phoneNumber
+            .filter { it.isDigit() || it == '+' }
+            .takeIf { it.isNotEmpty() } ?: phoneNumber
 
     companion object {
         private const val TAG = "ContactCache"
