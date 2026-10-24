@@ -16,19 +16,14 @@ import app.baldphone.neo.permissions.PermissionManager
 import app.baldphone.neo.permissions.model.AppPermission
 
 class PermissionViewModel : ViewModel() {
-    companion object {
-        private const val TAG = "PermissionViewModel"
-        private const val SYSTEM_DIALOG_NOT_SHOWN_THRESHOLD_MS = 500L
-    }
+    sealed interface UiState {
+        data object Idle : UiState
 
-    sealed class UiState {
-        object Idle : UiState()
+        data class Rationale(val permission: AppPermission, val denied: List<String>) : UiState
 
-        data class Rationale(val permission: AppPermission, val denied: List<String>) : UiState()
+        data class Recovery(val permission: AppPermission) : UiState
 
-        data class Recovery(val permission: AppPermission) : UiState()
-
-        object WaitingForSystem : UiState()
+        data object WaitingForSystem : UiState
 
         /**
          * Indicates that the batch processing has completed and the fragment should remove itself.
@@ -37,7 +32,7 @@ class PermissionViewModel : ViewModel() {
          * A recreated fragment will collect [Completed] (stateFlow replays the latest value)
          * and safely remove itself, preventing orphaned fragment instances.
          */
-        object Completed : UiState()
+        data object Completed : UiState
     }
 
     data class ActiveRequest(
@@ -48,34 +43,15 @@ class PermissionViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
-    val queue = ArrayDeque<AppPermission>()
     var current: ActiveRequest? = null
+        private set
 
-    private var activePermissions: List<AppPermission>? = null
-    private val callbackMap = mutableMapOf<AppPermission, PermissionManager.PermissionCallback>()
     var showRationale: Boolean = true
+        private set
 
-    /**
-     * Returns and removes the callback for [permission].
-     *
-     * Callbacks hold references to UI components (Views / Activities). Removing the callback immediately
-     * after it fires prevents memory leaks if an Activity is destroyed while permission requests remain pending.
-    */
-    fun consumeCallback(permission: AppPermission): PermissionManager.PermissionCallback? =
-        callbackMap.remove(permission)
-
-    fun updateUiState(newState: UiState) {
-        _uiState.value = newState
-    }
-
-    fun clearState() {
-        queue.clear()
-        current = null
-        activePermissions = null
-        _uiState.value = UiState.Idle
-        callbackMap.clear()
-        showRationale = true
-    }
+    private val queue = ArrayDeque<AppPermission>()
+    private val callbackMap = mutableMapOf<AppPermission, PermissionManager.PermissionCallback>()
+    private var activePermissions: List<AppPermission>? = null
 
     /**
      * Prepares for a new batch of requests or reattaches to the existing one.
@@ -101,21 +77,22 @@ class PermissionViewModel : ViewModel() {
             Log.d(TAG, "Same batch, reattached callbacks")
         }
 
-        requests.forEach { updateCallbacks(it) }
+        requests.forEach {
+            callbackMap[it.permission] = it.callback
+        }
         return isNew
     }
 
-    /** Signals that the batch has completed so the attached fragment can remove itself. */
-    fun markCompleted() {
-        _uiState.value = UiState.Completed
+    /** Dequeues the next permission and promotes it to [current] */
+    fun dequeueNextPermission(): AppPermission? {
+        val permission = queue.removeFirstOrNull() ?: return null
+        current = ActiveRequest(permission)
+        return permission
     }
 
-    /**
-     * Registers the callback for a permission request, overwriting any existing entry
-     * to prevent leaking destroyed Activity instances across configuration changes.
-     */
-    private fun updateCallbacks(entry: PermissionManager.RequestEntry) {
-        callbackMap[entry.permission] = entry.callback
+    /** Clears the active request once its result has been delivered. */
+    fun clearCurrent() {
+        current = null
     }
 
     fun markSystemDialogLaunched() {
@@ -129,8 +106,40 @@ class PermissionViewModel : ViewModel() {
         return elapsed < SYSTEM_DIALOG_NOT_SHOWN_THRESHOLD_MS
     }
 
+    fun updateUiState(newState: UiState) {
+        _uiState.value = newState
+    }
+
+    /** Signals that the batch has completed so the attached fragment can remove itself. */
+    fun markCompleted() {
+        _uiState.value = UiState.Completed
+    }
+
+    fun clearState() {
+        queue.clear()
+        current = null
+        activePermissions = null
+        _uiState.value = UiState.Idle
+        callbackMap.clear()
+        showRationale = true
+    }
+
+    /**
+     * Returns and removes the callback for [permission].
+     *
+     * Callbacks hold references to UI components (Views / Activities). Removing the callback immediately
+     * after it fires prevents memory leaks if an Activity is destroyed while permission requests remain pending.
+     */
+    fun consumeCallback(permission: AppPermission): PermissionManager.PermissionCallback? =
+        callbackMap.remove(permission)
+
     override fun onCleared() {
         super.onCleared()
         clearState()
+    }
+
+    companion object {
+        private const val TAG = "PermissionViewModel"
+        private const val SYSTEM_DIALOG_NOT_SHOWN_THRESHOLD_MS = 500L
     }
 }

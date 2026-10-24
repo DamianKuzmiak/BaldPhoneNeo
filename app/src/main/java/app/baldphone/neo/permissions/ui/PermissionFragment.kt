@@ -26,10 +26,6 @@ import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.ui.dialogs.BaldDialog
 
 class PermissionFragment : Fragment() {
-    private companion object {
-        const val TAG = "PermissionFragment"
-    }
-
     private val viewModel: PermissionViewModel by viewModels()
 
     private var dialog: BaldDialog? = null
@@ -152,7 +148,7 @@ class PermissionFragment : Fragment() {
             return
         }
 
-        val permission = viewModel.queue.removeFirstOrNull()
+        val permission = viewModel.dequeueNextPermission()
         if (permission == null) {
             Log.d(TAG, "Queue exhausted, finishing batch")
             clearState()
@@ -161,7 +157,6 @@ class PermissionFragment : Fragment() {
         }
 
         Log.d(TAG, "processQueue: next=$permission")
-        viewModel.current = PermissionViewModel.ActiveRequest(permission)
         evaluatePermission(permission)
     }
 
@@ -208,7 +203,7 @@ class PermissionFragment : Fragment() {
             return
         }
 
-        viewModel.current = null
+        viewModel.clearCurrent()
         viewModel.updateUiState(PermissionViewModel.UiState.Idle)
         processQueue()
     }
@@ -291,5 +286,9 @@ class PermissionFragment : Fragment() {
     private fun closeDialog() {
         dialog?.dismiss()
         dialog = null
+    }
+
+    private companion object {
+        const val TAG = "PermissionFragment"
     }
 }
