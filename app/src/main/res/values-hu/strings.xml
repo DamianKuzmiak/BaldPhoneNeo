@@ -76,11 +76,6 @@
     <string name="choose_tuesday">Ke</string>
     <string name="choose_wednesday">Sze</string>
     <string name="clear">Törlés</string>
-    <string name="clear_cache">Gyorsítótár törlése</string>
-    <string name="clear_data">Minden adat törlése</string>
-    <string name="clear_data_subtext">Biztos minden felhasználói adatot törölni akarsz? A BaldPhone alkalmazás is gyári állapotba kerül.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Biztos?\nAz Igen opciót választva minden törlődik!</string>
     <string name="clock">Óra</string>
     <string name="coming_soon">Hamarosan jön!</string>
     <string name="connection_settings">Csatlakozási lehetőségek</string>
@@ -257,7 +252,6 @@ https://baldphone.com</string>
     <string name="no_alarms">Nincs ébresztő!\nHozz létre egyet a lenti gombokkal.</string>
     <string name="no_pills">Nincs gyógyszer értesítő!\nHozz létre egyet a lenti gombbal.</string>
     <string name="clear_all_notifications">Értesítések törlése</string>
-    <string name="clear_cache_subtext">Biztosan törölni akarod a gyorsítótárat? Az ideiglenes fájlok törlése megoldhat néhány problémát, de a kezdőképernyő tartalma elveszik.</string>
 
     <string name="what_s_new">Újdonságok</string>
     <string name="what_do_you_want_to_do_with___">Mit akarsz tenni vele: %s?</string>

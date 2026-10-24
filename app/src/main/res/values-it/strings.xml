@@ -109,12 +109,6 @@
     <string name="choose_tuesday">Mar</string>
     <string name="choose_wednesday">Mer</string>
     <string name="clear">Cancella</string>
-    <string name="clear_cache">Svuota cache</string>
-    <string name="clear_cache_subtext">Vuoi svuotare la cache? L’operazione può risolvere alcuni problemi, ma rimuoverà i collegamenti dalla schermata Home.</string>
-    <string name="clear_data">Elimina tutti i dati</string>
-    <string name="clear_data_subtext">Elimina tutti i dati e le impostazioni dell’utente.\nBaldPhone tornerà allo stato predefinito, come appena installato.</string>
-    <string name="clear_data_subtext2">Sei sicuro al 100%?</string>
-    <string name="clear_data_subtext3">Sei sicuro? Premendo Sì verranno eliminati tutti i dati!</string>
     <string name="clock">Orologio</string>
     <string name="combine_duplicated_calls">Raggruppa chiamate uguali</string>
     <string name="coming_soon">Prossimamente!</string>

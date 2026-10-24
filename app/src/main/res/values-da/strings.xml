@@ -76,11 +76,6 @@
     <string name="choose_tuesday">Tirsdag</string>
     <string name="choose_wednesday">Onsdag</string>
     <string name="clear">Ryd</string>
-    <string name="clear_cache">Ryd midlertidig hukommelse</string>
-    <string name="clear_data">Slet al data</string>
-    <string name="clear_data_subtext">Er du sikker på, at du ønsker at slette al brugerdata? BaldPhone-app\'en vil vende tilbage til fabriksindstillingerne (som da du lige havde installeret den).</string>
-    <string name="clear_data_subtext2">Helt sikker?</string>
-    <string name="clear_data_subtext3">Absolut sikker?\nHvis du trykker "Ja" slettes ALT brugerdata og app\'en mister alle dine indstillinger!</string>
     <string name="clock">Ur</string>
     <string name="coming_soon">Kommer snart!</string>
     <string name="connection_settings">Forbindelser</string>
@@ -253,7 +248,6 @@
     <string name="no_alarms">Ingen alarmer\nOpret en ved at klikke på \n\"Tilføj alarm\"\neller\n\"tilføj stopur\"</string>
     <string name="no_pills">Ingen piller\nOpret en ved at klikke på\n\"Tilføj pille\"</string>
     <string name="clear_all_notifications">Ryd alle notifikationer</string>
-    <string name="clear_cache_subtext">Er du sikker på, at du vil slette den midlertidige hukommelse? Dette kan afhjælpe småfejl i BaldPhone, men vil også slette genvejene på \"skrivebordet\".</string>
 
     <string name="what_s_new">Nyheder</string>
     <string name="what_do_you_want_to_do_with___">Hvad vil du gerne gøre med %s?</string>

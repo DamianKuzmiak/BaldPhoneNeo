@@ -80,11 +80,6 @@
     <string name="choose_tuesday">Tor</string>
     <string name="choose_wednesday">Sre</string>
     <string name="clear">Počisti</string>
-    <string name="clear_cache">Počisti \npredpomnilnik</string>
-    <string name="clear_data">Počisti vse podatke</string>
-    <string name="clear_data_subtext">Ali ste prepričani, da želite počistiti vse podatke?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Prepričani?\nPritisk bo odstranil vse podatke!</string>
     <string name="clock">Ura</string>
     <string name="coming_soon">Prihaja kmalu!</string>
     <string name="connection_settings">Povezava</string>
@@ -265,7 +260,6 @@
     <string name="no_alarms">Ni budilk.\nUstvari jih tako, da klikneš\n\'Dodaj budilko\'\nali\n\'Dodaj štoparico\'</string>
     <string name="no_pills">Ni zdravil.\nDodaj novo s tem, da klikneš\n\'Dodaj zdravilo\'</string>
     <string name="clear_all_notifications">Počisti vsa obvestila</string>
-    <string name="clear_cache_subtext">Ali ste prepričani, da želite počistiti celoten predpomnilnik?\nOdstranjene bodo tudi bližnjice aplikacij!</string>
 
     <string name="what_s_new">Kaj je novega</string>
     <string name="what_do_you_want_to_do_with___">Kaj želiš storiti s %s?</string>

@@ -109,12 +109,6 @@
     <string name="choose_tuesday">Tue</string>
     <string name="choose_wednesday">Wed</string>
     <string name="clear">Clear</string>
-    <string name="clear_cache">Clear Cache</string>
-    <string name="clear_cache_subtext">Are you sure you want to clear the cache? This may fix some issues, but shortcuts on the Home screen will be removed.</string>
-    <string name="clear_data">Clear All Data</string>
-    <string name="clear_data_subtext">Deletes all user data and settings.\nBaldPhone will return to its default state, as if freshly installed.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Are you sure? Pressing Yes will delete all data!</string>
     <string name="clock">Clock</string>
     <string name="combine_duplicated_calls">Combine same calls</string>
     <string name="coming_soon">Coming Soon!</string>

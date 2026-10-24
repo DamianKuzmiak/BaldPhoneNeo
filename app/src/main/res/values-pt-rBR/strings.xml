@@ -77,11 +77,6 @@
     <string name="choose_tuesday">Ter</string>
     <string name="choose_wednesday">Qua</string>
     <string name="clear">Apagar</string>
-    <string name="clear_cache">Apagar Cache</string>
-    <string name="clear_data">Apagar Todos os Dados</string>
-    <string name="clear_data_subtext">Tem a certeza que deseja apagar todos os dados?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Certeza absoluta?\nPressionar "Sim" apagará todos os dados do aplicativo!</string>
     <string name="clock">Relógio</string>
     <string name="coming_soon">Em breve!</string>
     <string name="connection_settings">Conexão</string>
@@ -257,8 +252,6 @@
     <string name="no_alarms">Nenhum Alarme\nCrie um tocando em \n\"Adicionar Alarme\"\nou\n\"Adicionar Cronômetro\"</string>
     <string name="no_pills">Nenhum medicamento.\nAdicione um tocando em \n\"Adicionar Medicamento\"</string>
     <string name="clear_all_notifications">Limpar Todas as Notificações</string>
-    <string name="clear_cache_subtext">Tem a certeza que deseja apagar o cache?\nOs Aplicativos e Atalhos também serão removidos!
-    </string>
 
     <string name="what_s_new">O que há de novo</string>
     <string name="what_do_you_want_to_do_with___">O que deseja fazer com %s?</string>

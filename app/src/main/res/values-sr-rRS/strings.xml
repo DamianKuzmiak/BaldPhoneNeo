@@ -76,11 +76,6 @@
     <string name="choose_tuesday">Uto</string>
     <string name="choose_wednesday">Sre</string>
     <string name="clear">Obrisati</string>
-    <string name="clear_cache">Obriši keš memoriju</string>
-    <string name="clear_data">Obriši sve podatke</string>
-    <string name="clear_data_subtext">Da li ste sigurni da želite da obrišete sve korisničke podatke? BaldPhone aplikacija će biti restartovana na početna podešavanja.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">sigurno?\npritiskom na \"da\" obrisaćete sve podatke!</string>
     <string name="clock">Sat</string>
     <string name="coming_soon">Uskoro dolazi!</string>
     <string name="connection_settings">Veza</string>
@@ -254,7 +249,6 @@
     <string name="no_alarms">Nemate Alarme\nKreirajte jedan pritiskom na\n\"Dodaj alarm\"\nIli\n\"Dodaj Tajmer\"</string>
     <string name="no_pills">Nema lekova\nDodajte lek pritiskom dugmeta\n\"Dodaj lek\"</string>
     <string name="clear_all_notifications">Obriši sva obeveštenja</string>
-    <string name="clear_cache_subtext">Da li ste sigurni da želite da obrišete keširan sadržaj? Brisanje privremenih datoteka može rešiti neke kvarove BoldPhone aplikacije, ali će takodje biti uklonjene i prečice kreirane na početnom ekranu.</string>
 
     <string name="what_s_new">Šta je novo</string>
     <string name="what_do_you_want_to_do_with___">Šta želite da uradite sa %s?</string>

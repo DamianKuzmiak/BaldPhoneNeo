@@ -78,11 +78,6 @@
     <string name="choose_tuesday">Di</string>
     <string name="choose_wednesday">Mi</string>
     <string name="clear">Löschen</string>
-    <string name="clear_cache">Cache leeren.</string>
-    <string name="clear_data">Alle Daten löschen</string>
-    <string name="clear_data_subtext">Bist du dir sicher, dass du alle Daten löschen willst?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Sicher?\nWenn du ja drückst, werden alle Daten gelöscht!</string>
     <string name="clock">Uhr</string>
     <string name="coming_soon">Kommt bald!</string>
     <string name="connection_settings">Verbindungseinstellungen</string>
@@ -263,8 +258,6 @@
     <string name="no_alarms">Keine Wecker vorhanden.\nLege einen Wecker an, indem du auf\n\"Alarm hinzufügen\"\nOder\n\"Eieruhr hinzufügen\" drückst.</string>
     <string name="no_pills">Keine Medikamente vorhanden\nLege welche an, indem du auf\n\"Medikamente hinzufügen\" drückst</string>
     <string name="clear_all_notifications">Alle Benachrichtigungen löschen</string>
-    <string name="clear_cache_subtext">Bist du dir sicher, dass du den gesamten Cache leeren willst?\nAuch die Schnellwahltasten für die Apps werden gelöscht!
-    </string>
 
     <string name="what_s_new">Was es neues gibt</string>
     <string name="what_do_you_want_to_do_with___">Was willst du mit %s machen?</string>

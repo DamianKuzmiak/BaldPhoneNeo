@@ -78,11 +78,6 @@
     <string name="choose_tuesday">周二</string>
     <string name="choose_wednesday">周三</string>
     <string name="clear">清除</string>
-    <string name="clear_cache">清理暫存</string>
-    <string name="clear_data">清除所有資料</string>
-    <string name="clear_data_subtext">你肯定要移除所有資料？</string>
-    <string name="clear_data_subtext2">百分百肯定要刪除所有資料？</string>
-    <string name="clear_data_subtext3">肯定嗎？\n按確定之後真的會移除所有資料！</string>
     <string name="clock">時鐘</string>
     <string name="coming_soon">即將推出！</string>
     <string name="connection_settings">連接</string>
@@ -263,8 +258,6 @@
     <string name="no_alarms">無任何鬧鐘\n按一下\n「新增鬧鐘」\n或者\n「新增倒數計時器」\n新增鬧鐘</string>
     <string name="no_pills">無藥物\n按一下\n「新增藥物」新增記錄</string>
     <string name="clear_all_notifications">清除所有通知</string>
-    <string name="clear_cache_subtext">你肯定要清除緩存？\n所有捷徑也會移除！
-    </string>
 
     <string name="what_s_new">新功能</string>
     <string name="what_do_you_want_to_do_with___">你想拿 %s 做什麽？</string>

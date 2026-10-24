@@ -79,11 +79,6 @@ ja muuttaa kirkkautta.</string>
     <string name="choose_tuesday">Ti</string>
     <string name="choose_wednesday">Ke</string>
     <string name="clear">Tyhjää</string>
-    <string name="clear_cache">Tyhjää välimuisti</string>
-    <string name="clear_data">Tyhjää kaikki tiedot</string>
-    <string name="clear_data_subtext">Haluatko varmasti poistaa kaikki käyttäjätiedot? BaldPhone-sovellus palaa tuoreeseen, juuri asennettuun tilaan.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">varma?\nvalitsemalla kyllä kaikki tiedot poistetaan!</string>
     <string name="clock">Kello</string>
     <string name="coming_soon">Tulossa pian!</string>
     <string name="connection_settings">Yhteys</string>
@@ -270,7 +265,6 @@ ja muuttaa kirkkautta.</string>
     <string name="no_alarms">Ei hälytyksiä\nLuo uusi painamalla\n\"Lisää hälytys\"\ntai\n\"Lisää ajastin\"</string>
     <string name="no_pills">Ei lääkityksiä\nLisää uusi painamalla\n\"Lisää lääkitys\"</string>
     <string name="clear_all_notifications">Poista kaikki muistutukset</string>
-    <string name="clear_cache_subtext">Haluatko varmasti poistaa välimuistin sisällön? Väliaikaistiedostojen poistaminen voi ratkaista joitain BaldPhone-sovelluksen toimintahäiriöitä, mutta myös aloitusnäytölle luodut pikakuvakkeet poistetaan.</string>
 
     <string name="what_s_new">Mikä on uutta</string>
     <string name="what_do_you_want_to_do_with___">Mitä haluat tehdä: %s?</string>

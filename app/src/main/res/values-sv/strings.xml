@@ -77,11 +77,6 @@
     <string name="choose_tuesday">Tis</string>
     <string name="choose_wednesday">Ons</string>
     <string name="clear">Rensa</string>
-    <string name="clear_cache">Rensa Cache</string>
-    <string name="clear_data">Rensa All Data</string>
-    <string name="clear_data_subtext">Vill du rensa all data?</string>
-    <string name="clear_data_subtext2">Säker?</string>
-    <string name="clear_data_subtext3">Absolut säker?\nOm du klickar på ja försvinner all data!</string>
     <string name="clock">Klocka</string>
     <string name="coming_soon">Under utveckling!</string>
     <string name="connection_settings">Anslutningar</string>
@@ -266,8 +261,6 @@
     <string name="no_pills">Inga läkemedel tillagda\n\nLägg till genom att klicka på \n\n\"Lägg till läkemedel\"
     </string>
     <string name="clear_all_notifications">Rensa alla aviseringar</string>
-    <string name="clear_cache_subtext">Är du säker på att du vill rensa cachen?\n Även appgenvägar kommer att rensas!
-    </string>
 
     <string name="what_s_new">Vad som är nytt</string>
     <string name="what_do_you_want_to_do_with___">Vad vill du göra med %s?</string>

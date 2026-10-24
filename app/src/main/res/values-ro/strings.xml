@@ -79,11 +79,6 @@
     <string name="choose_tuesday">Mar</string>
     <string name="choose_wednesday">Mie</string>
     <string name="clear">Șterge</string>
-    <string name="clear_cache">Șterge Cache</string>
-    <string name="clear_data">Ștergeti toate datele</string>
-    <string name="clear_data_subtext">Sunteți sigur că doriți ștergerea tuturor datelor?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Sigur?\nVeți șterge toate datele apasând \'Yes\'</string>
     <string name="clock">Ceas</string>
     <string name="coming_soon">În curând</string>
     <string name="connection_settings">Conexiune</string>
@@ -266,8 +261,6 @@
     <string name="no_alarms">Nici o alarmă\nCreați una apasând pe\n\"Adaugă alarmă\"\nsau\n\"Adaugă temporizator\"</string>
     <string name="no_pills">Nici un medicament\nAdaugă unul apasând pe\n\"Adaugă medicament\"</string>
     <string name="clear_all_notifications">Stergeți toate notificările</string>
-    <string name="clear_cache_subtext">Sunteți sigur că vreți să stergeți datele cache?\nScurtăturilor vor fi de asemenea șterse!
-    </string>
 
     <string name="what_s_new">Ce este nou</string>
     <string name="what_do_you_want_to_do_with___">Ce doriți să faceți cu %s?</string>

@@ -78,11 +78,6 @@
     <string name="choose_tuesday">ג</string>
     <string name="choose_wednesday">ד</string>
     <string name="clear">נקה</string>
-    <string name="clear_cache">מחיקת מטמון</string>
-    <string name="clear_data">מחיקת כל המידע</string>
-    <string name="clear_data_subtext">האם אתה בטוח שאתה רוצה למחוק את כל המידע של BaldPhone?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">בטוח ב10000%\nפעולה זו לא הפיכה!</string>
     <string name="clock">שעון</string>
     <string name="coming_soon">יתווסף בקרוב!</string>
     <string name="connection_settings">חיבור לרשת</string>
@@ -271,9 +266,6 @@
     <string name="no_alarms">אין שעונים\nהוסף אחד על ידי לחיצה על\n\"הוסף שעון מעורר\"\nאו\n\"הוסף טיימר\"</string>
     <string name="no_pills">אין תרופות\nהוסף אחת על ידי לחיצה על\n\"הוסף תרופה\"</string>
     <string name="clear_all_notifications">ניקוי כל ההתראות</string>
-    <string name="clear_cache_subtext">האם אתה בטוח שאתה רוצה למחוק את כל המטמון?\nיישומים מוצמדים יפסיקו להיות
-        מוצמדים
-    </string>
 
     <string name="what_s_new">מה חדש</string>
     <string name="what_do_you_want_to_do_with___">מה ברצונך לעשות עם %s?</string>

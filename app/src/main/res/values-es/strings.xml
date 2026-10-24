@@ -78,11 +78,6 @@
     <string name="choose_tuesday">Mar.</string>
     <string name="choose_wednesday">Mié.</string>
     <string name="clear">Leída</string>
-    <string name="clear_cache">Vaciar memoria caché</string>
-    <string name="clear_data">Borrar todos los datos</string>
-    <string name="clear_data_subtext">¿Seguro que quieres borrar todos los datos del usuario? La aplicación de BaldPhone volverá al estado inicial, como si la acabaras de instalar.</string>
-    <string name="clear_data_subtext2">¿Seguro, seguro?</string>
-    <string name="clear_data_subtext3">¿Estás seguro? Pulsar «sí» borrará todos los datos.</string>
     <string name="clock">Reloj</string>
     <string name="coming_soon">Esta función todavía no está disponible.</string>
     <string name="connection_settings">Conexiones de red</string>
@@ -262,8 +257,6 @@
     <string name="no_alarms">Parece que todavía no hay ninguna alarma, puedes crear una pulsando «añadir alarma» o «añadir temporizador».</string>
     <string name="no_pills">Parece que todavía no hay ninguna pastilla registrada, añade alguna pulsando el botón de «añadir pastilla».</string>
     <string name="clear_all_notifications">Quitar todas las notificaciones</string>
-    <string name="clear_cache_subtext">¿Seguro que quieres borrar del todo la memoria caché de BaldPhone? Puede que borrar los archivos temporales solucione algunos problemas, pero los enlaces directos de la pantalla de inicio también desaparecerán.
-    </string>
 
     <string name="what_s_new">Novedades</string>
     <string name="what_do_you_want_to_do_with___">¿Qué quieres hacer con %s?</string>

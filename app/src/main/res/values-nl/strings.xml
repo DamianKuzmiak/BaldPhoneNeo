@@ -76,11 +76,6 @@
     <string name="choose_tuesday">Di</string>
     <string name="choose_wednesday">Wo</string>
     <string name="clear">Wis</string>
-    <string name="clear_cache">Cache wissen</string>
-    <string name="clear_data">Wis alle gegevens</string>
-    <string name="clear_data_subtext">Weet u zeker dat u alle gebruikersgegevens wilt verwijderen? De BaldPhone-app keert terug naar een nieuw-geïnstalleerde blanco staat.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">zeker?\ndoor op ja te drukken worden alle gegevens verwijderd!</string>
     <string name="clock">Klok</string>
     <string name="coming_soon">Binnenkort beschikbaar!</string>
     <string name="connection_settings">Verbinding</string>
@@ -256,7 +251,6 @@ Deel het met hen!\"</string>
     <string name="no_alarms">Geen alarmen\nMaak er een door op\n\"Alarm toevoegen\"\nof\n\\"Timer toevoegen\" te klikken</string>
     <string name="no_pills">Geen medicatie ingesteld\nMaak er een door op\n\"Medicatie toevoegen\" te klikken</string>
     <string name="clear_all_notifications">Wis alle notificaties</string>
-    <string name="clear_cache_subtext">Weet u zeker dat u de cache-inhoud wilt verwijderen? Het verwijderen van tijdelijke bestanden kan enkele storingen in de BaldPhone-app oplossen, maar ook snelkoppelingen die in het startscherm zijn gemaakt zullen worden verwijderd.</string>
 
     <string name="what_s_new">Wat is er nieuw</string>
     <string name="what_do_you_want_to_do_with___">Wat wilt u doen met %s?</string>

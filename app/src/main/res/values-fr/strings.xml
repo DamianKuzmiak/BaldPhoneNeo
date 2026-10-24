@@ -78,11 +78,6 @@
     <string name="choose_tuesday">Mar</string>
     <string name="choose_wednesday">Mer</string>
     <string name="clear">Effacer</string>
-    <string name="clear_cache">Effacer le cache</string>
-    <string name="clear_data">Effacer toutes les données</string>
-    <string name="clear_data_subtext">Êtes-vous sûr(e) de vouloir effacer toutes les données ?</string>
-    <string name="clear_data_subtext2">100% ?</string>
-    <string name="clear_data_subtext3">Sûr(e) ?\nAppuyer sur Oui effacera toutes les données !</string>
     <string name="clock">Horloge</string>
     <string name="coming_soon">Prochainement !</string>
     <string name="connection_settings">Connexion</string>
@@ -263,8 +258,6 @@
     <string name="no_alarms">Aucune alarme\nCréez-en une en appuyant sur\n\"Ajouter une alarme"\"\nOu\n\"Ajouter un minuteur\"</string>
     <string name="no_pills">Aucun médicament\nCréez-en un en appuyant sur\n\"Ajouter un médicament\"</string>
     <string name="clear_all_notifications">Effacer toutes les notifications</string>
-    <string name="clear_cache_subtext">Êtes-vous sûr(e) de vouloir effacer tout le cache ?\nLes raccourcis d\'applications seront aussi supprimés !
-    </string>
 
     <string name="what_s_new">Nouveautés</string>
     <string name="what_do_you_want_to_do_with___">Que voulez-vous faire avec %s?</string>

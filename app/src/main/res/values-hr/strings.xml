@@ -79,11 +79,6 @@
     <string name="choose_tuesday">Uto</string>
     <string name="choose_wednesday">Sri</string>
     <string name="clear">Očisti</string>
-    <string name="clear_cache">Očisti Predmemoriju</string>
-    <string name="clear_data">Izbriši Pohranu</string>
-    <string name="clear_data_subtext">Jeste li sigurni da želite izbrisati sve korisničke postavke? Aplikacija BaldPhone će se vratiti na tvorničke postavke, kao da je tek instalirana.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">sigurni?\nklikom na DA brišete sve podatke aplikacije!</string>
     <string name="clock">Sat</string>
     <string name="coming_soon">Dolazi Uskoro!</string>
     <string name="connection_settings">Povezivnost</string>
@@ -262,7 +257,6 @@
     <string name="no_alarms">Nema Alarma\nDodajte klikom na\n\"Dodaj Alarm\"\nIli\n\"Dodaj Mjerač Vremena\"</string>
     <string name="no_pills">Nema Pilula\nDodajte klikom na\n\"Dodaj Pilulu\"</string>
     <string name="clear_all_notifications">Ukloni Sve Obavijesti</string>
-    <string name="clear_cache_subtext">Jeste li sigurni da želiste izbrisati podatke predmemorije? Brisanjem privremenih datoteka može popraviti greške aplikacije BaldPhone, no briše i sve prečace stvorene na Početnom Zaslonu.</string>
 
     <string name="what_s_new">Što je novo</string>
     <string name="what_do_you_want_to_do_with___">Što želite napraviti sa %s?</string>

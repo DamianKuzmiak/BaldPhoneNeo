@@ -140,15 +140,6 @@ public class S {
         }
     }
 
-    /**
-     * @param o an object to find its string value
-     * @return the object's {@link Object#toString()}; Empty string if the object is null
-     */
-    @NonNull
-    public static String str(@Nullable Object o) {
-        return o == null ? EMPTY : o.toString();
-    }
-
     public static void showAreYouSureYouWantToDelete(@NonNull final String what, @NonNull final BaldActivity baldActivity, @NonNull final Runnable deleteRunnable) {
         final CharSequence title = String.format(baldActivity.getString(R.string.delete___), what);
         final CharSequence message = String.format(baldActivity.getString(R.string.are_you_sure_you_want_to_delete___), what);

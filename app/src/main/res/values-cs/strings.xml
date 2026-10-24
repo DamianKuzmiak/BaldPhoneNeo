@@ -80,11 +80,6 @@
     <string name="choose_tuesday">Út</string>
     <string name="choose_wednesday">St</string>
     <string name="clear">Vyčistit</string>
-    <string name="clear_cache">Vyčistit mezipaměť</string>
-    <string name="clear_data">Vymazat všechna data</string>
-    <string name="clear_data_subtext">Jste si jistí, že chcete vymazat všechna data?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Opravdu?\nZmáčknutí tlačítka ano vymaže všechna data</string>
     <string name="clock">Hodiny</string>
     <string name="coming_soon">Brzy!</string>
     <string name="connection_settings">Připojení</string>
@@ -272,8 +267,6 @@
     <string name="no_alarms">Žádné alarmy nejsou!\nVytvořte jeden kliknutím na\n\"Přidat alarm\"\nNebo\n\"Přidat časovač\"</string>
     <string name="no_pills">Žádné pilulky nejsou!\nVytvořte kliknutím na\n\"Přidat pilulku\"</string>
     <string name="clear_all_notifications">Vyčistit všechna upozornění</string>
-    <string name="clear_cache_subtext">Jste si jistí že chcete smazat všechna dočastná data?\nZkratky aplikací budou smazány také!
-    </string>
 
     <string name="what_s_new">Co je nového</string>
     <string name="what_do_you_want_to_do_with___">Co chcete dělat s %s?</string>

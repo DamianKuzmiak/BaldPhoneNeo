@@ -61,7 +61,6 @@
     <string name="camera">الكاميرا</string>
     <string name="cancel">إلغاء</string>
     <string name="change_pills_time">تغيير ميعاد الدواء</string>
-    <string name="clear_cache">مسح الذاكرة المؤقتة</string>
     <string name="clock">الساعة</string>
     <string name="connection_settings">الإتصال</string>
     <string name="contact_must_has_name">جهة الإتصال يجب ان تحتوي علي إسم!</string>

@@ -78,11 +78,6 @@
     <string name="choose_tuesday">სამშ</string>
     <string name="choose_wednesday">ოთხშ</string>
     <string name="clear">გასუფთავება</string>
-    <string name="clear_cache">ქეშის წაშლა</string>
-    <string name="clear_data">ყველა მონაცემის წაშლა</string>
-    <string name="clear_data_subtext">დარწმუნებული ხართ რომ გსურთ წაშალოთ ყველა სამომხმარებლო მონაცემი? BaldPhone დაუბრუნდება ახლად დაინსტალირებულ მდგომარეობას, თითქოს ის ახალახანს დაყენდა.</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">დარწმუნებული ხართ?\nდაჭერისას წაიშლება ყველა თქვენი მონაცემი!</string>
     <string name="clock">საათი</string>
     <string name="coming_soon">მალე!</string>
     <string name="connection_settings">კავშირი</string>
@@ -263,7 +258,6 @@
     <string name="no_alarms">მაღვიძარები არაა.\შექმენით დაჭერით \n\"მაღვიძარას დამატება\"\nან\n\"ტაიმერის დამატება\"</string>
     <string name="no_pills">აბები არაა\nშექმენით დაჭერით\n\"აბის დამატება\"</string>
     <string name="clear_all_notifications">ყველა გაფრთხილების წაშლა</string>
-    <string name="clear_cache_subtext">დარწმუნებული ხართ რომ გსურთ წაშალოთ ქეშის კონტენტი? დროებითი ფაილების წაშლამ შესაძლოა გამოასწოროს ზოგიერთი შეცდომა,მაგრამ მთავარ ეკრანზე შექმნილი მალსახმობები წაიშლება.</string>
 
     <string name="what_s_new">რა არის ახალი</string>
     <string name="what_do_you_want_to_do_with___">რისი მოქმედება გსურთ %s?</string>

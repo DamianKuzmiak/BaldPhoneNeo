@@ -80,11 +80,6 @@
     <string name="choose_tuesday">T</string>
     <string name="choose_wednesday">K</string>
     <string name="clear">Tühjenda</string>
-    <string name="clear_cache">Tühjenda vahemälu</string>
-    <string name="clear_data">Tühjenda kõik andmed</string>
-    <string name="clear_data_subtext">Kas te soovite kõik kasutaja andmed kustutada? Peale seda on BaldPhone\'i rakendus samas seisus nagu   peale paigaldamist. </string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">kindel?\nvajutades, jah, kustutatakse kõik andmed.</string>
     <string name="clock">Kell</string>
     <string name="coming_soon">Saabub peatselt.</string>
     <string name="connection_settings">Ühendus</string>
@@ -270,7 +265,6 @@
     <string name="no_alarms">Äratusi ei ole\nÄratuse saate lisada toksates\n\"Lisa äratus\"\nvõi\n\"Lisa taimer</string>
     <string name="no_pills">Tablette ei ole\nTableti saate lisada toksates\n\"Lisa tablett\"</string>
     <string name="clear_all_notifications">Kustuta kõik teavitused</string>
-    <string name="clear_cache_subtext">Kas olete kindel, et soovite vahemälu sisu kustutada? Ajutiste failide kustutamine vahemälust võib lahendada mõned BaldPhone\'is ilmnevad vead, aga ka avakuvale loodud otseteed eemaldatakse. </string>
 
     <string name="what_s_new">Mis on uus</string>
     <string name="what_do_you_want_to_do_with___">Mida te soovite %s\'ga teha?</string>

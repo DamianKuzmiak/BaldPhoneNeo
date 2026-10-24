@@ -78,11 +78,6 @@
     <string name="choose_tuesday">Sal</string>
     <string name="choose_wednesday">Per</string>
     <string name="clear">Sil/Temizle</string>
-    <string name="clear_cache">Önbellek\'i sil</string>
-    <string name="clear_data">Tüm hafızayı sil</string>
-    <string name="clear_data_subtext">Tüm bilgileri silmek istediğinize emin misiniz?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">Emin misiniz?\nBasmak bütün bilgilerinizi siler!</string>
     <string name="clock">Saat</string>
     <string name="coming_soon">Gelecek/Daha işlemde!</string>
     <string name="connection_settings">Bağlantı</string>
@@ -261,7 +256,6 @@
     <string name="no_alarms">Alarmınız yok\nŞuraya basarak birini yaratın\n\"Alarm yarat\"\nve ya\n\"Zaman ölçer ekle\"</string>
     <string name="no_pills">Listede hiç bir ilacınız yok \nŞuraya basarak birini yaratın\n\"İlaç ekle\"</string>
     <string name="clear_all_notifications">Tüm bildirimleri temizle</string>
-    <string name="clear_cache_subtext">Önbelleyi temizlemek istediğinize emin misiniz?\nUygulama kısayolları kaldırılacak!</string>
 
     <string name="what_s_new">Yeni ne var?</string>
     <string name="what_do_you_want_to_do_with___">Şununla ne etmek istiyorsunuz %s?</string>

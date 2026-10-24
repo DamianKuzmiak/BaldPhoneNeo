@@ -106,11 +106,6 @@
     <string name="choose_tuesday">Wt</string>
     <string name="choose_wednesday">Śr</string>
     <string name="clear">Wyczyść</string>
-    <string name="clear_cache">Wyczyść pamięć podręczną</string>
-    <string name="clear_data">Wyczyść wszystkie dane</string>
-    <string name="clear_data_subtext">Spowoduje to usunięcie wszystkich danych i ustawień aplikacji.\nBaldPhone zostanie przywrócony do ustawień początkowych.</string>
-    <string name="clear_data_subtext2">Czy na pewno?</string>
-    <string name="clear_data_subtext3">Ta operacja usunie wszystkie dane!</string>
     <string name="clock">Zegar</string>
     <string name="combine_duplicated_calls">Grupuj powtórzenia</string>
     <string name="coming_soon">Wkrótce!</string>
@@ -313,7 +308,6 @@
     <string name="no_alarms">Brak alarmów\nDodaj nowy alarm lub minutnik</string>
     <string name="no_pills">Brak przypomnień\nDodaj nowe przypomnienie</string>
     <string name="clear_all_notifications">Wyczyść wszystkie powiadomienia</string>
-    <string name="clear_cache_subtext">Czy na pewno chcesz wyczyścić pamięć podręczną? Skróty aplikacji zostaną usunięte.</string>
     <string name="what_s_new">Co nowego</string>
     <string name="what_do_you_want_to_do_with___">Co chcesz zrobić z %s?</string>
     <string name="crash_reports">Raporty o awariach</string>

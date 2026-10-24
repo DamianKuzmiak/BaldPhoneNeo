@@ -81,11 +81,6 @@ com augmentar la grandària de font o canviar la lluentor.
     <string name="choose_tuesday">Dmt</string>
     <string name="choose_wednesday">Dmc</string>
     <string name="clear">Netejar</string>
-    <string name="clear_cache">Netejar Cache</string>
-    <string name="clear_data">Netejar totes les Dades</string>
-    <string name="clear_data_subtext">Està segur de voler ESBORRAR totes les Dades?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">segur?\nPrémer Si esborrarà totes les dades.</string>
     <string name="clock">Rellotge</string>
     <string name="coming_soon">Pròximament!</string>
     <string name="connection_settings">Connexió</string>
@@ -278,8 +273,6 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
     <string name="no_alarms">Sense Alarmes\nCrea una prement\n\"Afegir Alarma\"\no\n\"Afegir Temporitzador\"</string>
     <string name="no_pills">Sense Pastilles\nCrea una prement\n\"Afegir Pastilla\"</string>
     <string name="clear_all_notifications">Treure totes les Notificacions</string>
-    <string name="clear_cache_subtext">De veritat voleu esborrar per complet la caché?\nEls enllaços directes també s\'esborraran!
-</string>
 
     <string name="what_s_new">Novetats</string>
     <string name="what_do_you_want_to_do_with___">Quina vol fer amb %s?</string>

@@ -80,11 +80,6 @@
     <string name="choose_tuesday">मंगलवार</string>
     <string name="choose_wednesday">बुधवार</string>
     <string name="clear">स्पष्ट</string>
-    <string name="clear_cache">कैश को साफ़ करें</string>
-    <string name="clear_data">सभी डेटा साफ़ करें</string>
-    <string name="clear_data_subtext">क्या आप वाकई सभी उपयोगकर्ता डेटा हटाना चाहते हैं? बाल्डफोन ऐप नए सिरे से नई स्थिति में वापस आ जाएगा, जैसे कि इसे अभी इंस्टॉल किया गया हो।</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">पक्का?\nहाँ दबाने से सारा डेटा हट जाएगा!</string>
     <string name="clock">घड़ी</string>
     <string name="coming_soon">जल्द आ रहा है!</string>
     <string name="connection_settings">संबंध</string>
@@ -271,7 +266,6 @@
     <string name="no_alarms">कोई अलार्म नहीं\nक्लिक करके एक बनाएं\n\"अलार्म जोड़ें\"\nया\n\"टाइमर जोड़ें\"</string>
     <string name="no_pills">कोई गोली नहीं\n\n\"गोली जोड़ें\" क्लिक करके एक बनाएं</string>
     <string name="clear_all_notifications">सभी सूचनाएं साफ़ करें</string>
-    <string name="clear_cache_subtext">क्या आप वाकई कैशे की सामग्री को हटाना चाहते हैं? अस्थायी फ़ाइलों को हटाने से कुछ बाल्डफ़ोन ऐप की खराबी का समाधान हो सकता है, लेकिन होम स्क्रीन में बनाए गए शॉर्टकट भी हटा दिए जाएंगे।</string>
 
     <string name="what_s_new">नया क्या है</string>
     <string name="what_do_you_want_to_do_with___">आप %s के साथ क्या करना चाहते हैं?</string>

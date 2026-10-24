@@ -80,11 +80,6 @@
     <string name="choose_tuesday">Τρίτη</string>
     <string name="choose_wednesday">Τετ.</string>
     <string name="clear">Διαγραφή</string>
-    <string name="clear_cache">Διαγραφή Cache</string>
-    <string name="clear_data">Διαγραφή δεδομένων</string>
-    <string name="clear_data_subtext">Είστε σίγουροι ότι θέλετε να διαγράψετε όλα τα δεδομένα;</string>
-    <string name="clear_data_subtext2">100%;</string>
-    <string name="clear_data_subtext3">Eίστε σίγουροι;\nAν πατήσετε ναι, όλα τα δεδομένα θα διαγραφούν!</string>
     <string name="clock">Ρολόι</string>
     <string name="coming_soon">Προσεχώς!</string>
     <string name="connection_settings">Σύνδεση</string>
@@ -272,8 +267,6 @@
     <string name="no_alarms">Καμία Αφύπνιση\nπροσθέστε μία επιλέγοντας \n\"Νέα Αφύπνιση\"\nή\n\"Νέο Χρονόμετρο\"</string>
     <string name="no_pills">Κανένα Χάπι\nπροσθέστε ένα επιλέγοντας\n\"Νέο Χάπι\"</string>
     <string name="clear_all_notifications">Διαγραφή Ειδοποιήσεων</string>
-    <string name="clear_cache_subtext">Είστε σίγουροι ότι θέλετε να σβήσετε την μνήμη cache?\nΠροσωρινά αρχεία και συντομεύσεις θα διαγραφούν!
-    </string>
 
     <string name="what_s_new">Νέα χαρακτηριστικά</string>
     <string name="what_do_you_want_to_do_with___">Τι θέλετε να κάνετε με %s;</string>

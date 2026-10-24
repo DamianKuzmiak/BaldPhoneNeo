@@ -78,11 +78,6 @@
     <string name="choose_tuesday">Вт</string>
     <string name="choose_wednesday">Ср</string>
     <string name="clear">Очистить</string>
-    <string name="clear_cache">Очистить Кэш</string>
-    <string name="clear_data">Удалить все Данные</string>
-    <string name="clear_data_subtext">Вы уверенычто хотите удалить все данные?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">точно?\nнажатие кнопки да удалит все данне!</string>
     <string name="clock">Часы</string>
     <string name="coming_soon">Скоро!</string>
     <string name="connection_settings">Поключение</string>
@@ -263,8 +258,6 @@
     <string name="no_alarms">Нет Будильника\nСоздайте его нажав на\n\"Добавить Будильник\"\nИли\n\"Добавить Таймер\"</string>
     <string name="no_pills">Нет Таблеток\nСоздайте ее нажав на\n\"Добавить Таблетку\"</string>
     <string name="clear_all_notifications">Очистить Все Оповещения</string>
-    <string name="clear_cache_subtext">Вы уверенны что хотите очистить кэш?\nЯрлык программы будет удален тоже!
-    </string>
 
     <string name="what_s_new">Что нового</string>
     <string name="what_do_you_want_to_do_with___">Что вы хотите сделать %s?</string>

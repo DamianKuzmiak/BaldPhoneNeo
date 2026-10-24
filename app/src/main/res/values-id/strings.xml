@@ -78,11 +78,6 @@
     <string name="choose_tuesday">Sel</string>
     <string name="choose_wednesday">Rab</string>
     <string name="clear">Bersihkan</string>
-    <string name="clear_cache">Bersihkan Cache</string>
-    <string name="clear_data">Hapus Semua Data</string>
-    <string name="clear_data_subtext">Apakah Anda yakin ingin menghapus semua data?</string>
-    <string name="clear_data_subtext2">100%?</string>
-    <string name="clear_data_subtext3">yakin?\nMenekan ya akan menghapus semua data!</string>
     <string name="clock">Jam</string>
     <string name="coming_soon">Segera Hadir!</string>
     <string name="connection_settings">Sambungan</string>
@@ -269,8 +264,6 @@
     <string name="no_alarms">Tidak Ada Alarm\nBuat dengan mengklik\n\"Tambah Alarm\"\nAtau\n\"Tambah Pewaktu\"</string>
     <string name="no_pills">Tidak Ada Pil\nBuat dengan cara mengklik\n\"Tambah Pil\"</string>
     <string name="clear_all_notifications">Kosongkan Semua Pemberitahuan</string>
-    <string name="clear_cache_subtext">Anda yakin ingin menghapus cache?\nAplikasi pintasan juga akan dihapus!
-    </string>
 
     <string name="what_s_new">Apa yang baru</string>
     <string name="what_do_you_want_to_do_with___">Apa yang ingin Anda lakukan dengan %s?</string>
