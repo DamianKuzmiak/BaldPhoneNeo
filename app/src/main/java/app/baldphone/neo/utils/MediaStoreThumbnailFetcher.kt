@@ -113,11 +113,14 @@ class MediaStoreThumbnailFetcher(
             }
         }
 
-    class Factory(private val context: Context) : Fetcher.Factory<coil3.Uri> {
+    class Factory(context: Context) : Fetcher.Factory<coil3.Uri> {
+        // Use the application context only, to avoid leaking an activity short-lived context
+        private val context: Context = context.applicationContext
+
         override fun create(data: coil3.Uri, options: Options, imageLoader: ImageLoader): Fetcher? {
             val androidUri = data.toAndroidUri()
             if (androidUri.scheme == ContentResolver.SCHEME_CONTENT && androidUri.authority == MediaStore.AUTHORITY) {
-                return MediaStoreThumbnailFetcher(androidUri, context.applicationContext, options)
+                return MediaStoreThumbnailFetcher(androidUri, context, options)
             }
             return null
         }

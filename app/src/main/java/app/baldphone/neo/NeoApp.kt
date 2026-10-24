@@ -156,7 +156,7 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
                     .maxSizePercent(context, 0.55)
                     .build()
             }.components {
-                add(MediaStoreThumbnailFetcher.Factory(context))
+                add(MediaStoreThumbnailFetcher.Factory(applicationContext))
             }.apply {
                 if (BuildConfig.DEBUG) {
                     logger(DebugLogger(Logger.Level.Verbose))
