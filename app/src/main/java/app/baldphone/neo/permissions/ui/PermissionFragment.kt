@@ -106,6 +106,11 @@ class PermissionFragment : Fragment() {
                 }
             }
 
+            is PermissionViewModel.UiState.Completed -> {
+                closeDialog()
+                removeSelf()
+            }
+
             else -> {
                 // For Idle and WaitingForSystem, we ensure no rationale/recovery dialog is showing
                 closeDialog()
@@ -130,10 +135,9 @@ class PermissionFragment : Fragment() {
      */
     fun processRequests(
         requests: List<PermissionManager.RequestEntry>,
-        showRationale: Boolean,
-        onCompletion: () -> Unit
+        showRationale: Boolean
     ) {
-        if (viewModel.syncWithRequests(requests, showRationale, onCompletion)) {
+        if (viewModel.syncWithRequests(requests, showRationale)) {
             processQueue()
         }
     }
@@ -148,8 +152,8 @@ class PermissionFragment : Fragment() {
         val permission = viewModel.queue.removeFirstOrNull()
         if (permission == null) {
             Log.d(TAG, "Queue exhausted, finishing batch")
-            viewModel.batchFinish?.invoke()
             clearState()
+            viewModel.markCompleted()
             return
         }
 
@@ -193,7 +197,7 @@ class PermissionFragment : Fragment() {
         val permission = viewModel.current?.permission ?: return
         Log.d(TAG, "finishAndContinue: result=$result for $permission")
 
-        viewModel.getCallback(permission)?.onResult(result)
+        viewModel.consumeCallback(permission)?.onResult(result)
 
         if (activity?.isFinishing == true) {
             Log.d(TAG, "finishAndContinue: activity is finishing, aborting")
@@ -266,6 +270,14 @@ class PermissionFragment : Fragment() {
                 .setOnCancelListener { onNegative() }
                 .setOnDismissListener { if (dialog == it) dialog = null }
                 .show()
+    }
+
+    /** Removes this fragment from its FragmentManager. */
+    private fun removeSelf() {
+        if (isAdded) {
+            Log.d(TAG, "removeSelf(): removing fragment")
+            parentFragmentManager.beginTransaction().remove(this).commitAllowingStateLoss()
+        }
     }
 
     private fun clearState() {

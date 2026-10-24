@@ -26,6 +26,15 @@ class PermissionViewModel : ViewModel() {
         data class Recovery(val permission: AppPermission) : UiState()
 
         object WaitingForSystem : UiState()
+
+        /**
+         * Indicates that the batch processing has completed and the fragment should remove itself.
+         *
+         * Storing completion in the ViewModel ensures durability across configuration changes.
+         * A recreated fragment will collect [Completed] (stateFlow replays the latest value)
+         * and safely remove itself, preventing orphaned fragment instances.
+         */
+        object Completed : UiState()
     }
 
     data class ActiveRequest(
@@ -41,11 +50,16 @@ class PermissionViewModel : ViewModel() {
 
     private var activePermissions: List<AppPermission>? = null
     private val callbackMap = mutableMapOf<AppPermission, PermissionManager.PermissionCallback>()
-    var batchFinish: (() -> Unit)? = null
     var showRationale: Boolean = true
 
-    /** Getter for callbacks to ensure external code doesn't mutate directly */
-    fun getCallback(permission: AppPermission) = callbackMap[permission]
+    /**
+     * Returns and removes the callback for [permission].
+     *
+     * Callbacks hold references to UI components (Views / Activities). Removing the callback immediately
+     * after it fires prevents memory leaks if an Activity is destroyed while permission requests remain pending.
+    */
+    fun consumeCallback(permission: AppPermission): PermissionManager.PermissionCallback? =
+        callbackMap.remove(permission)
 
     fun updateUiState(newState: UiState) {
         _uiState.value = newState
@@ -57,7 +71,6 @@ class PermissionViewModel : ViewModel() {
         activePermissions = null
         _uiState.value = UiState.Idle
         callbackMap.clear()
-        batchFinish = null
         showRationale = true
     }
 
@@ -70,8 +83,7 @@ class PermissionViewModel : ViewModel() {
      */
     fun syncWithRequests(
         requests: List<PermissionManager.RequestEntry>,
-        showRationale: Boolean,
-        onCompletion: () -> Unit
+        showRationale: Boolean
     ): Boolean {
         val newPermissions: List<AppPermission> = requests.map { it.permission }
         val isNew = (newPermissions != activePermissions) // TODO: it compares order
@@ -86,22 +98,21 @@ class PermissionViewModel : ViewModel() {
             Log.d(TAG, "Same batch, reattached callbacks")
         }
 
-        batchFinish = onCompletion
         requests.forEach { updateCallbacks(it) }
         return isNew
     }
 
+    /** Signals that the batch has completed so the attached fragment can remove itself. */
+    fun markCompleted() {
+        _uiState.value = UiState.Completed
+    }
+
+    /**
+     * Registers the callback for a permission request, overwriting any existing entry
+     * to prevent leaking destroyed Activity instances across configuration changes.
+     */
     private fun updateCallbacks(entry: PermissionManager.RequestEntry) {
-        val existing = callbackMap[entry.permission]
-        callbackMap[entry.permission] =
-            if (existing == null) {
-                entry.callback
-            } else {
-                PermissionManager.PermissionCallback { r ->
-                    existing.onResult(r)
-                    entry.callback.onResult(r)
-                }
-            }
+        callbackMap[entry.permission] = entry.callback
     }
 
     fun markSystemDialogLaunched() {

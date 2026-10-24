@@ -204,12 +204,7 @@ object PermissionManager {
                     }
                 }
 
-            fragment.processRequests(pending.toList(), showRationale) {
-                Log.d(TAG, "request: batch complete, removing fragment")
-                if (fragment.isAdded) {
-                    fm.beginTransaction().remove(fragment).commitAllowingStateLoss()
-                }
-            }
+            fragment.processRequests(pending.toList(), showRationale)
         }
     }
 
