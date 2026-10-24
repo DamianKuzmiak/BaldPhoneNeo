@@ -23,6 +23,7 @@ import app.baldphone.neo.features.contacts.ui.list.ContactsActivity
 import app.baldphone.neo.features.media.ui.browser.MediaActivity
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.launcher.apps.ui.AppsActivity
+import app.baldphone.neo.utils.LocaleUtils.localized
 
 import com.bald.uriah.baldphone.activities.SOSActivity
 import com.bald.uriah.baldphone.activities.alarms.AlarmsActivity
@@ -86,7 +87,7 @@ object PredefinedApps {
      */
     fun getApps(context: Context): List<AppEntry> =
         APPS_MAP.map { (flatName, info) ->
-            info.toAppEntry(context, _pinnedApps.value.contains(flatName))
+            info.toAppEntry(context.localized(), _pinnedApps.value.contains(flatName))
         }
 
     fun getPinnedApps(context: Context): List<AppEntry> =
@@ -98,7 +99,7 @@ object PredefinedApps {
     @JvmStatic
     fun getAppsActivityEntry(context: Context): AppEntry? {
         val flatName = "$PACKAGE_NAME/${AppsActivity::class.java.name}"
-        return getAppEntry(context, flatName)
+        return getAppEntry(context.localized(), flatName)
     }
 
     fun getIconResId(componentName: String): Int? =

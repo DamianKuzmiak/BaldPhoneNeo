@@ -5,6 +5,7 @@ package app.baldphone.neo.utils
 
 import android.app.LocaleManager
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
@@ -18,6 +19,7 @@ import androidx.core.os.LocaleListCompat
 import java.util.Locale
 
 import app.baldphone.neo.data.Prefs
+import app.baldphone.neo.launcher.apps.data.AppsRepository
 
 object LocaleUtils {
     private const val TAG = "LocaleUtils"
@@ -31,10 +33,38 @@ object LocaleUtils {
      * Pass empty string to follow the system language.
      */
     fun applyLocale(tag: String) {
-        Log.d(TAG, "applyLocale: tag='$tag'")
         Prefs.locale = tag
         AppCompatDelegate.setApplicationLocales(tag.toLocaleListCompat())
         Log.d(TAG, "applyLocale: applied='${AppCompatDelegate.getApplicationLocales().toLanguageTags()}'")
+
+        AppsRepository.requestLocaleSync()
+    }
+
+    /**
+     * Returns this [Context] localized to the in-app language.
+     *
+     * API 32-: AppCompat localizes activities only, so the application context still uses the system language.
+     */
+    fun Context.localized(): Context {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return this
+        }
+
+        val appLocales = AppCompatDelegate.getApplicationLocales()
+        val currentLocales = ConfigurationCompat.getLocales(resources.configuration)
+
+        return if (appLocales.isEmpty || currentLocales == appLocales) {
+            this
+        } else {
+            withLocales(appLocales)
+        }
+    }
+
+    /** Returns a context whose resources use exactly [locales] */
+    fun Context.withLocales(locales: LocaleListCompat): Context {
+        val config = Configuration(resources.configuration)
+        ConfigurationCompat.setLocales(config, locales)
+        return createConfigurationContext(config)
     }
 
     /**

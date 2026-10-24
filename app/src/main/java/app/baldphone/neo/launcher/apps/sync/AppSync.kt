@@ -327,7 +327,7 @@ internal class AppSync(
         existingLabel: String? = null
     ): AppEntry? =
         try {
-            val label = existingLabel ?: activityInfo.label.toString()
+            val label = existingLabel ?: AppLabelResolver.getAppLabel(applicationContext, activityInfo)
 
             if (!skipIcon) {
                 val icon =
