@@ -35,8 +35,6 @@ import app.baldphone.neo.utils.LocaleUtils
 import app.baldphone.neo.utils.startActivitySafe
 
 class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selector) {
-    private var binding: FragmentLanguageSelectorBinding? = null
-
     private data class LanguageOption(
         val tag: String,
         val displayName: String,
@@ -45,18 +43,18 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentLanguageSelectorBinding.bind(view)
+        val binding = FragmentLanguageSelectorBinding.bind(view)
 
-        val recyclerView = binding!!.languageList
+        val context = requireContext()
 
-        val divider = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        ContextCompat.getDrawable(requireContext(), R.drawable.ll_divider)?.let {
+        val recyclerView = binding.languageList
+        val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        ContextCompat.getDrawable(context, R.drawable.ll_divider)?.let {
             divider.setDrawable(it)
             recyclerView.addItemDecoration(divider)
         }
 
         val defaultLocale = Locale.getDefault()
-        val context = requireContext()
 
         viewLifecycleOwner.lifecycleScope.launch {
             val languages =
@@ -67,18 +65,13 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
             val currentTag = getCurrentLocaleTag()
             recyclerView.adapter =
                 LanguageAdapter(languages, currentTag) { option ->
-                    if (option.tag != currentTag) {
+                    if (!tagsMatch(option.tag, currentTag)) {
                         LocaleUtils.applyLocale(option.tag)
                     } else if (option.tag == "") {
                         requireContext().startActivitySafe(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     }
                 }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 
     private fun getSystemOption(context: Context, defaultLocale: Locale): LanguageOption {
@@ -113,7 +106,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
                 eventType = parser.next()
             }
         } catch (e: Exception) {
-            Log.e("LanguageFragment", "Failed to parse supported locales", e)
+            Log.e(TAG, "Failed to parse supported locales", e)
         } finally {
             parser.close()
         }
@@ -155,7 +148,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val option = items[position]
-            val isSelected = (option.tag == selectedTag)
+            val isSelected = tagsMatch(option.tag, selectedTag)
             holder.bind(option, isSelected)
         }
 
@@ -183,5 +176,23 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
                 binding.root.isSelected = isSelected
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "LanguageFragment"
+
+        /**
+         * `locales_config.xml` uses the obsolete Java codes ("in", "iw"), while
+         * [AppCompatDelegate.getApplicationLocales] returns ISO tags ("id", "he").
+         */
+        private fun normalizeTag(tag: String): String =
+            if (tag.isEmpty()) {
+                ""
+            } else {
+                val locale = Locale.forLanguageTag(tag) // Normalizes "in" -> "id", "iw" -> "he"
+                locale.toLanguageTag()
+            }
+
+        fun tagsMatch(a: String, b: String): Boolean = (normalizeTag(a) == normalizeTag(b))
     }
 }
