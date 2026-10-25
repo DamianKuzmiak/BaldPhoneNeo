@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:padding="16dp"
+    android:tag="edgeToEdge">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/BackgroundText.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:lineSpacingExtra="4dp"
+            android:paddingVertical="12dp"
+            android:text="@string/feedback_subtitle"
+            android:textAlignment="viewStart" />
+
+        <EditText
+            android:id="@+id/feedback_input"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="8dp"
+            android:autofillHints="none"
+            android:background="?attr/colorSurface"
+            android:gravity="top|start"
+            android:hint="@string/feedback_hint"
+            android:inputType="textMultiLine"
+            android:maxLength="2000"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:textAlignment="viewStart"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="#657985"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/feedback_include_info_checkbox"
+            style="@style/BackgroundText.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:buttonTint="?bald_color_blue"
+            android:checked="false"
+            android:text="@string/feedback_include_info" />
+
+        <Button
+            android:id="@+id/feedback_send_button"
+            style="@style/Bald.Button.FullWidth"
+            android:text="@string/feedback_send" />
+
+    </LinearLayout>
+</ScrollView>

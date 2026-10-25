@@ -386,6 +386,20 @@
     <string name="dialog_button_not_now">Nie teraz</string>
     <string name="dialog_button_enable">Włącz w ustawieniach</string>
 
+    <!-- About -->
+    <string name="about_overview_section">O aplikacji</string>
+    <string name="about_tag_line">Prosty ekran startowy, który łączy rozmowy, wiadomości i codzienne funkcje w jednym, łatwym w obsłudze miejscu.</string>
+    <string name="about_version_title">Wersja %s</string>
+    <string name="about_source_code">Kod źródłowy</string>
+    <string name="about_support_title">Kontakt</string>
+    <string name="about_support_send_feedback">Napisz do nas / Zgłoś problem</string>
+    <string name="about_credits_title">Podziękowania</string>
+    <string name="about_credits">Współtwórcy i tłumacze</string>
+    <string name="about_legal_title">Licencje i prywatność</string>
+    <string name="about_licenses">Licencje innych firm</string>
+    <string name="about_app_license">Licencja aplikacji</string>
+    <string name="about_privacy_policy">Polityka prywatności</string>
+
     <!--For Tests:-->
     <string name="medication_1">Eltroxin 100</string>
     <string name="medication_2">Eltroxin 150</string>

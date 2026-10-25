@@ -267,13 +267,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/about_section_margin_top</item>
         <item name="android:layout_marginBottom">@dimen/about_section_margin_bottom</item>
-        <item name="android:padding">@dimen/about_section_padding</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textSize">@dimen/about_section_text_size</item>
-        <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.08</item>
-        <item name="android:background">@drawable/divider</item>
     </style>
 
     <style name="LinkRow">
@@ -300,7 +297,7 @@
         <item name="iconPadding">@dimen/link_row_drawable_padding</item>
         <item name="iconGravity">start</item>
         <item name="iconSize">24dp</item>
-        <item name="iconTint">@null</item>
+        <item name="iconTint">?attr/colorControlNormal</item>
     </style>
 
     <style name="BaldIconButton" parent="Widget.Material3.Button">

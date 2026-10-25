@@ -265,10 +265,6 @@
             android:exported="false"
             android:label="@string/change_pills_time" />
         <activity
-            android:name=".activities.FeedbackActivity"
-            android:exported="false"
-            android:label="@string/feedback" />
-        <activity
             android:name="com.bald.uriah.baldphone.activities.Page1EditorActivity"
             android:exported="false"
             android:label="@string/edit_home_screen" />

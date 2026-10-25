@@ -410,18 +410,15 @@
     <string name="dialog_button_not_now">Not now</string>
     <string name="dialog_button_enable">Enable in settings</string>
 
-    <!-- Overview -->
+    <!-- About -->
     <string name="about_overview_section">Learn More</string>
     <string name="about_tag_line">A simple launcher that combines calling, messaging, and everyday features into one easy-to-use experience.</string>
     <string name="about_version_title">Version %s</string>
-    <string name="about_web_page">GitHub Project</string>
-    <string name="about_faq">FAQ / Help</string>
-
-    <!-- Credits -->
+    <string name="about_source_code">Codice sorgente</string>
+    <string name="about_support_title">Support</string>
+    <string name="about_support_send_feedback">Contact us / report an issue</string>
     <string name="about_credits_title">Credits</string>
     <string name="about_credits">Contributors &amp; Translators</string>
-
-    <!-- Legal & Privacy -->
     <string name="about_legal_title">Licenses &amp; Privacy</string>
     <string name="about_licenses">Open Source Licenses</string>
     <string name="about_app_license">App License</string>

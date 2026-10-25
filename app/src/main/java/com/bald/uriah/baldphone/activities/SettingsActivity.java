@@ -50,7 +50,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import app.baldphone.neo.activities.FeedbackActivity;
 import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
 import app.baldphone.neo.data.AccessibilityLevel;
 import app.baldphone.neo.data.Prefs;
@@ -323,11 +322,6 @@ public class SettingsActivity extends BaldActivity {
 //                                .setOptionsStartingIndex(() -> sharedPreferences.getBoolean(BPrefs.CRASH_REPORTS_KEY, BPrefs.CRASH_REPORTS_DEFAULT_VALUE) ? 0 : 1),
 //                        R.drawable.upload_on_button));
 
-        mainCategory.add(
-                new RunnableSettingsItem(R.string.feedback,
-                        v -> startActivity(new Intent(this, FeedbackActivity.class)),
-                        R.drawable.ic_feedback)
-        );
         mainCategory.add(
                 new RunnableSettingsItem(R.string.about,
                         v -> startActivity(new Intent(this, app.baldphone.neo.settings.ui.SettingsActivity.class)

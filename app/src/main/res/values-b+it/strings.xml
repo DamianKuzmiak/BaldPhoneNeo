@@ -407,18 +407,15 @@
     <string name="dialog_button_not_now">Non ora</string>
     <string name="dialog_button_enable">Attiva nelle impostazioni</string>
 
-    <!-- Overview -->
+    <!-- About -->
     <string name="about_overview_section">Scopri di più</string>
     <string name="about_tag_line">Un launcher semplice che riunisce chiamate, messaggi e funzioni quotidiane in un’esperienza facile da usare.</string>
     <string name="about_version_title">Versione %s</string>
-    <string name="about_web_page">Progetto GitHub</string>
-    <string name="about_faq">Domande frequenti / Guida</string>
-
-    <!-- Credits -->
+    <string name="about_source_code">Codice sorgente</string>
+    <string name="about_support_title">Supporto</string>
+    <string name="about_support_send_feedback">Contattaci o segnala un problema</string>
     <string name="about_credits_title">Riconoscimenti</string>
     <string name="about_credits">Collaboratori e traduttori</string>
-
-    <!-- Legal & Privacy -->
     <string name="about_legal_title">Licenze e privacy</string>
     <string name="about_licenses">Licenze open source</string>
     <string name="about_app_license">Licenza dell’app</string>

@@ -28,8 +28,6 @@ fun Context.getDeviceInfoFull(): String {
     val freeMemInKb = Runtime.getRuntime().freeMemory() / BYTES_IN_KB
     val usedMemInKb = (Runtime.getRuntime().totalMemory() / BYTES_IN_KB) - freeMemInKb
 
-    val coilCacheInfo = getCoilCacheInfo(this)
-
     return """
         Version: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})
         Android: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})
@@ -53,8 +51,7 @@ fun Context.getDeviceInfoFull(): String {
         Low Memory: ${memInfo.lowMemory}
         Threads: ${Thread.activeCount()}
         Uptime: ${SystemClock.uptimeMillis()} ms
-        Coil RAM Cache: ${coilCacheInfo.first}
-        Coil Disk Cache: ${coilCacheInfo.second}
+        Coil RAM Cache: ${getCoilCacheInfo(this)}
         """.trimIndent()
 }
 
@@ -109,22 +106,12 @@ fun Context.getDeviceRegion(): String {
     return "US"
 }
 
-private fun getCoilCacheInfo(context: Context): Pair<String, String> {
+private fun getCoilCacheInfo(context: Context): String {
     val imageLoader = SingletonImageLoader.get(context)
 
-    val ramCacheInfo =
-        imageLoader.memoryCache?.let { ramCache ->
-            val currentSizeMb = ramCache.size / (BYTES_IN_KB * BYTES_IN_KB)
-            val maxSizeMb = ramCache.maxSize / (BYTES_IN_KB * BYTES_IN_KB)
-            "$currentSizeMb/$maxSizeMb MB"
-        } ?: "Disabled"
-
-    val diskCacheInfo =
-        imageLoader.diskCache?.let { diskCache ->
-            val currentSizeMb = diskCache.size / (BYTES_IN_KB * BYTES_IN_KB)
-            val maxSizeMb = diskCache.maxSize / (BYTES_IN_KB * BYTES_IN_KB)
-            "$currentSizeMb/$maxSizeMb MB"
-        } ?: "Disabled"
-
-    return Pair(ramCacheInfo, diskCacheInfo)
+    return imageLoader.memoryCache?.let { ramCache ->
+        val currentSizeMb = ramCache.size / (BYTES_IN_KB * BYTES_IN_KB)
+        val maxSizeMb = ramCache.maxSize / (BYTES_IN_KB * BYTES_IN_KB)
+        "$currentSizeMb/$maxSizeMb MB"
+    } ?: "Disabled"
 }
