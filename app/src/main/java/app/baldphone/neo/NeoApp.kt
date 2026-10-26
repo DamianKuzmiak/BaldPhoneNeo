@@ -118,18 +118,6 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
 
     private fun setupStatusBar(activity: AppCompatActivity) {
         val window = activity.window
-
-        // Note: Be aware of "android:enforceNavigationBarContrast" = true
-
-        /*
-                window.apply {
-                    navigationBarColor = Color.TRANSPARENT
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                        isNavigationBarContrastEnforced = false
-                    }
-                }
-         */
-
         val insetsController = getInsetsController(window, window.decorView)
 
         val statusBarMode = Prefs.statusBarMode
@@ -156,7 +144,7 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
             .memoryCache {
                 MemoryCache
                     .Builder()
-                    .maxSizePercent(context, 0.55)
+                    .maxSizePercent(context, COIL_MEMORY_CACHE_PERCENT)
                     .build()
             }.components {
                 add(MediaStoreThumbnailFetcher.Factory(applicationContext))
@@ -168,5 +156,6 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
 
     companion object {
         private const val TAG = "NeoApp"
+        private const val COIL_MEMORY_CACHE_PERCENT = 0.50
     }
 }
