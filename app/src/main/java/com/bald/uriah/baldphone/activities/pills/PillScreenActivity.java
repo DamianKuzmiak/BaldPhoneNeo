@@ -29,6 +29,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 
 import app.baldphone.neo.R;
@@ -58,6 +59,13 @@ public class PillScreenActivity extends TimedBaldActivity {
         super.onCreate(savedInstanceState);
         S.logImportant("reminderScreen was called!");
         setContentView(R.layout.reminder_screen);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                snooze();
+            }
+        });
 
         attachXml();
 
@@ -148,12 +156,6 @@ public class PillScreenActivity extends TimedBaldActivity {
 
     private void scheduleNextReminder() {
         new Handler().postDelayed(() -> ReminderScheduler.scheduleReminder(reminder, this), TIME_DELAYED_SCHEDULE);
-    }
-
-    @Override
-    public void onBackPressed() {
-        snooze();
-        super.onBackPressed();
     }
 
     @Override

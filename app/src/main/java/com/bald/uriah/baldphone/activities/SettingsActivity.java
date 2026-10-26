@@ -43,6 +43,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -120,9 +121,19 @@ public class SettingsActivity extends BaldActivity {
         snapshotAccessibilityLevel = Prefs.getAccessibilityLevel();
         editor = sharedPreferences.edit();
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (!goBack()) {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                    setEnabled(true);
+                }
+            }
+        });
 
         titleBarView = findViewById(R.id.title_bar);
-        titleBarView.setOnExitClickListener((v) -> onBackPressed());
+        titleBarView.setOnExitClickListener((v) -> getOnBackPressedDispatcher().onBackPressed());
 
         recyclerView = findViewById(R.id.child);
 
@@ -508,12 +519,6 @@ public class SettingsActivity extends BaldActivity {
             R.drawable.brightness_on_button
         );
         displayCategory.add(brightnessSettingsItem);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (!goBack())
-            super.onBackPressed();
     }
 
     public class SettingsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<SettingsRecyclerViewAdapter.ViewHolder> {

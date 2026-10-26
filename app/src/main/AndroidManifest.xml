@@ -111,6 +111,7 @@
     <application
         android:name=".NeoApp"
         android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_display_name"
         android:requestLegacyExternalStorage="true"

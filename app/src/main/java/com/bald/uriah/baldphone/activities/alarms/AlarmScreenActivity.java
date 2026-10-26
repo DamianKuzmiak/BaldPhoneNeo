@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 
 import app.baldphone.neo.R;
@@ -87,6 +88,13 @@ public class AlarmScreenActivity extends TimedBaldActivity {
         super.onCreate(savedInstanceState);
         S.logImportant("alarmScreen was called!");
         setContentView(R.layout.alarm_screen);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                snooze();
+            }
+        });
 
         attachXml();
 
@@ -182,12 +190,6 @@ public class AlarmScreenActivity extends TimedBaldActivity {
                 }
             }
         }, TIME_DELAYED_SCHEDULE);
-    }
-
-    @Override
-    public void onBackPressed() {
-        snooze();
-        super.onBackPressed();
     }
 
     @Override
