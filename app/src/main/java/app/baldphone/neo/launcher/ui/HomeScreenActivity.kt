@@ -77,6 +77,9 @@ class HomeScreenActivity : BaseActivity() {
     private var permissionBanner: View? = null
     private var initialPrefsSnapshot: PrefsSnapshot? = null
 
+    override val useTransparentNavBar: Boolean
+        get() = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate")
 

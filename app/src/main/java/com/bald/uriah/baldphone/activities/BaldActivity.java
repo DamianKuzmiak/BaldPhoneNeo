@@ -19,13 +19,17 @@ package com.bald.uriah.baldphone.activities;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.utils.S;
+
+import app.baldphone.neo.extensions.ViewExtensions;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -55,8 +59,20 @@ public abstract class BaldActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
 //        final SharedPreferences sharedPreferences = BPrefs.get(this);
 //        testing = sharedPreferences.getBoolean(BPrefs.TEST_KEY, BPrefs.TEST_DEFAULT_VALUE);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Applied here (after subclass' setContentView in onCreate) so the content view
+        // already holds its root child when insets are dispatched.
+        final ViewGroup content = findViewById(android.R.id.content);
+        if (content != null) {
+            ViewExtensions.applyEdgeToEdgeInsets(content);
+        }
     }
 
     @Override

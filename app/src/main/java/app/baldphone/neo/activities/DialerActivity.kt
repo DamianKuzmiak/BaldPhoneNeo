@@ -36,12 +36,6 @@ import app.baldphone.neo.utils.getTextFromClipboard
 import app.baldphone.neo.viewmodels.DialerViewModel
 
 class DialerActivity : BaseActivity() {
-    companion object {
-        private const val TAG = "DialerActivity"
-        private const val TONE_LENGTH_MS = 300
-        private const val TONE_VOLUME = 80 // percent
-    }
-
     private val viewModel: DialerViewModel by viewModels()
     private lateinit var binding: DialerBinding
     private var dtmfManager: DtmfManager? = null
@@ -52,6 +46,9 @@ class DialerActivity : BaseActivity() {
             showPhoneNumbers = true
         ) { contact -> ContactDetailsActivity.openContact(this, contact.lookupKey) }
     }
+
+    override val useTransparentNavBar: Boolean
+        get() = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -291,5 +288,11 @@ class DialerActivity : BaseActivity() {
         fun release() {
             toneGenerator.release()
         }
+    }
+
+    companion object {
+        private const val TAG = "DialerActivity"
+        private const val TONE_LENGTH_MS = 300
+        private const val TONE_VOLUME = 80 // percent
     }
 }

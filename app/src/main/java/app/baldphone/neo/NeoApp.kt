@@ -8,10 +8,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 
-import androidx.activity.ComponentActivity
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat.getInsetsController
 import androidx.core.view.WindowInsetsCompat.Type.statusBars
@@ -34,7 +31,6 @@ import app.baldphone.neo.core.system.HapticManager
 import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.data.StatusBarMode
 import app.baldphone.neo.extensions.apply
-import app.baldphone.neo.extensions.applyEdgeToEdgeInsets
 import app.baldphone.neo.extensions.isSystem
 import app.baldphone.neo.features.touchguard.TouchGuardManager
 import app.baldphone.neo.launcher.apps.data.AppsRepository
@@ -88,13 +84,6 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
         object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 if (activity is LauncherProxyActivity) return
-
-                val rootView = activity.findViewById<ViewGroup>(android.R.id.content)
-
-                if (activity is ComponentActivity) {
-                    activity.enableEdgeToEdge()
-                    rootView?.applyEdgeToEdgeInsets()
-                }
 
                 if (activity is AppCompatActivity) {
                     setupStatusBar(activity)
