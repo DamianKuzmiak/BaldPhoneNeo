@@ -1,5 +1,7 @@
 package app.baldphone.neo.core.assisttouch
 
+import android.content.Context
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,10 @@ import app.baldphone.neo.data.Prefs
  */
 private val ASSIST_TOUCH_DELEGATE_TAG_KEY = "assist_touch_delegate_tag".hashCode()
 
-private var currentToast: Toast? = null
+/** Approximate duration of a [Toast.LENGTH_SHORT] toast. */
+private const val HINT_MIN_INTERVAL_MS = 2000L
+
+private var lastHintShownAt = 0L
 
 /**
  * Helper to retrieve the AssistTouchDelegate from any View.
@@ -51,10 +56,7 @@ fun View.enableAssistTouch(): AssistTouchDelegate {
             longPressMs = Prefs.longPressTimeoutMs.toLong(),
             onTapTooFast = { view ->
                 if (Prefs.showPressLongerHint) {
-                    currentToast?.cancel()
-                    val toast = Toast.makeText(view.context, R.string.press_longer, Toast.LENGTH_SHORT)
-                    currentToast = toast
-                    toast.show()
+                    showPressLongerHint(view.context)
                 }
             }
         )
@@ -107,4 +109,18 @@ fun View.enableAssistTouchHierarchy() {
             Log.v("AssistTouch", "View is already enabled: $this")
         }
     }
+}
+
+/*
+ * Shows the "press longer" hint toast, skipping it if a previous hint is likely still visible.
+ * Deliberately keep no reference to the [Toast] or its [View]
+ */
+private fun showPressLongerHint(context: Context) {
+    val now = SystemClock.uptimeMillis()
+    if (now - lastHintShownAt < HINT_MIN_INTERVAL_MS) {
+        return
+    }
+    lastHintShownAt = now
+
+    Toast.makeText(context.applicationContext, R.string.press_longer, Toast.LENGTH_SHORT).show()
 }
