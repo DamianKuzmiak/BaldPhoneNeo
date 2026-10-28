@@ -17,7 +17,6 @@
 package com.bald.uriah.baldphone.views;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
@@ -25,37 +24,33 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.bald.uriah.baldphone.utils.BPrefs;
+import app.baldphone.neo.data.Prefs;
 import com.bald.uriah.baldphone.utils.D;
 
 /**
  * This class isn't the same as {@link BaldButton} so be careful
  */
 public class BaldEditText extends AppCompatEditText implements View.OnLongClickListener {
-    private final SharedPreferences sharedPreferences;
     private final boolean vibrationFeedback;
     private final Vibrator vibrator;
 
     public BaldEditText(Context context) {
         super(context);
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        this.vibrationFeedback = sharedPreferences.getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE);
+        this.vibrationFeedback = Prefs.isVibrationFeedbackEnabled();
         this.vibrator = this.vibrationFeedback ? (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE) : null;
         super.setOnLongClickListener(this);
     }
 
     public BaldEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        this.vibrationFeedback = sharedPreferences.getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE);
+        this.vibrationFeedback = Prefs.isVibrationFeedbackEnabled();
         this.vibrator = this.vibrationFeedback ? (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE) : null;
         super.setOnLongClickListener(this);
     }
 
     public BaldEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        this.vibrationFeedback = sharedPreferences.getBoolean(BPrefs.VIBRATION_FEEDBACK_KEY, BPrefs.VIBRATION_FEEDBACK_DEFAULT_VALUE);
+        this.vibrationFeedback = Prefs.isVibrationFeedbackEnabled();
         this.vibrator = this.vibrationFeedback ? (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE) : null;
         super.setOnLongClickListener(this);
     }

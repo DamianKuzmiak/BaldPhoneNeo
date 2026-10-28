@@ -18,7 +18,6 @@ package com.bald.uriah.baldphone.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -40,7 +39,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.utils.BPrefs;
+import app.baldphone.neo.data.Prefs;
 import com.bald.uriah.baldphone.utils.D;
 
 import java.lang.annotation.Retention;
@@ -65,7 +64,6 @@ public class ScrollingHelper extends ConstraintLayout {
     @IntWhereBar
     private int whereBar = RIGHT;
     private DisplayMetrics displayMetrics;
-    private SharedPreferences sharedPreferences;
     private LayoutInflater layoutInflater;
     private Context context;
     private View child;
@@ -156,9 +154,7 @@ public class ScrollingHelper extends ConstraintLayout {
         this.displayMetrics = context.getResources().getDisplayMetrics();
         this.layoutInflater = LayoutInflater.from(context);
 
-        //if touch is hard
-        this.sharedPreferences = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        gone = sharedPreferences.getBoolean(BPrefs.TOUCH_NOT_HARD_KEY, BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE);
+        gone = Prefs.isTouchScrollingEnabled();
 
         SCROLL_CONST = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, SCROLL_CONST_IN_DP, getResources().getDisplayMetrics());
         //add the helper
@@ -273,7 +269,7 @@ public class ScrollingHelper extends ConstraintLayout {
             empty = context.getString(R.string.nothing);
         whereBar =
                 styleAttributesArray.getInt(R.styleable.ScrollingHelper_where_bar,
-                        sharedPreferences.getBoolean(BPrefs.RIGHT_HANDED_KEY, BPrefs.RIGHT_HANDED_DEFAULT_VALUE)
+                        Prefs.isRightHanded()
                                 ?
                                 RIGHT
                                 :

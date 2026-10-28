@@ -92,6 +92,18 @@ object Prefs {
         }
 
     /**
+     * Whether views use direct touch gestures (arrows) for scrolling and paging.
+     */
+    @JvmStatic
+    var isTouchScrollingEnabled: Boolean by booleanPref(BPrefs.TOUCH_NOT_HARD_KEY, BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE)
+
+    /**
+     * Whether the user is right-handed (scroll bar / exit button placed on the right).
+     */
+    @JvmStatic
+    var isRightHanded: Boolean by booleanPref(BPrefs.RIGHT_HANDED_KEY, BPrefs.RIGHT_HANDED_DEFAULT_VALUE)
+
+    /**
      * Controls whether the app provides haptic feedback on back button press.
      */
     @JvmStatic

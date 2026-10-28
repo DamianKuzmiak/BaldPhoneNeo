@@ -18,7 +18,6 @@ package com.bald.uriah.baldphone.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -33,8 +32,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.D;
+import app.baldphone.neo.data.Prefs;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Locale;
@@ -53,7 +51,7 @@ public class ViewPagerHolder extends LinearLayout {
     private TextView pageIndicatorTextView;
     private View circles;
 
-    private boolean noArrows = false;
+    private boolean arrowsEnabled = false;
     private boolean useCircle = false;
     private boolean showHints = false;
 
@@ -74,9 +72,7 @@ public class ViewPagerHolder extends LinearLayout {
 
     private void init(Context context, @Nullable AttributeSet attributeSet) {
         this.context = context;
-        final SharedPreferences sharedPreferences =
-                context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE);
-        noArrows = sharedPreferences.getBoolean(BPrefs.TOUCH_NOT_HARD_KEY, BPrefs.TOUCH_NOT_HARD_DEFAULT_VALUE);
+        arrowsEnabled = Prefs.isTouchScrollingEnabled();
 
         try (final TypedArray typedArray =
                 context.obtainStyledAttributes(attributeSet, R.styleable.ViewPagerHolder)) {
@@ -91,7 +87,7 @@ public class ViewPagerHolder extends LinearLayout {
         of = String.valueOf(context.getText(R.string.of));
         this.setOrientation(VERTICAL);
 
-        viewPager = noArrows ? new ViewPager(context) : new NonSwipeableViewPager(context);
+        viewPager = arrowsEnabled ? new ViewPager(context) : new NonSwipeableViewPager(context);
         viewPager.addOnPageChangeListener(
                 new ViewPager.OnPageChangeListener() {
                     @Override
@@ -122,11 +118,11 @@ public class ViewPagerHolder extends LinearLayout {
             final TextView textView =
                     (TextView) layoutInflater.inflate(R.layout.view_pager_holder_hint, this, false);
             textView.setText(
-                    noArrows ? R.string.swipe_left_or_right : R.string.press_next_or_back_buton);
+                    arrowsEnabled ? R.string.swipe_left_or_right : R.string.press_next_or_back_buton);
             addView(textView);
         }
 
-        if (!noArrows) {
+        if (!arrowsEnabled) {
             final View arrowHolder =
                     layoutInflater.inflate(R.layout.view_pager_holder_arrows, this, false);
             right = arrowHolder.findViewById(R.id.right_arrow);
@@ -170,7 +166,7 @@ public class ViewPagerHolder extends LinearLayout {
         final PagerAdapter pagerAdapter = viewPager.getAdapter();
         if (pagerAdapter == null) return;
 
-        if (!noArrows) {
+        if (!arrowsEnabled) {
             right.setVisibility(position + 1 < pagerAdapter.getCount() ? VISIBLE : INVISIBLE);
             left.setVisibility((position > 0) ? VISIBLE : INVISIBLE);
         }
