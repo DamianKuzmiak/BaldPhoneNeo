@@ -4,15 +4,9 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyboardShortcutGroup
-import android.view.Menu
-import android.view.MotionEvent
-import android.view.Window
 
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
@@ -36,18 +30,6 @@ class TouchGuardManager private constructor(application: Application) {
 
     private var isAppInForeground = false
     private var isFeatureEnabled = Prefs.useAccidentalGuard
-
-    private fun evaluateState() {
-        val shouldRun = isAppInForeground && isFeatureEnabled
-        if (shouldRun) {
-            sensorHandler.start()
-            currentActivity?.let { wrapActivityIfNeeded(it) }
-        } else {
-            sensorHandler.stop()
-            if (!isFeatureEnabled) touchMonitor.reset()
-            overlay.hide()
-        }
-    }
 
     private val sensorHandler =
         SensorHandler(application) { isNear ->
@@ -116,7 +98,11 @@ class TouchGuardManager private constructor(application: Application) {
             }
         }
 
-    internal fun handleTouchEvent(): Boolean {
+    /**
+     * Called by [TouchGuardWindowCallback] on ACTION_DOWN. Returns true when the touch should
+     * be intercepted (overlay shown / guard active).
+     */
+    fun handleTouchEvent(): Boolean {
         if (!isFeatureEnabled) return false
 
         return when {
@@ -140,40 +126,26 @@ class TouchGuardManager private constructor(application: Application) {
         }
     }
 
-    internal fun isOverlayShowing() = overlay.isShowing
+    /** Called by [TouchGuardWindowCallback] for non-DOWN events while the overlay is up. */
+    fun isOverlayShowing() = overlay.isShowing
+
+    private fun evaluateState() {
+        val shouldRun = isAppInForeground && isFeatureEnabled
+        if (shouldRun) {
+            sensorHandler.start()
+            currentActivity?.let { wrapActivityIfNeeded(it) }
+        } else {
+            sensorHandler.stop()
+            if (!isFeatureEnabled) touchMonitor.reset()
+            overlay.hide()
+        }
+    }
 
     private fun wrapActivityIfNeeded(activity: Activity) {
         val window = activity.window
         if (window.callback !is TouchGuardWindowCallback) {
             Log.v(TAG, "Wrapping callback for ${activity.javaClass.simpleName}")
             window.callback = TouchGuardWindowCallback(window.callback, this)
-        }
-    }
-
-    private class TouchGuardWindowCallback(
-        private val delegate: Window.Callback,
-        private val manager: TouchGuardManager
-    ) : Window.Callback by delegate {
-        override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-            val intercepted =
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    manager.handleTouchEvent()
-                } else {
-                    manager.isOverlayShowing()
-                }
-
-            return intercepted || delegate.dispatchTouchEvent(event)
-        }
-
-        // Explicitly forward major Java default methods to avoid the warning
-        @RequiresApi(Build.VERSION_CODES.O)
-        override fun onPointerCaptureChanged(hasCapture: Boolean) {
-            delegate.onPointerCaptureChanged(hasCapture)
-        }
-
-        @RequiresApi(Build.VERSION_CODES.O)
-        override fun onProvideKeyboardShortcuts(data: MutableList<KeyboardShortcutGroup>?, menu: Menu?, deviceId: Int) {
-            delegate.onProvideKeyboardShortcuts(data, menu, deviceId)
         }
     }
 
