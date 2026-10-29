@@ -19,8 +19,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 
 import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 import app.baldphone.neo.R
 import app.baldphone.neo.activities.BaseActivity
@@ -52,6 +56,7 @@ class HomeScreenActivity : BaseActivity() {
         private set
 
     private var viewPagerHolder: ViewPagerHolder? = null
+    private var updatePagerJob: Job? = null
 
     private val speechRecognizerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -139,6 +144,8 @@ class HomeScreenActivity : BaseActivity() {
 
     override fun onDestroy() {
         recognizerManager.setHomeScreen(null)
+        updatePagerJob?.cancel()
+        updatePagerJob = null
         viewPagerHolder = null
         baldPagerAdapter = null
         permissionBanner = null
@@ -246,13 +253,25 @@ class HomeScreenActivity : BaseActivity() {
      */
     private fun updateViewPager(animate: Boolean, resetToHome: Boolean) {
         val adapter = baldPagerAdapter ?: return
-        val holder = viewPagerHolder ?: return
 
-        adapter.obtainAppList()
-        if (resetToHome) {
-            holder.viewPager.setCurrentItem(adapter.startingPage, animate)
-        }
-        holder.onDataChanged()
+        // Load off the UI thread; apply on the UI thread.
+        updatePagerJob?.cancel()
+        updatePagerJob =
+            lifecycleScope.launch {
+                val list = withContext(Dispatchers.IO) { adapter.loadAppList() }
+
+                // Back on the main thread: skip if outdated or if the Activity/Adapter was destroyed.
+                ensureActive()
+                if (isFinishing || isDestroyed) return@launch
+                val adapter = baldPagerAdapter ?: return@launch
+                val holder = viewPagerHolder ?: return@launch
+
+                adapter.obtainAppList(list)
+                if (resetToHome) {
+                    holder.viewPager.setCurrentItem(adapter.startingPage, animate)
+                }
+                holder.onDataChanged()
+            }
     }
 
     private fun setupTopBarButtons() {

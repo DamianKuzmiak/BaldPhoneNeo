@@ -55,6 +55,9 @@ object AppIconStorage {
                 bitmap = drawable.toBitmapSafe(appContext, size, size)
                 val file = getCachedIconFile(appContext, componentName, userId)
 
+                // Ensure it exists before writing.
+                file.parentFile?.mkdirs()
+
                 // Use BufferedOutputStream for better I/O performance
                 file.outputStream().buffered().use { out ->
                     val format =
@@ -119,6 +122,8 @@ object AppIconStorage {
         withContext(Dispatchers.IO) {
             try {
                 getIconCacheFolder(context).deleteRecursively()
+                // Next access recreates it via getDir().
+                synchronized(this@AppIconStorage) { iconCacheFolder = null }
             } catch (e: Exception) {
                 Log.w(TAG, "Failed to clear icon cache", e)
             }
@@ -129,7 +134,16 @@ object AppIconStorage {
         return if (userId == 0L) "$safeName.webp" else "${safeName}_u$userId.webp"
     }
 
-    private fun getIconCacheFolder(context: Context): File = context.getDir(APP_ICONS_FOLDER, Context.MODE_PRIVATE)
+    @Volatile
+    private var iconCacheFolder: File? = null
+
+    /** Returns the cached icon folder. The path is stable for the lifetime of the process. */
+    private fun getIconCacheFolder(context: Context): File =
+        iconCacheFolder ?: synchronized(this) {
+            iconCacheFolder ?: context.applicationContext
+                .getDir(APP_ICONS_FOLDER, Context.MODE_PRIVATE)
+                .also { iconCacheFolder = it }
+        }
 
     @WorkerThread
     private fun Drawable.toBitmapSafe(

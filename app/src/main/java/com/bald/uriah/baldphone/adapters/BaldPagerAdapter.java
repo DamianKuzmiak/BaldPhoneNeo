@@ -25,6 +25,7 @@ import androidx.core.util.Pools;
 import app.baldphone.neo.launcher.ui.HomePage1;
 
 import app.baldphone.neo.launcher.ui.HomeScreenActivity;
+import app.baldphone.neo.data.Prefs;
 import com.bald.uriah.baldphone.databases.home_screen_pins.HomeScreenPinHelper;
 import com.bald.uriah.baldphone.utils.BPrefs;
 import com.bald.uriah.baldphone.views.home.HomePage2;
@@ -58,12 +59,21 @@ public class BaldPagerAdapter extends BaldViewAdapter {
 
     public BaldPagerAdapter(HomeScreenActivity homeScreen) {
         this.homeScreen = homeScreen;
-        startingPage = (BPrefs.get(this.homeScreen).getBoolean(BPrefs.NOTE_VISIBLE_KEY, BPrefs.NOTE_VISIBLE_DEFAULT_VALUE) ? 2 : 1);
+        startingPage = (Prefs.getNoteVisible() ? 2 : 1);
         numItems = numItemsBefore = startingPage + 1;
     }
 
-    public void obtainAppList() {
-        pinnedList = HomeScreenPinHelper.getAll(homeScreen);
+    /** Loads the pinned items (apps + contacts) off the UI thread. */
+    public List<Object> loadAppList() {
+        return HomeScreenPinHelper.getAll(homeScreen);
+    }
+
+    /**
+     * Applies a previously {@link #loadAppList() loaded} list to the adapter.
+     * Mutates adapter state and notifies observers, so it must run on the UI thread.
+     */
+    public void obtainAppList(List<Object> list) {
+        pinnedList = list;
         numItems =
                 numItemsBefore + (pinnedList.size() / HomeViewFactory.AMOUNT_PER_PAGE + (pinnedList.size() % HomeViewFactory.AMOUNT_PER_PAGE == 0 ? 0 : 1));
         notifyDataSetChanged();
