@@ -54,6 +54,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import app.baldphone.neo.activities.FeedbackActivity;
 import app.baldphone.neo.core.assisttouch.ViewExtensionsKt;
+import app.baldphone.neo.data.AccessibilityLevel;
 import app.baldphone.neo.data.Prefs;
 import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
@@ -69,7 +70,6 @@ import com.bald.uriah.baldphone.activities.pills.PillTimeSetterActivity;
 import com.bald.uriah.baldphone.utils.BDB;
 import com.bald.uriah.baldphone.utils.BDialog;
 import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
 import com.bald.uriah.baldphone.utils.BaldToast;
 import com.bald.uriah.baldphone.utils.D;
 import com.bald.uriah.baldphone.views.ModularRecyclerView;
@@ -100,7 +100,7 @@ public class SettingsActivity extends BaldActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private RecyclerView recyclerView;
-    private BaldPrefsUtils baldPrefsUtils;
+    private AccessibilityLevel snapshotAccessibilityLevel;
     private TitleBarView titleBarView;
 
     {
@@ -117,7 +117,7 @@ public class SettingsActivity extends BaldActivity {
 
         setContentView(R.layout.activity_settings);
         sharedPreferences = getSharedPreferences(D.BALD_PREFS, MODE_PRIVATE);
-        baldPrefsUtils = BaldPrefsUtils.newInstance(this);
+        snapshotAccessibilityLevel = Prefs.getAccessibilityLevel();
         editor = sharedPreferences.edit();
 
 
@@ -145,7 +145,7 @@ public class SettingsActivity extends BaldActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (baldPrefsUtils != null && baldPrefsUtils.hasChanged(this))
+        if (snapshotAccessibilityLevel != Prefs.getAccessibilityLevel())
             recreate();
     }
 

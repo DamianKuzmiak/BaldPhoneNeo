@@ -55,8 +55,8 @@ public abstract class BaldActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final SharedPreferences sharedPreferences = BPrefs.get(this);
-        testing = sharedPreferences.getBoolean(BPrefs.TEST_KEY, BPrefs.TEST_DEFAULT_VALUE);
+//        final SharedPreferences sharedPreferences = BPrefs.get(this);
+//        testing = sharedPreferences.getBoolean(BPrefs.TEST_KEY, BPrefs.TEST_DEFAULT_VALUE);
     }
 
     @Override

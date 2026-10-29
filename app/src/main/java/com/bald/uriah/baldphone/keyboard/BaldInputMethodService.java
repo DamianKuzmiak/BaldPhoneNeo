@@ -31,8 +31,6 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
-import com.bald.uriah.baldphone.utils.BaldPrefsUtils;
-
 import java.util.List;
 
 /**
@@ -43,7 +41,6 @@ public class BaldInputMethodService extends InputMethodService implements View.O
     public static final String VOICE_RECOGNITION_IMS = "com.google.android.googlequicksearchbox/com.google.android.voicesearch.ime.VoiceInputMethodService";
     private static int lastLanguage = KeyboardPicker.LANGUAGE_ID;
     private boolean onNumbers = false;
-    private BaldPrefsUtils baldPrefsUtils;
     private FrameLayout keyboardFrame;
     private BaldKeyboard keyboard;
 
@@ -67,20 +64,6 @@ public class BaldInputMethodService extends InputMethodService implements View.O
         keyboardFrame = new FrameLayout(this);
         changeLanguage(lastLanguage);
         return keyboardFrame;
-    }
-
-    @Override
-    public void onStartInputView(EditorInfo info, boolean restarting) {
-        super.onStartInputView(info, restarting);
-        if (baldPrefsUtils == null) {
-            baldPrefsUtils = BaldPrefsUtils.newInstance(this);
-        } else {
-            final BaldPrefsUtils tmp = BaldPrefsUtils.newInstance(this);
-            if (!tmp.equals(baldPrefsUtils)) {
-                baldPrefsUtils = tmp;
-                changeLanguage(lastLanguage);
-            }
-        }
     }
 
     public void changeLanguage(int newLanguageKeyboard) {

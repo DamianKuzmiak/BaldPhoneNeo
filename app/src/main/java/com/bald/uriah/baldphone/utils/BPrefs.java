@@ -34,7 +34,6 @@ public final class BPrefs {
     public static final boolean LONG_PRESSES_DEFAULT_VALUE = false;
 
     public static final String TEST_KEY = "TEST_KEY";
-    public static final boolean TEST_DEFAULT_VALUE = false;
 
     public static final String LONG_PRESSES_SHORTER_KEY = "LONG_PRESSES_SHORTER_KEY";
     public static final String VIBRATION_FEEDBACK_KEY = "VIBRATION_FEEDBACK_KEY";
@@ -43,15 +42,8 @@ public final class BPrefs {
     public static final String NOTE_VISIBLE_KEY = "NOTE_VISIBLE_KEY";
     public static final boolean NOTE_VISIBLE_DEFAULT_VALUE = true;
 
-    public static final String EMERGENCY_BUTTON_VISIBLE_KEY = "EMERGENCY_BUTTON_VISIBLE_KEY";
-    public static final boolean EMERGENCY_BUTTON_VISIBLE_DEFAULT_VALUE = true;
-
     public static final String DIALER_SOUNDS_KEY = "DIALER_SOUNDS_KEY";
     public static final boolean DIALER_SOUNDS_DEFAULT_VALUE = true;
-
-    public static final String DUAL_SIM_KEY = "DUAL_SIM_KEY";
-    public static final boolean DUAL_SIM_DEFAULT_VALUE = false; // True means show options
-
 
     public static final String NOTE_KEY = "NOTE_KEY";
 
