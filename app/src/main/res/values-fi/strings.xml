@@ -104,9 +104,9 @@ ja muuttaa kirkkautta.</string>
         ylivuotoa.
     </string>
 
-    <string name="feedback">Palaute</string>
+    <string name="feedback">Lähetä palautetta</string>
     <string name="feedback_advanced">Lisää vaihtoehtoja</string>
-    <string name="feedback_cannot_be_empty">Palaute ei voi olla tyhjä!</string>
+    <string name="feedback_cannot_be_empty">Palaute ei voi olla tyhjä.</string>
     <string name="feedback_choose_email_app">Valitse sähköpostisovellus</string>
     <string name="feedback_email_subject">Palaute kohteelle %s</string>
     <string name="feedback_hint">Kirjoita palautteesi tähän…</string>

@@ -48,12 +48,32 @@ object LocaleUtils {
      */
     fun initLocale() {
         val savedLocale = Prefs.locale
+
+        // One-time locale migration
+        val migratedLocale = migratedLocale(savedLocale)
+        if (migratedLocale != savedLocale) {
+            Prefs.locale = migratedLocale
+        }
+
         val localeList =
-            if (savedLocale.isNullOrEmpty()) {
+            if (migratedLocale.isNullOrEmpty()) {
                 LocaleListCompat.getEmptyLocaleList()
             } else {
-                LocaleListCompat.forLanguageTags(savedLocale)
+                LocaleListCompat.forLanguageTags(migratedLocale)
             }
         AppCompatDelegate.setApplicationLocales(localeList)
     }
+
+    /**
+     * TODO - Remove 3-5 releases after v15.2.0.
+     * Consolidated fi-FI, nl-NL, sr-RS, et-EE into their base language tags in v15.2.0.
+     */
+    internal fun migratedLocale(tag: String?): String? =
+        when (tag) {
+            "fi-FI" -> "fi"
+            "nl-NL" -> "nl"
+            "sr-RS" -> "sr"
+            "et-EE" -> "et"
+            else -> tag
+        }
 }

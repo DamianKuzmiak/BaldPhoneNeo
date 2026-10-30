@@ -23,11 +23,9 @@ If you encounter any problems, please [open an issue](https://github.com/DamianK
 - [Czech](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-cs/strings.xml) - translated by Tadeáš Horák
 - [Danish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-da/strings.xml) - translated by ["a happy user"](https://github.com/DBC-226)
 - [Dutch](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-nl/strings.xml) - translated by Floor van den Heuvel
-- [Dutch (Netherlands)](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-nl-rNL/strings.xml)
 - [English](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values/strings.xml)
-- [Estonian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-et-rEE/strings.xml)
+- [Estonian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-et/strings.xml)
 - [Finnish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-fi/strings.xml)
-- [Finnish (Finland)](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-fi-rFI/strings.xml)
 - [French](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-fr/strings.xml) - translated by [Primokorn](https://github.com/Primokorn)
 - [Georgian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ka/strings.xml)
 - [German](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-de/strings.xml) - translated by [Caibot](https://github.com/Caibot)
@@ -44,7 +42,6 @@ If you encounter any problems, please [open an issue](https://github.com/DamianK
 - [Romanian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ro/strings.xml) - translated by Tibz Leet
 - [Russian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ru/strings.xml) - translated by [Vintic](https://github.com/Vintic)
 - [Serbian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sr/strings.xml)
-- [Serbian (Serbia)](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sr-rRS/strings.xml)
 - [Slovenian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sl/strings.xml) - translated by Klemen Skerbiš
 - [Spanish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-es/strings.xml) - translated by [Victor Arribas](https://github.com/varhub) and Ismael Ferreras Morezuelas (Swyter)
 - [Swedish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sv/strings.xml) - translated by [Patrik Bogren](https://github.com/mmFooD)
