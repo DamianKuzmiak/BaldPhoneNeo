@@ -58,7 +58,7 @@ class NeoApp : Application(), SingletonImageLoader.Factory {
 
         Prefs.init(this)
 
-        LocaleUtils.initLocale()
+        LocaleUtils.initLocale(this)
 
         val theme = Prefs.theme
         if (!theme.isSystem) {

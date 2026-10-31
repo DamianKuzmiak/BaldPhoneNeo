@@ -44,7 +44,6 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentLanguageSelectorBinding.bind(view)
-
         val context = requireContext()
 
         val recyclerView = binding.languageList
@@ -62,12 +61,15 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
                     val systemDefault = getSystemOption(context, defaultLocale)
                     listOf(systemDefault) + buildLanguageList(defaultLocale)
                 }
+
             val currentTag = getCurrentLocaleTag()
+            val selectedTag = findSelectedOptionTag(languages, currentTag)
+
             recyclerView.adapter =
-                LanguageAdapter(languages, currentTag) { option ->
-                    if (!tagsMatch(option.tag, currentTag)) {
+                LanguageAdapter(languages, selectedTag) { option ->
+                    if (option.tag != selectedTag) {
                         LocaleUtils.applyLocale(option.tag)
-                    } else if (option.tag == "") {
+                    } else if (option.tag.isEmpty()) {
                         requireContext().startActivitySafe(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     }
                 }
@@ -76,8 +78,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
 
     private fun getSystemOption(context: Context, defaultLocale: Locale): LanguageOption {
         val systemLocale = LocaleUtils.getSystemLocale(context)
-        val systemLanguageName =
-            systemLocale.getDisplayLanguage(defaultLocale).replaceFirstChar { it.titlecase(defaultLocale) }
+        val systemLanguageName = systemLocale.getDisplayLanguage(defaultLocale).capitalizeFirstChar(defaultLocale)
         return LanguageOption(
             tag = "",
             displayName = getString(R.string.follow_system_language),
@@ -119,10 +120,28 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
                 val locale = Locale.forLanguageTag(tag)
                 LanguageOption(
                     tag = tag,
-                    displayName = locale.getDisplayName(locale).replaceFirstChar { it.titlecase(locale) },
-                    localizedName = locale.getDisplayName(userLocale).replaceFirstChar { it.titlecase(userLocale) }
+                    displayName = locale.getDisplayName(locale).capitalizeFirstChar(locale),
+                    localizedName = locale.getDisplayName(userLocale).capitalizeFirstChar(userLocale)
                 )
             }.sortedBy { it.displayName.lowercase() }
+
+    /**
+     * Returns [currentTag] or its best match. Tries an exact match first (e.g., "pt-BR"),
+     * then falls back to the base language matching [currentTag] (e.g., "cs-CZ" -> "cs").
+     */
+    private fun findSelectedOptionTag(options: List<LanguageOption>, currentTag: String): String {
+        val normalizedCurrent = normalizeTag(currentTag)
+        val exactMatch = options.firstOrNull { normalizeTag(it.tag) == normalizedCurrent }?.tag
+        if (exactMatch != null) return exactMatch
+
+        val language = Locale.forLanguageTag(currentTag).language
+        return options
+            .takeIf { language.isNotEmpty() }
+            ?.firstOrNull {
+                val locale = Locale.forLanguageTag(it.tag)
+                locale.country.isEmpty() && locale.language == language
+            }?.tag ?: currentTag
+    }
 
     private fun getCurrentLocaleTag(): String {
         val locales = AppCompatDelegate.getApplicationLocales()
@@ -148,7 +167,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val option = items[position]
-            val isSelected = tagsMatch(option.tag, selectedTag)
+            val isSelected = (option.tag == selectedTag)
             holder.bind(option, isSelected)
         }
 
@@ -159,9 +178,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
             private val onClick: (Int) -> Unit
         ) : RecyclerView.ViewHolder(binding.root) {
             init {
-                binding.root.setOnClickListener {
-                    onClick(bindingAdapterPosition)
-                }
+                binding.root.setOnClickListener { onClick(bindingAdapterPosition) }
                 binding.root.setClickableAccessibilityRole(AccessibilityRole.RADIO_BUTTON)
                 binding.root.enableAssistTouchHierarchy()
             }
@@ -192,7 +209,8 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
                 val locale = Locale.forLanguageTag(tag) // Normalizes "in" -> "id", "iw" -> "he"
                 locale.toLanguageTag()
             }
-
-        fun tagsMatch(a: String, b: String): Boolean = (normalizeTag(a) == normalizeTag(b))
     }
 }
+
+private fun String.capitalizeFirstChar(locale: Locale): String =
+    replaceFirstChar { it.titlecase(locale) }
