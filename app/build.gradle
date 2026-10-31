@@ -48,6 +48,10 @@ android {
         viewBinding = true
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     signingConfigs {
         release {
             if (keystorePropertiesFile.exists()) {

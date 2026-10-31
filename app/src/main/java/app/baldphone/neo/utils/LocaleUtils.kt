@@ -19,6 +19,10 @@ import app.baldphone.neo.data.Prefs
 object LocaleUtils {
     private const val TAG = "LocaleUtils"
 
+    // TODO - Plan migrating the Hebrew/Indonesian resource folders from the obsolete codes
+    // TODO - Adding explicit scripts for Chinese/Serbian (e.g. values-b+zh+Hans, values-b+sr+Cyrl)
+    //        Today values-b+zh holds Traditional Chinese and values-b+sr holds Latin Serbian.
+
     /**
      * Applies the given language/locale tag, saving it to Prefs and setting it in AppCompatDelegate.
      * Pass empty string to follow the system language.

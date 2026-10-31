@@ -88,7 +88,7 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
 
     private fun parseSupportedLocales(): List<String> {
         val locales = mutableListOf<String>()
-        val parser = resources.getXml(R.xml.locales_config)
+        val parser = resources.getXml(R.xml._generated_res_locale_config)
 
         @Suppress("TooGenericExceptionCaught")
         try {
@@ -199,8 +199,8 @@ class LanguageFragment : BaseSettingsFragment(R.layout.fragment_language_selecto
         private const val TAG = "LanguageFragment"
 
         /**
-         * `locales_config.xml` uses the obsolete Java codes ("in", "iw"), while
-         * [AppCompatDelegate.getApplicationLocales] returns ISO tags ("id", "he").
+         * Locale config uses the obsolete Java codes ("in", "iw" - from the `values-b+in` / `values-b+iw`),
+         * while [AppCompatDelegate.getApplicationLocales] returns ISO tags ("id", "he").
          */
         private fun normalizeTag(tag: String): String =
             if (tag.isEmpty()) {

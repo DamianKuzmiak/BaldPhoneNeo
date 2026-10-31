@@ -12,40 +12,40 @@ If you encounter any problems, please [open an issue](https://github.com/DamianK
 
 ## Available Languages
 
-- [Arabic](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ar/strings.xml)
-- [Basque](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-eu/strings.xml)
-- [Brazilian Portuguese](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-pt-rBR/strings.xml) - translated by [Kellyson Antunes](https://github.com/kellysonantunes)
-- [Bulgarian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-bg/strings.xml) - translated by Ivaylo Dimitrov
-- [Catalan](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ca/strings.xml)
-- [Chinese](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-zh/strings.xml) - translated by [thomassth](https://github.com/thomassth)
-- [Chinese (Traditional)](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-zh-rTW/strings.xml)
-- [Croatian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-hr/strings.xml)
-- [Czech](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-cs/strings.xml) - translated by Tadeáš Horák
-- [Danish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-da/strings.xml) - translated by ["a happy user"](https://github.com/DBC-226)
-- [Dutch](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-nl/strings.xml) - translated by Floor van den Heuvel
+- [Arabic](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ar/strings.xml)
+- [Basque](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+eu/strings.xml)
+- [Brazilian Portuguese](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+pt+BR/strings.xml) - translated by [Kellyson Antunes](https://github.com/kellysonantunes)
+- [Bulgarian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+bg/strings.xml) - translated by Ivaylo Dimitrov
+- [Catalan](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ca/strings.xml)
+- [Chinese](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+zh/strings.xml) - translated by [thomassth](https://github.com/thomassth)
+- [Chinese (Traditional)](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+zh+TW/strings.xml)
+- [Croatian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+hr/strings.xml)
+- [Czech](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+cs/strings.xml) - translated by Tadeáš Horák
+- [Danish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+da/strings.xml) - translated by ["a happy user"](https://github.com/DBC-226)
+- [Dutch](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+nl/strings.xml) - translated by Floor van den Heuvel
 - [English](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values/strings.xml)
-- [Estonian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-et/strings.xml)
-- [Finnish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-fi/strings.xml)
-- [French](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-fr/strings.xml) - translated by [Primokorn](https://github.com/Primokorn)
-- [Georgian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ka/strings.xml)
-- [German](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-de/strings.xml) - translated by [Caibot](https://github.com/Caibot)
-- [Greek](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-el/strings.xml) - translated by Zafeiris Ganas
-- [Hausa](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ha/strings.xml)
-- [Hebrew](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-iw/strings.xml) - translated by Uriah Shaul Mandel
-- [Hindi](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-hi/strings.xml)
-- [Hungarian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-hu/strings.xml)
-- [Indonesian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-id/strings.xml) - translated by [Sahri Riza Umami](https://github.com/rizaumami)
-- [Italian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-it/strings.xml) - translated by Dario Mastromattei and Fabio Parri
-- [Korean](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ko/strings.xml) - translated by [SIMSEUNGMIN](https://github.com/SIMSEUNGMIN)
-- [Polish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-pl/strings.xml) - translated by Qik
-- [Portuguese](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-pt/strings.xml) - translated by Vladyslav Rudakevych
-- [Romanian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ro/strings.xml) - translated by Tibz Leet
-- [Russian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-ru/strings.xml) - translated by [Vintic](https://github.com/Vintic)
-- [Serbian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sr/strings.xml)
-- [Slovenian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sl/strings.xml) - translated by Klemen Skerbiš
-- [Spanish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-es/strings.xml) - translated by [Victor Arribas](https://github.com/varhub) and Ismael Ferreras Morezuelas (Swyter)
-- [Swedish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-sv/strings.xml) - translated by [Patrik Bogren](https://github.com/mmFooD)
-- [Turkish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-tr/strings.xml) (not finished yet) - translated by Samii571
+- [Estonian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+et/strings.xml)
+- [Finnish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+fi/strings.xml)
+- [French](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+fr/strings.xml) - translated by [Primokorn](https://github.com/Primokorn)
+- [Georgian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ka/strings.xml)
+- [German](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+de/strings.xml) - translated by [Caibot](https://github.com/Caibot)
+- [Greek](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+el/strings.xml) - translated by Zafeiris Ganas
+- [Hausa](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ha/strings.xml)
+- [Hebrew](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+iw/strings.xml) - translated by Uriah Shaul Mandel
+- [Hindi](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+hi/strings.xml)
+- [Hungarian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+hu/strings.xml)
+- [Indonesian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+in/strings.xml) - translated by [Sahri Riza Umami](https://github.com/rizaumami)
+- [Italian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+it/strings.xml) - translated by Dario Mastromattei and Fabio Parri
+- [Korean](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ko/strings.xml) - translated by [SIMSEUNGMIN](https://github.com/SIMSEUNGMIN)
+- [Polish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+pl/strings.xml) - translated by Qik
+- [Portuguese](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+pt/strings.xml) - translated by Vladyslav Rudakevych
+- [Romanian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ro/strings.xml) - translated by Tibz Leet
+- [Russian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+ru/strings.xml) - translated by [Vintic](https://github.com/Vintic)
+- [Serbian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+sr/strings.xml)
+- [Slovenian](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+sl/strings.xml) - translated by Klemen Skerbiš
+- [Spanish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+es/strings.xml) - translated by [Victor Arribas](https://github.com/varhub) and Ismael Ferreras Morezuelas (Swyter)
+- [Swedish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+sv/strings.xml) - translated by [Patrik Bogren](https://github.com/mmFooD)
+- [Turkish](https://github.com/DamianKuzmiak/BaldPhoneNeo/blob/master/app/src/main/res/values-b+tr/strings.xml) (not finished yet) - translated by Samii571
 
 ## How to Contribute
 
@@ -60,8 +60,8 @@ If you encounter any problems, please [open an issue](https://github.com/DamianK
 
 1.  **Fork** the repository.
 2.  Create a new branch named `translation-xx` (replace `xx` with the [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)).
-3.  Copy the `app/src/main/res/values` directory and rename it to `app/src/main/res/values-xx` (again, using the language code).
-4.  In the new `values-xx` folder, translate the `strings.xml` file.
+3.  Copy the `app/src/main/res/values` directory and rename it to `app/src/main/res/values-b+xx` (replace `xx` with the language code).
+4.  In the new `values-b+xx` folder, translate the `strings.xml` file.
 5.  Add your name and language to this `TRANSLATING.md` file.
 6.  **Commit** your changes and open a **pull request**.
 
