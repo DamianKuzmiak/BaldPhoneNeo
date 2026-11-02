@@ -135,6 +135,7 @@
     <string name="dark">Dark</string>
     <string name="delete">Delete</string>
     <string name="delete___">Delete %s?</string>
+    <string name="dialog_delete_media_message">The selected %s will be deleted from your device.</string>
     <string name="delete_all_alarms">Delete all alarms</string>
     <string name="dialer">Dialer</string>
 

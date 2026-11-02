@@ -1,15 +1,11 @@
 package app.baldphone.neo.features.media.ui.viewer
 
-import android.app.Activity
-import android.app.RecoverableSecurityException
 import android.content.IntentSender
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 
@@ -46,7 +42,6 @@ class MediaViewerFragment : Fragment() {
 
     private var viewPager: ViewPager2? = null
     private var adapter: MediaViewerAdapter? = null
-    private var pendingDeleteUri: Uri? = null
     private var initialPositionApplied = false
     private val playbackManager = VideoPlaybackManager()
 
@@ -54,20 +49,8 @@ class MediaViewerFragment : Fragment() {
         get() = viewPager?.currentItem?.let { adapter?.getItemAt(it) }
 
     private val intentSenderLauncher =
-        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
-                    val uri = pendingDeleteUri ?: currentMediaItem?.uri
-                    if (uri != null) {
-                        try {
-                            requireContext().contentResolver.delete(uri, null, null)
-                        } catch (e: SecurityException) {
-                            Log.e(TAG, "Failed to delete after user permission on Q", e)
-                            requireActivity().showErrorSnackbar(R.string.an_error_has_occurred)
-                        }
-                    }
-                }
-            }
+        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
+            // Nothing to do here
         }
 
     override fun onCreateView(
@@ -127,10 +110,6 @@ class MediaViewerFragment : Fragment() {
         }
     }
 
-    /**
-     * Shows the share/delete action menu, anchored to the given view.
-     * Triggered via [MediaViewModel.moreMenuClickEvent].
-     */
     private fun showPopup(anchor: View) {
         requireContext().showActionMenu(anchor) {
             option(iconRes = R.drawable.share_on_background, labelRes = R.string.share, onClick = {
@@ -155,38 +134,28 @@ class MediaViewerFragment : Fragment() {
     private fun deleteMediaItem(item: MediaItem) {
         val uri = item.uri
         val contentResolver = requireContext().contentResolver
-        pendingDeleteUri = uri
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val pendingIntent = MediaStore.createDeleteRequest(contentResolver, listOf(uri))
+            val pendingIntent = MediaStore.createTrashRequest(contentResolver, listOf(uri), true)
             try {
                 val request = IntentSenderRequest.Builder(pendingIntent.intentSender).build()
                 intentSenderLauncher.launch(request)
             } catch (e: IntentSender.SendIntentException) {
-                Log.e(TAG, "Error starting delete intent sender", e)
+                Log.e(TAG, "Error starting trash intent sender", e)
                 requireActivity().showErrorSnackbar(R.string.an_error_has_occurred)
             }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            try {
-                contentResolver.delete(uri, null, null)
-            } catch (e: RecoverableSecurityException) {
-                Log.e(TAG, "RecoverableSecurityException on delete", e)
-                try {
-                    val request = IntentSenderRequest.Builder(e.userAction.actionIntent.intentSender).build()
-                    intentSenderLauncher.launch(request)
-                } catch (ex: IntentSender.SendIntentException) {
-                    Log.e(TAG, "Error starting recover intent sender", ex)
-                    requireActivity().showErrorSnackbar(R.string.an_error_has_occurred)
-                }
-            }
         } else {
+            // On Q and below, legacy external storage (requestLegacyExternalStorage in the manifest)
+            // gives us full write access, so a plain delete removes the file on disk.
             val mode = (requireActivity() as MediaActivity).mode
-            val title = resolveTitle(mode)
+            val title = resolveTitle(mode).lowercase()
             BaldDialog
                 .Builder(requireContext())
+                .setIcon(R.drawable.delete_on_background)
+                .setIconTintRes(R.color.red)
                 .setTitle(getString(R.string.delete___, title))
-                .setMessage(getString(R.string.are_you_sure_you_want_to_delete___, title))
-                .setPositiveButton(R.string.yes) {
+                .setMessage(getString(R.string.dialog_delete_media_message, title))
+                .setPositiveButton(R.string.delete) {
                     try {
                         contentResolver.delete(uri, null, null)
                     } catch (e: Exception) {
@@ -201,7 +170,7 @@ class MediaViewerFragment : Fragment() {
     private fun resolveTitle(mode: Int): String =
         when (mode) {
             MediaMode.PHOTOS -> getString(R.string.photo)
-            MediaMode.VIDEOS -> getString(R.string.videos)
+            MediaMode.VIDEOS -> getString(R.string.video)
             else -> getString(R.string.photos_and_videos)
         }
 

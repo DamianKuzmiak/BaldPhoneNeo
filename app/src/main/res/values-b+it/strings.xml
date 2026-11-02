@@ -134,6 +134,7 @@
     <string name="dark">Scuro</string>
     <string name="delete">Elimina</string>
     <string name="delete___">Eliminare %s?</string>
+    <string name="dialog_delete_media_message">Il %s selezionato verrà eliminato dal tuo dispositivo.</string>
     <string name="delete_all_alarms">Elimina tutte le sveglie</string>
     <string name="dialer">Tastierino</string>
 

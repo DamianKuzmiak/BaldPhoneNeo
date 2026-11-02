@@ -129,6 +129,7 @@
     <string name="dark">Ciemny</string>
     <string name="delete">Usuń</string>
     <string name="delete___">Usunąć %s?</string>
+    <string name="dialog_delete_media_message">Wybrane %s zostanie usunięte z Twojego urządzenia.</string>
     <string name="delete_all_alarms">Usuń wszystkie alarmy</string>
     <string name="dialer">Telefon</string>
 
