@@ -56,11 +56,7 @@ class NotificationListAdapter(
                 (oldItem.key == newItem.key)
 
             override fun areContentsTheSame(oldItem: NotificationItem, newItem: NotificationItem) =
-                oldItem.appName == newItem.appName &&
-                    android.text.TextUtils.equals(oldItem.title, newItem.title) &&
-                    android.text.TextUtils.equals(oldItem.text, newItem.text) &&
-                    oldItem.timeStamp == newItem.timeStamp &&
-                    oldItem.isClearable == newItem.isClearable
+                oldItem.hasSameVisibleContentAs(newItem)
         }
     }
 }

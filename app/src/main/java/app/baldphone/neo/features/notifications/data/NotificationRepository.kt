@@ -42,9 +42,13 @@ object NotificationRepository {
      * Emits the single highest-priority [NotificationItem], or null when no notifications exist.
      */
     fun getTopNotification(context: Context): Flow<NotificationItem?> =
-        getNotificationItems(context).map { items ->
-            selectTopNotification(items)
-        }
+        getNotificationItems(context)
+            .map { items -> selectTopNotification(items) }
+            // Collapse identical notification emissions to prevent redundant home-screen overlay
+            // re-binds caused by fresh NotificationItem instances generated on re-posts.
+            .distinctUntilChanged { old, new ->
+                if (old == null || new == null) old === new else old.hasSameVisibleContentAs(new)
+            }
 
     /**
      * Evaluates a list of [NotificationItem]s and returns the single highest-priority notification.
