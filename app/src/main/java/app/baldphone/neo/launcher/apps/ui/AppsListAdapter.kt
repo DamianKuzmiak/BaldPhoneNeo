@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 
 import androidx.annotation.AttrRes
@@ -24,11 +25,12 @@ import com.bald.uriah.baldphone.adapters.ModularListAdapter
 
 /**
  * ListAdapter-based adapter for the applications list. Handles two view types:
- *  - [TYPE_HEADER]: Alphabetical section dividers ("A", "B", …). Non-interactive.
+ *  - [TYPE_HEADER]: Alphabetical section dividers ("A", "B", …).
  *  - [TYPE_ITEM]: App entries with icon, label, and pin indicator.
  */
 class AppsListAdapter(
-    private val onAppClick: (position: Int, item: AppEntry) -> Unit
+    private val onAppClick: (item: AppEntry) -> Unit,
+    private val onAppLongClick: ((anchor: View, item: AppEntry) -> Unit)? = null
 ) : ModularListAdapter<AppListItem, RecyclerView.ViewHolder>(AppListItemDiffCallback) {
     private var selectedPosition = RecyclerView.NO_POSITION
     private var themeColors: ThemeColors? = null
@@ -95,13 +97,24 @@ class AppsListAdapter(
                 val pos = bindingAdapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
                     val item = getItem(pos) as? AppListItem.App ?: return@setOnClickListener
+                    onAppClick(item.entry)
+                }
+            }
+
+            // In choose mode items won't show selection/haptic feedback on long-press.
+            if (onAppLongClick != null) {
+                binding.root.setOnLongClickListener { anchor ->
+                    val pos = bindingAdapterPosition
+                    if (pos == RecyclerView.NO_POSITION) return@setOnLongClickListener false
+                    val item = getItem(pos) as? AppListItem.App ?: return@setOnLongClickListener false
 
                     val oldPos = selectedPosition
                     selectedPosition = pos
-                    notifyItemChanged(oldPos, PAYLOAD_SELECTION)
-                    notifyItemChanged(selectedPosition, PAYLOAD_SELECTION)
+                    if (oldPos != RecyclerView.NO_POSITION) notifyItemChanged(oldPos, PAYLOAD_SELECTION)
+                    notifyItemChanged(pos, PAYLOAD_SELECTION)
 
-                    onAppClick(pos, item.entry)
+                    onAppLongClick(anchor, item.entry)
+                    true
                 }
             }
         }

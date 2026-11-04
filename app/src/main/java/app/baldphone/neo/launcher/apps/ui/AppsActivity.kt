@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 
 import androidx.activity.viewModels
@@ -24,10 +25,11 @@ import app.baldphone.neo.ui.menu.showActionMenu
 import app.baldphone.neo.utils.startComponentName
 
 /**
- * Activity that displays all installed applications in a scrollable list, grouped by alphabetical section headers.
+ * Displays all installed applications in a scrollable list, grouped by alphabetical section headers.
+ * Tapping an app opens it; long-pressing shows a drop-down popup with Open / Pin / Uninstall options.
  *
  * Supports two modes:
- * - Browse mode (default) - tapping an app shows a drop-down popup with Open / Pin / Uninstall options.
+ * - Browse mode (default)
  * - Choose mode - tapping an app returns its ComponentName as the result.
  */
 class AppsActivity : BaseActivity() {
@@ -53,7 +55,8 @@ class AppsActivity : BaseActivity() {
     private fun setupRecyclerView() {
         adapter =
             AppsListAdapter(
-                onAppClick = if (chooseKey != null) ::appChosen else ::showDropDown
+                onAppClick = if (chooseKey == null) ::startComponentName else ::appChosen,
+                onAppLongClick = if (chooseKey == null) ::showDropDown else null
             )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -67,8 +70,7 @@ class AppsActivity : BaseActivity() {
         }
     }
 
-    private fun showDropDown(index: Int, app: AppEntry) {
-        val view = recyclerView.layoutManager?.findViewByPosition(index) ?: return
+    private fun showDropDown(view: View, app: AppEntry) {
         val appIconDrawable = view.findViewById<ImageView>(R.id.app_icon)?.drawable
 
         showActionMenu(view) {
@@ -100,7 +102,7 @@ class AppsActivity : BaseActivity() {
         }
     }
 
-    private fun appChosen(index: Int, app: AppEntry) {
+    private fun appChosen(app: AppEntry) {
         setResult(
             RESULT_OK,
             Intent().apply {
@@ -112,9 +114,9 @@ class AppsActivity : BaseActivity() {
     }
 
     private fun uninstallApp(packageName: String) {
-        val uri = Uri.fromParts("package", packageName, null)
-        val intent = Intent(Intent.ACTION_DELETE, uri)
+        val intent = Intent(Intent.ACTION_DELETE, Uri.fromParts("package", packageName, null))
 
+        @Suppress("TooGenericExceptionCaught")
         try {
             startActivity(intent)
         } catch (e: Exception) {
