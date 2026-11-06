@@ -47,10 +47,19 @@ class FlashlightButton
 
             lifecycleOwner.lifecycleScope.launch {
                 lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    flashlight.state.collectLatest { event ->
-                        if (event is FlashlightState.OnOff) {
+                    launch {
+                        flashlight.state.collectLatest { event ->
+                            val on =
+                                when (event) {
+                                    is FlashlightState.OnOff -> event.isOn
+
+                                    FlashlightState.Unavailable -> false
+
+                                    // Errors are delivered via flashlight.errors
+                                    else -> return@collectLatest
+                                }
                             setImageResource(
-                                if (event.isOn) {
+                                if (on) {
                                     R.drawable.flashlight_on_background
                                 } else {
                                     R.drawable.flashlight_off_on_background
@@ -58,13 +67,12 @@ class FlashlightButton
                             )
                             contentDescription =
                                 context.getString(
-                                    if (event.isOn) {
-                                        R.string.flashlight_on
-                                    } else {
-                                        R.string.flashlight_off
-                                    }
+                                    if (on) R.string.flashlight_on else R.string.flashlight_off
                                 )
-                        } else if (event is FlashlightState.Error) {
+                        }
+                    }
+                    launch {
+                        flashlight.errors.collect { event ->
                             val errorMsg = event.detail ?: "Flashlight not available"
                             BaldSnackbar.show(context, errorMsg, BaldSnackbar.TYPE_ERROR)
                         }

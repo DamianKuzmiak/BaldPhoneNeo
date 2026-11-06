@@ -67,7 +67,7 @@ internal class TorchApi23Driver(
                     scope.launch {
                         if (cameraId == torchCameraIdDeferred.await()) {
                             torchState = false
-                            notify(FlashlightState.Error(FlashlightError.CAMERA_ERROR, "Torch unavailable"))
+                            notify(FlashlightState.Unavailable)
                         }
                     }
                 }

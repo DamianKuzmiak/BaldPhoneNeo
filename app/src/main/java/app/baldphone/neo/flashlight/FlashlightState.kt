@@ -5,6 +5,9 @@ sealed class FlashlightState {
 
     data class OnOff(val isOn: Boolean) : FlashlightState()
 
+    /** Temporarily in use by another app, not an error. */
+    object Unavailable : FlashlightState()
+
     data class Error(val code: FlashlightError, val detail: String? = null) : FlashlightState()
 }
 

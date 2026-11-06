@@ -8,8 +8,11 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 import app.baldphone.neo.flashlight.drivers.FlashlightDriver
@@ -23,6 +26,10 @@ class FlashLightController private constructor(appContext: Context) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val _state = MutableStateFlow<FlashlightState>(FlashlightState.Idle)
     val state: StateFlow<FlashlightState> = _state.asStateFlow()
+
+    // Errors are one-shot events.
+    private val _errors = MutableSharedFlow<FlashlightState.Error>(extraBufferCapacity = 1)
+    val errors: SharedFlow<FlashlightState.Error> = _errors.asSharedFlow()
 
     private val driver: FlashlightDriver by lazy {
         Log.d(TAG, "Initializing driver.")
@@ -60,7 +67,11 @@ class FlashLightController private constructor(appContext: Context) {
 
     private fun handleDriverEvent(event: FlashlightState) {
         Log.d(TAG, "Driver event received: $event")
-        _state.value = event
+        if (event is FlashlightState.Error) {
+            _errors.tryEmit(event)
+        } else {
+            _state.value = event
+        }
     }
 
     companion object {
