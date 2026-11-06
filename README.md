@@ -1,93 +1,92 @@
-## Table of Contents
-- [Branding](#baldphone-neo)
-- [Project Overview](#project-overview)
-- [Key Goals](#key-goals)
-- [Screenshots](#screenshots)
-- [Installation](#installation)
-- [Google Play Policy](#google-play-policy--future-plans)
-- [Get Involved](#get-involved)
-- [Community](#community)
-- [Contact](#contact)
-- [Licence](#license)
-
 # BaldPhone Neo
-*A modern, optimized, and user-friendly evolution of BaldPhone.*
 
-<img src="logo/rectangle.png" alt="BaldPhone Neo logo" width="240">
+*The next generation of BaldPhone.*
 
-[![GitHub version](https://img.shields.io/github/tag/DamianKuzmiak/BaldPhone.svg)](https://github.com/DamianKuzmiak/BaldPhone/releases/latest)
-[![Repo size](https://img.shields.io/github/repo-size/DamianKuzmiak/BaldPhone)](https://github.com/DamianKuzmiak/BaldPhone)
-[![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/DamianKuzmiak/BaldPhone)
+<img src="assets/logo/rectangle.png" alt="BaldPhone Neo logo" width="240">
 
-## Project Overview
-**BaldPhone Neo** is a standalone continuation of the original [BaldPhone](https://github.com/UriahShaulMandel/BaldPhone) by Uriah Shaul Mandel.  
+<a href="https://github.com/DamianKuzmiak/BaldPhoneNeo/releases/latest"><img src="https://img.shields.io/github/v/release/DamianKuzmiak/BaldPhoneNeo?style=flat-square" alt="GitHub release"></a>
+<img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square" alt="License">
+<img src="https://img.shields.io/maintenance/yes/2026?style=flat-square" alt="Maintenance">
 
-It preserves the inclusive vision of making smartphones more accessible while introducing modern design, better performance, and smoother user experience.
 
-Building on the great work of the original author, this fork aims to carry the project forward with frequent updates and fresh UX improvements.
+## Overview
 
-## Key Goals
-- **Modern UI/UX:** A refreshed interface designed for clarity and comfort.
-- **Performance Optimization:** Faster loading, smoother animations.
-- **Preserve Core Features:** All essential BaldPhone functionality remains available.
-- **Frequent Updates:** Regular improvements based on community feedback.
-- **Enhanced Accessibility:** Continued focus on simplicity and ease of use.
+**BaldPhone Neo** is the modernized continuation of the original [BaldPhone](https://github.com/UriahShaulMandel/BaldPhone) project created by Uriah Shaul Mandel.
+
+Its mission remains unchanged: making smartphones accessible and intuitive for seniors, individuals with disabilities, caregivers, and anyone who prefers a simplified mobile experience.
+
+While preserving the core vision, BaldPhone Neo introduces a refined interface, optimized performance, enhanced notification management, and ongoing codebase migration to Kotlin.
+
+
+## Key Features
+
+- Large, easy-to-read interface
+- Simplified navigation and interaction
+- Accessibility-focused design
+- Better notification management
+- Quick Lock
+- Optimized performance and lower resource usage
+- Android 15+ support
+- Ongoing UX and accessibility improvements
+
 
 ## Screenshots
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20white.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20white.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/recents.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/recents.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/dialer.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/dialer.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/contacts.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/contacts.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/tony.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/tony.jpg)
 
-<details><summary>More screenshots</summary>
 
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20black.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/homescreen%20black.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/sos.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/sos.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/keyboard.jpg" width=505.68>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/keyboard.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/alarms.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/alarms.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/alarms%20empty.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/alarms%20empty.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/pills.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/pills.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/settings.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/settings.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/video%20tutorials.jpg" width=160>](https://raw.githubusercontent.com/UriahShaulMandel/BaldPhone/master/fastlane/metadata/android/en-US/images/phoneScreenshots/video%20tutorials.jpg)
+<div style="display: flex; gap: 50px; justify-content: flex-start;">
+    <img src="assets/screenshots/home_light.png" width="160">
+    <img src="assets/screenshots/notif_light.png" width="160">
+    <img src="assets/screenshots/home_dark.png" width="160">
+</div>
+
+
+<details>
+<summary>More screenshots</summary>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/recents.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/dialer.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/contacts.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/sos.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/alarms.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/alarms%20empty.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/pills.jpg" width="160">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/keyboard.jpg" width="505">
 </details>
 
-## Installation
-Coming soon
 
-## Google Play Policy & Future Plans
-At this stage, **BaldPhone Neo is not available on Google Play**.
+## Download
 
-The current Google Play policies restrict apps that request multiple system-level permissions (e.g., managing calls, SMS, and media) - which are essential for BaldPhone Neo’s all-in-one accessibility experience.
+- **[Download the latest APK](https://github.com/DamianKuzmiak/BaldPhone/releases/latest)**
+- **F-Droid:** planned
 
-Publishing on Google Play would require splitting the app into several smaller ones or removing critical functionality.  
-To preserve the unified experience, **distribution is currently focused on F-Droid and direct APK releases**.
 
-However, future publication on Google Play is not ruled out.  
+## Direct APK Installation
+
+1. Download the latest `.apk` file from the [Releases](https://github.com/DamianKuzmiak/BaldPhoneNeo/releases/latest) section.
+2. Enable installation from unknown sources in your device settings if prompted.
+3. Open the downloaded file and follow the system prompts.
+
+> [!WARNING]
+> Installing APK files outside Google Play Store could require additional advanced steps starting in 2027.
+> For information regarding open app distribution standards, visit [KeepAndroidOpen](https://keepandroidopen.org/).
+
+> [!NOTE]
+> **Google Play Availability:** BaldPhone Neo is not distributed via Google Play due to strict policy limitations regarding core accessibility and system-level permissions required for its comprehensive functionality.
+
 
 ## Get Involved
-You can help make BaldPhone Neo better by:
-- [Translating](TRANSLATING.md) or improving existing languages
+
+You can support the project by:
+- Translating or improving existing translations (see: [TRANSLATING](TRANSLATING.md))
 - Testing and reporting issues
-- Sharing the app with accessibility communities
-- Suggesting UX improvements
+- Sharing the project with accessibility communities
+- Suggesting improvements to the user experience
 
-Contributions that make the experience simpler, faster, and more delightful are always welcome!
-
-## Community
-Although BaldPhone Neo is an independent fork, you can connect with the existing BaldPhone community:
-- [Subreddit r/BaldPhone](https://www.reddit.com/r/BaldPhone/)
-- [Telegram](https://t.me/BaldPhone)
 
 ## Contact
-For questions, suggestions, or feedback: [neo.baldphone@gmail.com](mailto:neo.baldphone@gmail.com?subject=[GitHub]%20BaldPhone%20Neo)
+
+For questions, suggestions, or feedback: neo.baldphone@gmail.com
+
 
 ## License
-BaldPhone Neo is an open-source project, released under the **Apache License, Version 2.0** -  
-the same license as the original [BaldPhone](https://github.com/UriahShaulMandel/BaldPhone).
 
-This means you are free to:
-- Use, modify, and distribute the app
-- As long as derivative works remain open-source under the same license
-
-For the full license text, see the [LICENSE](LICENSE) file.
+BaldPhone Neo is distributed under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for details.
