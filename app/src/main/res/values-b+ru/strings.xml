@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">Вы уверенны что хотите удалить %s?</string>
     <string name="assistant">Ассистент</string>
     <string name="at_least_one_day_must_be_selected">Не меньше одного дня должно быть выбранно!</string>
-    <string name="auto_brightness">Автоматическая\nЯркость</string>
     <string name="backspace">удалить</string>
     <string name="blocked">Заблокирован</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Яркость</string>
-    <string name="brightness_subtext">Изменить Яркость.</string>
     <string name="cache_cleared_successfully">Кэш успешно удален!</string>
     <string name="call">Позвонить</string>
     <string name="calling">Звоню</string>

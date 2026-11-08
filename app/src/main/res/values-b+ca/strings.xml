@@ -56,12 +56,9 @@
     <string name="are_you_sure_you_want_to_delete___">Està segur de voler eliminar %s?</string>
     <string name="assistant">Assistent</string>
     <string name="at_least_one_day_must_be_selected">Ha de seleccionar-se almenys un dia!</string>
-    <string name="auto_brightness">Brillantor\nAutomàtic</string>
     <string name="backspace">retrocés</string>
     <string name="blocked">Bloquejat</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Brillantor</string>
-    <string name="brightness_subtext">Canviar Brillantor.</string>
     <string name="cache_cleared_successfully">Cache netejada correctament!</string>
     <string name="call">Trucar</string>
     <string name="calling">Trucada</string>

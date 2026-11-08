@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">დარწმუნებული ხართ რომ გსურთ წაშალოთ %s?</string>
     <string name="assistant">ასისტენტი</string>
     <string name="at_least_one_day_must_be_selected">ერთი დღე მაინც უნდა იყოს მონიშნული!</string>
-    <string name="auto_brightness">ავტო\nსიკაშკაშე</string>
     <string name="backspace">backspace</string>
     <string name="blocked">ბლოკირებულია</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">სიკაშკაშე</string>
-    <string name="brightness_subtext">სიკაშკაშის შეცვლა.</string>
     <string name="cache_cleared_successfully">ქეში გასუფთავდა წარმატებით!</string>
     <string name="call">დარეკვა</string>
     <string name="calling">რეკავს</string>

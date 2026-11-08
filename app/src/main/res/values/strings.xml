@@ -68,12 +68,9 @@
     <string name="are_you_sure_you_want_to_delete___">Are you sure you want to delete %s?</string>
     <string name="assistant">Assistant</string>
     <string name="at_least_one_day_must_be_selected">At least one day must be selected!</string>
-    <string name="auto_brightness">Auto\nBrightness</string>
     <string name="backspace">backspace</string>
     <string name="blocked">Blocked</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Brightness</string>
-    <string name="brightness_subtext">Change brightness</string>
     <string name="cache_cleared_successfully">Cache Cleared Successfully!</string>
 
     <string name="call">Call</string>

@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">你肯定要移除%s?</string>
     <string name="assistant">智能助手</string>
     <string name="at_least_one_day_must_be_selected">最少要選擇一日!</string>
-    <string name="auto_brightness">自動調校亮度</string>
     <string name="backspace">退格鍵</string>
     <string name="blocked">已封鎖</string>
     <string name="bluetooth">藍牙</string>
-    <string name="brightness">亮度</string>
-    <string name="brightness_subtext">改變亮度。</string>
     <string name="cache_cleared_successfully">成功清楚暫存!</string>
     <string name="call">來電</string>
     <string name="calling">致電</string>

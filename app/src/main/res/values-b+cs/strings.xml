@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Jste si jisté že chcete smazat %s?</string>
     <string name="assistant">Asistent</string>
     <string name="at_least_one_day_must_be_selected">Aspoň jedno musí být vybráno!</string>
-    <string name="auto_brightness">Automatický\njas</string>
     <string name="backspace">backspace</string>
     <string name="blocked">Zablokováno</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Jas</string>
-    <string name="brightness_subtext">Změnit jas.</string>
     <string name="cache_cleared_successfully">Mezipaměť vyčištěna úspěšně!</string>
     <string name="call">Zavolat</string>
     <string name="calling">Volám</string>

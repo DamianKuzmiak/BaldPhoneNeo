@@ -66,12 +66,9 @@
     <string name="are_you_sure_you_want_to_delete___">Czy na pewno chcesz usunąć %s?</string>
     <string name="assistant">Asystent</string>
     <string name="at_least_one_day_must_be_selected">Należy wybrać co najmniej jeden dzień</string>
-    <string name="auto_brightness">Jasność\nAutomatyczna</string>
     <string name="backspace">Cofnij</string>
     <string name="blocked">Zablokowane</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Jasność</string>
-    <string name="brightness_subtext">Zmień jasność</string>
     <string name="cache_cleared_successfully">Pamięć podręczna została wyczyszczona</string>
 
     <string name="call">Zadzwoń</string>

@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">क्या आप वाकई %s हटाना चाहते हैं?</string>
     <string name="assistant">सहायक</string>
     <string name="at_least_one_day_must_be_selected">कम से कम एक दिन चुना जाना चाहिए!</string>
-    <string name="auto_brightness">स्वतः\nचमक</string>
     <string name="backspace">बैकस्पेस</string>
     <string name="blocked">अवरोधित</string>
     <string name="bluetooth">ब्लूटूथ</string>
-    <string name="brightness">चमक</string>
-    <string name="brightness_subtext">चमक बदलें।</string>
     <string name="cache_cleared_successfully">कैशे सफलतापूर्वक साफ़ हो गया!</string>
     <string name="call">बुलाना</string>
     <string name="calling">कॉलिंग</string>

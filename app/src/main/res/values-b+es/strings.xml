@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">¿Seguro que quieres borrar el elemento «%s»?</string>
     <string name="assistant">Asistente voz</string>
     <string name="at_least_one_day_must_be_selected">Hay que elegir al menos un día.</string>
-    <string name="auto_brightness">Brillo\nautomático</string>
     <string name="backspace">retroceso</string>
     <string name="blocked">Bloqueado</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Brillo</string>
-    <string name="brightness_subtext">Cambiar brillo.</string>
     <string name="cache_cleared_successfully">Se ha vaciado la memoria caché correctamente.</string>
     <string name="call">Llamar</string>
     <string name="calling">Llamadas telefónicas</string>

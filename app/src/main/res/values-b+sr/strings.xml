@@ -53,12 +53,9 @@
     <string name="are_you_sure_you_want_to_delete___">Da li ste sigurni da želite da obrišete %s?</string>
     <string name="assistant">Asistent</string>
     <string name="at_least_one_day_must_be_selected">Morate odabrati barem jedan dan!</string>
-    <string name="auto_brightness">Automatsko\nosvetljenje</string>
     <string name="backspace">obrisi</string>
     <string name="blocked">Blokirano</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Osvetljenje</string>
-    <string name="brightness_subtext">Promeni osvetljenje</string>
     <string name="cache_cleared_successfully">Keš memorija je uspešno obrisana!</string>
     <string name="call">Pozovi</string>
     <string name="calling">Zvanje</string>

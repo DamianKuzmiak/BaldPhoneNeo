@@ -53,12 +53,9 @@
     <string name="are_you_sure_you_want_to_delete___">%s ezabatzeko ziur al zaude?</string>
     <string name="assistant">Morroia</string>
     <string name="at_least_one_day_must_be_selected">Egun bat aukeratu behar duzu gutxienez!</string>
-    <string name="auto_brightness">Distira\ndoigarria</string>
     <string name="backspace">atzera egin</string>
     <string name="blocked">Blokeatuta</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Distira</string>
-    <string name="brightness_subtext">Distira aldatu.</string>
     <string name="cache_cleared_successfully">Cachea arrakastaz hustuta!</string>
     <string name="call">Deitu</string>
     <string name="calling">Deitzen</string>

@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Oletko varma että haluat poistaa %s?</string>
     <string name="assistant">Avustaja</string>
     <string name="at_least_one_day_must_be_selected">Vähintään yksi päivä tulee valita</string>
-    <string name="auto_brightness">Automaattinen kirkkaus</string>
     <string name="backspace">askelpalautin</string>
     <string name="blocked">Estetty</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Kirkkaus</string>
-    <string name="brightness_subtext">Muuta kirkkautta</string>
     <string name="cache_cleared_successfully">Välimuisti tyhjennetty onnistuneesti!</string>
     <string name="call">Puhelu</string>
     <string name="calling">Puhelu</string>

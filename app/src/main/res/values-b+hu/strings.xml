@@ -53,12 +53,9 @@
     <string name="are_you_sure_you_want_to_delete___">Biztosan törölni akarod a következőt: %s?</string>
     <string name="assistant">Asszisztens</string>
     <string name="at_least_one_day_must_be_selected">Legalább egy napot választani kell!</string>
-    <string name="auto_brightness">Automatikus\nFényerő</string>
     <string name="backspace">Törlés</string>
     <string name="blocked">Tiltva</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Fényerő</string>
-    <string name="brightness_subtext">Fényerő állítása</string>
     <string name="cache_cleared_successfully">Gyorsítótár sikeresen ürítve!</string>
     <string name="call">Hívás</string>
     <string name="calling">Hívás folyamatban</string>

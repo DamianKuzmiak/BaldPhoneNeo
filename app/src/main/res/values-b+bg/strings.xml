@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Сигурни ли сте, че желаете да изтриете %s?</string>
     <string name="assistant">Асистент</string>
     <string name="at_least_one_day_must_be_selected">Трябва да бъде избран поне един ден!</string>
-    <string name="auto_brightness">Автоматична\nЯркост</string>
     <string name="backspace">назад</string>
     <string name="blocked">Блокиран</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Яркост</string>
-    <string name="brightness_subtext">Промяна на яркостта.</string>
     <string name="cache_cleared_successfully">Кеш паметта е почистена успешно!</string>
     <string name="call">Разговор</string>
     <string name="calling">Позвъняване</string>

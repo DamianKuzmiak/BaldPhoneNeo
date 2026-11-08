@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Sunteți sigur că vreți să ștergeți %s?</string>
     <string name="assistant">Asistent</string>
     <string name="at_least_one_day_must_be_selected">Cel puțin o zi trebuie selectată!</string>
-    <string name="auto_brightness">Luminiozitate\auto</string>
     <string name="backspace">Șterge</string>
     <string name="blocked">Blocat</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Luminiozitate</string>
-    <string name="brightness_subtext">Schimbă luminiozitate.</string>
     <string name="cache_cleared_successfully">Datele cache au fost șterse cu sucess!</string>
     <string name="call">Apeleaza</string>
     <string name="calling">Se apelează</string>

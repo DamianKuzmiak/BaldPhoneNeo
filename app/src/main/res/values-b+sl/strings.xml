@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Ali ste prepričani da želite izbrisati %s?</string>
     <string name="assistant">Pomočnik</string>
     <string name="at_least_one_day_must_be_selected">Izbran mora biti vsaj en dan!</string>
-    <string name="auto_brightness">Samodejna\nSvetlost</string>
     <string name="backspace">vračalka</string>
     <string name="blocked">Blokiran</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Svetlost</string>
-    <string name="brightness_subtext">Spremeni svetlost</string>
     <string name="cache_cleared_successfully">Predpomnilnik uspešno očiščen!</string>
     <string name="call">Klic</string>
     <string name="calling">Klicanje</string>

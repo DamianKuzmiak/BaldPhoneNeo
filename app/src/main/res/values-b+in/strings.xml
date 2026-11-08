@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Anda yakin ingin menghapus %s?</string>
     <string name="assistant">Asisten</string>
     <string name="at_least_one_day_must_be_selected">Setidaknya pilih satu hari!</string>
-    <string name="auto_brightness">Kecerahan\nOtomatis</string>
     <string name="backspace">menghapus</string>
     <string name="blocked">Diblokir</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Kecerahan</string>
-    <string name="brightness_subtext">Ubah Kecerahan.</string>
     <string name="cache_cleared_successfully">Cache Berhasil Dibersihkan!</string>
     <string name="call">Panggilan</string>
     <string name="calling">Memanggil</string>

@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">האם ברצונך למחוק את %s?</string>
     <string name="assistant">סיוע קולי</string>
     <string name="at_least_one_day_must_be_selected">לפחות יום אחד חייב להיות מסומן!</string>
-    <string name="auto_brightness">בהירות אוטומטית</string>
     <string name="backspace">מחיקה</string>
     <string name="blocked">חסום</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">בהירות</string>
-    <string name="brightness_subtext">שינוי בהירות</string>
     <string name="cache_cleared_successfully">מטמון נוקה בהצלחה!</string>
     <string name="call">התקשר</string>
     <string name="calling">ביצוע שיחות</string>

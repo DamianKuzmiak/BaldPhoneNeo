@@ -53,12 +53,9 @@
     <string name="are_you_sure_you_want_to_delete___">Weet u zeker dat u %s wilt verwijderen?</string>
     <string name="assistant">Assistent</string>
     <string name="at_least_one_day_must_be_selected">Er moet minimaal één dag zijn geselecteerd!</string>
-    <string name="auto_brightness">Automatische\nHelderheid</string>
     <string name="backspace">backspace</string>
     <string name="blocked">Geblokkeerd</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Helderheid</string>
-    <string name="brightness_subtext">Verander de helderheid.</string>
     <string name="cache_cleared_successfully">Cache succesvol gewist!</string>
     <string name="call">Bel</string>
     <string name="calling">Aan het bellen</string>

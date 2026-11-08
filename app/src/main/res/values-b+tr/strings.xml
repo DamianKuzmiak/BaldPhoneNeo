@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">Bunu silmek istediğinize emin misiniz %s?</string>
     <string name="assistant">Asistan</string>
     <string name="at_least_one_day_must_be_selected">En az bir gün seçilmek sorunda!</string>
-    <string name="auto_brightness">Otomatik\n parlaklık</string>
     <string name="backspace">Geri tuşu</string>
     <string name="blocked">Bloke edilmiş</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Parlaklık</string>
-    <string name="brightness_subtext">Parlaklık\'i değiştir</string>
     <string name="cache_cleared_successfully">Önbellek başarıyla temizlendi!</string>
     <string name="call">Arama</string>
     <string name="calling">Aranıyor</string>

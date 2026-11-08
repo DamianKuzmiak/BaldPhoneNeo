@@ -53,12 +53,9 @@
     <string name="are_you_sure_you_want_to_delete___">삭제하길 원하십니까 %s?</string>
     <string name="assistant">보조</string>
     <string name="at_least_one_day_must_be_selected">하루 이상의 날짜가 선택되었습니다!</string>
-    <string name="auto_brightness">자동 밝기</string>
     <string name="backspace">지우기</string>
     <string name="blocked">잠금</string>
     <string name="bluetooth">블루투스</string>
-    <string name="brightness">밝기</string>
-    <string name="brightness_subtext">밝기 조절.</string>
     <string name="cache_cleared_successfully">캐시가 성공적으로 삭제되었습니다!</string>
     <string name="call">전화</string>
     <string name="calling">통화중</string>

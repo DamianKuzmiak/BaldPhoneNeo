@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">Är du säker på att du vill ta bort %s?</string>
     <string name="assistant">Assistent</string>
     <string name="at_least_one_day_must_be_selected">Minst en dag måste anges!</string>
-    <string name="auto_brightness">Automatisk Ljusstyrka</string>
     <string name="backspace">backsteg</string>
     <string name="blocked">Blockerad</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Ljusstyrka</string>
-    <string name="brightness_subtext">Ändra Ljusstyrka.</string>
     <string name="cache_cleared_successfully">Cachen rensades!</string>
     <string name="call">Ring</string>
     <string name="calling">Ring</string>

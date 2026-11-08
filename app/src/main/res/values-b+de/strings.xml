@@ -54,12 +54,9 @@
     <string name="are_you_sure_you_want_to_delete___">Bist du dir sicher, dass du %s löschen willst?</string>
     <string name="assistant">Assistent</string>
     <string name="at_least_one_day_must_be_selected">Mindestens ein Tag muss ausgewählt werden!</string>
-    <string name="auto_brightness">Automatische\nHelligkeitsanpassung</string>
     <string name="backspace">Schritt zurück</string>
     <string name="blocked">Blockiert</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Helligkeit</string>
-    <string name="brightness_subtext">Die Helligkeit ändern.</string>
     <string name="cache_cleared_successfully">Der Cache wurde erfolgreich geleert!</string>
     <string name="call">Anrufen</string>
     <string name="calling">Anrufen</string>

@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Είστε σίγουροι ότι θέλετε να διαγράψετε  %s;</string>
     <string name="assistant">Βοηθός</string>
     <string name="at_least_one_day_must_be_selected">Τουλάχιστον μια ήμερα πρέπει να επιλεγεί!</string>
-    <string name="auto_brightness">Αυτόματη\nΦωτεινότητα</string>
     <string name="backspace">backspace</string>
     <string name="blocked">Μπλοκαρίστηκε</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Φωτεινότητα</string>
-    <string name="brightness_subtext">Αλλαγή Φωτεινότητας.</string>
     <string name="cache_cleared_successfully">Η μνήμη Cache διαγράφηκε!</string>
     <string name="call">Κλήση</string>
     <string name="calling">Κλήση σε εξέλιξη</string>

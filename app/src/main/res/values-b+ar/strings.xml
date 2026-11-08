@@ -48,11 +48,8 @@
     <string name="are_you_sure_you_want_to_delete___">هل انت متأكد انك تريد حذف ‍%s ؟</string>
     <string name="assistant">المساعد</string>
     <string name="at_least_one_day_must_be_selected">يجب ان تحدد يوم واحد علي اللأقل</string>
-    <string name="auto_brightness">مستوي إضائة تلقائي</string>
     <string name="blocked">محظور</string>
     <string name="bluetooth">بلوتوث</string>
-    <string name="brightness">مستوي السطوع</string>
-    <string name="brightness_subtext">تغيير مستوي السطوع</string>
     <string name="cache_cleared_successfully">تم تنظيف الذاكرة المؤقتة بنجاح!</string>
     <string name="call">إتصل</string>
     <string name="calling">يتم الإتصال</string>

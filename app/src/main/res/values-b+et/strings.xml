@@ -55,12 +55,9 @@
     <string name="are_you_sure_you_want_to_delete___">Kas olete kindel, et soovite %s\'i kustutada?</string>
     <string name="assistant">Abiline</string>
     <string name="at_least_one_day_must_be_selected">Vähemalt ühe päeva peab valima.</string>
-    <string name="auto_brightness">Automaatne\nheledus</string>
     <string name="backspace">tagasilüke</string>
     <string name="blocked">Keelatud</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Heledus</string>
-    <string name="brightness_subtext">Muuda heledust.</string>
     <string name="cache_cleared_successfully">Vahemälu on kustutatud.</string>
     <string name="call">Helista</string>
     <string name="calling">Helistamine</string>

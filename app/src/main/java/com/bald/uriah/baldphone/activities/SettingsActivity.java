@@ -36,10 +36,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -61,7 +58,6 @@ import app.baldphone.neo.data.StatusBarMode;
 import app.baldphone.neo.data.Theme;
 import app.baldphone.neo.extensions.ThemeExtensions;
 import app.baldphone.neo.extensions.ViewExtensions;
-import app.baldphone.neo.permissions.PermissionManager;
 import app.baldphone.neo.utils.HomeAppUtils;
 import app.baldphone.neo.views.TitleBarView;
 
@@ -289,7 +285,6 @@ public class SettingsActivity extends BaldActivity {
         displayCategory.add(fontSettingsItem);
         accessibilityCategory.add(fontSettingsItem);
 
-        setupBrightness();
         setupAlarmVolume();
 
         //connections
@@ -449,78 +444,6 @@ public class SettingsActivity extends BaldActivity {
 
     }
 
-    private void setupBrightness() {
-        final LinearLayout brightnessSeekBarHolder = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.brightness_seek_bar, null, false);
-        final SeekBar brightnessSeekBar = brightnessSeekBarHolder.findViewById(R.id.brightness_seek_bar);
-        final CheckBox checkBoxAutoBrightness = brightnessSeekBarHolder.findViewById(R.id.auto_brightness_check_box);
-        final int[] brightness = new int[1];
-        brightnessSeekBar.setKeyProgressIncrement(1);
-        try {
-            if (Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE) == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
-                brightness[0] = -1;
-                checkBoxAutoBrightness.setChecked(true);
-                brightnessSeekBar.setEnabled(false);
-
-            } else {
-                brightnessSeekBar.setProgress(Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS));
-            }
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            e.printStackTrace();
-        }
-        brightnessSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress <= 20)
-                    brightness[0] = 20;
-                else
-                    brightness[0] = progress;
-                WindowManager.LayoutParams layoutpars = getWindow().getAttributes();
-                layoutpars.screenBrightness = brightness[0] / 255f;
-                getWindow().setAttributes(layoutpars);
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness[0]);
-                final WindowManager.LayoutParams params = getWindow().getAttributes();
-                params.screenBrightness = brightness[0] / 255f;
-                getWindow().setAttributes(params);
-            }
-        });
-
-        checkBoxAutoBrightness.setOnLongClickListener((v) -> {
-            checkBoxAutoBrightness.setChecked(!checkBoxAutoBrightness.isChecked());
-            return true;
-        });
-        checkBoxAutoBrightness.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            brightnessSeekBar.setEnabled(!isChecked);
-            Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, (isChecked ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL));
-            brightness[0] = 50;
-        });
-
-        final SettingsItem brightnessSettingsItem = new RunnableSettingsItem(
-            R.string.brightness,
-            v -> {
-                PermissionManager.checkOrRequest(this, PermissionManager.WRITE_SETTINGS, result -> {
-                    if (result == PermissionManager.GRANTED) {
-                        BDB.from(this)
-                            .addFlag(BDialog.FLAG_OK)
-                            .setTitle(R.string.brightness)
-                            .setSubText(R.string.brightness_subtext)
-                            .setPositiveButtonListener(params -> true)
-                            .setExtraView(brightnessSeekBarHolder)
-                            .show();
-                    }
-                });
-            },
-            R.drawable.brightness_on_button
-        );
-        displayCategory.add(brightnessSettingsItem);
-    }
-
     public class SettingsRecyclerViewAdapter extends ModularRecyclerView.ModularAdapter<SettingsRecyclerViewAdapter.ViewHolder> {
         final LayoutInflater layoutInflater;
 
@@ -644,10 +567,5 @@ public class SettingsActivity extends BaldActivity {
         public void onClick(View v) {
             newCategory(this);
         }
-    }
-
-    @Override
-    protected int requiredPermissions() {
-        return PERMISSION_WRITE_SETTINGS;
     }
 }

@@ -53,12 +53,9 @@
     <string name="are_you_sure_you_want_to_delete___">Er du sikker på, at du vil slette %s?</string>
     <string name="assistant">Assistent</string>
     <string name="at_least_one_day_must_be_selected">Du skal vælge mindst én dag!</string>
-    <string name="auto_brightness">Automatisk\nlysstyrke</string>
     <string name="backspace">Slet</string>
     <string name="blocked">Blokeret</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="brightness">Lysstyrke</string>
-    <string name="brightness_subtext">Ændr lysstyrke.</string>
     <string name="cache_cleared_successfully">Midlertidig hukommelse blev ryddet op!</string>
     <string name="call">Opkald</string>
     <string name="calling">Ringer op</string>
