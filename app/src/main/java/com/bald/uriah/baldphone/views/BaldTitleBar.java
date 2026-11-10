@@ -32,8 +32,7 @@ import androidx.annotation.StringRes;
 import app.baldphone.neo.extensions.ViewExtensions;
 
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.utils.BPrefs;
-import com.bald.uriah.baldphone.utils.D;
+import app.baldphone.neo.data.Prefs;
 
 public class BaldTitleBar extends LinearLayout {
     private CharSequence title;
@@ -110,7 +109,7 @@ public class BaldTitleBar extends LinearLayout {
                 activity.finish();
         });
 
-        final boolean rightHanded = context.getSharedPreferences(D.BALD_PREFS, Context.MODE_PRIVATE).getBoolean(BPrefs.RIGHT_HANDED_KEY, BPrefs.RIGHT_HANDED_DEFAULT_VALUE);
+        final boolean rightHanded = Prefs.isRightHanded();
         addView(rightHanded ? bt_help : bt_back);
         addView(tv_title);
         addView(rightHanded ? bt_back : bt_help);

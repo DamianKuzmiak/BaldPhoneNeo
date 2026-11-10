@@ -8,16 +8,19 @@ import android.view.LayoutInflater
 import androidx.activity.findViewTreeOnBackPressedDispatcherOwner
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.use
 import androidx.core.view.isVisible
 
 import app.baldphone.neo.R
+import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.databinding.ViewTitleBarBinding
 import app.baldphone.neo.extensions.applyTopBarInsets
 
 /**
  * A custom toolbar-like view that provides a consistent header across the application.
  * It features a title, an exit (back) button, and an optional "more" options button.
+ * Button sides follow [Prefs.isRightHanded] - exit on the right for `true`, mirrored otherwise.
  *
  * XML Attributes:
  * - `titleBarTitle`: The text to display in the center of the bar.
@@ -30,7 +33,7 @@ class TitleBarView
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
     ) : ConstraintLayout(context, attrs, defStyleAttr) {
-        private val binding: ViewTitleBarBinding = ViewTitleBarBinding.inflate(LayoutInflater.from(context), this)
+        private val binding = ViewTitleBarBinding.inflate(LayoutInflater.from(context), this)
 
         init {
             elevation = resources.getDimension(R.dimen.title_bar_elevation)
@@ -53,6 +56,8 @@ class TitleBarView
                     setBackgroundColor(backgroundColor)
                 }
             }
+
+            if (!Prefs.isRightHanded) swapButtonSides()
 
             applyTopBarInsets()
         }
@@ -95,5 +100,23 @@ class TitleBarView
          */
         fun setOnExitClickListener(listener: OnClickListener?) {
             binding.btnExit.setOnClickListener(listener)
+        }
+
+        /** Swaps sides of the exit and 'More' buttons (exit on the left, 'More' on the right) */
+        private fun swapButtonSides() {
+            ConstraintSet().apply {
+                clone(this@TitleBarView)
+
+                clear(R.id.btnExit, ConstraintSet.END)
+                connect(R.id.btnExit, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+
+                clear(R.id.btnMore, ConstraintSet.START)
+                connect(R.id.btnMore, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+
+                connect(R.id.txtTitle, ConstraintSet.START, R.id.btnExit, ConstraintSet.END)
+                connect(R.id.txtTitle, ConstraintSet.END, R.id.btnMore, ConstraintSet.START)
+
+                applyTo(this@TitleBarView)
+            }
         }
     }
