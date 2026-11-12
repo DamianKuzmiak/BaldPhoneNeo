@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Damian Kuźmiak
+// SPDX-License-Identifier: Apache-2.0
+
 @file:Suppress("DEPRECATION")
 
 package app.baldphone.neo.flashlight.drivers

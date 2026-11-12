@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Damian Kuźmiak
+// SPDX-License-Identifier: Apache-2.0
+
 package app.baldphone.neo.settings.system.permissions
 
 import app.baldphone.neo.permissions.model.AppPermission
