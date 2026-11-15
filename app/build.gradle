@@ -1,6 +1,6 @@
 /*
  * Copyright 2019 Uriah Shaul Mandel
- * Copyright 2025 Damian Kuzmiak
+ * Copyright (c) 2026 Damian Kuzmiak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,10 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-def keystorePropertiesFile = rootProject.file('app/keystore.properties')
+def keystorePropertiesFile = file('keystore.properties')
+def canSign = keystorePropertiesFile.exists()
 def keystoreProperties = new Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
+if (canSign) keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
 
 static def getDate() {
     return new Date().format('MMddHHmm')
@@ -54,7 +53,7 @@ android {
 
     signingConfigs {
         release {
-            if (keystorePropertiesFile.exists()) {
+            if (canSign) {
                 storeFile file('release-key.jks')
                 storePassword keystoreProperties['storePassword']
                 keyAlias keystoreProperties['keyAlias']
@@ -65,11 +64,7 @@ android {
 
     buildTypes {
         release {
-            if (keystorePropertiesFile.exists()) {
-                signingConfig = signingConfigs.release
-            } else {
-                signingConfig = null
-            }
+            signingConfig = canSign ? signingConfigs.release : null
             debuggable false
             minifyEnabled true
             shrinkResources = true
