@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.LinearLayout
 
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -20,12 +21,18 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.isVisible
 
+import app.baldphone.neo.R
 import app.baldphone.neo.core.assisttouch.enableAssistTouchHierarchy
 import app.baldphone.neo.databinding.DialogBaldBinding
 
 /**
- * A custom BDialog replacement with a Builder API like MaterialAlertDialog and custom background color support.
+ * An accessible custom dialog.
+ *
+ * Supports up to three buttons (positive, negative, and neutral):
+ * - One or two buttons are displayed in a single row.
+ * - Three buttons are stacked vertically in portrait mode and arranged in a single row in landscape mode.
  */
 class BaldDialog private constructor(
     context: Context,
@@ -48,7 +55,6 @@ class BaldDialog private constructor(
 
         setupContent()
         setupButtons()
-        setupBackground()
         setupListeners()
         binding.root.enableAssistTouchHierarchy()
     }
@@ -81,13 +87,74 @@ class BaldDialog private constructor(
                 customViewContainer.addView(customView)
                 customViewContainer.visibility = View.VISIBLE
             }
+
+            builder.backgroundColor?.let {
+                binding.dialogBackground.setBackgroundColor(it)
+            }
         }
 
     private fun setupButtons() =
         with(binding) {
-            configureButton(buttonPositive, builder.positiveButtonText, builder.positiveButtonListener)
-            configureButton(buttonNegative, builder.negativeButtonText, builder.negativeButtonListener)
-            configureButton(buttonNeutral, builder.neutralButtonText, builder.neutralButtonListener)
+            val count =
+                listOf(
+                    configureButton(buttonPositive, builder.positiveButtonText, builder.positiveButtonListener),
+                    configureButton(buttonNegative, builder.negativeButtonText, builder.negativeButtonListener),
+                    configureButton(buttonNeutral, builder.neutralButtonText, builder.neutralButtonListener)
+                ).count { it }
+
+            if (count == 0) {
+                buttonContainer.visibility = View.GONE
+            } else {
+                buttonContainer.visibility = View.VISIBLE
+                val isStacked = count == MAX_BUTTONS && !context.resources.getBoolean(R.bool.is_landscape)
+                arrangeButtons(isStacked)
+
+                if (count == MAX_BUTTONS && !isStacked) widenForButtonRow()
+            }
+        }
+
+    /** Widens the window for a three-button row: the preferred width, capped to a share of the screen. */
+    private fun widenForButtonRow() {
+        val res = context.resources
+        val preferred = res.getDimensionPixelSize(R.dimen.bald_dialog_row_width)
+        val cap = (res.displayMetrics.widthPixels * ROW_MAX_SCREEN_FRACTION).toInt()
+        window?.setLayout(minOf(preferred, cap), ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
+
+    /**
+     * Lays out the visible buttons.
+     * - [stack] = true: vertical, full width, order Positive, Neutral, Negative.
+     * - otherwise: a single row, order Negative, Neutral, Positive.
+     */
+    private fun arrangeButtons(stack: Boolean) =
+        with(binding) {
+            val gap = context.resources.getDimensionPixelSize(R.dimen.bald_dialog_button_gap)
+
+            buttonContainer.orientation = if (stack) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL
+            buttonContainer.removeAllViews()
+
+            val buttons =
+                if (stack) {
+                    listOf(buttonPositive, buttonNeutral, buttonNegative)
+                } else {
+                    listOf(buttonNegative, buttonNeutral, buttonPositive)
+                }
+
+            buttons.filter(View::isVisible).forEachIndexed { index, button ->
+                button.layoutParams =
+                    LinearLayout
+                        .LayoutParams(
+                            if (stack) ViewGroup.LayoutParams.MATCH_PARENT else 0,
+                            if (stack) ViewGroup.LayoutParams.WRAP_CONTENT else ViewGroup.LayoutParams.MATCH_PARENT,
+                            if (stack) 0f else 1f
+                        ).apply {
+                            if (index > 0) {
+                                if (stack) topMargin = gap else marginStart = gap
+                            }
+                        }
+
+                buttonContainer.addView(button)
+            }
         }
 
     private fun configureButton(
@@ -110,14 +177,9 @@ class BaldDialog private constructor(
         return true
     }
 
-    private fun setupBackground() {
-        builder.backgroundColor?.let {
-            binding.dialogBackground.setBackgroundColor(it)
-        }
-        setCancelable(builder.cancelable)
-    }
-
     private fun setupListeners() {
+        setCancelable(builder.cancelable)
+
         builder.onDismissListener?.let { listener ->
             setOnDismissListener { listener(this) }
         }
@@ -164,8 +226,9 @@ class BaldDialog private constructor(
         fun setMessage(message: CharSequence) = apply { this.message = message }
 
         fun setMessage(
-            @StringRes resId: Int
-        ) = setMessage(context.getText(resId))
+            @StringRes resId: Int,
+            vararg formatArgs: Any
+        ) = setMessage(context.getString(resId, *formatArgs))
 
         fun setPositiveButton(text: CharSequence, listener: ((BaldDialog) -> Unit)? = null) =
             apply {
@@ -218,7 +281,9 @@ class BaldDialog private constructor(
     }
 
     companion object {
-        private const val DIALOG_DIM_AMOUNT = 0.6f
+        private const val DIALOG_DIM_AMOUNT = 0.5f
+        private const val MAX_BUTTONS = 3
+        private const val ROW_MAX_SCREEN_FRACTION = 0.9f
     }
 }
 

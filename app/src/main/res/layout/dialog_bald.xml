@@ -82,49 +82,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_scroll_view" />
 
-    <Button
-        android:id="@+id/button_negative"
-        style="@style/Bald.Button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="6dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/button_positive"
-        app:layout_constraintEnd_toStartOf="@+id/button_positive"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_view_container"
-        tools:text="Cancel"
-        tools:visibility="visible" />
-
-    <Button
-        android:id="@+id/button_positive"
-        style="@style/Bald.Button.Positive"
+    <LinearLayout
+        android:id="@+id/button_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
         android:layout_marginTop="24dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/button_negative"
-        app:layout_constraintTop_toBottomOf="@id/custom_view_container"
-        tools:text="OK"
-        tools:visibility="visible" />
-
-    <Button
-        android:id="@+id/button_neutral"
-        style="@style/Bald.Button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_positive"
-        tools:text="More Info"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/custom_view_container"
+        tools:visibility="visible">
 
+        <Button
+            android:id="@+id/button_negative"
+            style="@style/Bald.Button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"
+            tools:text="Cancel"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_neutral"
+            style="@style/Bald.Button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            tools:text="More Info"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_positive"
+            style="@style/Bald.Button.Positive"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            tools:text="OK"
+            tools:visibility="visible" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
