@@ -1,0 +1,40 @@
+# Verifies that every push to master still compiles and builds a release APK without errors.
+
+name: Build check
+
+on:
+    push:
+        branches: [master]
+        paths-ignore:
+            - 'assets/**'
+            - 'docs/**'
+            - '**.md'
+
+permissions:
+    contents: read
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build-release:
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v7
+
+            -   name: Set up Java 17
+                uses: actions/setup-java@v6
+                with:
+                    distribution: temurin
+                    java-version: 17
+                    cache: gradle
+
+            # No signing secrets needed, the build produces an unsigned release apk.
+            -   name: Build release apk
+                run: |
+                    chmod +x gradlew
+                    ./gradlew assembleRelease
