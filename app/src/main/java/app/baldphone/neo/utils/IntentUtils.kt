@@ -11,9 +11,12 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.LauncherApps
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Process
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 
 import androidx.annotation.StringRes
@@ -36,6 +39,30 @@ fun Context.launchAssistant() {
         flags = FLAG_ACTIVITY_NEW_TASK,
         errorMsgRes = R.string.your_phone_doesnt_have_assistant_installed
     )
+}
+
+/**
+ * Opens the system "App info" screen for the given [appEntry].
+ */
+fun Context.openAppInfo(appEntry: AppEntry) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        try {
+            val user = getUserForSerialNumber(appEntry.userId) ?: Process.myUserHandle()
+            val launcherApps = getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
+            launcherApps.startAppDetailsActivity(appEntry.component, user, null, null)
+            return
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to open app info via LauncherApps for ${appEntry.packageName}", e)
+        }
+    }
+    try {
+        startActivity(
+            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", appEntry.packageName, null))
+        )
+    } catch (e: Exception) {
+        Log.e(TAG, "Failed to open app info for ${appEntry.packageName}", e)
+        BaldSnackbar.show(this, R.string.an_error_has_occurred, BaldSnackbar.TYPE_ERROR)
+    }
 }
 
 fun Context.openCamera() {

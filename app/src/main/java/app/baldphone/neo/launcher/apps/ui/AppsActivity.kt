@@ -25,11 +25,12 @@ import app.baldphone.neo.launcher.apps.data.AppsRepository
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.ui.menu.showActionMenu
+import app.baldphone.neo.utils.openAppInfo
 import app.baldphone.neo.utils.startComponentName
 
 /**
  * Displays all installed applications in a scrollable list, grouped by alphabetical section headers.
- * Tapping an app opens it; long-pressing shows a drop-down popup with Open / Pin / Uninstall options.
+ * Tapping an app opens it; long-pressing shows a drop-down popup with Open / Pin / App info / Uninstall options.
  *
  * Supports two modes:
  * - Browse mode (default)
@@ -95,6 +96,15 @@ class AppsActivity : BaseActivity() {
             }
 
             if (!app.isPredefined) {
+                option(
+                    iconRes = R.drawable.ic_settings_application,
+                    labelRes = R.string.app_info
+                ) {
+                    openAppInfo(app)
+                }
+
+                separator()
+
                 option(
                     iconRes = R.drawable.delete_on_background,
                     labelRes = R.string.uninstall

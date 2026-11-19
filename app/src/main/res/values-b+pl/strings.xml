@@ -62,6 +62,8 @@
     <string name="already_setted">Już ustawione!\nKliknij tutaj, aby przełączyć.</string>
     <string name="an_error_has_occurred">Wystąpił błąd</string>
     <string name="and_welcome_to_baldphone">Witamy w BaldPhone</string>
+
+    <string name="app_info">Informacje o aplikacji</string>
     <string name="apps">Aplikacje</string>
     <string name="are_you_sure_you_want_to_delete___">Czy na pewno chcesz usunąć %s?</string>
     <string name="assistant">Asystent</string>

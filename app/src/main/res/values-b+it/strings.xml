@@ -64,6 +64,7 @@
     <string name="an_error_has_occurred">Si è verificato un errore!</string>
     <string name="and_welcome_to_baldphone">e benvenuto in BaldPhone</string>
 
+    <string name="app_info">Informazioni app</string>
     <string name="apps">App</string>
     <string name="are_you_sure_you_want_to_delete___">Vuoi davvero eliminare %s?</string>
     <string name="assistant">Assistente</string>

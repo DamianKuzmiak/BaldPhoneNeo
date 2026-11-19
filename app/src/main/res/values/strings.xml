@@ -64,6 +64,7 @@
     <string name="an_error_has_occurred">An error has occurred!</string>
     <string name="and_welcome_to_baldphone">and welcome to Baldphone</string>
 
+    <string name="app_info">App info</string>
     <string name="apps">Apps</string>
     <string name="are_you_sure_you_want_to_delete___">Are you sure you want to delete %s?</string>
     <string name="assistant">Assistant</string>
