@@ -14,7 +14,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
-import android.provider.Telephony
 import android.util.Log
 
 import androidx.annotation.StringRes
@@ -127,29 +126,6 @@ fun Context.shareContact(lookupKey: String?, name: String? = null) {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, name)
     }
     share(shareIntent)
-}
-
-/**
- * Launches the default SMS application (main screen).
- */
-fun Context.openMessages() {
-    val messagingIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_APP_MESSAGING)
-    if (messagingIntent.resolveActivity(packageManager) != null) {
-        startActivityWithNewTask(messagingIntent)
-        return
-    }
-
-    // Fallback: launch intent of the default SMS package.
-    val launchIntent =
-        Telephony.Sms
-            .getDefaultSmsPackage(this)
-            ?.let { packageManager.getLaunchIntentForPackage(it) }
-    if (launchIntent != null) {
-        startActivityWithNewTask(launchIntent)
-    } else {
-        Log.e(TAG, "No messaging app found")
-        BaldSnackbar.show(this, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
-    }
 }
 
 /**

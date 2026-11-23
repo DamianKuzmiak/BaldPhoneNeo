@@ -45,10 +45,11 @@ import app.baldphone.neo.permissions.model.SpecialPermission
 import app.baldphone.neo.services.DeviceLock
 import app.baldphone.neo.services.DeviceLockResult
 import app.baldphone.neo.ui.dialogs.BaldDialog
+import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.utils.launchAssistant
 import app.baldphone.neo.utils.messaging.WhatsAppHandler
 import app.baldphone.neo.utils.openCamera
-import app.baldphone.neo.utils.openMessages
+import app.baldphone.neo.utils.startActivityWithNewTask
 import app.baldphone.neo.utils.startActivityWithNewTaskClear
 import app.baldphone.neo.utils.startComponentName
 
@@ -175,7 +176,7 @@ class HomePage1 : HomeView {
             homeScreen.launchAssistant()
         }
         setupButton(HomeSlot.MESSAGES, binding.btMessages) {
-            context.openMessages()
+            openMessages()
         }
         setupButton(HomeSlot.CAMERA, binding.btCamera) {
             context.openCamera()
@@ -328,6 +329,17 @@ class HomePage1 : HomeView {
         val recent = binding.btRecent
         if (!customizedIcons.containsKey(recent)) {
             recent.setBadgeVisibility(hasMissedCalls)
+        }
+    }
+
+    private fun openMessages() {
+        val defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(context)
+        val launchIntent = defaultSmsPackage?.let { context.packageManager.getLaunchIntentForPackage(it) }
+        if (launchIntent != null) {
+            context.startActivityWithNewTask(launchIntent)
+        } else {
+            Log.e(TAG, "No messaging app found, defaultSmsPackage: $defaultSmsPackage")
+            activity.showErrorSnackbar(R.string.no_app_was_found)
         }
     }
 
