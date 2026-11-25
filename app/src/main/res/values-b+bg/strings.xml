@@ -84,7 +84,6 @@
     <string name="contact_not_created">Контактът не е създаден!</string>
     <string name="contacts">Контакти</string>
     <string name="current_time">Текущо време</string>
-    <string name="custom">Персонализиран</string>
     <string name="dark">Тъмен</string>
     <string name="delete">Изтрий</string>
     <string name="delete___">Изтриване %s?</string>
@@ -271,8 +270,13 @@
     <string name="crash_reports_subtext">Отчетите за сривове ни помагат да подобрим BaldPhone.\nТе се използват само за
         отстраняване на грешки и не събират никаква друга информация.
     </string>
-    <string name="custom_app">Персонализирано приложение</string>
-    <string name="custom_app_subtext">Изберете персонализирано приложение, което да бъде на Начален екран.</string>
+
+    <string name="dialog_home_slot_title">Действие на бутона</string>
+    <string name="dialog_home_slot_message">Изберете какво да отваря този бутон.</string>
+    <string name="dialog_home_slot_option_custom">Избор на приложение</string>
+    <string name="dialog_home_slot_option_default">%1$s (По подразбиране)</string>
+
+    <string name="empty">Празен</string>
     <string name="no_app_was_found">Не беше намерено съответстващо приложение!</string>
     <string name="alarm">Аларма</string>
     <string name="no_new_notifications">Няма нови известия</string>

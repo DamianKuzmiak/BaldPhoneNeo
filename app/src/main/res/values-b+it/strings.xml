@@ -128,7 +128,6 @@
     <string name="copied_to_clipboard">Copiato negli appunti</string>
     <string name="pasted_from_clipboard">Incollato dagli appunti</string>
     <string name="current_time">Ora attuale</string>
-    <string name="custom">Personalizzato</string>
     <string name="dark">Scuro</string>
     <string name="delete">Elimina</string>
     <string name="delete___">Eliminare %s?</string>
@@ -327,8 +326,13 @@
     <string name="what_do_you_want_to_do_with___">Cosa vuoi fare con %s?</string>
     <string name="crash_reports">Rapporti sugli arresti anomali</string>
     <string name="crash_reports_subtext">I rapporti sugli arresti anomali aiutano a migliorare BaldPhone.\nContengono solo le informazioni tecniche necessarie per correggere gli errori.</string>
-    <string name="custom_app">App personalizzata</string>
-    <string name="custom_app_subtext">Scegli un’app personalizzata da mostrare nella schermata Home.</string>
+
+    <string name="dialog_home_slot_title">Azione del pulsante</string>
+    <string name="dialog_home_slot_message">Scegli cosa deve aprire questo pulsante.</string>
+    <string name="dialog_home_slot_option_custom">Scegli app</string>
+    <string name="dialog_home_slot_option_default">%1$s (Predefinita)</string>
+
+    <string name="empty">Vuoto</string>
     <string name="no_app_was_found">Nessuna app corrispondente trovata!</string>
     <string name="alarm">Sveglia</string>
     <string name="no_new_notifications">Nessuna nuova notifica</string>

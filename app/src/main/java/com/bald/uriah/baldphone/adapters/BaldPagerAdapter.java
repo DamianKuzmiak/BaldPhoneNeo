@@ -92,7 +92,6 @@ public class BaldPagerAdapter extends BaldViewAdapter {
                 break;
             case 1:
                 view = new HomePage1(homeScreen, null);
-                view.setTag(HomePage1.Companion.getTAG());
                 break;
             default:
                 HomeViewFactory homeFragmentFactory = factoryPool.acquire();

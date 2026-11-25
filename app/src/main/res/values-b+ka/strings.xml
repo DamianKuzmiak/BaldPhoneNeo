@@ -82,7 +82,6 @@
     <string name="contact_not_created">კონტაქტი არაა შექმნილი!</string>
     <string name="contacts">კონტაქტები</string>
     <string name="current_time">ახლანდელი დრო</string>
-    <string name="custom">შერჩევითი</string>
     <string name="dark">ბნელი</string>
     <string name="delete">წაშლა</string>
     <string name="delete___">წავშალო %s?</string>
@@ -261,8 +260,12 @@
     <string name="crash_reports">ავარიული შეცდომების შეტყობინება</string>
     <string name="crash_reports_subtext">ავარიული შეცდომების შეტყობინება გეხმარებათ გახადოს აპლიკაციის გამოცდილება სრულყოფილი.\nისინი გამოიყენება მხოლოდ შეცდომების გასასწორებლად,არანაირი სხვა ინფორმაცია აუცილებლის გარდა არ მიგვაქვს.
     </string>
-    <string name="custom_app">შეარჩიეთ აპი</string>
-    <string name="custom_app_subtext">მონიშნეთ შერჩევითი აპლიკაცია მთავარ ეკრანზე დასაყენებლად.</string>
+
+    <!-- OUTDATED: needs retranslation -->
+    <string name="dialog_home_slot_title">შეარჩიეთ აპი</string>
+    <string name="dialog_home_slot_message">მონიშნეთ შერჩევითი აპლიკაცია მთავარ ეკრანზე დასაყენებლად.</string>
+    <string name="dialog_home_slot_option_custom">შერჩევითი</string>
+
     <string name="no_app_was_found">შესაბამისი აპი არ იქნა ნაპოვნი!</string>
     <string name="alarm">მაღვიძარა</string>
     <string name="no_new_notifications">ახალი გაფრთხილებები არაა</string>

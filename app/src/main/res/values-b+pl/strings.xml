@@ -124,7 +124,6 @@
 
     <string name="search_contact">Szukaj kontaktów po nazwie</string>
     <string name="current_time">Aktualny czas</string>
-    <string name="custom">Niestandardowy</string>
     <string name="dark">Ciemny</string>
     <string name="delete">Usuń</string>
     <string name="delete___">Usunąć %s?</string>
@@ -312,8 +311,13 @@
     <string name="what_do_you_want_to_do_with___">Co chcesz zrobić z %s?</string>
     <string name="crash_reports">Raporty o awariach</string>
     <string name="crash_reports_subtext">Raporty o awariach nie zawierają danych osobowych i są bardzo pomocne w diagnozowaniu i naprawianiu problemów z BaldPhone.</string>
-    <string name="custom_app">Inna aplikacja</string>
-    <string name="custom_app_subtext">Wybierz aplikację do dodania na ekran główny.</string>
+
+    <string name="dialog_home_slot_title">Akcja przycisku</string>
+    <string name="dialog_home_slot_message">Wybierz, co ma otwierać ten przycisk.</string>
+    <string name="dialog_home_slot_option_custom">Wybierz aplikację</string>
+    <string name="dialog_home_slot_option_default">%1$s (Domyślna)</string>
+
+    <string name="empty">Pusty</string>
     <string name="no_app_was_found">Nie znaleziono aplikacji!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Brak nowych powiadomień</string>

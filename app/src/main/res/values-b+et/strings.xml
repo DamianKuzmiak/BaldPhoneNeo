@@ -84,7 +84,6 @@
     <string name="contact_not_created">Kontakti ei loodud.</string>
     <string name="contacts">Kontaktid</string>
     <string name="current_time">Kellaaeg</string>
-    <string name="custom">Kohandatud</string>
     <string name="dark">Tume</string>
     <string name="delete">Kustuta</string>
     <string name="delete___">Kas kustutada %s?</string>
@@ -269,8 +268,13 @@
     <string name="crash_reports_subtext">Veateated on aruanded, mis aitavad BaldPhone\'i teha paremaks\nTeateid kasutatakse
         ainult rakenduse vigade parandamiseks, mitte millekski muuks.
     </string>
-    <string name="custom_app">Kohandatud rakendus</string>
-    <string name="custom_app_subtext">Vali avakuvale kohandatud rakendus.</string>
+
+    <string name="dialog_home_slot_title">Nupu tegevus</string>
+    <string name="dialog_home_slot_message">Vali, mida see nupp avab.</string>
+    <string name="dialog_home_slot_option_custom">Vali rakendus</string>
+    <string name="dialog_home_slot_option_default">%1$s (Vaikimisi)</string>
+
+    <string name="empty">Tühi</string>
     <string name="no_app_was_found">Sellist rakendust ei ole.</string>
     <string name="alarm">Äratus</string>
     <string name="no_new_notifications">Uus teavitusi ei ole</string>

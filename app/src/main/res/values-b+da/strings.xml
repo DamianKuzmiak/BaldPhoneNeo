@@ -80,7 +80,6 @@
     <string name="contact_not_created">Kontakten blev ikke oprettet!</string>
     <string name="contacts">Kontakter</string>
     <string name="current_time">Nuværende tid</string>
-    <string name="custom">Tilpasset</string>
     <string name="dark">Mørk</string>
     <string name="delete">Slet</string>
     <string name="delete___">Slet %s?</string>
@@ -250,8 +249,13 @@
     <string name="what_do_you_want_to_do_with___">Hvad vil du gerne gøre med %s?</string>
     <string name="crash_reports">Rapportér fejl</string>
     <string name="crash_reports_subtext">Fejlrapporter hjælper med at gøre oplevelsen af BaldPhone bedre.\nRapporterne bliver kund brugt til at udbedre fejl\; kun den nødvendige information for dette, bliver anvendt fra dem.</string>
-    <string name="custom_app">Valgfri app</string>
-    <string name="custom_app_subtext">Vælg en valgfri app, som du vil have en genvej til på \"skrivebordet\".</string>
+
+    <string name="dialog_home_slot_title">Knappens handling</string>
+    <string name="dialog_home_slot_message">Vælg, hvad denne knap skal åbne.</string>
+    <string name="dialog_home_slot_option_custom">Vælg app</string>
+    <string name="dialog_home_slot_option_default">%1$s (Standard)</string>
+
+    <string name="empty">Tom</string>
     <string name="no_app_was_found">Ingen app der passede blev fundet!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Ingen nye notifikationer</string>

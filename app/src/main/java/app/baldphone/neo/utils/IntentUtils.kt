@@ -17,6 +17,7 @@ import android.os.Process
 import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.provider.Settings
+import android.provider.Telephony
 import android.util.Log
 
 import androidx.annotation.StringRes
@@ -92,6 +93,20 @@ fun Context.openCamera() {
         }
 
     startActivityWithNewTask(intent)
+}
+
+/**
+ * Opens the default SMS application, or shows an error snackbar if none can be launched.
+ */
+fun Context.openMessages() {
+    val defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(this)
+    val launchIntent = defaultSmsPackage?.let { packageManager.getLaunchIntentForPackage(it) }
+    if (launchIntent == null) {
+        Log.e(TAG, "No messaging app found, defaultSmsPackage: $defaultSmsPackage")
+        BaldSnackbar.show(this, R.string.no_app_was_found, BaldSnackbar.TYPE_ERROR)
+        return
+    }
+    startActivityWithNewTask(launchIntent)
 }
 
 /**

@@ -80,7 +80,6 @@
     <string name="contact_not_created">Névjegy nem került mentésre!</string>
     <string name="contacts">Névjegyek</string>
     <string name="current_time">Jelenlegi idő</string>
-    <string name="custom">Egyéni</string>
     <string name="dark">Sötét</string>
     <string name="delete">Törlés</string>
     <string name="delete___">%s törlése?</string>
@@ -254,8 +253,13 @@ https://baldphone.com</string>
     <string name="what_do_you_want_to_do_with___">Mit akarsz tenni vele: %s?</string>
     <string name="crash_reports">Összeomlási jelentés</string>
     <string name="crash_reports_subtext">Az összeomlási jelentések elküldése segíti a BaldPhone alkamazás fejlesztését.</string>
-    <string name="custom_app">Egyéni alkalmazás</string>
-    <string name="custom_app_subtext">Válassz egyéni alkalmazást a kezdőképernyőre</string>
+
+    <string name="dialog_home_slot_title">Gomb művelete</string>
+    <string name="dialog_home_slot_message">Válaszd ki, mit nyisson meg ez a gomb.</string>
+    <string name="dialog_home_slot_option_custom">Alkalmazás választása</string>
+    <string name="dialog_home_slot_option_default">%1$s (Alapértelmezett)</string>
+
+    <string name="empty">Üres</string>
     <string name="no_app_was_found">Nem található az alkalmazás!</string>
     <string name="alarm">Ébresztő</string>
     <string name="no_new_notifications">Nincsenek új értesítések.</string>

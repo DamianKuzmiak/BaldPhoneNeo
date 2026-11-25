@@ -85,7 +85,6 @@ com augmentar la grandària de font o canviar la lluentor.
     <string name="contact_not_created">Contacte no creat!</string>
     <string name="contacts">Contactes</string>
     <string name="current_time">Hora actual</string>
-    <string name="custom">Personalitzat</string>
     <string name="dark">Fosc</string>
     <string name="delete">Esborrar</string>
     <string name="delete___">Esborrar %s?</string>
@@ -278,8 +277,13 @@ Es recomana encaridament usar \"Baldphone\'s home screen\" com el Llançador pri
 	Els informes d\'errors ajuden a fer que l\'experiència de BaldPhone sigui perfecta.\n
 	S\'usen únicament per a corregir errors, i no es pren més informació que la necessària per a corregir l\'error.
 </string>
-    <string name="custom_app">App personalitzada</string>
-    <string name="custom_app_subtext">Triï una altra App com a Pantalla d\'Inici.</string>
+
+    <string name="dialog_home_slot_title">Acció del botó</string>
+    <string name="dialog_home_slot_message">Trieu què ha d\'obrir aquest botó.</string>
+    <string name="dialog_home_slot_option_custom">Trieu una app</string>
+    <string name="dialog_home_slot_option_default">%1$s (Per defecte)</string>
+
+    <string name="empty">Buit</string>
     <string name="no_app_was_found">Cerca d\'App sense resultats</string>
     <string name="alarm">Alarma</string>
     <string name="no_new_notifications">No hi ha noves Notificationes</string>

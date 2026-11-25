@@ -82,7 +82,6 @@
     <string name="contact_not_created">Contact non créé !</string>
     <string name="contacts">Contacts</string>
     <string name="current_time">Heure actuelle</string>
-    <string name="custom">Personnalisé</string>
     <string name="dark">Sombre</string>
     <string name="delete">Supprimer</string>
     <string name="delete___">Supprimer %s ?</string>
@@ -261,8 +260,13 @@
     <string name="crash_reports">Rapports de plantage</string>
     <string name="crash_reports_subtext">Les rapports de plantage aident à améliorer BaldPhone.\nIls sont uniquement utilisés pour corriger les problèmes et seules les informations nécessaires à la correction du problème sont exploitées.
     </string>
-    <string name="custom_app">Application personnalisée</string>
-    <string name="custom_app_subtext">Choisissez l\'application personnalisée pour l\'écran d\'accueil.</string>
+
+    <string name="dialog_home_slot_title">Action du bouton</string>
+    <string name="dialog_home_slot_message">Choisissez ce que ce bouton doit ouvrir.</string>
+    <string name="dialog_home_slot_option_custom">Choisir une application</string>
+    <string name="dialog_home_slot_option_default">%1$s (Par défaut)</string>
+
+    <string name="empty">Vide</string>
     <string name="no_app_was_found">Aucune application n\'a été trouvée !</string>
     <string name="alarm">Alarme</string>
     <string name="no_new_notifications">Aucune nouvelle notification</string>

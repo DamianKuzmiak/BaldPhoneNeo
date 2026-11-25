@@ -82,7 +82,6 @@
     <string name="contact_not_created">Kontak tidak dibuat!</string>
     <string name="contacts">Kontak</string>
     <string name="current_time">Waktu Saat Ini</string>
-    <string name="custom">Khusus</string>
     <string name="dark">Gelap</string>
     <string name="delete">Hapus</string>
     <string name="delete___">Hapus %s?</string>
@@ -268,8 +267,13 @@
     <string name="crash_reports_subtext">Laporan kerusakan membantu menjadikan pengalaman menggunakan BaldPhone tanpa cela\nLaporan hanya digunakan
         untuk memperbaiki kutu, dan tidak ada info selain apa yang diperlukan untuk memperbaiki kutu
     </string>
-    <string name="custom_app">Aplikasi Khusus</string>
-    <string name="custom_app_subtext">Pilih aplikasi khusus untuk berada di layar beranda.</string>
+
+    <string name="dialog_home_slot_title">Aksi Tombol</string>
+    <string name="dialog_home_slot_message">Pilih apa yang akan dibuka tombol ini.</string>
+    <string name="dialog_home_slot_option_custom">Pilih aplikasi</string>
+    <string name="dialog_home_slot_option_default">%1$s (Asali)</string>
+
+    <string name="empty">Kosong</string>
     <string name="no_app_was_found">Tidak ada aplikasi yang cocok ditemukan!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Tidak Ada Pemberitahuan Baru</string>

@@ -84,7 +84,6 @@
     <string name="contact_not_created">संपर्क नहीं बनाया गया!</string>
     <string name="contacts">Contacts</string>
     <string name="current_time">वर्तमान समय</string>
-    <string name="custom">रीति</string>
     <string name="dark">अंधेरा</string>
     <string name="delete">मिटाना</string>
     <string name="delete___">हटाएं %s?</string>
@@ -270,8 +269,12 @@
     <string name="crash_reports_subtext">क्रैश रिपोर्ट बाल्डफ़ोन के अनुभव को त्रुटिहीन बनाने में मदद करती है\nवे केवल उपयोग किए जाते हैं
         बग को ठीक करने के लिए, और बग को ठीक करने के लिए जो आवश्यक है उसके अलावा कोई जानकारी नहीं ली जाती है
     </string>
-    <string name="custom_app">कस्टम ऐप</string>
-    <string name="custom_app_subtext">होम स्क्रीन पर होने के लिए कस्टम ऐप चुनें।</string>
+
+    <!-- OUTDATED: needs retranslation -->
+    <string name="dialog_home_slot_title">कस्टम ऐप</string>
+    <string name="dialog_home_slot_message">होम स्क्रीन पर होने के लिए कस्टम ऐप चुनें।</string>
+    <string name="dialog_home_slot_option_custom">रीति</string>
+
     <string name="no_app_was_found">कोई मेल खाने वाला ऐप नहीं मिला!</string>
     <string name="alarm">अलार्म</string>
     <string name="no_new_notifications">कोई नए संदेश नहीं</string>

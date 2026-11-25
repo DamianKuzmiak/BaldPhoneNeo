@@ -28,6 +28,8 @@ import kotlinx.coroutines.sync.withPermit
 import app.baldphone.neo.launcher.apps.data.db.AppEntry
 import app.baldphone.neo.launcher.apps.data.db.AppEntryDao
 import app.baldphone.neo.launcher.apps.getSerialNumberForUser
+import app.baldphone.neo.utils.getPackageInfoOrNull
+import app.baldphone.neo.utils.isPackageInstalled
 
 /**
  * Handles application scanning, discovery, and diff-synchronization with the Room database.
@@ -260,14 +262,7 @@ internal class AppSync(
 
     private suspend fun performPackageSync(context: Context, packageName: String, userId: Long) {
         val pm = context.packageManager
-        val packageInfo =
-            try {
-                pm.getPackageInfo(packageName, 0)
-            } catch (_: PackageManager.NameNotFoundException) {
-                null
-            }
-
-        if (packageInfo == null) {
+        if (!pm.isPackageInstalled(packageName)) {
             performPackageRemove(packageName, userId)
             return
         }
@@ -293,13 +288,7 @@ internal class AppSync(
                 skipIcons = false,
                 discoveryMap = discoveryMap,
                 dbMap = dbMap,
-                packageInfoProvider = { pkg ->
-                    try {
-                        pm.getPackageInfo(pkg, 0)
-                    } catch (_: PackageManager.NameNotFoundException) {
-                        null
-                    }
-                }
+                packageInfoProvider = { pkg -> pm.getPackageInfoOrNull(pkg) }
             )
 
         if (diffResult.toUpsert.isNotEmpty() || diffResult.toDelete.isNotEmpty()) {

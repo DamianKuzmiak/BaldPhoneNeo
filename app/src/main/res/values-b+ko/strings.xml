@@ -80,7 +80,6 @@
     <string name="contact_not_created">연락처가 추가되지 않았습니다!</string>
     <string name="contacts">연락처 목록</string>
     <string name="current_time">현재 시간</string>
-    <string name="custom">사용자 지정</string>
     <string name="dark">어두운</string>
     <string name="delete">삭제</string>
     <string name="delete___">삭제하시겠습니까 %s?</string>
@@ -249,8 +248,13 @@
     <string name="what_do_you_want_to_do_with___">당신은 %s와 무엇을 같이하고 싶나요?</string>
     <string name="crash_reports">충돌 리포트</string>
     <string name="crash_reports_subtext">충돌 리포트는 BaldPhone를 완벽하게 만드는데 도움이 됩니다. 버그를 수정하는데만 사용되며 버그를 수정하는데 필요한 정보 이외의 정보는 수집되지 않습니다.</string>
-    <string name="custom_app">사용자 지정 앱</string>
-    <string name="custom_app_subtext">홈 화면에 표시 할 사용자 지정 앱을 선택하십시오.</string>
+
+    <string name="dialog_home_slot_title">버튼 동작</string>
+    <string name="dialog_home_slot_message">이 버튼으로 열 항목을 선택하세요.</string>
+    <string name="dialog_home_slot_option_custom">앱 선택</string>
+    <string name="dialog_home_slot_option_default">%1$s (기본)</string>
+
+    <string name="empty">비어 있음</string>
     <string name="no_app_was_found">알맞는 앱을 찾지 못했습니다!</string>
     <string name="alarm">알람</string>
     <string name="no_new_notifications">새로운 알림이 없습니다</string>

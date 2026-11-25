@@ -82,7 +82,6 @@
     <string name="contact_not_created">沒有建立聯絡人!</string>
     <string name="contacts">聯絡人</string>
     <string name="current_time">現在時間</string>
-    <string name="custom">自訂</string>
     <string name="dark">暗色</string>
     <string name="delete">移除</string>
     <string name="delete___">移除 %s?</string>
@@ -261,8 +260,13 @@
     <string name="crash_reports">當機報告</string>
     <string name="crash_reports_subtext">當機報告幫助清風電話更加穩定\n他們只用作移除程式問題，而不會包括其他無關資料。
     </string>
-    <string name="custom_app">自訂程式</string>
-    <string name="custom_app_subtext">選擇自訂程式以顯示到桌面。</string>
+
+    <string name="dialog_home_slot_title">按鈕動作</string>
+    <string name="dialog_home_slot_message">選擇此按鈕要開啟的內容。</string>
+    <string name="dialog_home_slot_option_custom">選擇程式</string>
+    <string name="dialog_home_slot_option_default">%1$s（預設）</string>
+
+    <string name="empty">空白</string>
     <string name="no_app_was_found">無符合的程式!</string>
     <string name="alarm">鬧鐘</string>
     <string name="no_new_notifications">無新鬧鐘</string>

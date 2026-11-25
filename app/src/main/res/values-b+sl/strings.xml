@@ -84,7 +84,6 @@
     <string name="contact_not_created">Stik ni ustvarjen!</string>
     <string name="contacts">Stiki</string>
     <string name="current_time">Trenutni čas</string>
-    <string name="custom">Po meri</string>
     <string name="dark">Temna</string>
     <string name="delete">Izbriši</string>
     <string name="delete___">Izbriši %s?</string>
@@ -264,8 +263,13 @@
     <string name="crash_reports_subtext">Poročila zrušitev pomagajo, da je uporabniška izkušnja z BaldPhone brezhibna.\nPoročila so potrebna le za
 		popravila programskih napak in poslani so le nujno potrebni podatki o delovanju aplikacije.
     </string>
-    <string name="custom_app">Aplikacija po meri</string>
-    <string name="custom_app_subtext">Izberi aplikacijo po meri za na domač zaslon.</string>
+
+    <string name="dialog_home_slot_title">Dejanje gumba</string>
+    <string name="dialog_home_slot_message">Izberi, kaj naj odpre ta gumb.</string>
+    <string name="dialog_home_slot_option_custom">Izberi aplikacijo</string>
+    <string name="dialog_home_slot_option_default">%1$s (Privzeta)</string>
+
+    <string name="empty">Prazen</string>
     <string name="no_app_was_found">Nobena aplikacija se ne ujema z izbiro!</string>
     <string name="alarm">Budilka</string>
     <string name="no_new_notifications">Ni novih obvestil</string>

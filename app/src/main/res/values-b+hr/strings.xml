@@ -83,7 +83,6 @@
     <string name="contact_not_created">Kontakt nije stvoren!</string>
     <string name="contacts">Kontakti</string>
     <string name="current_time">Trenutno Vrijeme</string>
-    <string name="custom">Prilagođeno</string>
     <string name="dark">Tamno</string>
     <string name="delete">Izbriši</string>
     <string name="delete___">Izbrisati %s?</string>
@@ -259,8 +258,13 @@
     <string name="what_do_you_want_to_do_with___">Što želite napraviti sa %s?</string>
     <string name="crash_reports">Izvještaji o Pogreškama</string>
     <string name="crash_reports_subtext">Izvještaji o pogreškama pomažu učiniti korištenje aplikacije BaldPhone besprijekornim.\nIzvještaji se koriste samo za ispravljanje pogrešaka i nikakve dodatne informacije osim najosnovnijih se ne prikupljaju.</string>
-    <string name="custom_app">Prilagođena Aplikacija</string>
-    <string name="custom_app_subtext">Odaberite prilagođenu aplikaciju za početni zaslon.</string>
+
+    <string name="dialog_home_slot_title">Radnja gumba</string>
+    <string name="dialog_home_slot_message">Odaberite što će ovaj gumb otvoriti.</string>
+    <string name="dialog_home_slot_option_custom">Odaberi aplikaciju</string>
+    <string name="dialog_home_slot_option_default">%1$s (Zadana)</string>
+
+    <string name="empty">Prazan</string>
     <string name="no_app_was_found">Podudarna aplikacija nije pronađena!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Nema novih obavijesti</string>

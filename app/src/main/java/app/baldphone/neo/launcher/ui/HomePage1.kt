@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony
-import android.util.ArrayMap
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +23,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 import app.baldphone.neo.R
@@ -32,6 +32,7 @@ import app.baldphone.neo.data.Prefs
 import app.baldphone.neo.databinding.FragmentHomePage1Binding
 import app.baldphone.neo.features.calls.ui.RecentCallsActivity
 import app.baldphone.neo.features.contacts.ui.list.ContactsActivity
+import app.baldphone.neo.features.notifications.NotificationItem
 import app.baldphone.neo.features.notifications.data.NotificationRepository
 import app.baldphone.neo.features.notifications.sendNotificationIntent
 import app.baldphone.neo.launcher.apps.AppIconBinder
@@ -49,20 +50,24 @@ import app.baldphone.neo.ui.dialogs.showErrorSnackbar
 import app.baldphone.neo.utils.launchAssistant
 import app.baldphone.neo.utils.messaging.WhatsAppHandler
 import app.baldphone.neo.utils.openCamera
-import app.baldphone.neo.utils.startActivityWithNewTask
+import app.baldphone.neo.utils.openMessages
 import app.baldphone.neo.utils.startActivityWithNewTaskClear
 import app.baldphone.neo.utils.startComponentName
 
 import com.bald.uriah.baldphone.activities.SOSActivity
-import com.bald.uriah.baldphone.utils.BaldToast
 import com.bald.uriah.baldphone.views.FirstPageAppIcon
 import com.bald.uriah.baldphone.views.home.HomeView
 
+/**
+ * Main home screen page with the fixed grid of [HomeSlot] buttons.
+ */
 class HomePage1 : HomeView {
-    private val repo = NotificationRepository
-
-    private var customizedIcons: MutableMap<FirstPageAppIcon, String> = ArrayMap()
     private lateinit var binding: FragmentHomePage1Binding
+    private lateinit var buttons: Map<HomeSlot, FirstPageAppIcon>
+    private var states: Map<HomeSlot, HomeSlotState> = emptyMap()
+
+    private val isEditor: Boolean
+        get() = homeScreen == null
 
     @Suppress("unused")
     constructor(context: Context, attrs: AttributeSet? = null) : super(
@@ -72,7 +77,21 @@ class HomePage1 : HomeView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         binding = FragmentHomePage1Binding.inflate(inflater, container, false)
-        customizedIcons = ArrayMap()
+        buttons =
+            with(binding) {
+                mapOf(
+                    HomeSlot.CONTACTS to btContacts,
+                    HomeSlot.RECENTS to btRecent,
+                    HomeSlot.DIALER to btDialer,
+                    HomeSlot.CAMERA to btCamera,
+                    HomeSlot.WHATSAPP to btWhatsapp,
+                    HomeSlot.MESSAGES to btMessages,
+                    HomeSlot.EMERGENCY to btEmergency,
+                    HomeSlot.ASSISTANT to btAssistant,
+                    HomeSlot.LOCK_SCREEN to btLockScreen
+                )
+            }
+        states = emptyMap()
 
         return binding.root
     }
@@ -91,40 +110,31 @@ class HomePage1 : HomeView {
                 launch {
                     var lastApps: List<AppEntry>? = null
 
+                    // The editor shows no badges.
+                    val badgesFlow =
+                        if (!isEditor) NotificationRepository.badgesFlow(activity) else flowOf(emptySet())
+
                     combine(
                         AppsRepository.allAppsFlow,
-                        repo.activeNotificationPackages,
-                        repo.getMissedCallNotificationsFlow(activity)
-                    ) { apps, packages, missedCalls ->
-                        Triple(apps, packages, missedCalls)
-                    }.collect { (apps, packages, missedCalls) ->
+                        badgesFlow,
+                        ::Pair
+                    ).collect { (apps, keys) ->
                         if (apps != lastApps) {
                             lastApps = apps
-                            customizedIcons.clear()
-                            setupOnClickListeners()
+                            bindSlots(apps)
                         }
-                        refreshBadges(packages)
-                        refreshMissedCalls(missedCalls.isNotEmpty())
+
+                        // Refresh badges
+                        states.forEach { (slot, state) ->
+                            buttons.getValue(slot).setBadgeVisibility(badgeKey(slot, state) in keys)
+                        }
                     }
                 }
 
-                if (homeScreen != null) {
+                if (!isEditor) {
                     launch {
-                        repo.getTopNotification(activity).collect { item ->
-                            val areaView = binding.notificationArea.root
-                            val itemView = binding.notificationOverlay
-
-                            val showOverlay = item != null
-                            areaView.visibility = if (showOverlay) GONE else VISIBLE
-                            itemView.visibility = if (showOverlay) VISIBLE else GONE
-
-                            if (item != null) {
-                                itemView.bind(item, { notificationItem ->
-                                    notificationItem.contentIntent?.sendNotificationIntent(null)
-                                }, { notificationItem ->
-                                    NotificationRepository.cancelNotification(notificationItem.key)
-                                })
-                            }
+                        NotificationRepository.getTopNotification(activity).collect { item ->
+                            updateNotificationOverlay(item)
                         }
                     }
                 }
@@ -152,127 +162,195 @@ class HomePage1 : HomeView {
         }
     }
 
-    private fun setupOnClickListeners() {
-        setupButton(HomeSlot.RECENTS, binding.btRecent) {
-            homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, RecentCallsActivity::class.java))
+    private fun updateNotificationOverlay(item: NotificationItem?) {
+        val areaView = binding.notificationArea.root
+        val itemView = binding.notificationOverlay
+
+        val showOverlay = item != null
+        areaView.visibility = if (showOverlay) GONE else VISIBLE
+        itemView.visibility = if (showOverlay) VISIBLE else GONE
+
+        if (item != null) {
+            itemView.bind(
+                item = item,
+                onContentClick = { it.contentIntent?.sendNotificationIntent(null) },
+                onClearClick = { NotificationRepository.cancelNotification(it.key) }
+            )
         }
-        setupButton(HomeSlot.DIALER, binding.btDialer) {
-            homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, DialerActivity::class.java))
+    }
+
+    // Buttons
+
+    private fun bindSlots(apps: List<AppEntry>) {
+        states = buttons.keys.associateWith { slot -> HomeSlotState.from(Prefs.getSlotValue(slot), apps) }
+        states.forEach { (slot, state) ->
+            bindSlot(slot, buttons.getValue(slot), state)
         }
-        setupButton(HomeSlot.CONTACTS, binding.btContacts) {
-            homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, ContactsActivity::class.java))
-        }
-        setupButton(HomeSlot.WHATSAPP, binding.btWhatsapp) {
-            try {
-                WhatsAppHandler.launch(homeScreen)
-            } catch (e: Exception) {
-                BaldToast.error(homeScreen, e.localizedMessage)
+    }
+
+    private fun bindSlot(slot: HomeSlot, btn: FirstPageAppIcon, state: HomeSlotState) {
+        when (state) {
+            HomeSlotState.Default -> {
+                if (slot == HomeSlot.LOCK_SCREEN && !isLockScreenSupported) {
+                    // No lock screen before Android 9, so this slot shows the apps list instead.
+                    val appsList = PredefinedApps.getAppsActivityEntry(context)
+                    btn.text = appsList.label
+                    AppIconBinder.loadPic(appsList, btn.imageView)
+                } else {
+                    btn.setText(slot.labelRes)
+                    btn.setImageResource(slot.iconRes)
+                }
+            }
+
+            is HomeSlotState.Custom -> {
+                btn.text = state.app.label
+                AppIconBinder.loadPic(state.app, btn.imageView)
+            }
+
+            HomeSlotState.Empty -> {
+                btn.text = if (isEditor) activity.getText(R.string.empty) else ""
+                btn.setImageDrawable(null)
             }
         }
-        setupButton(HomeSlot.EMERGENCY, binding.btEmergency) {
-            homeScreen.startActivity(Intent(homeScreen, SOSActivity::class.java))
+
+        if (isEditor) {
+            btn.alpha = if (state != HomeSlotState.Empty) 1f else EMPTY_EDITOR_ALPHA
+            btn.setOnClickListener { showSlotDialog(slot) }
+        } else {
+            setupButton(slot, btn, state)
         }
-        setupButton(HomeSlot.ASSISTANT, binding.btAssistant) {
-            homeScreen.launchAssistant()
+    }
+
+    private fun setupButton(slot: HomeSlot, btn: FirstPageAppIcon, state: HomeSlotState) {
+        val isInactive = state == HomeSlotState.Empty
+
+        // An empty slot is fully inactive.
+        btn.isEnabled = !isInactive
+        btn.isFocusable = !isInactive
+        btn.importantForAccessibility =
+            if (isInactive) IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS else IMPORTANT_FOR_ACCESSIBILITY_AUTO
+
+        when (state) {
+            is HomeSlotState.Custom -> btn.setOnClickListener { homeScreen.startComponentName(state.app) }
+            HomeSlotState.Default -> btn.setOnClickListener { defaultAction(slot) }
+            HomeSlotState.Empty -> btn.setOnClickListener(null)
         }
-        setupButton(HomeSlot.MESSAGES, binding.btMessages) {
-            openMessages()
-        }
-        setupButton(HomeSlot.CAMERA, binding.btCamera) {
-            context.openCamera()
-        }
-        setupButton(HomeSlot.LOCK_SCREEN, binding.btLockScreen) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                requestDeviceLock()
-            } else {
-                homeScreen.startActivity(Intent(homeScreen, AppsActivity::class.java))
+
+        // After setOnClickListener, which makes the view clickable.
+        btn.isClickable = !isInactive
+    }
+
+    private fun defaultAction(slot: HomeSlot) {
+        when (slot) {
+            HomeSlot.RECENTS -> {
+                homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, RecentCallsActivity::class.java))
+            }
+
+            HomeSlot.DIALER -> {
+                homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, DialerActivity::class.java))
+            }
+
+            HomeSlot.CONTACTS -> {
+                homeScreen.startActivityWithNewTaskClear(Intent(homeScreen, ContactsActivity::class.java))
+            }
+
+            HomeSlot.WHATSAPP -> {
+                try {
+                    WhatsAppHandler.launch(homeScreen)
+                } catch (e: Exception) {
+                    homeScreen.showErrorSnackbar(e.localizedMessage ?: e.message ?: "Unknown error")
+                }
+            }
+
+            HomeSlot.EMERGENCY -> {
+                homeScreen.startActivity(Intent(homeScreen, SOSActivity::class.java))
+            }
+
+            HomeSlot.ASSISTANT -> {
+                homeScreen.launchAssistant()
+            }
+
+            HomeSlot.MESSAGES -> {
+                context.openMessages()
+            }
+
+            HomeSlot.CAMERA -> {
+                context.openCamera()
+            }
+
+            HomeSlot.LOCK_SCREEN -> {
+                if (isLockScreenSupported) {
+                    requestDeviceLock()
+                } else {
+                    homeScreen.startActivity(Intent(homeScreen, AppsActivity::class.java))
+                }
             }
         }
     }
 
-    private fun setupButton(
-        slot: HomeSlot,
-        button: FirstPageAppIcon?,
-        defaultAction: () -> Unit
-    ) {
-        val btn = button ?: return
-        val app = findAppByPreference(slot)
-
-        if (app != null) {
-            btn.text = app.label
-            AppIconBinder.loadPic(app, btn.imageView)
-            customizedIcons[btn] = app.component.packageName
-        } else {
-            customizedIcons.remove(btn)
-            // Default home screen behavior with legacy lock screen support
-            if (btn === binding.btLockScreen && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-                PredefinedApps.getAppsActivityEntry(context)?.let {
-                    btn.text = it.label
-                    AppIconBinder.loadPic(it, btn.imageView)
-                }
+    private fun showSlotDialog(slot: HomeSlot) {
+        val defaultLabel =
+            if (slot == HomeSlot.LOCK_SCREEN && !isLockScreenSupported) {
+                PredefinedApps.getAppsActivityEntry(context).label
             } else {
-                btn.setText(slot.labelRes)
-                btn.setImageResource(slot.iconRes)
-            }
-        }
-
-        if (homeScreen == null) {
-            setupEditorClick(btn, slot, app)
-        } else if (app != null) {
-            btn.setOnClickListener { homeScreen.startComponentName(app) }
-        } else {
-            btn.setOnClickListener { defaultAction() }
-        }
-    }
-
-    private fun setupEditorClick(
-        bt: FirstPageAppIcon,
-        slot: HomeSlot,
-        app: AppEntry?
-    ) {
-        // Handle legacy lock screen button UI in editor mode
-        if (bt === binding.btLockScreen && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            if (app == null) {
-                PredefinedApps.getAppsActivityEntry(activity)?.let {
-                    bt.text = it.label
-                    AppIconBinder.loadPic(it, bt.imageView)
-                }
-            }
-        }
-
-        val defaultName: CharSequence =
-            if (bt !== binding.btLockScreen || Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 activity.getText(slot.labelRes)
-            } else {
-                activity.getText(R.string.apps)
+            }
+        val defaultName = activity.getString(R.string.dialog_home_slot_option_default, defaultLabel)
+
+        BaldDialog
+            .Builder(activity)
+            .setTitle(R.string.dialog_home_slot_title)
+            .setMessage(R.string.dialog_home_slot_message)
+            .setPositiveButton(defaultName) {
+                Prefs.setCustomApp(slot, null)
+                applySlotState(slot, HomeSlotState.Default)
+            }.setNeutralButton(activity.getText(R.string.dialog_home_slot_option_custom)) {
+                activity.startActivityForResult(
+                    Intent(activity, AppsActivity::class.java).putExtra(AppsActivity.CHOOSE_MODE, slot.key),
+                    0
+                )
+            }.setNegativeButton(R.string.empty) {
+                Prefs.setSlotEmpty(slot)
+                applySlotState(slot, HomeSlotState.Empty)
+            }.show()
+    }
+
+    // Minimal effort
+    private fun applySlotState(slot: HomeSlot, state: HomeSlotState) {
+        states = states + (slot to state)
+        bindSlot(slot, buttons.getValue(slot), state)
+    }
+
+    /** The lock screen action needs Android 9+ */
+    private val isLockScreenSupported: Boolean
+        get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+
+    // Badges
+
+    private fun badgeKey(slot: HomeSlot, state: HomeSlotState): String? =
+        when (state) {
+            HomeSlotState.Empty -> {
+                null
             }
 
-        bt.setOnClickListener {
-            BaldDialog
-                .Builder(activity)
-                .setTitle(R.string.custom_app)
-                .setMessage(R.string.custom_app_subtext)
-                .setPositiveButton(activity.getText(R.string.custom)) {
-                    activity.startActivityForResult(
-                        Intent(activity, AppsActivity::class.java).putExtra(AppsActivity.CHOOSE_MODE, slot.key),
-                        0
-                    )
-                }.setNegativeButton(defaultName) {
-                    Prefs.setCustomApp(slot, null)
-                    activity.recreate()
-                }.show()
+            is HomeSlotState.Custom -> {
+                val opensRecentCalls =
+                    state.app.packageName == context.packageName &&
+                        state.app.className == RecentCallsActivity::class.java.name
+                if (opensRecentCalls) NotificationRepository.MISSED_CALL_BADGE_KEY else state.app.packageName
+            }
+
+            HomeSlotState.Default -> {
+                when (slot) {
+                    HomeSlot.RECENTS -> NotificationRepository.MISSED_CALL_BADGE_KEY
+                    HomeSlot.WHATSAPP -> WhatsAppHandler.WHATSAPP_PACKAGE_NAME
+                    HomeSlot.MESSAGES -> Telephony.Sms.getDefaultSmsPackage(context)
+                    else -> null
+                }
+            }
         }
 
-        if (app != null) {
-            customizedIcons[bt] = app.component.packageName
-        }
-    }
-
-    // Helper
-    private fun findAppByPreference(slot: HomeSlot): AppEntry? {
-        val componentName = Prefs.getCustomApp(slot) ?: return null
-        return AppsRepository.findByComponentName(componentName)
-    }
+    // Actions
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     private fun requestDeviceLock() {
@@ -289,18 +367,14 @@ class HomePage1 : HomeView {
                             try {
                                 homeScreen.startActivity(SpecialPermission.Accessibility.settingsIntent(activity))
                             } catch (_: ActivityNotFoundException) {
-                                BaldToast.error(homeScreen, "Failed to open accessibility settings.")
+                                homeScreen.showErrorSnackbar("Failed to open accessibility settings.")
                             }
                         }.setNegativeButton(R.string.dialog_button_not_now, null)
                         .show()
                 }
 
                 DeviceLockResult.ACCESS_DENIED -> {
-                    PermissionManager.checkOrRequest(
-                        activity = homeScreen!!,
-                        permission = SpecialPermission.Accessibility,
-                        callback = {}
-                    )
+                    PermissionManager.checkOrRequest(homeScreen, SpecialPermission.Accessibility) {}
                 }
 
                 else -> {}
@@ -308,42 +382,34 @@ class HomePage1 : HomeView {
         }
     }
 
-    private fun refreshBadges(packagesSet: Set<String>) {
-        fun FirstPageAppIcon.updateBadge(defaultPackage: String?) {
-            val pkg = customizedIcons[this] ?: defaultPackage
-            setBadgeVisibility(pkg != null && packagesSet.contains(pkg))
-        }
+    private sealed interface HomeSlotState {
+        data object Default : HomeSlotState // built-in action
 
-        binding.btWhatsapp.updateBadge(WhatsAppHandler.WHATSAPP_PACKAGE_NAME)
-        binding.btMessages.updateBadge(Telephony.Sms.getDefaultSmsPackage(context))
+        data object Empty : HomeSlotState // blank tile
 
-        // Update other customized buttons not covered above
-        customizedIcons.forEach { (icon, packageName) ->
-            if (icon !== binding.btWhatsapp && icon !== binding.btMessages) {
-                icon.setBadgeVisibility(packagesSet.contains(packageName))
-            }
-        }
-    }
+        data class Custom(val app: AppEntry) : HomeSlotState
 
-    private fun refreshMissedCalls(hasMissedCalls: Boolean) {
-        val recent = binding.btRecent
-        if (!customizedIcons.containsKey(recent)) {
-            recent.setBadgeVisibility(hasMissedCalls)
-        }
-    }
+        companion object {
+            fun from(stored: String?, apps: List<AppEntry>): HomeSlotState =
+                when {
+                    stored.isNullOrBlank() -> {
+                        Default
+                    }
 
-    private fun openMessages() {
-        val defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(context)
-        val launchIntent = defaultSmsPackage?.let { context.packageManager.getLaunchIntentForPackage(it) }
-        if (launchIntent != null) {
-            context.startActivityWithNewTask(launchIntent)
-        } else {
-            Log.e(TAG, "No messaging app found, defaultSmsPackage: $defaultSmsPackage")
-            activity.showErrorSnackbar(R.string.no_app_was_found)
+                    stored == Prefs.EMPTY_SLOT_VALUE -> {
+                        Empty
+                    }
+
+                    else -> {
+                        val app = apps.firstOrNull { it.componentName == stored && it.userId == 0L }
+                        if (app != null) Custom(app) else Default
+                    }
+                }
         }
     }
 
     companion object {
-        val TAG: String = HomePage1::class.java.simpleName
+        private const val TAG = "HomePage1"
+        private const val EMPTY_EDITOR_ALPHA = 0.4f
     }
 }

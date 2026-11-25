@@ -81,7 +81,6 @@
     <string name="contact_not_created">Ingen kontakt skapades!</string>
     <string name="contacts">Kontakter</string>
     <string name="current_time">Klockan är nu:</string>
-    <string name="custom">annan…</string>
     <string name="dark">Mörk</string>
     <string name="delete">Ta bort</string>
     <string name="delete___">Ta bort %s?</string>
@@ -264,8 +263,13 @@
     <string name="crash_reports">Krashrapporter</string>
     <string name="crash_reports_subtext">Krashrapporter hjälper till att förbättra upplevelsen med BaldPhone.\n\nRapporterna innehåller enbart information nödvändig för att åtgärda fel.
     </string>
-    <string name="custom_app">Annan App</string>
-    <string name="custom_app_subtext">Välj en app att placera på hemskärmen.</string>
+
+    <string name="dialog_home_slot_title">Knappåtgärd</string>
+    <string name="dialog_home_slot_message">Välj vad den här knappen ska öppna.</string>
+    <string name="dialog_home_slot_option_custom">Välj app</string>
+    <string name="dialog_home_slot_option_default">%1$s (Standard)</string>
+
+    <string name="empty">Tom</string>
     <string name="no_app_was_found">Hittade ingen lämplig app!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Inga nya aviseringar</string>

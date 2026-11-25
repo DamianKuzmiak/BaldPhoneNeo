@@ -183,13 +183,23 @@ object Prefs {
 
     // Custom App Mappings (Home Screen)
 
+    /** Stored under [HomeSlot.key] to mark a slot as empty. Not a valid component name. */
+    const val EMPTY_SLOT_VALUE = "__empty__"
+
     /**
-     * Returns the component name for the given [slot], or null if not customized.
+     * Returns the raw value stored for the given [slot]: null or blank for the default action,
+     * [EMPTY_SLOT_VALUE] for an empty slot, or a flattened component name of the custom app.
      */
-    fun getCustomApp(slot: HomeSlot): String? = storage.getString(slot.key, null)
+    fun getSlotValue(slot: HomeSlot): String? = storage.getString(slot.key, null)
+
+    /** Marks the given [slot] as empty. */
+    fun setSlotEmpty(slot: HomeSlot) {
+        storage.edit { putString(slot.key, EMPTY_SLOT_VALUE) }
+    }
 
     /**
      * Sets or removes the customized app for the given [slot].
+     * Passing null restores the slot's default action (also clears the empty state).
      */
     fun setCustomApp(slot: HomeSlot, componentName: String?) {
         storage.edit {
@@ -201,9 +211,7 @@ object Prefs {
         }
     }
 
-    /**
-     * Returns true if the [slot] has a custom app assigned.
-     */
+    /** Returns true if the [slot] has a custom app assigned or is empty. */
     fun isCustomized(slot: HomeSlot): Boolean = storage.contains(slot.key)
 
     /**

@@ -60,10 +60,14 @@ object PredefinedApps {
         @StringRes val labelResId: Int
     )
 
+    /** Used as default app for `HomeSlot.LOCK_SCREEN` for Android 8- */
+    private val APPS_DRAWER_INFO =
+        AppInfo(AppsActivity::class.java.name, R.drawable.apps_on_background, R.string.apps)
+
     private val APPS =
         listOf(
             AppInfo(AlarmsActivity::class.java.name, R.drawable.clock_on_background, R.string.alarms),
-            AppInfo(AppsActivity::class.java.name, R.drawable.apps_on_background, R.string.apps),
+            APPS_DRAWER_INFO,
             AppInfo(ContactsActivity::class.java.name, R.drawable.human_on_background, R.string.contacts),
             AppInfo(DialerActivity::class.java.name, R.drawable.phone_on_background, R.string.dialer),
             AppInfo(MediaActivity::class.java.name, R.drawable.photo_on_background, R.string.photos),
@@ -96,11 +100,8 @@ object PredefinedApps {
     fun getAppEntry(context: Context, componentName: String): AppEntry? =
         APPS_MAP[componentName]?.toAppEntry(context, _pinnedApps.value.contains(componentName))
 
-    @JvmStatic
-    fun getAppsActivityEntry(context: Context): AppEntry? {
-        val flatName = "$PACKAGE_NAME/${AppsActivity::class.java.name}"
-        return getAppEntry(context.localized(), flatName)
-    }
+    fun getAppsActivityEntry(context: Context): AppEntry =
+        APPS_DRAWER_INFO.toAppEntry(context.localized(), false) // temporary false
 
     fun getIconResId(componentName: String): Int? =
         APPS_MAP[componentName]?.iconResId

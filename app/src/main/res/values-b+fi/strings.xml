@@ -83,7 +83,6 @@ ja muuttaa kirkkautta.</string>
     <string name="contact_not_created">Yhteystietoa ei luotu!</string>
     <string name="contacts">Kontaktit</string>
     <string name="current_time">Tänhetkinen aika</string>
-    <string name="custom">Mukautettu</string>
     <string name="dark">Tumma</string>
     <string name="delete">Poista</string>
     <string name="delete___">Poistetaanko %s?</string>
@@ -269,8 +268,13 @@ ja muuttaa kirkkautta.</string>
     <string name="crash_reports_subtext">Kaatumisraporteilla parannetaan BaldPhonen käyttöä sujuvaksi\nNiitä käytetään vain
         virhekorjaukseen ja vain virheen korjaamiseen välttämättömiä tietoja otetaan
     </string>
-    <string name="custom_app">Mukautettu sovellus</string>
-    <string name="custom_app_subtext">Valitse mukautettu sovellus aloitusnäytölle.</string>
+
+    <string name="dialog_home_slot_title">Painikkeen toiminto</string>
+    <string name="dialog_home_slot_message">Valitse, mitä tämä painike avaa.</string>
+    <string name="dialog_home_slot_option_custom">Valitse sovellus</string>
+    <string name="dialog_home_slot_option_default">%1$s (Oletus)</string>
+
+    <string name="empty">Tyhjä</string>
     <string name="no_app_was_found">Vastaavaa sovellusta ei löytynyt!</string>
     <string name="alarm">Hälytys</string>
     <string name="no_new_notifications">Ei uusia ilmoituksia</string>

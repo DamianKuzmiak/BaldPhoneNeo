@@ -81,7 +81,10 @@ letra-tipoaren tamaina eta distira aldatzeko.</string>
     <string name="contact_not_created">Kontaktua ez da sortu!</string>
     <string name="contacts">Kontaktuak</string>
     <string name="current_time">Oraingo ordua</string>
-    <string name="custom">Neurrira</string>
+
+    <!-- OUTDATED: needs retranslation -->
+    <string name="dialog_home_slot_option_custom">Neurrira</string>
+
     <string name="dark">Iluna</string>
     <string name="delete">Ezabatu</string>
     <string name="delete___">%s ezabatu?</string>

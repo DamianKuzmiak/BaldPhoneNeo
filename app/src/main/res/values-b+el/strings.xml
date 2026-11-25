@@ -84,7 +84,6 @@
     <string name="contact_not_created">Η επαφή δεν προστέθηκε!</string>
     <string name="contacts">Επαφές</string>
     <string name="current_time">Τρέχουσα Ώρα</string>
-    <string name="custom">Επιλογή</string>
     <string name="dark">Σκοτεινό</string>
     <string name="delete">Διαγραφή </string>
     <string name="delete___">Διαγραφή %s;</string>
@@ -271,8 +270,13 @@
     <string name="crash_reports_subtext">Οι αναφορές σφαλμάτων βοηθούν στη χωρίς προβλήματα χρήση του BaldPhone \nΧρησιμοποιούνται
         μόνο για την διόρθωση σφαλμάτων και καμιά άλλη πληροφορία δεν λαμβάνεται.
     </string>
-    <string name="custom_app">Επιλογή επαφής</string>
-    <string name="custom_app_subtext">Επιλέξτε μια εφαρμογή που θα είναι στην αρχική οθόνη</string>
+
+    <string name="dialog_home_slot_title">Ενέργεια κουμπιού</string>
+    <string name="dialog_home_slot_message">Επιλέξτε τι θα ανοίγει αυτό το κουμπί.</string>
+    <string name="dialog_home_slot_option_custom">Επιλογή εφαρμογής</string>
+    <string name="dialog_home_slot_option_default">%1$s (Προεπιλογή)</string>
+
+    <string name="empty">Κενό</string>
     <string name="no_app_was_found">Καμία εφαρμογή που να ταιριάζει δεν βρέθηκε</string>
     <string name="alarm">Ξυπνητήρι</string>
     <string name="no_new_notifications">Καμία νέα Ειδοποίηση</string>

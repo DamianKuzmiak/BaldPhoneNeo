@@ -81,7 +81,6 @@
     <string name="contact_not_created">Contacto não criado!</string>
     <string name="contacts">Contactos</string>
     <string name="current_time">Hora Actual</string>
-    <string name="custom">Personalizado</string>
     <string name="dark">Escuro</string>
     <string name="delete">Apagar</string>
     <string name="delete___">Apagar %s?</string>
@@ -254,8 +253,13 @@
     <string name="what_do_you_want_to_do_with___">O que prentede fazer com %s?</string>
     <string name="crash_reports">Relatório de Erros</string>
     <string name="crash_reports_subtext">Os relatórios de erros permitem melhorar a experiência de utilização. \nSão apenas utilizados para descobrir problemas e erros a serem resolvidos \n Informação pessoal não é recolhida.</string>
-    <string name="custom_app">Aplicação Personalizada</string>
-    <string name="custom_app_subtext">Escolha a aplicação personalizada a apresentar no Ecrã Inicial</string>
+
+    <string name="dialog_home_slot_title">Ação do botão</string>
+    <string name="dialog_home_slot_message">Escolha o que este botão deve abrir.</string>
+    <string name="dialog_home_slot_option_custom">Escolher aplicação</string>
+    <string name="dialog_home_slot_option_default">%1$s (Predefinida)</string>
+
+    <string name="empty">Vazio</string>
     <string name="no_app_was_found">Aplicação não encontrada!</string>
     <string name="alarm">Alarme</string>
     <string name="no_new_notifications">Não tem notificações</string>

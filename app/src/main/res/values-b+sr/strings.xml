@@ -80,7 +80,6 @@
     <string name="contact_not_created">Kontakt nije kreiran!</string>
     <string name="contacts">Kontakti</string>
     <string name="current_time">Trenutno vreme</string>
-    <string name="custom">Uobičajna</string>
     <string name="dark">Mračna</string>
     <string name="delete">Obriši</string>
     <string name="delete___">Obriši %s?</string>
@@ -251,8 +250,12 @@
     <string name="what_do_you_want_to_do_with___">Šta želite da uradite sa %s?</string>
     <string name="crash_reports">Izveštaji o greškama</string>
     <string name="crash_reports_subtext">Izveštaji o greškama nam pomažu da BaldPhone funkcioniše besprekorno\nKoriste se samo da bi se ispravile greške i nikakve informacije sem onih koje nam pomažu da te greške ispravimo se ne koriste.</string>
-    <string name="custom_app">Korisnička aplikacija</string>
-    <string name="custom_app_subtext">Izaberite aplikaciju koja će da bude na početnom ekranu</string>
+
+    <!-- OUTDATED: needs retranslation -->
+    <string name="dialog_home_slot_title">Korisnička aplikacija</string>
+    <string name="dialog_home_slot_message">Izaberite aplikaciju koja će da bude na početnom ekranu</string>
+    <string name="dialog_home_slot_option_custom">Uobičajna</string>
+
     <string name="no_app_was_found">Nije pronadjena odgovarajuća aplikacija!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Nema novih obaveštenja</string>

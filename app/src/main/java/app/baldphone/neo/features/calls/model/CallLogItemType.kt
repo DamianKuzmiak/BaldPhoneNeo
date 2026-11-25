@@ -24,7 +24,7 @@ enum class CallLogItemType(
     OUTGOING(R.drawable.call_made_on_button, R.string.outgoing, R.color.outgoing),
     VOICEMAIL(R.drawable.voicemail_on_button, R.string.voice_mail, R.color.other),
     BLOCKED(R.drawable.blocked_on_button, R.string.blocked, R.color.other),
-    UNKNOWN(R.drawable.error_on_background, R.string.empty, R.color.other);
+    UNKNOWN(R.drawable.error_on_background, R.string.unknown, R.color.other);
 
     val isVoiceCall: Boolean
         get() = (this == INCOMING) || (this == OUTGOING) || (this == VOICEMAIL)

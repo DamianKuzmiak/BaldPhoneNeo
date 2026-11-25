@@ -129,7 +129,6 @@
     <string name="pasted_from_clipboard">Pasted from clipboard</string>
     <string name="crash">Something went wrong.\nRestarting in a few seconds…</string>
     <string name="current_time">Current Time</string>
-    <string name="custom">Custom</string>
     <string name="dark">Dark</string>
     <string name="delete">Delete</string>
     <string name="delete___">Delete %s?</string>
@@ -329,8 +328,14 @@
     <string name="what_do_you_want_to_do_with___">What do you want to do with %s?</string>
     <string name="crash_reports">Crash Reports</string>
     <string name="crash_reports_subtext">Crash reports help improve BaldPhone.\nThey contain only the technical information needed to fix bugs.</string>
-    <string name="custom_app">Custom App</string>
-    <string name="custom_app_subtext">Choose custom app to be on the home screen.</string>
+
+    <string name="dialog_home_slot_title">Button Action</string>
+    <string name="dialog_home_slot_message">Choose what this button should open.</string>
+    <string name="dialog_home_slot_option_custom">Choose app</string>
+    <string name="dialog_home_slot_option_default">%1$s (Default)</string>
+
+    <string name="empty">Empty</string>
+    <string name="unknown">Unknown</string>
     <string name="no_app_was_found">No matching app was found!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">No New Notifications</string>

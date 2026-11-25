@@ -83,7 +83,6 @@
     <string name="contact_not_created">Contactul nu s-a creat!</string>
     <string name="contacts">Contacte</string>
     <string name="current_time">Ora curentă</string>
-    <string name="custom">Personalizat</string>
     <string name="dark">Întuneric</string>
     <string name="delete">Șterge</string>
     <string name="delete___">Ștergeți %s?</string>
@@ -264,8 +263,13 @@
     <string name="crash_reports">Report erori</string>
     <string name="crash_reports_subtext">Aceste reporturi ajuta la dezvoltarea aplicației. Sunt împartășite doar date aferente erorii.
     </string>
-    <string name="custom_app">Aplicație personalizată</string>
-    <string name="custom_app_subtext">Alegeți o aplicație pentru a fii prezentată pe pagina principală</string>
+
+    <string name="dialog_home_slot_title">Acțiunea butonului</string>
+    <string name="dialog_home_slot_message">Alegeți ce să deschidă acest buton.</string>
+    <string name="dialog_home_slot_option_custom">Alegeți aplicația</string>
+    <string name="dialog_home_slot_option_default">%1$s (Implicită)</string>
+
+    <string name="empty">Gol</string>
     <string name="no_app_was_found">Nici o aplicație de genul nu a fost găsită!</string>
     <string name="alarm">Alarmă</string>
     <string name="no_new_notifications">Nici o notificare nouă</string>

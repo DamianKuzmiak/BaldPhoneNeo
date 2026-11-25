@@ -16,15 +16,16 @@
 
 package com.bald.uriah.baldphone.activities;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import app.baldphone.neo.launcher.apps.ui.AppsActivity;
-
 import app.baldphone.neo.R;
-import com.bald.uriah.baldphone.utils.BPrefs;
+import app.baldphone.neo.data.Prefs;
+import app.baldphone.neo.launcher.apps.ui.AppsActivity;
+import app.baldphone.neo.launcher.data.HomeSlot;
 
 public class Page1EditorActivity extends BaldActivity {
 
@@ -37,9 +38,15 @@ public class Page1EditorActivity extends BaldActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && data != null && data.hasExtra(AppsActivity.CHOOSE_MODE) && data.getComponent() != null) {
-            BPrefs.get(this).edit().putString(data.getStringExtra(AppsActivity.CHOOSE_MODE), data.getComponent().flattenToString()).apply();
-            recreate();
+        if (resultCode != RESULT_OK || data == null) return;
+
+        final ComponentName component = data.getComponent();
+        final String slotKey = data.getStringExtra(AppsActivity.CHOOSE_MODE);
+        final HomeSlot slot = HomeSlot.fromKey(slotKey);
+        if (component == null || slot == null) {
+            return;
         }
+
+        Prefs.INSTANCE.setCustomApp(slot, component.flattenToString());
     }
 }

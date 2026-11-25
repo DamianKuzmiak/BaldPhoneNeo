@@ -82,7 +82,6 @@
     <string name="contact_not_created">Контакт не создан!</string>
     <string name="contacts">Контакты</string>
     <string name="current_time">Текущее время</string>
-    <string name="custom">Свое</string>
     <string name="dark">Темный</string>
     <string name="delete">Удалить</string>
     <string name="delete___">Удалить %s?</string>
@@ -261,8 +260,13 @@
     <string name="crash_reports">Отчеты о сбоях</string>
     <string name="crash_reports_subtext">Отчеты о сбоях помогают сделать использованние BaldPhone безупречным\nОни используются только что бы исправлять ошибки и никакая информация, кроме той, что необходима для исправления ошибок, не применяется.
     </string>
-    <string name="custom_app">Пользовательское приложение</string>
-    <string name="custom_app_subtext">Выберите пользовательское приложение для установки на домашний экран.</string>
+
+    <string name="dialog_home_slot_title">Действие кнопки</string>
+    <string name="dialog_home_slot_message">Выберите, что должна открывать эта кнопка.</string>
+    <string name="dialog_home_slot_option_custom">Выбрать приложение</string>
+    <string name="dialog_home_slot_option_default">%1$s (По умолчанию)</string>
+
+    <string name="empty">Пустая</string>
     <string name="no_app_was_found">Не найдено подходящего приложения!</string>
     <string name="alarm">Будильник</string>
     <string name="no_new_notifications">Нет новых уведомлений</string>

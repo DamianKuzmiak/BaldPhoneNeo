@@ -25,5 +25,10 @@ enum class HomeSlot(
     LOCK_SCREEN(PrefKeys.KEY_HOME_SLOT_LOCK_SCREEN, R.string.label_lock_screen_short, R.drawable.icon_lock_outline),
     MESSAGES(PrefKeys.KEY_HOME_SLOT_MESSAGES, R.string.messages, R.drawable.message_on_background),
     RECENTS(PrefKeys.KEY_HOME_SLOT_RECENTS, R.string.recent, R.drawable.history_on_background),
-    WHATSAPP(PrefKeys.KEY_HOME_SLOT_WHATSAPP, R.string.whatsapp, R.drawable.whatsapp_on_background)
+    WHATSAPP(PrefKeys.KEY_HOME_SLOT_WHATSAPP, R.string.whatsapp, R.drawable.whatsapp_on_background);
+
+    companion object {
+        @JvmStatic
+        fun fromKey(key: String?): HomeSlot? = entries.firstOrNull { it.key == key }
+    }
 }

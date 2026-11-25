@@ -82,7 +82,6 @@
     <string name="contact_not_created">איש קשר לא נוצר!</string>
     <string name="contacts">אנשי קשר</string>
     <string name="current_time">שעה נוכחית</string>
-    <string name="custom">התאמה אישית</string>
     <string name="dark">כהה</string>
     <string name="delete">מחק</string>
     <string name="delete___">מחיקת %s?</string>
@@ -270,8 +269,13 @@
     <string name="crash_reports_subtext">דיווח על קריסות עוזר לי לתקן אותן במהירות\nnהמידע שנשלח הוא רק המידע ההכרחי על
         מנת לתקן את התקלה, ולא נלקח שום מידע אישי
     </string>
-    <string name="custom_app">יישום מועדף</string>
-    <string name="custom_app_subtext">בחר יישום מועדף להצמדה למסך הבית.</string>
+
+    <string name="dialog_home_slot_title">פעולת הכפתור</string>
+    <string name="dialog_home_slot_message">בחר מה הכפתור הזה יפתח.</string>
+    <string name="dialog_home_slot_option_custom">בחר יישום</string>
+    <string name="dialog_home_slot_option_default">%1$s (ברירת מחדל)</string>
+
+    <string name="empty">ריק</string>
     <string name="no_app_was_found">לא נמצא יישום מתאים!</string>
     <string name="alarm">שעון מעורר</string>
     <string name="no_new_notifications">אין התראות חדשות</string>

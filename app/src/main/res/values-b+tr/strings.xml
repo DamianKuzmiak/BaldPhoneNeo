@@ -82,7 +82,6 @@
     <string name="contact_not_created">Kişi eklenmedi!</string>
     <string name="contacts">Kişiler</string>
     <string name="current_time">Şimdiki zaman</string>
-    <string name="custom">Özel</string>
     <string name="dark">Karanlık</string>
     <string name="delete">Sil</string>
     <string name="delete___"> %s? Silmeye emin misiniz?</string>
@@ -258,8 +257,13 @@
     <string name="what_do_you_want_to_do_with___">Şununla ne etmek istiyorsunuz %s?</string>
     <string name="crash_reports">Kaza şikayetleri</string>
     <string name="crash_reports_subtext">Kaza şikayetleri BaldPhone\'un kullanım tecrübesinin geliştirilmesine yardım ediyorlar.\nOnlar sadece hataların bulunması ve düzeltilmesine yardım ediyorlars, ve size ait hiçbir bilgi elde edilmiyor.</string>
-    <string name="custom_app">Özel uygulama</string>
-    <string name="custom_app_subtext">Ana sayfada olacak özel uygulamayı seçiniz.</string>
+
+    <string name="dialog_home_slot_title">Düğme işlemi</string>
+    <string name="dialog_home_slot_message">Bu düğmenin neyi açacağını seçin.</string>
+    <string name="dialog_home_slot_option_custom">Uygulama seçin</string>
+    <string name="dialog_home_slot_option_default">%1$s (Varsayılan)</string>
+
+    <string name="empty">Boş</string>
     <string name="no_app_was_found">Eşleşen uygulama bulunamadı!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Yeni bildirim yok</string>

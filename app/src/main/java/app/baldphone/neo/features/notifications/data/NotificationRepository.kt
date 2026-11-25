@@ -82,26 +82,26 @@ object NotificationRepository {
         }
     }
 
-    /**
-     * Returns a flow of all active package names, excluding the current app.
-     */
-    val activeNotificationPackages: Flow<Set<String>> =
-        notifications
-            .map { list ->
-                list
-                    .asSequence()
-                    .map { sbn -> sbn.packageName }
-                    .filter { it != BuildConfig.APPLICATION_ID }
-                    .toSet()
-            }.distinctUntilChanged()
+    /** Badge key for missed calls. */
+    const val MISSED_CALL_BADGE_KEY = "missed_calls"
 
     /**
-     * Flow of missed call notifications. Requires a context.
+     * Flow of badge keys: package names with active notifications (excluding the current app),
+     * plus [MISSED_CALL_BADGE_KEY] when any missed call notification exists.
      */
-    fun getMissedCallNotificationsFlow(context: Context): Flow<List<StatusBarNotification>> =
+    fun badgesFlow(context: Context): Flow<Set<String>> =
         notifications
-            .map { it.filter { sbn -> NotificationClassifier.isMissedCall(context, sbn) } }
-            .distinctUntilChanged()
+            .map { list ->
+                buildSet {
+                    list.forEach { sbn ->
+                        // This app is not a dialer, so our own notifications never count as missed calls.
+                        if (sbn.packageName == BuildConfig.APPLICATION_ID) return@forEach
+
+                        add(sbn.packageName)
+                        if (NotificationClassifier.isMissedCall(context, sbn)) add(MISSED_CALL_BADGE_KEY)
+                    }
+                }
+            }.distinctUntilChanged()
 
     /**
      * Updates the repository with a new list of active notifications.

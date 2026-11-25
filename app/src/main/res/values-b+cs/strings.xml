@@ -84,7 +84,6 @@
     <string name="contact_not_created">Kontakt nebyl vytvořen!</string>
     <string name="contacts">Kontakty</string>
     <string name="current_time">Čas nyní</string>
-    <string name="custom">Vlastní</string>
     <string name="dark">Tmavý</string>
     <string name="delete">Smazat</string>
     <string name="delete___">Smazat %s?</string>
@@ -271,8 +270,13 @@
     <string name="crash_reports_subtext">Zprávy o havárii pomáhají dělat prostředí BaldPhone bezchybné\nJsou používány pouze
         k opravě chyb a žádné jiné informace, než to co je potřeba k opravě chyb, není posíláno.
     </string>
-    <string name="custom_app">Vlastní aplikace</string>
-    <string name="custom_app_subtext">Vyberte vlastní aplikace, která bude na domovské obrazovce.</string>
+
+    <string name="dialog_home_slot_title">Akce tlačítka</string>
+    <string name="dialog_home_slot_message">Vyberte, co má toto tlačítko otevřít.</string>
+    <string name="dialog_home_slot_option_custom">Vybrat aplikaci</string>
+    <string name="dialog_home_slot_option_default">%1$s (Výchozí)</string>
+
+    <string name="empty">Prázdné</string>
     <string name="no_app_was_found">Nebyla nalezena žádná odpovídající aplikace!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Žádná nová upozornění</string>

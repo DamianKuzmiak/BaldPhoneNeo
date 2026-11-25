@@ -81,7 +81,6 @@
     <string name="contact_not_created">Contact niet aangemaakt!</string>
     <string name="contacts">Contacten</string>
     <string name="current_time">Huidige tijd</string>
-    <string name="custom">Aangepaste</string>
     <string name="dark">Donker</string>
     <string name="delete">Verwijderen</string>
     <string name="delete___">%s verwijderen?</string>
@@ -254,8 +253,13 @@ Deel het met hen!\"</string>
     <string name="what_do_you_want_to_do_with___">Wat wilt u doen met %s?</string>
     <string name="crash_reports">Crashrapporten</string>
     <string name="crash_reports_subtext">Crashrapporten helpen om BaldPhone te verbeteren\nZe worden alleen gebruikt om bugs op te lossen en er wordt geen andere informatie verstuurd dan dat wat nodig is om de bug op te lossen.</string>
-    <string name="custom_app">Aangepaste App</string>
-    <string name="custom_app_subtext">Kies een aangepaste app die op het startscherm zal verschijnen.</string>
+
+    <string name="dialog_home_slot_title">Knopactie</string>
+    <string name="dialog_home_slot_message">Kies wat deze knop moet openen.</string>
+    <string name="dialog_home_slot_option_custom">Kies app</string>
+    <string name="dialog_home_slot_option_default">%1$s (Standaard)</string>
+
+    <string name="empty">Leeg</string>
     <string name="no_app_was_found">Er is geen overeenkomende app gevonden!</string>
     <string name="alarm">Alarm</string>
     <string name="no_new_notifications">Geen Nieuwe Notificaties</string>
